@@ -1,0 +1,103 @@
+import {
+  catalogs as fallbackCatalogs,
+  materialCategories as fallbackCategories,
+  materials as fallbackMaterials,
+  newsItems as fallbackNewsItems,
+  projectCases as fallbackProjects,
+  skus as fallbackSkus,
+  type Download,
+  type Material,
+  type MaterialCategory,
+  type NewsItem,
+  type ProjectCase,
+  type Sku
+} from "@/lib/content";
+import type { Locale } from "@/lib/locales";
+import { adaptCatalog, adaptMaterial, adaptMaterialCategory, adaptNewsItem, adaptProjectCase, adaptSku } from "./adapters";
+import { getSanityClient } from "./client";
+import {
+  catalogsQuery,
+  materialCategoriesQuery,
+  materialsQuery,
+  newsItemsQuery,
+  projectsQuery,
+  skusQuery,
+  type RawCatalog,
+  type RawMaterial,
+  type RawMaterialCategory,
+  type RawNewsItem,
+  type RawProjectCase,
+  type RawSku
+} from "./queries";
+
+function isSanityConfigured(): boolean {
+  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+  return Boolean(projectId && projectId !== "replace-me");
+}
+
+async function fetchOrFallback<Raw, Value>(
+  query: string,
+  params: Record<string, string>,
+  fallback: Value[],
+  adapter: (raw: Raw) => Value
+): Promise<Value[]> {
+  if (!isSanityConfigured()) {
+    return fallback;
+  }
+
+  try {
+    const results = await getSanityClient().fetch<Raw[]>(query, params);
+    return results.map(adapter);
+  } catch (error) {
+    if (process.env.NODE_ENV === "production") {
+      throw error;
+    }
+
+    console.warn("Sanity fetch failed; using local fixture content.", error);
+    return fallback;
+  }
+}
+
+export async function loadMaterialCategories(): Promise<MaterialCategory[]> {
+  return fetchOrFallback<RawMaterialCategory, MaterialCategory>(materialCategoriesQuery, {}, fallbackCategories, adaptMaterialCategory);
+}
+
+export async function loadMaterials(): Promise<Material[]> {
+  return fetchOrFallback<RawMaterial, Material>(materialsQuery, {}, fallbackMaterials, adaptMaterial);
+}
+
+export async function loadMaterial(slug: string): Promise<Material | undefined> {
+  const materials = await loadMaterials();
+  return materials.find((material) => material.slug === slug);
+}
+
+export async function loadSkus(): Promise<Sku[]> {
+  return fetchOrFallback<RawSku, Sku>(skusQuery, {}, fallbackSkus, adaptSku);
+}
+
+export async function loadSkusForMaterial(materialSlug: string): Promise<Sku[]> {
+  const skus = await loadSkus();
+  return skus.filter((sku) => sku.materialSlug === materialSlug);
+}
+
+export async function loadSku(materialSlug: string, skuSlug: string): Promise<Sku | undefined> {
+  const skus = await loadSkusForMaterial(materialSlug);
+  return skus.find((sku) => sku.slug === skuSlug);
+}
+
+export async function loadProjects(): Promise<ProjectCase[]> {
+  return fetchOrFallback<RawProjectCase, ProjectCase>(projectsQuery, {}, fallbackProjects, adaptProjectCase);
+}
+
+export async function loadProject(slug: string): Promise<ProjectCase | undefined> {
+  const projects = await loadProjects();
+  return projects.find((project) => project.slug === slug);
+}
+
+export async function loadNewsItems(): Promise<NewsItem[]> {
+  return fetchOrFallback<RawNewsItem, NewsItem>(newsItemsQuery, {}, fallbackNewsItems, adaptNewsItem);
+}
+
+export async function loadCatalogs(locale: Locale): Promise<Download[]> {
+  return fetchOrFallback<RawCatalog, Download>(catalogsQuery, { locale }, fallbackCatalogs, adaptCatalog);
+}

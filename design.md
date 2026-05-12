@@ -2,7 +2,7 @@
 
 ## 0. Brand Soul (品牌灵魂)
 * **Slogan**: The Intersection of Texture and Precision (質感と精密さの交差点)
-* **Vibe**: 意大利顶级面料的艺术冲击力 ✖️ 日本高端建筑/工程的严谨与留白。
+* **Vibe**: 意大利顶级面料的艺术冲击力 ✖️ 日本高端设计的严谨与留白。
 * **Key Concept**: **Ma (間)** - 强调空间、呼吸感与极简主义，克制即奢华。
 
 ---
@@ -54,7 +54,7 @@
 * **Layout**: 
     * **左侧 (60%)**: 巨大的空心 Logo，下方紧跟双语 Slogan，利用极大负空间提升品牌高度。
     * **右侧 (40%)**: 合并展示 COMPANY, LEGAL, CONTACT；订阅区域仅保留极细的底边线。
-* **Bottom Bar**: 左侧 Copyright，右侧全球城市列表 (TOKYO | MILANO | LONDON | NEW YORK)，全大写且字间距极宽。
+* **Bottom Bar**: 左侧 Copyright，右侧全球城市列表 (TOKYO | MILANO | SHANGHAI | ADELAIDE)，全大写且字间距极宽。
 * **Background**: 强制使用 **`#FFFFFF` (纯白)** 以确保视觉上的无限延伸感。
 
 ---

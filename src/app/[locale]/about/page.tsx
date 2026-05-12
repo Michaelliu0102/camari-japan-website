@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
-import { materialCategories, site } from "@/lib/content";
+import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
+import { loadMaterialCategories } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale }>;
@@ -11,22 +12,25 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  const categories = await loadMaterialCategories();
 
   return createPageMetadata({
     locale,
     path: "/about",
     title: locale === "en" ? "About | CAMARI JAPAN" : "会社情報 | CAMARI JAPAN",
     description: locale === "en" ? "Learn about CAMARI JAPAN's material philosophy, company values, and contact information." : "CAMARI JAPAN の素材哲学、企業価値、連絡先について。",
-    image: materialCategories[1].coverImage
+    image: categories[1]?.coverImage
   });
 }
 
 export default async function AboutPage({ params }: PageProps) {
   const { locale } = await params;
+  const categories = await loadMaterialCategories();
+  const heroCategory = categories[1] ?? categories[0];
 
   return (
     <main>
-      <PageHero image={materialCategories[1].coverImage} subtitle={site.slogan[locale]} title="About" />
+      {heroCategory ? <PageHero image={heroCategory.coverImage} subtitle={site.slogan[locale]} title="About" /> : null}
       <section className="bg-paper py-24 md:py-36">
         <div className="section-shell grid gap-16 md:grid-cols-12">
           <div className="md:col-span-4">

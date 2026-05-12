@@ -4,16 +4,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CTASection } from "@/components/CTASection";
 import { NavInvert } from "@/components/NavInvert";
-import { getMaterial, getProject, projectCases } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
+import { loadMaterial, loadProject, loadProjects } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale; projectSlug: string }>;
 };
 
-export function generateStaticParams() {
-  return projectCases.flatMap((project) => [
+export async function generateStaticParams() {
+  const projects = await loadProjects();
+
+  return projects.flatMap((project) => [
     { locale: "en", projectSlug: project.slug },
     { locale: "ja", projectSlug: project.slug }
   ]);
@@ -21,7 +23,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, projectSlug } = await params;
-  const project = getProject(projectSlug);
+  const project = await loadProject(projectSlug);
 
   if (!project) {
     return {};
@@ -38,13 +40,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { locale, projectSlug } = await params;
-  const project = getProject(projectSlug);
+  const project = await loadProject(projectSlug);
 
   if (!project) {
     notFound();
   }
 
-  const material = getMaterial(project.materialSlug);
+  const material = await loadMaterial(project.materialSlug);
 
   return (
     <main className="bg-paper pt-[var(--nav-height)]">

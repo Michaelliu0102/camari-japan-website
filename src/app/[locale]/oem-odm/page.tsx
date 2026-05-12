@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
-import { materialCategories, projectCases } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
+import { loadMaterialCategories, loadProjects } from "@/sanity/lib/loaders";
 import Link from "next/link";
 
 type PageProps = {
@@ -19,26 +19,31 @@ const steps = [
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  const categories = await loadMaterialCategories();
 
   return createPageMetadata({
     locale,
     path: "/oem-odm",
     title: locale === "en" ? "OEM/ODM | CAMARI JAPAN" : "OEM/ODM | CAMARI JAPAN",
     description: locale === "en" ? "OEM and ODM material programs for automotive, product, interior, and spatial design teams." : "車両、プロダクト、インテリア、空間デザインチーム向けの OEM/ODM 素材プログラム。",
-    image: materialCategories[0].coverImage
+    image: categories[0]?.coverImage
   });
 }
 
 export default async function OemOdmPage({ params }: PageProps) {
   const { locale } = await params;
+  const [categories, projects] = await Promise.all([loadMaterialCategories(), loadProjects()]);
+  const heroImage = projects[0]?.image ?? categories[0]?.coverImage;
 
   return (
     <main>
-      <PageHero
-        image={projectCases[0].image}
-        subtitle={locale === "en" ? "From concept material strategy to finished surface execution" : "素材戦略から完成されたサーフェス実装まで"}
-        title="OEM / ODM"
-      />
+      {heroImage ? (
+        <PageHero
+          image={heroImage}
+          subtitle={locale === "en" ? "From concept material strategy to finished surface execution" : "素材戦略から完成されたサーフェス実装まで"}
+          title="OEM / ODM"
+        />
+      ) : null}
       <section className="bg-paper py-24 md:py-36">
         <div className="section-shell grid gap-16 md:grid-cols-12">
           <div className="md:col-span-5">

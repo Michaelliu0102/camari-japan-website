@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
-import { materialCategories, site } from "@/lib/content";
+import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
+import { loadMaterialCategories } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale }>;
@@ -11,22 +12,25 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  const categories = await loadMaterialCategories();
 
   return createPageMetadata({
     locale,
     path: "/contact",
     title: locale === "en" ? "Contact | CAMARI JAPAN" : "お問い合わせ | CAMARI JAPAN",
     description: locale === "en" ? "Contact CAMARI JAPAN for material availability, catalogs, and appointments." : "素材在庫、カタログ、予約について CAMARI JAPAN へお問い合わせください。",
-    image: materialCategories[0].coverImage
+    image: categories[0]?.coverImage
   });
 }
 
 export default async function ContactPage({ params }: PageProps) {
   const { locale } = await params;
+  const categories = await loadMaterialCategories();
+  const heroCategory = categories[0];
 
   return (
     <main>
-      <PageHero image={materialCategories[0].coverImage} subtitle={locale === "en" ? "Direct contact for material and sales inquiries" : "素材・営業に関する直接のお問い合わせ"} title="Contact" />
+      {heroCategory ? <PageHero image={heroCategory.coverImage} subtitle={locale === "en" ? "Direct contact for material and sales inquiries" : "素材・営業に関する直接のお問い合わせ"} title="Contact" /> : null}
       <section className="bg-paper py-24 md:py-36">
         <div className="section-shell grid gap-16 md:grid-cols-12">
           <div className="md:col-span-5">

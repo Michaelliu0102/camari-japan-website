@@ -5,9 +5,10 @@ import { CTASection } from "@/components/CTASection";
 import { ExploreCarousel } from "@/components/ExploreCarousel";
 import { HeroVideo } from "@/components/HeroVideo";
 import { MaterialBentoGrid } from "@/components/MaterialBentoGrid";
-import { materialCategories, projectCases, site } from "@/lib/content";
+import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
+import { loadMaterialCategories, loadMaterials, loadProjects } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale }>;
@@ -15,23 +16,25 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  const categories = await loadMaterialCategories();
 
   return createPageMetadata({
     locale,
     title: `${site.name} | ${site.slogan[locale]}`,
     description: site.description[locale],
-    image: materialCategories[0].coverImage
+    image: categories[0]?.coverImage
   });
 }
 
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
-  const featureCase = projectCases[0];
+  const [categories, materials, projects] = await Promise.all([loadMaterialCategories(), loadMaterials(), loadProjects()]);
+  const featureCase = projects[0];
 
   return (
     <main>
       <HeroVideo locale={locale} />
-      <ExploreCarousel locale={locale} />
+      <ExploreCarousel categories={categories} locale={locale} materials={materials} />
 
       <section className="bg-stone py-24 md:py-36">
         <div className="section-shell grid gap-16 md:grid-cols-12 md:items-center">
@@ -51,26 +54,28 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
-      <MaterialBentoGrid locale={locale} />
+      <MaterialBentoGrid categories={categories} locale={locale} materials={materials} />
 
-      <section className="bg-paper py-24 md:py-36">
-        <div className="section-shell grid gap-12 md:grid-cols-[0.85fr_1fr] md:items-end">
-          <div>
-            <p className="label-caps text-gold">OEM / ODM</p>
-            <h2 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">
-              {locale === "en" ? "From texture selection to finished surface programs." : "素材選定から完成されたサーフェスプログラムまで。"}
-            </h2>
-          </div>
-          <Link className="group relative block min-h-[420px] overflow-hidden bg-stone" href={localizedPath(locale, `/projects/${featureCase.slug}`)}>
-            <Image alt={featureCase.title[locale]} className="object-cover transition-transform duration-700 group-hover:scale-105" fill sizes="(min-width: 768px) 50vw, 100vw" src={featureCase.image} />
-            <div className="absolute inset-0 bg-black/20" />
-            <div className="absolute bottom-0 p-8 text-white md:p-10">
-              <p className="label-caps text-white/75">{featureCase.industry[locale]}</p>
-              <h3 className="mt-4 font-serif text-3xl">{featureCase.title[locale]}</h3>
+      {featureCase ? (
+        <section className="bg-paper py-24 md:py-36">
+          <div className="section-shell grid gap-12 md:grid-cols-[0.85fr_1fr] md:items-end">
+            <div>
+              <p className="label-caps text-gold">OEM / ODM</p>
+              <h2 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">
+                {locale === "en" ? "From texture selection to finished surface programs." : "素材選定から完成されたサーフェスプログラムまで。"}
+              </h2>
             </div>
-          </Link>
-        </div>
-      </section>
+            <Link className="group relative block min-h-[420px] overflow-hidden bg-stone" href={localizedPath(locale, `/projects/${featureCase.slug}`)}>
+              <Image alt={featureCase.title[locale]} className="object-cover transition-transform duration-700 group-hover:scale-105" fill sizes="(min-width: 768px) 50vw, 100vw" src={featureCase.image} />
+              <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute bottom-0 p-8 text-white md:p-10">
+                <p className="label-caps text-white/75">{featureCase.industry[locale]}</p>
+                <h3 className="mt-4 font-serif text-3xl">{featureCase.title[locale]}</h3>
+              </div>
+            </Link>
+          </div>
+        </section>
+      ) : null}
 
       <CTASection
         body={locale === "en" ? "Speak with the CAMARI team about material availability, technical sheets, and project-fit recommendations." : "素材の在庫、技術資料、プロジェクトに適した選定について CAMARI チームにご相談ください。"}

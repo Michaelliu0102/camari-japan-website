@@ -4,54 +4,71 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useState } from "react";
-import { getMaterial, materialCategories } from "@/lib/content";
+import type { LocalizedString, Material, MaterialCategory } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
+
+type ExploreSlide = {
+  slug: string;
+  title: LocalizedString;
+  category: LocalizedString;
+  description: LocalizedString;
+  image: string;
+  href: string;
+};
 
 type ExploreCarouselProps = {
   locale: Locale;
+  categories: MaterialCategory[];
+  materials: Material[];
 };
 
-const productSlides = [
-  {
-    slug: "oem-odm",
-    title: { en: "Bespoke Surfaces", ja: "特注サーフェス" },
-    category: { en: "Product — OEM", ja: "Product — OEM" },
-    description: {
-      en: "Material programs for automotive, product, hospitality, and architectural teams.",
-      ja: "車両、プロダクト、ホスピタリティ、建築チームに向けた素材プログラム。"
-    },
-    image: materialCategories[0].coverImage,
-    href: "/oem-odm"
-  },
-  {
-    slug: "projects",
-    title: { en: "Applied Precision", ja: "応用される精密性" },
-    category: { en: "Product — ODM", ja: "Product — ODM" },
-    description: {
-      en: "Case-led development from concept, material matching, and surface execution.",
-      ja: "コンセプト、素材選定、サーフェス実装までのケース主導型開発。"
-    },
-    image: materialCategories[3].coverImage,
-    href: "/projects"
-  }
-];
-
-const slides = [
-  ...materialCategories.slice(0, 3).map((category) => ({
-    slug: category.slug,
-    title: category.name,
-    category: { en: `Material — ${category.name.en}`, ja: `Material — ${category.name.ja}` },
-    description: category.description,
-    image: category.coverImage,
-    href: getMaterial(category.slug) ? `/materials/${category.slug}` : "/materials"
-  })),
-  ...productSlides
-];
-
-export function ExploreCarousel({ locale }: ExploreCarouselProps) {
+export function ExploreCarousel({ locale, categories, materials }: ExploreCarouselProps) {
+  const fallbackImage = categories[0]?.coverImage ?? "";
+  const productSlides: ExploreSlide[] = fallbackImage
+    ? [
+        {
+          slug: "oem-odm",
+          title: { en: "Bespoke Surfaces", ja: "特注サーフェス" },
+          category: { en: "Product — OEM", ja: "Product — OEM" },
+          description: {
+            en: "Material programs for automotive, product, hospitality, and architectural teams.",
+            ja: "車両、プロダクト、ホスピタリティ、建築チームに向けた素材プログラム。"
+          },
+          image: categories[0]?.coverImage ?? fallbackImage,
+          href: "/oem-odm"
+        },
+        {
+          slug: "projects",
+          title: { en: "Applied Precision", ja: "応用される精密性" },
+          category: { en: "Product — ODM", ja: "Product — ODM" },
+          description: {
+            en: "Case-led development from concept, material matching, and surface execution.",
+            ja: "コンセプト、素材選定、サーフェス実装までのケース主導型開発。"
+          },
+          image: categories[3]?.coverImage ?? fallbackImage,
+          href: "/projects"
+        }
+      ]
+    : [];
+  const slides: ExploreSlide[] = [
+    ...categories.slice(0, 3).map((category) => ({
+      slug: category.slug,
+      title: category.name,
+      category: { en: `Material — ${category.name.en}`, ja: `Material — ${category.name.ja}` },
+      description: category.description,
+      image: category.coverImage,
+      href: materials.some((material) => material.slug === category.slug) ? `/materials/${category.slug}` : "/materials"
+    })),
+    ...productSlides
+  ];
+  const materialSlideCount = Math.min(categories.length, 3);
   const [index, setIndex] = useState(0);
   const slide = slides[index];
-  const isProduct = index >= 3;
+  const isProduct = index >= materialSlideCount;
+
+  if (!slide) {
+    return null;
+  }
 
   function move(offset: number) {
     setIndex((current) => (current + offset + slides.length) % slides.length);
@@ -68,7 +85,7 @@ export function ExploreCarousel({ locale }: ExploreCarouselProps) {
           <button className={`label-caps border-b pb-4 ${!isProduct ? "border-charcoal text-charcoal" : "border-transparent text-muted"}`} onClick={() => setIndex(0)} type="button">
             Material
           </button>
-          <button className={`label-caps border-b pb-4 ${isProduct ? "border-charcoal text-charcoal" : "border-transparent text-muted"}`} onClick={() => setIndex(3)} type="button">
+          <button className={`label-caps border-b pb-4 ${isProduct ? "border-charcoal text-charcoal" : "border-transparent text-muted"}`} onClick={() => setIndex(materialSlideCount)} type="button">
             Product
           </button>
         </div>

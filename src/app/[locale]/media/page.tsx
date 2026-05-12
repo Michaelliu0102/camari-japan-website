@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
-import { materialCategories, newsItems } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
+import { loadMaterialCategories, loadNewsItems } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale }>;
@@ -11,22 +11,25 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  const newsItems = await loadNewsItems();
 
   return createPageMetadata({
     locale,
     path: "/media",
     title: locale === "en" ? "Media | CAMARI JAPAN" : "メディア | CAMARI JAPAN",
     description: locale === "en" ? "News, exhibitions, materials, and editorial updates from CAMARI JAPAN." : "CAMARI JAPAN のニュース、展示会、素材、編集記事。",
-    image: newsItems[0].image
+    image: newsItems[0]?.image
   });
 }
 
 export default async function MediaPage({ params }: PageProps) {
   const { locale } = await params;
+  const [categories, newsItems] = await Promise.all([loadMaterialCategories(), loadNewsItems()]);
+  const heroCategory = categories[2] ?? categories[0];
 
   return (
     <main>
-      <PageHero image={materialCategories[2].coverImage} subtitle={locale === "en" ? "News, materials, exhibitions, and project notes" : "ニュース、素材、展示会、プロジェクトノート"} title="Media" />
+      {heroCategory ? <PageHero image={heroCategory.coverImage} subtitle={locale === "en" ? "News, materials, exhibitions, and project notes" : "ニュース、素材、展示会、プロジェクトノート"} title="Media" /> : null}
       <section className="bg-paper py-24 md:py-36">
         <div className="section-shell grid gap-gutter md:grid-cols-3">
           {newsItems.map((item) => (

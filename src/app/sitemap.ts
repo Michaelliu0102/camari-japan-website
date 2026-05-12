@@ -1,16 +1,24 @@
 import type { MetadataRoute } from "next";
-import { catalogs, materials, newsItems, projectCases, site, skus } from "@/lib/content";
+import { site } from "@/lib/content";
 import { locales, localizedPath } from "@/lib/locales";
+import { loadCatalogs, loadMaterials, loadNewsItems, loadProjects, loadSkus } from "@/sanity/lib/loaders";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [materials, skus, projects, newsItems, catalogGroups] = await Promise.all([
+    loadMaterials(),
+    loadSkus(),
+    loadProjects(),
+    loadNewsItems(),
+    Promise.all(locales.map((locale) => loadCatalogs(locale)))
+  ]);
   const staticPaths = ["", "/materials", "/oem-odm", "/projects", "/about", "/media", "/contact", "/downloads"];
   const materialPaths = materials.flatMap((material) => [
     `/materials/${material.slug}`,
     ...skus.filter((sku) => sku.materialSlug === material.slug).map((sku) => `/materials/${material.slug}/${sku.slug}`)
   ]);
-  const projectPaths = projectCases.map((project) => `/projects/${project.slug}`);
+  const projectPaths = projects.map((project) => `/projects/${project.slug}`);
   const mediaPaths = newsItems.map((item) => `/media#${item.slug}`);
-  const downloadPaths = catalogs.map(() => "/downloads");
+  const downloadPaths = catalogGroups.flat().map(() => "/downloads");
   const paths = [...staticPaths, ...materialPaths, ...projectPaths, ...mediaPaths, ...downloadPaths];
 
   return [...new Set(paths)].flatMap((path) =>

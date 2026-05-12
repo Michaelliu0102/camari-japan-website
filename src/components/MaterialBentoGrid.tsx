@@ -1,18 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getMaterial, materialCategories } from "@/lib/content";
+import type { Material, MaterialCategory } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
 
 type MaterialBentoGridProps = {
   locale: Locale;
+  categories: MaterialCategory[];
+  materials: Material[];
 };
 
-export function MaterialBentoGrid({ locale }: MaterialBentoGridProps) {
+export function MaterialBentoGrid({ locale, categories, materials }: MaterialBentoGridProps) {
   return (
     <section className="bg-paper py-24 md:py-32">
       <div className="section-shell grid grid-cols-1 gap-gutter md:grid-cols-12">
-        {materialCategories.map((category, index) => {
-          const href = getMaterial(category.slug) ? `/materials/${category.slug}` : "/materials";
+        {categories.map((category, index) => {
+          const href = materials.some((material) => material.slug === category.slug) ? `/materials/${category.slug}` : "/materials";
           const className =
             index === 0
               ? "md:col-span-8 h-[520px] md:h-[620px]"

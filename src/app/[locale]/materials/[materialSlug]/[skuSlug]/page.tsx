@@ -6,17 +6,20 @@ import { SkuSwatches } from "@/components/SkuSwatches";
 import { SpecificationTable } from "@/components/SpecificationTable";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { getMaterial, getSku, getSkusForMaterial, materials } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
+import { loadMaterial, loadMaterials, loadSku, loadSkusForMaterial } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale; materialSlug: string; skuSlug: string }>;
 };
 
-export function generateStaticParams() {
-  return materials.flatMap((material) =>
-    getSkusForMaterial(material.slug).flatMap((sku) => [
+export async function generateStaticParams() {
+  const materials = await loadMaterials();
+  const skuGroups = await Promise.all(materials.map((material) => loadSkusForMaterial(material.slug)));
+
+  return materials.flatMap((material, index) =>
+    (skuGroups[index] ?? []).flatMap((sku) => [
       { locale: "en", materialSlug: material.slug, skuSlug: sku.slug },
       { locale: "ja", materialSlug: material.slug, skuSlug: sku.slug }
     ])
@@ -25,7 +28,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, materialSlug, skuSlug } = await params;
-  const sku = getSku(materialSlug, skuSlug);
+  const sku = await loadSku(materialSlug, skuSlug);
 
   if (!sku) {
     return {};
@@ -42,14 +45,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function SkuDetailPage({ params }: PageProps) {
   const { locale, materialSlug, skuSlug } = await params;
-  const material = getMaterial(materialSlug);
-  const sku = getSku(materialSlug, skuSlug);
+  const [material, sku] = await Promise.all([loadMaterial(materialSlug), loadSku(materialSlug, skuSlug)]);
 
   if (!material || !sku) {
     notFound();
   }
 
-  const skus = getSkusForMaterial(material.slug);
+  const skus = await loadSkusForMaterial(material.slug);
 
   return (
     <main>

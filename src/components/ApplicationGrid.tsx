@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getSkusForMaterial, type Material } from "@/lib/content";
+import type { Material, Sku } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
 
 type ApplicationGridProps = {
   locale: Locale;
   material: Material;
+  skus: Sku[];
 };
 
-export function ApplicationGrid({ locale, material }: ApplicationGridProps) {
-  const firstSku = getSkusForMaterial(material.slug)[0];
+export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps) {
+  const firstSku = skus[0];
   const href = firstSku ? `/materials/${material.slug}/${firstSku.slug}` : `/materials/${material.slug}`;
 
   return (
