@@ -1,0 +1,94 @@
+import { defineField, defineType } from "sanity";
+import { localizedString, localizedText } from "./localizedString";
+
+export const sku = defineType({
+  name: "sku",
+  title: "SKU",
+  type: "document",
+  fields: [
+    defineField({
+      name: "code",
+      title: "SKU Code",
+      type: "string",
+      validation: (rule) => rule.required()
+    }),
+    defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: { source: "code" },
+      validation: (rule) => rule.required()
+    }),
+    defineField({
+      name: "material",
+      title: "Material",
+      type: "reference",
+      to: [{ type: "material" }],
+      validation: (rule) => rule.required()
+    }),
+    defineField({
+      name: "colorName",
+      title: "Color Name",
+      type: "object",
+      fields: localizedString
+    }),
+    defineField({
+      name: "hex",
+      title: "Hex Color",
+      type: "string"
+    }),
+    defineField({
+      name: "heroImage",
+      title: "Hero Image",
+      type: "image",
+      options: { hotspot: true }
+    }),
+    defineField({
+      name: "summary",
+      title: "Summary",
+      type: "object",
+      fields: localizedText
+    }),
+    defineField({
+      name: "specs",
+      title: "Specifications",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({ name: "label", title: "Label", type: "object", fields: localizedString }),
+            defineField({ name: "value", title: "Value", type: "object", fields: localizedString })
+          ]
+        }
+      ]
+    }),
+    defineField({
+      name: "certifications",
+      title: "Certifications",
+      type: "array",
+      of: [{ type: "object", fields: localizedString }]
+    }),
+    defineField({
+      name: "downloads",
+      title: "Downloads",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({ name: "title", title: "Title", type: "object", fields: localizedString }),
+            defineField({ name: "description", title: "Description", type: "object", fields: localizedText }),
+            defineField({ name: "file", title: "File", type: "file" }),
+            defineField({ name: "type", title: "Type", type: "string", options: { list: ["catalog", "technical", "care"] } })
+          ]
+        }
+      ]
+    }),
+    defineField({
+      name: "seo",
+      title: "SEO",
+      type: "seo"
+    })
+  ]
+});

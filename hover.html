@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>No Lens Translation Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="lens-demo" aria-label="English headline with direct hover Japanese translation">
+      <section class="hero hero--component-demo">
+        <div class="site-mark">
+          <a href="index.html">Lens version</a>
+          <span aria-hidden="true">Tokyo</span>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Direct hover translation demo</p>
+
+          <fluid-translation-reveal
+            english="We choose a different starting point"
+            japanese="私たちは|異なる|出発点を|選びます"
+            variant="fluid"
+            aria-label="We choose a different starting point"
+          ></fluid-translation-reveal>
+
+          <p class="support">
+            Move over the headline. The translation appears directly under the cursor, without a visible lens.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="components/fluid-translation-reveal.js"></script>
+  </body>
+</html>

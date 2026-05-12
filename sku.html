@@ -1,0 +1,452 @@
+<html class="light" lang="en">
+
+<head></head>
+
+<body class="bg-white font-body-md text-on-surface selection:bg-accent-gold selection:text-white">```html
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Montserrat:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Cinzel:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#444748",
+                        "secondary": "#735b33",
+                        "accent-gold": "#A68A5E",
+                        "secondary-container": "#fcdba9",
+                        "tertiary-fixed-dim": "#b3c5ff",
+                        "cobalt-deep": "#002366",
+                        "background": "#ffffff",
+                        "tertiary-container": "#00174a",
+                        "surface-container-high": "#ffffff",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-surface": "#1c1b1b",
+                        "surface-container-highest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#ffffff",
+                        "primary-container": "#1c1b1b",
+                        "secondary-fixed-dim": "#e2c291",
+                        "on-tertiary-fixed": "#00174a",
+                        "on-primary-fixed": "#1c1b1b",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#ffffff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-secondary-fixed": "#281900",
+                        "surface-tint": "#5f5e5e",
+                        "glass-bg": "rgba(255, 255, 255, 0.1)",
+                        "on-tertiary-fixed-variant": "#2a4386",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#ffffff",
+                        "primary-fixed": "#e5e2e1",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#ffdeac",
+                        "inverse-on-surface": "#f4f0ef",
+                        "outline": "#747878",
+                        "surface-container": "#ffffff",
+                        "tertiary": "#000000",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "base-paper": "#FBFBFB",
+                        "on-secondary-fixed-variant": "#59431e",
+                        "outline-variant": "#c4c7c7",
+                        "on-error": "#ffffff",
+                        "surface": "#ffffff",
+                        "tertiary-fixed": "#dbe1ff",
+                        "overlay-white": "rgba(255, 255, 255, 0.9)",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#c8c6c5",
+                        "on-tertiary-container": "#6a81c8",
+                        "on-secondary-container": "#775f37",
+                        "primary": "#000000",
+                        "on-primary-container": "#858383",
+                        "surface-container-low": "#ffffff",
+                        "on-background": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "unit": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-underline {
+            position: relative;
+        }
+
+        .nav-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 50%;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-underline:hover::after {
+            width: 100%;
+        }
+
+        .logo-outline {
+            font-family: 'Cinzel', serif;
+            font-weight: 300;
+            letter-spacing: 0.25em;
+            color: rgba(255, 255, 255, 0.9);
+            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .japanese-gothic {
+            font-family: "Inter", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+        }
+    </style>
+    <!-- TOP NAV BAR -->
+    <header class="fixed top-0 w-full z-50 glass-nav">
+        <nav
+            class="flex justify-between items-center px-margin-desktop py-unit w-full max-w-container-max mx-auto h-[80px]">
+            <div class="flex items-center">
+                <span class="logo-outline text-xl uppercase">CAMARI</span>
+            </div>
+            <div class="hidden md:flex items-center gap-10 font-label-caps text-[10px] tracking-[0.2em]">
+                <a class="nav-underline text-on-primary transition-all duration-300" href="#">HOME</a>
+                <a class="nav-underline text-on-primary/80 hover:text-white transition-all duration-300"
+                    href="#">ABOUT</a>
+                <a class="nav-underline text-on-primary/80 hover:text-white transition-all duration-300"
+                    href="#">MATERIAL</a>
+                <a class="nav-underline text-on-primary/80 hover:text-white transition-all duration-300"
+                    href="#">PRODUCT</a>
+                <a class="nav-underline text-on-primary/80 hover:text-white transition-all duration-300"
+                    href="#">MEDIA</a>
+                <a class="nav-underline text-on-primary/80 hover:text-white transition-all duration-300"
+                    href="#">CONTACT</a>
+            </div>
+            <div
+                class="font-label-caps text-[10px] tracking-widest text-on-primary border border-white/30 px-4 py-2 hover:bg-white hover:text-primary transition-colors duration-300 cursor-pointer">
+                JP / EN
+            </div>
+        </nav>
+    </header>
+    <main class="pt-20">
+        <!-- PRODUCT HERO -->
+        <section
+            class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-gutter items-start bg-white">
+            <!-- Left: Hero Image Gallery -->
+            <div class="w-full aspect-[4/5] bg-white overflow-hidden group">
+                <img alt="ALCANTARA Texture"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    data-alt="A high-resolution, macro close-up of a luxurious Alcantara fabric in a sophisticated charcoal grey. The image captures the subtle velvety nap of the material, showing rich tactile textures and organic shadows under soft, cinematic studio lighting. The aesthetic is clean and minimalist, highlighting the premium quality and Japanese craft precision in a high-key light mode environment."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkwrCmJel_tnN4FVxJfvhrYmrLtSVQxP1QAWAZFQ5klWej8HSzJcqjZnitNZ4JQAmddyfPvBmGx6bB5yq0_o5jPbmw4vUgltZchTBVjF81Ru258t0lQVqOChelwa3qdW8fvMiipFpa9q_DABEXoavvCG7TsXFDb0ZrZ9riwHK3BuZJSSaXsNXk7_uHXrFNp8gF0Ult5vm7DQ-ZeusOlFAGnzBeYei3K078qr27IWNV71ps6VAkEebGXfjw-CtW_wmPCwcGfxlWDJU" />
+            </div>
+            <!-- Right: Product Information -->
+            <div class="flex flex-col h-full justify-between py-4 bg-white">
+                <div>
+                    <span
+                        class="font-label-caps text-label-caps text-accent-gold tracking-[0.2em] block mb-4 uppercase">Premium
+                        Collection</span>
+                    <h1 class="font-headline-md text-headline-md text-primary mb-2 uppercase tracking-widest">ALCANTARA®
+                        PANNEL</h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-lg">
+                        The ultimate sensory material. Combining Japanese precision with Italian aesthetic tension, our
+                        Alcantara series offers an unparalleled tactile experience for bespoke interiors.
+                    </p>
+                    <div class="mb-12">
+                        <span class="font-label-caps text-label-caps text-primary block mb-6">COLOR: col. 4991 SHADOW
+                            BLACK</span>
+                        <div class="flex flex-wrap gap-4">
+                            <!-- Swatches -->
+                            <button
+                                class="w-10 h-10 bg-[#1A1A1A] border border-primary p-0.5 outline outline-offset-2 outline-primary"
+                                title="Shadow Black"></button>
+                            <button
+                                class="w-10 h-10 bg-[#735b33] hover:outline hover:outline-1 hover:outline-offset-2 hover:outline-outline transition-all"
+                                title="Umber Brown"></button>
+                            <button
+                                class="w-10 h-10 bg-[#A68A5E] hover:outline hover:outline-1 hover:outline-offset-2 hover:outline-outline transition-all"
+                                title="Desert Sand"></button>
+                            <button
+                                class="w-10 h-10 bg-[#D9D9D9] hover:outline hover:outline-1 hover:outline-offset-2 hover:outline-outline transition-all"
+                                title="Arctic Mist"></button>
+                            <button
+                                class="w-10 h-10 bg-[#2A4386] hover:outline hover:outline-1 hover:outline-offset-2 hover:outline-outline transition-all"
+                                title="Imperial Navy"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <button
+                        class="w-full md:w-auto px-12 py-5 bg-primary text-on-primary font-label-caps text-label-caps tracking-[0.3em] transition-all hover:bg-on-surface-variant active:scale-95 uppercase">
+                        REQUEST A SAMPLE
+                    </button>
+                    <p class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">
+                        Available for worldwide shipping. Professional inquiries only.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- SPECIFICATIONS TABLE -->
+        <section class="border-t border-outline-variant bg-white">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-20 bg-white">
+                <div class="flex flex-col md:flex-row gap-12 items-baseline mb-12">
+                    <h2 class="font-headline-sm text-headline-sm uppercase tracking-[0.15em] shrink-0">Specifications
+                    </h2>
+                    <div class="h-px flex-grow bg-outline-variant hidden md:block"></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                    <div class="space-y-4">
+                        <div class="flex justify-between py-4 border-b border-outline-variant">
+                            <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Unit</span>
+                            <span class="font-body-md text-body-md text-primary">Meters</span>
+                        </div>
+                        <div class="flex justify-between py-4 border-b border-outline-variant">
+                            <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Code</span>
+                            <span class="font-body-md text-body-md text-primary">C-ALC-4991</span>
+                        </div>
+                        <div class="flex justify-between py-4 border-b border-outline-variant">
+                            <span
+                                class="font-label-caps text-label-caps text-on-surface-variant uppercase">Composition</span>
+                            <span class="font-body-md text-body-md text-primary text-right">68% Polyester, 32%
+                                Polyurethane</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between py-4 border-b border-outline-variant">
+                            <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Width</span>
+                            <span class="font-body-md text-body-md text-primary">142 cm ± 2cm</span>
+                        </div>
+                        <div class="flex justify-between py-4 border-b border-outline-variant">
+                            <span
+                                class="font-label-caps text-label-caps text-on-surface-variant uppercase">Weight</span>
+                            <span class="font-body-md text-body-md text-primary">420 g/m² ± 5%</span>
+                        </div>
+                        <div class="flex justify-between py-4 border-b border-outline-variant">
+                            <span
+                                class="font-label-caps text-label-caps text-on-surface-variant uppercase">Martindale</span>
+                            <span class="font-body-md text-body-md text-primary">&gt; 150,000 cycles</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- MAINTENANCE & CERTIFICATIONS -->
+        <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 space-y-32 bg-white">
+            <!-- Certifications & Treatments -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter bg-white">
+                <div class="space-y-6">
+                    <h3 class="font-label-caps text-label-caps text-accent-gold tracking-[0.2em] uppercase">
+                        Certifications</h3>
+                    <div class="flex gap-8 items-center">
+                        <div
+                            class="p-6 border border-outline-variant flex flex-col items-center justify-center text-center max-w-[120px] bg-white">
+                            <span class="material-symbols-outlined text-primary text-4xl" data-icon="eco">eco</span>
+                            <span class="font-label-caps text-[10px] mt-2">GREENGUARD</span>
+                        </div>
+                        <div
+                            class="p-6 border border-outline-variant flex flex-col items-center justify-center text-center max-w-[120px] bg-white">
+                            <span class="material-symbols-outlined text-primary text-4xl"
+                                data-icon="verified">verified</span>
+                            <span class="font-label-caps text-[10px] mt-2">OEKO-TEX®</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="font-label-caps text-label-caps text-accent-gold tracking-[0.2em] uppercase">Treatments
+                    </h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Standard FR Treatment (Fire Retardant) applied. Carbon Neutral production verified.
+                        Water-repellent finish available upon special request for yachting and high-exposure projects.
+                    </p>
+                </div>
+            </div>
+            <!-- Maintenance -->
+            <div class="bg-white p-12 md:p-20 border border-outline-variant">
+                <h2 class="font-headline-sm text-headline-sm uppercase tracking-[0.15em] mb-12">Maintenance &amp; Use
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12">
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <span class="material-symbols-outlined text-3xl" data-icon="dry_cleaning">dry_cleaning</span>
+                        <div class="space-y-1">
+                            <p class="font-label-caps text-[10px]">PROFESSIONAL CLEANING</p>
+                            <p class="text-[10px] text-on-surface-variant">専門業者によるクリーニング</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <span class="material-symbols-outlined text-3xl"
+                            data-icon="do_not_disturb_on">do_not_disturb_on</span>
+                        <div class="space-y-1">
+                            <p class="font-label-caps text-[10px]">DO NOT BLEACH</p>
+                            <p class="text-[10px] text-on-surface-variant">漂白剤使用不可</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <span class="material-symbols-outlined text-3xl" data-icon="iron">iron</span>
+                        <div class="space-y-1">
+                            <p class="font-label-caps text-[10px]">IRON LOW HEAT</p>
+                            <p class="text-[10px] text-on-surface-variant">アイロンは低温で</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <span class="material-symbols-outlined text-3xl" data-icon="laundry">laundry</span>
+                        <div class="space-y-1">
+                            <p class="font-label-caps text-[10px]">DO NOT TUMBLE DRY</p>
+                            <p class="text-[10px] text-on-surface-variant">乾燥機使用不可</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 max-w-2xl border-t border-outline-variant pt-8">
+                    <p class="font-body-md text-on-surface-variant italic">
+                        "Ma" (space) should be respected when positioning upholstered pieces to allow the material to
+                        breathe and maintain its sensory tension over time.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- DOWNLOADS & SHIPPING -->
+        <section
+            class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 grid grid-cols-1 md:grid-cols-2 gap-24 border-t border-outline-variant bg-white">
+            <div class="space-y-8">
+                <h2 class="font-headline-sm text-headline-sm uppercase tracking-[0.15em]">Downloads</h2>
+                <div class="flex flex-col gap-6">
+                    <a class="group flex items-center justify-between py-2 border-b-2 border-primary w-fit pr-8"
+                        href="#">
+                        <span class="font-label-caps text-label-caps tracking-[0.1em]">PRODUCT SHEET (PDF)</span>
+                        <span class="material-symbols-outlined ml-4 transition-transform group-hover:translate-y-1"
+                            data-icon="download">download</span>
+                    </a>
+                    <a class="group flex items-center justify-between py-2 border-b-2 border-primary w-fit pr-8"
+                        href="#">
+                        <span class="font-label-caps text-label-caps tracking-[0.1em]">TECHNICAL SPECIFICATIONS</span>
+                        <span class="material-symbols-outlined ml-4 transition-transform group-hover:translate-y-1"
+                            data-icon="description">description</span>
+                    </a>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h2 class="font-headline-sm text-headline-sm uppercase tracking-[0.15em]">Shipping &amp; Returns</h2>
+                <div class="space-y-4 text-on-surface-variant">
+                    <p class="font-body-md">Shipments are processed via Tokyo logistics hub within 5-7 business days for
+                        stock items. Custom FR treatments require an additional 14 days lead time.</p>
+                    <p class="text-[12px] leading-relaxed opacity-70">
+                        【返品について】素材の性質上、カット後の返品・交換は一切お受けできません。色味の確認が必要な場合は、必ず事前にサンプルをご請求ください。モニター環境により実際の色と異なって見える場合がございます。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- FOOTER -->
+    <footer class="bg-base-paper text-on-surface border-t border-outline-variant/30">
+        <div class="max-w-container-max mx-auto px-margin-desktop py-24">
+            <div class="grid grid-cols-12 gap-12 mb-20">
+                <div class="col-span-12 md:col-span-4">
+                    <span class="logo-outline text-xl uppercase text-primary brightness-0 mb-8 block">CAMARI</span>
+                    <p class="japanese-gothic text-on-surface-variant text-body-md max-w-xs mb-10 leading-relaxed">
+                        建筑素材とインテリア・クラフトマンシップの顶点を目指して。
+                    </p>
+                    <div class="flex gap-6">
+                        <a class="text-on-surface-variant hover:text-accent-gold transition-colors" href="#"><span
+                                class="material-symbols-outlined font-light">camera_alt</span></a>
+                        <a class="text-on-surface-variant hover:text-accent-gold transition-colors" href="#"><span
+                                class="material-symbols-outlined font-light">alternate_email</span></a>
+                        <a class="text-on-surface-variant hover:text-accent-gold transition-colors" href="#"><span
+                                class="material-symbols-outlined font-light">location_on</span></a>
+                    </div>
+                </div>
+                <div class="col-span-6 md:col-span-2">
+                    <h5 class="font-label-caps text-[10px] mb-8 tracking-[0.3em]">COMPANY</h5>
+                    <ul class="flex flex-col gap-5 text-body-md japanese-gothic text-on-surface-variant">
+                        <li><a class="hover:text-accent-gold transition-colors" href="#">Our Heritage</a></li>
+                        <li><a class="hover:text-accent-gold transition-colors" href="#">Craftsmanship</a></li>
+                        <li><a class="hover:text-accent-gold transition-colors" href="#">Press</a></li>
+                        <li><a class="hover:text-accent-gold transition-colors" href="#">Journal</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-6 md:col-span-2">
+                    <h5 class="font-label-caps text-[10px] mb-8 tracking-[0.3em]">LEGAL</h5>
+                    <ul class="flex flex-col gap-5 text-body-md japanese-gothic text-on-surface-variant">
+                        <li><a class="hover:text-accent-gold transition-colors" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-accent-gold transition-colors" href="#">Terms of Service</a></li>
+                        <li><a class="hover:text-accent-gold transition-colors" href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-12 md:col-span-4">
+                    <h5 class="font-label-caps text-[10px] mb-8 tracking-[0.3em]">NEWSLETTER</h5>
+                    <p class="japanese-gothic text-on-surface-variant text-body-md mb-8">
+                        最新コレクションやショールームイベントのご案内を、定期的にお届けします。</p>
+                    <div class="flex border-b border-on-surface pb-3">
+                        <input
+                            class="bg-transparent border-none focus:ring-0 w-full text-[10px] font-label-caps tracking-widest placeholder:text-outline"
+                            placeholder="YOUR EMAIL" type="email" />
+                        <button class="material-symbols-outlined font-light">east</button>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-outline-variant/20">
+                <p class="font-label-caps text-[9px] text-on-surface-variant tracking-[0.3em] uppercase">
+                    © 2024 CAMARI JAPAN. ALL RIGHTS RESERVED.
+                </p>
+                <div
+                    class="flex gap-10 mt-8 md:mt-0 font-label-caps text-[9px] tracking-[0.4em] text-on-surface-variant uppercase">
+                    <span>Tokyo</span>
+                    <span>Milan</span>
+                    <span>London</span>
+                    <span>New York</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    ```
+</body>
+
+</html>

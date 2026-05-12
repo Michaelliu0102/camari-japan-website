@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ALCANTARA | CAMARI JAPAN</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&amp;family=Inter:wght@400;500&amp;family=Montserrat:wght@600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e5e2e1",
+                        "secondary": "#735b33",
+                        "primary": "#000000",
+                        "on-primary-fixed": "#1c1b1b",
+                        "accent-gold": "#A68A5E",
+                        "base-paper": "#FBFBFB",
+                        "overlay-white": "rgba(255, 255, 255, 0.9)",
+                        "glass-bg": "rgba(255, 255, 255, 0.1)",
+                        "on-surface-variant": "#444748",
+                        "outline-variant": "#c4c7c7",
+                        "background": "#fdf8f8",
+                        "warm-grey": "#F2EFE9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "label-caps": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .nav-underline-effect {
+            position: relative;
+        }
+
+        .nav-underline-effect::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background-color: currentColor;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-underline-effect:hover::after {
+            width: 100%;
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-underline {
+            position: relative;
+        }
+
+        .nav-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-underline:hover::after {
+            width: 100%;
+        }
+
+        .logo-outline {
+            font-family: 'Cinzel', serif;
+            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.25em;
+            color: transparent;
+        }
+
+        .logo-outline-dark {
+            font-family: 'Cinzel', serif;
+            -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.25em;
+            color: transparent;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body class="bg-background text-primary font-body-md antialiased">
+    <header class="fixed top-0 w-full z-50 glass-nav">
+        <nav
+            class="flex justify-between items-center px-margin-desktop py-unit w-full max-w-container-max mx-auto h-[80px]">
+            <div class="flex items-center">
+                <span class="logo-outline text-xl uppercase">CAMARI</span>
+            </div>
+            <div class="hidden md:flex items-center gap-10 font-label-caps text-[10px] tracking-[0.2em]">
+                <a class="nav-underline text-white transition-all duration-300" href="#">HOME</a>
+                <a class="nav-underline text-white/80 hover:text-white transition-all duration-300" href="#">ABOUT</a>
+                <a class="nav-underline text-white/80 hover:text-white transition-all duration-300"
+                    href="#">MATERIAL</a>
+                <a class="nav-underline text-white/80 hover:text-white transition-all duration-300" href="#">PRODUCT</a>
+                <a class="nav-underline text-white/80 hover:text-white transition-all duration-300" href="#">MEDIA</a>
+                <a class="nav-underline text-white/80 hover:text-white transition-all duration-300" href="#">CONTACT</a>
+            </div>
+            <div
+                class="font-label-caps text-[10px] tracking-widest text-white border border-white/30 px-4 py-2 hover:bg-white hover:text-primary transition-colors duration-300 cursor-pointer">
+                JP / EN
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- HERO SECTION -->
+        <section class="relative h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover"
+                    data-alt="A macro high-definition photograph of luxurious Alcantara fabric in a deep charcoal grey. The image highlights the fine, suede-like texture and soft nap of the material under cinematic, low-angle lighting that emphasizes its tactile depth and premium quality. The overall mood is sophisticated and minimal, echoing the quiet luxury aesthetic of CAMARI JAPAN."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ1xIH0pXuhyfw0yFqm5A9Z0aUDAqOHTk6_LjXdFcPZx0yVaHE_m0Yr4UXe_YHuy0tfoNY6A4x2nDuUuFu-yybyqeGk5CjZ3uQ_0tHW8kfU9xDgHBmdJg5YuZ3pS9Gv5dORZBsvdhSV9jT4xyAti8VSavkBq_iEgLexKv493y6qvNh9vhoPh91TQ2aY1e70CmzkZ2nnURmIU6yW84RWXVEQutle0uckOwig1EnkYPJLoythTMYn8j7q2tqmjj-_e5ovz_l7fEJS8o" />
+                <div class="absolute inset-0 bg-black/30"></div>
+            </div>
+            <div class="relative z-10 text-center text-white">
+                <h1 class="font-display-lg text-[80px] md:text-[120px] uppercase tracking-tighter mb-4">ALCANTARA</h1>
+                <p class="font-label-caps tracking-[0.3em] opacity-80">THE SENSORY REVOLUTION</p>
+            </div>
+            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 text-white animate-bounce">
+                <span class="material-symbols-outlined text-[32px]">expand_more</span>
+            </div>
+        </section>
+        <!-- TECHNICAL PERFORMANCE SECTION -->
+        <section class="py-[150px] px-margin-desktop bg-warm-grey">
+            <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+                <div class="md:col-span-5 space-y-8">
+                    <h2 class="font-headline-md text-headline-md text-primary">The Art of Italian Innovation</h2>
+                    <div class="w-20 h-px bg-accent-gold"></div>
+                    <p class="text-body-lg leading-relaxed text-on-surface-variant">
+                        Born at the intersection of avant-garde technology and artisanal heritage, Alcantara represents
+                        a unique category of material. It is not leather, nor is it a simple textile; it is a
+                        carbon-neutral canvas for contemporary luxury that balances supreme softness with extreme
+                        durability.
+                    </p>
+                    <p class="text-body-md text-on-surface-variant italic">
+                        "Alcantara transforms the experience of touch into an architectural statement."
+                    </p>
+                </div>
+                <div class="md:col-span-6 md:col-start-7 relative">
+                    <img class="w-full aspect-[4/5] object-cover shadow-2xl"
+                        data-alt="A modern architectural interior featuring a minimalist lounge area with Alcantara upholstered surfaces. The lighting is soft and diffused, coming from large floor-to-ceiling windows, highlighting the matte finish of the fabric. The composition uses asymmetric balance with clean lines and a palette of warm greys and ivory, embodying the Japanese concept of Ma."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7ZrAd47bJyNDiZsYFqvWZwSesH95st08txaMeziENnQ9oVj60KmSmH8L1RUPKONbB6SH5NOdP1ZVQ0mnJEtDKP1q9klE2_yW3BixnJftaYgJbp_0nomc8mgh17p_ONOlq-xjAFyyf1bSmz5MOq7CyoPatzBO9uaCgJCRpYYco-u6GF9cp9zGho6oF1-8FYAobZa7OKcKdcvEN3gsrs7v8iBBsTie5ZmZi6bnlyV767sszweKxgX4bFgxtm2e66al3C74Bh8SLlm8" />
+                    <div class="absolute -bottom-10 -left-10 w-64 h-64 border border-accent-gold/20 -z-10"></div>
+                </div>
+            </div>
+        </section>
+        <!-- COLLECTION SHOWCASE SECTION -->
+        <section class="py-[150px] px-margin-desktop bg-[#FFFFFF]">
+            <div class="max-w-container-max mx-auto mb-16 text-center">
+                <h2 class="font-headline-md text-headline-md mb-2">COLLECTION SHOWCASE</h2>
+                <div class="w-20 h-px bg-accent-gold mx-auto mt-6"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+                <!-- AUTOMOTIVE -->
+                <div class="group cursor-pointer">
+                    <div
+                        class="overflow-hidden mb-6 aspect-square shadow-sm group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-500">
+                        <img alt="Automotive Alcantara"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCO9x301O0W0kZ6O7U8eR9l9Z0aUDAqOHTk6_LjXdFcPZx0yVaHE_m0Yr4UXe_YHuy0tfoNY6A4x2nDuUuFu-yybyqeGk5CjZ3uQ_0tHW8kfU9xDgHBmdJg5YuZ3pS9Gv5dORZBsvdhSV9jT4xyAti8VSavkBq_iEgLexKv493y6qvNh9vhoPh91TQ2aY1e70CmzkZ2nnURmIU6yW84RWXVEQutle0uckOwig1EnkYPJLoythTMYn8j7q2tqmjj-_e5ovz_l7fEJS8o" />
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-label-caps text-label-caps tracking-[0.15em] mb-1">AUTOMOTIVE</h3>
+                        <p class="font-body-md text-on-surface-variant text-[14px]">71 colours</p>
+                    </div>
+                </div>
+                <!-- INTERIOR -->
+                <div class="group cursor-pointer">
+                    <div
+                        class="overflow-hidden mb-6 aspect-square shadow-sm group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-500">
+                        <img alt="Interior Alcantara"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7ZrAd47bJyNDiZsYFqvWZwSesH95st08txaMeziENnQ9oVj60KmSmH8L1RUPKONbB6SH5NOdP1ZVQ0mnJEtDKP1q9klE2_yW3BixnJftaYgJbp_0nomc8mgh17p_ONOlq-xjAFyyf1bSmz5MOq7CyoPatzBO9uaCgJCRpYYco-u6GF9cp9zGho6oF1-8FYAobZa7OKcKdcvEN3gsrs7v8iBBsTie5ZmZi6bnlyV767sszweKxgX4bFgxtm2e66al3C74Bh8SLlm8" />
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-label-caps text-label-caps tracking-[0.15em] mb-1">INTERIOR</h3>
+                        <p class="font-body-md text-on-surface-variant text-[14px]">76 colours</p>
+                    </div>
+                </div>
+                <!-- OUTDOOR -->
+                <div class="group cursor-pointer">
+                    <div
+                        class="overflow-hidden mb-6 aspect-square shadow-sm group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-500">
+                        <img alt="Outdoor Alcantara"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1_m0k_z4v_--owRaTXIMZ132FJNMCqJ_D7IA2ICmNfH6e-bwbBxJjOYxb5BBugzjTcEIumHX4dY5KAdgdcGFtPdAYKObeHQN5rPpkmDmaHs05UvQbXjWqgSh_w2q85m9QP277PJjwPrA8vVhu400hqqS3y0QWdOUxu4iK_mMZ2t_OaHfOVvCNL-y1Ko3ASO7VOoDGh86wE9xEyl9ZS3_HIoGnAFxbTpVd5h65HDePp-GceZ8Mc9JmW3q-E-v4j-D472alRGpUUskyGxl9S4" />
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-label-caps text-label-caps tracking-[0.15em] mb-1">OUTDOOR</h3>
+                        <p class="font-body-md text-on-surface-variant text-[14px]">14 colours</p>
+                    </div>
+                </div>
+                <!-- CONSUMER ELECTRONICS -->
+                <div class="group cursor-pointer">
+                    <div
+                        class="overflow-hidden mb-6 aspect-square shadow-sm group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-500">
+                        <img alt="Consumer Electronics Alcantara"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqv_--owRaTXIMZ132FJNMCqJ_D7IA2ICmNfH6e-bwbBxJjOYxb5BBugzjTcEIumHX4dY5KAdgdcGFtPdAYKObeHQN5rPpkmDmaHs05UvQbXjWqgSh_w2q85m9QP277PJjwPrA8vVhu400hqqS3y0QWdOUxu4iK_mMZ2t_OaHfOVvCNL-y1Ko3ASO7VOoDGh86wE9xEyl9ZS3_HIoGnAFxbTpVd5h65HDePp-GceZ8Mc9JmW3q-E-v4j-D472alRGpUUskyGxl9S4" />
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-label-caps text-label-caps tracking-[0.15em] mb-1">CONSUMER ELECTRONICS</h3>
+                        <p class="font-body-md text-on-surface-variant text-[14px]">20 colours</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- VISIT CTA SECTION -->
+        <section class="relative h-[600px] flex items-center justify-center">
+            <img class="absolute inset-0 w-full h-full object-cover"
+                data-alt="A serene, minimalist interior detail shot showing the play of light and shadow across a textured wall. The lighting is warm and golden, reminiscent of a sunset in a Japanese garden. The scene evokes a sense of peace and architectural restraint, highlighting the 'quiet luxury' philosophy of the CAMARI brand."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqv_--owRaTXIMZ132FJNMCqJ_D7IA2ICmNfH6e-bwbBxJjOYxb5BBugzjTcEIumHX4dY5KAdgdcGFtPdAYKObeHQN5rPpkmDmaHs05UvQbXjWqgSh_w2q85m9QP277PJjwPrA8vVhu400hqqS3y0QWdOUxu4iK_mMZ2t_OaHfOVvCNL-y1Ko3ASO7VOoDGh86wE9xEyl9ZS3_HIoGnAFxbTpVd5h65HDePp-GceZ8Mc9JmW3q-E-v4j-D472alRGpUUskyGxl9S4" />
+            <div class="absolute inset-0 bg-primary/20"></div>
+            <div class="relative z-10 text-white text-center max-w-xl px-margin-mobile">
+                <h2 class="font-headline-md text-headline-md mb-8">Experience Alcantara in our Tokyo Showroom</h2>
+                <button
+                    class="bg-white text-primary px-12 py-4 font-label-caps hover:bg-accent-gold hover:text-white transition-all duration-300">SCHEDULE
+                    A VISIT</button>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-base-paper border-t border-outline-variant py-20 px-margin-desktop">
+        <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+            <div class="space-y-6">
+                <div class="logo-outline-dark text-2xl uppercase">CAMARI</div>
+                <p class="text-body-md text-on-surface-variant leading-relaxed">
+                    イタリアのテキスタイル革新と日本の建築規律の融合を通じて、感覚的な贅沢の極みを定義します。
+                </p>
+            </div>
+            <div class="space-y-8">
+                <h4 class="font-label-caps text-[10px] tracking-widest uppercase">Global Cities</h4>
+                <ul class="space-y-3 font-body-md text-on-surface-variant">
+                    <li><a class="hover:text-accent-gold transition-colors" href="#">Tokyo</a></li>
+                    <li><a class="hover:text-accent-gold transition-colors" href="#">Milan</a></li>
+                    <li><a class="hover:text-accent-gold transition-colors" href="#">London</a></li>
+                    <li><a class="hover:text-accent-gold transition-colors" href="#">New York</a></li>
+                </ul>
+            </div>
+            <div class="space-y-8">
+                <h4 class="font-label-caps text-[10px] tracking-widest uppercase">Newsletter</h4>
+                <div class="space-y-4">
+                    <p class="text-body-md text-on-surface-variant">Subscribe to receive our latest updates and curated
+                        collections.</p>
+                    <form class="flex border-b border-primary/20 pb-2">
+                        <input class="bg-transparent w-full focus:outline-none text-body-md" placeholder="Email Address"
+                            type="email" />
+                        <button class="font-label-caps text-[10px] tracking-widest" type="submit">JOIN</button>
+                    </form>
+                </div>
+            </div>
+            <div class="flex flex-col justify-between items-start md:items-end">
+                <div class="space-y-3 text-left md:text-right font-body-md text-on-surface-variant">
+                    <a class="block hover:text-accent-gold transition-colors" href="#">Privacy Policy</a>
+                    <a class="block hover:text-accent-gold transition-colors" href="#">Terms of Service</a>
+                    <a class="block hover:text-accent-gold transition-colors" href="#">Contact</a>
+                </div>
+                <div class="mt-12 text-[10px] font-label-caps tracking-widest opacity-50">
+                    © 2024 CAMARI JAPAN. ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

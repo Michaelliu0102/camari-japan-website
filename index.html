@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lens Translation Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="lens-demo" aria-label="English headline with Japanese lens translation">
+      <section class="hero" data-lens-area>
+        <div class="site-mark">
+          <span>London</span>
+          <a href="hover.html">No lens version</a>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Cursor lens translation demo</p>
+
+          <div class="translation-stack" aria-label="We are a brand of collective creativity">
+            <h1 class="headline headline--english">
+              We are a brand of collective creativity
+            </h1>
+            <p class="headline headline--japanese" aria-hidden="true">
+              <span>私たちは</span>
+              <span>集合的な</span>
+              <span>創造性の</span>
+              <span>ブランドです</span>
+            </p>
+          </div>
+
+          <p class="support">
+            Move across the headline. The lens carries the second language with it.
+          </p>
+        </div>
+
+        <div class="lens" aria-hidden="true">
+          <span class="lens__glint"></span>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
