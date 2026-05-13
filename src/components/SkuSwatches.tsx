@@ -68,7 +68,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, skus, initialS
   }
 
   return (
-    <section className={`bg-paper ${compact ? "" : "pt-[var(--nav-height)]"}`} data-nav-invert>
+    <section className={`bg-paper ${compact ? "" : "pt-[calc(var(--nav-height)+2rem)] md:pt-[calc(var(--nav-height)+4rem)]"}`} data-nav-invert>
       {/* Desktop: 3-column — thumbnails | main image | product details */}
       <div className="section-shell flex flex-col gap-8 md:flex-row md:items-start md:gap-0">
         {/* Col 1+2: Images area (thumbnails + main image) — matches Dedar's productView-images flex row */}
@@ -104,7 +104,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, skus, initialS
             onPointerMove={handleImagePointerMove}
             style={{ aspectRatio: "100/118.3", "--sku-zoom-x": "50%", "--sku-zoom-y": "50%" } as SkuZoomStyle}
           >
-            <div className="absolute inset-[20%]">
+            <div className="absolute inset-[9%_20%]">
               <Image
                 alt={activeImage.alt}
                 className="origin-[var(--sku-zoom-x)_var(--sku-zoom-y)] object-contain transition-transform duration-700 ease-expo will-change-transform md:group-hover/sku-image:scale-[2.15]"
