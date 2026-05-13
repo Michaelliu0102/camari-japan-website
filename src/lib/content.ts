@@ -270,7 +270,7 @@ export const materials: Material[] = [
     },
     applications: [
       { slug: "automotive", name: { en: "Automotive", ja: "自動車" }, colorCount: 71, image: images.alcantara },
-      { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 76, image: images.interior },
+      { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 78, image: images.interior },
       { slug: "outdoor", name: { en: "Outdoor", ja: "アウトドア" }, colorCount: 14, image: images.outdoor },
       { slug: "electronics", name: { en: "Consumer Electronics", ja: "コンシューマー機器" }, colorCount: 20, image: images.vegan }
     ],
@@ -281,6 +281,105 @@ export const materials: Material[] = [
         ja: "プレミアムインテリアとモビリティ向け Alcantara の用途、性能、カラー、技術資料を紹介します。"
       },
       image: images.alcantara
+    }
+  },
+  {
+    slug: "leather",
+    categorySlug: "leather",
+    name: { en: "Leather", ja: "レザー" },
+    eyebrow: { en: "Full-Grain Collection", ja: "フルグレインコレクション" },
+    heroTitle: { en: "Leather", ja: "Leather" },
+    heroSubtitle: { en: "Natural depth and architectural warmth", ja: "自然な奥行きと建築的な温度" },
+    heroImage: images.interior,
+    introTitle: { en: "The Character of Natural Grain", ja: "天然の木目が持つ個性" },
+    introBody: {
+      en: "Premium full-grain and top-grain hides selected for their supple hand, natural markings, and ability to patina with intention. Each hide carries the trace of its origin, bringing warmth and presence to cabins, lounges, and bespoke product programs.",
+      ja: "しなやかな手触り、自然な風合い、意図を持った経年変化のために選ばれたプレミアムフルグレインおよびトップグレインレザー。一枚一枚がその起源の痕跡を持ち、キャビン、ラウンジ、特注プロダクトに温もりと存在感をもたらします。"
+    },
+    introImage: images.alcantaraSoft,
+    quote: {
+      en: "Leather is not a surface. It is a record of time.",
+      ja: "レザーは表面ではない。それは時間の記録である。"
+    },
+    applications: [
+      { slug: "automotive", name: { en: "Automotive", ja: "自動車" }, colorCount: 42, image: images.interior },
+      { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 55, image: images.alcantaraSoft },
+      { slug: "product", name: { en: "Product Design", ja: "プロダクトデザイン" }, colorCount: 28, image: images.alcantara },
+      { slug: "marine", name: { en: "Marine", ja: "マリン" }, colorCount: 18, image: images.outdoor }
+    ],
+    seo: {
+      title: { en: "Leather Materials | CAMARI JAPAN", ja: "レザー素材 | CAMARI JAPAN" },
+      description: {
+        en: "Full-grain and top-grain leather collections for automotive, interior, and bespoke product applications.",
+        ja: "自動車、インテリア、特注プロダクト向けのフルグレインおよびトップグレインレザーコレクション。"
+      },
+      image: images.interior
+    }
+  },
+  {
+    slug: "vegan-leather",
+    categorySlug: "vegan-leather",
+    name: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
+    eyebrow: { en: "Sustainable Collection", ja: "サステナブルコレクション" },
+    heroTitle: { en: "Vegan Leather", ja: "Vegan Leather" },
+    heroSubtitle: { en: "Performance without compromise", ja: "妥協なき性能" },
+    heroImage: images.vegan,
+    introTitle: { en: "High-Performance Alternatives", ja: "ハイパフォーマンスな選択肢" },
+    introBody: {
+      en: "Engineered surface materials that match or exceed the tactile and durability standards of traditional leather, without animal content. Matte finishes, micro-textures, and colorfast pigments define a collection built for contemporary product and interior programs.",
+      ja: "伝統的なレザーの触感と耐久性基準を満たし、それを超えるように設計された素材。マット仕上げ、マイクロテクスチャ、退色しにくい顔料が、現代的なプロダクトとインテリアのためのコレクションを形作ります。"
+    },
+    introImage: images.outdoor,
+    quote: {
+      en: "Sustainability is not a constraint. It is a material discipline.",
+      ja: "持続可能性は制約ではない。それは素材の規律である。"
+    },
+    applications: [
+      { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 48, image: images.vegan },
+      { slug: "outdoor", name: { en: "Outdoor", ja: "アウトドア" }, colorCount: 22, image: images.outdoor },
+      { slug: "electronics", name: { en: "Consumer Electronics", ja: "コンシューマー機器" }, colorCount: 16, image: images.alcantara },
+      { slug: "fashion", name: { en: "Fashion", ja: "ファッション" }, colorCount: 35, image: images.fabric }
+    ],
+    seo: {
+      title: { en: "Vegan Leather Materials | CAMARI JAPAN", ja: "ヴィーガンレザー素材 | CAMARI JAPAN" },
+      description: {
+        en: "Sustainable vegan leather alternatives with matte finishes and micro-textures for interior and product spaces.",
+        ja: "マット仕上げとマイクロテクスチャを備えた、インテリアとプロダクト空間のためのサステナブルなヴィーガンレザー素材。"
+      },
+      image: images.vegan
+    }
+  },
+  {
+    slug: "fabric",
+    categorySlug: "fabric",
+    name: { en: "Fabric", ja: "ファブリック" },
+    eyebrow: { en: "Textile Collection", ja: "テキスタイルコレクション" },
+    heroTitle: { en: "Fabric", ja: "Fabric" },
+    heroSubtitle: { en: "Washi, weave, and quiet tactility", ja: "和紙、織り、静かな触感" },
+    heroImage: images.fabric,
+    introTitle: { en: "The Architecture of Weave", ja: "織りの建築" },
+    introBody: {
+      en: "Architectural textiles selected for spatial restraint and practical durability. From Japanese washi paper weaves to high-performance technical fabrics, each selection balances acoustic softness with structural integrity for interior, hospitality, and product applications.",
+      ja: "空間の余白と実用性のために選ばれた建築的テキスタイル。和紙の織りから高機能テクニカルファブリックまで、それぞれがインテリア、ホスピタリティ、プロダクト用途における吸音性と構造的な完全性のバランスを取ります。"
+    },
+    introImage: images.alcantara,
+    quote: {
+      en: "Fabric does not decorate space. It completes it.",
+      ja: "ファブリックは空間を飾らない。それを完成させる。"
+    },
+    applications: [
+      { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 62, image: images.fabric },
+      { slug: "hospitality", name: { en: "Hospitality", ja: "ホスピタリティ" }, colorCount: 38, image: images.interior },
+      { slug: "retail", name: { en: "Retail", ja: "リテール" }, colorCount: 25, image: images.outdoor },
+      { slug: "workspace", name: { en: "Workspace", ja: "ワークスペース" }, colorCount: 30, image: images.alcantaraSoft }
+    ],
+    seo: {
+      title: { en: "Fabric Materials | CAMARI JAPAN", ja: "ファブリック素材 | CAMARI JAPAN" },
+      description: {
+        en: "Architectural textiles and technical fabrics for interior, hospitality, and workspace environments.",
+        ja: "インテリア、ホスピタリティ、ワークスペース環境のための建築的テキスタイルとテクニカルファブリック。"
+      },
+      image: images.fabric
     }
   }
 ];
@@ -385,6 +484,213 @@ export const skus: Sku[] = [
         ja: "デザートサンド Alcantara のカラーと仕様をご覧ください。"
       },
       image: images.interior
+    }
+  },
+  // Leather SKUs
+  {
+    slug: "l-ftg-2101-ebony-black",
+    materialSlug: "leather",
+    code: "L-FTG-2101",
+    colorName: { en: "Ebony Black", ja: "エボニーブラック" },
+    hex: "#1C1B1B",
+    image: images.interior,
+    summary: {
+      en: "Full-grain aniline leather in deep black with natural grain visible under low light. Suited for luxury automotive cabins and executive interiors.",
+      ja: "低光量下で自然な木目が見えるディープブラックのフルグレインアニリンレザー。ラグジュアリー自動車キャビンおよびエグゼクティブインテリアに最適。"
+    },
+    specs: [
+      { label: { en: "Unit", ja: "単位" }, value: { en: "Square meters", ja: "平方メートル" } },
+      { label: { en: "Code", ja: "コード" }, value: { en: "L-FTG-2101", ja: "L-FTG-2101" } },
+      { label: { en: "Grain", ja: "木目" }, value: { en: "Full-grain aniline", ja: "フルグレインアニリン" } },
+      { label: { en: "Thickness", ja: "厚さ" }, value: { en: "1.2–1.4 mm", ja: "1.2–1.4 mm" } }
+    ],
+    certifications: [
+      { en: "Automotive-grade abrasion resistance", ja: "自動車グレード耐摩耗性" },
+      { en: "European tannery traceability protocol", ja: "欧州タンナリー追跡プロトコル" }
+    ],
+    downloads: [
+      {
+        title: { en: "Leather Grade Guide", ja: "レザーグレードガイド" },
+        description: { en: "Full-grain, top-grain, and finish comparisons.", ja: "フルグレイン、トップグレイン、仕上げの比較。" },
+        href: "/catalogs/leather-grade-guide.pdf",
+        type: "technical"
+      }
+    ],
+    seo: {
+      title: { en: "L-FTG-2101 Ebony Black | CAMARI JAPAN", ja: "L-FTG-2101 エボニーブラック | CAMARI JAPAN" },
+      description: {
+        en: "Full-grain aniline leather in deep black for luxury automotive and interior applications.",
+        ja: "ラグジュアリー自動車およびインテリア向けディープブラックのフルグレインアニリンレザー。"
+      },
+      image: images.interior
+    }
+  },
+  {
+    slug: "l-tpg-3345-cognac",
+    materialSlug: "leather",
+    code: "L-TPG-3345",
+    colorName: { en: "Cognac", ja: "コニャック" },
+    hex: "#8B5E3C",
+    image: images.alcantaraSoft,
+    summary: {
+      en: "Top-grain semi-aniline leather in warm cognac tones. Balanced hand-feel with UV-stable pigment for hospitality and residential seating.",
+      ja: "ウォームコニャックトーンのトップグレインセミアニリンレザー。ホスピタリティおよび住宅用シート向けに、バランスの良い手触りと UV 安定顔料を採用。"
+    },
+    specs: [
+      { label: { en: "Unit", ja: "単位" }, value: { en: "Square meters", ja: "平方メートル" } },
+      { label: { en: "Code", ja: "コード" }, value: { en: "L-TPG-3345", ja: "L-TPG-3345" } },
+      { label: { en: "Grain", ja: "木目" }, value: { en: "Top-grain semi-aniline", ja: "トップグレインセミアニリン" } },
+      { label: { en: "Thickness", ja: "厚さ" }, value: { en: "1.0–1.2 mm", ja: "1.0–1.2 mm" } }
+    ],
+    certifications: [
+      { en: "UV-stable pigment finish", ja: "紫外線安定顔料仕上げ" }
+    ],
+    downloads: [],
+    seo: {
+      title: { en: "L-TPG-3345 Cognac | CAMARI JAPAN", ja: "L-TPG-3345 コニャック | CAMARI JAPAN" },
+      description: {
+        en: "Top-grain semi-aniline leather in warm cognac for hospitality and residential use.",
+        ja: "ホスピタリティおよび住宅用のウォームコニャックトップグレインセミアニリンレザー。"
+      },
+      image: images.alcantaraSoft
+    }
+  },
+  // Vegan Leather SKUs
+  {
+    slug: "vl-mtt-8801-obsidian",
+    materialSlug: "vegan-leather",
+    code: "VL-MTT-8801",
+    colorName: { en: "Obsidian", ja: "オブシディアン" },
+    hex: "#1A1A1A",
+    image: images.vegan,
+    summary: {
+      en: "Deep matte black vegan leather with micro-texture surface. High abrasion resistance for product panels and consumer electronics.",
+      ja: "マイクロテクスチャ表面を持つ深いマットブラックのヴィーガンレザー。プロダクトパネルおよびコンシューマー機器向けの高い耐摩耗性。"
+    },
+    specs: [
+      { label: { en: "Unit", ja: "単位" }, value: { en: "Meters", ja: "メートル" } },
+      { label: { en: "Code", ja: "コード" }, value: { en: "VL-MTT-8801", ja: "VL-MTT-8801" } },
+      { label: { en: "Composition", ja: "組成" }, value: { en: "PU face, recycled polyester backing", ja: "PU 表面、リサイクルポリエステル裏地" } },
+      { label: { en: "Width", ja: "幅" }, value: { en: "140 cm", ja: "140 cm" } }
+    ],
+    certifications: [
+      { en: "OEKO-TEX Standard 100 certified", ja: "エコテックス スタンダード 100 認証" },
+      { en: "Recycled content minimum 40%", ja: "リサイクル含有率 最低 40%" }
+    ],
+    downloads: [
+      {
+        title: { en: "Vegan Leather Performance Data", ja: "ヴィーガンレザー性能データ" },
+        description: { en: "Abrasion, UV, and hydrolytic stability test results.", ja: "耐摩耗性、紫外線、耐加水分解性の試験結果。" },
+        href: "/catalogs/vegan-leather-performance.pdf",
+        type: "technical"
+      }
+    ],
+    seo: {
+      title: { en: "VL-MTT-8801 Obsidian | CAMARI JAPAN", ja: "VL-MTT-8801 オブシディアン | CAMARI JAPAN" },
+      description: {
+        en: "Matte black vegan leather with micro-texture for product and electronics applications.",
+        ja: "プロダクトおよび電子機器向けマイクロテクスチャマットブラックヴィーガンレザー。"
+      },
+      image: images.vegan
+    }
+  },
+  {
+    slug: "vl-sft-5520-terracotta",
+    materialSlug: "vegan-leather",
+    code: "VL-SFT-5520",
+    colorName: { en: "Terracotta", ja: "テラコッタ" },
+    hex: "#C1664B",
+    image: images.outdoor,
+    summary: {
+      en: "Soft-touch vegan leather in warm terracotta. Smooth finish with subtle sheen for interior accessories and fashion applications.",
+      ja: "ウォームテラコッタのソフトタッチヴィーガンレザー。インテリアアクセサリーおよびファッション用途向けの、控えめな光沢を持つスムース仕上げ。"
+    },
+    specs: [
+      { label: { en: "Unit", ja: "単位" }, value: { en: "Meters", ja: "メートル" } },
+      { label: { en: "Code", ja: "コード" }, value: { en: "VL-SFT-5520", ja: "VL-SFT-5520" } },
+      { label: { en: "Composition", ja: "組成" }, value: { en: "PU face, cotton backing", ja: "PU 表面、コットン裏地" } },
+      { label: { en: "Width", ja: "幅" }, value: { en: "138 cm", ja: "138 cm" } }
+    ],
+    certifications: [
+      { en: "OEKO-TEX Standard 100 certified", ja: "エコテックス スタンダード 100 認証" }
+    ],
+    downloads: [],
+    seo: {
+      title: { en: "VL-SFT-5520 Terracotta | CAMARI JAPAN", ja: "VL-SFT-5520 テラコッタ | CAMARI JAPAN" },
+      description: {
+        en: "Soft-touch vegan leather in warm terracotta for interior and fashion use.",
+        ja: "インテリアおよびファッション向けウォームテラコッタのソフトタッチヴィーガンレザー。"
+      },
+      image: images.outdoor
+    }
+  },
+  // Fabric SKUs
+  {
+    slug: "f-wsh-1120-ivory",
+    materialSlug: "fabric",
+    code: "F-WSH-1120",
+    colorName: { en: "Washi Ivory", ja: "和紙アイボリー" },
+    hex: "#F2EFE9",
+    image: images.fabric,
+    summary: {
+      en: "Japanese washi paper weave with metallic gold thread accent. Light-filtering and acoustically soft for hospitality and residential interiors.",
+      ja: "金属的な金糸のアクセントを持つ和紙織り。光を透過し吸音性に優れ、ホスピタリティおよび住宅インテリアに最適。"
+    },
+    specs: [
+      { label: { en: "Unit", ja: "単位" }, value: { en: "Meters", ja: "メートル" } },
+      { label: { en: "Code", ja: "コード" }, value: { en: "F-WSH-1120", ja: "F-WSH-1120" } },
+      { label: { en: "Composition", ja: "組成" }, value: { en: "60% Washi, 40% Polyester", ja: "和紙 60%、ポリエステル 40%" } },
+      { label: { en: "Width", ja: "幅" }, value: { en: "150 cm", ja: "150 cm" } }
+    ],
+    certifications: [
+      { en: "Japanese washi paper certified origin", ja: "日本産和紙認証" }
+    ],
+    downloads: [
+      {
+        title: { en: "Fabric Collection Lookbook", ja: "ファブリックコレクションルックブック" },
+        description: { en: "Washi, linen, and technical weave catalog.", ja: "和紙、リネン、テクニカル織りのカタログ。" },
+        href: "/catalogs/fabric-collection-lookbook.pdf",
+        type: "catalog"
+      }
+    ],
+    seo: {
+      title: { en: "F-WSH-1120 Washi Ivory | CAMARI JAPAN", ja: "F-WSH-1120 和紙アイボリー | CAMARI JAPAN" },
+      description: {
+        en: "Japanese washi paper weave fabric in ivory with gold thread for hospitality and residential use.",
+        ja: "ホスピタリティおよび住宅用の金糸入りアイボリー和紙織りファブリック。"
+      },
+      image: images.fabric
+    }
+  },
+  {
+    slug: "f-lnn-2801-charcoal",
+    materialSlug: "fabric",
+    code: "F-LNN-2801",
+    colorName: { en: "Charcoal Linen", ja: "チャコールリネン" },
+    hex: "#3A3A3A",
+    image: images.alcantara,
+    summary: {
+      en: "Belgian linen blend in charcoal with slub texture. Breathable and naturally fire-retardant for workspace and retail environments.",
+      ja: "スラブテクスチャを持つチャコールのベルギーリネン混紡。通気性があり自然難燃性で、ワークスペースおよびリテール環境に適しています。"
+    },
+    specs: [
+      { label: { en: "Unit", ja: "単位" }, value: { en: "Meters", ja: "メートル" } },
+      { label: { en: "Code", ja: "コード" }, value: { en: "F-LNN-2801", ja: "F-LNN-2801" } },
+      { label: { en: "Composition", ja: "組成" }, value: { en: "55% Linen, 45% Cotton", ja: "リネン 55%、コットン 45%" } },
+      { label: { en: "Width", ja: "幅" }, value: { en: "145 cm", ja: "145 cm" } }
+    ],
+    certifications: [
+      { en: "European Flax certified", ja: "ヨーロピアンフラックス認証" },
+      { en: "Naturally fire-retardant", ja: "自然難燃性" }
+    ],
+    downloads: [],
+    seo: {
+      title: { en: "F-LNN-2801 Charcoal Linen | CAMARI JAPAN", ja: "F-LNN-2801 チャコールリネン | CAMARI JAPAN" },
+      description: {
+        en: "Belgian linen blend in charcoal with slub texture for workspace and retail use.",
+        ja: "ワークスペースおよびリテール向けスラブテクスチャチャコールのベルギーリネン混紡。"
+      },
+      image: images.alcantara
     }
   }
 ];

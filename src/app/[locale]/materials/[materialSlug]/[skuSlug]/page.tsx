@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import { DownloadPanel } from "@/components/DownloadPanel";
 import { SkuSwatches } from "@/components/SkuSwatches";
 import { SpecificationTable } from "@/components/SpecificationTable";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
 import { loadMaterial, loadMaterials, loadSku, loadSkusForMaterial } from "@/sanity/lib/loaders";
@@ -54,24 +52,13 @@ export default async function SkuDetailPage({ params }: PageProps) {
 
   return (
     <main>
-      <div className="bg-paper px-margin-mobile pt-[var(--nav-height)]" data-nav-invert>
-        <div className="section-shell">
-          <Link
-            className="label-caps inline-flex items-center gap-3 py-6 text-muted transition-colors hover:text-charcoal"
-            href={localizedPath(locale, `/materials/${material.slug}`)}
-          >
-            <ArrowLeft size={14} strokeWidth={1.4} />
-            {material.name[locale]}
-          </Link>
-        </div>
-      </div>
-      <SkuSwatches compact initialSku={sku} locale={locale} materialName={material.name[locale]} materialSlug={material.slug} skus={skus} />
+      <SkuSwatches initialSku={sku} locale={locale} materialName={material.name[locale]} materialSlug={material.slug} skus={skus} />
       <SpecificationTable locale={locale} sku={sku} />
-      <section className="bg-paper py-20 md:py-28" data-nav-invert>
-        <div className="section-shell grid gap-12 md:grid-cols-2">
+      <section className="border-t border-charcoal/10 bg-paper py-20 md:py-28" data-nav-invert>
+        <div className="section-shell grid gap-12 md:grid-cols-[1fr_auto] md:gap-24">
           <div>
-            <h2 className="font-serif text-2xl uppercase tracking-luxury">Downloads</h2>
-            <p className="mt-5 max-w-xl leading-8 text-muted">
+            <h2 className="font-serif text-2xl uppercase tracking-[0.06em]">Downloads</h2>
+            <p className="mt-4 max-w-lg text-[0.85rem] leading-relaxed text-muted">
               {locale === "en" ? "Catalog and technical downloads are available here. Sample request forms are reserved for a later release." : "カタログと技術資料はこちらから確認できます。サンプル申請フォームは次期リリースで対応予定です。"}
             </p>
           </div>
