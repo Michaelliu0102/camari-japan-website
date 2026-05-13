@@ -37,7 +37,7 @@ export default async function MaterialsPage({ params }: PageProps) {
           title="Material"
         />
       ) : null}
-      <section className="bg-stone py-24 md:py-32">
+      <section className="bg-stone py-24 md:py-32" data-nav-invert>
         <div className="mx-auto max-w-4xl px-margin-mobile text-center">
           <p className="label-caps text-gold">Our Philosophy</p>
           <h2 className="mt-6 font-serif text-4xl uppercase tracking-luxury">Tactile Silence</h2>

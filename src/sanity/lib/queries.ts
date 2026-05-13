@@ -82,6 +82,46 @@ export type RawCatalog = {
   href?: string | null;
 };
 
+export type RawHomeExploreSlide = {
+  slug?: string | null;
+  title?: LocalizedString | null;
+  category?: LocalizedString | null;
+  description?: LocalizedString | null;
+  imageUrl?: string | null;
+  href?: string | null;
+};
+
+export type RawHomePageSettings = {
+  heroTitle?: LocalizedString | null;
+  heroSubtitle?: LocalizedString | null;
+  heroVideoPlaybackId?: string | null;
+  heroVideoUrl?: string | null;
+  heroPosterUrl?: string | null;
+  heroCtaLabel?: LocalizedString | null;
+  heroCtaHref?: string | null;
+  exploreCategorySlugs?: string[] | null;
+  exploreProductSlides?: RawHomeExploreSlide[] | null;
+} | null;
+
+export const homePageSettingsQuery = `*[_type == "homePage"][0] {
+  heroTitle,
+  heroSubtitle,
+  heroVideoPlaybackId,
+  heroVideoUrl,
+  "heroPosterUrl": heroPoster.asset->url,
+  heroCtaLabel,
+  heroCtaHref,
+  "exploreCategorySlugs": exploreMaterialCategories[]->slug.current,
+  exploreProductSlides[] {
+    slug,
+    title,
+    category,
+    description,
+    "imageUrl": image.asset->url,
+    href
+  }
+}`;
+
 export const materialCategoriesQuery = `*[_type == "materialCategory"] | order(sortOrder asc, name.en asc) {
   name,
   "slug": slug.current,

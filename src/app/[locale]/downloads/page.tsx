@@ -30,7 +30,7 @@ export default async function DownloadsPage({ params }: PageProps) {
   return (
     <main>
       {heroCategory ? <PageHero image={heroCategory.coverImage} subtitle={locale === "en" ? "PDF catalogs and technical sheets" : "PDF カタログと技術資料"} title="Downloads" /> : null}
-      <section className="bg-paper py-24 md:py-36">
+      <section className="bg-paper py-24 md:py-36" data-nav-invert>
         <div className="section-shell grid gap-16 md:grid-cols-2">
           <div>
             <p className="label-caps text-gold">Catalog</p>

@@ -27,7 +27,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, skus, initialS
   }
 
   return (
-    <section className={`bg-paper ${compact ? "" : "pt-[var(--nav-height)]"}`}>
+    <section className={`bg-paper ${compact ? "" : "pt-[var(--nav-height)]"}`} data-nav-invert>
       <div className="section-shell grid min-h-screen gap-12 py-12 md:grid-cols-2 md:gap-gutter md:py-24">
         <div className="relative aspect-[4/5] overflow-hidden bg-stone">
           <Image alt={`${materialName} ${selected.colorName[locale]}`} className="object-cover transition-opacity duration-500" fill priority sizes="(min-width: 768px) 50vw, 100vw" src={selected.image} />

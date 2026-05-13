@@ -15,7 +15,7 @@ export function CTASection({ locale, title, body, href = "/contact", label = "Co
   const isDark = tone === "dark";
 
   return (
-    <section className={isDark ? "bg-charcoal text-white" : "bg-stone text-charcoal"}>
+    <section className={isDark ? "bg-charcoal text-white" : "bg-stone text-charcoal"} {...(!isDark ? { "data-nav-invert": true } : {})}>
       <div className="section-shell flex flex-col items-start gap-10 py-24 md:flex-row md:items-end md:justify-between md:py-36">
         <div>
           <p className={isDark ? "label-caps text-white/55" : "label-caps text-muted"}>CAMARI JAPAN</p>

@@ -11,7 +11,7 @@ type MaterialBentoGridProps = {
 
 export function MaterialBentoGrid({ locale, categories, materials }: MaterialBentoGridProps) {
   return (
-    <section className="bg-paper py-24 md:py-32">
+    <section className="bg-paper py-24 md:py-32" data-nav-invert>
       <div className="section-shell grid grid-cols-1 gap-gutter md:grid-cols-12">
         {categories.map((category, index) => {
           const href = materials.some((material) => material.slug === category.slug) ? `/materials/${category.slug}` : "/materials";

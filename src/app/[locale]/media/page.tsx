@@ -30,7 +30,7 @@ export default async function MediaPage({ params }: PageProps) {
   return (
     <main>
       {heroCategory ? <PageHero image={heroCategory.coverImage} subtitle={locale === "en" ? "News, materials, exhibitions, and project notes" : "ニュース、素材、展示会、プロジェクトノート"} title="Media" /> : null}
-      <section className="bg-paper py-24 md:py-36">
+      <section className="bg-paper py-24 md:py-36" data-nav-invert>
         <div className="section-shell grid gap-gutter md:grid-cols-3">
           {newsItems.map((item) => (
             <article className="group" id={item.slug} key={item.slug}>

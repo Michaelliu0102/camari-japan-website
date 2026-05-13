@@ -31,7 +31,7 @@ export default async function ProjectsPage({ params }: PageProps) {
   return (
     <main>
       {heroProject ? <PageHero image={heroProject.image} subtitle={locale === "en" ? "OEM/ODM cases across material, space, and product" : "素材、空間、プロダクトにわたる OEM/ODM 事例"} title="Projects" /> : null}
-      <section className="bg-paper py-24 md:py-36">
+      <section className="bg-paper py-24 md:py-36" data-nav-invert>
         <div className="section-shell grid gap-gutter md:grid-cols-2">
           {projects.map((project) => (
             <Link className="group" href={localizedPath(locale, `/projects/${project.slug}`)} key={project.slug}>

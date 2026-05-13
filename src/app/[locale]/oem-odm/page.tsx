@@ -44,7 +44,7 @@ export default async function OemOdmPage({ params }: PageProps) {
           title="OEM / ODM"
         />
       ) : null}
-      <section className="bg-paper py-24 md:py-36">
+      <section className="bg-paper py-24 md:py-36" data-nav-invert>
         <div className="section-shell grid gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
             <p className="label-caps text-gold">Capability</p>
@@ -75,7 +75,7 @@ export default async function OemOdmPage({ params }: PageProps) {
           </div>
         </div>
       </section>
-      <section className="bg-stone py-24 md:py-32">
+      <section className="bg-stone py-24 md:py-32" data-nav-invert>
         <div className="section-shell">
           <h2 className="font-serif text-4xl uppercase tracking-luxury">{locale === "en" ? "Process" : "プロセス"}</h2>
           <div className="mt-12 grid gap-gutter md:grid-cols-4">

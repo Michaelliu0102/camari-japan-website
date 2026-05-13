@@ -31,7 +31,7 @@ export default async function AboutPage({ params }: PageProps) {
   return (
     <main>
       {heroCategory ? <PageHero image={heroCategory.coverImage} subtitle={site.slogan[locale]} title="About" /> : null}
-      <section className="bg-paper py-24 md:py-36">
+      <section className="bg-paper py-24 md:py-36" data-nav-invert>
         <div className="section-shell grid gap-16 md:grid-cols-12">
           <div className="md:col-span-4">
             <p className="label-caps text-gold">Company</p>

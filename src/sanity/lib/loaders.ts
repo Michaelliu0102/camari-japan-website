@@ -1,11 +1,13 @@
 import {
   catalogs as fallbackCatalogs,
+  homePageSettings as fallbackHomePageSettings,
   materialCategories as fallbackCategories,
   materials as fallbackMaterials,
   newsItems as fallbackNewsItems,
   projectCases as fallbackProjects,
   skus as fallbackSkus,
   type Download,
+  type HomePageSettings,
   type Material,
   type MaterialCategory,
   type NewsItem,
@@ -13,16 +15,18 @@ import {
   type Sku
 } from "@/lib/content";
 import type { Locale } from "@/lib/locales";
-import { adaptCatalog, adaptMaterial, adaptMaterialCategory, adaptNewsItem, adaptProjectCase, adaptSku } from "./adapters";
+import { adaptCatalog, adaptHomePageSettings, adaptMaterial, adaptMaterialCategory, adaptNewsItem, adaptProjectCase, adaptSku } from "./adapters";
 import { getSanityClient } from "./client";
 import {
   catalogsQuery,
+  homePageSettingsQuery,
   materialCategoriesQuery,
   materialsQuery,
   newsItemsQuery,
   projectsQuery,
   skusQuery,
   type RawCatalog,
+  type RawHomePageSettings,
   type RawMaterial,
   type RawMaterialCategory,
   type RawNewsItem,
@@ -60,6 +64,24 @@ async function fetchOrFallback<Raw, Value>(
 
 export async function loadMaterialCategories(): Promise<MaterialCategory[]> {
   return fetchOrFallback<RawMaterialCategory, MaterialCategory>(materialCategoriesQuery, {}, fallbackCategories, adaptMaterialCategory);
+}
+
+export async function loadHomePageSettings(): Promise<HomePageSettings> {
+  if (!isSanityConfigured()) {
+    return fallbackHomePageSettings;
+  }
+
+  try {
+    const result = await getSanityClient().fetch<RawHomePageSettings>(homePageSettingsQuery);
+    return adaptHomePageSettings(result);
+  } catch (error) {
+    if (process.env.NODE_ENV === "production") {
+      throw error;
+    }
+
+    console.warn("Sanity homepage fetch failed; using local fixture content.", error);
+    return fallbackHomePageSettings;
+  }
 }
 
 export async function loadMaterials(): Promise<Material[]> {

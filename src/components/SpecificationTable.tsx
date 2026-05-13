@@ -8,7 +8,7 @@ type SpecificationTableProps = {
 
 export function SpecificationTable({ locale, sku }: SpecificationTableProps) {
   return (
-    <section className="border-t border-charcoal/10 bg-paper py-20">
+    <section className="border-t border-charcoal/10 bg-paper py-20" data-nav-invert>
       <div className="section-shell">
         <div className="mb-12 flex items-baseline gap-12">
           <h2 className="font-serif text-2xl uppercase tracking-luxury">Specifications</h2>

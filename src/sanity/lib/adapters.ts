@@ -1,7 +1,10 @@
 import {
+  homePageSettings as fallbackHomePageSettings,
   materialCategories as fallbackCategories,
   materials as fallbackMaterials,
   type Download,
+  type HomeExploreSlide,
+  type HomePageSettings,
   type LocalizedString,
   type Material,
   type MaterialCategory,
@@ -13,6 +16,7 @@ import {
 import type {
   RawCatalog,
   RawDownload,
+  RawHomePageSettings,
   RawMaterial,
   RawMaterialCategory,
   RawNewsItem,
@@ -61,6 +65,40 @@ function adaptDownload(raw: RawDownload): Download {
     description: localized(raw.description),
     href: raw.href ?? "",
     type: raw.type ?? "technical"
+  };
+}
+
+function muxVideoUrl(playbackId: string): string {
+  return `https://stream.mux.com/${playbackId}.m3u8`;
+}
+
+export function adaptHomePageSettings(raw: RawHomePageSettings): HomePageSettings {
+  const fallback = fallbackHomePageSettings;
+  const playbackId = raw?.heroVideoPlaybackId?.trim();
+  const productSlides = (raw?.exploreProductSlides ?? [])
+    .map<HomeExploreSlide>((slide) => ({
+      slug: slide.slug ?? "",
+      title: localized(slide.title),
+      category: localized(slide.category),
+      description: localized(slide.description),
+      image: slide.imageUrl ?? "",
+      href: slide.href ?? ""
+    }))
+    .filter((slide) => slide.slug && slide.image && slide.href);
+
+  return {
+    hero: {
+      title: localized(raw?.heroTitle ?? fallback.hero.title),
+      subtitle: localized(raw?.heroSubtitle ?? fallback.hero.subtitle),
+      videoSrc: raw?.heroVideoUrl || (playbackId ? muxVideoUrl(playbackId) : fallback.hero.videoSrc),
+      poster: raw?.heroPosterUrl ?? fallback.hero.poster,
+      ctaLabel: localized(raw?.heroCtaLabel ?? fallback.hero.ctaLabel),
+      ctaHref: raw?.heroCtaHref ?? fallback.hero.ctaHref
+    },
+    explore: {
+      categorySlugs: raw?.exploreCategorySlugs?.filter(Boolean) ?? fallback.explore.categorySlugs,
+      productSlides: productSlides.length ? productSlides : fallback.explore.productSlides
+    }
   };
 }
 

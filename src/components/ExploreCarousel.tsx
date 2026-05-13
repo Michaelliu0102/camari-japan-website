@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useState } from "react";
-import type { LocalizedString, Material, MaterialCategory } from "@/lib/content";
+import { useEffect, useState } from "react";
+import type { HomeExploreSlide, LocalizedString, Material, MaterialCategory } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
 
 type ExploreSlide = {
@@ -19,12 +19,14 @@ type ExploreSlide = {
 type ExploreCarouselProps = {
   locale: Locale;
   categories: MaterialCategory[];
+  categorySlugs?: string[];
   materials: Material[];
+  productSlides?: ExploreSlide[];
 };
 
-export function ExploreCarousel({ locale, categories, materials }: ExploreCarouselProps) {
+export function ExploreCarousel({ locale, categories, categorySlugs, materials, productSlides: configuredProductSlides }: ExploreCarouselProps) {
   const fallbackImage = categories[0]?.coverImage ?? "";
-  const productSlides: ExploreSlide[] = fallbackImage
+  const fallbackProductSlides: HomeExploreSlide[] = fallbackImage
     ? [
         {
           slug: "oem-odm",
@@ -50,8 +52,12 @@ export function ExploreCarousel({ locale, categories, materials }: ExploreCarous
         }
       ]
     : [];
+  const selectedCategories = categorySlugs?.length
+    ? categorySlugs.map((slug) => categories.find((category) => category.slug === slug)).filter((category): category is MaterialCategory => Boolean(category))
+    : categories.slice(0, 3);
+  const productSlides: ExploreSlide[] = configuredProductSlides?.length ? configuredProductSlides : fallbackProductSlides;
   const slides: ExploreSlide[] = [
-    ...categories.slice(0, 3).map((category) => ({
+    ...selectedCategories.map((category) => ({
       slug: category.slug,
       title: category.name,
       category: { en: `Material — ${category.name.en}`, ja: `Material — ${category.name.ja}` },
@@ -61,10 +67,20 @@ export function ExploreCarousel({ locale, categories, materials }: ExploreCarous
     })),
     ...productSlides
   ];
-  const materialSlideCount = Math.min(categories.length, 3);
+  const materialSlideCount = selectedCategories.length;
   const [index, setIndex] = useState(0);
   const slide = slides[index];
   const isProduct = index >= materialSlideCount;
+
+  useEffect(() => {
+    if (slides.length < 2) return;
+
+    const intervalId = window.setInterval(() => {
+      setIndex((current) => (current + 1) % slides.length);
+    }, 5200);
+
+    return () => window.clearInterval(intervalId);
+  }, [slides.length]);
 
   if (!slide) {
     return null;
@@ -75,40 +91,54 @@ export function ExploreCarousel({ locale, categories, materials }: ExploreCarous
   }
 
   return (
-    <section className="overflow-hidden bg-paper py-24 md:py-32">
+    <section className="overflow-hidden bg-paper py-24 md:py-32" data-nav-invert>
       <div className="section-shell">
-        <div className="mb-14 text-center">
+        <div className="mb-12 text-center md:mb-14">
           <h2 className="font-serif text-5xl md:text-7xl">Explore</h2>
         </div>
 
-        <div className="mb-10 flex justify-center gap-12">
-          <button className={`label-caps border-b pb-4 ${!isProduct ? "border-charcoal text-charcoal" : "border-transparent text-muted"}`} onClick={() => setIndex(0)} type="button">
+        <div className="mb-14 flex justify-center gap-12 md:mb-16 md:gap-20">
+          <button className={`label-caps border-b pb-3 text-[12px] md:text-[14px] ${!isProduct ? "border-charcoal text-charcoal" : "border-transparent text-muted"}`} onClick={() => setIndex(0)} type="button">
             Material
           </button>
-          <button className={`label-caps border-b pb-4 ${isProduct ? "border-charcoal text-charcoal" : "border-transparent text-muted"}`} onClick={() => setIndex(materialSlideCount)} type="button">
+          <button className={`label-caps border-b pb-3 text-[12px] md:text-[14px] ${isProduct ? "border-charcoal text-charcoal" : "border-transparent text-muted"}`} onClick={() => setIndex(materialSlideCount)} type="button">
             Product
           </button>
         </div>
 
-        <div className="relative aspect-[21/9] min-h-[280px] overflow-hidden bg-stone">
-          <Image alt={slide.title[locale]} className="object-cover transition-transform duration-700 ease-expo" fill sizes="(min-width: 768px) 90vw, 100vw" src={slide.image} />
-          <div className="absolute inset-x-0 bottom-0 flex justify-between p-5 md:p-8">
-            <button aria-label="Previous slide" className="flex h-12 w-12 items-center justify-center border border-white/60 bg-black/15 text-white backdrop-blur-sm" onClick={() => move(-1)} type="button">
+        <div className="relative mx-auto max-w-[74rem]">
+          <div className="relative aspect-[4/5] overflow-hidden bg-stone md:aspect-[8/5]">
+            <Image alt={slide.title[locale]} className="object-cover transition-transform duration-700 ease-expo" fill sizes="(min-width: 768px) min(74rem, 82vw), 100vw" src={slide.image} />
+          </div>
+
+          <div className="pointer-events-none absolute inset-y-0 left-0 right-0 hidden items-center justify-between md:flex">
+            <button aria-label="Previous slide" className="pointer-events-auto -translate-x-[4.5rem] text-charcoal/45 transition-colors hover:text-charcoal" onClick={() => move(-1)} type="button">
               <ArrowLeft size={17} strokeWidth={1.4} />
             </button>
-            <button aria-label="Next slide" className="flex h-12 w-12 items-center justify-center border border-white/60 bg-black/15 text-white backdrop-blur-sm" onClick={() => move(1)} type="button">
+            <button aria-label="Next slide" className="pointer-events-auto translate-x-[4.5rem] text-charcoal/45 transition-colors hover:text-charcoal" onClick={() => move(1)} type="button">
+              <ArrowRight size={17} strokeWidth={1.4} />
+            </button>
+          </div>
+
+          <div className="mt-5 flex justify-between md:hidden">
+            <button aria-label="Previous slide" className="text-charcoal/50 transition-colors hover:text-charcoal" onClick={() => move(-1)} type="button">
+              <ArrowLeft size={17} strokeWidth={1.4} />
+            </button>
+            <button aria-label="Next slide" className="text-charcoal/50 transition-colors hover:text-charcoal" onClick={() => move(1)} type="button">
               <ArrowRight size={17} strokeWidth={1.4} />
             </button>
           </div>
         </div>
 
-        <div className="mt-12 grid gap-8 border-b border-charcoal/10 pb-14 md:grid-cols-[0.7fr_1fr_auto] md:items-end">
+        <div className="mx-auto mt-16 max-w-[50rem] text-center md:mt-20">
           <p className="label-caps text-gold">{slide.category[locale]}</p>
-          <div>
-            <h3 className="font-serif text-3xl uppercase tracking-luxury">{slide.title[locale]}</h3>
-            <p className="mt-5 max-w-3xl leading-8 text-muted">{slide.description[locale]}</p>
-          </div>
-          <Link className="label-caps border border-charcoal/25 px-7 py-4 transition-colors hover:bg-charcoal hover:text-white" href={localizedPath(locale, slide.href)}>
+          <h3 className="mt-6 font-serif text-3xl uppercase tracking-[0.16em] md:text-[3.25rem]">
+            {slide.title[locale]}
+          </h3>
+          <p className="mx-auto mt-6 max-w-[48rem] text-lg leading-9 text-muted md:text-[1.35rem]">
+            {slide.description[locale]}
+          </p>
+          <Link className="label-caps mt-10 inline-flex min-w-[13rem] justify-center border border-charcoal/20 px-8 py-4 transition-colors hover:bg-charcoal hover:text-white" href={localizedPath(locale, slide.href)}>
             View
           </Link>
         </div>

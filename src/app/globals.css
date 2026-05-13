@@ -50,6 +50,12 @@ video {
   backdrop-filter: blur(20px);
 }
 
+.glass-nav-light {
+  background: rgb(255 255 255 / 0.72);
+  border-bottom: 1px solid rgb(26 26 26 / 0.08);
+  backdrop-filter: blur(20px);
+}
+
 .logo-outline {
   font-family: "Cinzel", serif;
   font-weight: 400;

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DownloadPanel } from "@/components/DownloadPanel";
-import { NavInvert } from "@/components/NavInvert";
 import { SkuSwatches } from "@/components/SkuSwatches";
 import { SpecificationTable } from "@/components/SpecificationTable";
 import { ArrowLeft } from "lucide-react";
@@ -55,8 +54,7 @@ export default async function SkuDetailPage({ params }: PageProps) {
 
   return (
     <main>
-      <NavInvert />
-      <div className="bg-paper px-margin-mobile pt-[var(--nav-height)]">
+      <div className="bg-paper px-margin-mobile pt-[var(--nav-height)]" data-nav-invert>
         <div className="section-shell">
           <Link
             className="label-caps inline-flex items-center gap-3 py-6 text-muted transition-colors hover:text-charcoal"
@@ -69,7 +67,7 @@ export default async function SkuDetailPage({ params }: PageProps) {
       </div>
       <SkuSwatches compact initialSku={sku} locale={locale} materialName={material.name[locale]} materialSlug={material.slug} skus={skus} />
       <SpecificationTable locale={locale} sku={sku} />
-      <section className="bg-paper py-20 md:py-28">
+      <section className="bg-paper py-20 md:py-28" data-nav-invert>
         <div className="section-shell grid gap-12 md:grid-cols-2">
           <div>
             <h2 className="font-serif text-2xl uppercase tracking-luxury">Downloads</h2>

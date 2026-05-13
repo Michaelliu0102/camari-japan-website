@@ -31,7 +31,7 @@ export default async function ContactPage({ params }: PageProps) {
   return (
     <main>
       {heroCategory ? <PageHero image={heroCategory.coverImage} subtitle={locale === "en" ? "Direct contact for material and sales inquiries" : "素材・営業に関する直接のお問い合わせ"} title="Contact" /> : null}
-      <section className="bg-paper py-24 md:py-36">
+      <section className="bg-paper py-24 md:py-36" data-nav-invert>
         <div className="section-shell grid gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
             <p className="label-caps text-gold">Contact</p>

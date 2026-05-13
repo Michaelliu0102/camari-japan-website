@@ -175,3 +175,35 @@ test("adapts SKU, project, catalog, and news naming differences", async () => {
 
   await cleanup();
 });
+
+test("adapts homepage settings for CMS-managed hero and carousel images", async () => {
+  const { adaptHomePageSettings, cleanup } = await loadAdapters();
+
+  const settings = adaptHomePageSettings({
+    heroTitle: { en: "Custom Hero", ja: "カスタムヒーロー" },
+    heroSubtitle: { en: "Hero subtitle", ja: "ヒーローサブタイトル" },
+    heroVideoPlaybackId: "mux-playback-id",
+    heroVideoUrl: null,
+    heroPosterUrl: "https://cdn.sanity.io/images/project/dataset/poster.jpg",
+    heroCtaLabel: { en: "Explore Materials", ja: "素材を見る" },
+    heroCtaHref: "/materials",
+    exploreCategorySlugs: ["fabric", "alcantara"],
+    exploreProductSlides: [
+      {
+        slug: "custom-product",
+        title: { en: "Custom Product", ja: "カスタムプロダクト" },
+        category: { en: "Product", ja: "プロダクト" },
+        description: { en: "Product description", ja: "プロダクト説明" },
+        imageUrl: "https://cdn.sanity.io/images/project/dataset/product.jpg",
+        href: "/oem-odm",
+      },
+    ],
+  });
+
+  assert.equal(settings.hero.videoSrc, "https://stream.mux.com/mux-playback-id.m3u8");
+  assert.equal(settings.hero.poster, "https://cdn.sanity.io/images/project/dataset/poster.jpg");
+  assert.deepEqual(settings.explore.categorySlugs, ["fabric", "alcantara"]);
+  assert.equal(settings.explore.productSlides[0].image, "https://cdn.sanity.io/images/project/dataset/product.jpg");
+
+  await cleanup();
+});

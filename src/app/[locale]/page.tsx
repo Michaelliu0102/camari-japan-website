@@ -8,7 +8,7 @@ import { MaterialBentoGrid } from "@/components/MaterialBentoGrid";
 import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
-import { loadMaterialCategories, loadMaterials, loadProjects } from "@/sanity/lib/loaders";
+import { loadHomePageSettings, loadMaterialCategories, loadMaterials, loadProjects } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale }>;
@@ -28,15 +28,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
-  const [categories, materials, projects] = await Promise.all([loadMaterialCategories(), loadMaterials(), loadProjects()]);
+  const [homeSettings, categories, materials, projects] = await Promise.all([loadHomePageSettings(), loadMaterialCategories(), loadMaterials(), loadProjects()]);
   const featureCase = projects[0];
 
   return (
     <main>
-      <HeroVideo locale={locale} />
-      <ExploreCarousel categories={categories} locale={locale} materials={materials} />
+      <HeroVideo hero={homeSettings.hero} locale={locale} />
+      <ExploreCarousel categories={categories} categorySlugs={homeSettings.explore.categorySlugs} locale={locale} materials={materials} productSlides={homeSettings.explore.productSlides} />
 
-      <section className="bg-stone py-24 md:py-36">
+      <section className="bg-stone py-24 md:py-36" data-nav-invert>
         <div className="section-shell grid gap-16 md:grid-cols-12 md:items-center">
           <div className="md:col-span-5">
             <p className="label-caps text-gold">Brand Value</p>
@@ -57,7 +57,7 @@ export default async function HomePage({ params }: PageProps) {
       <MaterialBentoGrid categories={categories} locale={locale} materials={materials} />
 
       {featureCase ? (
-        <section className="bg-paper py-24 md:py-36">
+        <section className="bg-paper py-24 md:py-36" data-nav-invert>
           <div className="section-shell grid gap-12 md:grid-cols-[0.85fr_1fr] md:items-end">
             <div>
               <p className="label-caps text-gold">OEM / ODM</p>

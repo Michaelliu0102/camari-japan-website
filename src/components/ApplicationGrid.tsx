@@ -14,7 +14,7 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
   const href = firstSku ? `/materials/${material.slug}/${firstSku.slug}` : `/materials/${material.slug}`;
 
   return (
-    <section className="bg-paper py-24 md:py-36">
+    <section className="bg-paper py-24 md:py-36" data-nav-invert>
       <div className="section-shell">
         <div className="mb-16 text-center">
           <h2 className="font-serif text-4xl uppercase tracking-luxury">Collection Showcase</h2>

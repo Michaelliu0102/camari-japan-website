@@ -82,6 +82,34 @@ export type NewsItem = {
   seo: Seo;
 };
 
+export type HomeHero = {
+  title: LocalizedString;
+  subtitle: LocalizedString;
+  videoSrc: string;
+  poster: string;
+  ctaLabel: LocalizedString;
+  ctaHref: string;
+};
+
+export type HomeExploreSlide = {
+  slug: string;
+  title: LocalizedString;
+  category: LocalizedString;
+  description: LocalizedString;
+  image: string;
+  href: string;
+};
+
+export type HomeExploreSettings = {
+  categorySlugs: string[];
+  productSlides: HomeExploreSlide[];
+};
+
+export type HomePageSettings = {
+  hero: HomeHero;
+  explore: HomeExploreSettings;
+};
+
 export const site = {
   name: "CAMARI JAPAN",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://camari-japan.example.com",
@@ -124,9 +152,49 @@ const images = {
     "https://lh3.googleusercontent.com/aida-public/AB6AXuBkwrCmJel_tnN4FVxJfvhrYmrLtSVQxP1QAWAZFQ5klWej8HSzJcqjZnitNZ4JQAmddyfPvBmGx6bB5yq0_o5jPbmw4vUgltZchTBVjF81Ru258t0lQVqOChelwa3qdW8fvMiipFpa9q_DABEXoavvCG7TsXFDb0ZrZ9riwHK3BuZJSSaXsNXk7_uHXrFNp8gF0Ult5vm7DQ-ZeusOlFAGnzBeYei3K078qr27IWNV71ps6VAkEebGXfjw-CtW_wmPCwcGfxlWDJU"
 };
 
+const muxPlaybackId = "JSVVPfT9fUoZwnzXbIIXXOV16g4wPdmXBF9pRWA49mI";
+
 export const heroVideo = {
-  poster: images.heroPoster,
-  src: "https://stitch-video-assets.s3.amazonaws.com/projects/3068008899397721871/assets/S8m2fUoZwnzXbIIXXOV16g4wPdmXBF9pRWA49mI?metadata-video-title=final&video-title=final"
+  poster: `https://image.mux.com/${muxPlaybackId}/thumbnail.jpg`,
+  src: `https://stream.mux.com/${muxPlaybackId}.m3u8`
+};
+
+export const homePageSettings: HomePageSettings = {
+  hero: {
+    title: { en: "The Intersection of", ja: "The Intersection of" },
+    subtitle: { en: "Texture and Precision", ja: "質感と精密さの交差点" },
+    videoSrc: heroVideo.src,
+    poster: heroVideo.poster,
+    ctaLabel: { en: "Discover the Collection", ja: "コレクションを見る" },
+    ctaHref: "/materials"
+  },
+  explore: {
+    categorySlugs: ["alcantara", "fabric", "vegan-leather"],
+    productSlides: [
+      {
+        slug: "oem-odm",
+        title: { en: "Bespoke Surfaces", ja: "特注サーフェス" },
+        category: { en: "Product — OEM", ja: "Product — OEM" },
+        description: {
+          en: "Material programs for automotive, product, hospitality, and architectural teams.",
+          ja: "車両、プロダクト、ホスピタリティ、建築チームに向けた素材プログラム。"
+        },
+        image: images.alcantaraSoft,
+        href: "/oem-odm"
+      },
+      {
+        slug: "projects",
+        title: { en: "Applied Precision", ja: "応用される精密性" },
+        category: { en: "Product — ODM", ja: "Product — ODM" },
+        description: {
+          en: "Case-led development from concept, material matching, and surface execution.",
+          ja: "コンセプト、素材選定、サーフェス実装までのケース主導型開発。"
+        },
+        image: images.interior,
+        href: "/projects"
+      }
+    ]
+  }
 };
 
 export const materialCategories: MaterialCategory[] = [

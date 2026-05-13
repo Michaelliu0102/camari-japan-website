@@ -9,7 +9,7 @@ type MaterialIntroProps = {
 
 export function MaterialIntro({ locale, material }: MaterialIntroProps) {
   return (
-    <section className="bg-stone py-24 md:py-36">
+    <section className="bg-stone py-24 md:py-36" data-nav-invert>
       <div className="section-shell grid gap-16 md:grid-cols-12 md:items-center">
         <div className="md:col-span-5">
           <h2 className="font-serif text-4xl leading-tight md:text-5xl">{material.introTitle[locale]}</h2>

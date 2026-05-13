@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CTASection } from "@/components/CTASection";
-import { NavInvert } from "@/components/NavInvert";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
 import { loadMaterial, loadProject, loadProjects } from "@/sanity/lib/loaders";
@@ -49,8 +48,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const material = await loadMaterial(project.materialSlug);
 
   return (
-    <main className="bg-paper pt-[var(--nav-height)]">
-      <NavInvert />
+    <main className="bg-paper pt-[var(--nav-height)]" data-nav-invert>
       <section className="section-shell grid gap-12 py-16 md:grid-cols-12 md:py-24">
         <div className="md:col-span-5">
           <p className="label-caps text-gold">{project.industry[locale]}</p>
@@ -70,7 +68,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="bg-stone py-24">
+      <section className="bg-stone py-24" data-nav-invert>
         <div className="mx-auto max-w-3xl px-margin-mobile text-center">
           <p className="label-caps text-gold">{locale === "en" ? "Case Notes" : "事例ノート"}</p>
           <p className="mt-8 text-xl leading-10 text-charcoal/75">
