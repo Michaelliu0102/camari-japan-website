@@ -95,6 +95,8 @@ export function adaptHomePageSettings(raw: RawHomePageSettings): HomePageSetting
       ctaLabel: localized(raw?.heroCtaLabel ?? fallback.hero.ctaLabel),
       ctaHref: raw?.heroCtaHref ?? fallback.hero.ctaHref
     },
+    brandValueImage: raw?.brandValueImageUrl ?? fallback.brandValueImage,
+    showroomBackgroundImage: raw?.showroomBackgroundImageUrl ?? fallback.showroomBackgroundImage,
     explore: {
       categorySlugs: raw?.exploreCategorySlugs?.filter(Boolean) ?? fallback.explore.categorySlugs,
       productSlides: productSlides.length ? productSlides : fallback.explore.productSlides

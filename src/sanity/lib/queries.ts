@@ -99,6 +99,8 @@ export type RawHomePageSettings = {
   heroPosterUrl?: string | null;
   heroCtaLabel?: LocalizedString | null;
   heroCtaHref?: string | null;
+  brandValueImageUrl?: string | null;
+  showroomBackgroundImageUrl?: string | null;
   exploreCategorySlugs?: string[] | null;
   exploreProductSlides?: RawHomeExploreSlide[] | null;
 } | null;
@@ -111,6 +113,8 @@ export const homePageSettingsQuery = `*[_type == "homePage"][0] {
   "heroPosterUrl": heroPoster.asset->url,
   heroCtaLabel,
   heroCtaHref,
+  "brandValueImageUrl": brandValueImage.asset->url,
+  "showroomBackgroundImageUrl": showroomBackgroundImage.asset->url,
   "exploreCategorySlugs": exploreMaterialCategories[]->slug.current,
   exploreProductSlides[] {
     slug,

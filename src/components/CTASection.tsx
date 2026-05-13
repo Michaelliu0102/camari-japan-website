@@ -1,34 +1,49 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { localizedPath, type Locale } from "@/lib/locales";
 
 type CTASectionProps = {
   locale: Locale;
   title: string;
   body: string;
-  href?: string;
   label?: string;
+  href?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
   tone?: "dark" | "light";
+  backgroundImage?: string;
 };
 
-export function CTASection({ locale, title, body, href = "/contact", label = "Contact Sales", tone = "dark" }: CTASectionProps) {
+export function CTASection({ locale, title, body, label = "Contact Sales", href = "/contact", secondaryLabel, secondaryHref = "/contact", tone = "dark", backgroundImage }: CTASectionProps) {
   const isDark = tone === "dark";
+  const outlineClass = isDark
+    ? "inline-flex min-h-[4.5rem] items-center justify-center gap-4 border border-white/35 px-10 text-center label-caps transition-colors hover:bg-white hover:text-charcoal"
+    : "inline-flex min-h-[4.5rem] items-center justify-center gap-4 border border-charcoal/25 px-10 text-center label-caps transition-colors hover:bg-charcoal hover:text-white";
 
   return (
-    <section className={isDark ? "bg-charcoal text-white" : "bg-stone text-charcoal"} {...(!isDark ? { "data-nav-invert": true } : {})}>
-      <div className="section-shell flex flex-col items-start gap-10 py-24 md:flex-row md:items-end md:justify-between md:py-36">
-        <div>
-          <p className={isDark ? "label-caps text-white/55" : "label-caps text-muted"}>CAMARI JAPAN</p>
-          <h2 className="mt-6 max-w-3xl font-serif text-4xl leading-tight md:text-6xl">{title}</h2>
-          <p className={isDark ? "mt-6 max-w-2xl leading-8 text-white/70" : "mt-6 max-w-2xl leading-8 text-muted"}>{body}</p>
+    <section className={`relative overflow-hidden text-white ${!backgroundImage && (isDark ? "bg-charcoal" : "bg-stone text-charcoal")}`} {...(!isDark && !backgroundImage ? { "data-nav-invert": true } : {})}>
+      {backgroundImage ? (
+        <>
+          <Image alt="" className="object-cover" fill priority sizes="100vw" src={backgroundImage} />
+          <div className="absolute inset-0 bg-black/55 backdrop-blur-sm" />
+        </>
+      ) : null}
+      <div className="relative z-10 flex min-h-[85vh] flex-col items-center justify-center px-margin-mobile py-24 text-center md:px-margin-desktop md:py-36">
+        <p className="label-caps text-white/55">Showroom</p>
+        <h2 className="mt-4 max-w-[16ch] font-serif text-2xl leading-tight md:text-3xl">
+          {title}
+        </h2>
+        <p className="mt-4 max-w-[32rem] text-sm leading-relaxed text-white/65">{body}</p>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          {secondaryLabel ? (
+            <Link className="inline-flex min-h-[4.5rem] items-center justify-center gap-4 bg-gold px-10 text-center label-caps text-charcoal transition-colors hover:bg-gold/80" href={localizedPath(locale, secondaryHref)}>
+              {secondaryLabel}
+            </Link>
+          ) : null}
+          <Link className={outlineClass} href={localizedPath(locale, href)}>
+            {label}
+          </Link>
         </div>
-        <Link
-          className={isDark ? "label-caps inline-flex items-center gap-4 border border-white/35 px-8 py-5 transition-colors hover:bg-white hover:text-charcoal" : "label-caps inline-flex items-center gap-4 border border-charcoal/25 px-8 py-5 transition-colors hover:bg-charcoal hover:text-white"}
-          href={localizedPath(locale, href)}
-        >
-          {label}
-          <ArrowRight size={15} strokeWidth={1.4} />
-        </Link>
       </div>
     </section>
   );

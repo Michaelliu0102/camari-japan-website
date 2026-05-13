@@ -55,6 +55,20 @@ export const homePage = defineType({
       of: [{ type: "reference", to: [{ type: "materialCategory" }] }]
     }),
     defineField({
+      name: "brandValueImage",
+      title: "Brand Value Image",
+      type: "image",
+      options: { hotspot: true },
+      description: "Image displayed alongside the brand value statement on the homepage."
+    }),
+    defineField({
+      name: "showroomBackgroundImage",
+      title: "Showroom Background Image",
+      type: "image",
+      options: { hotspot: true },
+      description: "Background image for the Showroom CTA section."
+    }),
+    defineField({
       name: "exploreProductSlides",
       title: "Explore Product Slides",
       type: "array",

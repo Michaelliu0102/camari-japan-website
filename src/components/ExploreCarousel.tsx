@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Search } from "lucide-react";
+import { SearchOverlay } from "@/components/SearchOverlay";
 import { useEffect, useState } from "react";
 import type { HomeExploreSlide, LocalizedString, Material, MaterialCategory } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
@@ -69,6 +70,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
   ];
   const materialSlideCount = selectedCategories.length;
   const [index, setIndex] = useState(0);
+  const [searchOpen, setSearchOpen] = useState(false);
   const slide = slides[index];
   const isProduct = index >= materialSlideCount;
 
@@ -106,9 +108,9 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
           </button>
         </div>
 
-        <div className="relative mx-auto max-w-[74rem]">
+        <div className="relative mx-auto max-w-[56rem]">
           <div className="relative aspect-[4/5] overflow-hidden bg-stone md:aspect-[8/5]">
-            <Image alt={slide.title[locale]} className="object-cover transition-transform duration-700 ease-expo" fill sizes="(min-width: 768px) min(74rem, 82vw), 100vw" src={slide.image} />
+            <Image alt={slide.title[locale]} className="object-cover transition-transform duration-700 ease-expo" fill sizes="(min-width: 768px) min(56rem, 82vw), 100vw" src={slide.image} />
           </div>
 
           <div className="pointer-events-none absolute inset-y-0 left-0 right-0 hidden items-center justify-between md:flex">
@@ -132,17 +134,24 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
 
         <div className="mx-auto mt-16 max-w-[50rem] text-center md:mt-20">
           <p className="label-caps text-gold">{slide.category[locale]}</p>
-          <h3 className="mt-6 font-serif text-3xl uppercase tracking-[0.16em] md:text-[3.25rem]">
+          <h3 className="mt-6 font-label text-2xl uppercase tracking-[0.16em] md:text-[2.25rem]">
             {slide.title[locale]}
           </h3>
-          <p className="mx-auto mt-6 max-w-[48rem] text-lg leading-9 text-muted md:text-[1.35rem]">
+          <p className="mx-auto mt-6 max-w-[48rem] text-base leading-8 text-muted md:text-[1.15rem]">
             {slide.description[locale]}
           </p>
-          <Link className="label-caps mt-10 inline-flex min-w-[13rem] justify-center border border-charcoal/20 px-8 py-4 transition-colors hover:bg-charcoal hover:text-white" href={localizedPath(locale, slide.href)}>
-            View
-          </Link>
+          <div className="mt-10 flex justify-center gap-4">
+            <Link className="label-caps inline-flex min-w-[13rem] justify-center border border-charcoal/20 px-8 py-4 transition-colors hover:bg-charcoal hover:text-white" href={localizedPath(locale, slide.href)}>
+              View
+            </Link>
+            <button className="label-caps inline-flex min-w-[13rem] items-center justify-center gap-2 border border-charcoal/20 px-8 py-4 transition-colors hover:bg-charcoal hover:text-white" onClick={() => setSearchOpen(true)} type="button">
+              <Search size={14} strokeWidth={1.4} />
+              Search
+            </button>
+          </div>
         </div>
       </div>
+      <SearchOverlay locale={locale} onClose={() => setSearchOpen(false)} open={searchOpen} />
     </section>
   );
 }

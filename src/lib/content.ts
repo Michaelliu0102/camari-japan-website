@@ -108,6 +108,8 @@ export type HomeExploreSettings = {
 export type HomePageSettings = {
   hero: HomeHero;
   explore: HomeExploreSettings;
+  brandValueImage: string;
+  showroomBackgroundImage: string;
 };
 
 export const site = {
@@ -160,6 +162,8 @@ export const heroVideo = {
 };
 
 export const homePageSettings: HomePageSettings = {
+  brandValueImage: images.alcantaraSoft,
+  showroomBackgroundImage: images.interior,
   hero: {
     title: { en: "The Intersection of", ja: "The Intersection of" },
     subtitle: { en: "Texture and Precision", ja: "質感と精密さの交差点" },
