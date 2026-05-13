@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { SearchOverlay } from "@/components/SearchOverlay";
 import { useEffect, useState } from "react";
 import type { HomeExploreSlide, LocalizedString, Material, MaterialCategory } from "@/lib/content";
@@ -115,19 +115,19 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
 
           <div className="pointer-events-none absolute inset-y-0 left-0 right-0 hidden items-center justify-between md:flex">
             <button aria-label="Previous slide" className="pointer-events-auto -translate-x-[4.5rem] text-charcoal/45 transition-colors hover:text-charcoal" onClick={() => move(-1)} type="button">
-              <ArrowLeft size={17} strokeWidth={1.4} />
+              <ChevronLeft size={22} strokeWidth={1.4} />
             </button>
             <button aria-label="Next slide" className="pointer-events-auto translate-x-[4.5rem] text-charcoal/45 transition-colors hover:text-charcoal" onClick={() => move(1)} type="button">
-              <ArrowRight size={17} strokeWidth={1.4} />
+              <ChevronRight size={22} strokeWidth={1.4} />
             </button>
           </div>
 
           <div className="mt-5 flex justify-between md:hidden">
             <button aria-label="Previous slide" className="text-charcoal/50 transition-colors hover:text-charcoal" onClick={() => move(-1)} type="button">
-              <ArrowLeft size={17} strokeWidth={1.4} />
+              <ChevronLeft size={22} strokeWidth={1.4} />
             </button>
             <button aria-label="Next slide" className="text-charcoal/50 transition-colors hover:text-charcoal" onClick={() => move(1)} type="button">
-              <ArrowRight size={17} strokeWidth={1.4} />
+              <ChevronRight size={22} strokeWidth={1.4} />
             </button>
           </div>
         </div>
