@@ -54,7 +54,7 @@ export default async function SkuDetailPage({ params }: PageProps) {
     <main>
       <SkuSwatches initialSku={sku} locale={locale} materialName={material.name[locale]} materialSlug={material.slug} skus={skus} />
       <SpecificationTable locale={locale} sku={sku} />
-      <section className="border-t border-charcoal/10 bg-paper py-20 md:py-28" data-nav-invert>
+      <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:py-28" data-nav-invert id="downloads">
         <div className="section-shell grid gap-12 md:grid-cols-[1fr_auto] md:gap-24">
           <div>
             <h2 className="font-serif text-2xl uppercase tracking-[0.06em]">Downloads</h2>

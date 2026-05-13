@@ -60,8 +60,29 @@ test("SkuSwatches keeps the Dedar-style grey stage with cursor-following zoom", 
   assert.match(content, /--sku-zoom-x/);
   assert.match(content, /--sku-zoom-y/);
   assert.match(content, /onPointerMove=\{handleImagePointerMove\}/);
-  assert.match(content, /inset-\[20%\]/);
+  assert.match(content, /inset-\[9%_20%\]/);
   assert.match(content, /group-hover\/sku-image:scale-\[/);
+});
+
+test("SkuSwatches uses compact icon navigation instead of a tall secondary image strip", async () => {
+  const content = await source("src/components/SkuSwatches.tsx");
+
+  assert.match(content, /product-info-nav/);
+  assert.match(content, /Specifications/);
+  assert.match(content, /Certifications/);
+  assert.match(content, /Downloads/);
+  assert.doesNotMatch(content, /label: "Inspiration"/);
+  assert.doesNotMatch(content, /label: "You may also like"/);
+  assert.doesNotMatch(content, /aspect-\[21\/9\]/);
+});
+
+test("SpecificationTable renders certifications as a standalone section below specifications", async () => {
+  const content = await source("src/components/SpecificationTable.tsx");
+
+  assert.match(content, /id="specifications"/);
+  assert.match(content, /id="certifications"/);
+  assert.match(content, /<h2 className="label-caps[^"]*">Certifications<\/h2>/);
+  assert.doesNotMatch(content, /md:grid-cols-\[1fr_auto\]/);
 });
 
 test("homepage loads CMS-managed homepage settings", async () => {

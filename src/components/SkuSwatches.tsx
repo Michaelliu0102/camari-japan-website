@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Award, Download, FileText, Wrench } from "lucide-react";
 import type { CSSProperties, PointerEvent } from "react";
 import { useEffect, useMemo, useState } from "react";
 import type { Sku } from "@/lib/content";
@@ -21,6 +22,13 @@ type SkuSwatchesProps = {
   initialSku: Sku;
   compact?: boolean;
 };
+
+const productInfoLinks = [
+  { href: "#specifications", label: "Specifications", Icon: FileText },
+  { href: "#certifications", label: "Certifications", Icon: Award },
+  { href: "#maintenance-and-use", label: "Maintenance and use", Icon: Wrench },
+  { href: "#downloads", label: "Downloads", Icon: Download }
+];
 
 export function SkuSwatches({ locale, materialName, materialSlug, skus, initialSku, compact = false }: SkuSwatchesProps) {
   const router = useRouter();
@@ -72,7 +80,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, skus, initialS
       {/* Desktop: 3-column — thumbnails | main image | product details */}
       <div className="section-shell flex flex-col gap-8 md:flex-row md:items-start md:gap-0">
         {/* Col 1+2: Images area (thumbnails + main image) — matches Dedar's productView-images flex row */}
-        <div className="mx-auto flex w-full flex-row gap-[26px] md:mx-0 md:ml-[5%] md:max-w-[690px]">
+        <div className="mx-auto flex w-full scroll-mt-[calc(var(--nav-height)+2rem)] flex-row gap-[26px] md:mx-0 md:ml-[5%] md:max-w-[690px]" id="inspiration">
           {/* Thumbnail strip — vertical, ~90px wide, matches Dedar's productView-thumbnails */}
           <div className="hidden w-[90px] shrink-0 flex-col gap-[26px] md:flex">
             {galleryImages.map((item, index) => {
@@ -164,7 +172,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, skus, initialS
             </p>
 
             {/* Color selector — Dedar's swatch grid */}
-            <div className="mt-10 md:mt-12">
+            <div className="mt-10 scroll-mt-[calc(var(--nav-height)+2rem)] md:mt-12" id="you-may-also-like">
               <div className="mb-4 flex items-baseline justify-between">
                 <span className="font-sans text-[10px] uppercase tracking-[0.12em] text-muted">Colour — {selected.colorName[locale]}</span>
                 <span className="font-sans text-[10px] tracking-[0.12em] text-muted">{skus.length} options</span>
@@ -206,12 +214,25 @@ export function SkuSwatches({ locale, materialName, materialSlug, skus, initialS
         </div>
       </div>
 
-      {/* Full-width secondary image strip */}
-      <div className="section-shell mt-8 md:mt-12">
-        <div className="relative aspect-[21/9] overflow-hidden bg-stone">
-          <Image alt="" className="object-cover" fill sizes="100vw" src={activeImage.image} />
+      <nav
+        aria-label="Product information sections"
+        className="mt-8 border-y border-charcoal/20 bg-paper md:mt-12"
+        data-nav-invert
+        id="product-info-nav"
+      >
+        <div className="section-shell flex flex-wrap items-center justify-center gap-x-8 gap-y-4 py-5 md:gap-x-12 md:py-6">
+          {productInfoLinks.map(({ href, label, Icon }) => (
+            <Link
+              className="group inline-flex items-center gap-3 font-sans text-[0.82rem] text-charcoal underline decoration-charcoal/70 underline-offset-4 transition-colors hover:text-muted hover:decoration-muted"
+              href={href}
+              key={href}
+            >
+              <Icon aria-hidden="true" className="h-5 w-5 stroke-[1.25] transition-transform duration-300 ease-expo group-hover:-translate-y-0.5" />
+              <span>{label}</span>
+            </Link>
+          ))}
         </div>
-      </div>
+      </nav>
     </section>
   );
 }
