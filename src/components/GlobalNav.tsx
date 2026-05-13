@@ -160,6 +160,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                   aria-haspopup="true"
                   className="nav-underline inline-flex items-center gap-2 opacity-80 transition-opacity hover:opacity-100"
                   href={localizedPath(locale, item.href)}
+                  onClick={() => (document.activeElement as HTMLElement)?.blur()}
                 >
                   {item.label}
                   <ChevronDown className="opacity-60 transition-transform duration-500 ease-in-out group-hover/nav-item:rotate-180 group-focus-within/nav-item:rotate-180" size={12} strokeWidth={1.3} />
@@ -172,6 +173,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                           className={`block py-2 transition-colors ${dropdownItemHover}`}
                           href={localizedPath(locale, child.href)}
                           key={child.href}
+                          onClick={() => (document.activeElement as HTMLElement)?.blur()}
                         >
                           <span className="block font-label text-[10px] font-semibold uppercase tracking-[0.24em]">
                             {child.label}

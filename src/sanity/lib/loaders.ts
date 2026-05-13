@@ -51,6 +51,9 @@ async function fetchOrFallback<Raw, Value>(
 
   try {
     const results = await getSanityClient().fetch<Raw[]>(query, params);
+    if (!results || results.length === 0) {
+      return fallback;
+    }
     return results.map(adapter);
   } catch (error) {
     if (process.env.NODE_ENV === "production") {
@@ -73,6 +76,9 @@ export async function loadHomePageSettings(): Promise<HomePageSettings> {
 
   try {
     const result = await getSanityClient().fetch<RawHomePageSettings>(homePageSettingsQuery);
+    if (!result) {
+      return fallbackHomePageSettings;
+    }
     return adaptHomePageSettings(result);
   } catch (error) {
     if (process.env.NODE_ENV === "production") {
