@@ -127,6 +127,16 @@ test("adapts SKU, project, catalog, and news naming differences", async () => {
     colorName: { en: "Shadow Black", ja: "シャドウブラック" },
     hex: "#1A1A1A",
     heroImageUrl: "https://cdn.sanity.io/images/project/dataset/sku.jpg",
+    caseGallery: [
+      {
+        imageUrl: "https://cdn.sanity.io/images/project/dataset/case.jpg",
+        alt: { en: "Installed case", ja: "施工事例" },
+      },
+      {
+        imageUrl: null,
+        alt: { en: "Missing image", ja: "画像なし" },
+      },
+    ],
     summary: { en: "Summary", ja: "要約" },
     specs: [],
     certifications: [],
@@ -136,6 +146,12 @@ test("adapts SKU, project, catalog, and news naming differences", async () => {
 
   assert.equal(sku.image, "https://cdn.sanity.io/images/project/dataset/sku.jpg");
   assert.equal(sku.swatchImage, undefined);
+  assert.deepEqual(sku.caseGallery, [
+    {
+      image: "https://cdn.sanity.io/images/project/dataset/case.jpg",
+      alt: { en: "Installed case", ja: "施工事例" },
+    },
+  ]);
 
   const project = adaptProjectCase({
     title: { en: "Project", ja: "プロジェクト" },

@@ -44,6 +44,33 @@ export const sku = defineType({
       options: { hotspot: true }
     }),
     defineField({
+      name: "caseGallery",
+      title: "SKU Case Gallery",
+      description: "Application and case images shown below the SKU thumbnail on the detail page.",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({ name: "image", title: "Image", type: "image", options: { hotspot: true }, validation: (rule) => rule.required() }),
+            defineField({ name: "alt", title: "Alt Text", type: "object", fields: localizedString })
+          ],
+          preview: {
+            select: {
+              title: "alt.en",
+              media: "image"
+            },
+            prepare({ title, media }) {
+              return {
+                title: title || "Case image",
+                media
+              };
+            }
+          }
+        }
+      ]
+    }),
+    defineField({
       name: "summary",
       title: "Summary",
       type: "object",

@@ -48,6 +48,7 @@ export type RawSku = {
   colorName?: LocalizedString | null;
   hex?: string | null;
   heroImageUrl?: string | null;
+  caseGallery?: Array<{ imageUrl?: string | null; alt?: LocalizedString | null }> | null;
   summary?: LocalizedString | null;
   specs?: Array<{ label?: LocalizedString | null; value?: LocalizedString | null }> | null;
   certifications?: Array<LocalizedString | null> | null;
@@ -163,6 +164,10 @@ export const skusQuery = `*[_type == "sku"] | order(code asc) {
   colorName,
   hex,
   "heroImageUrl": heroImage.asset->url,
+  caseGallery[] {
+    "imageUrl": image.asset->url,
+    alt
+  },
   summary,
   specs,
   certifications,

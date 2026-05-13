@@ -43,6 +43,27 @@ test("ApplicationGrid receives material SKUs through props", async () => {
   assert.match(content, /skus: Sku\[\]/);
 });
 
+test("SkuSwatches builds the side image rail from the selected SKU gallery", async () => {
+  const content = await source("src/components/SkuSwatches.tsx");
+
+  assert.match(content, /selected\.caseGallery/);
+  assert.match(content, /galleryImages\.map/);
+  assert.match(content, /setActiveImageIndex\(index\)/);
+  assert.match(content, /setActiveImageIndex\(0\)/);
+});
+
+test("SkuSwatches keeps the Dedar-style grey stage with cursor-following zoom", async () => {
+  const content = await source("src/components/SkuSwatches.tsx");
+
+  assert.match(content, /bg-\[\#f3f3f2\]/);
+  assert.match(content, /cursor-zoom-in/);
+  assert.match(content, /--sku-zoom-x/);
+  assert.match(content, /--sku-zoom-y/);
+  assert.match(content, /onPointerMove=\{handleImagePointerMove\}/);
+  assert.match(content, /inset-\[20%\]/);
+  assert.match(content, /group-hover\/sku-image:scale-\[/);
+});
+
 test("homepage loads CMS-managed homepage settings", async () => {
   const page = await source("src/app/[locale]/page.tsx");
   const hero = await source("src/components/HeroVideo.tsx");

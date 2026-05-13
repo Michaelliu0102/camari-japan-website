@@ -162,6 +162,12 @@ export function adaptSku(raw: RawSku): Sku {
     hex: raw.hex ?? "#1A1A1A",
     image: raw.heroImageUrl ?? "",
     swatchImage: undefined,
+    caseGallery: (raw.caseGallery ?? [])
+      .map((item) => ({
+        image: item.imageUrl ?? "",
+        alt: localized(item.alt)
+      }))
+      .filter((item) => item.image),
     summary: localized(raw.summary),
     specs: (raw.specs ?? []).map((spec) => ({
       label: localized(spec.label),

@@ -55,6 +55,7 @@ export type Sku = {
   hex: string;
   image: string;
   swatchImage?: string;
+  caseGallery?: Array<{ image: string; alt: LocalizedString }>;
   summary: LocalizedString;
   specs: Array<{ label: LocalizedString; value: LocalizedString }>;
   certifications: LocalizedString[];
@@ -292,6 +293,10 @@ export const skus: Sku[] = [
     colorName: { en: "Shadow Black", ja: "シャドウブラック" },
     hex: "#1A1A1A",
     image: images.sku,
+    caseGallery: [
+      { image: images.interior, alt: { en: "Shadow Black applied in a lounge chair detail", ja: "ラウンジチェアに使用されたシャドウブラックのディテール" } },
+      { image: images.alcantara, alt: { en: "Shadow Black material in an automotive cabin", ja: "車両キャビンで使用されたシャドウブラック素材" } }
+    ],
     summary: {
       en: "A deep charcoal tone with refined nap movement for automotive cabins, product panels, and quiet hospitality interiors.",
       ja: "車両キャビン、プロダクトパネル、静謐なホスピタリティ空間に適した、深いチャコールカラー。"
