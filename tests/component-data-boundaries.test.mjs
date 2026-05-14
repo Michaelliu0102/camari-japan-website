@@ -76,13 +76,22 @@ test("SkuSwatches uses compact icon navigation instead of a tall secondary image
   assert.doesNotMatch(content, /aspect-\[21\/9\]/);
 });
 
-test("SpecificationTable renders certifications as a standalone section below specifications", async () => {
+test("SpecificationTable renders certifications and maintenance as standalone sections below specifications", async () => {
   const content = await source("src/components/SpecificationTable.tsx");
 
   assert.match(content, /id="specifications"/);
   assert.match(content, /id="certifications"/);
-  assert.match(content, /<h2 className="label-caps[^"]*">Certifications<\/h2>/);
-  assert.doesNotMatch(content, /md:grid-cols-\[1fr_auto\]/);
+  assert.match(content, /id="maintenance-and-use"/);
+  assert.match(content, /sectionTitleClassName = "font-serif text-2xl uppercase tracking-\[0\.06em\]"/);
+  assert.match(content, /sectionInnerClassName = "mx-auto max-w-\[46rem\]"/);
+  assert.match(content, /<h2 className=\{sectionTitleClassName\}>Certifications<\/h2>/);
+  assert.match(content, /<h2 className=\{sectionTitleClassName\}>Maintenance and use<\/h2>/);
+  assert.match(content, /download\.type === "care"/);
+  assert.match(content, /THICKNESS/);
+  assert.match(content, /UNIT WEIGHT/);
+  assert.match(content, /BREAKING LOAD/);
+  assert.match(content, /TO RUBBERY/);
+  assert.match(content, /FR VERSION/);
 });
 
 test("homepage loads CMS-managed homepage settings", async () => {
