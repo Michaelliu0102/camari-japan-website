@@ -41,10 +41,28 @@ export type RawMaterial = {
   seo?: RawSeo;
 };
 
+export type RawProductType = {
+  name?: LocalizedString | null;
+  slug?: string | null;
+  materialSlug?: string | null;
+  specTemplate?:
+    | Array<{
+        key?: string | null;
+        label?: LocalizedString | null;
+        aliases?: string[] | null;
+        defaultValue?: LocalizedString | null;
+      }>
+    | null;
+  certifications?: Array<LocalizedString | null> | null;
+  maintenance?: Array<{ title?: LocalizedString | null; description?: LocalizedString | null } | null> | null;
+  seo?: RawSeo;
+};
+
 export type RawSku = {
   code?: string | null;
   slug?: string | null;
   materialSlug?: string | null;
+  productTypeSlug?: string | null;
   colorName?: LocalizedString | null;
   hex?: string | null;
   heroImageUrl?: string | null;
@@ -157,10 +175,33 @@ export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
   }
 }`;
 
+export const productTypesQuery = `*[_type == "productType"] | order(material->name.en asc, name.en asc) {
+  name,
+  "slug": slug.current,
+  "materialSlug": material->slug.current,
+  specTemplate[] {
+    key,
+    label,
+    aliases,
+    defaultValue
+  },
+  certifications,
+  maintenance[] {
+    title,
+    description
+  },
+  seo {
+    title,
+    description,
+    "imageUrl": image.asset->url
+  }
+}`;
+
 export const skusQuery = `*[_type == "sku"] | order(code asc) {
   code,
   "slug": slug.current,
   "materialSlug": material->slug.current,
+  "productTypeSlug": productType->slug.current,
   colorName,
   hex,
   "heroImageUrl": heroImage.asset->url,

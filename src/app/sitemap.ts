@@ -14,7 +14,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPaths = ["", "/materials", "/oem-odm", "/projects", "/about", "/media", "/contact", "/downloads"];
   const materialPaths = materials.flatMap((material) => [
     `/materials/${material.slug}`,
-    ...skus.filter((sku) => sku.materialSlug === material.slug).map((sku) => `/materials/${material.slug}/${sku.slug}`)
+    ...skus
+      .filter((sku) => sku.materialSlug === material.slug)
+      .map((sku) => `/materials/${material.slug}/${sku.productTypeSlug}/${sku.slug}`)
   ]);
   const projectPaths = projects.map((project) => `/projects/${project.slug}`);
   const mediaPaths = newsItems.map((item) => `/media#${item.slug}`);

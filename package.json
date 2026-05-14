@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "catalog:template": "python3 scripts/build_product_catalog.py --write-template data/import/product-catalog-template.xlsx",
+    "catalog:build": "python3 scripts/build_product_catalog.py data/import/product-catalog.xlsx"
   },
   "dependencies": {
     "@sanity/client": "^7.11.0",

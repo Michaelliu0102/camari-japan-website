@@ -1,0 +1,422 @@
+{
+  "productTypes": [
+    {
+      "slug": "alcantara-panel",
+      "materialSlug": "alcantara",
+      "name": {
+        "en": "Alcantara Panel",
+        "ja": "Alcantara パネル"
+      },
+      "specTemplate": [
+        {
+          "key": "application",
+          "label": {
+            "en": "APPLICATION",
+            "ja": "用途"
+          },
+          "aliases": [
+            "application",
+            "use"
+          ],
+          "defaultValue": {
+            "en": "Wall panel / door trim / instrument garnish",
+            "ja": "壁面パネル / ドアトリム / インパネ加飾"
+          }
+        },
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚み"
+          },
+          "aliases": [
+            "thickness",
+            "gauge"
+          ],
+          "defaultValue": {
+            "en": "0.95 mm",
+            "ja": "0.95 mm"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [
+            "width"
+          ],
+          "defaultValue": {
+            "en": "142 cm",
+            "ja": "142 cm"
+          }
+        },
+        {
+          "key": "backing",
+          "label": {
+            "en": "BACKING",
+            "ja": "裏加工"
+          },
+          "aliases": [
+            "backing",
+            "support"
+          ],
+          "defaultValue": {
+            "en": "Adhesive lamination compatible",
+            "ja": "接着ラミネート対応"
+          }
+        }
+      ],
+      "certifications": [
+        {
+          "en": "Carbon neutral production program",
+          "ja": "カーボンニュートラル生産プログラム"
+        },
+        {
+          "en": "RoHS / REACH aligned material control",
+          "ja": "RoHS / REACH に準拠した材料管理"
+        }
+      ],
+      "maintenance": [
+        {
+          "title": {
+            "en": "Daily Care",
+            "ja": "日常メンテナンス"
+          },
+          "description": {
+            "en": "Wipe with a clean damp microfiber cloth and dry immediately after cleaning.",
+            "ja": "清潔なマイクロファイバークロスを軽く湿らせて拭き、仕上げに乾拭きしてください。"
+          }
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "Alcantara Panel for Interior Surfaces | CAMARI JAPAN",
+          "ja": "Alcantara パネル 内装サーフェス向け | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Architectural and mobility panel application data for Alcantara, including specifications, care, and technical downloads.",
+          "ja": "Alcantara パネル用途の仕様、ケア情報、技術資料をまとめたサンプルデータです。"
+        },
+        "image": "https://example.com/camari/alcantara/panel/hero.jpg"
+      }
+    },
+    {
+      "slug": "alcantara-cover",
+      "materialSlug": "alcantara",
+      "name": {
+        "en": "Alcantara Cover",
+        "ja": "Alcantara カバー"
+      },
+      "specTemplate": [
+        {
+          "key": "application",
+          "label": {
+            "en": "APPLICATION",
+            "ja": "用途"
+          },
+          "aliases": [
+            "application",
+            "use"
+          ],
+          "defaultValue": {
+            "en": "Seat cover / armrest / console wrap",
+            "ja": "シートカバー / アームレスト / コンソール巻き"
+          }
+        },
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚み"
+          },
+          "aliases": [
+            "thickness",
+            "gauge"
+          ],
+          "defaultValue": {
+            "en": "1.20 mm",
+            "ja": "1.20 mm"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [
+            "width"
+          ],
+          "defaultValue": {
+            "en": "142 cm",
+            "ja": "142 cm"
+          }
+        },
+        {
+          "key": "touch",
+          "label": {
+            "en": "HAND FEEL",
+            "ja": "触感"
+          },
+          "aliases": [
+            "touch",
+            "handfeel"
+          ],
+          "defaultValue": {
+            "en": "Soft-touch suede finish",
+            "ja": "ソフトタッチのスエード調"
+          }
+        }
+      ],
+      "certifications": [
+        {
+          "en": "Abrasion performance suitable for seating programs",
+          "ja": "着座用途に対応する耐摩耗性能"
+        },
+        {
+          "en": "Low-VOC interior application support",
+          "ja": "低 VOC 内装用途サポート"
+        }
+      ],
+      "maintenance": [
+        {
+          "title": {
+            "en": "Seating Care",
+            "ja": "シート向けケア"
+          },
+          "description": {
+            "en": "Use neutral cleaner for light soiling and avoid strong solvent-based products.",
+            "ja": "軽い汚れは中性洗剤で対応し、強い溶剤系クリーナーは避けてください。"
+          }
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "Alcantara Cover for Seating and Trim | CAMARI JAPAN",
+          "ja": "Alcantara カバー シート・加飾向け | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Covering application data for Alcantara used on seating, armrests, and soft-touch trim surfaces.",
+          "ja": "シート、アームレスト、ソフトトリム向け Alcantara カバー用途のサンプルデータです。"
+        },
+        "image": "https://example.com/camari/alcantara/cover/hero.jpg"
+      }
+    }
+  ],
+  "skus": [
+    {
+      "slug": "c-alc-4991-shadow-black-panel",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "C-ALC-4991-PNL",
+      "colorName": {
+        "en": "Shadow Black",
+        "ja": "シャドウブラック"
+      },
+      "hex": "#1B1B1D",
+      "image": "https://example.com/camari/alcantara/panel/shadow-black-main.jpg",
+      "swatchImage": "https://example.com/camari/alcantara/panel/shadow-black-swatch.jpg",
+      "caseGallery": [
+        {
+          "image": "https://example.com/camari/cases/alcantara-panel-door-trim.jpg",
+          "alt": {
+            "en": "Shadow Black panel installed on a premium door trim insert",
+            "ja": "プレミアムドアトリムに施工した Shadow Black パネル"
+          }
+        }
+      ],
+      "summary": {
+        "en": "Deep black panel finish for premium door inserts, IP garnish, and architectural trim surfaces.",
+        "ja": "プレミアムなドアインサート、インパネ加飾、建材トリム向けの深みあるブラック仕上げ。"
+      },
+      "specs": [
+        {
+          "label": {
+            "en": "Thickness",
+            "ja": "厚み"
+          },
+          "value": {
+            "en": "0.95 mm",
+            "ja": "0.95 mm"
+          }
+        },
+        {
+          "label": {
+            "en": "Width",
+            "ja": "幅"
+          },
+          "value": {
+            "en": "142 cm",
+            "ja": "142 cm"
+          }
+        },
+        {
+          "label": {
+            "en": "Recommended Use",
+            "ja": "推奨用途"
+          },
+          "value": {
+            "en": "Door trim / panel insert / display plinth",
+            "ja": "ドアトリム / パネルインサート / ディスプレイ什器"
+          }
+        },
+        {
+          "label": {
+            "en": "MOQ",
+            "ja": "最小ロット"
+          },
+          "value": {
+            "en": "1 roll trial / project quote",
+            "ja": "試作 1 ロール / 量産は別途見積"
+          }
+        }
+      ],
+      "certifications": [],
+      "downloads": [
+        {
+          "title": {
+            "en": "Technical Data Sheet",
+            "ja": "技術データシート"
+          },
+          "description": {
+            "en": "Composition, width, thickness, and lamination notes for panel applications.",
+            "ja": "パネル用途向けの組成、幅、厚み、ラミネート適性に関する資料。"
+          },
+          "href": "https://example.com/camari/downloads/alcantara-panel-shadow-black-tds.pdf",
+          "type": "technical"
+        },
+        {
+          "title": {
+            "en": "Care Guide",
+            "ja": "ケアガイド"
+          },
+          "description": {
+            "en": "Recommended maintenance routine for installed panel surfaces.",
+            "ja": "施工済みパネル面の推奨メンテナンス手順。"
+          },
+          "href": "https://example.com/camari/downloads/alcantara-panel-care-guide.pdf",
+          "type": "care"
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "C-ALC-4991-PNL Shadow Black Panel | CAMARI JAPAN",
+          "ja": "C-ALC-4991-PNL シャドウブラック パネル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Shadow Black Alcantara panel sample with specification and technical downloads.",
+          "ja": "Shadow Black の Alcantara パネル向けサンプル仕様と技術資料です。"
+        },
+        "image": "https://example.com/camari/alcantara/panel/shadow-black-main.jpg"
+      }
+    },
+    {
+      "slug": "c-alc-6206-saddle-tan-cover",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "C-ALC-6206-CVR",
+      "colorName": {
+        "en": "Saddle Tan",
+        "ja": "サドルタン"
+      },
+      "hex": "#9B6A3C",
+      "image": "https://example.com/camari/alcantara/cover/saddle-tan-main.jpg",
+      "swatchImage": "https://example.com/camari/alcantara/cover/saddle-tan-swatch.jpg",
+      "caseGallery": [
+        {
+          "image": "https://example.com/camari/cases/alcantara-cover-seat-center.jpg",
+          "alt": {
+            "en": "Saddle Tan cover applied to a seat center and armrest program",
+            "ja": "シートセンターとアームレストに採用した Saddle Tan カバー"
+          }
+        }
+      ],
+      "summary": {
+        "en": "Warm tan cover material tuned for seating programs, armrests, and stitched trim applications.",
+        "ja": "シート、アームレスト、ステッチ加飾用途に向く温かみのあるタン系カバー材。"
+      },
+      "specs": [
+        {
+          "label": {
+            "en": "Thickness",
+            "ja": "厚み"
+          },
+          "value": {
+            "en": "1.20 mm",
+            "ja": "1.20 mm"
+          }
+        },
+        {
+          "label": {
+            "en": "Width",
+            "ja": "幅"
+          },
+          "value": {
+            "en": "142 cm",
+            "ja": "142 cm"
+          }
+        },
+        {
+          "label": {
+            "en": "Recommended Use",
+            "ja": "推奨用途"
+          },
+          "value": {
+            "en": "Seat center / armrest / console wrap",
+            "ja": "シートセンター / アームレスト / コンソール巻き"
+          }
+        },
+        {
+          "label": {
+            "en": "MOQ",
+            "ja": "最小ロット"
+          },
+          "value": {
+            "en": "Sampling yardage available",
+            "ja": "カットサンプル対応可"
+          }
+        }
+      ],
+      "certifications": [],
+      "downloads": [
+        {
+          "title": {
+            "en": "Technical Data Sheet",
+            "ja": "技術データシート"
+          },
+          "description": {
+            "en": "Cover application specifications including softness, backing, and sewing suitability.",
+            "ja": "カバー用途向けの触感、裏加工、縫製適性を含む仕様資料。"
+          },
+          "href": "https://example.com/camari/downloads/alcantara-cover-saddle-tan-tds.pdf",
+          "type": "technical"
+        },
+        {
+          "title": {
+            "en": "Program Catalog Excerpt",
+            "ja": "掲載カタログ抜粋"
+          },
+          "description": {
+            "en": "Sample catalog spread showing seating and trim colorway usage.",
+            "ja": "シートおよびトリム用途の色展開を示すカタログ抜粋。"
+          },
+          "href": "https://example.com/camari/downloads/alcantara-cover-program-catalog.pdf",
+          "type": "catalog"
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "C-ALC-6206-CVR Saddle Tan Cover | CAMARI JAPAN",
+          "ja": "C-ALC-6206-CVR サドルタン カバー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Saddle Tan Alcantara cover sample with care guide and application data.",
+          "ja": "Saddle Tan の Alcantara カバー向けサンプル仕様とケア情報です。"
+        },
+        "image": "https://example.com/camari/alcantara/cover/saddle-tan-main.jpg"
+      }
+    }
+  ]
+}

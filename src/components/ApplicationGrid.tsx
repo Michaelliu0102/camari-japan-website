@@ -11,7 +11,7 @@ type ApplicationGridProps = {
 
 export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps) {
   const firstSku = skus[0];
-  const href = firstSku ? `/materials/${material.slug}/${firstSku.slug}` : `/materials/${material.slug}`;
+  const href = firstSku ? `/materials/${material.slug}/${firstSku.productTypeSlug}/${firstSku.slug}` : `/materials/${material.slug}`;
 
   return (
     <section className="bg-paper py-24 md:py-36" data-nav-invert>

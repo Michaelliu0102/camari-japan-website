@@ -18,6 +18,8 @@ type SkuSwatchesProps = {
   locale: Locale;
   materialName: string;
   materialSlug: string;
+  productTypeName: string;
+  productTypeSlug: string;
   skus: Sku[];
   initialSku: Sku;
   compact?: boolean;
@@ -30,7 +32,7 @@ const productInfoLinks = [
   { href: "#downloads", label: "Downloads", Icon: Download }
 ];
 
-export function SkuSwatches({ locale, materialName, materialSlug, skus, initialSku, compact = false }: SkuSwatchesProps) {
+export function SkuSwatches({ locale, materialName, materialSlug, productTypeName, productTypeSlug, skus, initialSku, compact = false }: SkuSwatchesProps) {
   const router = useRouter();
   const [selectedSlug, setSelectedSlug] = useState(initialSku.slug);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -58,7 +60,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, skus, initialS
 
   function handleSwatchClick(skuSlug: string) {
     setSelectedSlug(skuSlug);
-    router.replace(localizedPath(locale, `/materials/${materialSlug}/${skuSlug}`), { scroll: false });
+    router.replace(localizedPath(locale, `/materials/${materialSlug}/${productTypeSlug}/${skuSlug}`), { scroll: false });
   }
 
   function handleImagePointerMove(event: PointerEvent<HTMLDivElement>) {
@@ -158,7 +160,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, skus, initialS
 
             {/* Product title — Dedar's productView-title */}
             <h1 className="font-serif text-2xl leading-tight md:text-[2rem] md:leading-[1.2]">
-              {materialName} Panel
+              {productTypeName}
             </h1>
 
             {/* Payoff / description — Dedar's productView-payoff */}

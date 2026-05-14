@@ -2,6 +2,7 @@ import {
   homePageSettings as fallbackHomePageSettings,
   materialCategories as fallbackCategories,
   materials as fallbackMaterials,
+  productTypes as fallbackProductTypes,
   type Download,
   type HomeExploreSlide,
   type HomePageSettings,
@@ -9,6 +10,7 @@ import {
   type Material,
   type MaterialCategory,
   type NewsItem,
+  type ProductType,
   type ProjectCase,
   type Seo,
   type Sku
@@ -20,6 +22,7 @@ import type {
   RawMaterial,
   RawMaterialCategory,
   RawNewsItem,
+  RawProductType,
   RawProjectCase,
   RawSeo,
   RawSku
@@ -53,6 +56,10 @@ function adaptSeo(raw: RawSeo | undefined, fallbackTitle: LocalizedString, fallb
 
 function fixtureMaterial(slug: string): Material | undefined {
   return fallbackMaterials.find((material) => material.slug === slug);
+}
+
+function fixtureProductType(slug: string): ProductType | undefined {
+  return fallbackProductTypes.find((productType) => productType.slug === slug);
 }
 
 function fixtureCategory(slug: string): MaterialCategory | undefined {
@@ -150,6 +157,39 @@ export function adaptMaterial(raw: RawMaterial): Material {
   };
 }
 
+export function adaptProductType(raw: RawProductType): ProductType {
+  const slug = raw.slug ?? "";
+  const name = localized(raw.name);
+  const fixture = fixtureProductType(slug);
+  const specTemplate = (raw.specTemplate ?? [])
+    .map((field) => ({
+      key: field?.key ?? "",
+      label: localized(field?.label),
+      aliases: field?.aliases?.filter(Boolean) ?? [],
+      defaultValue: field?.defaultValue ? localized(field.defaultValue) : undefined
+    }))
+    .filter((field) => field.key);
+  const certifications = (raw.certifications ?? [])
+    .map((certification) => localized(certification))
+    .filter((certification) => certification.en || certification.ja);
+  const maintenance = (raw.maintenance ?? [])
+    .map((item) => ({
+      title: localized(item?.title),
+      description: localized(item?.description)
+    }))
+    .filter((item) => item.title.en || item.title.ja || item.description.en || item.description.ja);
+
+  return {
+    slug,
+    materialSlug: raw.materialSlug ?? fixture?.materialSlug ?? "",
+    name,
+    specTemplate: specTemplate.length ? specTemplate : fixture?.specTemplate ?? [],
+    certifications: certifications.length ? certifications : fixture?.certifications ?? [],
+    maintenance: maintenance.length ? maintenance : fixture?.maintenance ?? [],
+    seo: adaptSeo(raw.seo, name, fixture?.seo.description ?? emptyLocalized, raw.seo?.imageUrl ?? fixture?.seo.image ?? "")
+  };
+}
+
 export function adaptSku(raw: RawSku): Sku {
   const colorName = localized(raw.colorName);
   const code = raw.code ?? "";
@@ -157,6 +197,7 @@ export function adaptSku(raw: RawSku): Sku {
   return {
     slug: raw.slug ?? "",
     materialSlug: raw.materialSlug ?? "",
+    productTypeSlug: raw.productTypeSlug ?? "",
     code,
     colorName,
     hex: raw.hex ?? "#1A1A1A",

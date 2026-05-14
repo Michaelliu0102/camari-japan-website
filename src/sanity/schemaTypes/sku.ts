@@ -27,6 +27,13 @@ export const sku = defineType({
       validation: (rule) => rule.required()
     }),
     defineField({
+      name: "productType",
+      title: "Product Type",
+      type: "reference",
+      to: [{ type: "productType" }],
+      validation: (rule) => rule.required()
+    }),
+    defineField({
       name: "colorName",
       title: "Color Name",
       type: "object",

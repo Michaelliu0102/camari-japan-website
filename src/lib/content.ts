@@ -1,4 +1,5 @@
 import type { Locale } from "./locales";
+import generatedCatalog from "../data/product-catalog.generated.json" with { type: "json" };
 
 export type LocalizedString = Record<Locale, string>;
 
@@ -13,6 +14,18 @@ export type Download = {
   description: LocalizedString;
   href: string;
   type: "catalog" | "technical" | "care";
+};
+
+export type ProductTypeSpecificationField = {
+  key: string;
+  label: LocalizedString;
+  aliases?: string[];
+  defaultValue?: LocalizedString;
+};
+
+export type ProductTypeMaintenanceItem = {
+  title: LocalizedString;
+  description: LocalizedString;
 };
 
 export type MaterialCategory = {
@@ -47,9 +60,20 @@ export type Material = {
   seo: Seo;
 };
 
+export type ProductType = {
+  slug: string;
+  materialSlug: string;
+  name: LocalizedString;
+  specTemplate: ProductTypeSpecificationField[];
+  certifications: LocalizedString[];
+  maintenance: ProductTypeMaintenanceItem[];
+  seo: Seo;
+};
+
 export type Sku = {
   slug: string;
   materialSlug: string;
+  productTypeSlug: string;
   code: string;
   colorName: LocalizedString;
   hex: string;
@@ -112,6 +136,14 @@ export type HomePageSettings = {
   brandValueImage: string;
   showroomBackgroundImage: string;
 };
+
+function mergeBySlug<T extends { slug: string }>(defaults: T[], imported: T[]): T[] {
+  const merged = new Map(defaults.map((item) => [item.slug, item]));
+  for (const item of imported) {
+    merged.set(item.slug, item);
+  }
+  return [...merged.values()];
+}
 
 export const site = {
   name: "CAMARI JAPAN",
@@ -384,10 +416,98 @@ export const materials: Material[] = [
   }
 ];
 
-export const skus: Sku[] = [
+const fixtureProductTypes: ProductType[] = [
+  {
+    slug: "alcantara-panel",
+    materialSlug: "alcantara",
+    name: { en: "Alcantara Panel", ja: "Alcantara パネル" },
+    specTemplate: [
+      { key: "thickness", label: { en: "THICKNESS", ja: "厚み" }, aliases: ["thickness"] },
+      { key: "unit-weight", label: { en: "UNIT WEIGHT", ja: "単位重量" }, aliases: ["unit weight", "weight"] },
+      { key: "width", label: { en: "WIDTH", ja: "幅" }, aliases: ["width"] },
+      { key: "breaking-load", label: { en: "BREAKING LOAD", ja: "破断荷重" }, aliases: ["breaking load"] },
+      { key: "wear-resistance", label: { en: "WEAR RESISTANCE", ja: "耐摩耗性" }, aliases: ["wear resistance", "martindale"] },
+      { key: "to-light", label: { en: "TO LIGHT", ja: "耐光性" }, aliases: ["to light", "lightfastness"] },
+      { key: "to-rubbery", label: { en: "TO RUBBERY", ja: "摩擦堅牢度" }, aliases: ["to rubbings", "to rubbery", "rub fastness"] },
+      { key: "fr-version", label: { en: "FR VERSION", ja: "FR 仕様" }, aliases: ["fr version", "fr"] }
+    ],
+    certifications: [
+      { en: "Carbon neutral production program", ja: "カーボンニュートラル生産プログラム" },
+      { en: "Interior and mobility grade surface performance", ja: "インテリア・モビリティ向け表面性能" }
+    ],
+    maintenance: [
+      {
+        title: { en: "Care and Maintenance Guide", ja: "ケア・メンテナンスガイド" },
+        description: { en: "Use and maintenance guidance for installed surfaces.", ja: "施工後の使用とメンテナンスのガイド。" }
+      }
+    ],
+    seo: {
+      title: { en: "Alcantara Panel | CAMARI JAPAN", ja: "Alcantara パネル | CAMARI JAPAN" },
+      description: { en: "Technical data, certifications, and maintenance guidance for Alcantara panels.", ja: "Alcantara パネルの技術仕様、認証、メンテナンス情報。" },
+      image: images.alcantara
+    }
+  },
+  {
+    slug: "leather-panel",
+    materialSlug: "leather",
+    name: { en: "Leather Panel", ja: "レザーパネル" },
+    specTemplate: [
+      { key: "unit", label: { en: "UNIT", ja: "単位" }, aliases: ["unit"] },
+      { key: "code", label: { en: "CODE", ja: "コード" }, aliases: ["code"] },
+      { key: "grain", label: { en: "GRAIN", ja: "木目" }, aliases: ["grain"] },
+      { key: "thickness", label: { en: "THICKNESS", ja: "厚み" }, aliases: ["thickness"] }
+    ],
+    certifications: [],
+    maintenance: [],
+    seo: {
+      title: { en: "Leather Panel | CAMARI JAPAN", ja: "レザーパネル | CAMARI JAPAN" },
+      description: { en: "Technical data and finish guidance for leather panels.", ja: "レザーパネルの技術仕様と仕上げガイダンス。" },
+      image: images.interior
+    }
+  },
+  {
+    slug: "vegan-leather-panel",
+    materialSlug: "vegan-leather",
+    name: { en: "Vegan Leather Panel", ja: "ヴィーガンレザーパネル" },
+    specTemplate: [
+      { key: "unit", label: { en: "UNIT", ja: "単位" }, aliases: ["unit"] },
+      { key: "code", label: { en: "CODE", ja: "コード" }, aliases: ["code"] },
+      { key: "finish", label: { en: "FINISH", ja: "仕上げ" }, aliases: ["finish"] },
+      { key: "thickness", label: { en: "THICKNESS", ja: "厚み" }, aliases: ["thickness"] }
+    ],
+    certifications: [],
+    maintenance: [],
+    seo: {
+      title: { en: "Vegan Leather Panel | CAMARI JAPAN", ja: "ヴィーガンレザーパネル | CAMARI JAPAN" },
+      description: { en: "Technical data and care guidance for vegan leather panels.", ja: "ヴィーガンレザーパネルの技術仕様とケア情報。" },
+      image: images.vegan
+    }
+  },
+  {
+    slug: "fabric-panel",
+    materialSlug: "fabric",
+    name: { en: "Fabric Panel", ja: "ファブリックパネル" },
+    specTemplate: [
+      { key: "unit", label: { en: "UNIT", ja: "単位" }, aliases: ["unit"] },
+      { key: "code", label: { en: "CODE", ja: "コード" }, aliases: ["code"] },
+      { key: "composition", label: { en: "COMPOSITION", ja: "組成" }, aliases: ["composition"] },
+      { key: "width", label: { en: "WIDTH", ja: "幅" }, aliases: ["width"] }
+    ],
+    certifications: [],
+    maintenance: [],
+    seo: {
+      title: { en: "Fabric Panel | CAMARI JAPAN", ja: "ファブリックパネル | CAMARI JAPAN" },
+      description: { en: "Technical data and maintenance guidance for fabric panels.", ja: "ファブリックパネルの技術仕様とメンテナンス情報。" },
+      image: images.fabric
+    }
+  }
+];
+
+const fixtureSkus: Sku[] = [
   {
     slug: "c-alc-4991-shadow-black",
     materialSlug: "alcantara",
+    productTypeSlug: "alcantara-panel",
     code: "C-ALC-4991",
     colorName: { en: "Shadow Black", ja: "シャドウブラック" },
     hex: "#1A1A1A",
@@ -401,10 +521,14 @@ export const skus: Sku[] = [
       ja: "車両キャビン、プロダクトパネル、静謐なホスピタリティ空間に適した、深いチャコールカラー。"
     },
     specs: [
-      { label: { en: "Unit", ja: "単位" }, value: { en: "Meters", ja: "メートル" } },
-      { label: { en: "Code", ja: "コード" }, value: { en: "C-ALC-4991", ja: "C-ALC-4991" } },
-      { label: { en: "Composition", ja: "組成" }, value: { en: "68% Polyester, 32% Polyurethane", ja: "ポリエステル 68%、ポリウレタン 32%" } },
-      { label: { en: "Width", ja: "幅" }, value: { en: "142 cm", ja: "142 cm" } }
+      { label: { en: "Thickness", ja: "厚み" }, value: { en: "0.95 mm", ja: "0.95 mm" } },
+      { label: { en: "Unit Weight", ja: "単位重量" }, value: { en: "380 g/m2", ja: "380 g/m2" } },
+      { label: { en: "Width", ja: "幅" }, value: { en: "142 cm", ja: "142 cm" } },
+      { label: { en: "Breaking Load", ja: "破断荷重" }, value: { en: "Warp 420 N / Weft 350 N", ja: "タテ 420 N / ヨコ 350 N" } },
+      { label: { en: "Wear Resistance", ja: "耐摩耗性" }, value: { en: "Martindale 100,000 cycles", ja: "マーチンデール 100,000 回" } },
+      { label: { en: "To Light", ja: "耐光性" }, value: { en: "Blue scale 5", ja: "ブルースケール 5 級" } },
+      { label: { en: "To Rubbings", ja: "摩擦堅牢度" }, value: { en: "Dry 4.5 / Wet 4", ja: "乾燥 4.5 / 湿潤 4" } },
+      { label: { en: "FR Version", ja: "FR 仕様" }, value: { en: "Available on request", ja: "ご要望に応じて対応" } }
     ],
     certifications: [
       { en: "Carbon neutral production program", ja: "カーボンニュートラル生産プログラム" },
@@ -436,6 +560,7 @@ export const skus: Sku[] = [
   {
     slug: "c-alc-735b-umber-brown",
     materialSlug: "alcantara",
+    productTypeSlug: "alcantara-panel",
     code: "C-ALC-735B",
     colorName: { en: "Umber Brown", ja: "アンバーブラウン" },
     hex: "#735B33",
@@ -445,9 +570,14 @@ export const skus: Sku[] = [
       ja: "上質なラウンジ空間と触感を重視したプロダクトに向けた温かみのあるブラウン。"
     },
     specs: [
-      { label: { en: "Unit", ja: "単位" }, value: { en: "Meters", ja: "メートル" } },
-      { label: { en: "Code", ja: "コード" }, value: { en: "C-ALC-735B", ja: "C-ALC-735B" } },
-      { label: { en: "Composition", ja: "組成" }, value: { en: "68% Polyester, 32% Polyurethane", ja: "ポリエステル 68%、ポリウレタン 32%" } }
+      { label: { en: "Thickness", ja: "厚み" }, value: { en: "0.95 mm", ja: "0.95 mm" } },
+      { label: { en: "Unit Weight", ja: "単位重量" }, value: { en: "380 g/m2", ja: "380 g/m2" } },
+      { label: { en: "Width", ja: "幅" }, value: { en: "142 cm", ja: "142 cm" } },
+      { label: { en: "Breaking Load", ja: "破断荷重" }, value: { en: "Warp 420 N / Weft 350 N", ja: "タテ 420 N / ヨコ 350 N" } },
+      { label: { en: "Wear Resistance", ja: "耐摩耗性" }, value: { en: "Martindale 100,000 cycles", ja: "マーチンデール 100,000 回" } },
+      { label: { en: "To Light", ja: "耐光性" }, value: { en: "Blue scale 5", ja: "ブルースケール 5 級" } },
+      { label: { en: "To Rubbings", ja: "摩擦堅牢度" }, value: { en: "Dry 4.5 / Wet 4", ja: "乾燥 4.5 / 湿潤 4" } },
+      { label: { en: "FR Version", ja: "FR 仕様" }, value: { en: "Available on request", ja: "ご要望に応じて対応" } }
     ],
     certifications: [{ en: "Interior grade surface performance", ja: "インテリア向け表面性能" }],
     downloads: [],
@@ -463,6 +593,7 @@ export const skus: Sku[] = [
   {
     slug: "c-alc-a68a-desert-sand",
     materialSlug: "alcantara",
+    productTypeSlug: "alcantara-panel",
     code: "C-ALC-A68A",
     colorName: { en: "Desert Sand", ja: "デザートサンド" },
     hex: "#A68A5E",
@@ -472,8 +603,14 @@ export const skus: Sku[] = [
       ja: "建築空間を柔らかく整えながら、技術的な精密さを保つ静かなサンドカラー。"
     },
     specs: [
-      { label: { en: "Unit", ja: "単位" }, value: { en: "Meters", ja: "メートル" } },
-      { label: { en: "Code", ja: "コード" }, value: { en: "C-ALC-A68A", ja: "C-ALC-A68A" } }
+      { label: { en: "Thickness", ja: "厚み" }, value: { en: "0.95 mm", ja: "0.95 mm" } },
+      { label: { en: "Unit Weight", ja: "単位重量" }, value: { en: "380 g/m2", ja: "380 g/m2" } },
+      { label: { en: "Width", ja: "幅" }, value: { en: "142 cm", ja: "142 cm" } },
+      { label: { en: "Breaking Load", ja: "破断荷重" }, value: { en: "Warp 420 N / Weft 350 N", ja: "タテ 420 N / ヨコ 350 N" } },
+      { label: { en: "Wear Resistance", ja: "耐摩耗性" }, value: { en: "Martindale 100,000 cycles", ja: "マーチンデール 100,000 回" } },
+      { label: { en: "To Light", ja: "耐光性" }, value: { en: "Blue scale 5", ja: "ブルースケール 5 級" } },
+      { label: { en: "To Rubbings", ja: "摩擦堅牢度" }, value: { en: "Dry 4.5 / Wet 4", ja: "乾燥 4.5 / 湿潤 4" } },
+      { label: { en: "FR Version", ja: "FR 仕様" }, value: { en: "Available on request", ja: "ご要望に応じて対応" } }
     ],
     certifications: [{ en: "Carbon neutral production program", ja: "カーボンニュートラル生産プログラム" }],
     downloads: [],
@@ -490,6 +627,7 @@ export const skus: Sku[] = [
   {
     slug: "l-ftg-2101-ebony-black",
     materialSlug: "leather",
+    productTypeSlug: "leather-panel",
     code: "L-FTG-2101",
     colorName: { en: "Ebony Black", ja: "エボニーブラック" },
     hex: "#1C1B1B",
@@ -528,6 +666,7 @@ export const skus: Sku[] = [
   {
     slug: "l-tpg-3345-cognac",
     materialSlug: "leather",
+    productTypeSlug: "leather-panel",
     code: "L-TPG-3345",
     colorName: { en: "Cognac", ja: "コニャック" },
     hex: "#8B5E3C",
@@ -559,6 +698,7 @@ export const skus: Sku[] = [
   {
     slug: "vl-mtt-8801-obsidian",
     materialSlug: "vegan-leather",
+    productTypeSlug: "vegan-leather-panel",
     code: "VL-MTT-8801",
     colorName: { en: "Obsidian", ja: "オブシディアン" },
     hex: "#1A1A1A",
@@ -597,6 +737,7 @@ export const skus: Sku[] = [
   {
     slug: "vl-sft-5520-terracotta",
     materialSlug: "vegan-leather",
+    productTypeSlug: "vegan-leather-panel",
     code: "VL-SFT-5520",
     colorName: { en: "Terracotta", ja: "テラコッタ" },
     hex: "#C1664B",
@@ -628,6 +769,7 @@ export const skus: Sku[] = [
   {
     slug: "f-wsh-1120-ivory",
     materialSlug: "fabric",
+    productTypeSlug: "fabric-panel",
     code: "F-WSH-1120",
     colorName: { en: "Washi Ivory", ja: "和紙アイボリー" },
     hex: "#F2EFE9",
@@ -665,6 +807,7 @@ export const skus: Sku[] = [
   {
     slug: "f-lnn-2801-charcoal",
     materialSlug: "fabric",
+    productTypeSlug: "fabric-panel",
     code: "F-LNN-2801",
     colorName: { en: "Charcoal Linen", ja: "チャコールリネン" },
     hex: "#3A3A3A",
@@ -694,6 +837,16 @@ export const skus: Sku[] = [
     }
   }
 ];
+
+export const productTypes: ProductType[] = mergeBySlug(
+  fixtureProductTypes,
+  (generatedCatalog.productTypes ?? []) as ProductType[]
+);
+
+export const skus: Sku[] = mergeBySlug(
+  fixtureSkus,
+  (generatedCatalog.skus ?? []) as Sku[]
+);
 
 export const projectCases: ProjectCase[] = [
   {
@@ -783,11 +936,23 @@ export function getMaterial(slug: string): Material | undefined {
   return materials.find((material) => material.slug === slug);
 }
 
+export function getProductType(materialSlug: string, productTypeSlug: string): ProductType | undefined {
+  return productTypes.find((productType) => productType.materialSlug === materialSlug && productType.slug === productTypeSlug);
+}
+
 export function getSkusForMaterial(materialSlug: string): Sku[] {
   return skus.filter((sku) => sku.materialSlug === materialSlug);
 }
 
-export function getSku(materialSlug: string, skuSlug: string): Sku | undefined {
+export function getSkusForProductType(materialSlug: string, productTypeSlug: string): Sku[] {
+  return skus.filter((sku) => sku.materialSlug === materialSlug && sku.productTypeSlug === productTypeSlug);
+}
+
+export function getSku(materialSlug: string, productTypeSlug: string, skuSlug: string): Sku | undefined {
+  return skus.find((sku) => sku.materialSlug === materialSlug && sku.productTypeSlug === productTypeSlug && sku.slug === skuSlug);
+}
+
+export function getLegacySku(materialSlug: string, skuSlug: string): Sku | undefined {
   return skus.find((sku) => sku.materialSlug === materialSlug && sku.slug === skuSlug);
 }
 

@@ -4,6 +4,7 @@ import {
   materialCategories as fallbackCategories,
   materials as fallbackMaterials,
   newsItems as fallbackNewsItems,
+  productTypes as fallbackProductTypes,
   projectCases as fallbackProjects,
   skus as fallbackSkus,
   type Download,
@@ -11,11 +12,12 @@ import {
   type Material,
   type MaterialCategory,
   type NewsItem,
+  type ProductType,
   type ProjectCase,
   type Sku
 } from "@/lib/content";
 import type { Locale } from "@/lib/locales";
-import { adaptCatalog, adaptHomePageSettings, adaptMaterial, adaptMaterialCategory, adaptNewsItem, adaptProjectCase, adaptSku } from "./adapters";
+import { adaptCatalog, adaptHomePageSettings, adaptMaterial, adaptMaterialCategory, adaptNewsItem, adaptProductType, adaptProjectCase, adaptSku } from "./adapters";
 import { getSanityClient } from "./client";
 import {
   catalogsQuery,
@@ -23,6 +25,7 @@ import {
   materialCategoriesQuery,
   materialsQuery,
   newsItemsQuery,
+  productTypesQuery,
   projectsQuery,
   skusQuery,
   type RawCatalog,
@@ -30,6 +33,7 @@ import {
   type RawMaterial,
   type RawMaterialCategory,
   type RawNewsItem,
+  type RawProductType,
   type RawProjectCase,
   type RawSku
 } from "./queries";
@@ -94,9 +98,23 @@ export async function loadMaterials(): Promise<Material[]> {
   return fetchOrFallback<RawMaterial, Material>(materialsQuery, {}, fallbackMaterials, adaptMaterial);
 }
 
+export async function loadProductTypes(): Promise<ProductType[]> {
+  return fetchOrFallback<RawProductType, ProductType>(productTypesQuery, {}, fallbackProductTypes, adaptProductType);
+}
+
 export async function loadMaterial(slug: string): Promise<Material | undefined> {
   const materials = await loadMaterials();
   return materials.find((material) => material.slug === slug);
+}
+
+export async function loadProductTypesForMaterial(materialSlug: string): Promise<ProductType[]> {
+  const productTypes = await loadProductTypes();
+  return productTypes.filter((productType) => productType.materialSlug === materialSlug);
+}
+
+export async function loadProductType(materialSlug: string, productTypeSlug: string): Promise<ProductType | undefined> {
+  const productTypes = await loadProductTypesForMaterial(materialSlug);
+  return productTypes.find((productType) => productType.slug === productTypeSlug);
 }
 
 export async function loadSkus(): Promise<Sku[]> {
@@ -108,7 +126,17 @@ export async function loadSkusForMaterial(materialSlug: string): Promise<Sku[]> 
   return skus.filter((sku) => sku.materialSlug === materialSlug);
 }
 
-export async function loadSku(materialSlug: string, skuSlug: string): Promise<Sku | undefined> {
+export async function loadSkusForProductType(materialSlug: string, productTypeSlug: string): Promise<Sku[]> {
+  const skus = await loadSkusForMaterial(materialSlug);
+  return skus.filter((sku) => sku.productTypeSlug === productTypeSlug);
+}
+
+export async function loadSku(materialSlug: string, productTypeSlug: string, skuSlug: string): Promise<Sku | undefined> {
+  const skus = await loadSkusForProductType(materialSlug, productTypeSlug);
+  return skus.find((sku) => sku.slug === skuSlug);
+}
+
+export async function loadLegacySku(materialSlug: string, skuSlug: string): Promise<Sku | undefined> {
   const skus = await loadSkusForMaterial(materialSlug);
   return skus.find((sku) => sku.slug === skuSlug);
 }

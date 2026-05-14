@@ -41,6 +41,8 @@ test("ApplicationGrid receives material SKUs through props", async () => {
 
   assert.doesNotMatch(content, /getSkusForMaterial/);
   assert.match(content, /skus: Sku\[\]/);
+  assert.match(content, /firstSku\.productTypeSlug/);
+  assert.match(content, /\/materials\/\$\{material\.slug\}\/\$\{firstSku\.productTypeSlug\}\/\$\{firstSku\.slug\}/);
 });
 
 test("SkuSwatches builds the side image rail from the selected SKU gallery", async () => {
@@ -50,6 +52,8 @@ test("SkuSwatches builds the side image rail from the selected SKU gallery", asy
   assert.match(content, /galleryImages\.map/);
   assert.match(content, /setActiveImageIndex\(index\)/);
   assert.match(content, /setActiveImageIndex\(0\)/);
+  assert.match(content, /productTypeSlug/);
+  assert.match(content, /productTypeName/);
 });
 
 test("SkuSwatches keeps the Dedar-style grey stage with cursor-following zoom", async () => {
@@ -82,16 +86,25 @@ test("SpecificationTable renders certifications and maintenance as standalone se
   assert.match(content, /id="specifications"/);
   assert.match(content, /id="certifications"/);
   assert.match(content, /id="maintenance-and-use"/);
+  assert.match(content, /productType: ProductType/);
+  assert.match(content, /productType\.specTemplate\.map/);
+  assert.match(content, /field\.defaultValue/);
   assert.match(content, /sectionTitleClassName = "font-serif text-2xl uppercase tracking-\[0\.06em\]"/);
   assert.match(content, /sectionInnerClassName = "mx-auto max-w-\[46rem\]"/);
   assert.match(content, /<h2 className=\{sectionTitleClassName\}>Certifications<\/h2>/);
   assert.match(content, /<h2 className=\{sectionTitleClassName\}>Maintenance and use<\/h2>/);
   assert.match(content, /download\.type === "care"/);
-  assert.match(content, /THICKNESS/);
-  assert.match(content, /UNIT WEIGHT/);
-  assert.match(content, /BREAKING LOAD/);
-  assert.match(content, /TO RUBBERY/);
-  assert.match(content, /FR VERSION/);
+});
+
+test("SKU detail route nests product type between material and sku", async () => {
+  const route = await source("src/app/[locale]/materials/[materialSlug]/[productTypeSlug]/[skuSlug]/page.tsx");
+  const legacyRoute = await source("src/app/[locale]/materials/[materialSlug]/[skuSlug]/page.tsx");
+
+  assert.match(route, /productTypeSlug/);
+  assert.match(route, /loadProductType/);
+  assert.match(route, /loadSkusForProductType/);
+  assert.match(route, /\/materials\/\$\{materialSlug\}\/\$\{productTypeSlug\}\/\$\{sku\.slug\}/);
+  assert.match(legacyRoute, /redirect\(/);
 });
 
 test("homepage loads CMS-managed homepage settings", async () => {

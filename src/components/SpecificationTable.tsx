@@ -1,63 +1,26 @@
-import type { Sku } from "@/lib/content";
+import type { ProductType, Sku } from "@/lib/content";
 import type { Locale } from "@/lib/locales";
 
 type SpecificationTableProps = {
   locale: Locale;
   sku: Sku;
+  productType: ProductType;
 };
-
-const specificationFields = [
-  {
-    key: "thickness",
-    aliases: ["thickness"],
-    label: { en: "THICKNESS", ja: "厚み" }
-  },
-  {
-    key: "unit-weight",
-    aliases: ["unit weight", "weight"],
-    label: { en: "UNIT WEIGHT", ja: "単位重量" }
-  },
-  {
-    key: "width",
-    aliases: ["width"],
-    label: { en: "WIDTH", ja: "幅" }
-  },
-  {
-    key: "breaking-load",
-    aliases: ["breaking load"],
-    label: { en: "BREAKING LOAD", ja: "破断荷重" }
-  },
-  {
-    key: "wear-resistance",
-    aliases: ["wear resistance", "martindale"],
-    label: { en: "WEAR RESISTANCE", ja: "耐摩耗性" }
-  },
-  {
-    key: "to-light",
-    aliases: ["to light", "lightfastness"],
-    label: { en: "TO LIGHT", ja: "耐光性" }
-  },
-  {
-    key: "to-rubbery",
-    aliases: ["to rubbings", "to rubbery", "rub fastness"],
-    label: { en: "TO RUBBERY", ja: "摩擦堅牢度" }
-  },
-  {
-    key: "fr-version",
-    aliases: ["fr version", "fr"],
-    label: { en: "FR VERSION", ja: "FR 仕様" }
-  }
-] as const;
 
 function normalizeLabel(value: string) {
   return value.trim().toLowerCase();
 }
 
-export function SpecificationTable({ locale, sku }: SpecificationTableProps) {
-  const maintenanceItems = sku.downloads.filter((download) => download.type === "care");
+export function SpecificationTable({ locale, sku, productType }: SpecificationTableProps) {
+  const maintenanceItems = productType.maintenance.length
+    ? productType.maintenance.map((item, index) => ({ ...item, key: `maintenance-${index}` }))
+    : sku.downloads
+        .filter((download) => download.type === "care")
+        .map((download) => ({ title: download.title, description: download.description, key: download.href }));
+  const certifications = productType.certifications.length ? productType.certifications : sku.certifications;
   const specMap = new Map(sku.specs.map((spec) => [normalizeLabel(spec.label.en), spec.value]));
-  const specificationRows = specificationFields.map((field) => {
-    const matchingValue = field.aliases
+  const specificationRows = productType.specTemplate.map((field) => {
+    const matchingValue = (field.aliases ?? [field.key])
       .map((alias) => specMap.get(alias))
       .find((value): value is NonNullable<typeof value> => Boolean(value));
 
@@ -67,6 +30,8 @@ export function SpecificationTable({ locale, sku }: SpecificationTableProps) {
       value:
         matchingValue?.[locale] ??
         matchingValue?.en ??
+        field.defaultValue?.[locale] ??
+        field.defaultValue?.en ??
         (locale === "en" ? "ON REQUEST" : "お問い合わせください")
     };
   });
@@ -99,7 +64,7 @@ export function SpecificationTable({ locale, sku }: SpecificationTableProps) {
           <h2 className={sectionTitleClassName}>Certifications</h2>
           <div className={`${sectionInnerClassName} mt-14`}>
             <dl>
-              {sku.certifications.map((certification, index) => (
+              {certifications.map((certification, index) => (
                 <div className={infoRowClassName} key={certification.en}>
                   <dt className={infoLabelClassName}>
                     {locale === "en" ? `CERTIFICATION ${String(index + 1).padStart(2, "0")}` : `認証 ${String(index + 1).padStart(2, "0")}`}
@@ -119,7 +84,7 @@ export function SpecificationTable({ locale, sku }: SpecificationTableProps) {
             <dl>
               {maintenanceItems.length > 0 ? (
                 maintenanceItems.map((item) => (
-                  <div className={infoRowClassName} key={item.href}>
+                  <div className={infoRowClassName} key={item.key}>
                     <dt className={infoLabelClassName}>{item.title[locale]}</dt>
                     <dd className={infoValueClassName}>{item.description[locale]}</dd>
                   </div>

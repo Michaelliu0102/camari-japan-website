@@ -56,7 +56,7 @@ export default async function MaterialDetailPage({ params }: PageProps) {
       <ApplicationGrid locale={locale} material={material} skus={skus} />
       <CTASection
         body={locale === "en" ? "Review the current SKU detail page, downloads, and contact information for sales guidance." : "SKU 詳細、ダウンロード、問い合わせ先をご確認ください。"}
-        href={firstSku ? `/materials/${material.slug}/${firstSku.slug}` : `/materials/${material.slug}`}
+        href={firstSku ? `/materials/${material.slug}/${firstSku.productTypeSlug}/${firstSku.slug}` : `/materials/${material.slug}`}
         label={locale === "en" ? "View SKU Detail" : "SKU 詳細を見る"}
         locale={locale}
         title={locale === "en" ? "Explore the material through color and specification." : "カラーと仕様から素材を確認する。"}

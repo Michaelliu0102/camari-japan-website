@@ -28,11 +28,14 @@ async function loadAdapters() {
   const root = await mkdtemp(path.join(tmpdir(), "camari-sanity-adapters-"));
   const compiledContent = path.join(root, "src/lib/content.js");
   const compiledAdapters = path.join(root, "src/sanity/lib/adapters.js");
+  const generatedCatalogPath = path.join(root, "src/data/product-catalog.generated.json");
 
   await mkdir(path.join(root, "src/lib"), { recursive: true });
   await mkdir(path.join(root, "src/sanity/lib"), { recursive: true });
+  await mkdir(path.join(root, "src/data"), { recursive: true });
   await writeFile(path.join(root, "package.json"), '{"type":"module"}');
   await writeFile(path.join(root, "src/lib/locales.js"), "export const locales = ['en', 'ja'];\n");
+  await writeFile(generatedCatalogPath, '{ "productTypes": [], "skus": [] }\n');
   await compileModule(path.join(projectRoot, "src/lib/content.ts"), compiledContent);
   await compileModule(path.join(projectRoot, "src/sanity/lib/adapters.ts"), compiledAdapters);
 
@@ -117,13 +120,35 @@ test("uses explicit material and category defaults when fixture records do not e
   await cleanup();
 });
 
-test("adapts SKU, project, catalog, and news naming differences", async () => {
-  const { adaptSku, adaptProjectCase, adaptCatalog, adaptNewsItem, cleanup } = await loadAdapters();
+test("adapts product type, SKU, project, catalog, and news naming differences", async () => {
+  const { adaptProductType, adaptSku, adaptProjectCase, adaptCatalog, adaptNewsItem, cleanup } = await loadAdapters();
+
+  const productType = adaptProductType({
+    name: { en: "Alcantara Panel", ja: "Alcantara パネル" },
+    slug: "alcantara-panel",
+    materialSlug: "alcantara",
+    specTemplate: [
+      {
+        key: "width",
+        label: { en: "WIDTH", ja: "幅" },
+        aliases: ["width"],
+        defaultValue: { en: "142 cm", ja: "142 cm" },
+      },
+    ],
+    certifications: [{ en: "Carbon neutral production program", ja: "カーボンニュートラル生産プログラム" }],
+    maintenance: [{ title: { en: "Care Guide", ja: "ケアガイド" }, description: { en: "Vacuum lightly.", ja: "軽く掃除機をかけてください。" } }],
+    seo: null,
+  });
+
+  assert.equal(productType.slug, "alcantara-panel");
+  assert.equal(productType.specTemplate[0].key, "width");
+  assert.equal(productType.maintenance[0].title.en, "Care Guide");
 
   const sku = adaptSku({
     code: "C-ALC-4991",
     slug: "c-alc-4991-shadow-black",
     materialSlug: "alcantara",
+    productTypeSlug: "alcantara-panel",
     colorName: { en: "Shadow Black", ja: "シャドウブラック" },
     hex: "#1A1A1A",
     heroImageUrl: "https://cdn.sanity.io/images/project/dataset/sku.jpg",
@@ -146,6 +171,7 @@ test("adapts SKU, project, catalog, and news naming differences", async () => {
 
   assert.equal(sku.image, "https://cdn.sanity.io/images/project/dataset/sku.jpg");
   assert.equal(sku.swatchImage, undefined);
+  assert.equal(sku.productTypeSlug, "alcantara-panel");
   assert.deepEqual(sku.caseGallery, [
     {
       image: "https://cdn.sanity.io/images/project/dataset/case.jpg",
