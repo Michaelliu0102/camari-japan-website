@@ -152,7 +152,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
           <div className="md:max-w-[20rem] lg:max-w-[24rem]">
             {/* Brand / collection link — Dedar's productView-brand */}
             <Link
-              className="mb-3 block font-sans text-[11px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-charcoal"
+              className="mb-2 block font-sans text-[11px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-charcoal"
               href={localizedPath(locale, `/materials/${materialSlug}`)}
             >
               {materialName}
