@@ -64,6 +64,8 @@ export type ProductType = {
   slug: string;
   materialSlug: string;
   name: LocalizedString;
+  summary: LocalizedString;
+  downloads: Download[];
   specTemplate: ProductTypeSpecificationField[];
   certifications: LocalizedString[];
   maintenance: ProductTypeMaintenanceItem[];
@@ -75,15 +77,15 @@ export type Sku = {
   materialSlug: string;
   productTypeSlug: string;
   code: string;
-  colorName: LocalizedString;
-  hex: string;
+  colorName?: LocalizedString;
+  hex?: string;
   image: string;
   swatchImage?: string;
   caseGallery?: Array<{ image: string; alt: LocalizedString }>;
   summary: LocalizedString;
   specs: Array<{ label: LocalizedString; value: LocalizedString }>;
   certifications: LocalizedString[];
-  downloads: Download[];
+  downloads?: Download[];
   seo: Seo;
 };
 
@@ -421,6 +423,11 @@ const fixtureProductTypes: ProductType[] = [
     slug: "alcantara-panel",
     materialSlug: "alcantara",
     name: { en: "Alcantara Panel", ja: "Alcantara パネル" },
+    summary: {
+      en: "Alcantara panel for automotive door panels, dashboards, and headliners. Italian microfibre with soft-touch finish, UV-stable, and carbon neutral.",
+      ja: "自動車のドアパネル、ダッシュボード、ヘッドライナー向け Alcantara パネル。ソフトタッチ仕上げのイタリア製マイクロファイバー。"
+    },
+    downloads: [],
     specTemplate: [
       { key: "thickness", label: { en: "THICKNESS", ja: "厚み" }, aliases: ["thickness"] },
       { key: "unit-weight", label: { en: "UNIT WEIGHT", ja: "単位重量" }, aliases: ["unit weight", "weight"] },
@@ -451,6 +458,11 @@ const fixtureProductTypes: ProductType[] = [
     slug: "leather-panel",
     materialSlug: "leather",
     name: { en: "Leather Panel", ja: "レザーパネル" },
+    summary: {
+      en: "Full-grain leather panel for automotive interiors, seating, and bespoke upholstery. Natural grain with supple hand and architectural warmth.",
+      ja: "自動車内装、シート、特注張り地向けのフルグレインレザーパネル。自然な木目としなやかな手触り。"
+    },
+    downloads: [],
     specTemplate: [
       { key: "unit", label: { en: "UNIT", ja: "単位" }, aliases: ["unit"] },
       { key: "code", label: { en: "CODE", ja: "コード" }, aliases: ["code"] },
@@ -469,6 +481,11 @@ const fixtureProductTypes: ProductType[] = [
     slug: "vegan-leather-panel",
     materialSlug: "vegan-leather",
     name: { en: "Vegan Leather Panel", ja: "ヴィーガンレザーパネル" },
+    summary: {
+      en: "Sustainable vegan leather panel with matte finish and micro-texture. High-performance alternative for contemporary interiors and product surfaces.",
+      ja: "マット仕上げとマイクロテクスチャを持つサステナブルなヴィーガンレザーパネル。現代的なインテリアとプロダクト表面のための高性能な選択肢。"
+    },
+    downloads: [],
     specTemplate: [
       { key: "unit", label: { en: "UNIT", ja: "単位" }, aliases: ["unit"] },
       { key: "code", label: { en: "CODE", ja: "コード" }, aliases: ["code"] },
@@ -487,6 +504,11 @@ const fixtureProductTypes: ProductType[] = [
     slug: "fabric-panel",
     materialSlug: "fabric",
     name: { en: "Fabric Panel", ja: "ファブリックパネル" },
+    summary: {
+      en: "Architectural fabric panel for interior, hospitality, and workspace applications. Washi, linen, and technical weaves with acoustic softness.",
+      ja: "インテリア、ホスピタリティ、ワークスペース向けの建築的ファブリックパネル。和紙、リネン、テクニカル織りが吸音性と空間の余白を両立。"
+    },
+    downloads: [],
     specTemplate: [
       { key: "unit", label: { en: "UNIT", ja: "単位" }, aliases: ["unit"] },
       { key: "code", label: { en: "CODE", ja: "コード" }, aliases: ["code"] },

@@ -45,6 +45,7 @@ export type RawProductType = {
   name?: LocalizedString | null;
   slug?: string | null;
   materialSlug?: string | null;
+  summary?: LocalizedString | null;
   specTemplate?:
     | Array<{
         key?: string | null;
@@ -55,6 +56,7 @@ export type RawProductType = {
     | null;
   certifications?: Array<LocalizedString | null> | null;
   maintenance?: Array<{ title?: LocalizedString | null; description?: LocalizedString | null } | null> | null;
+  downloads?: RawDownload[] | null;
   seo?: RawSeo;
 };
 
@@ -179,6 +181,13 @@ export const productTypesQuery = `*[_type == "productType"] | order(material->na
   name,
   "slug": slug.current,
   "materialSlug": material->slug.current,
+  summary,
+  downloads[] {
+    title,
+    description,
+    type,
+    "href": file.asset->url
+  },
   specTemplate[] {
     key,
     label,

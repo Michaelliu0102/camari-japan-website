@@ -14,7 +14,7 @@ function normalizeLabel(value: string) {
 export function SpecificationTable({ locale, sku, productType }: SpecificationTableProps) {
   const maintenanceItems = productType.maintenance.length
     ? productType.maintenance.map((item, index) => ({ ...item, key: `maintenance-${index}` }))
-    : sku.downloads
+    : productType.downloads
         .filter((download) => download.type === "care")
         .map((download) => ({ title: download.title, description: download.description, key: download.href }));
   const certifications = productType.certifications.length ? productType.certifications : sku.certifications;

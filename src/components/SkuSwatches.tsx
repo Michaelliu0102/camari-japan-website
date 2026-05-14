@@ -20,6 +20,7 @@ type SkuSwatchesProps = {
   materialSlug: string;
   productTypeName: string;
   productTypeSlug: string;
+  productTypeSummary: string;
   skus: Sku[];
   initialSku: Sku;
   compact?: boolean;
@@ -32,7 +33,7 @@ const productInfoLinks = [
   { href: "#downloads", label: "Downloads", Icon: Download }
 ];
 
-export function SkuSwatches({ locale, materialName, materialSlug, productTypeName, productTypeSlug, skus, initialSku, compact = false }: SkuSwatchesProps) {
+export function SkuSwatches({ locale, materialName, materialSlug, productTypeName, productTypeSlug, productTypeSummary, skus, initialSku, compact = false }: SkuSwatchesProps) {
   const router = useRouter();
   const [selectedSlug, setSelectedSlug] = useState(initialSku.slug);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -42,7 +43,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
       {
         image: selected.image,
         thumbnail: selected.swatchImage ?? selected.image,
-        alt: `${materialName} — ${selected.colorName[locale]}`
+        alt: `${materialName}${selected.colorName?.[locale] ? ` — ${selected.colorName[locale]}` : ""}`
       },
       ...(selected.caseGallery ?? []).map((item) => ({
         image: item.image,
@@ -165,7 +166,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
 
             {/* Payoff / description — Dedar's productView-payoff */}
             <p className="mt-4 font-sans text-[0.875rem] leading-relaxed text-muted md:mt-5">
-              {selected.summary[locale]}
+              {productTypeSummary}
             </p>
 
             {/* SKU code — Dedar's productView-info-value--sku */}
@@ -174,33 +175,37 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
             </p>
 
             {/* Color selector — Dedar's swatch grid */}
-            <div className="mt-10 scroll-mt-[calc(var(--nav-height)+2rem)] md:mt-12" id="you-may-also-like">
-              <div className="mb-4 flex items-baseline justify-between">
-                <span className="font-sans text-[10px] uppercase tracking-[0.12em] text-muted">Colour — {selected.colorName[locale]}</span>
-                <span className="font-sans text-[10px] tracking-[0.12em] text-muted">{skus.length} options</span>
+            {skus.some((s) => s.hex) ? (
+              <div className="mt-10 scroll-mt-[calc(var(--nav-height)+2rem)] md:mt-12" id="you-may-also-like">
+                <div className="mb-4 flex items-baseline justify-between">
+                  <span className="font-sans text-[10px] uppercase tracking-[0.12em] text-muted">
+                    {selected.colorName?.[locale] ? `Colour — ${selected.colorName[locale]}` : `Colour`}
+                  </span>
+                  <span className="font-sans text-[10px] tracking-[0.12em] text-muted">{skus.length} options</span>
+                </div>
+                <div className="flex flex-wrap gap-[10px]">
+                  {skus.map((sku) => {
+                    const active = sku.slug === selected.slug;
+                    return (
+                      <button
+                        aria-label={sku.colorName?.[locale] ? `${sku.colorName[locale]} — ${sku.code}` : sku.code}
+                        aria-pressed={active}
+                        className={`h-9 w-9 shrink-0 transition-all ${
+                          active
+                            ? "outline outline-1 outline-offset-[3px] outline-charcoal"
+                            : "hover:scale-110"
+                        }`}
+                        key={sku.slug}
+                        onClick={() => handleSwatchClick(sku.slug)}
+                        style={sku.hex ? { backgroundColor: sku.hex } : undefined}
+                        title={sku.colorName?.[locale] ? `${sku.code} ${sku.colorName[locale]}` : sku.code}
+                        type="button"
+                      />
+                    );
+                  })}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-[10px]">
-                {skus.map((sku) => {
-                  const active = sku.slug === selected.slug;
-                  return (
-                    <button
-                      aria-label={`${sku.colorName[locale]} — ${sku.code}`}
-                      aria-pressed={active}
-                      className={`h-9 w-9 shrink-0 transition-all ${
-                        active
-                          ? "outline outline-1 outline-offset-[3px] outline-charcoal"
-                          : "hover:scale-110"
-                      }`}
-                      key={sku.slug}
-                      onClick={() => handleSwatchClick(sku.slug)}
-                      style={{ backgroundColor: sku.hex }}
-                      title={`${sku.code} ${sku.colorName[locale]}`}
-                      type="button"
-                    />
-                  );
-                })}
-              </div>
-            </div>
+            ) : null}
 
             {/* Action buttons — Dedar's CTA area */}
             <div className="mt-8 space-y-3 md:mt-10">

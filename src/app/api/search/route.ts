@@ -38,11 +38,11 @@ export async function GET(request: NextRequest) {
 
   for (const s of skus) {
     const code = s.code.toLowerCase();
-    const nameEn = s.colorName.en.toLowerCase();
-    const nameJa = s.colorName.ja.toLowerCase();
+    const nameEn = s.colorName?.en?.toLowerCase() ?? "";
+    const nameJa = s.colorName?.ja?.toLowerCase() ?? "";
     if (code.includes(q) || nameEn.includes(q) || nameJa.includes(q)) {
       results.push({
-        label: `${s.code} — ${s.colorName.en}`,
+        label: s.colorName?.en ? `${s.code} — ${s.colorName.en}` : s.code,
         sub: `SKU`,
         href: `/materials/${s.materialSlug}/${s.slug}`,
         localeHrefs: Object.fromEntries(locales.map((l) => [l, `/${l}/materials/${s.materialSlug}/${s.slug}`])),

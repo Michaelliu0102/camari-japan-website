@@ -75,6 +75,7 @@ export default async function ProductTypeSkuDetailPage({ params }: PageProps) {
         materialSlug={material.slug}
         productTypeName={productType.name[locale]}
         productTypeSlug={productType.slug}
+        productTypeSummary={productType.summary[locale]}
         skus={skus}
       />
       <SpecificationTable locale={locale} productType={productType} sku={sku} />
@@ -86,7 +87,7 @@ export default async function ProductTypeSkuDetailPage({ params }: PageProps) {
               {locale === "en" ? "Catalog and technical downloads are available here. Sample request forms are reserved for a later release." : "カタログと技術資料はこちらから確認できます。サンプル申請フォームは次期リリースで対応予定です。"}
             </p>
           </div>
-          <DownloadPanel locale={locale} downloads={sku.downloads} />
+          <DownloadPanel locale={locale} downloads={productType.downloads} />
         </div>
       </section>
     </main>
