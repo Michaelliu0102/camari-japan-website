@@ -184,6 +184,7 @@ export function adaptProductType(raw: RawProductType): ProductType {
     materialSlug: raw.materialSlug ?? fixture?.materialSlug ?? "",
     name,
     summary: raw.summary?.en || raw.summary?.ja ? localized(raw.summary) : fixture?.summary ?? emptyLocalized,
+    productCode: raw.productCode ?? fixture?.productCode,
     downloads: raw.downloads?.length ? raw.downloads.map(adaptDownload) : fixture?.downloads ?? [],
     specTemplate: specTemplate.length ? specTemplate : fixture?.specTemplate ?? [],
     certifications: certifications.length ? certifications : fixture?.certifications ?? [],

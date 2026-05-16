@@ -1,0 +1,62 @@
+<customrecordtype scriptid="customrecord_camari_newsletter">
+  <recordname>CAMARI Newsletter Subscription</recordname>
+  <description>Newsletter subscriptions received from the CAMARI website footer form.</description>
+  <accesstype>CUSTRECORDENTRYPERM</accesstype>
+  <allowattachments>F</allowattachments>
+  <allowinlineediting>T</allowinlineediting>
+  <allowinlinedeleting>F</allowinlinedeleting>
+  <allowmobileaccess>F</allowmobileaccess>
+  <allowquickadd>F</allowquickadd>
+  <allowquicksearch>T</allowquicksearch>
+  <allowuiaccess>T</allowuiaccess>
+  <enablekeywords>T</enablekeywords>
+  <enablenumbering>T</enablenumbering>
+  <enableoptimisticlocking>T</enableoptimisticlocking>
+  <enablesystemnotes>T</enablesystemnotes>
+  <hierarchical>F</hierarchical>
+  <includeinsearchmenu>T</includeinsearchmenu>
+  <includename>T</includename>
+  <isinactive>F</isinactive>
+  <numberinginit>1</numberinginit>
+  <numberingprefix>NL-</numberingprefix>
+  <showcreationdate>T</showcreationdate>
+  <showcreationdateonlist>T</showcreationdateonlist>
+  <showid>T</showid>
+  <showlastmodified>T</showlastmodified>
+  <showlastmodifiedonlist>T</showlastmodifiedonlist>
+  <shownotes>T</shownotes>
+  <customrecordcustomfields>
+    <customrecordcustomfield scriptid="custrecord_camari_news_email">
+      <fieldtype>EMAIL</fieldtype>
+      <label>Email</label>
+      <ismandatory>T</ismandatory>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_news_locale">
+      <fieldtype>TEXT</fieldtype>
+      <label>Locale</label>
+      <maxlength>16</maxlength>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_news_source">
+      <fieldtype>TEXT</fieldtype>
+      <label>Source</label>
+      <maxlength>64</maxlength>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_news_submitted">
+      <fieldtype>DATETIMETZ</fieldtype>
+      <label>Submitted At</label>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_news_received">
+      <fieldtype>DATETIMETZ</fieldtype>
+      <label>Received At</label>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_news_payload">
+      <fieldtype>CLOBTEXT</fieldtype>
+      <label>Last Payload</label>
+    </customrecordcustomfield>
+  </customrecordcustomfields>
+</customrecordtype>

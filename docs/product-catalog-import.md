@@ -37,6 +37,38 @@ Important:
 - `sku.product_type_slug` must match an existing row in `product_types`.
 - `aliases` in `product_type_specs` use `|` as the separator, for example `thickness|gauge`.
 
+### Image and file paths
+
+For local development, prefer site-relative paths instead of absolute local filesystem paths:
+
+- Put product images under `public/uploads/...`
+- Put downloadable PDFs under `public/catalogs/...`
+- In Excel, fill values like `/uploads/alcantara/panel/c-alc-4991-main.jpg`
+- In Excel, fill downloads like `/catalogs/alcantara-panel-shadow-black-tds.pdf`
+
+Do not use Mac local paths such as `/Users/michael/Desktop/foo.jpg` in the workbook. The browser cannot read those paths.
+
+Remote URLs are also supported, but they should be stable public URLs. For Next.js image rendering, remote hosts may also need to be allow-listed in [next.config.mjs](/Users/michael/Documents/Website/next.config.mjs:1).
+
+Recommended local folder layout:
+
+- `public/uploads/alcantara/panel/`
+- `public/uploads/alcantara/cover/`
+- `public/uploads/alcantara/swatches/`
+- `public/uploads/alcantara/cases/`
+
+## 2.1 Business sample workbook
+
+You can regenerate the local-path sample workbook with:
+
+```bash
+python3 scripts/write_alcantara_business_sample.py
+```
+
+This writes:
+
+`data/import/alcantara-business-sample.xlsx`
+
 ## 3. Build the generated catalog
 
 ```bash

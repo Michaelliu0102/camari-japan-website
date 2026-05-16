@@ -56,6 +56,13 @@ test("SkuSwatches builds the side image rail from the selected SKU gallery", asy
   assert.match(content, /productTypeName/);
 });
 
+test("SkuSwatches can render colour chips from swatch images when hex values are missing", async () => {
+  const content = await source("src/components/SkuSwatches.tsx");
+
+  assert.match(content, /skus\.some\(\(s\) => s\.hex \|\| s\.swatchImage \|\| s\.image\)/);
+  assert.match(content, /backgroundImage:\s*`url\(\$\{sku\.swatchImage \?\? sku\.image\}\)`/);
+});
+
 test("SkuSwatches keeps the Dedar-style grey stage with cursor-following zoom", async () => {
   const content = await source("src/components/SkuSwatches.tsx");
 
@@ -85,26 +92,24 @@ test("SpecificationTable renders certifications and maintenance as standalone se
 
   assert.match(content, /id="specifications"/);
   assert.match(content, /id="certifications"/);
-  assert.match(content, /id="maintenance-and-use"/);
+  assert.match(content, /id="maintenance-and-clean"/);
   assert.match(content, /productType: ProductType/);
   assert.match(content, /productType\.specTemplate\.map/);
   assert.match(content, /field\.defaultValue/);
   assert.match(content, /sectionTitleClassName = "font-serif text-2xl uppercase tracking-\[0\.06em\]"/);
   assert.match(content, /sectionInnerClassName = "mx-auto max-w-\[46rem\]"/);
   assert.match(content, /<h2 className=\{sectionTitleClassName\}>Certifications<\/h2>/);
-  assert.match(content, /<h2 className=\{sectionTitleClassName\}>Maintenance and use<\/h2>/);
+  assert.match(content, /<h2 className=\{sectionTitleClassName\}>Maintenance and clean<\/h2>/);
   assert.match(content, /download\.type === "care"/);
 });
 
 test("SKU detail route nests product type between material and sku", async () => {
   const route = await source("src/app/[locale]/materials/[materialSlug]/[productTypeSlug]/[skuSlug]/page.tsx");
-  const legacyRoute = await source("src/app/[locale]/materials/[materialSlug]/[skuSlug]/page.tsx");
 
   assert.match(route, /productTypeSlug/);
   assert.match(route, /loadProductType/);
   assert.match(route, /loadSkusForProductType/);
   assert.match(route, /\/materials\/\$\{materialSlug\}\/\$\{productTypeSlug\}\/\$\{sku\.slug\}/);
-  assert.match(legacyRoute, /redirect\(/);
 });
 
 test("homepage loads CMS-managed homepage settings", async () => {
@@ -118,6 +123,36 @@ test("homepage loads CMS-managed homepage settings", async () => {
   assert.match(hero, /hero: HomeHero/);
   assert.match(carousel, /categorySlugs\?: string\[\]/);
   assert.match(carousel, /productSlides\?: ExploreSlide\[\]/);
+});
+
+test("homepage omits the material bento grid and featured OEM case section", async () => {
+  const page = await source("src/app/[locale]/page.tsx");
+
+  assert.doesNotMatch(page, /MaterialBentoGrid/);
+  assert.doesNotMatch(page, /featureCase/);
+  assert.doesNotMatch(page, /OEM \/ ODM/);
+  assert.doesNotMatch(page, /From texture selection to finished surface programs\./);
+});
+
+test("Footer renders a dedicated newsletter client form", async () => {
+  const footer = await source("src/components/Footer.tsx");
+
+  assert.match(footer, /FooterNewsletterForm/);
+  assert.doesNotMatch(footer, /<label className="label-caps text-muted" htmlFor="footer-email">Updates<\/label>/);
+});
+
+test("FooterNewsletterForm posts newsletter subscriptions with localized feedback states", async () => {
+  const form = await source("src/components/FooterNewsletterForm.tsx");
+
+  assert.match(form, /Subscribe to our newsletter/);
+  assert.match(form, /ニュースレターを購読する/);
+  assert.match(form, /useState<"idle" \| "submitting" \| "success" \| "error">/);
+  assert.match(form, /isValidNewsletterEmail/);
+  assert.match(form, /fetch\("\/api\/newsletter\/subscribe"/);
+  assert.match(form, /NEWSLETTER_SOURCE/);
+  assert.match(form, /submittedAt: new Date\(\)\.toISOString\(\)/);
+  assert.match(form, /disabled=\{status === "submitting"\}/);
+  assert.match(form, /aria-live="polite"/);
 });
 
 test("Studio route explains missing Sanity project configuration before loading Studio", async () => {

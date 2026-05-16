@@ -5,3 +5,7 @@ out/
 tsconfig.tsbuildinfo
 .env.local
 home.html
+.DS_Store
+__pycache__/
+*.pyc
+~$*.xlsx

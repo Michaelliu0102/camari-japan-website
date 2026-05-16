@@ -104,22 +104,6 @@ export const sku = defineType({
       of: [{ type: "object", fields: localizedString }]
     }),
     defineField({
-      name: "downloads",
-      title: "Downloads",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            defineField({ name: "title", title: "Title", type: "object", fields: localizedString }),
-            defineField({ name: "description", title: "Description", type: "object", fields: localizedText }),
-            defineField({ name: "file", title: "File", type: "file" }),
-            defineField({ name: "type", title: "Type", type: "string", options: { list: ["catalog", "technical", "care"] } })
-          ]
-        }
-      ]
-    }),
-    defineField({
       name: "seo",
       title: "SEO",
       type: "seo"

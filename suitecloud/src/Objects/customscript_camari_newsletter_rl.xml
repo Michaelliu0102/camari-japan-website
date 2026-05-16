@@ -1,0 +1,22 @@
+<restlet scriptid="customscript_camari_newsletter_rl">
+  <name>CAMARI Newsletter RESTlet</name>
+  <description>Receives newsletter subscriptions from the CAMARI website.</description>
+  <scriptfile>[/SuiteScripts/Camari/Newsletter/newsletter-restlet.js]</scriptfile>
+  <isinactive>F</isinactive>
+  <scriptcustomfields>
+    <scriptcustomfield scriptid="custscript_camari_newsletter_dryrun">
+      <fieldtype>CHECKBOX</fieldtype>
+      <label>Dry Run</label>
+      <defaultchecked>T</defaultchecked>
+      <description>When checked, the RESTlet validates and reports actions without creating or updating newsletter records.</description>
+    </scriptcustomfield>
+  </scriptcustomfields>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_camari_newsletter_rl">
+      <title>CAMARI Newsletter RESTlet</title>
+      <status>RELEASED</status>
+      <loglevel>DEBUG</loglevel>
+      <isdeployed>T</isdeployed>
+    </scriptdeployment>
+  </scriptdeployments>
+</restlet>

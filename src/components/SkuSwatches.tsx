@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Award, Download, FileText, Wrench } from "lucide-react";
+import { Award, Download, FileText, SprayCan } from "lucide-react";
 import type { CSSProperties, PointerEvent } from "react";
 import { useEffect, useMemo, useState } from "react";
 import type { Sku } from "@/lib/content";
@@ -20,6 +20,7 @@ type SkuSwatchesProps = {
   materialSlug: string;
   productTypeName: string;
   productTypeSlug: string;
+  productTypeCode?: string;
   productTypeSummary: string;
   skus: Sku[];
   initialSku: Sku;
@@ -29,15 +30,16 @@ type SkuSwatchesProps = {
 const productInfoLinks = [
   { href: "#specifications", label: "Specifications", Icon: FileText },
   { href: "#certifications", label: "Certifications", Icon: Award },
-  { href: "#maintenance-and-use", label: "Maintenance and use", Icon: Wrench },
+  { href: "#maintenance-and-clean", label: "Maintenance and clean", Icon: SprayCan },
   { href: "#downloads", label: "Downloads", Icon: Download }
 ];
 
-export function SkuSwatches({ locale, materialName, materialSlug, productTypeName, productTypeSlug, productTypeSummary, skus, initialSku, compact = false }: SkuSwatchesProps) {
+export function SkuSwatches({ locale, materialName, materialSlug, productTypeName, productTypeSlug, productTypeCode, productTypeSummary, skus, initialSku, compact = false }: SkuSwatchesProps) {
   const router = useRouter();
   const [selectedSlug, setSelectedSlug] = useState(initialSku.slug);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const selected = useMemo(() => skus.find((sku) => sku.slug === selectedSlug) ?? initialSku, [initialSku, selectedSlug, skus]);
+  const hasVisualSwatches = useMemo(() => skus.some((s) => s.hex || s.swatchImage || s.image), [skus]);
   const galleryImages = useMemo(
     () => [
       {
@@ -151,56 +153,115 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
         {/* Col 3: Product details — matches Dedar's productView-details */}
         <div className="flex flex-col md:pl-[5%] md:pt-0 lg:pl-[10%]">
           <div className="md:max-w-[20rem] lg:max-w-[24rem]">
-            {/* Brand / collection link — Dedar's productView-brand */}
-            <Link
-              className="mb-2 block font-sans text-[11px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-charcoal"
-              href={localizedPath(locale, `/materials/${materialSlug}`)}
-            >
-              {materialName}
-            </Link>
+            {/* Breadcrumb */}
+            <nav aria-label="Breadcrumb" className="mb-4">
+              <ol className="flex flex-wrap items-center gap-x-2 font-sans text-[10px] uppercase tracking-[0.12em] text-muted">
+                <li>
+                  <Link className="transition-colors hover:text-charcoal" href={localizedPath(locale, "/")}>
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="select-none">/</li>
+                <li>
+                  <Link className="transition-colors hover:text-charcoal" href={localizedPath(locale, "/materials")}>
+                    Material
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="select-none">/</li>
+                <li>
+                  <Link className="transition-colors hover:text-charcoal" href={localizedPath(locale, `/materials/${materialSlug}`)}>
+                    {materialName}
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="select-none">/</li>
+                <li className="text-charcoal/70" aria-current="page">
+                  {productTypeName}
+                </li>
+              </ol>
+            </nav>
 
             {/* Product title — Dedar's productView-title */}
             <h1 className="font-serif text-2xl leading-tight md:text-[2rem] md:leading-[1.2]">
               {productTypeName}
             </h1>
+            {productTypeCode ? (
+              <p className="mt-1 font-sans text-[11px] text-muted">
+                Product code: {productTypeCode}
+              </p>
+            ) : null}
 
             {/* Payoff / description — Dedar's productView-payoff */}
             <p className="mt-4 font-sans text-[0.875rem] leading-relaxed text-muted md:mt-5">
               {productTypeSummary}
             </p>
 
+            {productTypeSlug === "alcantara-panel" ? (
+              <p className="mt-6 font-sans text-[0.85rem] leading-relaxed text-muted">
+                For seats, please see{" "}
+                <Link
+                  className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                  href={localizedPath(locale, `/materials/${materialSlug}/alcantara-cover/alc-c-1108`)}
+                >
+                  ALCANTARA COVER
+                </Link>
+                .
+              </p>
+            ) : productTypeSlug === "alcantara-cover" ? (
+              <p className="mt-6 font-sans text-[0.85rem] leading-relaxed text-muted">
+                For door panel, dashboard and other upholstery, please see{" "}
+                <Link
+                  className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                  href={localizedPath(locale, `/materials/${materialSlug}/alcantara-panel/alc-p-1108`)}
+                >
+                  ALCANTARA PANNEL
+                </Link>
+                .
+              </p>
+            ) : null}
+
             {/* SKU code — Dedar's productView-info-value--sku */}
-            <p className="mt-5 font-sans text-[12px] leading-[19px] text-[#a6a6a6]">
-              {selected.code}
+            <p className="mt-5 font-sans text-[12px] leading-[19px]">
+              <span className="font-semibold text-charcoal">Color Code: </span>
+              <span className="text-charcoal/70">{selected.code}</span>
             </p>
 
             {/* Color selector — Dedar's swatch grid */}
-            {skus.some((s) => s.hex) ? (
+            {hasVisualSwatches ? (
               <div className="mt-10 scroll-mt-[calc(var(--nav-height)+2rem)] md:mt-12" id="you-may-also-like">
                 <div className="mb-4 flex items-baseline justify-between">
-                  <span className="font-sans text-[10px] uppercase tracking-[0.12em] text-muted">
+                  <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-charcoal/80">
                     {selected.colorName?.[locale] ? `Colour — ${selected.colorName[locale]}` : `Colour`}
                   </span>
-                  <span className="font-sans text-[10px] tracking-[0.12em] text-muted">{skus.length} options</span>
+                  <span className="font-sans text-[10px] tracking-[0.12em] text-charcoal/60">{skus.length} options</span>
                 </div>
-                <div className="flex flex-wrap gap-[10px]">
-                  {skus.map((sku) => {
-                    const active = sku.slug === selected.slug;
-                    return (
-                      <button
-                        aria-label={sku.colorName?.[locale] ? `${sku.colorName[locale]} — ${sku.code}` : sku.code}
-                        aria-pressed={active}
-                        className={`h-9 w-9 shrink-0 transition-all ${
-                          active
-                            ? "outline outline-1 outline-offset-[3px] outline-charcoal"
-                            : "hover:scale-110"
-                        }`}
-                        key={sku.slug}
-                        onClick={() => handleSwatchClick(sku.slug)}
-                        style={sku.hex ? { backgroundColor: sku.hex } : undefined}
-                        title={sku.colorName?.[locale] ? `${sku.code} ${sku.colorName[locale]}` : sku.code}
-                        type="button"
-                      />
+                    <div className="flex flex-wrap gap-[10px]">
+                      {skus.map((sku) => {
+                        const active = sku.slug === selected.slug;
+                        const swatchStyle = sku.hex
+                          ? { backgroundColor: sku.hex }
+                          : sku.swatchImage ?? sku.image
+                            ? {
+                                backgroundImage: `url(${sku.swatchImage ?? sku.image})`,
+                                backgroundPosition: "center",
+                                backgroundSize: "cover"
+                              }
+                            : undefined;
+
+                        return (
+                          <button
+                            aria-label={sku.colorName?.[locale] ? `${sku.colorName[locale]} — ${sku.code}` : sku.code}
+                            aria-pressed={active}
+                            className={`h-9 w-9 shrink-0 border border-charcoal/15 bg-[#f3f3f2] transition-all ${
+                              active
+                                ? "outline outline-1 outline-offset-[3px] outline-charcoal"
+                                : "hover:scale-110"
+                            }`}
+                            key={sku.slug}
+                            onClick={() => handleSwatchClick(sku.slug)}
+                            style={swatchStyle}
+                            title={sku.colorName?.[locale] ? `${sku.code} ${sku.colorName[locale]}` : sku.code}
+                            type="button"
+                          />
                     );
                   })}
                 </div>

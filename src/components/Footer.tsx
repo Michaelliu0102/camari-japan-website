@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { site } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
+import { FooterNewsletterForm } from "@/components/FooterNewsletterForm";
 
 type FooterProps = {
   locale: Locale;
@@ -35,15 +35,7 @@ export function Footer({ locale }: FooterProps) {
               <li>{site.contact.address[locale]}</li>
             </ul>
           </div>
-          <form className="sm:col-span-2">
-            <label className="label-caps text-muted" htmlFor="footer-email">Updates</label>
-            <div className="mt-5 flex border-b border-charcoal/20 pb-3">
-              <input className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted" id="footer-email" placeholder="Email Address" type="email" />
-              <button aria-label="Subscribe" className="flex h-8 w-8 items-center justify-center text-charcoal" type="button">
-                <ArrowRight size={16} strokeWidth={1.4} />
-              </button>
-            </div>
-          </form>
+          <FooterNewsletterForm locale={locale} />
         </div>
       </div>
 

@@ -4,11 +4,10 @@ import Link from "next/link";
 import { CTASection } from "@/components/CTASection";
 import { ExploreCarousel } from "@/components/ExploreCarousel";
 import { HeroVideo } from "@/components/HeroVideo";
-import { MaterialBentoGrid } from "@/components/MaterialBentoGrid";
 import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
-import { loadHomePageSettings, loadMaterialCategories, loadMaterials, loadProjects } from "@/sanity/lib/loaders";
+import { loadHomePageSettings, loadMaterialCategories, loadMaterials } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale }>;
@@ -28,8 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
-  const [homeSettings, categories, materials, projects] = await Promise.all([loadHomePageSettings(), loadMaterialCategories(), loadMaterials(), loadProjects()]);
-  const featureCase = projects[0];
+  const [homeSettings, categories, materials] = await Promise.all([loadHomePageSettings(), loadMaterialCategories(), loadMaterials()]);
 
   return (
     <main>
@@ -59,29 +57,6 @@ export default async function HomePage({ params }: PageProps) {
           </div>
         </div>
       </section>
-
-      <MaterialBentoGrid categories={categories} locale={locale} materials={materials} />
-
-      {featureCase ? (
-        <section className="bg-paper py-24 md:py-36" data-nav-invert>
-          <div className="section-shell grid gap-12 md:grid-cols-[0.85fr_1fr] md:items-end">
-            <div>
-              <p className="label-caps text-gold">OEM / ODM</p>
-              <h2 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">
-                {locale === "en" ? "From texture selection to finished surface programs." : "素材選定から完成されたサーフェスプログラムまで。"}
-              </h2>
-            </div>
-            <Link className="group relative block min-h-[420px] overflow-hidden bg-stone" href={localizedPath(locale, `/projects/${featureCase.slug}`)}>
-              <Image alt={featureCase.title[locale]} className="object-cover transition-transform duration-700 group-hover:scale-105" fill sizes="(min-width: 768px) 50vw, 100vw" src={featureCase.image} />
-              <div className="absolute inset-0 bg-black/20" />
-              <div className="absolute bottom-0 p-8 text-white md:p-10">
-                <p className="label-caps text-white/75">{featureCase.industry[locale]}</p>
-                <h3 className="mt-4 font-serif text-3xl">{featureCase.title[locale]}</h3>
-              </div>
-            </Link>
-          </div>
-        </section>
-      ) : null}
 
       <CTASection
         backgroundImage={homeSettings.showroomBackgroundImage}

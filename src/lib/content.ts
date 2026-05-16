@@ -65,6 +65,7 @@ export type ProductType = {
   materialSlug: string;
   name: LocalizedString;
   summary: LocalizedString;
+  productCode?: string;
   downloads: Download[];
   specTemplate: ProductTypeSpecificationField[];
   certifications: LocalizedString[];
@@ -145,6 +146,12 @@ function mergeBySlug<T extends { slug: string }>(defaults: T[], imported: T[]): 
     merged.set(item.slug, item);
   }
   return [...merged.values()];
+}
+
+function mergeSkusByProductType(defaults: Sku[], imported: Sku[]): Sku[] {
+  const importedProductTypes = new Set(imported.map((sku) => sku.productTypeSlug));
+  const retainedDefaults = defaults.filter((sku) => !importedProductTypes.has(sku.productTypeSlug));
+  return [...retainedDefaults, ...imported];
 }
 
 export const site = {
@@ -865,7 +872,7 @@ export const productTypes: ProductType[] = mergeBySlug(
   (generatedCatalog.productTypes ?? []) as ProductType[]
 );
 
-export const skus: Sku[] = mergeBySlug(
+export const skus: Sku[] = mergeSkusByProductType(
   fixtureSkus,
   (generatedCatalog.skus ?? []) as Sku[]
 );

@@ -1,4 +1,4682 @@
 {
-  "productTypes": [],
-  "skus": []
+  "productTypes": [
+    {
+      "slug": "alcantara-panel",
+      "materialSlug": "alcantara",
+      "name": {
+        "en": "Alcantara Pannel",
+        "ja": "Alcantara パネル"
+      },
+      "summary": {
+        "en": "Customize your vehicle with an Alcantara collection that balances premium style with rigorous industry standards.Alcantara panel is used for door panel, some headliner, instrumental panel , dashboard and steering wheel.",
+        "ja": "自動車のドアパネル、ダッシュボード、ヘッドライナー向け Alcantara パネル。ソフトタッチ仕上げ、紫外線安定性、カーボンニュートラルなイタリア製マイクロファイバー。"
+      },
+      "productCode": "5012",
+      "downloads": [
+        {
+          "title": {
+            "en": "Technical Data Sheet",
+            "ja": "技術データシート"
+          },
+          "description": {
+            "en": "Composition, width, thickness, and lamination notes for panel applications.",
+            "ja": "パネル用途向けの組成、幅、厚み、ラミネート適性に関する資料。"
+          },
+          "href": "https://example.com/camari/downloads/alcantara-panel-shadow-black-tds.pdf",
+          "type": "technical"
+        },
+        {
+          "title": {
+            "en": "Care Guide",
+            "ja": "ケアガイド"
+          },
+          "description": {
+            "en": "Recommended maintenance routine for installed panel surfaces.",
+            "ja": "施工済みパネル面の推奨メンテナンス手順。"
+          },
+          "href": "https://example.com/camari/downloads/alcantara-panel-care-guide.pdf",
+          "type": "care"
+        }
+      ],
+      "specTemplate": [
+        {
+          "key": "application",
+          "label": {
+            "en": "APPLICATION",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive door panel / healiner / instrumental panel / dashboard / steering wheel, upholstery",
+            "ja": "自動車ドアパネル / ヘッドライナー / インストルメントパネル / ダッシュボード / ステアリングホイール、張り地"
+          }
+        },
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚み"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "0.85 ± 0.10 mm",
+            "ja": "0.83 ± 0.10 mm"
+          }
+        },
+        {
+          "key": "weight",
+          "label": {
+            "en": "WEIGHT",
+            "ja": "重量"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "≥240 ± 30 g/m²",
+            "ja": "≥240 ± 30 g/m²"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "≥142 cm",
+            "ja": "≥142 cm"
+          }
+        },
+        {
+          "key": "breaking load",
+          "label": {
+            "en": "BREAKING LOAD",
+            "ja": "破断荷重"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Warp ≥ 225 N / Weft ≥ 175 N",
+            "ja": "縦 ≥ 225 N / 横 ≥ 175 N"
+          }
+        },
+        {
+          "key": "wear resistance",
+          "label": {
+            "en": "WEAR RESISTANCE",
+            "ja": "耐摩耗性"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "≥30,000 martindale",
+            "ja": "≥30,000 マーチンデール"
+          }
+        },
+        {
+          "key": "to light",
+          "label": {
+            "en": "TO LIGHT",
+            "ja": "耐光性"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "≥3 grey scale",
+            "ja": "≥3 グレースケール"
+          }
+        },
+        {
+          "key": "to rubbing",
+          "label": {
+            "en": "TO RUBBING",
+            "ja": "耐摩擦性"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Dry ≥4  / Wet ≥3/4 white scale",
+            "ja": "乾燥 ≥4 / 湿潤 ≥3/4 白色スケール"
+          }
+        },
+        {
+          "key": "fire resistance",
+          "label": {
+            "en": "FIRE RESISTANCE",
+            "ja": "難燃性"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "NO （FR VERSION 5856 <100 mm/min see spec sheet）",
+            "ja": ""
+          }
+        }
+      ],
+      "certifications": [
+        {
+          "en": "Carbon neutral production program",
+          "ja": "カーボンニュートラル生産プログラム"
+        },
+        {
+          "en": "RoHS / REACH aligned material control",
+          "ja": "RoHS / REACH 準拠の材料管理"
+        }
+      ],
+      "maintenance": [
+        {
+          "title": {
+            "en": "STAIN REMOVAL",
+            "ja": "シミ抜き方法"
+          },
+          "description": {
+            "en": "Few precautions to handle localised stains. Read more about how to remove stain",
+            "ja": "部分的な汚れに対処するための注意事項です。詳しいシミ抜き方法はこちら。"
+          }
+        },
+        {
+          "title": {
+            "en": "WASHING INSTRUCTIONS",
+            "ja": "洗濯方法"
+          },
+          "description": {
+            "en": "If it is necessary to fully wash Alcantara, there are few washing instructions to be carefully followed.\nRead more about washing",
+            "ja": "Alcantara を完全に洗濯する必要がある場合は、以下の注意事項をよくお読みください。\n詳しい洗濯方法はこちら。"
+          }
+        },
+        {
+          "title": {
+            "en": "HOW TO CLEAN",
+            "ja": "お手入れ方法"
+          },
+          "description": {
+            "en": "In order to preserve the beauty of Alcantara it is recommended that regular cleaning is carried out. Read more about cleaning",
+            "ja": "Alcantara の美しさを保つために、定期的なお手入れをおすすめします。詳しいお手入れ方法はこちら。"
+          }
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "Alcantara Pannel for Automotive Interiors | CAMARI JAPAN",
+          "ja": "自動車内装向け Alcantara パネル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara panel for automotive door panels, dashboards, and headliners. Italian microfibre with soft-touch finish, UV-stable, and carbon neutral with fire retardant option. Available in multiple colours through Camari, Tokyo. View specs and downloads.",
+          "ja": "自動車のドアパネル、ダッシュボード、ヘッドライナー向け Alcantara パネル。ソフトタッチ仕上げ、紫外線安定性、カーボンニュートラル、難燃オプションあり。複数色展開、Camari 東京より提供。仕様と資料をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/alcantara-panel-hero.jpg"
+      }
+    },
+    {
+      "slug": "alcantara-cover",
+      "materialSlug": "alcantara",
+      "name": {
+        "en": "Alcantara Cover",
+        "ja": "Alcantara カバー"
+      },
+      "summary": {
+        "en": "Customize your vehicle with an Alcantara collection that balances premium style with rigorous industry standards.Alcantara panel is used for seats.",
+        "ja": "自動車シート向け Alcantara カバー。ソフトタッチ仕上げ、紫外線安定性、カーボンニュートラル、難燃オプションありのイタリア製マイクロファイバー。"
+      },
+      "productCode": "",
+      "downloads": [
+        {
+          "title": {
+            "en": "Technical Data Sheet",
+            "ja": "技術データシート"
+          },
+          "description": {
+            "en": "Cover application specifications including softness, backing, and sewing suitability.",
+            "ja": "カバー用途向けの触感、裏加工、縫製適性を含む仕様資料。"
+          },
+          "href": "https://example.com/camari/downloads/alcantara-cover-saddle-tan-tds.pdf",
+          "type": "technical"
+        },
+        {
+          "title": {
+            "en": "Program Catalog Excerpt",
+            "ja": "掲載カタログ抜粋"
+          },
+          "description": {
+            "en": "Sample catalog spread showing seating and trim colorway usage.",
+            "ja": "シートおよびトリム用途の色展開を示すカタログ抜粋。"
+          },
+          "href": "https://example.com/camari/downloads/alcantara-cover-program-catalog.pdf",
+          "type": "catalog"
+        }
+      ],
+      "specTemplate": [
+        {
+          "key": "application",
+          "label": {
+            "en": "APPLICATION",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive seats",
+            "ja": "自動車シート"
+          }
+        },
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚み"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "≥0.95 mm",
+            "ja": "0.85 ± 0.15 mm"
+          }
+        },
+        {
+          "key": "weight",
+          "label": {
+            "en": "WEIGHT",
+            "ja": "重量"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "≥325 g/m²",
+            "ja": "≥325 ± 30 g/m²"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "≥142 cm",
+            "ja": "≥142 cm"
+          }
+        },
+        {
+          "key": "breaking load",
+          "label": {
+            "en": "BREAKING LOAD",
+            "ja": "破断荷重"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Warp ≥ 700 N / Weft ≥ 400 N",
+            "ja": "縦 ≥ 225 N / 横 ≥ 175 N"
+          }
+        },
+        {
+          "key": "wear resistance",
+          "label": {
+            "en": "WEAR RESISTANCE",
+            "ja": "耐摩耗性"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "≥30,000 martindale",
+            "ja": "≥30,000 マーチンデール"
+          }
+        },
+        {
+          "key": "to light",
+          "label": {
+            "en": "TO LIGHT",
+            "ja": "耐光性"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "≥3 grey scale",
+            "ja": "≥3 グレースケール"
+          }
+        },
+        {
+          "key": "to rubbing",
+          "label": {
+            "en": "TO RUBBING",
+            "ja": "耐摩擦性"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Dry ≥4  / Wet ≥3/4 white scale",
+            "ja": "乾燥 ≥4 / 湿潤 ≥3/4 白色スケール"
+          }
+        },
+        {
+          "key": "cohesion",
+          "label": {
+            "en": "COHESION",
+            "ja": ""
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "≥10 N",
+            "ja": "≥10 N"
+          }
+        },
+        {
+          "key": "fire resistance",
+          "label": {
+            "en": "FIRE RESISTANCE",
+            "ja": "難燃性"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "NO （FR VERSION 5268 <100 mm/min see spec sheet）",
+            "ja": "なし"
+          }
+        }
+      ],
+      "certifications": [
+        {
+          "en": "Carbon neutral production program",
+          "ja": "カーボンニュートラル生産プログラム"
+        },
+        {
+          "en": "RoHS / REACH aligned material control",
+          "ja": "RoHS / REACH 準拠の材料管理"
+        }
+      ],
+      "maintenance": [
+        {
+          "title": {
+            "en": "STAIN REMOVAL",
+            "ja": "シミ抜き方法"
+          },
+          "description": {
+            "en": "Few precautions to handle localised stains. Read more about how to remove stain",
+            "ja": "部分的な汚れに対処するための注意事項です。詳しいシミ抜き方法はこちら。"
+          }
+        },
+        {
+          "title": {
+            "en": "WASHING INSTRUCTIONS",
+            "ja": "洗濯方法"
+          },
+          "description": {
+            "en": "If it is necessary to fully wash Alcantara, there are few washing instructions to be carefully followed.\nRead more about washing",
+            "ja": "Alcantara を完全に洗濯する必要がある場合は、以下の注意事項をよくお読みください。\n詳しい洗濯方法はこちら。"
+          }
+        },
+        {
+          "title": {
+            "en": "HOW TO CLEAN",
+            "ja": "お手入れ方法"
+          },
+          "description": {
+            "en": "In order to preserve the beauty of Alcantara it is recommended that regular cleaning is carried out. Read more about cleaning",
+            "ja": "Alcantara の美しさを保つために、定期的なお手入れをおすすめします。詳しいお手入れ方法はこちら。"
+          }
+        }
+      ],
+      "seo": {
+        "title": {
+          "en": "Alcantara Cover for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara カバー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover for automotive seats. Italian microfibre with soft-touch finish, UV-stable, and carbon neutral with fire retardant option. Available in multiple colours through Camari, Tokyo. View specs and downloads.",
+          "ja": "自動車シート向け Alcantara カバー。ソフトタッチ仕上げ、紫外線安定性、カーボンニュートラル、難燃オプションありのイタリア製マイクロファイバー。複数色展開、Camari 東京より提供。仕様と資料をご覧ください。"
+        },
+        "image": "/uploads/alcantara/cover/alcantara-cover-hero.jpg"
+      }
+    }
+  ],
+  "skus": [
+    {
+      "slug": "alc-p-1041",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1041",
+      "colorName": {
+        "en": "Yellow",
+        "ja": "イエロー"
+      },
+      "hex": "#ebe49b",
+      "image": "/uploads/alcantara/panel/1041.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara panel fabric in yellow for automotive interiors.",
+        "ja": "自動車内装向け イエロー の Alcantara panel ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Yellow 1041 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara イエロー 1041 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara panel fabric in yellow, code 1041. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "イエロー の Alcantara panel ファブリック、コード 1041。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1041.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1045",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1045",
+      "colorName": {
+        "en": "Yellow",
+        "ja": "イエロー"
+      },
+      "hex": "#babf66",
+      "image": "/uploads/alcantara/panel/1045.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara panel fabric in yellow for automotive interiors.",
+        "ja": "自動車内装向け イエロー の Alcantara panel ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Yellow 1045 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara イエロー 1045 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara panel fabric in yellow, code 1045. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "イエロー の Alcantara panel ファブリック、コード 1045。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1045.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1108",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1108",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1108.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1108.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1110",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1110",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1110.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1110.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1112",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1112",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1112.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1112.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1125",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1125",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1125.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1125.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1259",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1259",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1259.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in blue for automotive seats.",
+        "ja": "自動車シート向け ブルーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Blue for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブルー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in blue for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブルーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1259.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1352",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1352",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1352.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1352.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1363",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1363",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1363.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in green for automotive seats.",
+        "ja": "自動車シート向け グリーンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Green for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グリーン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in green for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グリーンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1363.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1398",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1398",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1398.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1398.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1452",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1452",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1452.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1452.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1510",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1510",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1510.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1510.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1581",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1581",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1581.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in green for automotive seats.",
+        "ja": "自動車シート向け グリーンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Green for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グリーン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in green for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グリーンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1581.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1594",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1594",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1594.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in beige for automotive seats.",
+        "ja": "自動車シート向け ベージュの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Beige for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ベージュ | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in beige for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ベージュの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1594.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-1934",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "1934",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1934.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in blue for automotive seats.",
+        "ja": "自動車シート向け ブルーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Blue for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブルー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in blue for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブルーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1934.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2014",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2014",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2014.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2014.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2100",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2100",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2100.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2100.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2156",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2156",
+      "colorName": {
+        "en": "Brown",
+        "ja": "ブラウン"
+      },
+      "hex": "#788573",
+      "image": "/uploads/alcantara/panel/2156.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara panel fabric in brown for automotive interiors.",
+        "ja": "自動車内装向け ブラウン の Alcantara panel ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Brown 2156 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara ブラウン 2156 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara panel fabric in brown, code 2156. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "ブラウン の Alcantara panel ファブリック、コード 2156。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2156.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2292",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2292",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2292.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2292.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2293",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2293",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2293.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2293.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2439",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2439",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2439.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2439.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2846",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2846",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2846.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2846.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2853",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2853",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2853.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2853.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2901",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2901",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2901.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2901.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2909",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2909",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2909.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2909.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2910",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2910",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2910.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2910.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2911",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2911",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2911.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in beige for automotive seats.",
+        "ja": "自動車シート向け ベージュの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Beige for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ベージュ | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in beige for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ベージュの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2911.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2916",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2916",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2916.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2916.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2930",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2930",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2930.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2930.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2932",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2932",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2932.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2932.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2934",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2934",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2934.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2934.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2938",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2938",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2938.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2938.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2940",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2940",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2940.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2940.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2957",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2957",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2957.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2957.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2969",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2969",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2969.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2969.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-2974",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "2974",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2974.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2974.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-3314",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "3314",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/3314.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in green for automotive seats.",
+        "ja": "自動車シート向け グリーンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Green for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グリーン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in green for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グリーンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/3314.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-3322",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "3322",
+      "colorName": {
+        "en": "Yellow",
+        "ja": "イエロー"
+      },
+      "hex": "#5e562a",
+      "image": "/uploads/alcantara/panel/3322.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara panel fabric in yellow for automotive interiors.",
+        "ja": "自動車内装向け イエロー の Alcantara panel ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Yellow 3322 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara イエロー 3322 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara panel fabric in yellow, code 3322. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "イエロー の Alcantara panel ファブリック、コード 3322。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/3322.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-3679",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "3679",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/3679.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/3679.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-4415",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "4415",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4415.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4415.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-4859",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "4859",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4859.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4859.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-4897",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "4897",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4897.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4897.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-4914",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "4914",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4914.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4914.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-4978",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "4978",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4978.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4978.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-4996",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "4996",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4996.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4996.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-5226",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "5226",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/5226.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/5226.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-5432",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "5432",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/5432.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/5432.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-5751",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "5751",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/5751.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in blue for automotive seats.",
+        "ja": "自動車シート向け ブルーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Blue for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブルー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in blue for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブルーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/5751.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-5919",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "5919",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/5919.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in green for automotive seats.",
+        "ja": "自動車シート向け グリーンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Green for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グリーン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in green for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グリーンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/5919.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-6406",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "6406",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6406.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6406.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-6408",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "6408",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6408.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6408.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-6609",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "6609",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6609.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6609.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-6632",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "6632",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6632.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6632.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-6676",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "6676",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6676.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in green for automotive seats.",
+        "ja": "自動車シート向け グリーンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Green for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グリーン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in green for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グリーンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6676.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-6833",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "6833",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6833.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6833.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-7052",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "7052",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/7052.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/7052.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-7586",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "7586",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/7586.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in blue for automotive seats.",
+        "ja": "自動車シート向け ブルーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Blue for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブルー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in blue for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブルーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/7586.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-7687",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "7687",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/7687.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in blue for automotive seats.",
+        "ja": "自動車シート向け ブルーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Blue for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブルー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in blue for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブルーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/7687.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-8813",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "8813",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/8813.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/8813.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9002",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9002",
+      "colorName": {
+        "en": "Brown",
+        "ja": "ブラウン"
+      },
+      "hex": "#1c1b16",
+      "image": "/uploads/alcantara/panel/9002.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara panel fabric in brown for automotive interiors.",
+        "ja": "自動車内装向け ブラウン の Alcantara panel ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Brown 9002 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara ブラウン 9002 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara panel fabric in brown, code 9002. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "ブラウン の Alcantara panel ファブリック、コード 9002。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9002.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9022",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9022",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9022.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9022.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9036",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9036",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9036.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9036.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9040",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9040",
+      "colorName": {
+        "en": "Black",
+        "ja": "ブラック"
+      },
+      "hex": "#1b1a1c",
+      "image": "/uploads/alcantara/panel/9040.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara panel fabric in black for automotive interiors.",
+        "ja": "自動車内装向け ブラック の Alcantara panel ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Black 9040 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara ブラック 9040 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara panel fabric in black, code 9040. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "ブラック の Alcantara panel ファブリック、コード 9040。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9040.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9041",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9041",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9041.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9041.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9052",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9052",
+      "colorName": {
+        "en": "Black",
+        "ja": "ブラック"
+      },
+      "hex": "#272527",
+      "image": "/uploads/alcantara/panel/9052.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara panel fabric in black for automotive interiors.",
+        "ja": "自動車内装向け ブラック の Alcantara panel ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Black 9052 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara ブラック 9052 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara panel fabric in black, code 9052. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "ブラック の Alcantara panel ファブリック、コード 9052。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9052.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9073",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9073",
+      "colorName": {
+        "en": "Brown",
+        "ja": "ブラウン"
+      },
+      "hex": "#212e27",
+      "image": "/uploads/alcantara/panel/9073.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara panel fabric in brown for automotive interiors.",
+        "ja": "自動車内装向け ブラウン の Alcantara panel ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Brown 9073 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara ブラウン 9073 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara panel fabric in brown, code 9073. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "ブラウン の Alcantara panel ファブリック、コード 9073。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9073.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9076",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9076",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9076.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9076.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9500",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9500",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9500.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9500.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9714",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9714",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9714.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9714.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9806",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9806",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9806.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9806.jpg"
+      }
+    },
+    {
+      "slug": "alc-p-9980",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-panel",
+      "code": "9980",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9980.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9980.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1041",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1041",
+      "colorName": {
+        "en": "Yellow",
+        "ja": "イエロー"
+      },
+      "hex": "#ebe49b",
+      "image": "/uploads/alcantara/panel/1041.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive interiors.",
+        "ja": "自動車内装向け イエロー の Alcantara cover ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Yellow 1041 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara イエロー 1041 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow, code 1041. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "イエロー の Alcantara cover ファブリック、コード 1041。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1041.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1045",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1045",
+      "colorName": {
+        "en": "Yellow",
+        "ja": "イエロー"
+      },
+      "hex": "#babf66",
+      "image": "/uploads/alcantara/panel/1045.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive interiors.",
+        "ja": "自動車内装向け イエロー の Alcantara cover ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Yellow 1045 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara イエロー 1045 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow, code 1045. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "イエロー の Alcantara cover ファブリック、コード 1045。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1045.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1108",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1108",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1108.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1108.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1110",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1110",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1110.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1110.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1112",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1112",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1112.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1112.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1125",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1125",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1125.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1125.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1259",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1259",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1259.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in blue for automotive seats.",
+        "ja": "自動車シート向け ブルーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Blue for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブルー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in blue for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブルーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1259.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1352",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1352",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1352.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1352.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1363",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1363",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1363.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in green for automotive seats.",
+        "ja": "自動車シート向け グリーンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Green for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グリーン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in green for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グリーンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1363.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1398",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1398",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1398.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1398.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1452",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1452",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1452.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1452.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1510",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1510",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1510.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1510.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1581",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1581",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1581.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in green for automotive seats.",
+        "ja": "自動車シート向け グリーンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Green for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グリーン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in green for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グリーンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1581.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1594",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1594",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1594.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in beige for automotive seats.",
+        "ja": "自動車シート向け ベージュの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Beige for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ベージュ | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in beige for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ベージュの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1594.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-1934",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "1934",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/1934.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in blue for automotive seats.",
+        "ja": "自動車シート向け ブルーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Blue for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブルー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in blue for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブルーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/1934.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2014",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2014",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2014.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2014.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2100",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2100",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2100.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2100.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2156",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2156",
+      "colorName": {
+        "en": "Brown",
+        "ja": "ブラウン"
+      },
+      "hex": "#788573",
+      "image": "/uploads/alcantara/panel/2156.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive interiors.",
+        "ja": "自動車内装向け ブラウン の Alcantara cover ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Brown 2156 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara ブラウン 2156 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown, code 2156. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "ブラウン の Alcantara cover ファブリック、コード 2156。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2156.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2292",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2292",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2292.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2292.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2293",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2293",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2293.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2293.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2439",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2439",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2439.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2439.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2846",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2846",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2846.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2846.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2853",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2853",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2853.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2853.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2901",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2901",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2901.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2901.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2909",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2909",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2909.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2909.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2910",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2910",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2910.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2910.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2911",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2911",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2911.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in beige for automotive seats.",
+        "ja": "自動車シート向け ベージュの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Beige for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ベージュ | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in beige for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ベージュの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2911.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2916",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2916",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2916.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2916.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2930",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2930",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2930.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2930.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2932",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2932",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2932.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2932.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2934",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2934",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2934.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2934.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2938",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2938",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2938.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2938.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2940",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2940",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2940.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2940.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2957",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2957",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2957.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2957.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2969",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2969",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2969.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2969.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-2974",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "2974",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/2974.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive seats.",
+        "ja": "自動車シート向け イエローの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Yellow for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック イエロー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "イエローの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/2974.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-3314",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "3314",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/3314.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in green for automotive seats.",
+        "ja": "自動車シート向け グリーンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Green for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グリーン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in green for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グリーンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/3314.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-3322",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "3322",
+      "colorName": {
+        "en": "Yellow",
+        "ja": "イエロー"
+      },
+      "hex": "#5e562a",
+      "image": "/uploads/alcantara/panel/3322.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in yellow for automotive interiors.",
+        "ja": "自動車内装向け イエロー の Alcantara cover ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Yellow 3322 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara イエロー 3322 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in yellow, code 3322. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "イエロー の Alcantara cover ファブリック、コード 3322。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/3322.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-3679",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "3679",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/3679.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/3679.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-4415",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "4415",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4415.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4415.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-4859",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "4859",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4859.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4859.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-4897",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "4897",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4897.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4897.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-4914",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "4914",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4914.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4914.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-4978",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "4978",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4978.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4978.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-4996",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "4996",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/4996.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/4996.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-5226",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "5226",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/5226.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/5226.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-5432",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "5432",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/5432.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/5432.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-5751",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "5751",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/5751.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in blue for automotive seats.",
+        "ja": "自動車シート向け ブルーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Blue for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブルー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in blue for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブルーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/5751.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-5919",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "5919",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/5919.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in green for automotive seats.",
+        "ja": "自動車シート向け グリーンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Green for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グリーン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in green for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グリーンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/5919.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-6406",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "6406",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6406.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6406.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-6408",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "6408",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6408.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6408.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-6609",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "6609",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6609.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6609.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-6632",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "6632",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6632.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6632.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-6676",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "6676",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6676.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in green for automotive seats.",
+        "ja": "自動車シート向け グリーンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Green for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グリーン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in green for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グリーンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6676.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-6833",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "6833",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/6833.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/6833.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-7052",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "7052",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/7052.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/7052.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-7586",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "7586",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/7586.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in blue for automotive seats.",
+        "ja": "自動車シート向け ブルーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Blue for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブルー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in blue for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブルーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/7586.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-7687",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "7687",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/7687.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in blue for automotive seats.",
+        "ja": "自動車シート向け ブルーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Blue for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブルー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in blue for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブルーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/7687.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-8813",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "8813",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/8813.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive seats.",
+        "ja": "自動車シート向け ブラウンの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Brown for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック ブラウン | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "ブラウンの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/8813.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9002",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9002",
+      "colorName": {
+        "en": "Brown",
+        "ja": "ブラウン"
+      },
+      "hex": "#1c1b16",
+      "image": "/uploads/alcantara/panel/9002.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive interiors.",
+        "ja": "自動車内装向け ブラウン の Alcantara cover ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Brown 9002 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara ブラウン 9002 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown, code 9002. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "ブラウン の Alcantara cover ファブリック、コード 9002。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9002.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9022",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9022",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9022.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9022.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9036",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9036",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9036.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9036.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9040",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9040",
+      "colorName": {
+        "en": "Black",
+        "ja": "ブラック"
+      },
+      "hex": "#1b1a1c",
+      "image": "/uploads/alcantara/panel/9040.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in black for automotive interiors.",
+        "ja": "自動車内装向け ブラック の Alcantara cover ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Black 9040 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara ブラック 9040 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in black, code 9040. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "ブラック の Alcantara cover ファブリック、コード 9040。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9040.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9041",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9041",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9041.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9041.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9052",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9052",
+      "colorName": {
+        "en": "Black",
+        "ja": "ブラック"
+      },
+      "hex": "#272527",
+      "image": "/uploads/alcantara/panel/9052.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in black for automotive interiors.",
+        "ja": "自動車内装向け ブラック の Alcantara cover ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Black 9052 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara ブラック 9052 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in black, code 9052. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "ブラック の Alcantara cover ファブリック、コード 9052。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9052.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9073",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9073",
+      "colorName": {
+        "en": "Brown",
+        "ja": "ブラウン"
+      },
+      "hex": "#212e27",
+      "image": "/uploads/alcantara/panel/9073.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in brown for automotive interiors.",
+        "ja": "自動車内装向け ブラウン の Alcantara cover ファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Alcantara Brown 9073 for Automotive | CAMARI JAPAN",
+          "ja": "自動車向け Alcantara ブラウン 9073 | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in brown, code 9073. Italian microfibre with soft-touch finish. Available through Camari, Tokyo. View specifications.",
+          "ja": "ブラウン の Alcantara cover ファブリック、コード 9073。ソフトタッチ仕上げのイタリア製マイクロファイバー。Camari 東京より提供。仕様をご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9073.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9076",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9076",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9076.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9076.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9500",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9500",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9500.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9500.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9714",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9714",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9714.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in red for automotive seats.",
+        "ja": "自動車シート向け レッドの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Red for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック レッド | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in red for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "レッドの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9714.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9806",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9806",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9806.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in grey for automotive seats.",
+        "ja": "自動車シート向け グレーの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Grey for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック グレー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in grey for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "グレーの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9806.jpg"
+      }
+    },
+    {
+      "slug": "alc-c-9980",
+      "materialSlug": "alcantara",
+      "productTypeSlug": "alcantara-cover",
+      "code": "9980",
+      "colorName": {
+        "en": "",
+        "ja": ""
+      },
+      "hex": "",
+      "image": "/uploads/alcantara/panel/9980.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Alcantara cover fabric in purple for automotive seats.",
+        "ja": "自動車シート向け パープルの Alcantara カバーファブリック。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Authentic Alcantara Fabric Purple for Automotive Seats | CAMARI JAPAN",
+          "ja": "自動車シート向け Alcantara ファブリック パープル | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Alcantara cover fabric in purple for seat centres, armrests, and stitched trim. Italian microfibre with soft-touch finish. View specifications and care guide.",
+          "ja": "パープルの Alcantara カバーファブリック。シートセンター、アームレスト、ステッチ加飾向け。ソフトタッチ仕上げのイタリア製マイクロファイバー。仕様とケアガイドをご覧ください。"
+        },
+        "image": "/uploads/alcantara/panel/9980.jpg"
+      }
+    }
+  ]
 }

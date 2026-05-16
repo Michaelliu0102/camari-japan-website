@@ -46,6 +46,7 @@ export type RawProductType = {
   slug?: string | null;
   materialSlug?: string | null;
   summary?: LocalizedString | null;
+  productCode?: string | null;
   specTemplate?:
     | Array<{
         key?: string | null;
@@ -182,6 +183,7 @@ export const productTypesQuery = `*[_type == "productType"] | order(material->na
   "slug": slug.current,
   "materialSlug": material->slug.current,
   summary,
+  productCode,
   downloads[] {
     title,
     description,

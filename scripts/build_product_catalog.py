@@ -17,11 +17,14 @@ SHEETS = {
         "material_slug",
         "name_en",
         "name_ja",
+        "summary_en",
+        "summary_ja",
         "seo_title_en",
         "seo_title_ja",
         "seo_description_en",
         "seo_description_ja",
         "seo_image",
+        "product_code",
     ],
     "product_type_specs": [
         "product_type_slug",
@@ -73,8 +76,8 @@ SHEETS = {
         "value_en",
         "value_ja",
     ],
-    "sku_downloads": [
-        "sku_slug",
+    "product_type_downloads": [
+        "product_type_slug",
         "sort_order",
         "title_en",
         "title_ja",
@@ -100,11 +103,13 @@ TEMPLATE_ROWS = {
             "material_slug": "alcantara",
             "name_en": "Alcantara Panel",
             "name_ja": "Alcantara パネル",
-            "seo_title_en": "Alcantara Panel | CAMARI JAPAN",
-            "seo_title_ja": "Alcantara パネル | CAMARI JAPAN",
-            "seo_description_en": "Technical data, certifications, and maintenance guidance for Alcantara panels.",
-            "seo_description_ja": "Alcantara パネルの技術仕様、認証、メンテナンス情報。",
-            "seo_image": "https://example.com/alcantara-panel.jpg",
+            "summary_en": "Alcantara panel for automotive door panels, dashboards, and headliners. Italian microfibre with soft-touch finish, UV-stable, and carbon neutral.",
+            "summary_ja": "自動車のドアパネル、ダッシュボード、ヘッドライナー向け Alcantara パネル。ソフトタッチ仕上げ、紫外線安定性、カーボンニュートラルなイタリア製マイクロファイバー。",
+            "seo_title_en": "Alcantara Panel for Automotive Interiors | CAMARI JAPAN",
+            "seo_title_ja": "自動車内装向け Alcantara パネル | CAMARI JAPAN",
+            "seo_description_en": "Alcantara panel for automotive door panels, dashboards, and headliners. Italian microfibre with soft-touch finish, UV-stable, and carbon neutral with fire retardant option. View specs and downloads.",
+            "seo_description_ja": "自動車のドアパネル、ダッシュボード、ヘッドライナー向け Alcantara パネル。ソフトタッチ仕上げ、紫外線安定性、カーボンニュートラル、難燃オプションあり。仕様と資料をご覧ください。",
+            "seo_image": "/uploads/alcantara/panel/alcantara-panel-hero.jpg",
         }
     ],
     "product_type_specs": [
@@ -146,15 +151,15 @@ TEMPLATE_ROWS = {
             "color_name_en": "Shadow Black",
             "color_name_ja": "シャドウブラック",
             "hex": "#1A1A1A",
-            "image": "https://example.com/sku-main.jpg",
-            "swatch_image": "https://example.com/sku-swatch.jpg",
+            "image": "/uploads/alcantara/panel/c-alc-4991-main.jpg",
+            "swatch_image": "/uploads/alcantara/swatches/c-alc-4991-swatch.jpg",
             "summary_en": "A deep charcoal tone for refined interiors.",
             "summary_ja": "上質な空間に向けたディープチャコールトーン。",
             "seo_title_en": "C-ALC-4991 Shadow Black | CAMARI JAPAN",
             "seo_title_ja": "C-ALC-4991 シャドウブラック | CAMARI JAPAN",
             "seo_description_en": "View Shadow Black Alcantara specifications and downloads.",
             "seo_description_ja": "シャドウブラック Alcantara の仕様と資料をご覧ください。",
-            "seo_image": "https://example.com/sku-main.jpg",
+            "seo_image": "/uploads/alcantara/panel/c-alc-4991-main.jpg",
         }
     ],
     "sku_specs": [
@@ -167,9 +172,9 @@ TEMPLATE_ROWS = {
             "value_ja": "0.95 mm",
         }
     ],
-    "sku_downloads": [
+    "product_type_downloads": [
         {
-            "sku_slug": "c-alc-4991-shadow-black",
+            "product_type_slug": "alcantara-panel",
             "sort_order": 1,
             "title_en": "Alcantara Technical Sheet",
             "title_ja": "Alcantara 技術資料",
@@ -183,7 +188,7 @@ TEMPLATE_ROWS = {
         {
             "sku_slug": "c-alc-4991-shadow-black",
             "sort_order": 1,
-            "image": "https://example.com/installed-case.jpg",
+            "image": "/uploads/alcantara/cases/c-alc-4991-installed.jpg",
             "alt_en": "Installed case image",
             "alt_ja": "施工事例画像",
         }
@@ -193,6 +198,16 @@ TEMPLATE_ROWS = {
 
 def localized(en: str, ja: str) -> dict[str, str]:
     return {"en": en or "", "ja": ja or ""}
+
+
+def normalize_image_path(value: str) -> str:
+    """Strip absolute local path prefix to make it relative to public/."""
+    if not value:
+        return value
+    # Strip /Users/.../public or /Users/.../Website/public prefix
+    import re
+    value = re.sub(r'^.*?/public(?=/|$)', '', value)
+    return value or ""
 
 
 def read_rows(workbook_path: Path) -> dict[str, list[dict[str, Any]]]:
@@ -236,7 +251,7 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
     certs_by_type: dict[str, list[dict[str, Any]]] = defaultdict(list)
     maintenance_by_type: dict[str, list[dict[str, Any]]] = defaultdict(list)
     specs_by_sku: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    downloads_by_sku: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    downloads_by_type: dict[str, list[dict[str, Any]]] = defaultdict(list)
     case_gallery_by_sku: dict[str, list[dict[str, Any]]] = defaultdict(list)
 
     for row in sorted(rows_by_sheet["product_type_specs"], key=sort_key):
@@ -268,11 +283,11 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
             }
         )
 
-    for row in sorted(rows_by_sheet["sku_downloads"], key=sort_key):
+    for row in sorted(rows_by_sheet["product_type_downloads"], key=sort_key):
         download_type = row["type"].lower()
         if download_type not in {"catalog", "technical", "care"}:
-            raise ValueError(f"Unsupported download type for {row['sku_slug']}: {row['type']}")
-        downloads_by_sku[row["sku_slug"]].append(
+            raise ValueError(f"Unsupported download type for {row['product_type_slug']}: {row['type']}")
+        downloads_by_type[row["product_type_slug"]].append(
             {
                 "title": localized(row["title_en"], row["title_ja"]),
                 "description": localized(row["description_en"], row["description_ja"]),
@@ -284,7 +299,7 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
     for row in sorted(rows_by_sheet["sku_case_gallery"], key=sort_key):
         case_gallery_by_sku[row["sku_slug"]].append(
             {
-                "image": row["image"],
+                "image": normalize_image_path(row["image"]),
                 "alt": localized(row["alt_en"], row["alt_ja"]),
             }
         )
@@ -293,25 +308,32 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
     known_product_types: set[str] = set()
     for row in rows_by_sheet["product_types"]:
         slug = row["product_type_slug"]
+        if not slug or not row.get("name_en"):
+            continue  # skip template rows
         known_product_types.add(slug)
         product_types.append(
             {
                 "slug": slug,
                 "materialSlug": row["material_slug"],
                 "name": localized(row["name_en"], row["name_ja"]),
+                "summary": localized(row["summary_en"], row["summary_ja"]),
+                "productCode": row.get("product_code", ""),
+                "downloads": downloads_by_type.get(slug, []),
                 "specTemplate": specs_by_type.get(slug, []),
                 "certifications": certs_by_type.get(slug, []),
                 "maintenance": maintenance_by_type.get(slug, []),
                 "seo": {
                     "title": localized(row["seo_title_en"], row["seo_title_ja"]),
                     "description": localized(row["seo_description_en"], row["seo_description_ja"]),
-                    "image": row["seo_image"],
+                    "image": normalize_image_path(row["seo_image"]),
                 },
             }
         )
 
     skus: list[dict[str, Any]] = []
     for row in rows_by_sheet["skus"]:
+        if not row.get("sku_slug"):
+            continue  # skip empty rows
         product_type_slug = row["product_type_slug"]
         if product_type_slug not in known_product_types:
             raise ValueError(f"SKU {row['sku_slug']} references missing product type: {product_type_slug}")
@@ -323,17 +345,16 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
             "code": row["code"],
             "colorName": localized(row["color_name_en"], row["color_name_ja"]),
             "hex": row["hex"],
-            "image": row["image"],
-            "swatchImage": row["swatch_image"] or None,
+            "image": normalize_image_path(row["image"]),
+            "swatchImage": normalize_image_path(row["swatch_image"]) or None,
             "caseGallery": case_gallery_by_sku.get(row["sku_slug"], []),
             "summary": localized(row["summary_en"], row["summary_ja"]),
             "specs": specs_by_sku.get(row["sku_slug"], []),
             "certifications": [],
-            "downloads": downloads_by_sku.get(row["sku_slug"], []),
             "seo": {
                 "title": localized(row["seo_title_en"], row["seo_title_ja"]),
                 "description": localized(row["seo_description_en"], row["seo_description_ja"]),
-                "image": row["seo_image"] or row["image"],
+                "image": normalize_image_path(row["seo_image"] or row["image"]),
             },
         }
         if not sku["swatchImage"]:
@@ -367,10 +388,10 @@ def parse_args() -> argparse.Namespace:
         description="Build product type and SKU fixture data from an Excel workbook."
     )
     parser.add_argument(
-        "workbook",
-        nargs="?",
+        "workbooks",
+        nargs="*",
         type=Path,
-        help="Path to the .xlsx workbook to compile."
+        help="One or more .xlsx workbooks, or a directory containing .xlsx files."
     )
     parser.add_argument(
         "--output",
@@ -386,6 +407,36 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def resolve_workbooks(paths: list[Path]) -> list[Path]:
+    """Resolve a list of paths to .xlsx files. Directories are scanned recursively. Skips temp/lock files."""
+    result: list[Path] = []
+    for path in paths:
+        if path.is_dir():
+            for f in sorted(path.rglob("*.xlsx")):
+                if not f.name.startswith("~$"):
+                    result.append(f)
+        elif path.suffix.lower() == ".xlsx" and not path.name.startswith("~$"):
+            result.append(path)
+    return result
+
+
+def merge_catalogs(catalogs: list[dict[str, Any]]) -> dict[str, Any]:
+    """Merge multiple catalog dicts into one, deduplicating by slug."""
+    all_product_types: dict[str, dict[str, Any]] = {}
+    all_skus: dict[str, dict[str, Any]] = {}
+
+    for catalog in catalogs:
+        for pt in catalog.get("productTypes", []):
+            all_product_types[pt["slug"]] = pt
+        for sku in catalog.get("skus", []):
+            all_skus[sku["slug"]] = sku
+
+    return {
+        "productTypes": list(all_product_types.values()),
+        "skus": list(all_skus.values()),
+    }
+
+
 def main() -> int:
     args = parse_args()
 
@@ -394,14 +445,20 @@ def main() -> int:
         print(f"Template workbook written to {args.write_template}")
         return 0
 
-    if not args.workbook:
-        raise SystemExit("Provide a workbook path, or use --write-template.")
+    workbooks = resolve_workbooks(args.workbooks)
+    if not workbooks:
+        raise SystemExit("Provide at least one workbook path, or use --write-template.")
 
-    catalog = build_catalog(read_rows(args.workbook))
-    write_catalog_json(catalog, args.output)
-    print(f"Generated catalog JSON at {args.output}")
-    print(f"Product types: {len(catalog['productTypes'])}")
-    print(f"SKUs: {len(catalog['skus'])}")
+    catalogs = []
+    for wb_path in workbooks:
+        print(f"Reading {wb_path}...")
+        catalogs.append(build_catalog(read_rows(wb_path)))
+
+    merged = merge_catalogs(catalogs) if len(catalogs) > 1 else catalogs[0]
+    write_catalog_json(merged, args.output)
+    print(f"\nGenerated catalog JSON at {args.output}")
+    print(f"Product types: {len(merged['productTypes'])}")
+    print(f"SKUs: {len(merged['skus'])}")
     return 0
 
 

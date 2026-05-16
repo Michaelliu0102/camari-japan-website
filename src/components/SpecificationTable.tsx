@@ -1,5 +1,6 @@
 import type { ProductType, Sku } from "@/lib/content";
 import type { Locale } from "@/lib/locales";
+import React from "react";
 
 type SpecificationTableProps = {
   locale: Locale;
@@ -9,6 +10,36 @@ type SpecificationTableProps = {
 
 function normalizeLabel(value: string) {
   return value.trim().toLowerCase();
+}
+
+function formatMaintenanceDescription(text: string): React.ReactNode {
+  const readMoreMatch = text.match(/^([\s\S]*?)(Read more about)\s+(.+?)(\.?)$/i);
+  if (!readMoreMatch) {
+    return text.split("\n").map((line, index) => (
+      <span key={index}>
+        {index > 0 ? <br /> : null}
+        {line}
+      </span>
+    ));
+  }
+
+  const [, before, readMore, subject, period] = readMoreMatch;
+  return (
+    <>
+      {before.split("\n").map((line, index) => (
+        <span key={index}>
+          {index > 0 ? <br /> : null}
+          {line}
+        </span>
+      ))}
+      <br />
+      {readMore + " "}
+      <span className="underline decoration-charcoal/40 underline-offset-4">
+        {subject}
+      </span>
+      {period}
+    </>
+  );
 }
 
 export function SpecificationTable({ locale, sku, productType }: SpecificationTableProps) {
@@ -77,16 +108,16 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
         </div>
       </section>
 
-      <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:pb-28 md:pt-24" data-nav-invert id="maintenance-and-use">
+      <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:pb-28 md:pt-24" data-nav-invert id="maintenance-and-clean">
         <div className="section-shell">
-          <h2 className={sectionTitleClassName}>Maintenance and use</h2>
+          <h2 className={sectionTitleClassName}>Maintenance and clean</h2>
           <div className={`${sectionInnerClassName} mt-14`}>
             <dl>
               {maintenanceItems.length > 0 ? (
                 maintenanceItems.map((item) => (
                   <div className={infoRowClassName} key={item.key}>
                     <dt className={infoLabelClassName}>{item.title[locale]}</dt>
-                    <dd className={infoValueClassName}>{item.description[locale]}</dd>
+                    <dd className={infoValueClassName}>{formatMaintenanceDescription(item.description[locale])}</dd>
                   </div>
                 ))
               ) : (

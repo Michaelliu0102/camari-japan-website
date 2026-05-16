@@ -21,6 +21,23 @@ class BuildProductCatalogTests(unittest.TestCase):
             self.assertIn("skus", workbook.sheetnames)
             self.assertEqual(workbook["product_types"]["A2"].value, "alcantara-panel")
 
+    def test_write_template_uses_local_upload_paths_for_image_examples(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workbook_path = Path(tmp_dir) / "template.xlsx"
+            write_template(workbook_path)
+
+            workbook = load_workbook(workbook_path)
+            product_type_headers = [cell.value for cell in workbook["product_types"][1]]
+            sku_headers = [cell.value for cell in workbook["skus"][1]]
+            product_type_seo_image_column = product_type_headers.index("seo_image") + 1
+            sku_image_column = sku_headers.index("image") + 1
+            sku_swatch_image_column = sku_headers.index("swatch_image") + 1
+
+            self.assertEqual(workbook["product_types"].cell(row=2, column=product_type_seo_image_column).value, "/uploads/alcantara/panel/alcantara-panel-hero.jpg")
+            self.assertEqual(workbook["skus"].cell(row=2, column=sku_image_column).value, "/uploads/alcantara/panel/c-alc-4991-main.jpg")
+            self.assertEqual(workbook["skus"].cell(row=2, column=sku_swatch_image_column).value, "/uploads/alcantara/swatches/c-alc-4991-swatch.jpg")
+            self.assertEqual(workbook["sku_case_gallery"]["C2"].value, "/uploads/alcantara/cases/c-alc-4991-installed.jpg")
+
     def test_build_catalog_parses_workbook_into_product_types_and_skus(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             workbook_path = Path(tmp_dir) / "catalog.xlsx"

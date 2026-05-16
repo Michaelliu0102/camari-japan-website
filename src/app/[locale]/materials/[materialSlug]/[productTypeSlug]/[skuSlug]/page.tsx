@@ -75,19 +75,17 @@ export default async function ProductTypeSkuDetailPage({ params }: PageProps) {
         materialSlug={material.slug}
         productTypeName={productType.name[locale]}
         productTypeSlug={productType.slug}
+        productTypeCode={productType.productCode}
         productTypeSummary={productType.summary[locale]}
         skus={skus}
       />
       <SpecificationTable locale={locale} productType={productType} sku={sku} />
       <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:py-28" data-nav-invert id="downloads">
-        <div className="section-shell grid gap-12 md:grid-cols-[1fr_auto] md:gap-24">
-          <div>
-            <h2 className="font-serif text-2xl uppercase tracking-[0.06em]">Downloads</h2>
-            <p className="mt-4 max-w-lg text-[0.85rem] leading-relaxed text-muted">
-              {locale === "en" ? "Catalog and technical downloads are available here. Sample request forms are reserved for a later release." : "カタログと技術資料はこちらから確認できます。サンプル申請フォームは次期リリースで対応予定です。"}
-            </p>
+        <div className="section-shell">
+          <h2 className="font-serif text-2xl uppercase tracking-[0.06em]">Downloads</h2>
+          <div className="mx-auto mt-14 max-w-[46rem]">
+            <DownloadPanel locale={locale} downloads={productType.downloads} />
           </div>
-          <DownloadPanel locale={locale} downloads={productType.downloads} />
         </div>
       </section>
     </main>

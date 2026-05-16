@@ -1,0 +1,12 @@
+<manifest projecttype="ACCOUNTCUSTOMIZATION">
+  <projectname>Camari Website Newsletter</projectname>
+  <frameworkversion>1.0</frameworkversion>
+  <dependencies>
+    <features>
+      <feature required="true">CUSTOMRECORDS</feature>
+      <feature required="true">SERVERSIDESCRIPTING</feature>
+      <feature required="true">RESTLETS</feature>
+      <feature required="true">TOKENBASEDAUTHENTICATION</feature>
+    </features>
+  </dependencies>
+</manifest>
