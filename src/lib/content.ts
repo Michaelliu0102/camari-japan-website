@@ -42,6 +42,7 @@ export type Application = {
   name: LocalizedString;
   colorCount: number;
   image: string;
+  productTypeSlug?: string;
 };
 
 export type Material = {
@@ -311,9 +312,9 @@ export const materials: Material[] = [
     },
     applications: [
       { slug: "automotive", name: { en: "Automotive", ja: "自動車" }, colorCount: 71, image: images.alcantara },
-      { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 78, image: images.interior },
-      { slug: "outdoor", name: { en: "Outdoor", ja: "アウトドア" }, colorCount: 14, image: images.outdoor },
-      { slug: "electronics", name: { en: "Consumer Electronics", ja: "コンシューマー機器" }, colorCount: 20, image: images.vegan }
+      { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 76, image: images.interior, productTypeSlug: "alcantara-master" },
+      { slug: "outdoor", name: { en: "Outdoor", ja: "アウトドア" }, colorCount: 14, image: images.outdoor, productTypeSlug: "alcantara-exo" },
+      { slug: "electronics", name: { en: "Consumer Electronics", ja: "コンシューマー機器" }, colorCount: 20, image: images.vegan, productTypeSlug: "alcantara-04" }
     ],
     seo: {
       title: { en: "Alcantara Materials | CAMARI JAPAN", ja: "Alcantara 素材 | CAMARI JAPAN" },

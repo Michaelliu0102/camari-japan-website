@@ -111,42 +111,49 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
           </div>
 
           {/* Main product image — matches Dedar's productView-img-container */}
-          <div
-            className="group/sku-image relative w-full cursor-zoom-in overflow-hidden bg-[#f3f3f2] md:min-h-[366px]"
-            onPointerLeave={handleImagePointerLeave}
-            onPointerMove={handleImagePointerMove}
-            style={{ aspectRatio: "100/118.3", "--sku-zoom-x": "50%", "--sku-zoom-y": "50%" } as SkuZoomStyle}
-          >
-            <div className="absolute inset-[9%_20%]">
-              <Image
-                alt={activeImage.alt}
-                className="origin-[var(--sku-zoom-x)_var(--sku-zoom-y)] object-contain transition-transform duration-700 ease-expo will-change-transform md:group-hover/sku-image:scale-[2.15]"
-                fill
-                priority
-                sizes="(min-width: 768px) calc((min(690px, 55vw) - 116px) * 0.6), 60vw"
-                src={activeImage.image}
-              />
+          <div className="flex-1">
+            <div
+              className="group/sku-image relative w-full cursor-zoom-in overflow-hidden bg-[#f3f3f2] md:min-h-[366px]"
+              onPointerLeave={handleImagePointerLeave}
+              onPointerMove={handleImagePointerMove}
+              style={{ aspectRatio: "100/118.3", "--sku-zoom-x": "50%", "--sku-zoom-y": "50%" } as SkuZoomStyle}
+            >
+              <div className="absolute inset-[9%_20%]">
+                <Image
+                  alt={activeImage.alt}
+                  className="origin-[var(--sku-zoom-x)_var(--sku-zoom-y)] object-contain transition-transform duration-700 ease-expo will-change-transform md:group-hover/sku-image:scale-[2.15]"
+                  fill
+                  priority
+                  sizes="(min-width: 768px) calc((min(690px, 55vw) - 116px) * 0.6), 60vw"
+                  src={activeImage.image}
+                />
+              </div>
+              {/* Mobile thumbnail strip — bottom overlay */}
+              <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-3 md:hidden">
+                {galleryImages.map((item, index) => {
+                  const active = index === activeImageIndex;
+                  return (
+                    <button
+                      aria-label={item.alt}
+                      aria-pressed={active}
+                      className={`relative shrink-0 overflow-hidden transition-all ${
+                        active ? "h-12 w-12 outline outline-1 outline-offset-2 outline-white" : "h-10 w-10 opacity-70"
+                      }`}
+                      key={`${item.image}-${index}`}
+                      onClick={() => setActiveImageIndex(index)}
+                      type="button"
+                    >
+                      <Image alt={item.alt} className="object-cover" fill sizes="48px" src={item.thumbnail} />
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            {/* Mobile thumbnail strip — bottom overlay */}
-            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-3 md:hidden">
-              {galleryImages.map((item, index) => {
-                const active = index === activeImageIndex;
-                return (
-                  <button
-                    aria-label={item.alt}
-                    aria-pressed={active}
-                    className={`relative shrink-0 overflow-hidden transition-all ${
-                      active ? "h-12 w-12 outline outline-1 outline-offset-2 outline-white" : "h-10 w-10 opacity-70"
-                    }`}
-                    key={`${item.image}-${index}`}
-                    onClick={() => setActiveImageIndex(index)}
-                    type="button"
-                  >
-                    <Image alt={item.alt} className="object-cover" fill sizes="48px" src={item.thumbnail} />
-                  </button>
-                );
-              })}
-            </div>
+
+            <p className="mt-5 text-center font-sans text-[12px] leading-[19px] md:mt-6">
+              <span className="font-semibold text-charcoal">Color Code: </span>
+              <span className="text-charcoal/70">{selected.code}</span>
+            </p>
           </div>
         </div>
 
@@ -217,13 +224,127 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                 </Link>
                 .
               </p>
+            ) : productTypeSlug === "alcantara-master" ? (
+              <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
+                <p>
+                  For upholstery sofa, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-multilayer/alc-ml-1001`)}
+                  >
+                    Multilayer
+                  </Link>.
+                </p>
+                <p>
+                  For upholstery aviation, contract, marine, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-avant/alc-av-1001`)}
+                  >
+                    Avant
+                  </Link>.
+                </p>
+                <p>
+                  For marine wall covering, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-board-fr/alc-bf-1001`)}
+                  >
+                    Board FR
+                  </Link>.
+                </p>
+              </div>
+            ) : productTypeSlug === "alcantara-multilayer" ? (
+              <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
+                <p>
+                  For interior decoration, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-master/alc-m-1001`)}
+                  >
+                    Master
+                  </Link>.
+                </p>
+                <p>
+                  For upholstery aviation, contract, marine, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-avant/alc-av-1001`)}
+                  >
+                    Avant
+                  </Link>.
+                </p>
+                <p>
+                  For marine wall covering, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-board-fr/alc-bf-1001`)}
+                  >
+                    Board FR
+                  </Link>.
+                </p>
+              </div>
+            ) : productTypeSlug === "alcantara-avant" ? (
+              <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
+                <p>
+                  For interior decoration, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-master/alc-m-1001`)}
+                  >
+                    Master
+                  </Link>.
+                </p>
+                <p>
+                  For upholstery sofa, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-multilayer/alc-ml-1001`)}
+                  >
+                    Multilayer
+                  </Link>.
+                </p>
+                <p>
+                  For marine wall covering, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-board-fr/alc-bf-1001`)}
+                  >
+                    Board FR
+                  </Link>.
+                </p>
+              </div>
+            ) : productTypeSlug === "alcantara-board-fr" ? (
+              <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
+                <p>
+                  For interior decoration, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-master/alc-m-1001`)}
+                  >
+                    Master
+                  </Link>.
+                </p>
+                <p>
+                  For upholstery sofa, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-multilayer/alc-ml-1001`)}
+                  >
+                    Multilayer
+                  </Link>.
+                </p>
+                <p>
+                  For upholstery aviation, contract, marine, please see Alcantara{" "}
+                  <Link
+                    className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
+                    href={localizedPath(locale, `/materials/${materialSlug}/alcantara-avant/alc-av-1001`)}
+                  >
+                    Avant
+                  </Link>.
+                </p>
+              </div>
             ) : null}
-
-            {/* SKU code — Dedar's productView-info-value--sku */}
-            <p className="mt-5 font-sans text-[12px] leading-[19px]">
-              <span className="font-semibold text-charcoal">Color Code: </span>
-              <span className="text-charcoal/70">{selected.code}</span>
-            </p>
 
             {/* Color selector — Dedar's swatch grid */}
             {hasVisualSwatches ? (
