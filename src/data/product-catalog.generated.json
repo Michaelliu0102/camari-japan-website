@@ -1,6 +1,34 @@
 {
   "productTypes": [
     {
+      "slug": "automotive-nappa",
+      "materialSlug": "leather",
+      "name": {
+        "en": "Automotive Nappa",
+        "ja": "オートモーティブナッパ"
+      },
+      "summary": {
+        "en": "Premium Nappa leather for automotive interiors. Supple hand, natural grain, and exceptional durability for seating and trim.",
+        "ja": "自動車内装向けプレミアムナッパレザー。しなやかな手触り、自然な木目、優れた耐久性。"
+      },
+      "productCode": "",
+      "downloads": [],
+      "specTemplate": [],
+      "certifications": [],
+      "maintenance": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Leather | CAMARI JAPAN",
+          "ja": "オートモーティブナッパレザー | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Premium Nappa leather in 69 colours for luxury automotive interiors. View specifications and colour library.",
+          "ja": "ラグジュアリー自動車内装向けプレミアムナッパレザー、69色展開。仕様とカラーライブラリをご覧ください。"
+        },
+        "image": "/uploads/leather/nappa/9743 Nero.jpg"
+      }
+    },
+    {
       "slug": "alcantara-panel",
       "materialSlug": "alcantara",
       "name": {
@@ -22,7 +50,7 @@
             "en": "Alcantara Pannel",
             "ja": "パネル用途向けの組成、幅、厚み、ラミネート適性に関する資料。"
           },
-          "href": "https://example.com/camari/downloads/alcantara-panel-shadow-black-tds.pdf",
+          "href": "/Users/michael/Documents/Website/data/import/download/Alcantara Pannel.pdf",
           "type": "technical"
         },
         {
@@ -35,7 +63,7 @@
             "ja": "施工済みパネル面の推奨メンテナンス手順。"
           },
           "href": "/Users/michael/Documents/Website/data/import/download/Instructions-for-maintenance-of-alcantara-material.pdf",
-          "type": "care"
+          "type": "technical"
         }
       ],
       "specTemplate": [
@@ -224,7 +252,7 @@
             "en": "Alcantara Cover",
             "ja": "カバー用途向けの触感、裏加工、縫製適性を含む仕様資料。"
           },
-          "href": "https://example.com/camari/downloads/alcantara-cover-saddle-tan-tds.pdf",
+          "href": "/Users/michael/Documents/Website/data/import/download/Alcantara Cover.pdf",
           "type": "technical"
         },
         {
@@ -237,7 +265,7 @@
             "ja": "シートおよびトリム用途の色展開を示すカタログ抜粋。"
           },
           "href": "/Users/michael/Documents/Website/data/import/download/Instructions-for-maintenance-of-alcantara-material.pdf",
-          "type": "catalog"
+          "type": "technical"
         }
       ],
       "specTemplate": [
@@ -451,7 +479,7 @@
             "ja": "施工済みパネル面の推奨メンテナンス手順。"
           },
           "href": "/Users/michael/Documents/Website/data/import/download/Instructions-for-maintenance-of-alcantara-material.pdf",
-          "type": "care"
+          "type": "technical"
         }
       ],
       "specTemplate": [
@@ -737,7 +765,7 @@
             "ja": "施工済みパネル面の推奨メンテナンス手順。"
           },
           "href": "/Users/michael/Documents/Website/data/import/download/Instructions-for-maintenance-of-alcantara-material.pdf",
-          "type": "care"
+          "type": "technical"
         }
       ],
       "specTemplate": [
@@ -1035,7 +1063,7 @@
             "ja": "施工済みパネル面の推奨メンテナンス手順。"
           },
           "href": "/Users/michael/Documents/Website/data/import/download/Instructions-for-maintenance-of-alcantara-material.pdf",
-          "type": "care"
+          "type": "technical"
         }
       ],
       "specTemplate": [
@@ -1285,7 +1313,7 @@
             "ja": "施工済みパネル面の推奨メンテナンス手順。"
           },
           "href": "/Users/michael/Documents/Website/data/import/download/Instructions-for-maintenance-of-alcantara-material.pdf",
-          "type": "care"
+          "type": "technical"
         }
       ],
       "specTemplate": [
@@ -1595,7 +1623,7 @@
             "ja": "施工済みパネル面の推奨メンテナンス手順。"
           },
           "href": "/Users/michael/Documents/Website/data/import/download/Instructions-for-maintenance-of-alcantara-material.pdf",
-          "type": "care"
+          "type": "technical"
         }
       ],
       "specTemplate": [
@@ -1917,7 +1945,7 @@
             "ja": "施工済みパネル面の推奨メンテナンス手順。"
           },
           "href": "/Users/michael/Documents/Website/data/import/download/Instructions-for-maintenance-of-alcantara-material.pdf",
-          "type": "care"
+          "type": "technical"
         }
       ],
       "specTemplate": [
@@ -2110,6 +2138,2076 @@
     }
   ],
   "skus": [
+    {
+      "slug": "n-9762-imperial-blue",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9762",
+      "colorName": {
+        "en": "Imperial Blue",
+        "ja": ""
+      },
+      "hex": "#202020",
+      "image": "/uploads/leather/nappa/ 9762 Imperial Blue.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Imperial Blue. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Imperial Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Imperial Blue | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Imperial Blue | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Imperial Blue. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Imperial Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/ 9762 Imperial Blue.jpg"
+      }
+    },
+    {
+      "slug": "n-0308-blu-cepheus",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "0308",
+      "colorName": {
+        "en": "Blu Cepheus",
+        "ja": ""
+      },
+      "hex": "#0C80D0",
+      "image": "/uploads/leather/nappa/0308 Blu Cepheus.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Blu Cepheus. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Blu Cepheusのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Blu Cepheus | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Blu Cepheus | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Blu Cepheus. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Blu Cepheusのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/0308 Blu Cepheus.jpg"
+      }
+    },
+    {
+      "slug": "n-0342-dyson-blue",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "0342",
+      "colorName": {
+        "en": "Dyson Blue",
+        "ja": ""
+      },
+      "hex": "#252347",
+      "image": "/uploads/leather/nappa/0342 Dyson Blue.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Dyson Blue. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Dyson Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Dyson Blue | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Dyson Blue | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Dyson Blue. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Dyson Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/0342 Dyson Blue.jpg"
+      }
+    },
+    {
+      "slug": "n-0343-cobalto-blue",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "0343",
+      "colorName": {
+        "en": "Cobalto Blue",
+        "ja": ""
+      },
+      "hex": "#304080",
+      "image": "/uploads/leather/nappa/0343 Cobalto Blue.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Cobalto Blue. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Cobalto Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Cobalto Blue | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Cobalto Blue | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Cobalto Blue. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Cobalto Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/0343 Cobalto Blue.jpg"
+      }
+    },
+    {
+      "slug": "n-1164-muschelgrau",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1164",
+      "colorName": {
+        "en": "Muschelgrau",
+        "ja": ""
+      },
+      "hex": "#3B3F3C",
+      "image": "/uploads/leather/nappa/1164 Muschelgrau.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Muschelgrau. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Muschelgrauのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Muschelgrau | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Muschelgrau | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Muschelgrau. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Muschelgrauのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1164 Muschelgrau.jpg"
+      }
+    },
+    {
+      "slug": "n-1185-seidenbeige-silk",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1185",
+      "colorName": {
+        "en": "Seidenbeige Silk",
+        "ja": ""
+      },
+      "hex": "#B0AA82",
+      "image": "/uploads/leather/nappa/1185 Seidenbeige Silk.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Seidenbeige Silk. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Seidenbeige Silkのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Seidenbeige Silk | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Seidenbeige Silk | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Seidenbeige Silk. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Seidenbeige Silkのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1185 Seidenbeige Silk.jpg"
+      }
+    },
+    {
+      "slug": "n-1217-nachtblau",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1217",
+      "colorName": {
+        "en": "Nachtblau",
+        "ja": ""
+      },
+      "hex": "#203030",
+      "image": "/uploads/leather/nappa/1217 Nachtblau.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Nachtblau. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Nachtblauのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Nachtblau | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Nachtblau | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Nachtblau. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Nachtblauのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1217 Nachtblau.jpg"
+      }
+    },
+    {
+      "slug": "n-1242-granatrot",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1242",
+      "colorName": {
+        "en": "Granatrot",
+        "ja": ""
+      },
+      "hex": "#602020",
+      "image": "/uploads/leather/nappa/1242 Granatrot.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Granatrot. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Granatrotのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Granatrot | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Granatrot | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Granatrot. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Granatrotのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1242 Granatrot.jpg"
+      }
+    },
+    {
+      "slug": "n-1253-kieselgrau",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1253",
+      "colorName": {
+        "en": "Kieselgrau",
+        "ja": ""
+      },
+      "hex": "#B8C0AB",
+      "image": "/uploads/leather/nappa/1253 Kieselgrau.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Kieselgrau. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Kieselgrauのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Kieselgrau | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Kieselgrau | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Kieselgrau. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Kieselgrauのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1253 Kieselgrau.jpg"
+      }
+    },
+    {
+      "slug": "n-1262-mojave",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1262",
+      "colorName": {
+        "en": "Mojave",
+        "ja": ""
+      },
+      "hex": "#A08F63",
+      "image": "/uploads/leather/nappa/1262 Mojave.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Mojave. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Mojaveのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Mojave | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Mojave | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Mojave. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Mojaveのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1262 Mojave.jpg"
+      }
+    },
+    {
+      "slug": "n-1265-schiefergrau",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1265",
+      "colorName": {
+        "en": "Schiefergrau",
+        "ja": ""
+      },
+      "hex": "#404040",
+      "image": "/uploads/leather/nappa/1265 Schiefergrau.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Schiefergrau. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Schiefergrauのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Schiefergrau | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Schiefergrau | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Schiefergrau. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Schiefergrauのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1265 Schiefergrau.jpg"
+      }
+    },
+    {
+      "slug": "n-1280-verde-ulysses",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1280",
+      "colorName": {
+        "en": "Verde Ulysses",
+        "ja": ""
+      },
+      "hex": "#80C021",
+      "image": "/uploads/leather/nappa/1280 Verde Ulysses.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Verde Ulysses. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Verde Ulyssesのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Verde Ulysses | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Verde Ulysses | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Verde Ulysses. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Verde Ulyssesのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1280 Verde Ulysses.jpg"
+      }
+    },
+    {
+      "slug": "n-1281-verde-sagitta",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1281",
+      "colorName": {
+        "en": "Verde Sagitta",
+        "ja": ""
+      },
+      "hex": "#2E4230",
+      "image": "/uploads/leather/nappa/1281 Verde Sagitta.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Verde Sagitta. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Verde Sagittaのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Verde Sagitta | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Verde Sagitta | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Verde Sagitta. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Verde Sagittaのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1281 Verde Sagitta.jpg"
+      }
+    },
+    {
+      "slug": "n-1386-tailored-purple",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1386",
+      "colorName": {
+        "en": "Tailored Purple",
+        "ja": ""
+      },
+      "hex": "#402E40",
+      "image": "/uploads/leather/nappa/1386 Tailored Purple.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Tailored Purple. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Tailored Purpleのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Tailored Purple | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Tailored Purple | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Tailored Purple. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Tailored Purpleのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1386 Tailored Purple.jpg"
+      }
+    },
+    {
+      "slug": "n-1387-purple-silk",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1387",
+      "colorName": {
+        "en": "Purple Silk",
+        "ja": ""
+      },
+      "hex": "#272023",
+      "image": "/uploads/leather/nappa/1387 Purple Silk.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Purple Silk. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Purple Silkのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Purple Silk | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Purple Silk | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Purple Silk. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Purple Silkのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1387 Purple Silk.jpg"
+      }
+    },
+    {
+      "slug": "n-1616-aequus-green",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1616",
+      "colorName": {
+        "en": "Aequus Green",
+        "ja": ""
+      },
+      "hex": "#83C08E",
+      "image": "/uploads/leather/nappa/1616 Aequus Green.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Aequus Green. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Aequus Greenのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Aequus Green | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Aequus Green | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Aequus Green. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Aequus Greenのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1616 Aequus Green.jpg"
+      }
+    },
+    {
+      "slug": "n-1645-ardent-red",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1645",
+      "colorName": {
+        "en": "Ardent Red",
+        "ja": ""
+      },
+      "hex": "#402020",
+      "image": "/uploads/leather/nappa/1645 Ardent Red.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Ardent Red. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Ardent Redのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Ardent Red | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Ardent Red | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Ardent Red. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Ardent Redのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1645 Ardent Red.jpg"
+      }
+    },
+    {
+      "slug": "n-1855-peony-pink",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "1855",
+      "colorName": {
+        "en": "Peony Pink",
+        "ja": ""
+      },
+      "hex": "#883250",
+      "image": "/uploads/leather/nappa/1855 Peony Pink.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Peony Pink. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Peony Pinkのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Peony Pink | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Peony Pink | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Peony Pink. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Peony Pinkのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/1855 Peony Pink.jpg"
+      }
+    },
+    {
+      "slug": "n-2054-luxorbeige",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "2054",
+      "colorName": {
+        "en": "Luxorbeige",
+        "ja": ""
+      },
+      "hex": "#8F7E4F",
+      "image": "/uploads/leather/nappa/2054 Luxorbeige.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Luxorbeige. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Luxorbeigeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Luxorbeige | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Luxorbeige | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Luxorbeige. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Luxorbeigeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/2054 Luxorbeige.jpg"
+      }
+    },
+    {
+      "slug": "n-2233-powder-blue",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "2233",
+      "colorName": {
+        "en": "Powder Blue",
+        "ja": ""
+      },
+      "hex": "#BFC1C0",
+      "image": "/uploads/leather/nappa/2233 Powder Blue.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Powder Blue. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Powder Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Powder Blue | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Powder Blue | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Powder Blue. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Powder Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/2233 Powder Blue.jpg"
+      }
+    },
+    {
+      "slug": "n-2234-blue-gray",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "2234",
+      "colorName": {
+        "en": "Blue Gray",
+        "ja": ""
+      },
+      "hex": "#5E6E6D",
+      "image": "/uploads/leather/nappa/2234 Blue Gray.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Blue Gray. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Blue Grayのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Blue Gray | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Blue Gray | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Blue Gray. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Blue Grayのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/2234 Blue Gray.jpg"
+      }
+    },
+    {
+      "slug": "n-2588-linen",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "2588",
+      "colorName": {
+        "en": "Linen",
+        "ja": ""
+      },
+      "hex": "#D0D0B0",
+      "image": "/uploads/leather/nappa/2588 Linen.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Linen. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Linenのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Linen | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Linen | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Linen. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Linenのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/2588 Linen.jpg"
+      }
+    },
+    {
+      "slug": "n-2978-bianco-polar",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "2978",
+      "colorName": {
+        "en": "Bianco Polar",
+        "ja": ""
+      },
+      "hex": "#C0C09D",
+      "image": "/uploads/leather/nappa/2978 Bianco Polar .jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Bianco Polar. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Bianco Polarのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Bianco Polar | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Bianco Polar | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Bianco Polar. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Bianco Polarのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/2978 Bianco Polar .jpg"
+      }
+    },
+    {
+      "slug": "n-2979-beige",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "2979",
+      "colorName": {
+        "en": "Beige",
+        "ja": ""
+      },
+      "hex": "#CFC08F",
+      "image": "/uploads/leather/nappa/2979 Beige.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Beige. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Beigeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Beige | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Beige | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Beige. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Beigeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/2979 Beige.jpg"
+      }
+    },
+    {
+      "slug": "n-3024-achatgrau",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3024",
+      "colorName": {
+        "en": "Achatgrau",
+        "ja": ""
+      },
+      "hex": "#35302F",
+      "image": "/uploads/leather/nappa/3024 Achatgrau.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Achatgrau. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Achatgrauのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Achatgrau | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Achatgrau | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Achatgrau. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Achatgrauのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3024 Achatgrau.jpg"
+      }
+    },
+    {
+      "slug": "n-3030-steering-wheel",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3030",
+      "colorName": {
+        "en": "Steering Wheel",
+        "ja": ""
+      },
+      "hex": "#101014",
+      "image": "/uploads/leather/nappa/3030 Steering Wheel.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Steering Wheel. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Steering Wheelのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Steering Wheel | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Steering Wheel | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Steering Wheel. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Steering Wheelのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3030 Steering Wheel.jpg"
+      }
+    },
+    {
+      "slug": "n-3105-charles-blue",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3105",
+      "colorName": {
+        "en": "Charles Blue",
+        "ja": ""
+      },
+      "hex": "#BBD0D6",
+      "image": "/uploads/leather/nappa/3105 Charles Blue.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Charles Blue. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Charles Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Charles Blue | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Charles Blue | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Charles Blue. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Charles Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3105 Charles Blue.jpg"
+      }
+    },
+    {
+      "slug": "n-3106-forge-yellow",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3106",
+      "colorName": {
+        "en": "Forge Yellow",
+        "ja": ""
+      },
+      "hex": "#E09C00",
+      "image": "/uploads/leather/nappa/3106 Forge Yellow.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Forge Yellow. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Forge Yellowのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Forge Yellow | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Forge Yellow | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Forge Yellow. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Forge Yellowのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3106 Forge Yellow.jpg"
+      }
+    },
+    {
+      "slug": "n-3251-arctic-white",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3251",
+      "colorName": {
+        "en": "Arctic White",
+        "ja": ""
+      },
+      "hex": "#E0E0E0",
+      "image": "/uploads/leather/nappa/3251 Arctic White.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Arctic White. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Arctic Whiteのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Arctic White | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Arctic White | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Arctic White. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Arctic Whiteのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3251 Arctic White.jpg"
+      }
+    },
+    {
+      "slug": "n-3252-turchese",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3252",
+      "colorName": {
+        "en": "Turchese",
+        "ja": ""
+      },
+      "hex": "#005F8D",
+      "image": "/uploads/leather/nappa/3252 Turchese.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Turchese. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Turcheseのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Turchese | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Turchese | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Turchese. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Turcheseのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3252 Turchese.jpg"
+      }
+    },
+    {
+      "slug": "n-3345-dark-turquoise",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3345",
+      "colorName": {
+        "en": "Dark Turquoise",
+        "ja": ""
+      },
+      "hex": "#22404F",
+      "image": "/uploads/leather/nappa/3345 Dark Turquoise.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Dark Turquoise. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Dark Turquoiseのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Dark Turquoise | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Dark Turquoise | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Dark Turquoise. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Dark Turquoiseのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3345 Dark Turquoise.jpg"
+      }
+    },
+    {
+      "slug": "n-3622-marrone-janus",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3622",
+      "colorName": {
+        "en": "Marrone Janus",
+        "ja": ""
+      },
+      "hex": "#40302E",
+      "image": "/uploads/leather/nappa/3622 Marrone Janus.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Marrone Janus. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Marrone Janusのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Marrone Janus | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Marrone Janus | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Marrone Janus. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Marrone Janusのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3622 Marrone Janus.jpg"
+      }
+    },
+    {
+      "slug": "n-3636-emerald-green",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3636",
+      "colorName": {
+        "en": "Emerald Green",
+        "ja": ""
+      },
+      "hex": "#006039",
+      "image": "/uploads/leather/nappa/3636 Emerald Green.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Emerald Green. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Emerald Greenのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Emerald Green | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Emerald Green | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Emerald Green. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Emerald Greenのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3636 Emerald Green.jpg"
+      }
+    },
+    {
+      "slug": "n-3800-tiffany-blue",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3800",
+      "colorName": {
+        "en": "Tiffany Blue",
+        "ja": ""
+      },
+      "hex": "#60D0C4",
+      "image": "/uploads/leather/nappa/3800 Tiffany Blue.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Tiffany Blue. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Tiffany Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Tiffany Blue | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Tiffany Blue | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Tiffany Blue. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Tiffany Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3800 Tiffany Blue.jpg"
+      }
+    },
+    {
+      "slug": "n-3928-flaxen",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3928",
+      "colorName": {
+        "en": "Flaxen",
+        "ja": ""
+      },
+      "hex": "#947F40",
+      "image": "/uploads/leather/nappa/3928 Flaxen.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Flaxen. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Flaxenのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Flaxen | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Flaxen | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Flaxen. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Flaxenのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3928 Flaxen.jpg"
+      }
+    },
+    {
+      "slug": "n-3997-crema",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3997",
+      "colorName": {
+        "en": "Crema",
+        "ja": ""
+      },
+      "hex": "#E0D69E",
+      "image": "/uploads/leather/nappa/3997 Crema.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Crema. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Cremaのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Crema | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Crema | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Crema. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Cremaのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3997 Crema.jpg"
+      }
+    },
+    {
+      "slug": "n-3998-sabbia",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "3998",
+      "colorName": {
+        "en": "Sabbia",
+        "ja": ""
+      },
+      "hex": "#CABD7F",
+      "image": "/uploads/leather/nappa/3998 Sabbia.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Sabbia. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Sabbiaのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Sabbia | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Sabbia | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Sabbia. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Sabbiaのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/3998 Sabbia.jpg"
+      }
+    },
+    {
+      "slug": "n-4008-blu-sterling",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "4008",
+      "colorName": {
+        "en": "Blu Sterling",
+        "ja": ""
+      },
+      "hex": "#202230",
+      "image": "/uploads/leather/nappa/4008 Blu Sterling.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Blu Sterling. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Blu Sterlingのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Blu Sterling | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Blu Sterling | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Blu Sterling. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Blu Sterlingのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/4008 Blu Sterling.jpg"
+      }
+    },
+    {
+      "slug": "n-4128-charcoal",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "4128",
+      "colorName": {
+        "en": "Charcoal",
+        "ja": ""
+      },
+      "hex": "#303030",
+      "image": "/uploads/leather/nappa/4128 Charcoal.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Charcoal. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Charcoalのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Charcoal | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Charcoal | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Charcoal. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Charcoalのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/4128 Charcoal.jpg"
+      }
+    },
+    {
+      "slug": "n-4208-tradizione-beige",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "4208",
+      "colorName": {
+        "en": "Tradizione Beige",
+        "ja": ""
+      },
+      "hex": "#CFA050",
+      "image": "/uploads/leather/nappa/4208 Tradizione Beige.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Tradizione Beige. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Tradizione Beigeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Tradizione Beige | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Tradizione Beige | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Tradizione Beige. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Tradizione Beigeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/4208 Tradizione Beige.jpg"
+      }
+    },
+    {
+      "slug": "n-4210-rosso",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "4210",
+      "colorName": {
+        "en": "Rosso",
+        "ja": ""
+      },
+      "hex": "#B02821",
+      "image": "/uploads/leather/nappa/4210 Rosso.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Rosso. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Rossoのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Rosso | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Rosso | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Rosso. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Rossoのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/4210 Rosso.jpg"
+      }
+    },
+    {
+      "slug": "n-4225-tortora",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "4225",
+      "colorName": {
+        "en": "Tortora",
+        "ja": ""
+      },
+      "hex": "#908A64",
+      "image": "/uploads/leather/nappa/4225 Tortora.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Tortora. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Tortoraのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Tortora | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Tortora | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Tortora. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Tortoraのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/4225 Tortora.jpg"
+      }
+    },
+    {
+      "slug": "n-4296-cioccolato",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "4296",
+      "colorName": {
+        "en": "Cioccolato",
+        "ja": ""
+      },
+      "hex": "#302820",
+      "image": "/uploads/leather/nappa/4296 Cioccolato.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Cioccolato. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Cioccolatoのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Cioccolato | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Cioccolato | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Cioccolato. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Cioccolatoのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/4296 Cioccolato.jpg"
+      }
+    },
+    {
+      "slug": "n-4481-bordeaux",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "4481",
+      "colorName": {
+        "en": "Bordeaux",
+        "ja": ""
+      },
+      "hex": "#603030",
+      "image": "/uploads/leather/nappa/4481 Bordeaux.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Bordeaux. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Bordeauxのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Bordeaux | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Bordeaux | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Bordeaux. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Bordeauxのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/4481 Bordeaux.jpg"
+      }
+    },
+    {
+      "slug": "n-4609-cuoio",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "4609",
+      "colorName": {
+        "en": "Cuoio",
+        "ja": ""
+      },
+      "hex": "#8F6030",
+      "image": "/uploads/leather/nappa/4609 Cuoio.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Cuoio. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Cuoioのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Cuoio | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Cuoio | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Cuoio. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Cuoioのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/4609 Cuoio.jpg"
+      }
+    },
+    {
+      "slug": "n-4610-iroko",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "4610",
+      "colorName": {
+        "en": "Iroko",
+        "ja": ""
+      },
+      "hex": "#463220",
+      "image": "/uploads/leather/nappa/4610 Iroko.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Iroko. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Irokoのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Iroko | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Iroko | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Iroko. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Irokoのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/4610 Iroko.jpg"
+      }
+    },
+    {
+      "slug": "n-4806-blu-medio",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "4806",
+      "colorName": {
+        "en": "Blu Medio",
+        "ja": ""
+      },
+      "hex": "#2B3640",
+      "image": "/uploads/leather/nappa/4806 Blu Medio.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Blu Medio. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Blu Medioのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Blu Medio | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Blu Medio | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Blu Medio. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Blu Medioのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/4806 Blu Medio.jpg"
+      }
+    },
+    {
+      "slug": "n-5226-coffee",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "5226",
+      "colorName": {
+        "en": "Coffee",
+        "ja": ""
+      },
+      "hex": "#3F3030",
+      "image": "/uploads/leather/nappa/5226 Coffee.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Coffee. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Coffeeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Coffee | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Coffee | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Coffee. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Coffeeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/5226 Coffee.jpg"
+      }
+    },
+    {
+      "slug": "n-5372-blushing-pink",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "5372",
+      "colorName": {
+        "en": "Blushing Pink",
+        "ja": ""
+      },
+      "hex": "#E09FB0",
+      "image": "/uploads/leather/nappa/5372 Blushing Pink.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Blushing Pink. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Blushing Pinkのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Blushing Pink | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Blushing Pink | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Blushing Pink. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Blushing Pinkのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/5372 Blushing Pink.jpg"
+      }
+    },
+    {
+      "slug": "n-6468-hermes-orange",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "6468",
+      "colorName": {
+        "en": "Hermes Orange",
+        "ja": ""
+      },
+      "hex": "#E06D1F",
+      "image": "/uploads/leather/nappa/6468 Hermes Orange.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Hermes Orange. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Hermes Orangeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Hermes Orange | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Hermes Orange | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Hermes Orange. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Hermes Orangeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/6468 Hermes Orange.jpg"
+      }
+    },
+    {
+      "slug": "n-6927-giallo-taurus",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "6927",
+      "colorName": {
+        "en": "Giallo Taurus",
+        "ja": ""
+      },
+      "hex": "#D0A730",
+      "image": "/uploads/leather/nappa/6927 Giallo Taurus.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Giallo Taurus. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Giallo Taurusのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Giallo Taurus | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Giallo Taurus | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Giallo Taurus. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Giallo Taurusのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/6927 Giallo Taurus.jpg"
+      }
+    },
+    {
+      "slug": "n-8463-opal-weiss",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "8463",
+      "colorName": {
+        "en": "Opal Weiss",
+        "ja": ""
+      },
+      "hex": "#E0E0DF",
+      "image": "/uploads/leather/nappa/8463 Opal Weiss.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Opal Weiss. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Opal Weissのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Opal Weiss | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Opal Weiss | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Opal Weiss. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Opal Weissのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/8463 Opal Weiss.jpg"
+      }
+    },
+    {
+      "slug": "n-8526-kreide",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "8526",
+      "colorName": {
+        "en": "Kreide",
+        "ja": ""
+      },
+      "hex": "#9F9D82",
+      "image": "/uploads/leather/nappa/8526 Kreide.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Kreide. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Kreideのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Kreide | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Kreide | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Kreide. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Kreideのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/8526 Kreide.jpg"
+      }
+    },
+    {
+      "slug": "n-8776-bordeaux",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "8776",
+      "colorName": {
+        "en": "Bordeaux",
+        "ja": ""
+      },
+      "hex": "#41191F",
+      "image": "/uploads/leather/nappa/8776 Bordeaux.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Bordeaux. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Bordeauxのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Bordeaux | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Bordeaux | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Bordeaux. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Bordeauxのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/8776 Bordeaux.jpg"
+      }
+    },
+    {
+      "slug": "n-9189-burnt-oak",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9189",
+      "colorName": {
+        "en": "Burnt Oak",
+        "ja": ""
+      },
+      "hex": "#302F23",
+      "image": "/uploads/leather/nappa/9189 Burnt Oak.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Burnt Oak. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Burnt Oakのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Burnt Oak | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Burnt Oak | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Burnt Oak. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Burnt Oakのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9189 Burnt Oak.jpg"
+      }
+    },
+    {
+      "slug": "n-9193-hotspur",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9193",
+      "colorName": {
+        "en": "Hotspur",
+        "ja": ""
+      },
+      "hex": "#803030",
+      "image": "/uploads/leather/nappa/9193 Hotspur.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Hotspur. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Hotspurのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Hotspur | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Hotspur | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Hotspur. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Hotspurのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9193 Hotspur.jpg"
+      }
+    },
+    {
+      "slug": "n-9206-portland",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9206",
+      "colorName": {
+        "en": "Portland",
+        "ja": ""
+      },
+      "hex": "#949270",
+      "image": "/uploads/leather/nappa/9206 Portland.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Portland. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Portlandのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Portland | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Portland | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Portland. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Portlandのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9206 Portland.jpg"
+      }
+    },
+    {
+      "slug": "n-9225-slate",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9225",
+      "colorName": {
+        "en": "Slate",
+        "ja": ""
+      },
+      "hex": "#424B40",
+      "image": "/uploads/leather/nappa/9225 Slate.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Slate. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Slateのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Slate | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Slate | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Slate. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Slateのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9225 Slate.jpg"
+      }
+    },
+    {
+      "slug": "n-9504-new-verde",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9504",
+      "colorName": {
+        "en": "new verde",
+        "ja": ""
+      },
+      "hex": "#AFD02C",
+      "image": "/uploads/leather/nappa/9504 new verde.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in new verde. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "new verdeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa new verde | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ new verde | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in new verde. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "new verdeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9504 new verde.jpg"
+      }
+    },
+    {
+      "slug": "n-9572-arancia-dryope",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9572",
+      "colorName": {
+        "en": "Arancia Dryope",
+        "ja": ""
+      },
+      "hex": "#E24F20",
+      "image": "/uploads/leather/nappa/9572 Arancia Dryope.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Arancia Dryope. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Arancia Dryopeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Arancia Dryope | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Arancia Dryope | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Arancia Dryope. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Arancia Dryopeのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9572 Arancia Dryope.jpg"
+      }
+    },
+    {
+      "slug": "n-9591-sunset",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9591",
+      "colorName": {
+        "en": "Sunset",
+        "ja": ""
+      },
+      "hex": "#BF6040",
+      "image": "/uploads/leather/nappa/9591 Sunset.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Sunset. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Sunsetのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Sunset | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Sunset | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Sunset. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Sunsetのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9591 Sunset.jpg"
+      }
+    },
+    {
+      "slug": "n-9592-mandarin",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9592",
+      "colorName": {
+        "en": "Mandarin",
+        "ja": ""
+      },
+      "hex": "#DB7400",
+      "image": "/uploads/leather/nappa/9592 Mandarin.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Mandarin. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Mandarinのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Mandarin | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Mandarin | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Mandarin. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Mandarinのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9592 Mandarin.jpg"
+      }
+    },
+    {
+      "slug": "n-9743-nero",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9743",
+      "colorName": {
+        "en": "Nero",
+        "ja": ""
+      },
+      "hex": "#101010",
+      "image": "/uploads/leather/nappa/9743 Nero.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Nero. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Neroのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Nero | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Nero | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Nero. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Neroのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9743 Nero.jpg"
+      }
+    },
+    {
+      "slug": "n-9747-magnolia",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9747",
+      "colorName": {
+        "en": "Magnolia",
+        "ja": ""
+      },
+      "hex": "#D1D090",
+      "image": "/uploads/leather/nappa/9747 Magnolia.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Magnolia. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Magnoliaのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Magnolia | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Magnolia | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Magnolia. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Magnoliaのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9747 Magnolia.jpg"
+      }
+    },
+    {
+      "slug": "n-9748-newmarket-tan",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9748",
+      "colorName": {
+        "en": "Newmarket Tan",
+        "ja": ""
+      },
+      "hex": "#805023",
+      "image": "/uploads/leather/nappa/9748 Newmarket Tan.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Newmarket Tan. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Newmarket Tanのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Newmarket Tan | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Newmarket Tan | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Newmarket Tan. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Newmarket Tanのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9748 Newmarket Tan.jpg"
+      }
+    },
+    {
+      "slug": "n-9764-saddle",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9764",
+      "colorName": {
+        "en": "Saddle",
+        "ja": ""
+      },
+      "hex": "#866032",
+      "image": "/uploads/leather/nappa/9764 Saddle.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Saddle. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Saddleのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Saddle | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Saddle | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Saddle. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Saddleのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9764 Saddle.jpg"
+      }
+    },
+    {
+      "slug": "n-9765-bourbon",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9765",
+      "colorName": {
+        "en": "Bourbon",
+        "ja": ""
+      },
+      "hex": "#60472F",
+      "image": "/uploads/leather/nappa/9765 Bourbon.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Bourbon. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Bourbonのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Bourbon | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Bourbon | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Bourbon. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Bourbonのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9765 Bourbon.jpg"
+      }
+    },
+    {
+      "slug": "n-9766-saffron",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9766",
+      "colorName": {
+        "en": "Saffron",
+        "ja": ""
+      },
+      "hex": "#B9A15C",
+      "image": "/uploads/leather/nappa/9766 Saffron.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Saffron. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Saffronのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Saffron | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Saffron | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Saffron. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Saffronのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9766 Saffron.jpg"
+      }
+    },
+    {
+      "slug": "n-9767-windsor-blue",
+      "materialSlug": "leather",
+      "productTypeSlug": "automotive-nappa",
+      "code": "9767",
+      "colorName": {
+        "en": "Windsor Blue",
+        "ja": ""
+      },
+      "hex": "#2C3035",
+      "image": "/uploads/leather/nappa/9767 Windsor Blue.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Automotive Nappa leather in Windsor Blue. Premium full-grain finish for luxury automotive interiors.",
+        "ja": "Windsor Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Automotive Nappa Windsor Blue | CAMARI JAPAN",
+          "ja": "オートモーティブナッパ Windsor Blue | CAMARI JAPAN"
+        },
+        "description": {
+          "en": "Automotive Nappa leather in Windsor Blue. Premium full-grain finish for luxury automotive interiors.",
+          "ja": "Windsor Blueのオートモーティブナッパレザー。ラグジュアリー自動車内装向けプレミアムフルグレイン仕上げ。"
+        },
+        "image": "/uploads/leather/nappa/9767 Windsor Blue.jpg"
+      }
+    },
     {
       "slug": "alc-p-1041",
       "materialSlug": "alcantara",

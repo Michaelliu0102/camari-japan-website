@@ -29,7 +29,7 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
     <section className="bg-paper py-24 md:py-36" data-nav-invert>
       <div className="section-shell">
         <div className="mb-16 text-center">
-          <h2 className="font-serif text-4xl uppercase tracking-luxury">Applications</h2>
+          <h2 className="font-serif text-4xl uppercase tracking-luxury">Article</h2>
           <div className="mx-auto mt-7 h-px w-20 bg-gold" />
         </div>
         <div className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-4">

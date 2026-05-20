@@ -46,7 +46,7 @@ export default async function ContactPage({ params }: PageProps) {
             {[
               { icon: Mail, label: "Email", value: site.contact.email, href: `mailto:${site.contact.email}` },
               { icon: Phone, label: "Phone", value: site.contact.phone, href: `tel:${site.contact.phone.replaceAll(" ", "")}` },
-              { icon: MapPin, label: "Showroom", value: site.contact.address[locale], href: null }
+              { icon: MapPin, label: "Showroom & Office", value: site.contact.address[locale], href: null }
             ].map((item) => {
               const Icon = item.icon;
               const content = (
@@ -62,6 +62,19 @@ export default async function ContactPage({ params }: PageProps) {
               return item.href ? <a className="block" href={item.href} key={item.label}>{content}</a> : <div key={item.label}>{content}</div>;
             })}
           </div>
+        </div>
+        <div className="section-shell mt-16">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.2190681844904!2d139.7465886761085!3d35.69622637258232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c6a434665ff%3A0xf42a369a2d1fb59!2s1-ch%C5%8Dme-14-16%20Kudankita%2C%20Chiyoda%20City%2C%20Tokyo%20102-0073%2C%20Japan!5e0!3m2!1sen!2sus!4v1779262577002!5m2!1sen!2sus"
+            width="600"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="CAMARI JAPAN Office Location"
+            className="w-full"
+          />
         </div>
       </section>
     </main>

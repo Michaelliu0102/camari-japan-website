@@ -170,8 +170,8 @@ export const site = {
     email: "contact@camari.jp",
     phone: "+81 3 0000 0000",
     address: {
-      en: "Tokyo showroom by appointment",
-      ja: "東京ショールーム 予約制"
+      en: "Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan",
+      ja: "〒102-0073 東京都千代田区九段北１丁目１４−１６　403号室"
     }
   }
 };
@@ -344,10 +344,10 @@ export const materials: Material[] = [
       ja: "レザーは表面ではない。それは時間の記録である。"
     },
     applications: [
-      { slug: "automotive", name: { en: "Automotive", ja: "自動車" }, colorCount: 42, image: images.interior },
-      { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 55, image: images.alcantaraSoft },
-      { slug: "product", name: { en: "Product Design", ja: "プロダクトデザイン" }, colorCount: 28, image: images.alcantara },
-      { slug: "marine", name: { en: "Marine", ja: "マリン" }, colorCount: 18, image: images.outdoor }
+      { slug: "automotive-nappa", name: { en: "Automotive Nappa", ja: "オートモーティブナッパ" }, colorCount: 69, image: images.interior, productTypeSlug: "automotive-nappa" },
+      { slug: "verona", name: { en: "Verona", ja: "ヴェローナ" }, colorCount: 55, image: images.alcantaraSoft, productTypeSlug: "verona" },
+      { slug: "roma", name: { en: "Roma", ja: "ローマ" }, colorCount: 28, image: images.alcantara, productTypeSlug: "roma" },
+      { slug: "heritage", name: { en: "Heritage", ja: "ヘリテージ" }, colorCount: 18, image: images.outdoor, productTypeSlug: "heritage" }
     ],
     seo: {
       title: { en: "Leather Materials | CAMARI JAPAN", ja: "レザー素材 | CAMARI JAPAN" },
@@ -463,12 +463,12 @@ const fixtureProductTypes: ProductType[] = [
     }
   },
   {
-    slug: "leather-panel",
+    slug: "automotive-nappa",
     materialSlug: "leather",
-    name: { en: "Leather Panel", ja: "レザーパネル" },
+    name: { en: "Automotive Nappa", ja: "オートモーティブナッパ" },
     summary: {
-      en: "Full-grain leather panel for automotive interiors, seating, and bespoke upholstery. Natural grain with supple hand and architectural warmth.",
-      ja: "自動車内装、シート、特注張り地向けのフルグレインレザーパネル。自然な木目としなやかな手触り。"
+      en: "Premium Nappa leather for automotive interiors. Supple hand, natural grain, and exceptional durability for seating and trim.",
+      ja: "自動車内装向けプレミアムナッパレザー。しなやかな手触り、自然な木目、優れた耐久性。"
     },
     downloads: [],
     specTemplate: [
@@ -480,9 +480,78 @@ const fixtureProductTypes: ProductType[] = [
     certifications: [],
     maintenance: [],
     seo: {
-      title: { en: "Leather Panel | CAMARI JAPAN", ja: "レザーパネル | CAMARI JAPAN" },
-      description: { en: "Technical data and finish guidance for leather panels.", ja: "レザーパネルの技術仕様と仕上げガイダンス。" },
+      title: { en: "Automotive Nappa | CAMARI JAPAN", ja: "オートモーティブナッパ | CAMARI JAPAN" },
+      description: { en: "Premium Nappa leather for automotive interiors.", ja: "自動車内装向けプレミアムナッパレザー。" },
       image: images.interior
+    }
+  },
+  {
+    slug: "verona",
+    materialSlug: "leather",
+    name: { en: "Verona", ja: "ヴェローナ" },
+    summary: {
+      en: "Verona leather with a refined matte finish and soft touch. Ideal for luxury interiors and bespoke upholstery.",
+      ja: "洗練されたマット仕上げとソフトなタッチのヴェローナレザー。ラグジュアリーインテリアと特注張り地に最適。"
+    },
+    downloads: [],
+    specTemplate: [
+      { key: "unit", label: { en: "UNIT", ja: "単位" }, aliases: ["unit"] },
+      { key: "code", label: { en: "CODE", ja: "コード" }, aliases: ["code"] },
+      { key: "grain", label: { en: "GRAIN", ja: "木目" }, aliases: ["grain"] },
+      { key: "thickness", label: { en: "THICKNESS", ja: "厚み" }, aliases: ["thickness"] }
+    ],
+    certifications: [],
+    maintenance: [],
+    seo: {
+      title: { en: "Verona Leather | CAMARI JAPAN", ja: "ヴェローナレザー | CAMARI JAPAN" },
+      description: { en: "Verona leather with refined matte finish and soft touch.", ja: "洗練されたマット仕上げのヴェローナレザー。" },
+      image: images.alcantaraSoft
+    }
+  },
+  {
+    slug: "roma",
+    materialSlug: "leather",
+    name: { en: "Roma", ja: "ローマ" },
+    summary: {
+      en: "Roma leather with a rich, saturated finish and architectural grain. Designed for statement interiors and product surfaces.",
+      ja: "深みのある発色と建築的な木目を持つローマレザー。印象的なインテリアとプロダクト表面のためにデザイン。"
+    },
+    downloads: [],
+    specTemplate: [
+      { key: "unit", label: { en: "UNIT", ja: "単位" }, aliases: ["unit"] },
+      { key: "code", label: { en: "CODE", ja: "コード" }, aliases: ["code"] },
+      { key: "grain", label: { en: "GRAIN", ja: "木目" }, aliases: ["grain"] },
+      { key: "thickness", label: { en: "THICKNESS", ja: "厚み" }, aliases: ["thickness"] }
+    ],
+    certifications: [],
+    maintenance: [],
+    seo: {
+      title: { en: "Roma Leather | CAMARI JAPAN", ja: "ローマレザー | CAMARI JAPAN" },
+      description: { en: "Roma leather with rich saturated finish and architectural grain.", ja: "深みのある発色と建築的な木目のローマレザー。" },
+      image: images.alcantara
+    }
+  },
+  {
+    slug: "heritage",
+    materialSlug: "leather",
+    name: { en: "Heritage", ja: "ヘリテージ" },
+    summary: {
+      en: "Heritage leather crafted with traditional tanning methods. Develops a distinctive patina over time, celebrating natural markings and authentic character.",
+      ja: "伝統的な鞣し製法で作られたヘリテージレザー。時を経て独特のパティナを醸成し、自然な風合いと本物の個性を称えます。"
+    },
+    downloads: [],
+    specTemplate: [
+      { key: "unit", label: { en: "UNIT", ja: "単位" }, aliases: ["unit"] },
+      { key: "code", label: { en: "CODE", ja: "コード" }, aliases: ["code"] },
+      { key: "grain", label: { en: "GRAIN", ja: "木目" }, aliases: ["grain"] },
+      { key: "thickness", label: { en: "THICKNESS", ja: "厚み" }, aliases: ["thickness"] }
+    ],
+    certifications: [],
+    maintenance: [],
+    seo: {
+      title: { en: "Heritage Leather | CAMARI JAPAN", ja: "ヘリテージレザー | CAMARI JAPAN" },
+      description: { en: "Heritage leather with traditional tanning and distinctive patina.", ja: "伝統的な鞣しと独特のパティナを持つヘリテージレザー。" },
+      image: images.outdoor
     }
   },
   {
@@ -657,7 +726,7 @@ const fixtureSkus: Sku[] = [
   {
     slug: "l-ftg-2101-ebony-black",
     materialSlug: "leather",
-    productTypeSlug: "leather-panel",
+    productTypeSlug: "automotive-nappa",
     code: "L-FTG-2101",
     colorName: { en: "Ebony Black", ja: "エボニーブラック" },
     hex: "#1C1B1B",
@@ -696,7 +765,7 @@ const fixtureSkus: Sku[] = [
   {
     slug: "l-tpg-3345-cognac",
     materialSlug: "leather",
-    productTypeSlug: "leather-panel",
+    productTypeSlug: "verona",
     code: "L-TPG-3345",
     colorName: { en: "Cognac", ja: "コニャック" },
     hex: "#8B5E3C",
