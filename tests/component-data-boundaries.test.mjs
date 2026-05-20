@@ -134,11 +134,17 @@ test("homepage omits the material bento grid and featured OEM case section", asy
   assert.doesNotMatch(page, /From texture selection to finished surface programs\./);
 });
 
-test("Footer renders a dedicated newsletter client form", async () => {
+test("Footer renders newsletter signup and corporate trust navigation", async () => {
   const footer = await source("src/components/Footer.tsx");
 
   assert.match(footer, /FooterNewsletterForm/);
-  assert.doesNotMatch(footer, /<label className="label-caps text-muted" htmlFor="footer-email">Updates<\/label>/);
+  assert.match(footer, /Company Profile/);
+  assert.match(footer, /プライバシーポリシー/);
+  assert.match(footer, /\/privacy-policy/);
+  assert.match(footer, /\/site-policy/);
+  assert.match(footer, /\/sitemap/);
+  assert.doesNotMatch(footer, /Back to Top/);
+  assert.doesNotMatch(footer, /logo-outline-dark block text-4xl/);
 });
 
 test("FooterNewsletterForm posts newsletter subscriptions with localized feedback states", async () => {

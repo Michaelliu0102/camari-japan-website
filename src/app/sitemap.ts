@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     loadNewsItems(),
     Promise.all(locales.map((locale) => loadCatalogs(locale)))
   ]);
-  const staticPaths = ["", "/materials", "/oem-odm", "/projects", "/about", "/media", "/contact", "/downloads"];
+  const staticPaths = ["", "/materials", "/oem-odm", "/projects", "/about", "/media", "/contact", "/downloads", "/privacy-policy", "/site-policy", "/sitemap"];
   const materialPaths = materials.flatMap((material) => [
     `/materials/${material.slug}`,
     ...skus

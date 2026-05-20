@@ -6,6 +6,8 @@ import { NEWSLETTER_SOURCE, isValidNewsletterEmail, normalizeNewsletterEmail } f
 import type { Locale } from "@/lib/locales";
 
 type FooterNewsletterFormProps = {
+  className?: string;
+  layout?: "stacked" | "inline";
   locale: Locale;
 };
 
@@ -43,7 +45,7 @@ const copy = {
   }
 >;
 
-export function FooterNewsletterForm({ locale }: FooterNewsletterFormProps) {
+export function FooterNewsletterForm({ className = "", layout = "stacked", locale }: FooterNewsletterFormProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -106,12 +108,14 @@ export function FooterNewsletterForm({ locale }: FooterNewsletterFormProps) {
         ? "text-[#7A6A3A]"
         : "text-muted";
 
+  const isInline = layout === "inline";
+
   return (
-    <form className="sm:col-span-2" onSubmit={handleSubmit}>
-      <label className="label-caps text-muted" htmlFor="footer-email">
+    <form className={`sm:col-span-2 ${isInline ? "items-end gap-8 lg:flex" : ""} ${className}`.trim()} onSubmit={handleSubmit}>
+      <label className={`label-caps shrink-0 text-muted ${isInline ? "lg:pb-3" : ""}`} htmlFor="footer-email">
         {labels.label}
       </label>
-      <div className="mt-5 flex border-b border-charcoal/20 pb-3">
+      <div className={`${isInline ? "mt-5 lg:mt-0 lg:min-w-[22rem] lg:flex-1" : "mt-5"} flex border-b border-charcoal/20 pb-3`}>
         <input
           className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted disabled:cursor-not-allowed disabled:opacity-70"
           disabled={status === "submitting"}
@@ -130,7 +134,7 @@ export function FooterNewsletterForm({ locale }: FooterNewsletterFormProps) {
           <ArrowRight size={16} strokeWidth={1.4} />
         </button>
       </div>
-      <p aria-live="polite" className={`mt-3 min-h-[1.25rem] text-xs ${feedbackClassName}`}>
+      <p aria-live="polite" className={`${message ? "mt-3 min-h-[1.25rem]" : "h-0 overflow-hidden"} text-xs ${feedbackClassName}`}>
         {message}
       </p>
     </form>
