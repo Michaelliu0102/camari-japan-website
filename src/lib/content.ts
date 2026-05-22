@@ -345,9 +345,10 @@ export const materials: Material[] = [
     },
     applications: [
       { slug: "automotive-nappa", name: { en: "Automotive Nappa", ja: "オートモーティブナッパ" }, colorCount: 69, image: images.interior, productTypeSlug: "automotive-nappa" },
-      { slug: "verona", name: { en: "Verona", ja: "ヴェローナ" }, colorCount: 55, image: images.alcantaraSoft, productTypeSlug: "verona" },
-      { slug: "roma", name: { en: "Roma", ja: "ローマ" }, colorCount: 28, image: images.alcantara, productTypeSlug: "roma" },
-      { slug: "heritage", name: { en: "Heritage", ja: "ヘリテージ" }, colorCount: 18, image: images.outdoor, productTypeSlug: "heritage" }
+      { slug: "verona", name: { en: "Verona", ja: "ヴェローナ" }, colorCount: 68, image: images.alcantaraSoft, productTypeSlug: "verona" },
+      { slug: "roma", name: { en: "Roma", ja: "ローマ" }, colorCount: 62, image: images.alcantara, productTypeSlug: "roma" },
+      { slug: "heritage", name: { en: "Heritage", ja: "ヘリテージ" }, colorCount: 12, image: images.outdoor, productTypeSlug: "heritage" },
+      { slug: "linea", name: { en: "Linea", ja: "リネア" }, colorCount: 101, image: images.vegan, productTypeSlug: "linea" }
     ],
     seo: {
       title: { en: "Leather Materials | CAMARI JAPAN", ja: "レザー素材 | CAMARI JAPAN" },
