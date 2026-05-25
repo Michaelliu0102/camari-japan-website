@@ -64,6 +64,12 @@ export const material = defineType({
           type: "object",
           fields: [
             defineField({ name: "name", title: "Name", type: "object", fields: localizedString }),
+            defineField({
+              name: "productTypeSlug",
+              title: "Product Type Slug",
+              type: "string",
+              description: "Connects this article card to a product type page, for example alcantara-panel or automotive-nappa."
+            }),
             defineField({ name: "colorCount", title: "Color Count", type: "number" }),
             defineField({ name: "image", title: "Image", type: "image", options: { hotspot: true } })
           ]

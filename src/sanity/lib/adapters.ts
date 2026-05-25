@@ -150,7 +150,8 @@ export function adaptMaterial(raw: RawMaterial): Material {
         slug: slugify(applicationName.en || applicationName.ja),
         name: applicationName,
         colorCount: application.colorCount ?? 0,
-        image: application.imageUrl ?? heroImage
+        image: application.imageUrl ?? heroImage,
+        productTypeSlug: application.productTypeSlug ?? undefined
       };
     }),
     seo: adaptSeo(raw.seo, name, raw.introBody ?? emptyLocalized, raw.seo?.imageUrl ?? heroImage)

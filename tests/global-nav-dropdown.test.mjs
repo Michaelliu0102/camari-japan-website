@@ -13,8 +13,9 @@ test("GlobalNav gives Material, Product, and Media hover dropdowns", async () =>
   const content = await source("src/components/GlobalNav.tsx");
 
   assert.match(content, /children:\s*\[/);
-  assert.match(content, /label:\s*"Material Library"/);
-  assert.match(content, /label:\s*"OEM \/ ODM"/);
+  assert.match(content, /label:\s*"Material"/);
+  assert.match(content, /label:\s*"Automotive Interior Accessories"/);
+  assert.match(content, /label:\s*"Corporate Gifts"/);
   assert.match(content, /label:\s*"Press & Notes"/);
   assert.match(content, /h-\[var\(--nav-height\)\]/);
   assert.match(content, /fixed left-0 top-\[var\(--nav-height\)\] w-screen/);
@@ -25,8 +26,9 @@ test("GlobalNav gives Material, Product, and Media hover dropdowns", async () =>
 test("GlobalNav dropdown glass switches with the background-aware nav theme", async () => {
   const content = await source("src/components/GlobalNav.tsx");
 
-  assert.match(content, /dropdownGlassClass\s*=\s*invert\s*\?/);
-  assert.match(content, /bg-paper\/99/);
-  assert.match(content, /bg-charcoal\/98/);
+  assert.match(content, /glassClass\s*=\s*invert\s*\?/);
+  assert.match(content, /glass-nav-light/);
+  assert.match(content, /glass-nav/);
+  assert.match(content, /bg-white text-charcoal shadow-material/);
   assert.match(content, /aria-haspopup="true"/);
 });

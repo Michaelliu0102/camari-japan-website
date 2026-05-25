@@ -2,6 +2,7 @@
 node_modules/
 .next/
 out/
+.sanity/
 tsconfig.tsbuildinfo
 .env.local
 home.html

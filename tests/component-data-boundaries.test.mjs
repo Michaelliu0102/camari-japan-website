@@ -75,6 +75,16 @@ test("SkuSwatches keeps the Dedar-style grey stage with cursor-following zoom", 
   assert.match(content, /group-hover\/sku-image:scale-\[/);
 });
 
+test("SkuSwatches renders the selected color code directly beneath the main image stage", async () => {
+  const content = await source("src/components/SkuSwatches.tsx");
+
+  assert.match(content, /<div className="flex-1">/);
+  assert.match(content, /<p className="mt-5 text-center font-sans text-\[12px\] leading-\[19px\] md:mt-6">/);
+  assert.match(content, /<span className="font-semibold text-charcoal">Color Code: <\/span>/);
+  assert.match(content, /<span className="text-charcoal\/70">\{selected\.code\}<\/span>/);
+  assert.doesNotMatch(content, /\/\* SKU code — Dedar's productView-info-value--sku \*\/[\s\S]*selected\.code/);
+});
+
 test("SkuSwatches uses compact icon navigation instead of a tall secondary image strip", async () => {
   const content = await source("src/components/SkuSwatches.tsx");
 

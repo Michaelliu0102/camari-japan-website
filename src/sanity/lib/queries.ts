@@ -23,6 +23,7 @@ export type RawMaterialCategory = {
 
 export type RawApplication = {
   name?: LocalizedString | null;
+  productTypeSlug?: string | null;
   colorCount?: number | null;
   imageUrl?: string | null;
 };
@@ -168,6 +169,7 @@ export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
   "introImageUrl": introImage.asset->url,
   applications[] {
     name,
+    productTypeSlug,
     colorCount,
     "imageUrl": image.asset->url
   },

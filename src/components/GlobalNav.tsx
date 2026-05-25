@@ -53,17 +53,27 @@ const navItems = [
   },
   {
     label: "Product",
-    href: "/oem-odm",
+    href: "/products",
     children: [
       {
-        label: "OEM / ODM",
-        href: "/oem-odm",
-        description: "Custom surface programs and development support"
+        label: "Automotive Interior Accessories",
+        href: "/products/automotive-interior-accessories",
+        description: "Cabin panels, steering surfaces, seating, and trim for automotive and mobility interiors"
       },
       {
-        label: "Projects",
-        href: "/projects",
-        description: "Applied materials in finished environments"
+        label: "Tech Accessories",
+        href: "/products/tech-accessories",
+        description: "Surface programs for consumer electronics, wearables, and device accessories"
+      },
+      {
+        label: "Lifestyle",
+        href: "/products/lifestyle",
+        description: "Material solutions for lifestyle products, packaging, and personal goods"
+      },
+      {
+        label: "Corporate Gifts",
+        href: "/products/corporation-gift",
+        description: "Premium material programs for corporate gifting, awards, and brand merchandise"
       }
     ]
   },
