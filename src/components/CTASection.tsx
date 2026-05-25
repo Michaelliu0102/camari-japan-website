@@ -28,7 +28,7 @@ export function CTASection({ locale, title, body, label = "Contact Sales", href 
           <div className="absolute inset-0 bg-black/55 backdrop-blur-sm" />
         </>
       ) : null}
-      <div className="relative z-10 flex min-h-[85vh] flex-col items-center justify-center px-margin-mobile py-24 text-center md:px-margin-desktop md:py-36">
+      <div className="relative z-10 flex min-h-[28rem] flex-col items-center justify-center px-margin-mobile py-16 text-center md:min-h-[30rem] md:px-margin-desktop md:py-20 lg:min-h-[34rem]">
         <p className="label-caps text-white/55">Showroom</p>
         <h2 className="mt-4 max-w-[16ch] font-serif text-2xl leading-tight md:text-3xl">
           {title}

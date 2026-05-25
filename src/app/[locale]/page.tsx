@@ -34,18 +34,18 @@ export default async function HomePage({ params }: PageProps) {
       <HeroVideo hero={homeSettings.hero} locale={locale} />
       <ExploreCarousel categories={categories} categorySlugs={homeSettings.explore.categorySlugs} locale={locale} materials={materials} productSlides={homeSettings.explore.productSlides} />
 
-      <section className="bg-stone py-24 md:py-36" data-nav-invert>
-        <div className="section-shell grid gap-6 md:flex md:justify-center md:items-start md:gap-28">
-          <div className="relative aspect-[4/3] overflow-hidden md:aspect-[5/4] md:w-[48rem]">
-            <Image alt="" className="object-cover" fill sizes="(min-width: 768px) 48rem, 100vw" src={homeSettings.brandValueImage} />
+      <section className="bg-stone py-16 md:py-20" data-nav-invert>
+        <div className="section-shell grid gap-6 md:flex md:justify-center md:items-start md:gap-20">
+          <div className="relative aspect-[4/3] overflow-hidden md:aspect-[5/4] md:w-[40rem]">
+            <Image alt="" className="object-cover" fill sizes="(min-width: 768px) 40rem, 100vw" src={homeSettings.brandValueImage} />
           </div>
           <div className="flex flex-col justify-between md:max-w-[25rem] md:self-stretch">
             <div>
               <p className="label-caps text-gold">Brand Value</p>
-              <h2 className="mt-8 font-label text-xl uppercase tracking-[0.1em] md:text-[1.75rem] md:leading-tight">
+              <h2 className="mt-6 font-label text-xl uppercase tracking-[0.1em] md:text-[1.65rem] md:leading-tight">
                 {locale === "en" ? "European material quality, Japanese spatial restraint." : "欧州品質の素材感と、日本的な空間の抑制。"}
               </h2>
-              <p className="mt-10 text-sm leading-7 text-muted md:text-[0.95rem]">
+              <p className="mt-7 text-sm leading-7 text-muted md:text-[0.95rem]">
                 {locale === "en"
                   ? "CAMARI JAPAN curates materials for teams who need surfaces to communicate quality before a word is spoken: automotive cabins, hospitality interiors, product panels, and bespoke OEM/ODM programs."
                   : "CAMARI JAPAN は、言葉より先に品質を伝えるサーフェスを求めるチームに向けて素材を選定します。車両キャビン、ホスピタリティ空間、プロダクトパネル、特注 OEM/ODM プログラムに対応します。"}
