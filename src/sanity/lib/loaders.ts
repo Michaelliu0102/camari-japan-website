@@ -69,8 +69,39 @@ async function fetchOrFallback<Raw, Value>(
   }
 }
 
+async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
+  query: string,
+  params: Record<string, string>,
+  fallback: Value[],
+  adapter: (raw: Raw) => Value
+): Promise<Value[]> {
+  if (!isSanityConfigured()) {
+    return fallback;
+  }
+
+  try {
+    const results = await getSanityClient().fetch<Raw[]>(query, params);
+    if (!results || results.length === 0) {
+      return fallback;
+    }
+
+    const merged = new Map(fallback.map((item) => [item.slug, item]));
+    for (const item of results.map(adapter)) {
+      merged.set(item.slug, item);
+    }
+    return [...merged.values()];
+  } catch (error) {
+    if (process.env.NODE_ENV === "production") {
+      throw error;
+    }
+
+    console.warn("Sanity fetch failed; using local fixture content.", error);
+    return fallback;
+  }
+}
+
 export async function loadMaterialCategories(): Promise<MaterialCategory[]> {
-  return fetchOrFallback<RawMaterialCategory, MaterialCategory>(materialCategoriesQuery, {}, fallbackCategories, adaptMaterialCategory);
+  return fetchAndMergeBySlug<RawMaterialCategory, MaterialCategory>(materialCategoriesQuery, {}, fallbackCategories, adaptMaterialCategory);
 }
 
 export async function loadHomePageSettings(): Promise<HomePageSettings> {
@@ -95,11 +126,11 @@ export async function loadHomePageSettings(): Promise<HomePageSettings> {
 }
 
 export async function loadMaterials(): Promise<Material[]> {
-  return fetchOrFallback<RawMaterial, Material>(materialsQuery, {}, fallbackMaterials, adaptMaterial);
+  return fetchAndMergeBySlug<RawMaterial, Material>(materialsQuery, {}, fallbackMaterials, adaptMaterial);
 }
 
 export async function loadProductTypes(): Promise<ProductType[]> {
-  return fetchOrFallback<RawProductType, ProductType>(productTypesQuery, {}, fallbackProductTypes, adaptProductType);
+  return fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, {}, fallbackProductTypes, adaptProductType);
 }
 
 export async function loadMaterial(slug: string): Promise<Material | undefined> {
@@ -118,7 +149,7 @@ export async function loadProductType(materialSlug: string, productTypeSlug: str
 }
 
 export async function loadSkus(): Promise<Sku[]> {
-  return fetchOrFallback<RawSku, Sku>(skusQuery, {}, fallbackSkus, adaptSku);
+  return fetchAndMergeBySlug<RawSku, Sku>(skusQuery, {}, fallbackSkus, adaptSku);
 }
 
 export async function loadSkusForMaterial(materialSlug: string): Promise<Sku[]> {

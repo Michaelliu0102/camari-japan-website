@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ApplicationGrid } from "@/components/ApplicationGrid";
 import { CTASection } from "@/components/CTASection";
+import { MaterialArticleGrid } from "@/components/MaterialArticleGrid";
 import { MaterialIntro } from "@/components/MaterialIntro";
 import { PageHero } from "@/components/PageHero";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
-import { loadMaterial, loadMaterials, loadSkusForMaterial } from "@/sanity/lib/loaders";
+import { loadMaterial, loadMaterials, loadProductTypesForMaterial, loadSkusForMaterial } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale; materialSlug: string }>;
@@ -46,14 +47,19 @@ export default async function MaterialDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const skus = await loadSkusForMaterial(material.slug);
-  const firstSku = skus[0];
+  const [skus, productTypes] = await Promise.all([loadSkusForMaterial(material.slug), loadProductTypesForMaterial(material.slug)]);
+  const fabricProductTypes = material.slug === "fabric" ? productTypes.filter((productType) => productType.slug !== "fabric-panel") : productTypes;
+  const fabricProductTypeSlugs = new Set(fabricProductTypes.map((productType) => productType.slug));
+  const fabricSkus = material.slug === "fabric" ? skus.filter((sku) => fabricProductTypeSlugs.has(sku.productTypeSlug)) : skus;
+  const visibleSkus = material.slug === "fabric" ? fabricSkus : skus;
+  const firstSku = visibleSkus[0];
+  const showArticleGrid = material.slug === "fabric" && fabricProductTypes.length > 0;
 
   return (
     <main>
       <PageHero eyebrow={material.eyebrow[locale]} image={material.heroImage} subtitle={material.heroSubtitle[locale]} title={material.heroTitle[locale]} />
       <MaterialIntro locale={locale} material={material} />
-      <ApplicationGrid locale={locale} material={material} skus={skus} />
+      {showArticleGrid ? <MaterialArticleGrid locale={locale} materialSlug={material.slug} productTypes={fabricProductTypes} skus={fabricSkus} /> : <ApplicationGrid locale={locale} material={material} skus={skus} />}
       <CTASection
         body={locale === "en" ? "Review the current SKU detail page, downloads, and contact information for sales guidance." : "SKU 詳細、ダウンロード、問い合わせ先をご確認ください。"}
         href={firstSku ? `/materials/${material.slug}/${firstSku.productTypeSlug}/${firstSku.slug}` : `/materials/${material.slug}`}

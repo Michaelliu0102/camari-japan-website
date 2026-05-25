@@ -40,8 +40,8 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const selected = useMemo(() => skus.find((sku) => sku.slug === selectedSlug) ?? initialSku, [initialSku, selectedSlug, skus]);
   const hasVisualSwatches = useMemo(() => skus.some((s) => s.hex || s.swatchImage || s.image), [skus]);
-  const galleryImages = useMemo(
-    () => [
+  const galleryImages = useMemo(() => {
+    const images = [
       {
         image: selected.image,
         thumbnail: selected.swatchImage ?? selected.image,
@@ -52,9 +52,17 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
         thumbnail: item.image,
         alt: item.alt[locale] || item.alt.en || `${materialName} case image`
       }))
-    ],
-    [locale, materialName, selected]
-  );
+    ];
+    const seen = new Set<string>();
+
+    return images.filter((item) => {
+      if (seen.has(item.image)) {
+        return false;
+      }
+      seen.add(item.image);
+      return true;
+    });
+  }, [locale, materialName, selected]);
   const activeImage = galleryImages[activeImageIndex] ?? galleryImages[0];
 
   useEffect(() => {
@@ -358,21 +366,14 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                     <div className="flex flex-wrap gap-[10px]">
                       {skus.map((sku) => {
                         const active = sku.slug === selected.slug;
-                        const swatchStyle = sku.hex
-                          ? { backgroundColor: sku.hex }
-                          : sku.swatchImage ?? sku.image
-                            ? {
-                                backgroundImage: `url(${sku.swatchImage ?? sku.image})`,
-                                backgroundPosition: "center",
-                                backgroundSize: "cover"
-                              }
-                            : undefined;
+                        const swatchImage = materialSlug === "fabric" ? sku.swatchImage ?? sku.image : sku.swatchImage;
+                        const swatchStyle = !swatchImage && sku.hex ? { backgroundColor: sku.hex } : undefined;
 
                         return (
                           <button
                             aria-label={sku.colorName?.[locale] ? `${sku.colorName[locale]} — ${sku.code}` : sku.code}
                             aria-pressed={active}
-                            className={`h-9 w-9 shrink-0 border border-charcoal/15 bg-[#f3f3f2] transition-all ${
+                            className={`relative h-9 w-9 shrink-0 overflow-hidden border border-charcoal/15 bg-[#f3f3f2] transition-all ${
                               active
                                 ? "outline outline-1 outline-offset-[3px] outline-charcoal"
                                 : "hover:scale-110"
@@ -382,7 +383,9 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                             style={swatchStyle}
                             title={sku.colorName?.[locale] ? `${sku.code} ${sku.colorName[locale]}` : sku.code}
                             type="button"
-                          />
+                          >
+                            {swatchImage ? <Image alt="" className="object-cover" fill sizes="36px" src={swatchImage} /> : null}
+                          </button>
                     );
                   })}
                 </div>
