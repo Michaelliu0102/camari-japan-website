@@ -1,0 +1,3017 @@
+[
+  {
+    "_id": "material-fabric",
+    "_type": "material",
+    "name": {
+      "en": "Fabric",
+      "ja": "ファブリック"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "fabric"
+    }
+  },
+  {
+    "_id": "productType-bmw-check",
+    "_type": "productType",
+    "name": {
+      "en": "BMW CHECK",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "bmw-check"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "Classic Scottish square pattern for BMW Isetta",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "0.6mm",
+          "ja": "0.6mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-bmw-m-pattern",
+    "_type": "productType",
+    "name": {
+      "en": "BMW M PATTERN",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "bmw-m-pattern"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "The M-Stripe seat cloth is a  replica of the original material used in the prototype M8.",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "2.0mm",
+          "ja": "2.0mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Polyester",
+          "ja": "ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-houndstooth-plaid",
+    "_type": "productType",
+    "name": {
+      "en": "HOUNDSTOOTH PLAID",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "houndstooth-plaid"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "This textile features an intricate houndstooth-based Glen plaid layout blended with Scottish Squares for seat upholstery",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "0.8mm",
+          "ja": "0.8mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-mercedes-check",
+    "_type": "productType",
+    "name": {
+      "en": "MERCEDES CHECK ",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "mercedes-check"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "This premium, original-specification automotive interior textile is an authentic factory-match reproduction of the classic first-generation Mercedes-Benz W460 G-Klasse (G-Wagon)",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.3mm",
+          "ja": "1.3mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-mercedes-rodeo",
+    "_type": "productType",
+    "name": {
+      "en": "MERCEDES RODEO",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "mercedes-rodeo"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "This premium, original-specification automotive interior textile is an authentic factory-match reproduction of the late 1980's Mercedes-Benz G-Klasse. The same pattern is used in 2025 G550 'Stronger Than the 1980s\" Special Edition",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.0mm",
+          "ja": "1.0mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Polyester",
+          "ja": "ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-mercedes-tartan",
+    "_type": "productType",
+    "name": {
+      "en": "MERCEDES TARTAN",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "mercedes-tartan"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "Woven from 100% pure wool, this elite fabric is engineered exclusively for interior restoration of the legendary Mercedes-Benz W198 300SL Gullwing",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "0.8mm",
+          "ja": "0.8mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool",
+          "ja": "ウール"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-porsche-check",
+    "_type": "productType",
+    "name": {
+      "en": "PORSCHE CHECK",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "porsche-check"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "Classic pattern Porsche upholstery fabric",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.3mm",
+          "ja": "1.3mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-porsche-herringbone",
+    "_type": "productType",
+    "name": {
+      "en": "PORSCHE HERRINGBONE",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "porsche-herringbone"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "This authentic, OEM-specification automotive seating textile is an exact factory-match reproduction for the upholstery of Porsche 924",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.2mm",
+          "ja": "1.2mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-porsche-madras",
+    "_type": "productType",
+    "name": {
+      "en": "PORSCHE MADRAS",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "porsche-madras"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "This is the heritage seat upholstery fabric originally offered by Stuttgart as an exclusive cabin option between 1972 and 1975 used in early G-Model Porsche 911s (including the 911T, E, S, and early Carrera).",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.1mm",
+          "ja": "1.1mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-porsche-pepita",
+    "_type": "productType",
+    "name": {
+      "en": "PORSCHE PEPITA",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "porsche-pepita"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "Porsche Pepita is arguably the most famous, style-defining interior textile in sports car history. Officially introduced in 1965 for the original 911, Pepita originated as a special-request option for late-model Porsche 356 classics in the early 1960s.",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.1mm",
+          "ja": "1.1mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-porsche-pinstripe",
+    "_type": "productType",
+    "name": {
+      "en": "PORSCHE PINSTRIPE",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "porsche-pinstripe"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "Porsche Pinstripe is a highly sophisticated, business-suit-inspired executive textile that defined the interiors of late-1970s and 1980s Porsche sports cars. It became a staple option across the air-cooled 911 (G-Model) series and the entire front-engine transaxle family (924, 944, and 928)",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.0mm",
+          "ja": "1.6mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-porsche-plaid",
+    "_type": "productType",
+    "name": {
+      "en": "PORSCHE PLAID",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "porsche-plaid"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "This is a premium 100% wool flatwoven plaid fabric replicated for the 1973 Porsche 911 RSR",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.0mm",
+          "ja": "1.0mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool",
+          "ja": "ウール"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-porsche-velours-pinstripe",
+    "_type": "productType",
+    "name": {
+      "en": "PORSCHE VELOURS PINSTRIPE",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "porsche-velours-pinstripe"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "It is a velvet-like fabric featuring a dense, cut-pile surface. This gives it an incredibly plush, soft-touch texture that was highly favored for luxury and executive sports car cabins in the 1980s",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.6mm",
+          "ja": "1.0mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-porsche-studio",
+    "_type": "productType",
+    "name": {
+      "en": "PORSCHE STUDIO",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "porsche-studio"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "This is an authentic reproduction of Porsche’s iconic \"Studio Check\" automotive upholstery fabric, specifically curated for  Porsche 911 Carrera (964/993 generations), Porsche 928, and Porsche 968",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.3mm",
+          "ja": "1.3mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-porsche-tartan",
+    "_type": "productType",
+    "name": {
+      "en": "PORSCHE TARTAN",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "porsche-tartan"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "Introduced in 1975, this legendary pattern was famously optioned on the early Porsche 911 Turbo (930) and the 911SC",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.3mm",
+          "ja": "1.3mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool/Polyester",
+          "ja": "ウール/ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-selected-plaid",
+    "_type": "productType",
+    "name": {
+      "en": "SELETED PLAID",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "selected-plaid"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "Selected plaid for automotive seat upholstery",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "1.0mm",
+          "ja": "1.0mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Polyester",
+          "ja": "ポリエステル"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Germany",
+          "ja": "ドイツ"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-spirit-of-le-mans",
+    "_type": "productType",
+    "name": {
+      "en": "SPIRIT OF LE MANS",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "spirit-of-le-mans"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "The Spirit of Le Mans (SOLM) Wool Line is a premium, motorsport-inspired tartan collection woven in Scotland and engineered specifically for high-end automotive interiors. 100% premium wool woven in a durable 2/2 twill, featuring a heavy-duty weight of 500 glm (365 gsm). Pre-treated with specialized Soil Resist and Fire Retardant (FR) compliance coatings tailored for automotive safety standards.",
+      "ja": ""
+    },
+    "specTemplate": [
+      {
+        "_key": "thickness",
+        "key": "thickness",
+        "label": {
+          "en": "THICKNESS",
+          "ja": "厚さ"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "0.6mm",
+          "ja": "0.6mm"
+        }
+      },
+      {
+        "_key": "use",
+        "key": "use",
+        "label": {
+          "en": "USE",
+          "ja": "用途"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Automotive",
+          "ja": "自動車用"
+        }
+      },
+      {
+        "_key": "width",
+        "key": "width",
+        "label": {
+          "en": "WIDTH",
+          "ja": "幅"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "140CM",
+          "ja": "140CM"
+        }
+      },
+      {
+        "_key": "material",
+        "key": "material",
+        "label": {
+          "en": "MATERIAL",
+          "ja": "素材"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "Wool",
+          "ja": "ウール"
+        }
+      },
+      {
+        "_key": "country of origin",
+        "key": "country of origin",
+        "label": {
+          "en": "COUNTRY OF ORIGIN",
+          "ja": "製造国"
+        },
+        "aliases": [],
+        "defaultValue": {
+          "en": "UK",
+          "ja": "イギリス"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "productType-None",
+    "_type": "productType",
+    "name": {
+      "en": "",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": null
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specTemplate": []
+  },
+  {
+    "_id": "productType-None",
+    "_type": "productType",
+    "name": {
+      "en": "",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": null
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specTemplate": []
+  },
+  {
+    "_id": "productType-None",
+    "_type": "productType",
+    "name": {
+      "en": "",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": null
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specTemplate": []
+  },
+  {
+    "_id": "productType-None",
+    "_type": "productType",
+    "name": {
+      "en": "",
+      "ja": ""
+    },
+    "slug": {
+      "_type": "slug",
+      "current": null
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specTemplate": []
+  },
+  {
+    "_id": "sku-fa1836",
+    "_type": "sku",
+    "code": "FA1836",
+    "slug": {
+      "_type": "slug",
+      "current": "fa1836"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-bmw-check"
+    },
+    "colorName": {
+      "en": "BLACK/GRAY/BROWN",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA1836",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa5990",
+    "_type": "sku",
+    "code": "FA5990",
+    "slug": {
+      "_type": "slug",
+      "current": "fa5990"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-bmw-m-pattern"
+    },
+    "colorName": {
+      "en": "M PATTERN",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA5990",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8765",
+    "_type": "sku",
+    "code": "FA8765",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8765"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-houndstooth-plaid"
+    },
+    "colorName": {
+      "en": "GRAY/WHITE/BROWN",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8765",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8475",
+    "_type": "sku",
+    "code": "FA8475",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8475"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-mercedes-check"
+    },
+    "colorName": {
+      "en": "BLACK/BROWN/RED",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8475",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8598",
+    "_type": "sku",
+    "code": "FA8598",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8598"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-mercedes-rodeo"
+    },
+    "colorName": {
+      "en": "GRAY/BLACK",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8598",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8626",
+    "_type": "sku",
+    "code": "FA8626",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8626"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-mercedes-tartan"
+    },
+    "colorName": {
+      "en": "BLUE/GRAY",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8626",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8637",
+    "_type": "sku",
+    "code": "FA8637",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8637"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-mercedes-tartan"
+    },
+    "colorName": {
+      "en": "GREEN/GRAY/WHITE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8637",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8045",
+    "_type": "sku",
+    "code": "FA8045",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8045"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-check"
+    },
+    "colorName": {
+      "en": "BLACK/BROWN/YELLOW",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8045",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8057",
+    "_type": "sku",
+    "code": "FA8057",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8057"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-check"
+    },
+    "colorName": {
+      "en": "BROWN/TAN/GREEN",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8057",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8063",
+    "_type": "sku",
+    "code": "FA8063",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8063"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-check"
+    },
+    "colorName": {
+      "en": "BLACK/WHITE/RED",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8063",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa3570",
+    "_type": "sku",
+    "code": "FA3570",
+    "slug": {
+      "_type": "slug",
+      "current": "fa3570"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-herringbone"
+    },
+    "colorName": {
+      "en": "BLACK/WHITE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA3570",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8326",
+    "_type": "sku",
+    "code": "FA8326",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8326"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-madras"
+    },
+    "colorName": {
+      "en": "BLUE/WHITE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8326",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8354",
+    "_type": "sku",
+    "code": "FA8354",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8354"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-madras"
+    },
+    "colorName": {
+      "en": "ORANGE/BROWN",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8354",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8013",
+    "_type": "sku",
+    "code": "FA8013",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8013"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pepita"
+    },
+    "colorName": {
+      "en": "BLACK/WHITE/ORANGE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8013",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8026",
+    "_type": "sku",
+    "code": "FA8026",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8026"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pepita"
+    },
+    "colorName": {
+      "en": "BLACK/WHITE/BLUE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8026",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8065",
+    "_type": "sku",
+    "code": "FA8065",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8065"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pepita"
+    },
+    "colorName": {
+      "en": "BLACK/WHITE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8065",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8074",
+    "_type": "sku",
+    "code": "FA8074",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8074"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pepita"
+    },
+    "colorName": {
+      "en": "BLACK/WHITE/BEIGE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8074",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8093",
+    "_type": "sku",
+    "code": "FA8093",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8093"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pepita"
+    },
+    "colorName": {
+      "en": "BLACK/WHITE/GREEN",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8093",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8094",
+    "_type": "sku",
+    "code": "FA8094",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8094"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pepita"
+    },
+    "colorName": {
+      "en": "BLACK/WHITE/RED",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8094",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa3018",
+    "_type": "sku",
+    "code": "FA3018",
+    "slug": {
+      "_type": "slug",
+      "current": "fa3018"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pinstripe"
+    },
+    "colorName": {
+      "en": "BURGUNDY/WHITE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA3018",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa3055",
+    "_type": "sku",
+    "code": "FA3055",
+    "slug": {
+      "_type": "slug",
+      "current": "fa3055"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pinstripe"
+    },
+    "colorName": {
+      "en": "MAROON/WHITE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA3055",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa3067",
+    "_type": "sku",
+    "code": "FA3067",
+    "slug": {
+      "_type": "slug",
+      "current": "fa3067"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pinstripe"
+    },
+    "colorName": {
+      "en": "BLACK/DARK GRAY/GRAY",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA3067",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa3074",
+    "_type": "sku",
+    "code": "FA3074",
+    "slug": {
+      "_type": "slug",
+      "current": "fa3074"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pinstripe"
+    },
+    "colorName": {
+      "en": "BLACK/WHITE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA3074",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8525",
+    "_type": "sku",
+    "code": "FA8525",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8525"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-plaid"
+    },
+    "colorName": {
+      "en": "BLUE/BLACK/WHITE/RED",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8525",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa3132",
+    "_type": "sku",
+    "code": "FA3132",
+    "slug": {
+      "_type": "slug",
+      "current": "fa3132"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-pinstripe"
+    },
+    "colorName": {
+      "en": "GRAY/BLUE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA3132",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa3217",
+    "_type": "sku",
+    "code": "FA3217",
+    "slug": {
+      "_type": "slug",
+      "current": "fa3217"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-velours-pinstripe"
+    },
+    "colorName": {
+      "en": "BLACK/RED",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA3217",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa3258",
+    "_type": "sku",
+    "code": "FA3258",
+    "slug": {
+      "_type": "slug",
+      "current": "fa3258"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-velours-pinstripe"
+    },
+    "colorName": {
+      "en": "BROWN/WHITE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA3258",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa3272",
+    "_type": "sku",
+    "code": "FA3272",
+    "slug": {
+      "_type": "slug",
+      "current": "fa3272"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-velours-pinstripe"
+    },
+    "colorName": {
+      "en": "GRAY/WHITE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA3272",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8118",
+    "_type": "sku",
+    "code": "FA8118",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8118"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-studio"
+    },
+    "colorName": {
+      "en": "RED/MAROON",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8118",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8128",
+    "_type": "sku",
+    "code": "FA8128",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8128"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-studio"
+    },
+    "colorName": {
+      "en": "NAVY/BLUE/BLACK",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8128",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8165",
+    "_type": "sku",
+    "code": "FA8165",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8165"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-studio"
+    },
+    "colorName": {
+      "en": "GRAY",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8165",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8166",
+    "_type": "sku",
+    "code": "FA8166",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8166"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-studio"
+    },
+    "colorName": {
+      "en": "GRAY",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8166",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8217",
+    "_type": "sku",
+    "code": "FA8217",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8217"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-tartan"
+    },
+    "colorName": {
+      "en": "BLUE/RED/BLACK",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8217",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8237",
+    "_type": "sku",
+    "code": "FA8237",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8237"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-tartan"
+    },
+    "colorName": {
+      "en": "NAVY/BLUE/BLACK",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8237",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8271",
+    "_type": "sku",
+    "code": "FA8271",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8271"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-porsche-tartan"
+    },
+    "colorName": {
+      "en": "GRAY/BLUE/WHITE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8271",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8517",
+    "_type": "sku",
+    "code": "FA8517",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8517"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-selected-plaid"
+    },
+    "colorName": {
+      "en": "BLACK/RED/BLUE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8517",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa8553",
+    "_type": "sku",
+    "code": "FA8553",
+    "slug": {
+      "_type": "slug",
+      "current": "fa8553"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-selected-plaid"
+    },
+    "colorName": {
+      "en": "BLUE/NAVY/ORANGE",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA8553",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa2002",
+    "_type": "sku",
+    "code": "FA2002",
+    "slug": {
+      "_type": "slug",
+      "current": "fa2002"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-spirit-of-le-mans"
+    },
+    "colorName": {
+      "en": "BLUE/NAVY/RED",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA2002",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa2202",
+    "_type": "sku",
+    "code": "FA2202",
+    "slug": {
+      "_type": "slug",
+      "current": "fa2202"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-spirit-of-le-mans"
+    },
+    "colorName": {
+      "en": "BLUE/ORANGE/NAVY",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA2202",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  },
+  {
+    "_id": "sku-fa2729",
+    "_type": "sku",
+    "code": "FA2729",
+    "slug": {
+      "_type": "slug",
+      "current": "fa2729"
+    },
+    "material": {
+      "_type": "reference",
+      "_ref": "material-fabric"
+    },
+    "productType": {
+      "_type": "reference",
+      "_ref": "productType-spirit-of-le-mans"
+    },
+    "colorName": {
+      "en": "BLUE/BLACK/RED",
+      "ja": ""
+    },
+    "hex": "",
+    "summary": {
+      "en": "",
+      "ja": ""
+    },
+    "specs": [],
+    "caseGallery": [
+      {
+        "_key": "case-FA2729",
+        "alt": {
+          "en": "",
+          "ja": ""
+        }
+      }
+    ]
+  }
+]

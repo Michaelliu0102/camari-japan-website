@@ -204,7 +204,7 @@ export function adaptSku(raw: RawSku): Sku {
     productTypeSlug: raw.productTypeSlug ?? "",
     code,
     colorName,
-    hex: raw.hex ?? "#1A1A1A",
+    hex: raw.hex || "#1A1A1A",
     image: raw.heroImageUrl ?? "",
     swatchImage: undefined,
     previewImage: raw.previewImageUrl ?? undefined,

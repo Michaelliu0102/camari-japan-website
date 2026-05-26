@@ -151,9 +151,20 @@ function mergeBySlug<T extends { slug: string }>(defaults: T[], imported: T[]): 
 }
 
 function mergeSkusByProductType(defaults: Sku[], imported: Sku[]): Sku[] {
-  const importedProductTypes = new Set(imported.map((sku) => sku.productTypeSlug));
-  const retainedDefaults = defaults.filter((sku) => !importedProductTypes.has(sku.productTypeSlug));
-  return [...retainedDefaults, ...imported];
+  // Merge by slug: defaults provide hex/swatchImage, imported provide the catalog
+  const merged = new Map<string, Sku>();
+  for (const sku of defaults) {
+    merged.set(sku.slug, sku);
+  }
+  for (const sku of imported) {
+    const existing = merged.get(sku.slug);
+    if (existing) {
+      merged.set(sku.slug, { ...sku, hex: sku.hex || existing.hex, swatchImage: sku.swatchImage ?? existing.swatchImage });
+    } else {
+      merged.set(sku.slug, sku);
+    }
+  }
+  return [...merged.values()];
 }
 
 export const site = {
@@ -605,126 +616,6 @@ const fixtureProductTypes: ProductType[] = [
 ];
 
 const fixtureSkus: Sku[] = [
-  {
-    slug: "c-alc-4991-shadow-black",
-    materialSlug: "alcantara",
-    productTypeSlug: "alcantara-panel",
-    code: "C-ALC-4991",
-    colorName: { en: "Shadow Black", ja: "シャドウブラック" },
-    hex: "#1A1A1A",
-    image: images.sku,
-    caseGallery: [
-      { image: images.interior, alt: { en: "Shadow Black applied in a lounge chair detail", ja: "ラウンジチェアに使用されたシャドウブラックのディテール" } },
-      { image: images.alcantara, alt: { en: "Shadow Black material in an automotive cabin", ja: "車両キャビンで使用されたシャドウブラック素材" } }
-    ],
-    summary: {
-      en: "A deep charcoal tone with refined nap movement for automotive cabins, product panels, and quiet hospitality interiors.",
-      ja: "車両キャビン、プロダクトパネル、静謐なホスピタリティ空間に適した、深いチャコールカラー。"
-    },
-    specs: [
-      { label: { en: "Thickness", ja: "厚み" }, value: { en: "0.95 mm", ja: "0.95 mm" } },
-      { label: { en: "Unit Weight", ja: "単位重量" }, value: { en: "380 g/m2", ja: "380 g/m2" } },
-      { label: { en: "Width", ja: "幅" }, value: { en: "142 cm", ja: "142 cm" } },
-      { label: { en: "Breaking Load", ja: "破断荷重" }, value: { en: "Warp 420 N / Weft 350 N", ja: "タテ 420 N / ヨコ 350 N" } },
-      { label: { en: "Wear Resistance", ja: "耐摩耗性" }, value: { en: "Martindale 100,000 cycles", ja: "マーチンデール 100,000 回" } },
-      { label: { en: "To Light", ja: "耐光性" }, value: { en: "Blue scale 5", ja: "ブルースケール 5 級" } },
-      { label: { en: "To Rubbings", ja: "摩擦堅牢度" }, value: { en: "Dry 4.5 / Wet 4", ja: "乾燥 4.5 / 湿潤 4" } },
-      { label: { en: "FR Version", ja: "FR 仕様" }, value: { en: "Available on request", ja: "ご要望に応じて対応" } }
-    ],
-    certifications: [
-      { en: "Carbon neutral production program", ja: "カーボンニュートラル生産プログラム" },
-      { en: "Interior and mobility grade surface performance", ja: "インテリア・モビリティ向け表面性能" }
-    ],
-    downloads: [
-      {
-        title: { en: "Alcantara Technical Sheet", ja: "Alcantara 技術資料" },
-        description: { en: "Composition, width, care, and performance notes.", ja: "組成、幅、ケア、性能情報。" },
-        href: "/catalogs/alcantara-technical-sheet.pdf",
-        type: "technical"
-      },
-      {
-        title: { en: "Care and Maintenance Guide", ja: "ケア・メンテナンスガイド" },
-        description: { en: "Use and maintenance guidance for installed surfaces.", ja: "施工後の使用とメンテナンスのガイド。" },
-        href: "/catalogs/alcantara-care-guide.pdf",
-        type: "care"
-      }
-    ],
-    seo: {
-      title: { en: "C-ALC-4991 Shadow Black | CAMARI JAPAN", ja: "C-ALC-4991 シャドウブラック | CAMARI JAPAN" },
-      description: {
-        en: "View Shadow Black Alcantara specifications, downloads, and sales contact details.",
-        ja: "シャドウブラック Alcantara の仕様、資料、問い合わせ先をご覧ください。"
-      },
-      image: images.sku
-    }
-  },
-  {
-    slug: "c-alc-735b-umber-brown",
-    materialSlug: "alcantara",
-    productTypeSlug: "alcantara-panel",
-    code: "C-ALC-735B",
-    colorName: { en: "Umber Brown", ja: "アンバーブラウン" },
-    hex: "#735B33",
-    image: images.alcantaraSoft,
-    summary: {
-      en: "A warm brown shade for refined lounge interiors and tactile product applications.",
-      ja: "上質なラウンジ空間と触感を重視したプロダクトに向けた温かみのあるブラウン。"
-    },
-    specs: [
-      { label: { en: "Thickness", ja: "厚み" }, value: { en: "0.95 mm", ja: "0.95 mm" } },
-      { label: { en: "Unit Weight", ja: "単位重量" }, value: { en: "380 g/m2", ja: "380 g/m2" } },
-      { label: { en: "Width", ja: "幅" }, value: { en: "142 cm", ja: "142 cm" } },
-      { label: { en: "Breaking Load", ja: "破断荷重" }, value: { en: "Warp 420 N / Weft 350 N", ja: "タテ 420 N / ヨコ 350 N" } },
-      { label: { en: "Wear Resistance", ja: "耐摩耗性" }, value: { en: "Martindale 100,000 cycles", ja: "マーチンデール 100,000 回" } },
-      { label: { en: "To Light", ja: "耐光性" }, value: { en: "Blue scale 5", ja: "ブルースケール 5 級" } },
-      { label: { en: "To Rubbings", ja: "摩擦堅牢度" }, value: { en: "Dry 4.5 / Wet 4", ja: "乾燥 4.5 / 湿潤 4" } },
-      { label: { en: "FR Version", ja: "FR 仕様" }, value: { en: "Available on request", ja: "ご要望に応じて対応" } }
-    ],
-    certifications: [{ en: "Interior grade surface performance", ja: "インテリア向け表面性能" }],
-    downloads: [],
-    seo: {
-      title: { en: "C-ALC-735B Umber Brown | CAMARI JAPAN", ja: "C-ALC-735B アンバーブラウン | CAMARI JAPAN" },
-      description: {
-        en: "View Umber Brown Alcantara color and specification details.",
-        ja: "アンバーブラウン Alcantara のカラーと仕様をご覧ください。"
-      },
-      image: images.alcantaraSoft
-    }
-  },
-  {
-    slug: "c-alc-a68a-desert-sand",
-    materialSlug: "alcantara",
-    productTypeSlug: "alcantara-panel",
-    code: "C-ALC-A68A",
-    colorName: { en: "Desert Sand", ja: "デザートサンド" },
-    hex: "#A68A5E",
-    image: images.interior,
-    summary: {
-      en: "A quiet sand tone that softens architectural environments without losing technical precision.",
-      ja: "建築空間を柔らかく整えながら、技術的な精密さを保つ静かなサンドカラー。"
-    },
-    specs: [
-      { label: { en: "Thickness", ja: "厚み" }, value: { en: "0.95 mm", ja: "0.95 mm" } },
-      { label: { en: "Unit Weight", ja: "単位重量" }, value: { en: "380 g/m2", ja: "380 g/m2" } },
-      { label: { en: "Width", ja: "幅" }, value: { en: "142 cm", ja: "142 cm" } },
-      { label: { en: "Breaking Load", ja: "破断荷重" }, value: { en: "Warp 420 N / Weft 350 N", ja: "タテ 420 N / ヨコ 350 N" } },
-      { label: { en: "Wear Resistance", ja: "耐摩耗性" }, value: { en: "Martindale 100,000 cycles", ja: "マーチンデール 100,000 回" } },
-      { label: { en: "To Light", ja: "耐光性" }, value: { en: "Blue scale 5", ja: "ブルースケール 5 級" } },
-      { label: { en: "To Rubbings", ja: "摩擦堅牢度" }, value: { en: "Dry 4.5 / Wet 4", ja: "乾燥 4.5 / 湿潤 4" } },
-      { label: { en: "FR Version", ja: "FR 仕様" }, value: { en: "Available on request", ja: "ご要望に応じて対応" } }
-    ],
-    certifications: [{ en: "Carbon neutral production program", ja: "カーボンニュートラル生産プログラム" }],
-    downloads: [],
-    seo: {
-      title: { en: "C-ALC-A68A Desert Sand | CAMARI JAPAN", ja: "C-ALC-A68A デザートサンド | CAMARI JAPAN" },
-      description: {
-        en: "View Desert Sand Alcantara color and specification details.",
-        ja: "デザートサンド Alcantara のカラーと仕様をご覧ください。"
-      },
-      image: images.interior
-    }
-  },
-  // Leather SKUs
   {
     slug: "l-ftg-2101-ebony-black",
     materialSlug: "leather",
