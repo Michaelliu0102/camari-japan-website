@@ -243,6 +243,8 @@ def read_rows(workbook_path: Path) -> dict[str, list[dict[str, Any]]]:
 
       sheet = workbook[sheet_name]
       header_row = [cell.value for cell in next(sheet.iter_rows(min_row=1, max_row=1))]
+      while header_row and header_row[-1] is None:
+          header_row.pop()
       active_headers = headers
       if header_row != headers:
           legacy_headers = LEGACY_SHEETS.get(sheet_name)

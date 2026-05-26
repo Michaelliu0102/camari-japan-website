@@ -3007,25 +3007,38 @@
       "slug": "bmw-check",
       "materialSlug": "fabric",
       "name": {
-        "en": "BMW Check",
+        "en": "BMW CHECK",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "Classic Scottish square pattern for BMW Isetta",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "0.6mm",
+            "ja": "0.6mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "BMW Isetta Classic Tartan Seat Upholstery Fabric",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Authentic flatwoven green Scottish square fabric for BMW Isetta restoration (models up to 1958).Exact OEM match pattern. Inquire for rolls.",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA1836.jpg"
@@ -3035,25 +3048,38 @@
       "slug": "bmw-m-pattern",
       "materialSlug": "fabric",
       "name": {
-        "en": "BMW M Pattern",
+        "en": "BMW M PATTERN",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "The M-Stripe seat cloth is a  replica of the original material used in the prototype M8.",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "2.0mm",
+            "ja": "2.0mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "BMW Seat Fabric with Foam",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Premium reproduction of the iconic M Jahre M-Stripe seat fabric. A replica of the ultra-rare material found in the legendary M8 Prototype cabin.",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA5990.jpg"
@@ -3063,25 +3089,38 @@
       "slug": "houndstooth-plaid",
       "materialSlug": "fabric",
       "name": {
-        "en": "Houndstooth Plaid",
+        "en": "HOUNDSTOOTH PLAID",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "This textile features an intricate houndstooth-based Glen plaid layout blended with Scottish Squares for seat upholstery",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "0.8mm",
+            "ja": "0.8mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Houndstooth based Glen plaid with Tartan for Seat Upholstery",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Premium automotive seat upholstery featuring an intricate houndstooth-based Glen plaid layout blended with Scottish squares. Perfect for vintage car restoration.",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8765.jpg"
@@ -3091,25 +3130,38 @@
       "slug": "mercedes-check",
       "materialSlug": "fabric",
       "name": {
-        "en": "Mercedes Check",
+        "en": "MERCEDES CHECK",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "This premium, original-specification automotive interior textile is an authentic factory-match reproduction of the classic first-generation Mercedes-Benz W460 G-Klasse (G-Wagon)",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.3mm",
+            "ja": "1.3mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Vintage Mercedes G-Wagon Seat Upholstery Fabric",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Authentic 1980s Mercedes W460 G-class seat upholstery fabric. Heavy-duty flatwoven Panamabond square design in Beige Black",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8475.jpg"
@@ -3119,25 +3171,38 @@
       "slug": "mercedes-rodeo",
       "materialSlug": "fabric",
       "name": {
-        "en": "Mercedes Rodeo",
+        "en": "MERCEDES RODEO",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "This premium, original-specification automotive interior textile is an authentic factory-match reproduction of the late 1980's Mercedes-Benz G-Klasse. The same pattern is used in 2025 G550 'Stronger Than the 1980s\" Special Edition",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.0mm",
+            "ja": "1.0mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Mercedes G-Wagon 'Stronger Than the 1980s'  Seat Fabric",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Get the look of the limited edition G550 Stronger Than the 1980s cabin. Authentic Mercedes Rodeo Grey-Black cube upholstery fabric",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8598.jpg"
@@ -3147,25 +3212,38 @@
       "slug": "mercedes-tartan",
       "materialSlug": "fabric",
       "name": {
-        "en": "Mercedes Tartan",
+        "en": "MERCEDES TARTAN",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "Woven from 100% pure wool, this elite fabric is engineered exclusively for interior restoration of the legendary Mercedes-Benz W198 300SL Gullwing",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "0.8mm",
+            "ja": "0.8mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Mercedes W198 300SL Gullwing 100% Wool Fabric",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Authentic 100% wool 1954-1963 Mercedes-Benz W198 300SL Gullwing seat fabric. Factory-match blue/grey Scottish square tartan",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8626.jpg"
@@ -3175,25 +3253,38 @@
       "slug": "porsche-check",
       "materialSlug": "fabric",
       "name": {
-        "en": "Porsche Check",
+        "en": "PORSCHE CHECK",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "Classic pattern Porsche upholstery fabric",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.3mm",
+            "ja": "1.3mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Vintage Porsche Seating Upholstery Fabric",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Vintage Porsche Seating Upholstery Fabric",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8045.jpg"
@@ -3203,25 +3294,38 @@
       "slug": "porsche-herringbone",
       "materialSlug": "fabric",
       "name": {
-        "en": "Porsche Herringbone",
+        "en": "PORSCHE HERRINGBONE",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "This authentic, OEM-specification automotive seating textile is an exact factory-match reproduction for the upholstery of Porsche 924",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.2mm",
+            "ja": "1.2mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Vintage Porsche Seating Upholstery Fabric Herringbone",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Authentic 1978 Porsche 924 seat upholstery fabric. Premium factory-match Beige Cream Black herringbone textile",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA3570.jpg"
@@ -3231,25 +3335,38 @@
       "slug": "porsche-madras",
       "materialSlug": "fabric",
       "name": {
-        "en": "Porsche Madras",
+        "en": "PORSCHE MADRAS",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "This is the heritage seat upholstery fabric originally offered by Stuttgart as an exclusive cabin option between 1972 and 1975 used in early G-Model Porsche 911s (including the 911T, E, S, and early Carrera).",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.1mm",
+            "ja": "1.1mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Porsche 911 Madras Seat Upholstery Fabric",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Authentic 1972-1975 Porsche 911 Madras seat fabric. Premium factory-match windowpane plaid for vintage F-Model & G-Model Carrera restorations",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8326.jpg"
@@ -3259,25 +3376,38 @@
       "slug": "porsche-pepita",
       "materialSlug": "fabric",
       "name": {
-        "en": "Porsche Pepita",
+        "en": "PORSCHE PEPITA",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "Porsche Pepita is arguably the most famous, style-defining interior textile in sports car history. Officially introduced in 1965 for the original 911, Pepita originated as a special-request option for late-model Porsche 356 classics in the early 1960s.",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.1mm",
+            "ja": "1.1mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Porsche Classic Pepita Fabric | Heritage Design Seat Upholstery",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Authentic black & white Porsche Pepita seat fabric. Premium factory-match pattern for classic 911 restorations and modern Heritage Design upgrades. More colors available.",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8013.jpg"
@@ -3287,25 +3417,38 @@
       "slug": "porsche-pinstripe",
       "materialSlug": "fabric",
       "name": {
-        "en": "Porsche Pinstripe",
+        "en": "PORSCHE PINSTRIPE",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "Porsche Pinstripe is a highly sophisticated, business-suit-inspired executive textile that defined the interiors of late-1970s and 1980s Porsche sports cars. It became a staple option across the air-cooled 911 (G-Model) series and the entire front-engine transaxle family (924, 944, and 928)",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.0mm",
+            "ja": "1.6mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Vintage Porsche Pinstripe Seat Upholstery Fabric",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Authentic 1977-1990 Porsche Pinstripe seat fabric. Premium factory-match flannel for classic 911, 924, 928, and 944 cabin restoration.",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA3018.jpg"
@@ -3315,53 +3458,79 @@
       "slug": "porsche-plaid",
       "materialSlug": "fabric",
       "name": {
-        "en": "Porsche Plaid",
+        "en": "PORSCHE PLAID",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "This is a premium 100% wool flatwoven plaid fabric replicated for the 1973 Porsche 911 RSR",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.0mm",
+            "ja": "1.0mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Vintage Porsche Blue Plaid Fabric - 100% Wool Flatwoven Twill",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Discover premium 100% wool automotive fabric featuring the classic 1970s Porsche RSR blue tartan pattern. Durable, period-correct woven cloth for luxury interiors.",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8525.jpg"
       }
     },
     {
-      "slug": "porsche-script",
+      "slug": "porsche-velours-pinstripe",
       "materialSlug": "fabric",
       "name": {
-        "en": "Porsche Script",
+        "en": "PORSCHE VELOURS PINSTRIPE",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "It is a velvet-like fabric featuring a dense, cut-pile surface. This gives it an incredibly plush, soft-touch texture that was highly favored for luxury and executive sports car cabins in the 1980s",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.6mm",
+            "ja": "1.0mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Porsche 911 928 944 Pinstripe Velour Seat Cloth",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Vintage-style vertical pinstripe velour fabric for classic Porsche interiors. Perfect for high-end seat insert and door card restorations.",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA3132.jpg"
@@ -3371,25 +3540,38 @@
       "slug": "porsche-studio",
       "materialSlug": "fabric",
       "name": {
-        "en": "Porsche Studio",
+        "en": "PORSCHE STUDIO",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "This is an authentic reproduction of Porsche’s iconic \"Studio Check\" automotive upholstery fabric, specifically curated for  Porsche 911 Carrera (964/993 generations), Porsche 928, and Porsche 968",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.3mm",
+            "ja": "1.3mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Porsche Studio Check Grey Fabric | 964 993 928 Restoration Cloth",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Vintage Authentic reproduction of the classic Porsche Studio Check upholstery fabric",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8118.jpg"
@@ -3399,25 +3581,38 @@
       "slug": "porsche-tartan",
       "materialSlug": "fabric",
       "name": {
-        "en": "Porsche Tartan",
+        "en": "PORSCHE TARTAN",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "Introduced in 1975, this legendary pattern was famously optioned on the early Porsche 911 Turbo (930) and the 911SC",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.3mm",
+            "ja": "1.3mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Porsche Classic Tartan Fabric | 911SC & 930 Turbo Seat Cloth",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Vintage-style  plaid upholstery cloth for classic Porsche interiors. Durable, period-correct flatwoven check fabric for seats and door cards.",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8217.jpg"
@@ -3427,25 +3622,38 @@
       "slug": "selected-plaid",
       "materialSlug": "fabric",
       "name": {
-        "en": "Selected Plaid",
+        "en": "SELETED PLAID",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "Selected plaid for automotive seat upholstery",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.0mm",
+            "ja": "1.0mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "Automotive Plaid for Seat Upholstery",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Polyester automtive plaid for seat upholstery",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA8517.jpg"
@@ -3455,25 +3663,38 @@
       "slug": "spirit-of-le-mans",
       "materialSlug": "fabric",
       "name": {
-        "en": "Spirit of Le Mans",
+        "en": "SPIRIT OF LE MANS",
         "ja": ""
       },
       "summary": {
-        "en": "",
+        "en": "The Spirit of Le Mans (SOLM) Wool Line is a premium, motorsport-inspired tartan collection woven in Scotland and engineered specifically for high-end automotive interiors. 100% premium wool woven in a durable 2/2 twill, featuring a heavy-duty weight of 500 glm (365 gsm). Pre-treated with specialized Soil Resist and Fire Retardant (FR) compliance coatings tailored for automotive safety standards.",
         "ja": ""
       },
       "productCode": "",
       "downloads": [],
-      "specTemplate": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "0.6mm",
+            "ja": "0.6mm"
+          }
+        }
+      ],
       "certifications": [],
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "",
+          "en": "100% Luxury Wool Automotive Fabric | Fire Retardant Tartan",
           "ja": ""
         },
         "description": {
-          "en": "",
+          "en": "Heavyweight wool racing tartan cloth for luxury car interiors. Pre-treated with fire-retardant and soil-resist coatings. Woven in Scotland",
           "ja": ""
         },
         "image": "/uploads/fabric/Cover/FA2002.jpg"
@@ -27247,7 +27468,7 @@
       "productTypeSlug": "bmw-check",
       "code": "FA1836",
       "colorName": {
-        "en": "",
+        "en": "BLACK/GRAY/BROWN",
         "ja": ""
       },
       "hex": "",
@@ -27287,7 +27508,7 @@
       "productTypeSlug": "bmw-m-pattern",
       "code": "FA5990",
       "colorName": {
-        "en": "",
+        "en": "M PATTERN",
         "ja": ""
       },
       "hex": "",
@@ -27327,7 +27548,7 @@
       "productTypeSlug": "houndstooth-plaid",
       "code": "FA8765",
       "colorName": {
-        "en": "",
+        "en": "GRAY/WHITE/BROWN",
         "ja": ""
       },
       "hex": "",
@@ -27367,7 +27588,7 @@
       "productTypeSlug": "mercedes-check",
       "code": "FA8475",
       "colorName": {
-        "en": "",
+        "en": "BLACK/BROWN/RED",
         "ja": ""
       },
       "hex": "",
@@ -27407,7 +27628,7 @@
       "productTypeSlug": "mercedes-rodeo",
       "code": "FA8598",
       "colorName": {
-        "en": "",
+        "en": "GRAY/BLACK",
         "ja": ""
       },
       "hex": "",
@@ -27447,7 +27668,7 @@
       "productTypeSlug": "mercedes-tartan",
       "code": "FA8626",
       "colorName": {
-        "en": "",
+        "en": "BLUE/GRAY",
         "ja": ""
       },
       "hex": "",
@@ -27487,7 +27708,7 @@
       "productTypeSlug": "mercedes-tartan",
       "code": "FA8637",
       "colorName": {
-        "en": "",
+        "en": "GREEN/GRAY/WHITE",
         "ja": ""
       },
       "hex": "",
@@ -27527,7 +27748,7 @@
       "productTypeSlug": "porsche-check",
       "code": "FA8045",
       "colorName": {
-        "en": "",
+        "en": "BLACK/BROWN/YELLOW",
         "ja": ""
       },
       "hex": "",
@@ -27567,7 +27788,7 @@
       "productTypeSlug": "porsche-check",
       "code": "FA8057",
       "colorName": {
-        "en": "",
+        "en": "BROWN/TAN/GREEN",
         "ja": ""
       },
       "hex": "",
@@ -27607,7 +27828,7 @@
       "productTypeSlug": "porsche-check",
       "code": "FA8063",
       "colorName": {
-        "en": "",
+        "en": "BLACK/WHITE/RED",
         "ja": ""
       },
       "hex": "",
@@ -27647,7 +27868,7 @@
       "productTypeSlug": "porsche-herringbone",
       "code": "FA3570",
       "colorName": {
-        "en": "",
+        "en": "BLACK/WHITE",
         "ja": ""
       },
       "hex": "",
@@ -27687,7 +27908,7 @@
       "productTypeSlug": "porsche-madras",
       "code": "FA8326",
       "colorName": {
-        "en": "",
+        "en": "BLUE/WHITE",
         "ja": ""
       },
       "hex": "",
@@ -27727,7 +27948,7 @@
       "productTypeSlug": "porsche-madras",
       "code": "FA8354",
       "colorName": {
-        "en": "",
+        "en": "ORANGE/BROWN",
         "ja": ""
       },
       "hex": "",
@@ -27767,7 +27988,7 @@
       "productTypeSlug": "porsche-pepita",
       "code": "FA8013",
       "colorName": {
-        "en": "",
+        "en": "BLACK/WHITE/ORANGE",
         "ja": ""
       },
       "hex": "",
@@ -27807,7 +28028,7 @@
       "productTypeSlug": "porsche-pepita",
       "code": "FA8026",
       "colorName": {
-        "en": "",
+        "en": "BLACK/WHITE/BLUE",
         "ja": ""
       },
       "hex": "",
@@ -27847,7 +28068,7 @@
       "productTypeSlug": "porsche-pepita",
       "code": "FA8065",
       "colorName": {
-        "en": "",
+        "en": "BLACK/WHITE",
         "ja": ""
       },
       "hex": "",
@@ -27887,7 +28108,7 @@
       "productTypeSlug": "porsche-pepita",
       "code": "FA8074",
       "colorName": {
-        "en": "",
+        "en": "BLACK/WHITE/BEIGE",
         "ja": ""
       },
       "hex": "",
@@ -27927,7 +28148,7 @@
       "productTypeSlug": "porsche-pepita",
       "code": "FA8093",
       "colorName": {
-        "en": "",
+        "en": "BLACK/WHITE/GREEN",
         "ja": ""
       },
       "hex": "",
@@ -27967,7 +28188,7 @@
       "productTypeSlug": "porsche-pepita",
       "code": "FA8094",
       "colorName": {
-        "en": "",
+        "en": "BLACK/WHITE/RED",
         "ja": ""
       },
       "hex": "",
@@ -28007,7 +28228,7 @@
       "productTypeSlug": "porsche-pinstripe",
       "code": "FA3018",
       "colorName": {
-        "en": "",
+        "en": "BURGUNDY/WHITE",
         "ja": ""
       },
       "hex": "",
@@ -28047,7 +28268,7 @@
       "productTypeSlug": "porsche-pinstripe",
       "code": "FA3055",
       "colorName": {
-        "en": "",
+        "en": "MAROON/WHITE",
         "ja": ""
       },
       "hex": "",
@@ -28087,7 +28308,7 @@
       "productTypeSlug": "porsche-pinstripe",
       "code": "FA3067",
       "colorName": {
-        "en": "",
+        "en": "BLACK/DARK GRAY/GRAY",
         "ja": ""
       },
       "hex": "",
@@ -28127,7 +28348,7 @@
       "productTypeSlug": "porsche-pinstripe",
       "code": "FA3074",
       "colorName": {
-        "en": "",
+        "en": "BLACK/WHITE",
         "ja": ""
       },
       "hex": "",
@@ -28167,7 +28388,7 @@
       "productTypeSlug": "porsche-plaid",
       "code": "FA8525",
       "colorName": {
-        "en": "",
+        "en": "BLUE/BLACK/WHITE/RED",
         "ja": ""
       },
       "hex": "",
@@ -28204,15 +28425,15 @@
     {
       "slug": "fa3132",
       "materialSlug": "fabric",
-      "productTypeSlug": "porsche-script",
+      "productTypeSlug": "porsche-pinstripe",
       "code": "FA3132",
       "colorName": {
-        "en": "",
+        "en": "GRAY/BLUE",
         "ja": ""
       },
       "hex": "",
-      "image": "/uploads/fabric/Porsche Script/FA3132.jpg",
-      "swatchImage": "/uploads/fabric/Porsche Script/FA3132.jpg",
+      "image": "/uploads/fabric/Porsche Pinstripe/FA3132.jpg",
+      "swatchImage": "/uploads/fabric/Porsche Pinstripe/FA3132.jpg",
       "previewImage": "/uploads/fabric/Preview/FA3132.jpg",
       "caseGallery": [
         {
@@ -28238,21 +28459,21 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Script/FA3132.jpg"
+        "image": "/uploads/fabric/Porsche Pinstripe/FA3132.jpg"
       }
     },
     {
       "slug": "fa3217",
       "materialSlug": "fabric",
-      "productTypeSlug": "porsche-script",
+      "productTypeSlug": "porsche-velours-pinstripe",
       "code": "FA3217",
       "colorName": {
-        "en": "",
+        "en": "BLACK/RED",
         "ja": ""
       },
       "hex": "",
-      "image": "/uploads/fabric/Porsche Script/FA3217.jpg",
-      "swatchImage": "/uploads/fabric/Porsche Script/FA3217.jpg",
+      "image": "/uploads/fabric/Porsche Velcours Pinstripe/FA3217.jpg",
+      "swatchImage": "/uploads/fabric/Porsche Velcours Pinstripe/FA3217.jpg",
       "previewImage": "/uploads/fabric/Preview/FA3217.jpg",
       "caseGallery": [
         {
@@ -28278,21 +28499,21 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Script/FA3217.jpg"
+        "image": "/uploads/fabric/Porsche Velcours Pinstripe/FA3217.jpg"
       }
     },
     {
       "slug": "fa3258",
       "materialSlug": "fabric",
-      "productTypeSlug": "porsche-script",
+      "productTypeSlug": "porsche-velours-pinstripe",
       "code": "FA3258",
       "colorName": {
-        "en": "",
+        "en": "BROWN/WHITE",
         "ja": ""
       },
       "hex": "",
-      "image": "/uploads/fabric/Porsche Script/FA3258.jpg",
-      "swatchImage": "/uploads/fabric/Porsche Script/FA3258.jpg",
+      "image": "/uploads/fabric/Porsche Velcours Pinstripe/FA3258.jpg",
+      "swatchImage": "/uploads/fabric/Porsche Velcours Pinstripe/FA3258.jpg",
       "previewImage": "/uploads/fabric/Preview/FA3258.jpg",
       "caseGallery": [
         {
@@ -28318,21 +28539,21 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Script/FA3258.jpg"
+        "image": "/uploads/fabric/Porsche Velcours Pinstripe/FA3258.jpg"
       }
     },
     {
       "slug": "fa3272",
       "materialSlug": "fabric",
-      "productTypeSlug": "porsche-script",
+      "productTypeSlug": "porsche-velours-pinstripe",
       "code": "FA3272",
       "colorName": {
-        "en": "",
+        "en": "GRAY/WHITE",
         "ja": ""
       },
       "hex": "",
-      "image": "/uploads/fabric/Porsche Script/FA3272.jpg",
-      "swatchImage": "/uploads/fabric/Porsche Script/FA3272.jpg",
+      "image": "/uploads/fabric/Porsche Velcours Pinstripe/FA3272.jpg",
+      "swatchImage": "/uploads/fabric/Porsche Velcours Pinstripe/FA3272.jpg",
       "previewImage": "/uploads/fabric/Preview/FA3272.jpg",
       "caseGallery": [
         {
@@ -28358,7 +28579,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Script/FA3272.jpg"
+        "image": "/uploads/fabric/Porsche Velcours Pinstripe/FA3272.jpg"
       }
     },
     {
@@ -28367,7 +28588,7 @@
       "productTypeSlug": "porsche-studio",
       "code": "FA8118",
       "colorName": {
-        "en": "",
+        "en": "RED/MAROON",
         "ja": ""
       },
       "hex": "",
@@ -28407,7 +28628,7 @@
       "productTypeSlug": "porsche-studio",
       "code": "FA8128",
       "colorName": {
-        "en": "",
+        "en": "NAVY/BLUE/BLACK",
         "ja": ""
       },
       "hex": "",
@@ -28447,7 +28668,7 @@
       "productTypeSlug": "porsche-studio",
       "code": "FA8165",
       "colorName": {
-        "en": "",
+        "en": "GRAY",
         "ja": ""
       },
       "hex": "",
@@ -28487,7 +28708,7 @@
       "productTypeSlug": "porsche-studio",
       "code": "FA8166",
       "colorName": {
-        "en": "",
+        "en": "GRAY",
         "ja": ""
       },
       "hex": "",
@@ -28527,7 +28748,7 @@
       "productTypeSlug": "porsche-tartan",
       "code": "FA8217",
       "colorName": {
-        "en": "",
+        "en": "BLUE/RED/BLACK",
         "ja": ""
       },
       "hex": "",
@@ -28567,7 +28788,7 @@
       "productTypeSlug": "porsche-tartan",
       "code": "FA8237",
       "colorName": {
-        "en": "",
+        "en": "NAVY/BLUE/BLACK",
         "ja": ""
       },
       "hex": "",
@@ -28607,7 +28828,7 @@
       "productTypeSlug": "porsche-tartan",
       "code": "FA8271",
       "colorName": {
-        "en": "",
+        "en": "GRAY/BLUE/WHITE",
         "ja": ""
       },
       "hex": "",
@@ -28647,7 +28868,7 @@
       "productTypeSlug": "selected-plaid",
       "code": "FA8517",
       "colorName": {
-        "en": "",
+        "en": "BLACK/RED/BLUE",
         "ja": ""
       },
       "hex": "",
@@ -28687,7 +28908,7 @@
       "productTypeSlug": "selected-plaid",
       "code": "FA8553",
       "colorName": {
-        "en": "",
+        "en": "BLUE/NAVY/ORANGE",
         "ja": ""
       },
       "hex": "",
@@ -28727,7 +28948,7 @@
       "productTypeSlug": "spirit-of-le-mans",
       "code": "FA2002",
       "colorName": {
-        "en": "",
+        "en": "BLUE/NAVY/RED",
         "ja": ""
       },
       "hex": "",
@@ -28767,7 +28988,7 @@
       "productTypeSlug": "spirit-of-le-mans",
       "code": "FA2202",
       "colorName": {
-        "en": "",
+        "en": "BLUE/ORANGE/NAVY",
         "ja": ""
       },
       "hex": "",
@@ -28807,7 +29028,7 @@
       "productTypeSlug": "spirit-of-le-mans",
       "code": "FA2729",
       "colorName": {
-        "en": "",
+        "en": "BLUE/BLACK/RED",
         "ja": ""
       },
       "hex": "",
