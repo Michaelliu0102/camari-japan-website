@@ -112,7 +112,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                   style={{ aspectRatio: "5/6" }}
                   type="button"
                 >
-                  <Image alt={item.alt} className="object-cover" fill sizes="90px" src={item.thumbnail} />
+                  <Image alt={item.alt} className="object-contain" fill sizes="90px" src={item.thumbnail} />
                 </button>
               );
             })}
@@ -151,7 +151,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                       onClick={() => setActiveImageIndex(index)}
                       type="button"
                     >
-                      <Image alt={item.alt} className="object-cover" fill sizes="48px" src={item.thumbnail} />
+                      <Image alt={item.alt} className="object-contain" fill sizes="48px" src={item.thumbnail} />
                     </button>
                   );
                 })}
