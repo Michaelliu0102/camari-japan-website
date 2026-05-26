@@ -87,6 +87,22 @@ async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
 
     const merged = new Map(fallback.map((item) => [item.slug, item]));
     for (const item of results.map(adapter)) {
+      const existing = merged.get(item.slug);
+      if (existing) {
+        const existingAny = existing as Record<string, unknown>;
+        const itemAny = item as Record<string, unknown>;
+        // Prefer fallback image assets when they exist (locally managed)
+        for (const field of ["image", "swatchImage", "caseGallery"] as const) {
+          const fbVal = existingAny[field];
+          if (fbVal !== undefined && fbVal !== null && fbVal !== "") {
+            if (field === "caseGallery") {
+              if (Array.isArray(fbVal) && fbVal.length > 0) itemAny[field] = fbVal;
+            } else {
+              itemAny[field] = fbVal;
+            }
+          }
+        }
+      }
       merged.set(item.slug, item);
     }
     return [...merged.values()];
