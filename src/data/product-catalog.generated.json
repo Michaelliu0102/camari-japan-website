@@ -3028,6 +3028,54 @@
             "en": "0.6mm",
             "ja": "0.6mm"
           }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
+          }
         }
       ],
       "certifications": [],
@@ -3068,6 +3116,54 @@
           "defaultValue": {
             "en": "2.0mm",
             "ja": "2.0mm"
+          }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Polyester",
+            "ja": "ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
           }
         }
       ],
@@ -3110,6 +3206,54 @@
             "en": "0.8mm",
             "ja": "0.8mm"
           }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
+          }
         }
       ],
       "certifications": [],
@@ -3150,6 +3294,54 @@
           "defaultValue": {
             "en": "1.3mm",
             "ja": "1.3mm"
+          }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
           }
         }
       ],
@@ -3192,6 +3384,54 @@
             "en": "1.0mm",
             "ja": "1.0mm"
           }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Polyester",
+            "ja": "ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
+          }
         }
       ],
       "certifications": [],
@@ -3232,6 +3472,54 @@
           "defaultValue": {
             "en": "0.8mm",
             "ja": "0.8mm"
+          }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool",
+            "ja": "ウール"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
           }
         }
       ],
@@ -3274,6 +3562,54 @@
             "en": "1.3mm",
             "ja": "1.3mm"
           }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
+          }
         }
       ],
       "certifications": [],
@@ -3314,6 +3650,54 @@
           "defaultValue": {
             "en": "1.2mm",
             "ja": "1.2mm"
+          }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
           }
         }
       ],
@@ -3356,6 +3740,54 @@
             "en": "1.1mm",
             "ja": "1.1mm"
           }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
+          }
         }
       ],
       "certifications": [],
@@ -3396,6 +3828,54 @@
           "defaultValue": {
             "en": "1.1mm",
             "ja": "1.1mm"
+          }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
           }
         }
       ],
@@ -3438,6 +3918,54 @@
             "en": "1.0mm",
             "ja": "1.6mm"
           }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
+          }
         }
       ],
       "certifications": [],
@@ -3478,6 +4006,54 @@
           "defaultValue": {
             "en": "1.0mm",
             "ja": "1.0mm"
+          }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool",
+            "ja": "ウール"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
           }
         }
       ],
@@ -3520,6 +4096,54 @@
             "en": "1.6mm",
             "ja": "1.0mm"
           }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
+          }
         }
       ],
       "certifications": [],
@@ -3533,7 +4157,7 @@
           "en": "Vintage-style vertical pinstripe velour fabric for classic Porsche interiors. Perfect for high-end seat insert and door card restorations.",
           "ja": ""
         },
-        "image": "/uploads/fabric/Cover/FA3132.jpg"
+        "image": "/uploads/fabric/Cover/FA3217.jpg"
       }
     },
     {
@@ -3560,6 +4184,54 @@
           "defaultValue": {
             "en": "1.3mm",
             "ja": "1.3mm"
+          }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
           }
         }
       ],
@@ -3602,6 +4274,54 @@
             "en": "1.3mm",
             "ja": "1.3mm"
           }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool/Polyester",
+            "ja": "ウール/ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
+          }
         }
       ],
       "certifications": [],
@@ -3643,6 +4363,54 @@
             "en": "1.0mm",
             "ja": "1.0mm"
           }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Polyester",
+            "ja": "ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
+          }
         }
       ],
       "certifications": [],
@@ -3683,6 +4451,54 @@
           "defaultValue": {
             "en": "0.6mm",
             "ja": "0.6mm"
+          }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140CM",
+            "ja": "140CM"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Wool",
+            "ja": "ウール"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "UK",
+            "ja": "イギリス"
           }
         }
       ],
