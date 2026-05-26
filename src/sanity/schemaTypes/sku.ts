@@ -51,6 +51,13 @@ export const sku = defineType({
       options: { hotspot: true }
     }),
     defineField({
+      name: "previewImage",
+      title: "Card Preview Image",
+      description: "Optional square preview used only in the Fabric card hover strip.",
+      type: "image",
+      options: { hotspot: true }
+    }),
+    defineField({
       name: "caseGallery",
       title: "SKU Case Gallery",
       description: "Application and case images shown below the SKU thumbnail on the detail page.",

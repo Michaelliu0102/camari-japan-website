@@ -3028,7 +3028,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/BMW Check/FA1836.jpg"
+        "image": "/uploads/fabric/Cover/FA1836.jpg"
       }
     },
     {
@@ -3056,7 +3056,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/BMW M Pattern/FA5990.jpg"
+        "image": "/uploads/fabric/Cover/FA5990.jpg"
       }
     },
     {
@@ -3084,7 +3084,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Houndstooth Plaid/FA8765.jpg"
+        "image": "/uploads/fabric/Cover/FA8765.jpg"
       }
     },
     {
@@ -3112,7 +3112,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Mercedes Check /FA8475.jpg"
+        "image": "/uploads/fabric/Cover/FA8475.jpg"
       }
     },
     {
@@ -3140,7 +3140,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Mercedes Rodeo/FA8598.jpg"
+        "image": "/uploads/fabric/Cover/FA8598.jpg"
       }
     },
     {
@@ -3168,7 +3168,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Mercedes Tartan/FA8626.jpg"
+        "image": "/uploads/fabric/Cover/FA8626.jpg"
       }
     },
     {
@@ -3196,7 +3196,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Check/FA8045.jpg"
+        "image": "/uploads/fabric/Cover/FA8045.jpg"
       }
     },
     {
@@ -3224,7 +3224,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Herringbone/FA3570.jpg"
+        "image": "/uploads/fabric/Cover/FA3570.jpg"
       }
     },
     {
@@ -3252,7 +3252,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Madras/FA8326.jpg"
+        "image": "/uploads/fabric/Cover/FA8326.jpg"
       }
     },
     {
@@ -3280,7 +3280,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Pepita/FA8013.jpg"
+        "image": "/uploads/fabric/Cover/FA8013.jpg"
       }
     },
     {
@@ -3308,7 +3308,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Pinstripe/FA3018.jpg"
+        "image": "/uploads/fabric/Cover/FA3018.jpg"
       }
     },
     {
@@ -3336,7 +3336,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Plaid/FA8525.jpg"
+        "image": "/uploads/fabric/Cover/FA8525.jpg"
       }
     },
     {
@@ -3364,7 +3364,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Script/FA3132.jpg"
+        "image": "/uploads/fabric/Cover/FA3132.jpg"
       }
     },
     {
@@ -3392,7 +3392,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Studio /FA8118.jpg"
+        "image": "/uploads/fabric/Cover/FA8118.jpg"
       }
     },
     {
@@ -3420,7 +3420,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Porsche Tartan/FA8217 McLaughli.jpg"
+        "image": "/uploads/fabric/Cover/FA8217.jpg"
       }
     },
     {
@@ -3448,7 +3448,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Selected Plaid/FA8517.jpg"
+        "image": "/uploads/fabric/Cover/FA8517.jpg"
       }
     },
     {
@@ -3476,7 +3476,7 @@
           "en": "",
           "ja": ""
         },
-        "image": "/uploads/fabric/Spirit of Le Mans/FA2002.jpg"
+        "image": "/uploads/fabric/Cover/FA2002.jpg"
       }
     }
   ],
@@ -27253,6 +27253,7 @@
       "hex": "",
       "image": "/uploads/fabric/BMW Check/FA1836.jpg",
       "swatchImage": "/uploads/fabric/BMW Check/FA1836.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA1836.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/BMW Check/FA1836.jpg",
@@ -27292,6 +27293,7 @@
       "hex": "",
       "image": "/uploads/fabric/BMW M Pattern/FA5990.jpg",
       "swatchImage": "/uploads/fabric/BMW M Pattern/FA5990.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA5990.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/BMW M Pattern/FA5990.jpg",
@@ -27331,6 +27333,7 @@
       "hex": "",
       "image": "/uploads/fabric/Houndstooth Plaid/FA8765.jpg",
       "swatchImage": "/uploads/fabric/Houndstooth Plaid/FA8765.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8765.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Houndstooth Plaid/FA8765.jpg",
@@ -27370,6 +27373,7 @@
       "hex": "",
       "image": "/uploads/fabric/Mercedes Check /FA8475.jpg",
       "swatchImage": "/uploads/fabric/Mercedes Check /FA8475.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8475.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Mercedes Check /FA8475.jpg",
@@ -27409,6 +27413,7 @@
       "hex": "",
       "image": "/uploads/fabric/Mercedes Rodeo/FA8598.jpg",
       "swatchImage": "/uploads/fabric/Mercedes Rodeo/FA8598.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8598.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Mercedes Rodeo/FA8598.jpg",
@@ -27448,6 +27453,7 @@
       "hex": "",
       "image": "/uploads/fabric/Mercedes Tartan/FA8626.jpg",
       "swatchImage": "/uploads/fabric/Mercedes Tartan/FA8626.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8626.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Mercedes Tartan/FA8626.jpg",
@@ -27487,6 +27493,7 @@
       "hex": "",
       "image": "/uploads/fabric/Mercedes Tartan/FA8637.jpg",
       "swatchImage": "/uploads/fabric/Mercedes Tartan/FA8637.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8637.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Mercedes Tartan/FA8637.jpg",
@@ -27526,6 +27533,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Check/FA8045.jpg",
       "swatchImage": "/uploads/fabric/Porsche Check/FA8045.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8045.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Check/FA8045.jpg",
@@ -27565,6 +27573,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Check/FA8057.jpg",
       "swatchImage": "/uploads/fabric/Porsche Check/FA8057.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8057.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Check/FA8057.jpg",
@@ -27604,6 +27613,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Check/FA8063.jpg",
       "swatchImage": "/uploads/fabric/Porsche Check/FA8063.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8063.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Check/FA8063.jpg",
@@ -27643,6 +27653,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Herringbone/FA3570.jpg",
       "swatchImage": "/uploads/fabric/Porsche Herringbone/FA3570.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA3570.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Herringbone/FA3570.jpg",
@@ -27682,6 +27693,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Madras/FA8326.jpg",
       "swatchImage": "/uploads/fabric/Porsche Madras/FA8326.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8326.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Madras/FA8326.jpg",
@@ -27721,6 +27733,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Madras/FA8354.jpg",
       "swatchImage": "/uploads/fabric/Porsche Madras/FA8354.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8354.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Madras/FA8354.jpg",
@@ -27760,6 +27773,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Pepita/FA8013.jpg",
       "swatchImage": "/uploads/fabric/Porsche Pepita/FA8013.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8013.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Pepita/FA8013.jpg",
@@ -27799,6 +27813,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Pepita/FA8026.jpg",
       "swatchImage": "/uploads/fabric/Porsche Pepita/FA8026.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8026.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Pepita/FA8026.jpg",
@@ -27838,6 +27853,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Pepita/FA8065.jpg",
       "swatchImage": "/uploads/fabric/Porsche Pepita/FA8065.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8065.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Pepita/FA8065.jpg",
@@ -27877,6 +27893,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Pepita/FA8074.jpg",
       "swatchImage": "/uploads/fabric/Porsche Pepita/FA8074.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8074.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Pepita/FA8074.jpg",
@@ -27916,6 +27933,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Pepita/FA8093.jpg",
       "swatchImage": "/uploads/fabric/Porsche Pepita/FA8093.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8093.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Pepita/FA8093.jpg",
@@ -27955,6 +27973,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Pepita/FA8094.jpg",
       "swatchImage": "/uploads/fabric/Porsche Pepita/FA8094.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8094.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Pepita/FA8094.jpg",
@@ -27994,6 +28013,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Pinstripe/FA3018.jpg",
       "swatchImage": "/uploads/fabric/Porsche Pinstripe/FA3018.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA3018.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Pinstripe/FA3018.jpg",
@@ -28033,6 +28053,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Pinstripe/FA3055.jpg",
       "swatchImage": "/uploads/fabric/Porsche Pinstripe/FA3055.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA3055.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Pinstripe/FA3055.jpg",
@@ -28072,6 +28093,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Pinstripe/FA3067.jpg",
       "swatchImage": "/uploads/fabric/Porsche Pinstripe/FA3067.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA3067.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Pinstripe/FA3067.jpg",
@@ -28111,6 +28133,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Pinstripe/FA3074.jpg",
       "swatchImage": "/uploads/fabric/Porsche Pinstripe/FA3074.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA3074.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Pinstripe/FA3074.jpg",
@@ -28150,6 +28173,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Plaid/FA8525.jpg",
       "swatchImage": "/uploads/fabric/Porsche Plaid/FA8525.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8525.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Plaid/FA8525.jpg",
@@ -28189,6 +28213,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Script/FA3132.jpg",
       "swatchImage": "/uploads/fabric/Porsche Script/FA3132.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA3132.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Script/FA3132.jpg",
@@ -28228,6 +28253,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Script/FA3217.jpg",
       "swatchImage": "/uploads/fabric/Porsche Script/FA3217.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA3217.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Script/FA3217.jpg",
@@ -28267,6 +28293,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Script/FA3258.jpg",
       "swatchImage": "/uploads/fabric/Porsche Script/FA3258.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA3258.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Script/FA3258.jpg",
@@ -28306,6 +28333,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Script/FA3272.jpg",
       "swatchImage": "/uploads/fabric/Porsche Script/FA3272.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA3272.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Script/FA3272.jpg",
@@ -28345,6 +28373,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Studio /FA8118.jpg",
       "swatchImage": "/uploads/fabric/Porsche Studio /FA8118.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8118.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Studio /FA8118.jpg",
@@ -28384,6 +28413,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Studio /FA8128.jpg",
       "swatchImage": "/uploads/fabric/Porsche Studio /FA8128.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8128.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Studio /FA8128.jpg",
@@ -28423,6 +28453,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Studio /FA8165.jpg",
       "swatchImage": "/uploads/fabric/Porsche Studio /FA8165.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8165.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Studio /FA8165.jpg",
@@ -28501,6 +28532,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Tartan/FA8217 McLaughli.jpg",
       "swatchImage": "/uploads/fabric/Porsche Tartan/FA8217 McLaughli.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8217.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Tartan/FA8217 McLaughli.jpg",
@@ -28540,6 +28572,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Tartan/FA8237 Black Watch.jpg",
       "swatchImage": "/uploads/fabric/Porsche Tartan/FA8237 Black Watch.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8237.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Tartan/FA8237 Black Watch.jpg",
@@ -28579,6 +28612,7 @@
       "hex": "",
       "image": "/uploads/fabric/Porsche Tartan/FA8271 Mackenzie.jpg",
       "swatchImage": "/uploads/fabric/Porsche Tartan/FA8271 Mackenzie.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8271.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Porsche Tartan/FA8271 Mackenzie.jpg",
@@ -28618,6 +28652,7 @@
       "hex": "",
       "image": "/uploads/fabric/Selected Plaid/FA8517.jpg",
       "swatchImage": "/uploads/fabric/Selected Plaid/FA8517.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8517.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Selected Plaid/FA8517.jpg",
@@ -28657,6 +28692,7 @@
       "hex": "",
       "image": "/uploads/fabric/Selected Plaid/FA8553.jpg",
       "swatchImage": "/uploads/fabric/Selected Plaid/FA8553.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8553.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Selected Plaid/FA8553.jpg",
@@ -28696,6 +28732,7 @@
       "hex": "",
       "image": "/uploads/fabric/Spirit of Le Mans/FA2002.jpg",
       "swatchImage": "/uploads/fabric/Spirit of Le Mans/FA2002.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA2002.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Spirit of Le Mans/FA2002.jpg",
@@ -28735,6 +28772,7 @@
       "hex": "",
       "image": "/uploads/fabric/Spirit of Le Mans/FA2202.jpg",
       "swatchImage": "/uploads/fabric/Spirit of Le Mans/FA2202.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA2202.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Spirit of Le Mans/FA2202.jpg",
@@ -28774,6 +28812,7 @@
       "hex": "",
       "image": "/uploads/fabric/Spirit of Le Mans/FA2729.jpg",
       "swatchImage": "/uploads/fabric/Spirit of Le Mans/FA2729.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA2729.jpg",
       "caseGallery": [
         {
           "image": "/uploads/fabric/Spirit of Le Mans/FA2729.jpg",

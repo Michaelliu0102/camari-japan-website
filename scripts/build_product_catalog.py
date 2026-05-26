@@ -60,6 +60,7 @@ SHEETS = {
         "hex",
         "image",
         "swatch_image",
+        "preview_image",
         "summary_en",
         "summary_ja",
         "seo_title_en",
@@ -93,6 +94,27 @@ SHEETS = {
         "alt_en",
         "alt_ja",
     ],
+}
+
+LEGACY_SHEETS = {
+    "skus": [
+        "sku_slug",
+        "material_slug",
+        "product_type_slug",
+        "code",
+        "color_name_en",
+        "color_name_ja",
+        "hex",
+        "image",
+        "swatch_image",
+        "summary_en",
+        "summary_ja",
+        "seo_title_en",
+        "seo_title_ja",
+        "seo_description_en",
+        "seo_description_ja",
+        "seo_image",
+    ]
 }
 
 
@@ -153,6 +175,7 @@ TEMPLATE_ROWS = {
             "hex": "#1A1A1A",
             "image": "/uploads/alcantara/panel/c-alc-4991-main.jpg",
             "swatch_image": "/uploads/alcantara/swatches/c-alc-4991-swatch.jpg",
+            "preview_image": "",
             "summary_en": "A deep charcoal tone for refined interiors.",
             "summary_ja": "上質な空間に向けたディープチャコールトーン。",
             "seo_title_en": "C-ALC-4991 Shadow Black | CAMARI JAPAN",
@@ -220,12 +243,19 @@ def read_rows(workbook_path: Path) -> dict[str, list[dict[str, Any]]]:
 
       sheet = workbook[sheet_name]
       header_row = [cell.value for cell in next(sheet.iter_rows(min_row=1, max_row=1))]
+      active_headers = headers
       if header_row != headers:
-          raise ValueError(f"Worksheet {sheet_name} headers do not match template")
+          legacy_headers = LEGACY_SHEETS.get(sheet_name)
+          if legacy_headers and header_row == legacy_headers:
+              active_headers = legacy_headers
+          else:
+              raise ValueError(f"Worksheet {sheet_name} headers do not match template")
 
       rows: list[dict[str, Any]] = []
       for values in sheet.iter_rows(min_row=2, values_only=True):
-          row = {header: ("" if value is None else str(value).strip()) for header, value in zip(headers, values)}
+          row = {header: ("" if value is None else str(value).strip()) for header, value in zip(active_headers, values)}
+          for missing_header in headers:
+              row.setdefault(missing_header, "")
           if any(row.values()):
               rows.append(row)
       rows_by_sheet[sheet_name] = rows
@@ -347,6 +377,7 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
             "hex": row["hex"],
             "image": normalize_image_path(row["image"]),
             "swatchImage": normalize_image_path(row["swatch_image"]) or None,
+            "previewImage": normalize_image_path(row["preview_image"]) or None,
             "caseGallery": case_gallery_by_sku.get(row["sku_slug"], []),
             "summary": localized(row["summary_en"], row["summary_ja"]),
             "specs": specs_by_sku.get(row["sku_slug"], []),
@@ -359,6 +390,8 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
         }
         if not sku["swatchImage"]:
             del sku["swatchImage"]
+        if not sku["previewImage"]:
+            del sku["previewImage"]
         skus.append(sku)
 
     return {"productTypes": product_types, "skus": skus}

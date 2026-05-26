@@ -69,16 +69,22 @@ export function MaterialArticleGrid({ locale, materialSlug, productTypes, skus }
                   {previewSkus.length > 1 ? (
                     <div className="absolute left-4 top-4 z-20 flex max-h-[calc(100%-2rem)] w-16 flex-col gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
                       {previewSkus.map((sku) => (
-                        <button
-                          aria-label={sku.code ? `Preview ${sku.code}` : "Preview fabric colour"}
-                          className="relative aspect-square overflow-hidden border border-white/85 bg-stone shadow-sm transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
-                          key={sku.slug}
-                          onFocus={() => setPreviewBySlug((current) => ({ ...current, [productType.slug]: sku.image }))}
-                          onMouseEnter={() => setPreviewBySlug((current) => ({ ...current, [productType.slug]: sku.image }))}
-                          type="button"
-                        >
-                          <Image alt="" className="object-cover" fill sizes="64px" src={sku.swatchImage ?? sku.image} />
-                        </button>
+                        (() => {
+                          const cardPreviewImage = sku.previewImage ?? sku.swatchImage ?? sku.image;
+
+                          return (
+                            <button
+                              aria-label={sku.code ? `Preview ${sku.code}` : "Preview fabric colour"}
+                              className="relative aspect-square overflow-hidden border border-white/85 bg-stone shadow-sm transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+                              key={sku.slug}
+                              onFocus={() => setPreviewBySlug((current) => ({ ...current, [productType.slug]: cardPreviewImage }))}
+                              onMouseEnter={() => setPreviewBySlug((current) => ({ ...current, [productType.slug]: cardPreviewImage }))}
+                              type="button"
+                            >
+                              <Image alt="" className="object-cover" fill sizes="64px" src={cardPreviewImage} />
+                            </button>
+                          );
+                        })()
                       ))}
                       {productSkus.length > previewSkus.length ? (
                         <span className="label-caps flex min-h-8 items-center justify-center bg-charcoal/70 text-[8px] tracking-[0.18em] text-white">

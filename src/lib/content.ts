@@ -83,6 +83,7 @@ export type Sku = {
   hex?: string;
   image: string;
   swatchImage?: string;
+  previewImage?: string;
   caseGallery?: Array<{ image: string; alt: LocalizedString }>;
   summary: LocalizedString;
   specs: Array<{ label: LocalizedString; value: LocalizedString }>;
