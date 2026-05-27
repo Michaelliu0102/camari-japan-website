@@ -194,3 +194,17 @@ test("Sanity loaders pass the active market to product and SKU queries", async (
   assert.match(loaders, /productTypesQuery, \{ market \}/);
   assert.match(loaders, /skusQuery, \{ market \}/);
 });
+
+test("test animation route renders the exploded view playground", async () => {
+  const page = await source("src/app/test-animation/page.tsx");
+  const component = await source("src/components/ExplodedViewTest.tsx");
+
+  assert.match(page, /ExplodedViewTest/);
+  assert.match(component, /from "framer-motion"/);
+  assert.match(component, /hasExploded/);
+  assert.match(component, /Explode material assembly/);
+  assert.match(component, /ASSEMBLY/);
+  assert.match(component, /type: "spring"/);
+  assert.match(component, /NEXT_PUBLIC_MARKET/);
+  assert.match(component, /Alcantara® Fabric Layer/);
+});
