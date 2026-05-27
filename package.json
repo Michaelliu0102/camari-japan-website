@@ -11,6 +11,8 @@
     "typecheck": "tsc --noEmit",
     "catalog:template": "python3 scripts/build_product_catalog.py --write-template data/import/product-catalog-template.xlsx",
     "catalog:build": "python3 scripts/build_product_catalog.py data/import/product-catalog.xlsx",
+    "sanity:markets:dry-run": "sanity exec scripts/backfillProductTypeMarkets.mjs",
+    "sanity:markets:migrate": "sanity exec scripts/backfillProductTypeMarkets.mjs -- --commit",
     "netsuite:newsletter:smoke": "node scripts/smoke-test-newsletter.mjs"
   },
   "dependencies": {

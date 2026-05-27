@@ -178,3 +178,19 @@ test("Studio route explains missing Sanity project configuration before loading 
   assert.match(page, /replace-me/);
   assert.match(page, /Sanity project is not configured/);
 });
+
+test("Sanity product queries filter by deployment market", async () => {
+  const queries = await source("src/sanity/lib/queries.ts");
+
+  assert.match(queries, /\$market in markets/);
+  assert.match(queries, /\$market in productType->markets/);
+});
+
+test("Sanity loaders pass the active market to product and SKU queries", async () => {
+  const loaders = await source("src/sanity/lib/loaders.ts");
+
+  assert.match(loaders, /getSanityMarket/);
+  assert.match(loaders, /const market = getSanityMarket\(\)/);
+  assert.match(loaders, /productTypesQuery, \{ market \}/);
+  assert.match(loaders, /skusQuery, \{ market \}/);
+});

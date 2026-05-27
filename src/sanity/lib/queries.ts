@@ -45,6 +45,7 @@ export type RawMaterial = {
 export type RawProductType = {
   name?: LocalizedString | null;
   slug?: string | null;
+  markets?: string[] | null;
   materialSlug?: string | null;
   summary?: LocalizedString | null;
   productCode?: string | null;
@@ -181,9 +182,10 @@ export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
   }
 }`;
 
-export const productTypesQuery = `*[_type == "productType"] | order(material->name.en asc, name.en asc) {
+export const productTypesQuery = `*[_type == "productType" && $market in markets] | order(material->name.en asc, name.en asc) {
   name,
   "slug": slug.current,
+  markets,
   "materialSlug": material->slug.current,
   summary,
   productCode,
@@ -211,7 +213,7 @@ export const productTypesQuery = `*[_type == "productType"] | order(material->na
   }
 }`;
 
-export const skusQuery = `*[_type == "sku"] | order(code asc) {
+export const skusQuery = `*[_type == "sku" && $market in productType->markets] | order(code asc) {
   code,
   "slug": slug.current,
   "materialSlug": material->slug.current,

@@ -19,6 +19,7 @@ import {
 import type { Locale } from "@/lib/locales";
 import { adaptCatalog, adaptHomePageSettings, adaptMaterial, adaptMaterialCategory, adaptNewsItem, adaptProductType, adaptProjectCase, adaptSku } from "./adapters";
 import { getSanityClient } from "./client";
+import { getSanityMarket } from "./market";
 import {
   catalogsQuery,
   homePageSettingsQuery,
@@ -73,8 +74,11 @@ async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
   query: string,
   params: Record<string, string>,
   fallback: Value[],
-  adapter: (raw: Raw) => Value
+  adapter: (raw: Raw) => Value,
+  options: { includeFallbackRecords?: boolean; fallbackOnEmpty?: boolean } = {}
 ): Promise<Value[]> {
+  const { includeFallbackRecords = true, fallbackOnEmpty = true } = options;
+
   if (!isSanityConfigured()) {
     return fallback;
   }
@@ -82,12 +86,12 @@ async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
   try {
     const results = await getSanityClient().fetch<Raw[]>(query, params);
     if (!results || results.length === 0) {
-      return fallback;
+      return fallbackOnEmpty ? fallback : [];
     }
 
-    const merged = new Map(fallback.map((item) => [item.slug, item]));
+    const merged = new Map(includeFallbackRecords ? fallback.map((item) => [item.slug, item]) : []);
     for (const item of results.map(adapter)) {
-      const existing = merged.get(item.slug);
+      const existing = merged.get(item.slug) ?? fallback.find((fallbackItem) => fallbackItem.slug === item.slug);
       if (existing) {
         const existingAny = existing as Record<string, unknown>;
         const itemAny = item as Record<string, unknown>;
@@ -146,7 +150,11 @@ export async function loadMaterials(): Promise<Material[]> {
 }
 
 export async function loadProductTypes(): Promise<ProductType[]> {
-  return fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, {}, fallbackProductTypes, adaptProductType);
+  const market = getSanityMarket();
+  return fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, { market }, fallbackProductTypes, adaptProductType, {
+    includeFallbackRecords: false,
+    fallbackOnEmpty: false
+  });
 }
 
 export async function loadMaterial(slug: string): Promise<Material | undefined> {
@@ -165,7 +173,11 @@ export async function loadProductType(materialSlug: string, productTypeSlug: str
 }
 
 export async function loadSkus(): Promise<Sku[]> {
-  return fetchAndMergeBySlug<RawSku, Sku>(skusQuery, {}, fallbackSkus, adaptSku);
+  const market = getSanityMarket();
+  return fetchAndMergeBySlug<RawSku, Sku>(skusQuery, { market }, fallbackSkus, adaptSku, {
+    includeFallbackRecords: false,
+    fallbackOnEmpty: false
+  });
 }
 
 export async function loadSkusForMaterial(materialSlug: string): Promise<Sku[]> {
