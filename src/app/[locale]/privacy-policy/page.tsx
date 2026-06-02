@@ -11,9 +11,9 @@ const content = {
   en: {
     eyebrow: "Privacy Policy",
     title: "Privacy Policy",
-    description: "How CAMARI JAPAN handles personal information received through direct contact and newsletter subscriptions.",
+    description: `How ${site.organizationName} handles personal information received through direct contact and newsletter subscriptions.`,
     intro:
-      "CAMARI JAPAN handles personal information with care and uses it only for communication, appointment coordination, material inquiries, and website operations.",
+      `${site.organizationName} handles personal information with care and uses it only for communication, appointment coordination, material inquiries, and website operations.`,
     sections: [
       {
         title: "Information We Receive",
@@ -36,9 +36,9 @@ const content = {
   ja: {
     eyebrow: "プライバシーポリシー",
     title: "プライバシーポリシー",
-    description: "CAMARI JAPAN における個人情報の取り扱いについて。",
+    description: `${site.organizationName} における個人情報の取り扱いについて。`,
     intro:
-      "CAMARI JAPAN は、お問い合わせ、ショールーム予約、素材に関するご相談、ニュースレター購読に伴い取得する個人情報を適切に取り扱います。",
+      `${site.organizationName} は、お問い合わせ、ショールーム予約、素材に関するご相談、ニュースレター購読に伴い取得する個人情報を適切に取り扱います。`,
     sections: [
       {
         title: "取得する情報",
@@ -76,7 +76,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/privacy-policy",
-    title: `${labels.title} | CAMARI JAPAN`,
+    title: `${labels.title} | ${site.name}`,
     description: labels.description
   });
 }

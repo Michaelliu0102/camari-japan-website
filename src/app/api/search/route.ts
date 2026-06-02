@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { loadMaterialCategories, loadMaterials, loadProjects, loadSkus } from "@/sanity/lib/loaders";
-import { locales } from "@/lib/locales";
 
 export async function GET(request: NextRequest) {
   const q = request.nextUrl.searchParams.get("q")?.trim().toLowerCase() ?? "";
@@ -20,7 +19,6 @@ export async function GET(request: NextRequest) {
     label: string;
     sub: string;
     href: string;
-    localeHrefs: Record<string, string>;
   }> = [];
 
   for (const m of materials) {
@@ -30,8 +28,7 @@ export async function GET(request: NextRequest) {
       results.push({
         label: m.name.en,
         sub: `Material — ${categories.find((c) => c.slug === m.categorySlug)?.name.en ?? ""}`,
-        href: `/materials/${m.slug}`,
-        localeHrefs: Object.fromEntries(locales.map((l) => [l, `/${l}/materials/${m.slug}`])),
+        href: `/materials/${m.slug}`
       });
     }
   }
@@ -44,8 +41,7 @@ export async function GET(request: NextRequest) {
       results.push({
         label: s.colorName?.en ? `${s.code} — ${s.colorName.en}` : s.code,
         sub: `SKU`,
-        href: `/materials/${s.materialSlug}/${s.slug}`,
-        localeHrefs: Object.fromEntries(locales.map((l) => [l, `/${l}/materials/${s.materialSlug}/${s.slug}`])),
+        href: `/materials/${s.materialSlug}/${s.productTypeSlug}/${s.slug}`
       });
     }
   }
@@ -59,8 +55,7 @@ export async function GET(request: NextRequest) {
       results.push({
         label: p.title.en,
         sub: `Project — ${p.industry.en}`,
-        href: `/projects/${p.slug}`,
-        localeHrefs: Object.fromEntries(locales.map((l) => [l, `/${l}/projects/${p.slug}`])),
+        href: `/projects/${p.slug}`
       });
     }
   }

@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DownloadPanel } from "@/components/DownloadPanel";
+import { JsonLd } from "@/components/JsonLd";
 import { SkuSwatches } from "@/components/SkuSwatches";
 import { SpecificationTable } from "@/components/SpecificationTable";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
+import { buildBreadcrumbJsonLd, buildProductJsonLd } from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site-config";
 import { loadMaterial, loadMaterials, loadProductType, loadProductTypesForMaterial, loadSku, loadSkusForProductType } from "@/sanity/lib/loaders";
 
 type PageProps = {
@@ -65,9 +68,26 @@ export default async function ProductTypeSkuDetailPage({ params }: PageProps) {
   }
 
   const skus = await loadSkusForProductType(material.slug, productType.slug);
+  const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
+    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "en" ? "Materials" : "素材", path: "/materials" },
+    { name: material.name[locale], path: `/materials/${material.slug}` },
+    { name: productType.name[locale], path: `/materials/${material.slug}/${productType.slug}/${sku.slug}` },
+    { name: sku.code, path: `/materials/${material.slug}/${productType.slug}/${sku.slug}` }
+  ]);
+  const productSchema = buildProductJsonLd(siteConfig, {
+    name: sku.colorName?.[locale] ? `${productType.name[locale]} ${sku.colorName[locale]}` : `${productType.name[locale]} ${sku.code}`,
+    description: sku.summary[locale],
+    path: `/materials/${material.slug}/${productType.slug}/${sku.slug}`,
+    image: sku.image,
+    sku: sku.code,
+    category: productType.name[locale]
+  });
 
   return (
     <main>
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={productSchema} />
       <SkuSwatches
         initialSku={sku}
         locale={locale}

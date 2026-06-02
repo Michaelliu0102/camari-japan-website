@@ -4,9 +4,12 @@ import Link from "next/link";
 import { CTASection } from "@/components/CTASection";
 import { ExploreCarousel } from "@/components/ExploreCarousel";
 import { HeroVideo } from "@/components/HeroVideo";
+import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
+import { buildOrganizationJsonLd } from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site-config";
 import { loadHomePageSettings, loadMaterialCategories, loadMaterials } from "@/sanity/lib/loaders";
 
 type PageProps = {
@@ -31,6 +34,7 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <main>
+      <JsonLd data={buildOrganizationJsonLd(siteConfig)} />
       <HeroVideo hero={homeSettings.hero} locale={locale} />
       <ExploreCarousel categories={categories} categorySlugs={homeSettings.explore.categorySlugs} locale={locale} materials={materials} productSlides={homeSettings.explore.productSlides} />
 
@@ -47,8 +51,8 @@ export default async function HomePage({ params }: PageProps) {
               </h2>
               <p className="mt-7 text-sm leading-7 text-muted md:text-[0.95rem]">
                 {locale === "en"
-                  ? "CAMARI JAPAN curates materials for teams who need surfaces to communicate quality before a word is spoken: automotive cabins, hospitality interiors, product panels, and bespoke OEM/ODM programs."
-                  : "CAMARI JAPAN は、言葉より先に品質を伝えるサーフェスを求めるチームに向けて素材を選定します。車両キャビン、ホスピタリティ空間、プロダクトパネル、特注 OEM/ODM プログラムに対応します。"}
+                  ? `${site.organizationName} curates materials for teams who need surfaces to communicate quality before a word is spoken: automotive cabins, hospitality interiors, product panels, and bespoke OEM/ODM programs.`
+                  : `${site.organizationName} は、言葉より先に品質を伝えるサーフェスを求めるチームに向けて素材を選定します。車両キャビン、ホスピタリティ空間、プロダクトパネル、特注 OEM/ODM プログラムに対応します。`}
               </p>
             </div>
             <Link className="label-caps inline-flex min-w-[13rem] justify-center border border-outline px-8 py-4 transition-colors hover:bg-charcoal hover:text-white self-center" href={localizedPath(locale, "/about")}>

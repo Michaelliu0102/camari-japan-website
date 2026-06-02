@@ -152,8 +152,8 @@ export async function loadMaterials(): Promise<Material[]> {
 export async function loadProductTypes(): Promise<ProductType[]> {
   const market = getSanityMarket();
   return fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, { market }, fallbackProductTypes, adaptProductType, {
-    includeFallbackRecords: false,
-    fallbackOnEmpty: false
+    includeFallbackRecords: true,
+    fallbackOnEmpty: true
   });
 }
 
@@ -175,8 +175,8 @@ export async function loadProductType(materialSlug: string, productTypeSlug: str
 export async function loadSkus(): Promise<Sku[]> {
   const market = getSanityMarket();
   return fetchAndMergeBySlug<RawSku, Sku>(skusQuery, { market }, fallbackSkus, adaptSku, {
-    includeFallbackRecords: false,
-    fallbackOnEmpty: false
+    includeFallbackRecords: true,
+    fallbackOnEmpty: true
   });
 }
 

@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
-import { MaterialBentoGrid } from "@/components/MaterialBentoGrid";
+import { JsonLd } from "@/components/JsonLd";
+import MagicBento from "@/components/MagicBento/MagicBento";
 import { PageHero } from "@/components/PageHero";
+import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
-import type { Locale } from "@/lib/locales";
+import { localizedPath, type Locale } from "@/lib/locales";
+import { buildBreadcrumbJsonLd } from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site-config";
 import { loadMaterialCategories, loadMaterials } from "@/sanity/lib/loaders";
 
 type PageProps = {
@@ -17,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/materials",
-    title: locale === "en" ? "Materials | CAMARI JAPAN" : "素材 | CAMARI JAPAN",
+    title: locale === "en" ? `Materials | ${site.name}` : `素材 | ${site.name}`,
     description: locale === "en" ? "Browse Alcantara, leather, fabric, and sustainable surface materials." : "Alcantara、レザー、ファブリック、サステナブルサーフェス素材をご覧ください。",
     image: categories[0]?.coverImage
   });
@@ -27,9 +31,14 @@ export default async function MaterialsPage({ params }: PageProps) {
   const { locale } = await params;
   const [categories, materials] = await Promise.all([loadMaterialCategories(), loadMaterials()]);
   const heroCategory = categories[0];
+  const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
+    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "en" ? "Materials" : "素材", path: "/materials" }
+  ]);
 
   return (
     <main>
+      <JsonLd data={breadcrumbSchema} />
       {heroCategory ? (
         <PageHero
           image={heroCategory.coverImage}
@@ -48,13 +57,47 @@ export default async function MaterialsPage({ params }: PageProps) {
           </p>
         </div>
       </section>
-      <MaterialBentoGrid categories={categories} locale={locale} materials={materials} />
+      <section className="bg-paper py-24 md:py-32" data-nav-invert>
+        <div className="section-shell">
+        <MagicBento
+          cards={categories
+            .map((category) => {
+              const bySlug = materials.find((m) => m.slug === category.slug);
+              const byName = !bySlug
+                ? materials.find((m) => m.name.en.toLowerCase() === category.name.en.toLowerCase())
+                : null;
+              const materialSlug = bySlug ? category.slug : byName ? byName.slug : null;
+              return {
+                title: category.name[locale],
+                description: category.tagline[locale],
+                image: category.coverImage,
+                href: materialSlug ? localizedPath(locale, `/materials/${materialSlug}`) : localizedPath(locale, "/materials"),
+                variant: "image" as const,
+              };
+            })
+            // Swap European Fabric (index 1) with Vegan Leather (index 2)
+            .map((card, i, arr) => {
+              if (i === 1) return arr[2];
+              if (i === 2) return arr[1];
+              return card;
+            })}
+          enableStars={false}
+          enableSpotlight
+          enableBorderGlow
+          enableTilt
+          enableMagnetism={false}
+          clickEffect
+          spotlightRadius={500}
+          glowColor="166, 138, 94"
+        />
+        </div>
+      </section>
       <CTASection
         body={locale === "en" ? "Download catalogs or contact the team for article availability and technical guidance." : "カタログのダウンロード、品番の在庫、技術情報についてお問い合わせください。"}
         href="/downloads"
         label={locale === "en" ? "View Catalogs" : "カタログを見る"}
         locale={locale}
-        title={locale === "en" ? "Request a material kit in the next release." : "素材キット申請は次期リリースで対応予定です。"}
+        title={locale === "en" ? "Review the material library and request project guidance." : "素材ライブラリを確認し、プロジェクト相談へお進みください。"}
       />
     </main>
   );

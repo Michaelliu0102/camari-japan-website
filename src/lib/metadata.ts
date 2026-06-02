@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { site } from "./content";
-import { locales, localizedPath, type Locale } from "./locales";
+import { localizedPath, type Locale } from "./locales";
+import { formatPageTitle, replaceSiteBrand, siteConfig } from "./site-config";
 
 type MetadataInput = {
   locale: Locale;
@@ -12,20 +12,21 @@ type MetadataInput = {
 
 export function createPageMetadata({ locale, path = "", title, description, image }: MetadataInput): Metadata {
   const pathname = localizedPath(locale, path);
-  const url = new URL(pathname, site.url);
+  const url = new URL(pathname, `${siteConfig.siteUrl}/`);
+  const normalizedTitle = formatPageTitle(title);
+  const normalizedDescription = replaceSiteBrand(description, siteConfig.organizationName);
 
   return {
-    title,
-    description,
+    title: normalizedTitle,
+    description: normalizedDescription,
     alternates: {
-      canonical: url.toString(),
-      languages: Object.fromEntries(locales.map((item) => [item, new URL(localizedPath(item, path), site.url).toString()]))
+      canonical: url.toString()
     },
     openGraph: {
-      title,
-      description,
+      title: normalizedTitle,
+      description: normalizedDescription,
       url: url.toString(),
-      siteName: site.name,
+      siteName: siteConfig.siteName,
       locale,
       type: "website",
       images: image ? [{ url: image }] : undefined

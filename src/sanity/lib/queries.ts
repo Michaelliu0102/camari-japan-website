@@ -182,7 +182,7 @@ export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
   }
 }`;
 
-export const productTypesQuery = `*[_type == "productType" && $market in markets] | order(material->name.en asc, name.en asc) {
+export const productTypesQuery = `*[_type == "productType" && (!defined(markets) || $market in markets)] | order(material->name.en asc, name.en asc) {
   name,
   "slug": slug.current,
   markets,
@@ -213,7 +213,7 @@ export const productTypesQuery = `*[_type == "productType" && $market in markets
   }
 }`;
 
-export const skusQuery = `*[_type == "sku" && $market in productType->markets] | order(code asc) {
+export const skusQuery = `*[_type == "sku" && (!defined(productType->markets) || $market in productType->markets)] | order(code asc) {
   code,
   "slug": slug.current,
   "materialSlug": material->slug.current,

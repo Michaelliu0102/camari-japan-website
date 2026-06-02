@@ -4,9 +4,14 @@ const allowedMarkets = new Set<SanityMarket>(["global", "japan"]);
 
 export function getSanityMarket(): SanityMarket {
   const configuredMarket = process.env.NEXT_PUBLIC_SANITY_MARKET;
+  const configuredSiteKey = process.env.NEXT_PUBLIC_SITE_KEY;
 
   if (configuredMarket === "global" || configuredMarket === "japan") {
     return configuredMarket;
+  }
+
+  if (configuredSiteKey === "global" || configuredSiteKey === "japan") {
+    return configuredSiteKey;
   }
 
   if (configuredMarket && !allowedMarkets.has(configuredMarket as SanityMarket)) {

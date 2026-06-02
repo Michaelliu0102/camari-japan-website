@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Instagram, Linkedin } from "lucide-react";
-import { site } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
 import { FooterNewsletterForm } from "@/components/FooterNewsletterForm";
+import { siteConfig } from "@/lib/site-config";
 
 type FooterProps = {
   locale: Locale;
@@ -10,7 +10,7 @@ type FooterProps = {
 
 const footerCopy = {
   en: {
-    companyName: "CAMARI JAPAN",
+    companyName: siteConfig.siteName,
     nav: [
       { label: "Company Profile", href: "/about" },
       { label: "Privacy Policy", href: "/privacy-policy" },
@@ -20,7 +20,7 @@ const footerCopy = {
     ]
   },
   ja: {
-    companyName: "CAMARI JAPAN",
+    companyName: siteConfig.siteName,
     nav: [
       { label: "会社概要", href: "/about" },
       { label: "プライバシーポリシー", href: "/privacy-policy" },
@@ -73,7 +73,7 @@ export function Footer({ locale }: FooterProps) {
         </div>
 
         <div className="flex flex-col gap-4 pt-6 text-[10px] uppercase tracking-[0.28em] text-muted md:flex-row md:items-center md:justify-between">
-          <p>© 2026 CAMARI JAPAN. ALL RIGHTS RESERVED.</p>
+          <p>© 2026 {siteConfig.siteName}. ALL RIGHTS RESERVED.</p>
           <nav aria-label="Footer navigation">
             <ul className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-3 md:justify-end">
               {labels.nav.map((item) => (

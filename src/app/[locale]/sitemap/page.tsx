@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
 
@@ -11,7 +12,7 @@ const copy = {
   en: {
     eyebrow: "Sitemap",
     title: "Sitemap",
-    description: "A structured overview of key CAMARI JAPAN website pages.",
+    description: `A structured overview of key ${site.organizationName} website pages.`,
     sections: [
       {
         title: "Company",
@@ -43,7 +44,7 @@ const copy = {
   ja: {
     eyebrow: "サイトマップ",
     title: "サイトマップ",
-    description: "CAMARI JAPAN ウェブサイトの主要ページ一覧。",
+    description: `${site.organizationName} ウェブサイトの主要ページ一覧。`,
     sections: [
       {
         title: "Company",
@@ -89,7 +90,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/sitemap",
-    title: `${labels.title} | CAMARI JAPAN`,
+    title: `${labels.title} | ${site.name}`,
     description: labels.description
   });
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
+import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
 import { loadMaterialCategories, loadNewsItems } from "@/sanity/lib/loaders";
@@ -16,8 +17,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/media",
-    title: locale === "en" ? "Media | CAMARI JAPAN" : "メディア | CAMARI JAPAN",
-    description: locale === "en" ? "News, exhibitions, materials, and editorial updates from CAMARI JAPAN." : "CAMARI JAPAN のニュース、展示会、素材、編集記事。",
+    title: locale === "en" ? `Media | ${site.name}` : `メディア | ${site.name}`,
+    description:
+      locale === "en"
+        ? `News, exhibitions, materials, and editorial updates from ${site.organizationName}.`
+        : `${site.organizationName} のニュース、展示会、素材、編集記事。`,
     image: newsItems[0]?.image
   });
 }

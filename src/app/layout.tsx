@@ -1,20 +1,17 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
-import { site } from "@/lib/content";
+import { formatPageTitle, siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} | ${site.slogan.en}`,
-    template: `%s | ${site.name}`
-  },
-  description: site.description.en
+  metadataBase: new URL(`${siteConfig.siteUrl}/`),
+  title: formatPageTitle(siteConfig.slogan[siteConfig.defaultLocale]),
+  description: siteConfig.description[siteConfig.defaultLocale]
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang={siteConfig.defaultLocale}>
       <body>{children}</body>
     </html>
   );

@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ApplicationGrid } from "@/components/ApplicationGrid";
 import { CTASection } from "@/components/CTASection";
+import { JsonLd } from "@/components/JsonLd";
 import { MaterialArticleGrid } from "@/components/MaterialArticleGrid";
 import { MaterialIntro } from "@/components/MaterialIntro";
 import { PageHero } from "@/components/PageHero";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
+import { buildBreadcrumbJsonLd } from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site-config";
 import { loadMaterial, loadMaterials, loadProductTypesForMaterial, loadSkusForMaterial } from "@/sanity/lib/loaders";
 
 type PageProps = {
@@ -54,9 +57,15 @@ export default async function MaterialDetailPage({ params }: PageProps) {
   const visibleSkus = material.slug === "fabric" ? fabricSkus : skus;
   const firstSku = visibleSkus[0];
   const showArticleGrid = material.slug === "fabric" && fabricProductTypes.length > 0;
+  const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
+    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "en" ? "Materials" : "素材", path: "/materials" },
+    { name: material.name[locale], path: `/materials/${material.slug}` }
+  ]);
 
   return (
     <main>
+      <JsonLd data={breadcrumbSchema} />
       <PageHero eyebrow={material.eyebrow[locale]} image={material.heroImage} subtitle={material.heroSubtitle[locale]} title={material.heroTitle[locale]} />
       <MaterialIntro locale={locale} material={material} />
       {showArticleGrid ? <MaterialArticleGrid locale={locale} materialSlug={material.slug} productTypes={fabricProductTypes} skus={fabricSkus} /> : <ApplicationGrid locale={locale} material={material} skus={skus} />}

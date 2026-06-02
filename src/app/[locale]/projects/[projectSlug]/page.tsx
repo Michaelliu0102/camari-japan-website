@@ -3,8 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CTASection } from "@/components/CTASection";
+import { JsonLd } from "@/components/JsonLd";
+import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
+import { buildBreadcrumbJsonLd } from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site-config";
 import { loadMaterial, loadProject, loadProjects } from "@/sanity/lib/loaders";
 
 type PageProps = {
@@ -46,9 +50,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   }
 
   const material = await loadMaterial(project.materialSlug);
+  const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
+    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "en" ? "Projects" : "事例", path: "/projects" },
+    { name: project.title[locale], path: `/projects/${project.slug}` }
+  ]);
 
   return (
     <main className="bg-paper pt-[var(--nav-height)]" data-nav-invert>
+      <JsonLd data={breadcrumbSchema} />
       <section className="section-shell grid gap-12 py-16 md:grid-cols-12 md:py-24">
         <div className="md:col-span-5">
           <p className="label-caps text-gold">{project.industry[locale]}</p>
@@ -73,14 +83,14 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <p className="label-caps text-gold">{locale === "en" ? "Case Notes" : "事例ノート"}</p>
           <p className="mt-8 text-xl leading-10 text-charcoal/75">
             {locale === "en"
-              ? "This v1 case template is ready for CMS-driven image galleries, material references, and long-form project text."
-              : "この v1 事例テンプレートは、CMS から画像ギャラリー、関連素材、長文プロジェクト本文を管理できる構造です。"}
+              ? "Each case study brings together project context, material selection, and surface intent to support future program conversations."
+              : "各事例では、プロジェクト背景、素材選定、サーフェスの意図を整理し、今後のプログラム相談に役立つ情報としてまとめています。"}
           </p>
         </div>
       </section>
 
       <CTASection
-        body={locale === "en" ? "Contact CAMARI JAPAN for project-fit material recommendations." : "プロジェクトに適した素材提案についてお問い合わせください。"}
+        body={locale === "en" ? `Contact ${site.organizationName} for project-fit material recommendations.` : `${site.organizationName} へプロジェクトに適した素材提案をご相談ください。`}
         label={locale === "en" ? "Discuss a Program" : "プログラムを相談する"}
         locale={locale}
         title={locale === "en" ? "Plan a comparable material program." : "同様の素材プログラムを計画する。"}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
 import { createPageMetadata } from "@/lib/metadata";
+import { site } from "@/lib/content";
 import type { Locale } from "@/lib/locales";
 import { getProductCategory, productCategories } from "@/content/products/categories";
 import { notFound } from "next/navigation";
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return createPageMetadata({
       locale,
       path: "/products",
-      title: "Products | CAMARI JAPAN",
+      title: `Products | ${site.name}`,
       description: ""
     });
   }
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: `/products/${categorySlug}`,
-    title: locale === "en" ? `${category.title.en} | CAMARI JAPAN` : `${category.title.ja} | CAMARI JAPAN`,
+    title: locale === "en" ? `${category.title.en} | ${site.name}` : `${category.title.ja} | ${site.name}`,
     description: category.description[locale],
     image: category.heroImage
   });
@@ -74,14 +75,14 @@ export default async function ProductCategoryPage({ params }: PageProps) {
       <CTASection
         body={
           locale === "en"
-            ? "Contact is currently handled by direct email and showroom appointment. A structured inquiry flow will be added later."
-            : "現在のお問い合わせはメールとショールーム予約で対応します。構造化された問い合わせフォームは後日追加予定です。"
+            ? "Share your use case, finish target, and production requirements to discuss the right material program."
+            : "用途、仕上げの方向性、生産条件を共有いただくことで、最適な素材プログラムをご提案します。"
         }
         locale={locale}
         title={
           locale === "en"
-            ? "Discuss a surface program with CAMARI JAPAN."
-            : "CAMARI JAPAN とサーフェス開発をご相談ください。"
+            ? `Discuss a surface program with ${site.organizationName}.`
+            : `${site.organizationName} とサーフェス開発をご相談ください。`
         }
       />
     </main>

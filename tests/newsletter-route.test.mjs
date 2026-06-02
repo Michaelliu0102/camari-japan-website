@@ -24,7 +24,7 @@ async function compileModule(sourcePath, outputPath) {
 
 async function loadRouteModule() {
   const root = await mkdtemp(path.join(tmpdir(), "camari-newsletter-route-"));
-  const compiledRoute = path.join(root, "src/app/api/newsletter/subscribe/route.js");
+  const compiledRoute = path.join(root, "src/app/api/newsletter/subscribe/handler.js");
   const compiledNewsletter = path.join(root, "src/lib/newsletter.js");
   const compiledAdapter = path.join(root, "src/lib/netsuite-newsletter.js");
 
@@ -32,7 +32,7 @@ async function loadRouteModule() {
   await mkdir(path.dirname(compiledNewsletter), { recursive: true });
   await writeFile(path.join(root, "package.json"), '{"type":"module"}');
 
-  await compileModule(path.join(projectRoot, "src/app/api/newsletter/subscribe/route.ts"), compiledRoute);
+  await compileModule(path.join(projectRoot, "src/app/api/newsletter/subscribe/handler.ts"), compiledRoute);
   await compileModule(path.join(projectRoot, "src/lib/newsletter.ts"), compiledNewsletter);
   await compileModule(path.join(projectRoot, "src/lib/netsuite-newsletter.ts"), compiledAdapter);
 

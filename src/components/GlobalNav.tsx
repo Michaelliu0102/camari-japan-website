@@ -5,99 +5,107 @@ import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SearchOverlay } from "@/components/SearchOverlay";
 import { getAlternateLocale, localizedPath, type Locale } from "@/lib/locales";
+import { siteConfig } from "@/lib/site-config";
 
 type GlobalNavProps = {
   locale: Locale;
 };
 
 type NavChild = {
-  label: string;
+  label: Record<Locale, string>;
   href: string;
-  description: string;
+  description: Record<Locale, string>;
 };
 
 type NavItem = {
-  label: string;
+  label: Record<Locale, string>;
   href: string;
   children?: NavChild[];
 };
 
 const navItems = [
-  { label: "Home", href: "" },
-  { label: "About", href: "/about" },
+  { label: { en: "Home", ja: "ホーム" }, href: "" },
+  { label: { en: "About", ja: "会社情報" }, href: "/about" },
   {
-    label: "Material",
+    label: { en: "Material", ja: "素材" },
     href: "/materials",
     children: [
       {
-        label: "Alcantara",
+        label: { en: "Alcantara", ja: "アルカンターラ" },
         href: "/materials/alcantara",
-        description: "Premium Italian surface material"
+        description: { en: "Premium Italian surface material", ja: "イタリア発の上質なサーフェス素材" }
       },
       {
-        label: "Leather",
+        label: { en: "Leather", ja: "レザー" },
         href: "/materials/leather",
-        description: "Full-grain and refined hides"
+        description: { en: "Full-grain and refined hides", ja: "天然皮革と上質な仕上げのマテリアル" }
       },
       {
-        label: "Vegan Leather",
+        label: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
         href: "/materials/vegan-leather",
-        description: "High-performance alternatives"
+        description: { en: "High-performance alternatives", ja: "高機能な代替レザー素材" }
       },
       {
-        label: "Fabric",
+        label: { en: "Fabric", ja: "ファブリック" },
         href: "/materials/fabric",
-        description: "Technical and decorative textiles"
+        description: { en: "Technical and decorative textiles", ja: "意匠性と機能性を備えたテキスタイル" }
       }
     ]
   },
   {
-    label: "Product",
+    label: { en: "Product", ja: "製品" },
     href: "/products",
     children: [
       {
-        label: "Automotive Interior Accessories",
+        label: { en: "Automotive Interior Accessories", ja: "自動車内装アクセサリー" },
         href: "/products/automotive-interior-accessories",
-        description: "Cabin panels, steering surfaces, seating, and trim for automotive and mobility interiors"
+        description: { en: "Cabin panels, steering surfaces, seating, and trim for automotive and mobility interiors", ja: "車両・モビリティ内装向けのパネル、ステアリング、シート、トリム" }
       },
       {
-        label: "Tech Accessories",
+        label: { en: "Tech Accessories", ja: "テックアクセサリー" },
         href: "/products/tech-accessories",
-        description: "Surface programs for consumer electronics, wearables, and device accessories"
+        description: { en: "Surface programs for consumer electronics, wearables, and device accessories", ja: "デバイス、ウェアラブル、電子機器向けのサーフェスプログラム" }
       },
       {
-        label: "Lifestyle",
+        label: { en: "Lifestyle", ja: "ライフスタイル" },
         href: "/products/lifestyle",
-        description: "Material solutions for lifestyle products, packaging, and personal goods"
+        description: { en: "Material solutions for lifestyle products, packaging, and personal goods", ja: "ライフスタイル製品、パッケージ、パーソナルグッズ向け素材提案" }
       },
       {
-        label: "Corporate Gifts",
+        label: { en: "Corporate Gifts", ja: "法人ギフト" },
         href: "/products/corporation-gift",
-        description: "Premium material programs for corporate gifting, awards, and brand merchandise"
+        description: { en: "Premium material programs for corporate gifting, awards, and brand merchandise", ja: "法人ギフト、表彰品、ブランドグッズ向けの上質な素材プログラム" }
       }
     ]
   },
   {
-    label: "Media",
+    label: { en: "Media", ja: "メディア" },
     href: "/media",
     children: [
       {
-        label: "Press & Notes",
+        label: { en: "Press & Notes", ja: "ニュース・ノート" },
         href: "/media",
-        description: "News, exhibitions, and material stories"
+        description: { en: "News, exhibitions, and material stories", ja: "ニュース、展示会、素材にまつわるストーリー" }
       },
       {
-        label: "Downloads",
+        label: { en: "Downloads", ja: "ダウンロード" },
         href: "/downloads",
-        description: "Brand and material files for project teams"
+        description: { en: "Brand and material files for project teams", ja: "プロジェクトチーム向けのブランド・素材資料" }
       }
     ]
   },
-  { label: "Contact", href: "/contact" }
+  { label: { en: "Contact", ja: "お問い合わせ" }, href: "/contact" }
 ] satisfies NavItem[];
 
+function getLanguageSwitchHref(locale: Locale): string {
+  if (siteConfig.enableLocalePreview) {
+    return `/${getAlternateLocale(locale)}`;
+  }
+
+  return siteConfig.alternateSiteHomeUrl;
+}
+
 export function GlobalNav({ locale }: GlobalNavProps) {
-  const alternateLocale = getAlternateLocale(locale);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [invert, setInvert] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -147,13 +155,14 @@ export function GlobalNav({ locale }: GlobalNavProps) {
   const dropdownGlassClass = "border-y border-charcoal/10 bg-white text-charcoal shadow-material";
   const dropdownMutedText = "text-muted";
   const dropdownItemHover = "hover:bg-charcoal/5";
+  const languageSwitchHref = getLanguageSwitchHref(locale);
 
   return (
     <>
       <header className={`${glassClass} fixed left-0 top-0 z-50 w-full`}>
       <nav className="mx-auto flex h-[var(--nav-height)] w-full max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop">
         <Link
-          aria-label="CAMARI JAPAN home"
+          aria-label={`${siteConfig.siteName} home`}
           className={logoClass}
           href={localizedPath(locale)}
         >
@@ -172,7 +181,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                   href={localizedPath(locale, item.href)}
                   onClick={() => (document.activeElement as HTMLElement)?.blur()}
                 >
-                  {item.label}
+                  {item.label[locale]}
                   <ChevronDown className="opacity-60 transition-transform duration-500 ease-in-out group-hover/nav-item:rotate-180 group-focus-within/nav-item:rotate-180" size={12} strokeWidth={1.3} />
                 </Link>
                 <div className={`pointer-events-none invisible fixed left-0 top-[var(--nav-height)] w-screen translate-y-2 opacity-0 transition-[opacity,transform,visibility] duration-500 ease-in-out group-hover/nav-item:pointer-events-auto group-hover/nav-item:visible group-hover/nav-item:translate-y-0 group-hover/nav-item:opacity-100 group-focus-within/nav-item:pointer-events-auto group-focus-within/nav-item:visible group-focus-within/nav-item:translate-y-0 group-focus-within/nav-item:opacity-100 ${dropdownGlassClass} backdrop-blur-xl`}>
@@ -186,10 +195,10 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                           onClick={() => (document.activeElement as HTMLElement)?.blur()}
                         >
                           <span className="block font-label text-[10px] font-semibold uppercase tracking-[0.24em]">
-                            {child.label}
+                            {child.label[locale]}
                           </span>
                           <span className={`mt-1 block font-sans text-[0.78rem] font-normal normal-case leading-5 tracking-normal ${dropdownMutedText}`}>
-                            {child.description}
+                            {child.description[locale]}
                           </span>
                         </Link>
                       ))}
@@ -203,7 +212,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                 href={localizedPath(locale, item.href)}
                 key={item.href || "home"}
               >
-                {item.label}
+                {item.label[locale]}
               </Link>
             )
           )}
@@ -211,7 +220,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
 
         <div className={`flex items-center gap-3 ${textColor}`}>
           <button
-            aria-label="Search materials"
+            aria-label={locale === "en" ? "Search materials" : "素材を検索"}
             className={`hidden h-10 w-10 items-center justify-center border transition-colors md:flex ${borderColor} ${btnBg} ${hoverBg}`}
             onClick={() => setSearchOpen(true)}
             type="button"
@@ -220,7 +229,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
           </button>
           <Link
             className={`flex border font-label text-[10px] font-semibold uppercase tracking-[0.24em] transition-colors ${borderColor} ${btnBg} ${hoverBg}`}
-            href={localizedPath(alternateLocale)}
+            href={languageSwitchHref}
           >
             <span className={`px-3 py-3 ${locale === "en" ? "" : "opacity-50"}`}>EN</span>
             <span className="px-1 py-3 opacity-20">/</span>
@@ -254,7 +263,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                   href={localizedPath(locale, item.href)}
                   onClick={closeMobile}
                 >
-                  {item.label}
+                  {item.label[locale]}
                 </Link>
                 {item.children ? (
                   <div className="mt-3 grid gap-2">
@@ -265,7 +274,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                         key={child.href}
                         onClick={closeMobile}
                       >
-                        {child.label}
+                        {child.label[locale]}
                       </Link>
                     ))}
                   </div>
@@ -280,7 +289,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
               }}
               type="button"
             >
-              Search Materials
+              {locale === "en" ? "Search Materials" : "素材を検索"}
             </button>
           </nav>
         </div>

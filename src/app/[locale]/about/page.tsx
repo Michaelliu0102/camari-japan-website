@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
+import { ShinyHeading } from "@/components/ShinyHeading";
 import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
@@ -17,8 +18,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/about",
-    title: locale === "en" ? "About | CAMARI JAPAN" : "会社情報 | CAMARI JAPAN",
-    description: locale === "en" ? "Learn about CAMARI JAPAN's material philosophy, company values, and contact information." : "CAMARI JAPAN の素材哲学、企業価値、連絡先について。",
+    title: locale === "en" ? `About | ${site.name}` : `会社情報 | ${site.name}`,
+    description:
+      locale === "en"
+        ? `Learn about ${site.organizationName}'s material philosophy, company values, and contact information.`
+        : `${site.organizationName} の素材哲学、企業価値、連絡先について。`,
     image: categories[1]?.coverImage
   });
 }
@@ -35,13 +39,15 @@ export default async function AboutPage({ params }: PageProps) {
         <div className="section-shell grid gap-16 md:grid-cols-12">
           <div className="md:col-span-4">
             <p className="label-caps text-gold">Company</p>
-            <h1 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">CAMARI JAPAN</h1>
+            <h1 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">
+              <ShinyHeading text={site.organizationName} />
+            </h1>
           </div>
           <div className="space-y-8 text-lg leading-9 text-muted md:col-span-7 md:col-start-6">
             <p>
               {locale === "en"
-                ? "CAMARI JAPAN curates premium surface materials for teams who treat texture as an essential part of brand, space, and product quality."
-                : "CAMARI JAPAN は、質感をブランド、空間、プロダクト品質の中核として扱うチームに向けて、上質なサーフェス素材を選定します。"}
+                ? `${site.organizationName} curates premium surface materials for teams who treat texture as an essential part of brand, space, and product quality.`
+                : `${site.organizationName} は、質感をブランド、空間、プロダクト品質の中核として扱うチームに向けて、上質なサーフェス素材を選定します。`}
             </p>
             <p>
               {locale === "en"

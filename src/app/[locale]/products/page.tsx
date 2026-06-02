@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
 import { productCategories } from "@/content/products/categories";
+import { site } from "@/lib/content";
 import type { Locale } from "@/lib/locales";
 import { localizedPath } from "@/lib/locales";
 import { createPageMetadata } from "@/lib/metadata";
@@ -17,11 +18,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/products",
-    title: locale === "en" ? "Products | CAMARI JAPAN" : "製品 | CAMARI JAPAN",
+    title: locale === "en" ? `Products | ${site.name}` : `製品 | ${site.name}`,
     description:
       locale === "en"
-        ? "Browse CAMARI JAPAN surface programs for automotive interiors, technology accessories, lifestyle goods, and corporate gifts."
-        : "自動車インテリア、テックアクセサリー、ライフスタイル用品、法人ギフト向けの CAMARI JAPAN サーフェスプログラムをご覧ください。",
+        ? `Browse ${site.organizationName} surface programs for automotive interiors, technology accessories, lifestyle goods, and corporate gifts.`
+        : `自動車インテリア、テックアクセサリー、ライフスタイル用品、法人ギフト向けの ${site.organizationName} サーフェスプログラムをご覧ください。`,
     image: productCategories[0]?.heroImage
   });
 }
@@ -34,7 +35,7 @@ export default async function ProductsPage({ params }: PageProps) {
     <main>
       {heroCategory ? (
         <PageHero
-          image={heroCategory.heroImage}
+          image="/uploads/product/product-hero5.jpg"
           subtitle={
             locale === "en"
               ? "Surface programs organized by product context and customer use"
@@ -71,8 +72,8 @@ export default async function ProductsPage({ params }: PageProps) {
       <CTASection
         body={
           locale === "en"
-            ? "Share the product context, target finish, and production constraints. CAMARI JAPAN will help map material options to the program."
-            : "製品用途、目標仕上げ、生産条件をお知らせください。CAMARI JAPAN が素材候補を整理します。"
+            ? `Share the product context, target finish, and production constraints. ${site.organizationName} will help map material options to the program.`
+            : `製品用途、目標仕上げ、生産条件をお知らせください。${site.organizationName} が素材候補を整理します。`
         }
         locale={locale}
         title={

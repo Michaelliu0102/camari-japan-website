@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
+import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
 import { loadMaterialCategories, loadProjects } from "@/sanity/lib/loaders";
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/oem-odm",
-    title: locale === "en" ? "OEM/ODM | CAMARI JAPAN" : "OEM/ODM | CAMARI JAPAN",
+    title: locale === "en" ? `OEM/ODM | ${site.name}` : `OEM/ODM | ${site.name}`,
     description: locale === "en" ? "OEM and ODM material programs for automotive, product, interior, and spatial design teams." : "車両、プロダクト、インテリア、空間デザインチーム向けの OEM/ODM 素材プログラム。",
     image: categories[0]?.coverImage
   });
@@ -92,9 +93,9 @@ export default async function OemOdmPage({ params }: PageProps) {
         </div>
       </section>
       <CTASection
-        body={locale === "en" ? "Contact is currently handled by direct email and showroom appointment. A structured inquiry flow will be added later." : "現在のお問い合わせはメールとショールーム予約で対応します。構造化された問い合わせフォームは後日追加予定です。"}
+        body={locale === "en" ? "Share your product context, target finish, and technical constraints to start an OEM/ODM discussion with the team." : "製品用途、目標仕上げ、技術条件を共有いただくことで、チームとの OEM/ODM 相談を開始できます。"}
         locale={locale}
-        title={locale === "en" ? "Discuss a surface program with CAMARI JAPAN." : "CAMARI JAPAN とサーフェス開発をご相談ください。"}
+        title={locale === "en" ? `Discuss a surface program with ${site.organizationName}.` : `${site.organizationName} とサーフェス開発をご相談ください。`}
       />
     </main>
   );

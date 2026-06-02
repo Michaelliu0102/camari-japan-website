@@ -1,5 +1,6 @@
 import type { Locale } from "./locales";
 import generatedCatalog from "../data/product-catalog.generated.json" with { type: "json" };
+import { siteConfig } from "./site-config";
 
 export type LocalizedString = Record<Locale, string>;
 
@@ -168,24 +169,14 @@ function mergeSkusByProductType(defaults: Sku[], imported: Sku[]): Sku[] {
 }
 
 export const site = {
-  name: "CAMARI JAPAN",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://camari-japan.example.com",
-  slogan: {
-    en: "The Intersection of Texture and Precision",
-    ja: "質感と精密さの交差点"
-  },
-  description: {
-    en: "Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces.",
-    ja: "上質な素材、Alcantara コレクション、OEM/ODM による空間・車両・プロダクト向けサーフェス。"
-  },
-  contact: {
-    email: "contact@camari.jp",
-    phone: "+81 3 0000 0000",
-    address: {
-      en: "Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan",
-      ja: "〒102-0073 東京都千代田区九段北１丁目１４−１６　403号室"
-    }
-  }
+  name: siteConfig.siteName,
+  url: siteConfig.siteUrl,
+  organizationName: siteConfig.organizationName,
+  alternateSiteHomeUrl: siteConfig.alternateSiteHomeUrl,
+  defaultLocale: siteConfig.defaultLocale,
+  slogan: siteConfig.slogan,
+  description: siteConfig.description,
+  contact: siteConfig.contact
 };
 
 const images = {
@@ -243,14 +234,14 @@ export const homePageSettings: HomePageSettings = {
       },
       {
         slug: "projects",
-        title: { en: "Applied Precision", ja: "応用される精密性" },
-        category: { en: "Product — ODM", ja: "Product — ODM" },
+        title: { en: "PRODUCT", ja: "PRODUCT" },
+        category: { en: "Product", ja: "Product" },
         description: {
-          en: "Case-led development from concept, material matching, and surface execution.",
-          ja: "コンセプト、素材選定、サーフェス実装までのケース主導型開発。"
+          en: "Surface programs organized by product context and customer use.",
+          ja: "製品用途と顧客体験に合わせたサーフェスプログラム。"
         },
-        image: images.interior,
-        href: "/projects"
+        image: "/uploads/product/product-hero.jpg",
+        href: "/products"
       }
     ]
   }
@@ -290,17 +281,6 @@ export const materialCategories: MaterialCategory[] = [
     coverImage: images.vegan,
     accent: "#735B33"
   },
-  {
-    slug: "leather",
-    name: { en: "Leather", ja: "レザー" },
-    tagline: { en: "Natural depth and architectural warmth", ja: "自然な奥行きと建築的な温度" },
-    description: {
-      en: "Premium hides and finishes for bespoke interior and mobility programs.",
-      ja: "特注インテリアとモビリティ開発に向けたプレミアムレザー。"
-    },
-    coverImage: images.interior,
-    accent: "#2A4386"
-  }
 ];
 
 export const materials: Material[] = [
@@ -335,40 +315,6 @@ export const materials: Material[] = [
         ja: "プレミアムインテリアとモビリティ向け Alcantara の用途、性能、カラー、技術資料を紹介します。"
       },
       image: images.alcantara
-    }
-  },
-  {
-    slug: "leather",
-    categorySlug: "leather",
-    name: { en: "Leather", ja: "レザー" },
-    eyebrow: { en: "Full-Grain Collection", ja: "フルグレインコレクション" },
-    heroTitle: { en: "Leather", ja: "Leather" },
-    heroSubtitle: { en: "Natural depth and architectural warmth", ja: "自然な奥行きと建築的な温度" },
-    heroImage: images.interior,
-    introTitle: { en: "The Character of Natural Grain", ja: "天然の木目が持つ個性" },
-    introBody: {
-      en: "Premium full-grain and top-grain hides selected for their supple hand, natural markings, and ability to patina with intention. Each hide carries the trace of its origin, bringing warmth and presence to cabins, lounges, and bespoke product programs.",
-      ja: "しなやかな手触り、自然な風合い、意図を持った経年変化のために選ばれたプレミアムフルグレインおよびトップグレインレザー。一枚一枚がその起源の痕跡を持ち、キャビン、ラウンジ、特注プロダクトに温もりと存在感をもたらします。"
-    },
-    introImage: images.alcantaraSoft,
-    quote: {
-      en: "Leather is not a surface. It is a record of time.",
-      ja: "レザーは表面ではない。それは時間の記録である。"
-    },
-    applications: [
-      { slug: "automotive-nappa", name: { en: "Automotive Nappa", ja: "オートモーティブナッパ" }, colorCount: 69, image: images.interior, productTypeSlug: "automotive-nappa" },
-      { slug: "verona", name: { en: "Verona", ja: "ヴェローナ" }, colorCount: 68, image: images.alcantaraSoft, productTypeSlug: "verona" },
-      { slug: "roma", name: { en: "Roma", ja: "ローマ" }, colorCount: 62, image: images.alcantara, productTypeSlug: "roma" },
-      { slug: "heritage", name: { en: "Heritage", ja: "ヘリテージ" }, colorCount: 12, image: images.outdoor, productTypeSlug: "heritage" },
-      { slug: "linea", name: { en: "Linea", ja: "リネア" }, colorCount: 101, image: images.vegan, productTypeSlug: "linea" }
-    ],
-    seo: {
-      title: { en: "Leather Materials | CAMARI JAPAN", ja: "レザー素材 | CAMARI JAPAN" },
-      description: {
-        en: "Full-grain and top-grain leather collections for automotive, interior, and bespoke product applications.",
-        ja: "自動車、インテリア、特注プロダクト向けのフルグレインおよびトップグレインレザーコレクション。"
-      },
-      image: images.interior
     }
   },
   {
@@ -616,45 +562,6 @@ const fixtureProductTypes: ProductType[] = [
 ];
 
 const fixtureSkus: Sku[] = [
-  {
-    slug: "l-ftg-2101-ebony-black",
-    materialSlug: "leather",
-    productTypeSlug: "automotive-nappa",
-    code: "L-FTG-2101",
-    colorName: { en: "Ebony Black", ja: "エボニーブラック" },
-    hex: "#1C1B1B",
-    image: images.interior,
-    summary: {
-      en: "Full-grain aniline leather in deep black with natural grain visible under low light. Suited for luxury automotive cabins and executive interiors.",
-      ja: "低光量下で自然な木目が見えるディープブラックのフルグレインアニリンレザー。ラグジュアリー自動車キャビンおよびエグゼクティブインテリアに最適。"
-    },
-    specs: [
-      { label: { en: "Unit", ja: "単位" }, value: { en: "Square meters", ja: "平方メートル" } },
-      { label: { en: "Code", ja: "コード" }, value: { en: "L-FTG-2101", ja: "L-FTG-2101" } },
-      { label: { en: "Grain", ja: "木目" }, value: { en: "Full-grain aniline", ja: "フルグレインアニリン" } },
-      { label: { en: "Thickness", ja: "厚さ" }, value: { en: "1.2–1.4 mm", ja: "1.2–1.4 mm" } }
-    ],
-    certifications: [
-      { en: "Automotive-grade abrasion resistance", ja: "自動車グレード耐摩耗性" },
-      { en: "European tannery traceability protocol", ja: "欧州タンナリー追跡プロトコル" }
-    ],
-    downloads: [
-      {
-        title: { en: "Leather Grade Guide", ja: "レザーグレードガイド" },
-        description: { en: "Full-grain, top-grain, and finish comparisons.", ja: "フルグレイン、トップグレイン、仕上げの比較。" },
-        href: "/catalogs/leather-grade-guide.pdf",
-        type: "technical"
-      }
-    ],
-    seo: {
-      title: { en: "L-FTG-2101 Ebony Black | CAMARI JAPAN", ja: "L-FTG-2101 エボニーブラック | CAMARI JAPAN" },
-      description: {
-        en: "Full-grain aniline leather in deep black for luxury automotive and interior applications.",
-        ja: "ラグジュアリー自動車およびインテリア向けディープブラックのフルグレインアニリンレザー。"
-      },
-      image: images.interior
-    }
-  },
   {
     slug: "l-tpg-3345-cognac",
     materialSlug: "leather",

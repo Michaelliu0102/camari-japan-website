@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DownloadPanel } from "@/components/DownloadPanel";
 import { PageHero } from "@/components/PageHero";
+import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
 import { loadCatalogs, loadMaterialCategories } from "@/sanity/lib/loaders";
@@ -16,8 +17,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/downloads",
-    title: locale === "en" ? "Downloads | CAMARI JAPAN" : "ダウンロード | CAMARI JAPAN",
-    description: locale === "en" ? "Download CAMARI JAPAN material catalogs and technical sheets." : "CAMARI JAPAN の素材カタログと技術資料をダウンロード。",
+    title: locale === "en" ? `Downloads | ${site.name}` : `ダウンロード | ${site.name}`,
+    description:
+      locale === "en"
+        ? `Download ${site.organizationName} material catalogs and technical sheets.`
+        : `${site.organizationName} の素材カタログと技術資料をダウンロード。`,
     image: categories[0]?.coverImage
   });
 }
@@ -38,7 +42,7 @@ export default async function DownloadsPage({ params }: PageProps) {
               {locale === "en" ? "Material documents for review and specification." : "確認と仕様検討のための素材資料。"}
             </h1>
             <p className="mt-8 leading-8 text-muted">
-              {locale === "en" ? "Replace placeholder PDF paths with uploaded Sanity assets or public catalog files before production launch." : "本番公開前に、プレースホルダー PDF パスを Sanity アセットまたは公開カタログファイルに差し替えてください。"}
+              {locale === "en" ? "Download the latest catalogs and technical sheets prepared for project review, specification, and client sharing." : "プロジェクト確認、仕様検討、クライアント共有に使える最新版のカタログと技術資料をダウンロードいただけます。"}
             </p>
           </div>
           <DownloadPanel locale={locale} downloads={downloads} />
