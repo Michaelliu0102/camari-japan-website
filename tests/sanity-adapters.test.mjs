@@ -20,6 +20,7 @@ async function compileModule(sourcePath, outputPath) {
   }).outputText;
 
   output = output.replaceAll('from "../../lib/content";', 'from "../../lib/content.js";');
+  output = output.replaceAll('from "./site-config";', 'from "./site-config.js";');
 
   await writeFile(outputPath, output);
 }
@@ -35,6 +36,25 @@ async function loadAdapters() {
   await mkdir(path.join(root, "src/data"), { recursive: true });
   await writeFile(path.join(root, "package.json"), '{"type":"module"}');
   await writeFile(path.join(root, "src/lib/locales.js"), "export const locales = ['en', 'ja'];\n");
+  await writeFile(
+    path.join(root, "src/lib/site-config.js"),
+    `export const siteConfig = {
+  siteName: "CAMARI INTERNATIONAL JAPAN",
+  siteUrl: "https://example.com",
+  organizationName: "CAMARI INTERNATIONAL JAPAN",
+  alternateSiteHomeUrl: "https://example.com",
+  defaultLocale: "en",
+  enableLocalePreview: true,
+  slogan: { en: "Texture and Precision", ja: "質感と精密さの交差点" },
+  description: { en: "Description", ja: "説明" },
+  contact: {
+    email: "info@example.com",
+    phone: "+81 00 0000 0000",
+    address: { en: "Tokyo", ja: "東京" },
+  },
+};
+`,
+  );
   await writeFile(generatedCatalogPath, '{ "productTypes": [], "skus": [] }\n');
   await compileModule(path.join(projectRoot, "src/lib/content.ts"), compiledContent);
   await compileModule(path.join(projectRoot, "src/sanity/lib/adapters.ts"), compiledAdapters);
@@ -82,6 +102,39 @@ test("adapts material reference fields and fixture-backed quote defaults", async
   });
   assert.equal(material.applications[0].slug, "automotive-cabin");
   assert.equal(material.applications[0].image, "https://cdn.sanity.io/images/project/dataset/application.jpg");
+
+  await cleanup();
+});
+
+test("adapts about page singleton content with local defaults", async () => {
+  const { adaptAboutPageSettings, cleanup } = await loadAdapters();
+
+  const about = adaptAboutPageSettings({
+    seoTitle: { en: "About | Custom", ja: "会社情報 | Custom" },
+    seoDescription: { en: "Custom about description.", ja: "カスタム説明。" },
+    heroImageUrl: "https://cdn.sanity.io/images/project/dataset/about.jpg",
+    heroAlt: { en: "Custom showroom", ja: "ショールーム" },
+    heroTitle: { en: "CAMARI", ja: "CAMARI" },
+    exploreLabel: { en: "Explore", ja: "Explore" },
+    bodyLabel: { en: "Company", ja: "Company" },
+    bodyTitle: { en: "ABOUT CAMARI", ja: "ABOUT CAMARI" },
+    bodyParagraphs: [
+      { en: "First paragraph.", ja: "最初の段落。" },
+      { en: "", ja: "" },
+      null,
+    ],
+    manufacturingLabel: { en: "Manufacturing", ja: "Manufacturing" },
+    manufacturingTitle: { en: "OUR FACTORY", ja: "OUR FACTORY" },
+    manufacturingParagraphs: [{ en: "SHENGHUA is factory from 2000.", ja: "SHENGHUA is factory from 2000." }],
+  });
+
+  assert.equal(about.heroImage, "https://cdn.sanity.io/images/project/dataset/about.jpg");
+  assert.deepEqual(about.heroTitle, { en: "CAMARI", ja: "CAMARI" });
+  assert.deepEqual(about.bodyParagraphs, [{ en: "First paragraph.", ja: "最初の段落。" }]);
+  assert.deepEqual(about.manufacturingLabel, { en: "Manufacturing", ja: "Manufacturing" });
+  assert.deepEqual(about.manufacturingTitle, { en: "OUR FACTORY", ja: "OUR FACTORY" });
+  assert.deepEqual(about.manufacturingParagraphs, [{ en: "SHENGHUA is factory from 2000.", ja: "SHENGHUA is factory from 2000." }]);
+  assert.equal(about.seo.image, "https://cdn.sanity.io/images/project/dataset/about.jpg");
 
   await cleanup();
 });

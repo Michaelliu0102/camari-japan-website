@@ -143,6 +143,20 @@ export type HomePageSettings = {
   showroomBackgroundImage: string;
 };
 
+export type AboutPageSettings = {
+  seo: Seo;
+  heroImage: string;
+  heroAlt: LocalizedString;
+  heroTitle: LocalizedString;
+  exploreLabel: LocalizedString;
+  bodyLabel: LocalizedString;
+  bodyTitle: LocalizedString;
+  bodyParagraphs: LocalizedString[];
+  manufacturingLabel: LocalizedString;
+  manufacturingTitle: LocalizedString;
+  manufacturingParagraphs: LocalizedString[];
+};
+
 function mergeBySlug<T extends { slug: string }>(defaults: T[], imported: T[]): T[] {
   const merged = new Map(defaults.map((item) => [item.slug, item]));
   for (const item of imported) {
@@ -245,6 +259,37 @@ export const homePageSettings: HomePageSettings = {
       }
     ]
   }
+};
+
+export const aboutPageSettings: AboutPageSettings = {
+  seo: {
+    title: { en: `About | ${site.name}`, ja: `会社情報 | ${site.name}` },
+    description: {
+      en: `Learn about ${site.organizationName}'s material philosophy, company values, and contact information.`,
+      ja: `${site.organizationName} の素材哲学、企業価値、連絡先について。`
+    },
+    image: "/uploads/hero/showroom.png"
+  },
+  heroImage: "/uploads/hero/showroom.png",
+  heroAlt: { en: "CAMARI showroom interior", ja: "CAMARI ショールーム内観" },
+  heroTitle: { en: "CAMARI", ja: "CAMARI" },
+  exploreLabel: { en: "Explore", ja: "Explore" },
+  bodyLabel: { en: "Company", ja: "Company" },
+  bodyTitle: { en: "ABOUT CAMARI", ja: "ABOUT CAMARI" },
+  bodyParagraphs: [
+    {
+      en: `${site.organizationName} curates premium surface materials for teams who treat texture as an essential part of brand, space, and product quality.`,
+      ja: `${site.organizationName} は、質感をブランド、空間、プロダクト品質の中核として扱うチームに向けて、上質なサーフェス素材を選定します。`
+    }
+  ],
+  manufacturingLabel: { en: "Manufacturing", ja: "Manufacturing" },
+  manufacturingTitle: { en: "OUR FACTORY", ja: "OUR FACTORY" },
+  manufacturingParagraphs: [
+    {
+      en: "SHENGHUA is factory from 2000.",
+      ja: "SHENGHUA is factory from 2000."
+    }
+  ]
 };
 
 export const materialCategories: MaterialCategory[] = [

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -143,9 +144,6 @@ export function GlobalNav({ locale }: GlobalNavProps) {
   }, []);
 
   const textColor = invert ? "text-charcoal" : "text-white";
-  const logoClass = invert
-    ? "logo-outline-dark text-lg uppercase md:text-xl"
-    : "logo-outline text-lg uppercase md:text-xl";
   const borderColor = invert ? "border-charcoal/25" : "border-white/25";
   const hoverBg = invert
     ? "hover:bg-charcoal hover:text-white"
@@ -156,6 +154,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
   const dropdownMutedText = "text-muted";
   const dropdownItemHover = "hover:bg-charcoal/5";
   const languageSwitchHref = getLanguageSwitchHref(locale);
+  const logoSrc = invert ? "/uploads/logo/black-int.png" : "/uploads/logo/white-int.png";
 
   return (
     <>
@@ -163,10 +162,17 @@ export function GlobalNav({ locale }: GlobalNavProps) {
       <nav className="mx-auto flex h-[var(--nav-height)] w-full max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop">
         <Link
           aria-label={`${siteConfig.siteName} home`}
-          className={logoClass}
+          className="inline-flex items-center"
           href={localizedPath(locale)}
         >
-          CAMARI
+          <Image
+            alt="CAMARI"
+            className="h-auto w-[10.5rem] md:w-[12rem]"
+            height={1780}
+            sizes="(min-width: 768px) 192px, 168px"
+            src={logoSrc}
+            width={4994}
+          />
         </Link>
 
         <div

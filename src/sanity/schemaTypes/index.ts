@@ -1,4 +1,5 @@
 import { catalog } from "./catalog";
+import { aboutPage } from "./aboutPage";
 import { homePage } from "./homePage";
 import { material } from "./material";
 import { materialCategory } from "./materialCategory";
@@ -8,4 +9,4 @@ import { projectCase } from "./projectCase";
 import { seo } from "./seo";
 import { sku } from "./sku";
 
-export const schemaTypes = [seo, homePage, materialCategory, material, productType, sku, projectCase, news, catalog];
+export const schemaTypes = [seo, homePage, aboutPage, materialCategory, material, productType, sku, projectCase, news, catalog];

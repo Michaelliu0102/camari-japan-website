@@ -130,6 +130,22 @@ export type RawHomePageSettings = {
   exploreProductSlides?: RawHomeExploreSlide[] | null;
 } | null;
 
+export type RawAboutPageSettings = {
+  seoTitle?: LocalizedString | null;
+  seoDescription?: LocalizedString | null;
+  seoImageUrl?: string | null;
+  heroImageUrl?: string | null;
+  heroAlt?: LocalizedString | null;
+  heroTitle?: LocalizedString | null;
+  exploreLabel?: LocalizedString | null;
+  bodyLabel?: LocalizedString | null;
+  bodyTitle?: LocalizedString | null;
+  bodyParagraphs?: Array<LocalizedString | null> | null;
+  manufacturingLabel?: LocalizedString | null;
+  manufacturingTitle?: LocalizedString | null;
+  manufacturingParagraphs?: Array<LocalizedString | null> | null;
+} | null;
+
 export const homePageSettingsQuery = `*[_type == "homePage"][0] {
   heroTitle,
   heroSubtitle,
@@ -149,6 +165,22 @@ export const homePageSettingsQuery = `*[_type == "homePage"][0] {
     "imageUrl": image.asset->url,
     href
   }
+}`;
+
+export const aboutPageSettingsQuery = `*[_type == "aboutPage"][0] {
+  seoTitle,
+  seoDescription,
+  "seoImageUrl": seoImage.asset->url,
+  "heroImageUrl": heroImage.asset->url,
+  heroAlt,
+  heroTitle,
+  exploreLabel,
+  bodyLabel,
+  bodyTitle,
+  bodyParagraphs,
+  manufacturingLabel,
+  manufacturingTitle,
+  manufacturingParagraphs
 }`;
 
 export const materialCategoriesQuery = `*[_type == "materialCategory"] | order(sortOrder asc, name.en asc) {

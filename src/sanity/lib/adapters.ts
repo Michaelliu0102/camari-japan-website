@@ -1,8 +1,10 @@
 import {
+  aboutPageSettings as fallbackAboutPageSettings,
   homePageSettings as fallbackHomePageSettings,
   materialCategories as fallbackCategories,
   materials as fallbackMaterials,
   productTypes as fallbackProductTypes,
+  type AboutPageSettings,
   type Download,
   type HomeExploreSlide,
   type HomePageSettings,
@@ -16,6 +18,7 @@ import {
   type Sku
 } from "../../lib/content";
 import type {
+  RawAboutPageSettings,
   RawCatalog,
   RawDownload,
   RawHomePageSettings,
@@ -108,6 +111,35 @@ export function adaptHomePageSettings(raw: RawHomePageSettings): HomePageSetting
       categorySlugs: raw?.exploreCategorySlugs?.filter(Boolean) ?? fallback.explore.categorySlugs,
       productSlides: productSlides.length ? productSlides : fallback.explore.productSlides
     }
+  };
+}
+
+export function adaptAboutPageSettings(raw: RawAboutPageSettings): AboutPageSettings {
+  const fallback = fallbackAboutPageSettings;
+  const heroImage = raw?.heroImageUrl ?? fallback.heroImage;
+  const bodyParagraphs = (raw?.bodyParagraphs ?? [])
+    .map((paragraph) => localized(paragraph))
+    .filter((paragraph) => paragraph.en || paragraph.ja);
+  const manufacturingParagraphs = (raw?.manufacturingParagraphs ?? [])
+    .map((paragraph) => localized(paragraph))
+    .filter((paragraph) => paragraph.en || paragraph.ja);
+
+  return {
+    seo: {
+      title: localized(raw?.seoTitle ?? fallback.seo.title),
+      description: localized(raw?.seoDescription ?? fallback.seo.description),
+      image: raw?.seoImageUrl ?? heroImage ?? fallback.seo.image
+    },
+    heroImage,
+    heroAlt: localized(raw?.heroAlt ?? fallback.heroAlt),
+    heroTitle: localized(raw?.heroTitle ?? fallback.heroTitle),
+    exploreLabel: localized(raw?.exploreLabel ?? fallback.exploreLabel),
+    bodyLabel: localized(raw?.bodyLabel ?? fallback.bodyLabel),
+    bodyTitle: localized(raw?.bodyTitle ?? fallback.bodyTitle),
+    bodyParagraphs: bodyParagraphs.length ? bodyParagraphs : fallback.bodyParagraphs,
+    manufacturingLabel: localized(raw?.manufacturingLabel ?? fallback.manufacturingLabel),
+    manufacturingTitle: localized(raw?.manufacturingTitle ?? fallback.manufacturingTitle),
+    manufacturingParagraphs: manufacturingParagraphs.length ? manufacturingParagraphs : fallback.manufacturingParagraphs
   };
 }
 

@@ -1,4 +1,5 @@
 import {
+  aboutPageSettings as fallbackAboutPageSettings,
   catalogs as fallbackCatalogs,
   homePageSettings as fallbackHomePageSettings,
   materialCategories as fallbackCategories,
@@ -7,6 +8,7 @@ import {
   productTypes as fallbackProductTypes,
   projectCases as fallbackProjects,
   skus as fallbackSkus,
+  type AboutPageSettings,
   type Download,
   type HomePageSettings,
   type Material,
@@ -17,11 +19,22 @@ import {
   type Sku
 } from "@/lib/content";
 import type { Locale } from "@/lib/locales";
-import { adaptCatalog, adaptHomePageSettings, adaptMaterial, adaptMaterialCategory, adaptNewsItem, adaptProductType, adaptProjectCase, adaptSku } from "./adapters";
+import {
+  adaptAboutPageSettings,
+  adaptCatalog,
+  adaptHomePageSettings,
+  adaptMaterial,
+  adaptMaterialCategory,
+  adaptNewsItem,
+  adaptProductType,
+  adaptProjectCase,
+  adaptSku
+} from "./adapters";
 import { getSanityClient } from "./client";
 import { getSanityMarket } from "./market";
 import {
   catalogsQuery,
+  aboutPageSettingsQuery,
   homePageSettingsQuery,
   materialCategoriesQuery,
   materialsQuery,
@@ -29,6 +42,7 @@ import {
   productTypesQuery,
   projectsQuery,
   skusQuery,
+  type RawAboutPageSettings,
   type RawCatalog,
   type RawHomePageSettings,
   type RawMaterial,
@@ -142,6 +156,27 @@ export async function loadHomePageSettings(): Promise<HomePageSettings> {
 
     console.warn("Sanity homepage fetch failed; using local fixture content.", error);
     return fallbackHomePageSettings;
+  }
+}
+
+export async function loadAboutPageSettings(): Promise<AboutPageSettings> {
+  if (!isSanityConfigured()) {
+    return fallbackAboutPageSettings;
+  }
+
+  try {
+    const result = await getSanityClient().withConfig({ useCdn: false }).fetch<RawAboutPageSettings>(aboutPageSettingsQuery);
+    if (!result) {
+      return fallbackAboutPageSettings;
+    }
+    return adaptAboutPageSettings(result);
+  } catch (error) {
+    if (process.env.NODE_ENV === "production") {
+      throw error;
+    }
+
+    console.warn("Sanity about page fetch failed; using local fixture content.", error);
+    return fallbackAboutPageSettings;
   }
 }
 
