@@ -45,6 +45,38 @@ test("ApplicationGrid receives material SKUs through props", async () => {
   assert.match(content, /\/materials\/\$\{material\.slug\}\/\$\{firstSku\.productTypeSlug\}\/\$\{firstSku\.slug\}/);
 });
 
+test("material detail page replaces the lower CTA with material project carousel content", async () => {
+  const page = await source("src/app/[locale]/materials/[materialSlug]/page.tsx");
+
+  assert.match(page, /MaterialProjectCarousel/);
+  assert.match(page, /loadProjectsForMaterial/);
+  assert.match(page, /projects=\{projects\}/);
+  assert.doesNotMatch(page, /CTASection/);
+  assert.doesNotMatch(page, /View SKU Detail/);
+});
+
+test("MaterialProjectCarousel connects Sanity project images to the parallax carousel", async () => {
+  const content = await source("src/components/MaterialProjectCarousel.tsx");
+
+  assert.match(content, /projects: ProjectCase\[\]/);
+  assert.match(content, /project\.projectImages/);
+  assert.match(content, /flatMap/);
+  assert.match(content, /<ParallaxCarousel/);
+  assert.match(content, /images=\{projectImages\}/);
+  assert.doesNotMatch(content, /selectedProject/);
+  assert.doesNotMatch(content, /ArrowLeft|ArrowRight/);
+});
+
+test("ParallaxCarousel uses a Three.js shader carousel with imperative index navigation", async () => {
+  const content = await source("src/components/ParallaxCarousel.tsx");
+
+  assert.match(content, /from "@react-three\/fiber"/);
+  assert.match(content, /fragmentShader=\{PLANE_FRAGMENT\}/);
+  assert.match(content, /texture2D\(uMap, uv\)/);
+  assert.match(content, /scrollToIndex: \(index: number\) => void/);
+  assert.match(content, /useImperativeHandle/);
+});
+
 test("SkuSwatches builds the side image rail from the selected SKU gallery", async () => {
   const content = await source("src/components/SkuSwatches.tsx");
 

@@ -1,9 +1,9 @@
-import { ExplodedViewTest } from "@/components/ExplodedViewTest";
+import { UnpackingHero } from "@/components/UnpackingHero";
 
 export const metadata = {
-  title: "Exploded View Animation Test | CAMARI"
+  title: "Stop-Motion Unpacking | CAMARI"
 };
 
 export default function TestAnimationPage() {
-  return <ExplodedViewTest />;
+  return <UnpackingHero />;
 }

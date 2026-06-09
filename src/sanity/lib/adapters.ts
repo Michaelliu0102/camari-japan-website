@@ -3,6 +3,7 @@ import {
   homePageSettings as fallbackHomePageSettings,
   materialCategories as fallbackCategories,
   materials as fallbackMaterials,
+  projectCases as fallbackProjects,
   productTypes as fallbackProductTypes,
   type AboutPageSettings,
   type Download,
@@ -260,14 +261,51 @@ export function adaptSku(raw: RawSku): Sku {
 export function adaptProjectCase(raw: RawProjectCase): ProjectCase {
   const title = localized(raw.title);
   const image = raw.imageUrl ?? "";
+  const projectImages = [image, ...(raw.galleryImageUrls ?? [])].filter((item): item is string => Boolean(item));
+  const fixture = fallbackProjects.find((project) => project.slug === raw.slug);
+  const linkedMaterials = (raw.linkedMaterials ?? [])
+    .map((item) =>
+      item?.slug
+        ? {
+            slug: item.slug,
+            name: localized(item.name)
+          }
+        : null
+    )
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const linkedArticles = (raw.linkedArticles ?? [])
+    .map((item) =>
+      item?.slug && item.materialSlug
+        ? {
+            slug: item.slug,
+            materialSlug: item.materialSlug,
+            name: localized(item.name)
+          }
+        : null
+    )
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
   return {
     slug: raw.slug ?? "",
     title,
     industry: localized(raw.industry),
     image,
+    projectImages: [...new Set(projectImages)],
     summary: localized(raw.summary),
     materialSlug: raw.materialSlug ?? "",
+    linkedMaterials:
+      linkedMaterials.length > 0
+        ? linkedMaterials
+        : fixture?.linkedMaterials ??
+          (raw.materialSlug
+            ? [
+                {
+                  slug: raw.materialSlug,
+                  name: fixtureMaterial(raw.materialSlug)?.name ?? emptyLocalized
+                }
+              ]
+            : []),
+    linkedArticles: linkedArticles.length > 0 ? linkedArticles : fixture?.linkedArticles ?? [],
     seo: adaptSeo(raw.seo, title, raw.summary ?? emptyLocalized, raw.seo?.imageUrl ?? image)
   };
 }

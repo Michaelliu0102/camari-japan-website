@@ -237,12 +237,22 @@ test("adapts product type, SKU, project, catalog, and news naming differences", 
     slug: "project",
     industry: { en: "Interior", ja: "インテリア" },
     imageUrl: "https://cdn.sanity.io/images/project/dataset/project.jpg",
+    galleryImageUrls: [
+      "https://cdn.sanity.io/images/project/dataset/gallery-1.jpg",
+      null,
+      "https://cdn.sanity.io/images/project/dataset/gallery-2.jpg",
+    ],
     summary: { en: "Summary", ja: "要約" },
     materialSlug: "alcantara",
     seo: null,
   });
 
   assert.equal(project.image, "https://cdn.sanity.io/images/project/dataset/project.jpg");
+  assert.deepEqual(project.projectImages, [
+    "https://cdn.sanity.io/images/project/dataset/project.jpg",
+    "https://cdn.sanity.io/images/project/dataset/gallery-1.jpg",
+    "https://cdn.sanity.io/images/project/dataset/gallery-2.jpg",
+  ]);
   assert.equal(project.materialSlug, "alcantara");
 
   const catalog = adaptCatalog({
@@ -269,6 +279,13 @@ test("adapts product type, SKU, project, catalog, and news naming differences", 
   assert.equal("body" in news, false);
 
   await cleanup();
+});
+
+test("loader exposes material-scoped project cases", async () => {
+  const loaders = await readFile(path.join(projectRoot, "src/sanity/lib/loaders.ts"), "utf8");
+
+  assert.match(loaders, /export async function loadProjectsForMaterial\(materialSlug: string\): Promise<ProjectCase\[\]>/);
+  assert.match(loaders, /project\.materialSlug === materialSlug/);
 });
 
 test("adapts homepage settings for CMS-managed hero and carousel images", async () => {

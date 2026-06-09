@@ -85,8 +85,22 @@ export type RawProjectCase = {
   slug?: string | null;
   industry?: LocalizedString | null;
   imageUrl?: string | null;
+  galleryImageUrls?: Array<string | null> | null;
   summary?: LocalizedString | null;
   materialSlug?: string | null;
+  linkedMaterials?:
+    | Array<{
+        slug?: string | null;
+        name?: LocalizedString | null;
+      } | null>
+    | null;
+  linkedArticles?:
+    | Array<{
+        slug?: string | null;
+        materialSlug?: string | null;
+        name?: LocalizedString | null;
+      } | null>
+    | null;
   seo?: RawSeo;
 };
 
@@ -279,8 +293,18 @@ export const projectsQuery = `*[_type == "projectCase"] | order(title.en asc) {
   "slug": slug.current,
   industry,
   "imageUrl": coverImage.asset->url,
+  "galleryImageUrls": gallery[].asset->url,
   summary,
   "materialSlug": relatedMaterial->slug.current,
+  "linkedMaterials": linkedMaterials[]->{
+    "slug": slug.current,
+    name
+  },
+  "linkedArticles": linkedArticles[]->{
+    "slug": slug.current,
+    "materialSlug": material->slug.current,
+    name
+  },
   seo {
     title,
     description,

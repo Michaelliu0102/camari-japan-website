@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import ShinyText from "@/components/ShinyText/ShinyText";
 import type { ProductType, Sku } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
 
@@ -29,7 +30,9 @@ export function MaterialArticleGrid({ locale, materialSlug, productTypes, skus }
         <div className="mb-14 grid gap-8 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
             <p className="label-caps text-gold">Fabric Article</p>
-            <h2 className="mt-5 font-label text-3xl uppercase tracking-[0.12em] md:text-4xl">Pattern Library</h2>
+            <h2 className="mt-5 font-label text-3xl uppercase tracking-[0.12em] md:text-4xl">
+              <ShinyText color="#1a1a1a" shineColor="#ffffff" text="Pattern Library" />
+            </h2>
           </div>
           <p className="max-w-2xl text-sm leading-7 text-muted md:col-span-5 md:justify-self-end md:text-right">
             Restored automotive textiles arranged by marque, weave, and period reference.

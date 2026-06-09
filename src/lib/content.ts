@@ -98,8 +98,11 @@ export type ProjectCase = {
   title: LocalizedString;
   industry: LocalizedString;
   image: string;
+  projectImages: string[];
   summary: LocalizedString;
   materialSlug: string;
+  linkedMaterials: Array<{ slug: string; name: LocalizedString }>;
+  linkedArticles: Array<{ slug: string; materialSlug: string; name: LocalizedString }>;
   seo: Seo;
 };
 
@@ -798,11 +801,14 @@ export const projectCases: ProjectCase[] = [
     title: { en: "Private Automotive Cabin", ja: "プライベートオートモーティブキャビン" },
     industry: { en: "Automotive", ja: "自動車" },
     image: images.alcantara,
+    projectImages: [images.alcantara],
     summary: {
       en: "A restrained cabin material program using deep Alcantara surfaces and precision panel transitions.",
       ja: "深い Alcantara サーフェスと精密なパネル遷移で構成した、抑制されたキャビンプログラム。"
     },
     materialSlug: "alcantara",
+    linkedMaterials: [{ slug: "alcantara", name: { en: "Alcantara", ja: "アルカンターラ" } }],
+    linkedArticles: [{ slug: "alcantara-panel", materialSlug: "alcantara", name: { en: "Alcantara Panel", ja: "Alcantara パネル" } }],
     seo: {
       title: { en: "Private Automotive Cabin | CAMARI JAPAN", ja: "プライベートオートモーティブキャビン | CAMARI JAPAN" },
       description: {
@@ -817,11 +823,14 @@ export const projectCases: ProjectCase[] = [
     title: { en: "Hospitality Lounge Surface", ja: "ホスピタリティラウンジサーフェス" },
     industry: { en: "Interior", ja: "インテリア" },
     image: images.interior,
+    projectImages: [images.interior],
     summary: {
       en: "Warm stone palettes, tactile panels, and quiet upholstery for an intimate lounge environment.",
       ja: "ウォームストーンの色調、触感のあるパネル、静かな張地で構成したラウンジ空間。"
     },
     materialSlug: "alcantara",
+    linkedMaterials: [{ slug: "alcantara", name: { en: "Alcantara", ja: "アルカンターラ" } }],
+    linkedArticles: [{ slug: "alcantara-panel", materialSlug: "alcantara", name: { en: "Alcantara Panel", ja: "Alcantara パネル" } }],
     seo: {
       title: { en: "Hospitality Lounge Surface | CAMARI JAPAN", ja: "ホスピタリティラウンジサーフェス | CAMARI JAPAN" },
       description: {

@@ -14,7 +14,14 @@ export function MaterialBentoGrid({ locale, categories, materials }: MaterialBen
     <section className="bg-paper py-24 md:py-32" data-nav-invert>
       <div className="section-shell grid grid-cols-1 gap-gutter md:grid-cols-12">
         {categories.map((category, index) => {
-          const href = materials.some((material) => material.slug === category.slug) ? `/materials/${category.slug}` : "/materials";
+          const href = (() => {
+            const bySlug = materials.find((m) => m.slug === category.slug);
+            if (bySlug) return `/materials/${category.slug}`;
+            const byName = materials.find(
+              (m) => m.name.en.toLowerCase() === category.name.en.toLowerCase()
+            );
+            return byName ? `/materials/${byName.slug}` : "/materials";
+          })();
           const className =
             index === 0
               ? "md:col-span-8 h-[520px] md:h-[620px]"

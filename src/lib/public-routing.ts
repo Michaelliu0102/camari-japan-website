@@ -18,7 +18,22 @@ function isStaticAsset(pathname: string): boolean {
   return /\.[^/]+$/u.test(pathname);
 }
 
-export function resolvePublicRoute(pathname: string, siteConfig: PublicRoutingSiteConfig): RoutingDecision {
+function isCurrentRequestPath(destination: string, requestUrl?: string): boolean {
+  if (!requestUrl) {
+    return false;
+  }
+
+  try {
+    const currentUrl = new URL(requestUrl);
+    const destinationUrl = new URL(destination, currentUrl);
+
+    return destinationUrl.origin === currentUrl.origin && destinationUrl.pathname === currentUrl.pathname;
+  } catch {
+    return false;
+  }
+}
+
+export function resolvePublicRoute(pathname: string, siteConfig: PublicRoutingSiteConfig, requestUrl?: string): RoutingDecision {
   if (passthroughPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)) || isStaticAsset(pathname)) {
     return { type: "next" };
   }
@@ -29,6 +44,10 @@ export function resolvePublicRoute(pathname: string, siteConfig: PublicRoutingSi
 
     if (requestedLocale !== siteConfig.defaultLocale) {
       if (siteConfig.enableLocalePreview) {
+        return { type: "next" };
+      }
+
+      if (isCurrentRequestPath(siteConfig.alternateSiteHomeUrl, requestUrl)) {
         return { type: "next" };
       }
 

@@ -4,7 +4,7 @@ import { resolvePublicRoute } from "@/lib/public-routing";
 import { siteConfig } from "@/lib/site-config";
 
 export function proxy(request: NextRequest) {
-  const decision = resolvePublicRoute(request.nextUrl.pathname, siteConfig);
+  const decision = resolvePublicRoute(request.nextUrl.pathname, siteConfig, request.url);
 
   if (decision.type === "next") {
     return NextResponse.next();

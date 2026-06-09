@@ -127,3 +127,14 @@ test("public routing redirects prefixed URLs and rewrites clean URLs to internal
   assert.match(routingSource, /destination:\s*normalizedPath === "\/" \? `\/\$\{siteConfig\.defaultLocale\}` : `\/\$\{siteConfig\.defaultLocale\}\$\{normalizedPath\}`/);
   assert.match(routingSource, /pathname\.match\(\s*\/\^\\\/\(en\|ja\)\(\?=\\\/\|\$\)\/u\s*\)/);
 });
+
+test("public routing guards against redirecting an alternate locale URL to itself", async () => {
+  const routingSource = await source("src/lib/public-routing.ts");
+  const proxySource = await source("src/proxy.ts");
+
+  assert.match(routingSource, /function isCurrentRequestPath\(destination: string, requestUrl\?: string\)/);
+  assert.match(routingSource, /new URL\(destination, currentUrl\)/);
+  assert.match(routingSource, /destinationUrl\.origin === currentUrl\.origin && destinationUrl\.pathname === currentUrl\.pathname/);
+  assert.match(routingSource, /if \(isCurrentRequestPath\(siteConfig\.alternateSiteHomeUrl, requestUrl\)\) \{\s*return \{ type: "next" \};\s*\}/);
+  assert.match(proxySource, /resolvePublicRoute\(request\.nextUrl\.pathname, siteConfig, request\.url\)/);
+});

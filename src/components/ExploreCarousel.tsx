@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { SearchOverlay } from "@/components/SearchOverlay";
+import SplitText from "@/components/SplitText";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import type { HomeExploreSlide, LocalizedString, Material, MaterialCategory } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
@@ -109,14 +110,14 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
         },
         {
           slug: "projects",
-          title: { en: "Applied Precision", ja: "応用される精密性" },
-          category: { en: "Product — ODM", ja: "Product — ODM" },
+          title: { en: "PRODUCT", ja: "PRODUCT" },
+          category: { en: "Product", ja: "Product" },
           description: {
-            en: "Case-led development from concept, material matching, and surface execution.",
-            ja: "コンセプト、素材選定、サーフェス実装までのケース主導型開発。"
+            en: "Surface programs organized by product context and customer use.",
+            ja: "製品用途と顧客体験に合わせたサーフェスプログラム。"
           },
-          image: categories[3]?.coverImage ?? fallbackImage,
-          href: "/projects"
+          image: "/uploads/product/product-hero.jpg",
+          href: "/products"
         }
       ]
     : [];
@@ -132,7 +133,14 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
         category: { en: `Material — ${category.name.en}`, ja: `Material — ${category.name.ja}` },
         description: category.description,
         image: category.coverImage,
-        href: materials.some((material) => material.slug === category.slug) ? `/materials/${category.slug}` : "/materials"
+        href: (() => {
+            const bySlug = materials.find((m) => m.slug === category.slug);
+            if (bySlug) return `/materials/${category.slug}`;
+            const byName = materials.find(
+              (m) => m.name.en.toLowerCase() === category.name.en.toLowerCase()
+            );
+            return byName ? `/materials/${byName.slug}` : "/materials";
+          })()
       })),
       ...productSlides
     ],
@@ -203,9 +211,13 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
       <div className="section-shell box-border flex h-full items-center pb-4 pt-[calc(var(--nav-height)+1rem)] md:pb-5 md:pt-[calc(var(--nav-height)+1.5rem)]">
         <div className="relative mx-auto h-full max-h-[50rem] w-full max-w-[92rem]" style={{ perspective: "1200px" }}>
           <div className="pointer-events-none absolute inset-x-0 top-[1%] text-center md:top-[1.5%]">
-            <h2 className="font-display text-[2.05rem] uppercase leading-none tracking-[0.24em] text-white/90 md:text-[3.4rem]">
-              Explore
-            </h2>
+            <SplitText
+              className="font-display text-[2.05rem] uppercase leading-none tracking-[0.24em] text-white/90 md:text-[3.4rem]"
+              delay={60}
+              tag="h2"
+              text="Explore"
+              threshold={0}
+            />
           </div>
 
           <div className="absolute inset-x-0 top-[15%] h-[56%]" style={{ transformStyle: "preserve-3d" }}>

@@ -239,6 +239,16 @@ export async function loadProjects(): Promise<ProjectCase[]> {
   return fetchOrFallback<RawProjectCase, ProjectCase>(projectsQuery, {}, fallbackProjects, adaptProjectCase);
 }
 
+export async function loadProjectsForMaterial(materialSlug: string): Promise<ProjectCase[]> {
+  const projects = await loadProjects();
+  return projects.filter(
+    (project) =>
+      project.materialSlug === materialSlug ||
+      project.linkedMaterials.some((material) => material.slug === materialSlug) ||
+      project.linkedArticles.some((article) => article.materialSlug === materialSlug)
+  );
+}
+
 export async function loadProject(slug: string): Promise<ProjectCase | undefined> {
   const projects = await loadProjects();
   return projects.find((project) => project.slug === slug);
