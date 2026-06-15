@@ -11,10 +11,10 @@ export const projectCase = defineType({
     defineField({ name: "industry", title: "Industry", type: "object", fields: localizedString }),
     defineField({ name: "coverImage", title: "Cover Image", type: "image", options: { hotspot: true } }),
     defineField({ name: "summary", title: "Summary", type: "object", fields: localizedText }),
-    defineField({ name: "relatedMaterial", title: "Related Material", type: "reference", to: [{ type: "material" }] }),
+    defineField({ name: "relatedMaterial", title: "Primary Material", type: "reference", to: [{ type: "material" }] }),
     defineField({
       name: "linkedMaterials",
-      title: "Linked Materials",
+      title: "Additional Materials",
       type: "array",
       of: [{ type: "reference", to: [{ type: "material" }] }]
     }),

@@ -13,6 +13,12 @@ export type RawDownload = {
   type?: "catalog" | "technical" | "care" | null;
 };
 
+export type RawSanityImage = {
+  asset?: { _ref?: string | null; _id?: string | null; url?: string | null } | null;
+  crop?: { left?: number | null; top?: number | null; right?: number | null; bottom?: number | null } | null;
+  hotspot?: { x?: number | null; y?: number | null; width?: number | null; height?: number | null } | null;
+} | null;
+
 export type RawMaterialCategory = {
   name?: LocalizedString | null;
   slug?: string | null;
@@ -71,6 +77,7 @@ export type RawSku = {
   colorName?: LocalizedString | null;
   hex?: string | null;
   heroImageUrl?: string | null;
+  swatchImageUrl?: string | null;
   previewImageUrl?: string | null;
   caseGallery?: Array<{ imageUrl?: string | null; alt?: LocalizedString | null }> | null;
   summary?: LocalizedString | null;
@@ -84,7 +91,9 @@ export type RawProjectCase = {
   title?: LocalizedString | null;
   slug?: string | null;
   industry?: LocalizedString | null;
+  image?: RawSanityImage;
   imageUrl?: string | null;
+  galleryImages?: Array<RawSanityImage> | null;
   galleryImageUrls?: Array<string | null> | null;
   summary?: LocalizedString | null;
   materialSlug?: string | null;
@@ -267,6 +276,7 @@ export const skusQuery = `*[_type == "sku" && (!defined(productType->markets) ||
   colorName,
   hex,
   "heroImageUrl": heroImage.asset->url,
+  "swatchImageUrl": swatchImage.asset->url,
   "previewImageUrl": previewImage.asset->url,
   caseGallery[] {
     "imageUrl": image.asset->url,
@@ -292,7 +302,17 @@ export const projectsQuery = `*[_type == "projectCase"] | order(title.en asc) {
   title,
   "slug": slug.current,
   industry,
+  "image": coverImage{
+    asset,
+    crop,
+    hotspot
+  },
   "imageUrl": coverImage.asset->url,
+  "galleryImages": gallery[]{
+    asset,
+    crop,
+    hotspot
+  },
   "galleryImageUrls": gallery[].asset->url,
   summary,
   "materialSlug": relatedMaterial->slug.current,

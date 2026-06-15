@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import ParallaxCarousel from "@/components/ParallaxCarousel";
@@ -11,22 +12,22 @@ import { localizedPath, type Locale } from "@/lib/locales";
 type MaterialProjectCarouselProps = {
   locale: Locale;
   materialName: string;
-  projectTitleLinks: Record<string, ProjectTitleLink[]>;
+  projectLinks: Record<string, ProjectLink[]>;
   projects: ProjectCase[];
 };
 
 type ProjectImageEntry = {
   src: string;
   title: string;
-  titleLinks: ProjectTitleLink[];
+  projectLinks: ProjectLink[];
 };
 
-export type ProjectTitleLink = {
+export type ProjectLink = {
   href: string;
   label: string;
 };
 
-function buildProjectImages(projects: ProjectCase[], locale: Locale, projectTitleLinks: Record<string, ProjectTitleLink[]>): ProjectImageEntry[] {
+function buildProjectImages(projects: ProjectCase[], locale: Locale, projectLinks: Record<string, ProjectLink[]>): ProjectImageEntry[] {
   const entries = new Map<string, ProjectImageEntry>();
 
   for (const project of projects) {
@@ -37,7 +38,7 @@ function buildProjectImages(projects: ProjectCase[], locale: Locale, projectTitl
         entries.set(src, {
           src,
           title: project.title[locale],
-          titleLinks: projectTitleLinks[project.slug] ?? []
+          projectLinks: projectLinks[project.slug] ?? []
         });
       }
     }
@@ -46,91 +47,11 @@ function buildProjectImages(projects: ProjectCase[], locale: Locale, projectTitl
   return [...entries.values()];
 }
 
-type TitleMatch = ProjectTitleLink & {
-  end: number;
-  start: number;
-};
-
-function buildTitleMatches(title: string, links: ProjectTitleLink[]): TitleMatch[] {
-  const matches: TitleMatch[] = [];
-
-  for (const link of links) {
-    const pattern = new RegExp(`${escapeRegExp(link.label)}(?:\\s+\\d{3,5})?`, "ig");
-    let match: RegExpExecArray | null;
-
-    while ((match = pattern.exec(title)) !== null) {
-      matches.push({
-        ...link,
-        start: match.index,
-        end: match.index + match[0].length
-      });
-    }
-  }
-
-  matches.sort((left, right) => left.start - right.start || right.label.length - left.label.length);
-
-  const selected: TitleMatch[] = [];
-  let cursor = 0;
-
-  for (const match of matches) {
-    if (match.start < cursor) {
-      continue;
-    }
-
-    selected.push(match);
-    cursor = match.end;
-  }
-
-  return selected;
-}
-
-function renderLinkedTitle(title: string, locale: Locale, links: ProjectTitleLink[]) {
-  const matches = buildTitleMatches(title, links);
-
-  if (matches.length === 0) {
-    return title;
-  }
-
-  const nodes: React.ReactNode[] = [];
-  let cursor = 0;
-
-  for (const match of matches) {
-    if (match.start > cursor) {
-      nodes.push(title.slice(cursor, match.start));
-    }
-
-    nodes.push(
-      <Link
-        className="underline decoration-charcoal/45 underline-offset-4 transition-colors hover:text-gold hover:decoration-gold"
-        href={localizedPath(locale, match.href)}
-        key={`${match.href}-${match.start}`}
-      >
-        {title.slice(match.start, match.end)}
-      </Link>
-    );
-
-    cursor = match.end;
-  }
-
-  if (cursor < title.length) {
-    nodes.push(title.slice(cursor));
-  }
-
-  return nodes;
-}
-
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-export function MaterialProjectCarousel({ locale, materialName, projectTitleLinks, projects }: MaterialProjectCarouselProps) {
+export function MaterialProjectCarousel({ locale, materialName, projectLinks, projects }: MaterialProjectCarouselProps) {
+  const router = useRouter();
   const [activeImage, setActiveImage] = useState<string | null>(null);
-  const projectImages = useMemo(() => buildProjectImages(projects, locale, projectTitleLinks), [locale, projectTitleLinks, projects]);
+  const projectImages = useMemo(() => buildProjectImages(projects, locale, projectLinks), [locale, projectLinks, projects]);
   const activeImageEntry = projectImages.find((item) => item.src === activeImage) ?? null;
-  const activeTitleContent = useMemo(
-    () => (activeImageEntry ? renderLinkedTitle(activeImageEntry.title, locale, activeImageEntry.titleLinks) : null),
-    [activeImageEntry, locale]
-  );
 
   useEffect(() => {
     if (!activeImage) {
@@ -154,6 +75,11 @@ export function MaterialProjectCarousel({ locale, materialName, projectTitleLink
     };
   }, [activeImage]);
 
+  function handleProjectLinkClick(href: string) {
+    setActiveImage(null);
+    router.push(localizedPath(locale, href));
+  }
+
   if (projectImages.length === 0) {
     return null;
   }
@@ -163,7 +89,7 @@ export function MaterialProjectCarousel({ locale, materialName, projectTitleLink
       <div className="section-shell mb-6 md:mb-8">
         <p className="label-caps text-gold">Gallery</p>
         <h2 className="mt-5 max-w-3xl font-serif text-4xl leading-tight text-charcoal md:text-6xl">
-          {locale === "en" ? `${materialName} gallery.` : `${materialName} のギャラリー。`}
+          {materialName.toUpperCase()}
         </h2>
         <div className="mt-8 h-px w-20 bg-gold" />
       </div>
@@ -181,10 +107,8 @@ export function MaterialProjectCarousel({ locale, materialName, projectTitleLink
           lerp={0.08}
           loop={projectImages.length > 1}
           onImageClick={(src) => setActiveImage(src)}
-          parallaxIntensity={0}
           pauseOnHover
           showProgress={false}
-          uvScale={0}
           wheelSensitivity={1}
         />
       </div>
@@ -203,8 +127,26 @@ export function MaterialProjectCarousel({ locale, materialName, projectTitleLink
           >
             <div className="relative mb-4 flex justify-center md:mb-6">
               <div className="max-w-[min(68rem,calc(100vw-8.5rem))] bg-white/92 px-4 py-3 text-center text-charcoal shadow-[0_18px_48px_rgba(0,0,0,0.22)] backdrop-blur md:px-5 md:py-4">
-                <p className="label-caps text-[0.62rem] text-charcoal/55">{locale === "en" ? "Project" : "プロジェクト"}</p>
-                <h3 className="mt-1 break-words font-serif text-lg leading-tight md:text-2xl">{activeTitleContent}</h3>
+                <h3 className="break-words font-serif text-lg leading-tight md:text-2xl">{activeImageEntry.title}</h3>
+                {activeImageEntry.projectLinks.length > 0 ? (
+                  <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-sans text-[0.76rem] uppercase tracking-[0.12em] text-charcoal/70">
+                    {activeImageEntry.projectLinks.map((link) => (
+                      <Link
+                        className="transition-colors hover:text-gold"
+                        href={localizedPath(locale, link.href)}
+                        key={link.href}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          event.stopPropagation();
+                          handleProjectLinkClick(link.href);
+                        }}
+                      >
+                        <span>See </span>
+                        <span className="border-b border-current pb-[2px]">{link.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
               </div>
               <button
                 aria-label={locale === "en" ? "Close expanded image" : "拡大画像を閉じる"}

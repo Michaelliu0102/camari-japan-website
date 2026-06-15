@@ -8,13 +8,19 @@ type MaterialIntroProps = {
 };
 
 export function MaterialIntro({ locale, material }: MaterialIntroProps) {
+  const introParagraphs = material.introBody[locale].split(/\n{2,}/).filter(Boolean);
+
   return (
     <section className="bg-stone py-24 md:py-36" data-nav-invert>
       <div className="section-shell grid gap-16 md:grid-cols-12 md:items-center">
         <div className="md:col-span-5">
           <h2 className="font-serif text-4xl leading-tight md:text-5xl">{material.introTitle[locale]}</h2>
           <div className="my-8 h-px w-20 bg-gold" />
-          <p className="max-w-xl text-base leading-8 text-muted md:text-lg">{material.introBody[locale]}</p>
+          <div className="max-w-xl space-y-5 text-base leading-8 text-muted md:text-lg">
+            {introParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
           <p className="mt-8 max-w-xl font-serif text-xl italic leading-8 text-charcoal/70">{material.quote[locale]}</p>
         </div>
         <div className="relative min-h-[520px] md:col-span-6 md:col-start-7">

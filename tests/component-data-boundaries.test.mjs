@@ -60,11 +60,48 @@ test("MaterialProjectCarousel connects Sanity project images to the parallax car
 
   assert.match(content, /projects: ProjectCase\[\]/);
   assert.match(content, /project\.projectImages/);
-  assert.match(content, /flatMap/);
+  assert.match(content, /new Map<string, ProjectImageEntry>\(\)/);
   assert.match(content, /<ParallaxCarousel/);
-  assert.match(content, /images=\{projectImages\}/);
+  assert.match(content, /images=\{projectImages\.map\(\(item\) => item\.src\)\}/);
   assert.doesNotMatch(content, /selectedProject/);
   assert.doesNotMatch(content, /ArrowLeft|ArrowRight/);
+});
+
+test("Material project modal renders explicit linked-article CTA links above the photo", async () => {
+  const content = await source("src/components/MaterialProjectCarousel.tsx");
+
+  assert.match(content, /const router = useRouter\(\)/);
+  assert.match(content, /<span>See <\/span>/);
+  assert.match(content, /<span className="border-b border-current pb-\[2px\]">\{link\.label\}<\/span>/);
+  assert.doesNotMatch(content, /See '\{link\.label\}'/);
+  assert.match(content, /handleProjectLinkClick\(link\.href\)/);
+  assert.match(content, /router\.push\(localizedPath\(locale, href\)\)/);
+  assert.doesNotMatch(content, /className="underline/);
+  assert.doesNotMatch(content, /\{locale === "en" \? "Project" : "プロジェクト"\}/);
+});
+
+test("Project case schema distinguishes primary and additional material links", async () => {
+  const content = await source("src/sanity/schemaTypes/projectCase.ts");
+
+  assert.match(content, /name: "relatedMaterial", title: "Primary Material"/);
+  assert.match(content, /name: "linkedMaterials"/);
+  assert.match(content, /title: "Additional Materials"/);
+});
+
+test("MaterialProjectCarousel crops project images to a consistent carousel size", async () => {
+  const content = await source("src/components/MaterialProjectCarousel.tsx");
+
+  assert.match(content, /imageFit="cover"/);
+  assert.match(content, /imageHeight=\{620\}/);
+  assert.match(content, /imageWidth=\{460\}/);
+});
+
+test("MaterialProjectCarousel keeps the shader parallax motion enabled", async () => {
+  const content = await source("src/components/MaterialProjectCarousel.tsx");
+
+  assert.match(content, /<ParallaxCarousel/);
+  assert.doesNotMatch(content, /parallaxIntensity=\{0\}/);
+  assert.doesNotMatch(content, /uvScale=\{0\}/);
 });
 
 test("ParallaxCarousel uses a Three.js shader carousel with imperative index navigation", async () => {
@@ -75,6 +112,23 @@ test("ParallaxCarousel uses a Three.js shader carousel with imperative index nav
   assert.match(content, /texture2D\(uMap, uv\)/);
   assert.match(content, /scrollToIndex: \(index: number\) => void/);
   assert.match(content, /useImperativeHandle/);
+});
+
+test("ParallaxCarousel consumes horizontal wheel gestures inside the gallery", async () => {
+  const content = await source("src/components/ParallaxCarousel.tsx");
+
+  assert.match(content, /event\.preventDefault\(\)/);
+  assert.match(content, /node\.addEventListener\("wheel", onWheel, \{ passive: false \}\)/);
+});
+
+test("Material detail page builds project CTA links directly from linked articles", async () => {
+  const content = await source("src/app/[locale]/materials/[materialSlug]/page.tsx");
+
+  assert.match(content, /function buildProjectLinks\(/);
+  assert.match(content, /project\.linkedArticles/);
+  assert.match(content, /const firstSkuByArticleKey = new Map<string, Sku>\(\)/);
+  assert.match(content, /const articleKey = `\$\{linkedArticle\.materialSlug\}::\$\{linkedArticle\.slug\}`/);
+  assert.match(content, /href: `\/materials\/\$\{linkedArticle\.materialSlug\}\/\$\{linkedArticle\.slug\}\/\$\{firstSku\.slug\}`/);
 });
 
 test("SkuSwatches builds the side image rail from the selected SKU gallery", async () => {
@@ -91,8 +145,13 @@ test("SkuSwatches builds the side image rail from the selected SKU gallery", asy
 test("SkuSwatches can render colour chips from swatch images when hex values are missing", async () => {
   const content = await source("src/components/SkuSwatches.tsx");
 
-  assert.match(content, /skus\.some\(\(s\) => s\.hex \|\| s\.swatchImage \|\| s\.image\)/);
-  assert.match(content, /backgroundImage:\s*`url\(\$\{sku\.swatchImage \?\? sku\.image\}\)`/);
+  assert.match(content, /import \{ toSanityThumbnailUrl \} from "@\/lib\/image-urls"/);
+  assert.match(content, /const skuSwatchThumbnailSize = 96/);
+  assert.match(content, /skus\.some\(\(s\) => s\.hex \|\| s\.swatchImage \|\| s\.previewImage \|\| s\.image\)/);
+  assert.match(content, /function getSkuSwatchImage\(sku: Sku\): string \| undefined/);
+  assert.match(content, /sku\.swatchImage \?\? sku\.previewImage \?\? \(sku\.image \|\| undefined\)/);
+  assert.match(content, /toSanityThumbnailUrl\(image, skuSwatchThumbnailSize\)/);
+  assert.match(content, /src=\{swatchImage\} unoptimized/);
 });
 
 test("SkuSwatches keeps the Dedar-style grey stage with cursor-following zoom", async () => {

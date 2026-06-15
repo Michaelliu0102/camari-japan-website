@@ -455,9 +455,16 @@ const ParallaxCarousel = React.forwardRef<ParallaxCarouselRef, ParallaxCarouselP
       }
 
       const onWheel = (event: WheelEvent) => {
+        const isHorizontalGesture = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+
+        if (!isHorizontalGesture) {
+          return;
+        }
+
+        event.preventDefault();
+
         const settings = settingsRef.current;
-        const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-        scrollRef.current.target += delta * settings.wheelSensitivity;
+        scrollRef.current.target += event.deltaX * settings.wheelSensitivity;
       };
 
       const onPointerDown = (event: PointerEvent) => {
@@ -540,7 +547,7 @@ const ParallaxCarousel = React.forwardRef<ParallaxCarouselRef, ParallaxCarouselP
         hoverRef.current = false;
       };
 
-      node.addEventListener("wheel", onWheel, { passive: true });
+      node.addEventListener("wheel", onWheel, { passive: false });
       node.addEventListener("pointerdown", onPointerDown);
       node.addEventListener("pointermove", onPointerMove);
       node.addEventListener("pointerup", onPointerUp);
@@ -582,6 +589,7 @@ const ParallaxCarousel = React.forwardRef<ParallaxCarouselRef, ParallaxCarouselP
         ref={containerRef}
         style={{
           cursor: "grab",
+          overscrollBehaviorX: "contain",
           touchAction: "pan-y",
           ...style
         }}

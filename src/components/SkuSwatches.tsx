@@ -7,6 +7,7 @@ import { Award, Download, FileText, SprayCan } from "lucide-react";
 import type { CSSProperties, PointerEvent } from "react";
 import { useEffect, useMemo, useState } from "react";
 import type { Sku } from "@/lib/content";
+import { toSanityThumbnailUrl } from "@/lib/image-urls";
 import { localizedPath, type Locale } from "@/lib/locales";
 
 type SkuZoomStyle = CSSProperties & {
@@ -34,17 +35,63 @@ const productInfoLinks = [
   { href: "#downloads", label: "Downloads", Icon: Download }
 ];
 
+const skuSwatchThumbnailSize = 96;
+const fabricAutomotiveBrandPattern = /\b(?:bmw|mercedes(?:-benz)?|porsche|volkswagen|vw|mini|ford|beetle|käfer|kafer|kever|coccinelle|westfalia|capri)\b/i;
+
+const fabricTrademarkDisclaimer = {
+  en: "Vehicle brand names and trademarks referenced on this page are the property of their respective owners. CAMARI is not affiliated with, endorsed by, or sponsored by those owners. These fabrics are reproduction or aftermarket materials and are not genuine vehicle manufacturer products.",
+  ja: "本ページに記載されている車両ブランド名および商標は、それぞれの権利者に帰属します。CAMARI JAPAN は各権利者と提携、承認、またはスポンサー関係にありません。これらの生地は再現品またはアフターマーケット素材であり、車両メーカーの純正品ではありません。"
+};
+
+function hasFabricAutomotiveBrandReference(
+  materialSlug: string,
+  productTypeSlug: string,
+  productTypeName: string,
+  productTypeSummary: string,
+  sku: Sku
+) {
+  if (materialSlug !== "fabric") {
+    return false;
+  }
+
+  const text = [
+    productTypeSlug,
+    productTypeName,
+    productTypeSummary,
+    sku.code,
+    sku.colorName?.en,
+    sku.colorName?.ja,
+    sku.summary?.en,
+    sku.summary?.ja,
+    sku.seo?.title?.en,
+    sku.seo?.title?.ja,
+    sku.seo?.description?.en,
+    sku.seo?.description?.ja
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return fabricAutomotiveBrandPattern.test(text);
+}
+
+function getSkuSwatchImage(sku: Sku): string | undefined {
+  const image = sku.swatchImage ?? sku.previewImage ?? (sku.image || undefined);
+
+  return image ? toSanityThumbnailUrl(image, skuSwatchThumbnailSize) : undefined;
+}
+
 export function SkuSwatches({ locale, materialName, materialSlug, productTypeName, productTypeSlug, productTypeCode, productTypeSummary, skus, initialSku, compact = false }: SkuSwatchesProps) {
   const router = useRouter();
   const [selectedSlug, setSelectedSlug] = useState(initialSku.slug);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const selected = useMemo(() => skus.find((sku) => sku.slug === selectedSlug) ?? initialSku, [initialSku, selectedSlug, skus]);
-  const hasVisualSwatches = useMemo(() => skus.some((s) => s.hex || s.swatchImage || s.image), [skus]);
+  const hasVisualSwatches = useMemo(() => skus.some((s) => s.hex || s.swatchImage || s.previewImage || s.image), [skus]);
+  const showFabricTrademarkDisclaimer = hasFabricAutomotiveBrandReference(materialSlug, productTypeSlug, productTypeName, productTypeSummary, selected);
   const galleryImages = useMemo(() => {
     const images = [
       {
         image: selected.image,
-        thumbnail: selected.swatchImage ?? selected.image,
+        thumbnail: getSkuSwatchImage(selected) ?? selected.image,
         alt: `${materialName}${selected.colorName?.[locale] ? ` — ${selected.colorName[locale]}` : ""}`
       },
       ...(selected.caseGallery ?? []).map((item) => ({
@@ -363,29 +410,29 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                   </span>
                   <span className="font-sans text-[10px] tracking-[0.12em] text-charcoal/60">{skus.length} options</span>
                 </div>
-                    <div className="flex flex-wrap gap-[10px]">
-                      {skus.map((sku) => {
-                        const active = sku.slug === selected.slug;
-                        const swatchImage = materialSlug === "fabric" ? sku.swatchImage ?? sku.image : sku.swatchImage;
-                        const swatchStyle = !swatchImage && sku.hex ? { backgroundColor: sku.hex } : undefined;
+                <div className="flex flex-wrap gap-[10px]">
+                  {skus.map((sku) => {
+                    const active = sku.slug === selected.slug;
+                    const swatchImage = getSkuSwatchImage(sku);
+                    const swatchStyle = !swatchImage && sku.hex ? { backgroundColor: sku.hex } : undefined;
 
-                        return (
-                          <button
-                            aria-label={sku.colorName?.[locale] ? `${sku.colorName[locale]} — ${sku.code}` : sku.code}
-                            aria-pressed={active}
-                            className={`relative h-9 w-9 shrink-0 overflow-hidden border border-charcoal/15 bg-[#f3f3f2] transition-all ${
-                              active
-                                ? "outline outline-1 outline-offset-[3px] outline-charcoal"
-                                : "hover:scale-110"
-                            }`}
-                            key={sku.slug}
-                            onClick={() => handleSwatchClick(sku.slug)}
-                            style={swatchStyle}
-                            title={sku.colorName?.[locale] ? `${sku.code} ${sku.colorName[locale]}` : sku.code}
-                            type="button"
-                          >
-                            {swatchImage ? <Image alt="" className="object-cover" fill sizes="36px" src={swatchImage} /> : null}
-                          </button>
+                    return (
+                      <button
+                        aria-label={sku.colorName?.[locale] ? `${sku.colorName[locale]} — ${sku.code}` : sku.code}
+                        aria-pressed={active}
+                        className={`relative h-9 w-9 shrink-0 overflow-hidden border border-charcoal/15 bg-[#f3f3f2] transition-all ${
+                          active
+                            ? "outline outline-1 outline-offset-[3px] outline-charcoal"
+                            : "hover:scale-110"
+                        }`}
+                        key={sku.slug}
+                        onClick={() => handleSwatchClick(sku.slug)}
+                        style={swatchStyle}
+                        title={sku.colorName?.[locale] ? `${sku.code} ${sku.colorName[locale]}` : sku.code}
+                        type="button"
+                      >
+                        {swatchImage ? <Image alt="" className="object-cover" fill sizes="36px" src={swatchImage} unoptimized /> : null}
+                      </button>
                     );
                   })}
                 </div>
@@ -401,6 +448,11 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                 Contact Sales
               </Link>
               <p className="font-sans text-[10px] leading-relaxed text-muted">Sample request workflow is reserved for a later release.</p>
+              {showFabricTrademarkDisclaimer ? (
+                <p className="max-w-[34rem] font-sans text-[9px] leading-relaxed text-charcoal/45">
+                  {fabricTrademarkDisclaimer[locale]}
+                </p>
+              ) : null}
             </div>
           </div>
         </div>

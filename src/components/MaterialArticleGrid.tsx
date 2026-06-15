@@ -35,7 +35,7 @@ export function MaterialArticleGrid({ locale, materialSlug, productTypes, skus }
             </h2>
           </div>
           <p className="max-w-2xl text-sm leading-7 text-muted md:col-span-5 md:justify-self-end md:text-right">
-            Restored automotive textiles arranged by marque, weave, and period reference.
+            Automotive fabric displayed by pattern and marques.
           </p>
         </div>
 

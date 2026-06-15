@@ -342,13 +342,13 @@ export const materials: Material[] = [
     heroImage: images.alcantara,
     introTitle: { en: "The Art of Italian Innovation", ja: "イタリアンイノベーションの美学" },
     introBody: {
-      en: "Born at the intersection of avant-garde technology and artisanal heritage, Alcantara is a carbon-neutral canvas for contemporary luxury that balances softness, performance, and architectural control.",
-      ja: "先端技術と職人性の交点から生まれた Alcantara は、柔らかさ、性能、建築的な抑制を兼ね備えたカーボンニュートラルなラグジュアリー素材です。"
+      en: "Alcantara represents a singular vision: one company, one brand, and one remarkable material. Founded in 1972, this symbol of Italian excellence is built on a unique, proprietary technology that blends advanced science with premium craftsmanship.\n\nAlcantara brings together advanced technology and great craftsmanship. It is uniquely soft, comfortable, and distinct to the touch, yet it is also durable, lightweight, breathable, temperature-regulating, and completely washable. These excellent qualities allow it to easily wrap around complex shapes and surfaces while keeping a clean, premium look.\n\nChosen by leading brands in automotive, interiors, marine, aviation, fashion, and consumer electronics, Alcantara turns high performance into a true design language. It supports custom solutions for demanding creative and technical projects through a wide range of options, including personalized colors, textures, printing, perforation, laser processing, embossing, embroidery, and lamination.\n\nSustainability is a core part of its industrial culture. Alcantara has maintained its Carbon Neutral certification since 2009.",
+      ja: "Alcantara は、ひとつの企業、ひとつのブランド、ひとつの素材として成立するイタリアのエクセレンスです。1972年にイタリアで生産が始まり、独自の専有技術から発展してきました。\n\nこの素材は、先端技術とクラフツマンシップを結びつけています。柔らかく包み込むような独自の触感を持ちながら、耐久性、軽さ、通気性、温度調整性、メンテナンス性、耐摩耗性にも優れています。複雑な形状や多様な表面に適応しながら、洗練された視覚的な存在感を保つことができます。\n\n自動車、インテリア、船舶、航空、ファッション、コンシューマーエレクトロニクスまで、Alcantara は世界の主要ブランドに選ばれています。カラー、テクスチャー、プリント、パンチング、レーザー加工、エンボス、刺繍、ラミネーションなどのカスタマイズに対応し、高度な意匠性と技術要件を持つプロジェクトに合わせたソリューションを提供します。\n\nサステナビリティも Alcantara の産業文化の一部です。2009年からカーボンニュートラル認証を継続し、責任ある生産、製品認証、リサイクル素材、循環型経済に向けた研究開発を進めています。"
     },
     introImage: images.interior,
     quote: {
-      en: "Alcantara transforms the experience of touch into an architectural statement.",
-      ja: "Alcantara は触れる体験を、空間の意思へと変える。"
+      en: "Alcantara turns technical performance into a sensory language for contemporary design.",
+      ja: "Alcantara は、技術性能を現代デザインのための触感の言語へと変える。"
     },
     applications: [
       { slug: "automotive", name: { en: "Automotive", ja: "自動車" }, colorCount: 71, image: images.alcantara },
@@ -610,37 +610,6 @@ const fixtureProductTypes: ProductType[] = [
 ];
 
 const fixtureSkus: Sku[] = [
-  {
-    slug: "l-tpg-3345-cognac",
-    materialSlug: "leather",
-    productTypeSlug: "verona",
-    code: "L-TPG-3345",
-    colorName: { en: "Cognac", ja: "コニャック" },
-    hex: "#8B5E3C",
-    image: images.alcantaraSoft,
-    summary: {
-      en: "Top-grain semi-aniline leather in warm cognac tones. Balanced hand-feel with UV-stable pigment for hospitality and residential seating.",
-      ja: "ウォームコニャックトーンのトップグレインセミアニリンレザー。ホスピタリティおよび住宅用シート向けに、バランスの良い手触りと UV 安定顔料を採用。"
-    },
-    specs: [
-      { label: { en: "Unit", ja: "単位" }, value: { en: "Square meters", ja: "平方メートル" } },
-      { label: { en: "Code", ja: "コード" }, value: { en: "L-TPG-3345", ja: "L-TPG-3345" } },
-      { label: { en: "Grain", ja: "木目" }, value: { en: "Top-grain semi-aniline", ja: "トップグレインセミアニリン" } },
-      { label: { en: "Thickness", ja: "厚さ" }, value: { en: "1.0–1.2 mm", ja: "1.0–1.2 mm" } }
-    ],
-    certifications: [
-      { en: "UV-stable pigment finish", ja: "紫外線安定顔料仕上げ" }
-    ],
-    downloads: [],
-    seo: {
-      title: { en: "L-TPG-3345 Cognac | CAMARI JAPAN", ja: "L-TPG-3345 コニャック | CAMARI JAPAN" },
-      description: {
-        en: "Top-grain semi-aniline leather in warm cognac for hospitality and residential use.",
-        ja: "ホスピタリティおよび住宅用のウォームコニャックトップグレインセミアニリンレザー。"
-      },
-      image: images.alcantaraSoft
-    }
-  },
   // Vegan Leather SKUs
   {
     slug: "vl-mtt-8801-obsidian",

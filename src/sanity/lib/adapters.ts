@@ -1,3 +1,4 @@
+import imageUrlBuilder from "@sanity/image-url";
 import {
   aboutPageSettings as fallbackAboutPageSettings,
   homePageSettings as fallbackHomePageSettings,
@@ -29,17 +30,84 @@ import type {
   RawProductType,
   RawProjectCase,
   RawSeo,
+  RawSanityImage,
   RawSku
 } from "./queries";
 
 const emptyLocalized: LocalizedString = { en: "", ja: "" };
 const premiumCollection: LocalizedString = { en: "Premium Collection", ja: "プレミアムコレクション" };
+const sanityImageBuilder = imageUrlBuilder({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "replace-me",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production"
+});
+
+type SanityImageUrlOptions = {
+  height?: number;
+  quality?: number;
+  width?: number;
+};
 
 function localized(value: LocalizedString | null | undefined): LocalizedString {
   return {
     en: value?.en ?? "",
     ja: value?.ja ?? ""
   };
+}
+
+function hasSanityImageAsset(image: RawSanityImage | undefined): image is NonNullable<RawSanityImage> {
+  return Boolean(image?.asset);
+}
+
+function buildSanityImageUrl(image: RawSanityImage | undefined, fallbackUrl: string, options: SanityImageUrlOptions = {}): string {
+  if (!hasSanityImageAsset(image)) {
+    return fallbackUrl;
+  }
+
+  try {
+    let builder = sanityImageBuilder.image(image as Parameters<typeof sanityImageBuilder.image>[0]).auto("format").quality(options.quality ?? 82);
+
+    if (options.width) {
+      builder = builder.width(options.width);
+    }
+
+    if (options.height) {
+      builder = builder.height(options.height);
+    }
+
+    if (options.width && options.height) {
+      builder = builder.fit("crop");
+    }
+
+    return builder.url();
+  } catch {
+    return fallbackUrl;
+  }
+}
+
+function imageIdentity(url: string): string {
+  try {
+    const parsed = new URL(url);
+    parsed.hash = "";
+    parsed.search = "";
+    return parsed.toString();
+  } catch {
+    return url.split("#")[0].split("?")[0];
+  }
+}
+
+function uniqueImageUrls(urls: string[]): string[] {
+  const seen = new Set<string>();
+
+  return urls.filter((url) => {
+    const key = imageIdentity(url);
+
+    if (seen.has(key)) {
+      return false;
+    }
+
+    seen.add(key);
+    return true;
+  });
 }
 
 function slugify(value: string): string {
@@ -237,9 +305,9 @@ export function adaptSku(raw: RawSku): Sku {
     productTypeSlug: raw.productTypeSlug ?? "",
     code,
     colorName,
-    hex: raw.hex || "#1A1A1A",
+    hex: raw.hex || undefined,
     image: raw.heroImageUrl ?? "",
-    swatchImage: undefined,
+    swatchImage: raw.swatchImageUrl ?? raw.previewImageUrl ?? undefined,
     previewImage: raw.previewImageUrl ?? undefined,
     caseGallery: (raw.caseGallery ?? [])
       .map((item) => ({
@@ -260,8 +328,14 @@ export function adaptSku(raw: RawSku): Sku {
 
 export function adaptProjectCase(raw: RawProjectCase): ProjectCase {
   const title = localized(raw.title);
-  const image = raw.imageUrl ?? "";
-  const projectImages = [image, ...(raw.galleryImageUrls ?? [])].filter((item): item is string => Boolean(item));
+  const rawCoverImageUrl = raw.imageUrl ?? "";
+  const image = buildSanityImageUrl(raw.image, rawCoverImageUrl, { quality: 84, width: 1600 });
+  const coverCarouselImage = buildSanityImageUrl(raw.image, image, { height: 1240, quality: 82, width: 920 });
+  const galleryImages = (raw.galleryImages ?? []).map((galleryImage, index) =>
+    buildSanityImageUrl(galleryImage, raw.galleryImageUrls?.[index] ?? "", { height: 1240, quality: 82, width: 920 })
+  );
+  const galleryFallbackImages = (raw.galleryImageUrls ?? []).filter((_, index) => !hasSanityImageAsset(raw.galleryImages?.[index]));
+  const projectImages = [coverCarouselImage, ...galleryImages, ...galleryFallbackImages].filter((item): item is string => Boolean(item));
   const fixture = fallbackProjects.find((project) => project.slug === raw.slug);
   const linkedMaterials = (raw.linkedMaterials ?? [])
     .map((item) =>
@@ -290,7 +364,7 @@ export function adaptProjectCase(raw: RawProjectCase): ProjectCase {
     title,
     industry: localized(raw.industry),
     image,
-    projectImages: [...new Set(projectImages)],
+    projectImages: uniqueImageUrls(projectImages),
     summary: localized(raw.summary),
     materialSlug: raw.materialSlug ?? "",
     linkedMaterials:
