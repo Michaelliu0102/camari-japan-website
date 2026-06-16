@@ -20,6 +20,62 @@ type FaqItem = {
 };
 
 const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
+  "automotive-nappa": {
+    en: [
+      {
+        question: "What is Automotive Nappa leather?",
+        answer:
+          "In the automotive world, Nappa leather is the gold standard for premium and luxury car interiors. It is not a specific type of animal skin, but rather a generic term for exceptionally soft, smooth, bovine (cow) leather that has been treated with a specialized chrome-tanning process."
+      },
+      {
+        question: "Why do OEMs require automotive-grade Nappa leather?",
+        answer:
+          "Standard leather cannot survive the extreme conditions inside a car. Automotive-grade Nappa undergoes rigorous laboratory testing to ensure superior UV and heat resistance against solar cracking, high tensile strength to prevent tearing under heavy use, and strict compliance with global fire-retardant safety standards."
+      },
+      {
+        question: "What is Automotive Nappa intended for?",
+        answer:
+          "Automotive Nappa is intended for premium automotive interiors, including seating, steering wheels, door panels, dashboards, consoles, and trim surfaces."
+      },
+      {
+        question: "What is the standard thickness and average size?",
+        answer:
+          "The standard thickness is 1.1-1.3 mm, with an average hide size of 48-54 sf."
+      },
+      {
+        question: "Is Automotive Nappa fire resistant?",
+        answer:
+          "Automotive Nappa is tested to comply with FMVSS 302."
+      }
+    ],
+    ja: [
+      {
+        question: "Automotive Nappa leather とは何ですか？",
+        answer:
+          "自動車の世界では、Nappa leather はプレミアムおよびラグジュアリーカー内装のゴールドスタンダードです。特定の動物皮革を指すものではなく、専用のクロムなめし工程で処理された、非常に柔らかく滑らかな牛革を表す一般的な名称です。"
+      },
+      {
+        question: "なぜ OEM は自動車グレードの Nappa leather を求めるのですか？",
+        answer:
+          "一般的なレザーは、車内の過酷な環境に耐えられません。自動車グレードの Nappa は、日射によるひび割れを防ぐための優れた耐紫外線性と耐熱性、激しい使用でも破れにくい高い引張強度、そして国際的な難燃安全基準への適合を確認するため、厳格なラボ試験を受けています。"
+      },
+      {
+        question: "Automotive Nappa はどの用途に適していますか？",
+        answer:
+          "Automotive Nappa は、シート、ステアリングホイール、ドアパネル、ダッシュボード、コンソール、トリムなどの上質な自動車内装に適しています。"
+      },
+      {
+        question: "標準厚みと平均サイズはどのくらいですか？",
+        answer:
+          "標準厚みは 1.1-1.3 mm、平均サイズは 48-54 sf です。"
+      },
+      {
+        question: "Automotive Nappa は難燃性がありますか？",
+        answer:
+          "Automotive Nappa は FMVSS 302 に適合するよう試験されています。"
+      }
+    ]
+  },
   "alcantara-panel": {
     en: [
       {
