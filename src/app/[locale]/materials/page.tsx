@@ -57,7 +57,7 @@ export default async function MaterialsPage({ params }: PageProps) {
           </p>
         </div>
       </section>
-      <section className="bg-paper py-24 md:py-32" data-nav-invert>
+      <section className="bg-stone py-24 md:py-32" data-nav-invert>
         <div className="section-shell">
         <MagicBento
           cards={categories

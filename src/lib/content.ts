@@ -41,7 +41,7 @@ export type MaterialCategory = {
 export type Application = {
   slug: string;
   name: LocalizedString;
-  colorCount: number;
+  colorCount?: number;
   image: string;
   productTypeSlug?: string;
 };
@@ -384,10 +384,9 @@ export const materials: Material[] = [
       ja: "持続可能性は制約ではない。それは素材の規律である。"
     },
     applications: [
-      { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 48, image: images.vegan },
-      { slug: "outdoor", name: { en: "Outdoor", ja: "アウトドア" }, colorCount: 22, image: images.outdoor },
-      { slug: "electronics", name: { en: "Consumer Electronics", ja: "コンシューマー機器" }, colorCount: 16, image: images.alcantara },
-      { slug: "fashion", name: { en: "Fashion", ja: "ファッション" }, colorCount: 35, image: images.fabric }
+      { slug: "vinyl", name: { en: "Vinyl", ja: "ビニール" }, image: images.vegan },
+      { slug: "pu-leather", name: { en: "PU Leather", ja: "PU レザー" }, image: images.alcantara },
+      { slug: "microfiber-leather", name: { en: "Microfiber Leather", ja: "マイクロファイバーレザー" }, image: images.fabric }
     ],
     seo: {
       title: { en: "Vegan Leather Materials | CAMARI JAPAN", ja: "ヴィーガンレザー素材 | CAMARI JAPAN" },

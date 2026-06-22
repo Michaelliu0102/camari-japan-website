@@ -10,6 +10,8 @@ type ApplicationGridProps = {
 };
 
 export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps) {
+  const gridColumnsClass = material.applications.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
+
   const defaultHref = () => {
     const firstSku = skus[0];
     return firstSku ? `/materials/${material.slug}/${firstSku.productTypeSlug}/${firstSku.slug}` : `/materials/${material.slug}`;
@@ -32,7 +34,7 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
           <h2 className="font-label text-3xl uppercase tracking-[0.12em] md:text-4xl">Article</h2>
           <div className="mx-auto mt-7 h-px w-20 bg-gold" />
         </div>
-        <div className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-4">
+        <div className={`grid grid-cols-1 gap-gutter sm:grid-cols-2 ${gridColumnsClass}`}>
           {material.applications.map((application) => (
             <Link className="group" href={localizedPath(locale, getHref(application))} key={application.slug}>
               <div className="relative aspect-square overflow-hidden bg-stone shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-material">
@@ -40,7 +42,7 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
               </div>
               <div className="pt-6 text-center">
                 <h3 className="label-caps text-charcoal">{application.name[locale]}</h3>
-                <p className="mt-2 text-sm text-muted">{application.colorCount} colours</p>
+                {typeof application.colorCount === "number" ? <p className="mt-2 text-sm text-muted">{application.colorCount} colours</p> : null}
               </div>
             </Link>
           ))}
