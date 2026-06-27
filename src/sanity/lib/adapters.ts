@@ -37,7 +37,7 @@ import type {
 const emptyLocalized: LocalizedString = { en: "", ja: "" };
 const premiumCollection: LocalizedString = { en: "Premium Collection", ja: "プレミアムコレクション" };
 const sanityImageBuilder = imageUrlBuilder({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "replace-me",
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "bfjhbpbx",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production"
 });
 

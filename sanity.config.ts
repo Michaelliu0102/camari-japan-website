@@ -7,7 +7,7 @@ import { schemaTypes } from "./src/sanity/schemaTypes";
 export default defineConfig({
   name: "camari-japan",
   title: "CAMARI JAPAN CMS",
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "replace-me",
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "bfjhbpbx",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
   basePath: "/studio",
   plugins: [structureTool()],
