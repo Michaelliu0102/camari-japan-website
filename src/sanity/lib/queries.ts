@@ -69,6 +69,25 @@ export type RawProductType = {
   seo?: RawSeo;
 };
 
+export type RawProductCarouselItem = {
+  title?: LocalizedString | null;
+  coverImageUrl?: string | null;
+  description?: LocalizedString | null;
+  details?: Array<LocalizedString | null> | null;
+  galleryImageUrls?: Array<string | null> | null;
+};
+
+export type RawProductCategory = {
+  title?: LocalizedString | null;
+  slug?: string | null;
+  subtitle?: LocalizedString | null;
+  heroImageUrl?: string | null;
+  description?: LocalizedString | null;
+  highlights?: Array<{ title?: LocalizedString | null; body?: LocalizedString | null } | null> | null;
+  carouselItems?: RawProductCarouselItem[] | null;
+  seo?: RawSeo;
+};
+
 export type RawSku = {
   code?: string | null;
   slug?: string | null;
@@ -260,6 +279,30 @@ export const productTypesQuery = `*[_type == "productType" && (!defined(markets)
   maintenance[] {
     title,
     description
+  },
+  seo {
+    title,
+    description,
+    "imageUrl": image.asset->url
+  }
+}`;
+
+export const productCategoriesQuery = `*[_type == "productCategory"] | order(sortOrder asc, title.en asc) {
+  title,
+  "slug": slug.current,
+  subtitle,
+  "heroImageUrl": heroImage.asset->url,
+  description,
+  highlights[] {
+    title,
+    body
+  },
+  carouselItems[] {
+    title,
+    "coverImageUrl": coverImage.asset->url,
+    description,
+    details,
+    "galleryImageUrls": gallery[].asset->url
   },
   seo {
     title,

@@ -6,6 +6,13 @@ export type ProductCategory = {
   title: LocalizedString;
   subtitle: LocalizedString;
   heroImage: string;
+  curvedCarouselImages?: Array<{
+    src: string;
+    title: LocalizedString;
+    description: LocalizedString;
+    details: LocalizedString[];
+    galleryImages: string[];
+  }>;
   description: LocalizedString;
   highlights: Array<{
     title: LocalizedString;
@@ -31,6 +38,120 @@ export const productCategories: ProductCategory[] = [
       ja: "素材戦略から完成されたサーフェス実装まで"
     },
     heroImage: images.automotive,
+    curvedCarouselImages: [
+      {
+        src: "/uploads/gallery/fabric/Ferrari-SF90-Denim.jpg",
+        title: { en: "Denim Performance Seat", ja: "デニム パフォーマンスシート" },
+        description: {
+          en: "A tailored denim textile expression for sport seats, balancing visual character with cabin durability.",
+          ja: "スポーツシート向けのデニム調テキスタイル。視覚的な個性とキャビン用途の耐久性を両立します。"
+        },
+        details: [
+          { en: "Seat insert and bolster application", ja: "シートインサート、ボルスター用途" },
+          { en: "Textile hand-feel with automotive-grade execution", ja: "自動車グレードで仕上げるテキスタイル感" },
+          { en: "Designed for custom interior programs", ja: "カスタムインテリアプログラム向け" }
+        ],
+        galleryImages: ["/uploads/gallery/fabric/Ferrari-SF90-Denim.jpg"]
+      },
+      {
+        src: "/uploads/gallery/fabric/Toyto-FA8074.jpeg",
+        title: { en: "Classic Woven Cabin", ja: "クラシック ウーブンキャビン" },
+        description: {
+          en: "A warm woven surface for heritage-inspired seating and trim, made for cabins that need a softer material language.",
+          ja: "ヘリテージ感のあるシートやトリム向けの温かみある織物表面。柔らかな素材表現が必要なキャビンに適しています。"
+        },
+        details: [
+          { en: "Seat centers, door inserts, and armrest accents", ja: "シート中央、ドアインサート、アームレストアクセント" },
+          { en: "Patterned textile surface with refined tactility", ja: "上質な触感を持つ柄入りテキスタイル表面" },
+          { en: "Suitable for vintage and lifestyle mobility interiors", ja: "ヴィンテージ、ライフスタイル系モビリティ内装向け" }
+        ],
+        galleryImages: ["/uploads/gallery/fabric/Toyto-FA8074.jpeg"]
+      },
+      {
+        src: "/uploads/gallery/fabric/Branco-FA8045.jpg",
+        title: { en: "Light Cabin Textile", ja: "ライト キャビンテキスタイル" },
+        description: {
+          en: "A clean light-toned textile option for bright cabins, pairing technical repeatability with a softer passenger-zone feel.",
+          ja: "明るいキャビン向けのクリーンなライトトーン素材。技術的な安定性と柔らかな乗員空間の印象を両立します。"
+        },
+        details: [
+          { en: "Passenger-facing seating and panel zones", ja: "乗員側のシート、パネルゾーン" },
+          { en: "Neutral base for contrast stitching or trim details", ja: "コントラストステッチやトリムディテールに合うニュートラルベース" },
+          { en: "Balanced for modern, quiet interior schemes", ja: "モダンで落ち着いたインテリア計画向け" }
+        ],
+        galleryImages: ["/uploads/gallery/fabric/Branco-FA8045.jpg"]
+      },
+      {
+        src: "/uploads/gallery/fabric/Porsche-FA8626.jpeg",
+        title: { en: "Sport Heritage Fabric", ja: "スポーツ ヘリテージファブリック" },
+        description: {
+          en: "A graphic automotive fabric direction for seat centers and statement panels where pattern becomes part of the cabin identity.",
+          ja: "シート中央や印象的なパネル向けのグラフィックな自動車用ファブリック。柄そのものがキャビンの個性になります。"
+        },
+        details: [
+          { en: "Performance seat centers and decorative inserts", ja: "パフォーマンスシート中央、装飾インサート" },
+          { en: "High-contrast textile identity", ja: "コントラストの強いテキスタイル表現" },
+          { en: "Pairs with leather, Alcantara, or technical trims", ja: "レザー、Alcantara、テクニカルトリムとの組み合わせに対応" }
+        ],
+        galleryImages: ["/uploads/gallery/fabric/Porsche-FA8626.jpeg"]
+      },
+      {
+        src: "/uploads/gallery/leather/Aston-Martin-Heritage-5362.jpeg",
+        title: { en: "Heritage Leather Surface", ja: "ヘリテージ レザーサーフェス" },
+        description: {
+          en: "A premium leather cabin surface for seating and stitched trim, focused on a refined grain and classic automotive warmth.",
+          ja: "シートやステッチ入りトリム向けのプレミアムレザー表面。上質なシボ感とクラシックな自動車内装の温かみを重視しています。"
+        },
+        details: [
+          { en: "Seat facings, headrests, and door panels", ja: "シート表面、ヘッドレスト、ドアパネル" },
+          { en: "Premium grain with stitch-friendly finishing", ja: "ステッチ加工に適したプレミアムグレイン" },
+          { en: "Developed for high-touch interior zones", ja: "高接触インテリアゾーン向け" }
+        ],
+        galleryImages: ["/uploads/gallery/leather/Aston-Martin-Heritage-5362.jpeg"]
+      },
+      {
+        src: "/uploads/gallery/leather/Rolls-Royce-nappa-3251.jpeg",
+        title: { en: "Soft Nappa Cabin", ja: "ソフト ナッパキャビン" },
+        description: {
+          en: "A smooth nappa leather direction for luxury seating, headrests, consoles, and soft-touch cabin architecture.",
+          ja: "ラグジュアリーシート、ヘッドレスト、コンソール、ソフトタッチなキャビン構成向けの滑らかなナッパレザー方向性。"
+        },
+        details: [
+          { en: "Luxury seat and console surfaces", ja: "ラグジュアリーシート、コンソール表面" },
+          { en: "Soft hand-feel for passenger contact areas", ja: "乗員接触部に適した柔らかな手触り" },
+          { en: "Supports quilting, piping, and contrast stitch details", ja: "キルティング、パイピング、コントラストステッチに対応" }
+        ],
+        galleryImages: ["/uploads/gallery/leather/Rolls-Royce-nappa-3251.jpeg"]
+      },
+      {
+        src: "/uploads/gallery/alcantara/McLaren Senna Alcantara 4175.jpeg",
+        title: { en: "Alcantara Driver Zone", ja: "Alcantara ドライバーゾーン" },
+        description: {
+          en: "A technical Alcantara surface for driver-focused zones, bringing grip, matte color, and performance tactility into the cockpit.",
+          ja: "ドライバー中心のゾーン向けのテクニカルなAlcantara表面。グリップ感、マットな色調、パフォーマンス感のある触感をコックピットに与えます。"
+        },
+        details: [
+          { en: "Steering, seat, and console touch points", ja: "ステアリング、シート、コンソール接触部" },
+          { en: "Matte visual finish with tactile grip", ja: "触感的なグリップを持つマットな外観" },
+          { en: "Suited to performance and limited-edition cabins", ja: "パフォーマンス、限定仕様キャビン向け" }
+        ],
+        galleryImages: ["/uploads/gallery/alcantara/McLaren Senna Alcantara 4175.jpeg"]
+      },
+      {
+        src: "/uploads/gallery/alcantara/McLaren Alcantara 9002 Nappa 6927.jpeg",
+        title: { en: "Alcantara and Nappa Contrast", ja: "Alcantara とナッパのコントラスト" },
+        description: {
+          en: "A mixed-material cabin study combining Alcantara structure with nappa accents for visual contrast and tactile zoning.",
+          ja: "Alcantaraの構成感とナッパのアクセントを組み合わせたミックスマテリアルのキャビン提案。視覚的なコントラストと触感ゾーニングを実現します。"
+        },
+        details: [
+          { en: "Mixed seat, console, and trim applications", ja: "シート、コンソール、トリムのミックス用途" },
+          { en: "Contrast color blocking and touch-zone separation", ja: "配色コントラストと接触ゾーンの分離" },
+          { en: "Designed for performance luxury interiors", ja: "パフォーマンスラグジュアリー内装向け" }
+        ],
+        galleryImages: ["/uploads/gallery/alcantara/McLaren Alcantara 9002 Nappa 6927.jpeg"]
+      }
+    ],
     description: {
       en: "Material programs for automotive cabins, mobility interiors, and transport surfaces. From steering touch points and seating to door panels and headliners, surface execution that balances sensory quality with structural performance.",
       ja: "自動車キャビン、モビリティインテリア、輸送サーフェス向けの素材プログラム。ステアリング周辺、シート、ドアパネル、ヘッドライナーまで、質感的品質と構造性能のバランスを取るサーフェス実装。"

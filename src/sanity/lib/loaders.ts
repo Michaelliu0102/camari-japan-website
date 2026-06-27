@@ -18,6 +18,7 @@ import {
   type ProjectCase,
   type Sku
 } from "@/lib/content";
+import { productCategories as fallbackProductCategories, type ProductCategory } from "@/content/products/categories";
 import type { Locale } from "@/lib/locales";
 import {
   adaptAboutPageSettings,
@@ -26,6 +27,7 @@ import {
   adaptMaterial,
   adaptMaterialCategory,
   adaptNewsItem,
+  adaptProductCategory,
   adaptProductType,
   adaptProjectCase,
   adaptSku
@@ -39,6 +41,7 @@ import {
   materialCategoriesQuery,
   materialsQuery,
   newsItemsQuery,
+  productCategoriesQuery,
   productTypesQuery,
   projectsQuery,
   skusQuery,
@@ -48,6 +51,7 @@ import {
   type RawMaterial,
   type RawMaterialCategory,
   type RawNewsItem,
+  type RawProductCategory,
   type RawProductType,
   type RawProjectCase,
   type RawSku
@@ -192,6 +196,15 @@ export async function loadProductTypes(): Promise<ProductType[]> {
   });
 }
 
+export async function loadProductCategories(): Promise<ProductCategory[]> {
+  return fetchAndMergeBySlug<RawProductCategory, ProductCategory>(productCategoriesQuery, {}, fallbackProductCategories, adaptProductCategory);
+}
+
+export async function loadProductCategory(slug: string): Promise<ProductCategory | undefined> {
+  const productCategories = await loadProductCategories();
+  return productCategories.find((category) => category.slug === slug);
+}
+
 export async function loadMaterial(slug: string): Promise<Material | undefined> {
   const materials = await loadMaterials();
   return materials.find((material) => material.slug === slug);
@@ -236,7 +249,7 @@ export async function loadLegacySku(materialSlug: string, skuSlug: string): Prom
 }
 
 export async function loadProjects(): Promise<ProjectCase[]> {
-  return fetchOrFallback<RawProjectCase, ProjectCase>(projectsQuery, {}, fallbackProjects, adaptProjectCase);
+  return fetchAndMergeBySlug<RawProjectCase, ProjectCase>(projectsQuery, {}, fallbackProjects, adaptProjectCase);
 }
 
 export async function loadProjectsForMaterial(materialSlug: string): Promise<ProjectCase[]> {

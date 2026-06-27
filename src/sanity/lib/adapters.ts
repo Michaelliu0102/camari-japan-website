@@ -19,6 +19,7 @@ import {
   type Seo,
   type Sku
 } from "../../lib/content";
+import { productCategories as fallbackProductCategories, type ProductCategory } from "../../content/products/categories";
 import type {
   RawAboutPageSettings,
   RawCatalog,
@@ -27,6 +28,7 @@ import type {
   RawMaterial,
   RawMaterialCategory,
   RawNewsItem,
+  RawProductCategory,
   RawProductType,
   RawProjectCase,
   RawSeo,
@@ -132,6 +134,10 @@ function fixtureMaterial(slug: string): Material | undefined {
 
 function fixtureProductType(slug: string): ProductType | undefined {
   return fallbackProductTypes.find((productType) => productType.slug === slug);
+}
+
+function fixtureProductCategory(slug: string): ProductCategory | undefined {
+  return fallbackProductCategories.find((category) => category.slug === slug);
 }
 
 function fixtureCategory(slug: string): MaterialCategory | undefined {
@@ -292,6 +298,43 @@ export function adaptProductType(raw: RawProductType): ProductType {
     certifications: certifications.length ? certifications : fixture?.certifications ?? [],
     maintenance: maintenance.length ? maintenance : fixture?.maintenance ?? [],
     seo: adaptSeo(raw.seo, name, fixture?.seo.description ?? emptyLocalized, raw.seo?.imageUrl ?? fixture?.seo.image ?? "")
+  };
+}
+
+export function adaptProductCategory(raw: RawProductCategory): ProductCategory {
+  const slug = raw.slug ?? "";
+  const fixture = fixtureProductCategory(slug);
+  const title = raw.title?.en || raw.title?.ja ? localized(raw.title) : fixture?.title ?? emptyLocalized;
+  const heroImage = raw.heroImageUrl ?? fixture?.heroImage ?? "";
+  const highlights = (raw.highlights ?? [])
+    .map((highlight) => ({
+      title: localized(highlight?.title),
+      body: localized(highlight?.body)
+    }))
+    .filter((highlight) => highlight.title.en || highlight.title.ja || highlight.body.en || highlight.body.ja);
+  const carouselItems = (raw.carouselItems ?? [])
+    .map((item) => {
+      const coverImage = item.coverImageUrl ?? "";
+      const galleryImages = uniqueImageUrls((item.galleryImageUrls ?? []).filter((url): url is string => Boolean(url)));
+
+      return {
+        src: coverImage,
+        title: localized(item.title),
+        description: localized(item.description),
+        details: (item.details ?? []).map((detail) => localized(detail)).filter((detail) => detail.en || detail.ja),
+        galleryImages: galleryImages.length ? galleryImages : coverImage ? [coverImage] : []
+      };
+    })
+    .filter((item) => item.src && (item.title.en || item.title.ja));
+
+  return {
+    slug,
+    title,
+    subtitle: raw.subtitle?.en || raw.subtitle?.ja ? localized(raw.subtitle) : fixture?.subtitle ?? emptyLocalized,
+    heroImage,
+    curvedCarouselImages: carouselItems.length ? carouselItems : fixture?.curvedCarouselImages,
+    description: raw.description?.en || raw.description?.ja ? localized(raw.description) : fixture?.description ?? emptyLocalized,
+    highlights: highlights.length ? highlights : fixture?.highlights ?? []
   };
 }
 
