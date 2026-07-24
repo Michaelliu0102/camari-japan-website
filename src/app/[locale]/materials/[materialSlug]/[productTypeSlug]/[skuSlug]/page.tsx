@@ -6,6 +6,7 @@ import { SkuSwatches } from "@/components/SkuSwatches";
 import { SpecificationTable } from "@/components/SpecificationTable";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
+import { loadSkaiVinylProductTypeSlugs } from "@/lib/skai-vinyl";
 import { buildBreadcrumbJsonLd, buildProductJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
 import { loadMaterial, loadMaterials, loadProductType, loadProductTypesForMaterial, loadSku, loadSkusForProductType } from "@/sanity/lib/loaders";
@@ -18,6 +19,15 @@ type FaqItem = {
   question: string;
   answer: string;
 };
+
+async function isEnglishOnlySkaiVinylRoute(locale: Locale, materialSlug: string, productTypeSlug: string): Promise<boolean> {
+  if (locale === "en" || materialSlug !== "vegan-leather") {
+    return false;
+  }
+
+  const skaiProductTypeSlugs = await loadSkaiVinylProductTypeSlugs();
+  return skaiProductTypeSlugs.has(productTypeSlug);
+}
 
 const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
   "automotive-nappa": {
@@ -175,6 +185,98 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
         question: "Alcantara Cover は難燃仕様ですか？",
         answer:
           "5205 は標準の非 FR Cover で、5268 は <100 mm/min の難燃性能を持つ Cover FR 仕様です。生産前に該当仕様書をご確認ください。"
+      }
+    ]
+  },
+  "alcantara-exo": {
+    en: [
+      {
+        question: "What is Alcantara EXO made of?",
+        answer:
+          "Alcantara EXO is composed of 71% polyester and 29% polyurethane and laminated 100% polyester backing."
+      },
+      {
+        question: "What is Alcantara EXO intended for?",
+        answer:
+          "Alcantara EXO is intended for motocycle, outdoor upholstery, marine applications, and exterior surfaces where a soft Alcantara finish needs resistance to harsh weather, salt air, and seawater."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of ≤1.30 mm and unit weight of ≥310 g/m²."
+      },
+      {
+        question: "How does Alcantara EXO perform outdoors?",
+        answer:
+          "Alcantara EXO uses a layered outdoor structure: a soft Alcantara surface on top, a waterproof membrane beneath it, and a backing layer for stability. Water and wind stay out, while vapour can pass through for transpiration. This construction combines water impermeability of ≥2 meters water column with vapour permeability of ≥300 g/m²/day, while maintaining high light fastness for outdoor exposure."
+      }
+    ],
+    ja: [
+      {
+        question: "Alcantara EXO の素材構成は何ですか？",
+        answer:
+          "Alcantara EXO は、ポリエステル 71%、ポリウレタン 29% で構成され、100% ポリエステルの裏地でラミネートされています。"
+      },
+      {
+        question: "Alcantara EXO はどの用途に適していますか？",
+        answer:
+          "Alcantara EXO は、過酷な天候、潮風、海水への耐性が求められるモーターサイクル、アウトドア張り地、マリン用途、外装表面に適しています。"
+      },
+      {
+        question: "標準幅と厚みはどのくらいですか？",
+        answer:
+          "標準幅は 142 cm 以上、厚みは 1.30 mm 以下、単位重量は 310 g/m² 以上です。"
+      },
+      {
+        question: "Alcantara EXO の屋外性能はどのようなものですか？",
+        answer:
+          "Alcantara EXO は、上層の柔らかな Alcantara 表面、その下の防水メンブレン、安定性を支える裏地で構成された屋外向けレイヤー構造です。水と風を外側で防ぎながら、内部の水蒸気は外へ逃がす透湿性を備えています。この構造により、2 m 水柱以上の防水性と 300 g/m²/日以上の透湿性を両立し、屋外暴露に向けた高い耐光性を保ちます。"
+      }
+    ]
+  },
+  "alcantara-04": {
+    en: [
+      {
+        question: "What is Alcantara 0.4 made of?",
+        answer:
+          "Alcantara 0.4 is composed of 70% polyester and 30% polyurethane."
+      },
+      {
+        question: "What is Alcantara 0.4 intended for?",
+        answer:
+          "Alcantara 0.4 is designed for consumer electronics, wearables, and accessories, bringing a sophisticated soft-touch Alcantara finish to laptops, smartphones, headphones, and device surfaces."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with an ultra-thin thickness of 0.43 ± 0.05 mm and unit weight of 115-145 g/m²."
+      },
+      {
+        question: "Why is Alcantara 0.4 suitable for high-tech products?",
+        answer:
+          "Its thin, lightweight construction adapts well to precise product surfaces while keeping the premium tactile quality of Alcantara. It also supports color fastness to light, washing, perspiration, rubbing, and dry cleaning for demanding consumer electronics programs. Other than P/N 5010, P/N 5030 is designed specifically for high-tech products. It complies with REACH, Rohs and CA65 certification."
+      }
+    ],
+    ja: [
+      {
+        question: "Alcantara 0.4 の素材構成は何ですか？",
+        answer:
+          "Alcantara 0.4 は、ポリエステル 70%、ポリウレタン 30% で構成されています。"
+      },
+      {
+        question: "Alcantara 0.4 はどの用途に適していますか？",
+        answer:
+          "Alcantara 0.4 は、コンシューマーエレクトロニクス、ウェアラブル、アクセサリー向けに設計されています。ノートパソコン、スマートフォン、ヘッドフォン、デバイス表面に、上質で柔らかな Alcantara の触感を与えます。"
+      },
+      {
+        question: "標準幅と厚みはどのくらいですか？",
+        answer:
+          "標準幅は 142 cm 以上、厚みは 0.43 ± 0.05 mm、単位重量は 115-145 g/m² です。"
+      },
+      {
+        question: "Alcantara 0.4 がハイテク製品に適している理由は何ですか？",
+        answer:
+          "薄く軽量な構造により、精密な製品表面へなじみやすく、Alcantara らしい上質な触感を保つことができます。また、コンシューマーエレクトロニクス向けの厳しいプログラムに対応するため、耐光性、洗濯、汗、摩擦、ドライクリーニングに対する堅牢度も備えています。P/N 5010 とは別に、P/N 5030 はハイテク製品向けに特別に設計されており、REACH、Rohs、CA65 認証に適合しています。"
       }
     ]
   },
@@ -394,6 +496,7 @@ function ProductTypeFaq({ items }: { items: FaqItem[] }) {
 export async function generateStaticParams() {
   const materials = await loadMaterials();
   const productTypeGroups = await Promise.all(materials.map((material) => loadProductTypesForMaterial(material.slug)));
+  const skaiProductTypeSlugs = await loadSkaiVinylProductTypeSlugs();
   const skuGroups = await Promise.all(
     materials.map(async (material, materialIndex) =>
       Promise.all(
@@ -407,16 +510,24 @@ export async function generateStaticParams() {
 
   return materials.flatMap((material, materialIndex) =>
     (skuGroups[materialIndex] ?? []).flatMap(({ productType, skus }) =>
-      skus.flatMap((sku) => [
-        { locale: "en", materialSlug: material.slug, productTypeSlug: productType.slug, skuSlug: sku.slug },
-        { locale: "ja", materialSlug: material.slug, productTypeSlug: productType.slug, skuSlug: sku.slug }
-      ])
+      skus.flatMap((sku) => {
+        const params = [{ locale: "en", materialSlug: material.slug, productTypeSlug: productType.slug, skuSlug: sku.slug }];
+        const isSkaiVinyl = material.slug === "vegan-leather" && skaiProductTypeSlugs.has(productType.slug);
+
+        return isSkaiVinyl
+          ? params
+          : [...params, { locale: "ja", materialSlug: material.slug, productTypeSlug: productType.slug, skuSlug: sku.slug }];
+      })
     )
   );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, materialSlug, productTypeSlug, skuSlug } = await params;
+  if (await isEnglishOnlySkaiVinylRoute(locale, materialSlug, productTypeSlug)) {
+    return {};
+  }
+
   const sku = await loadSku(materialSlug, productTypeSlug, skuSlug);
 
   if (!sku) {
@@ -434,6 +545,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProductTypeSkuDetailPage({ params }: PageProps) {
   const { locale, materialSlug, productTypeSlug, skuSlug } = await params;
+  if (await isEnglishOnlySkaiVinylRoute(locale, materialSlug, productTypeSlug)) {
+    notFound();
+  }
+
   const [material, productType, sku] = await Promise.all([
     loadMaterial(materialSlug),
     loadProductType(materialSlug, productTypeSlug),

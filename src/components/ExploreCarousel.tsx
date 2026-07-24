@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
-import { SearchOverlay } from "@/components/SearchOverlay";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import SplitText from "@/components/SplitText";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import type { HomeExploreSlide, LocalizedString, Material, MaterialCategory } from "@/lib/content";
@@ -147,7 +146,6 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
     [materials, productSlides, selectedCategories]
   );
   const [index, setIndex] = useState(0);
-  const [searchOpen, setSearchOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const slide = slides[index];
 
@@ -293,14 +291,9 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
             <Link className="label-caps inline-flex min-w-[12rem] justify-center border border-white/35 px-7 py-3 transition-colors hover:bg-white hover:text-charcoal md:min-w-[13rem] md:px-8 md:py-3.5" href={localizedPath(locale, slide.href)}>
               View
             </Link>
-            <button className="label-caps inline-flex min-w-[12rem] items-center justify-center gap-2 border border-white/35 px-7 py-3 transition-colors hover:bg-white hover:text-charcoal md:min-w-[13rem] md:px-8 md:py-3.5" onClick={() => setSearchOpen(true)} type="button">
-              <Search size={14} strokeWidth={1.4} />
-              Search
-            </button>
           </div>
         </div>
       </div>
-      <SearchOverlay locale={locale} onClose={() => setSearchOpen(false)} open={searchOpen} />
     </section>
   );
 }

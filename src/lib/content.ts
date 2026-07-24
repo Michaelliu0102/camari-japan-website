@@ -378,16 +378,16 @@ export const materials: Material[] = [
       en: "Engineered surface materials that match or exceed the tactile and durability standards of traditional leather, without animal content. Matte finishes, micro-textures, and colorfast pigments define a collection built for contemporary product and interior programs.",
       ja: "伝統的なレザーの触感と耐久性基準を満たし、それを超えるように設計された素材。マット仕上げ、マイクロテクスチャ、退色しにくい顔料が、現代的なプロダクトとインテリアのためのコレクションを形作ります。"
     },
-    introImage: "/uploads/veganleather/outdoor furniture.jpeg",
+    introImage: "/uploads/veganleather/vegan.jpeg",
     quote: {
       en: "Sustainability is not a constraint. It is a material discipline.",
       ja: "持続可能性は制約ではない。それは素材の規律である。"
     },
     applications: [
-      { slug: "vinyl", name: { en: "Vinyl", ja: "ビニール" }, image: images.vegan },
+      { slug: "vinyl", name: { en: "skai VINYL", ja: "ビニール" }, image: "/uploads/veganleather/skai cover .webp" },
       {
         slug: "microfiber-leather",
-        name: { en: "Microfiber Leather", ja: "マイクロファイバーレザー" },
+        name: { en: "Waterborne Microfiber Leather", ja: "マイクロファイバーレザー" },
         image: "/uploads/veganleather/color.png"
       }
     ],

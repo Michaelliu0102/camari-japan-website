@@ -156,6 +156,16 @@ const materialFaqs: Partial<Record<string, Record<Locale, MaterialFaqItem[]>>> =
         question: "What is the difference between vinyl (PVC), PU leather, and microfiber leather?",
         answer:
           "The main differences lie in their backing structure, durability, hand feel, breathability, and VOC profile:\n\nVinyl (PVC): A textile backing coated with polyvinyl chloride (PVC) mixed with plasticizers and pigments. It offers heavy-duty durability, waterproof performance, and a plasticky feel; it is less breathable and relatively higher in VOCs.\n\nPU Leather: A textile backing, often knitted or woven polyester, covered with a layer of polyurethane. It is frequently produced as a multi-layer construction with a microporous or foam intermediate layer to mimic real leather's grain and breathability. It is softer, more flexible, and generally lower in VOCs.\n\nMicrofiber Leather: A premium material that replicates the exact 3D fiber network of real animal hide using microscopic synthetic fibers. It is exceptionally soft, highly breathable, and lower in VOCs. Our sustainable water-borne, solvent-free microfiber is crafted through the greenest engineering. The entire process is free of toluene, DMF, and sodium hydroxide, setting a new ecological benchmark by eliminating the chemical residues traditional methods cannot avoid."
+      },
+      {
+        question: "What is Waterborne Microfiber?",
+        answer:
+          "Waterborne microfiber is defined by its fine fiber architecture and water-based production route. It uses water for fiber opening and PU impregnation, avoiding toluene, sodium hydroxide, and solvent-based PU while reducing manufacturing impact."
+      },
+      {
+        question: "What's the advantage of Aquapelle?",
+        answer:
+          "Aquapelle offers a natural leather-like hand, strong mechanical performance, breathable comfort, consistent color, and stable quality. Its waterborne, solvent-free process is also DMF-free and VOC-free."
       }
     ],
     ja: [

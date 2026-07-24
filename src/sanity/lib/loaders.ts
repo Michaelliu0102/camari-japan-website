@@ -20,6 +20,7 @@ import {
 } from "@/lib/content";
 import { productCategories as fallbackProductCategories, type ProductCategory } from "@/content/products/categories";
 import type { Locale } from "@/lib/locales";
+import { loadSkaiVinylProductTypes, loadSkaiVinylSkus } from "@/lib/skai-vinyl";
 import {
   adaptAboutPageSettings,
   adaptCatalog,
@@ -190,10 +191,18 @@ export async function loadMaterials(): Promise<Material[]> {
 
 export async function loadProductTypes(): Promise<ProductType[]> {
   const market = getSanityMarket();
-  return fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, { market }, fallbackProductTypes, adaptProductType, {
+  const productTypes = await fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, { market }, fallbackProductTypes, adaptProductType, {
     includeFallbackRecords: true,
     fallbackOnEmpty: true
   });
+  const skaiProductTypes = await loadSkaiVinylProductTypes();
+  const merged = new Map(productTypes.map((productType) => [productType.slug, productType]));
+
+  for (const productType of skaiProductTypes) {
+    merged.set(productType.slug, productType);
+  }
+
+  return [...merged.values()];
 }
 
 export async function loadProductCategories(): Promise<ProductCategory[]> {
@@ -222,10 +231,18 @@ export async function loadProductType(materialSlug: string, productTypeSlug: str
 
 export async function loadSkus(): Promise<Sku[]> {
   const market = getSanityMarket();
-  return fetchAndMergeBySlug<RawSku, Sku>(skusQuery, { market }, fallbackSkus, adaptSku, {
+  const skus = await fetchAndMergeBySlug<RawSku, Sku>(skusQuery, { market }, fallbackSkus, adaptSku, {
     includeFallbackRecords: true,
     fallbackOnEmpty: true
   });
+  const skaiSkus = await loadSkaiVinylSkus();
+  const merged = new Map(skus.map((sku) => [sku.slug, sku]));
+
+  for (const sku of skaiSkus) {
+    merged.set(sku.slug, sku);
+  }
+
+  return [...merged.values()];
 }
 
 export async function loadSkusForMaterial(materialSlug: string): Promise<Sku[]> {

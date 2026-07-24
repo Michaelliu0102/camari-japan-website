@@ -42,10 +42,11 @@ const materialHeroImageOverrides: Record<string, string> = {
   "vegan-leather": "/uploads/veganleather/interior.jpg"
 };
 const materialIntroImageOverrides: Record<string, string> = {
-  "vegan-leather": "/uploads/veganleather/outdoor furniture.jpeg"
+  "vegan-leather": "/uploads/veganleather/vegan.jpeg"
 };
 const materialApplicationImageOverrides: Record<string, Record<string, string>> = {
   "vegan-leather": {
+    vinyl: "/uploads/veganleather/skai cover .webp",
     "microfiber-leather": "/uploads/veganleather/color.png"
   }
 };
