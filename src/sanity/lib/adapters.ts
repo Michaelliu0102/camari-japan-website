@@ -38,6 +38,17 @@ import type {
 
 const emptyLocalized: LocalizedString = { en: "", ja: "" };
 const premiumCollection: LocalizedString = { en: "Premium Collection", ja: "プレミアムコレクション" };
+const materialHeroImageOverrides: Record<string, string> = {
+  "vegan-leather": "/uploads/veganleather/interior.jpg"
+};
+const materialIntroImageOverrides: Record<string, string> = {
+  "vegan-leather": "/uploads/veganleather/outdoor furniture.jpeg"
+};
+const materialApplicationImageOverrides: Record<string, Record<string, string>> = {
+  "vegan-leather": {
+    "microfiber-leather": "/uploads/veganleather/color.png"
+  }
+};
 const sanityImageBuilder = imageUrlBuilder({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "bfjhbpbx",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production"
@@ -236,7 +247,7 @@ export function adaptMaterial(raw: RawMaterial): Material {
   const slug = raw.slug ?? "";
   const name = localized(raw.name);
   const fixture = fixtureMaterial(slug);
-  const heroImage = raw.heroImageUrl ?? fixture?.heroImage ?? "";
+  const heroImage = materialHeroImageOverrides[slug] ?? raw.heroImageUrl ?? fixture?.heroImage ?? "";
 
   return {
     slug,
@@ -248,19 +259,22 @@ export function adaptMaterial(raw: RawMaterial): Material {
     heroImage,
     introTitle: localized(raw.introTitle),
     introBody: localized(raw.introBody),
-    introImage: raw.introImageUrl ?? fixture?.introImage ?? "",
+    introImage: materialIntroImageOverrides[slug] ?? raw.introImageUrl ?? fixture?.introImage ?? "",
     quote: fixture?.quote ?? emptyLocalized,
-    applications: (raw.applications ?? []).map((application) => {
-      const applicationName = localized(application.name);
+    applications: (raw.applications ?? [])
+      .map((application) => {
+        const applicationName = localized(application.name);
+        const applicationSlug = slugify(applicationName.en || applicationName.ja);
 
-      return {
-        slug: slugify(applicationName.en || applicationName.ja),
-        name: applicationName,
-        colorCount: application.colorCount ?? 0,
-        image: application.imageUrl ?? heroImage,
-        productTypeSlug: application.productTypeSlug ?? undefined
-      };
-    }),
+        return {
+          slug: applicationSlug,
+          name: applicationName,
+          colorCount: application.colorCount ?? 0,
+          image: materialApplicationImageOverrides[slug]?.[applicationSlug] ?? application.imageUrl ?? heroImage,
+          productTypeSlug: application.productTypeSlug ?? undefined
+        };
+      })
+      .filter((application) => slug !== "vegan-leather" || application.slug !== "pu-leather"),
     seo: adaptSeo(raw.seo, name, raw.introBody ?? emptyLocalized, raw.seo?.imageUrl ?? heroImage)
   };
 }

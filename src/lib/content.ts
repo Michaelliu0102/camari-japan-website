@@ -372,21 +372,24 @@ export const materials: Material[] = [
     eyebrow: { en: "Sustainable Collection", ja: "サステナブルコレクション" },
     heroTitle: { en: "Vegan Leather", ja: "Vegan Leather" },
     heroSubtitle: { en: "Performance without compromise", ja: "妥協なき性能" },
-    heroImage: images.vegan,
+    heroImage: "/uploads/veganleather/interior.jpg",
     introTitle: { en: "High-Performance Alternatives", ja: "ハイパフォーマンスな選択肢" },
     introBody: {
       en: "Engineered surface materials that match or exceed the tactile and durability standards of traditional leather, without animal content. Matte finishes, micro-textures, and colorfast pigments define a collection built for contemporary product and interior programs.",
       ja: "伝統的なレザーの触感と耐久性基準を満たし、それを超えるように設計された素材。マット仕上げ、マイクロテクスチャ、退色しにくい顔料が、現代的なプロダクトとインテリアのためのコレクションを形作ります。"
     },
-    introImage: images.outdoor,
+    introImage: "/uploads/veganleather/outdoor furniture.jpeg",
     quote: {
       en: "Sustainability is not a constraint. It is a material discipline.",
       ja: "持続可能性は制約ではない。それは素材の規律である。"
     },
     applications: [
       { slug: "vinyl", name: { en: "Vinyl", ja: "ビニール" }, image: images.vegan },
-      { slug: "pu-leather", name: { en: "PU Leather", ja: "PU レザー" }, image: images.alcantara },
-      { slug: "microfiber-leather", name: { en: "Microfiber Leather", ja: "マイクロファイバーレザー" }, image: images.fabric }
+      {
+        slug: "microfiber-leather",
+        name: { en: "Microfiber Leather", ja: "マイクロファイバーレザー" },
+        image: "/uploads/veganleather/color.png"
+      }
     ],
     seo: {
       title: { en: "Vegan Leather Materials | CAMARI JAPAN", ja: "ヴィーガンレザー素材 | CAMARI JAPAN" },
