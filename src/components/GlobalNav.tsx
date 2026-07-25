@@ -16,6 +16,10 @@ type NavChild = {
   label: Record<Locale, string>;
   href: string;
   description: Record<Locale, string>;
+  quickLinks?: {
+    label: Record<Locale, string>;
+    href: string;
+  }[];
 };
 
 type NavItem = {
@@ -34,17 +38,55 @@ const navItems = [
       {
         label: { en: "Alcantara", ja: "アルカンターラ" },
         href: "/materials/alcantara",
-        description: { en: "Premium Italian surface material", ja: "イタリア発の上質なサーフェス素材" }
+        description: { en: "Premium Italian Surface Material", ja: "イタリア発の上質なサーフェス素材" },
+        quickLinks: [
+          {
+            label: { en: "AUTO", ja: "AUTO" },
+            href: "/materials/alcantara/alcantara-panel/alc-p-1041"
+          },
+          {
+            label: { en: "INTERIOR", ja: "INTERIOR" },
+            href: "/materials/alcantara/alcantara-master/alc-m-1001"
+          },
+          {
+            label: { en: "OUTDOOR", ja: "OUTDOOR" },
+            href: "/materials/alcantara/alcantara-exo/alc-exo-1145"
+          },
+          {
+            label: { en: "TECH", ja: "TECH" },
+            href: "/materials/alcantara/alcantara-04/alc-04-1001"
+          }
+        ]
       },
       {
         label: { en: "Leather", ja: "レザー" },
         href: "/materials/leather",
-        description: { en: "Full-grain and refined hides", ja: "天然皮革と上質な仕上げのマテリアル" }
+        description: { en: "Full-grain and refined hides", ja: "天然皮革と上質な仕上げのマテリアル" },
+        quickLinks: [
+          {
+            label: { en: "AUTOMOTIVE", ja: "AUTOMOTIVE" },
+            href: "/materials/leather/automotive-nappa/n-9762-imperial-blue"
+          },
+          {
+            label: { en: "INTERIOR", ja: "INTERIOR" },
+            href: "/materials/leather/interior"
+          }
+        ]
       },
       {
         label: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
         href: "/materials/vegan-leather",
-        description: { en: "High-performance alternatives", ja: "高機能な代替レザー素材" }
+        description: { en: "High-performance alternatives", ja: "高機能な代替レザー素材" },
+        quickLinks: [
+          {
+            label: { en: "skai VINYL", ja: "skai VINYL" },
+            href: "/materials/vegan-leather/vinyl"
+          },
+          {
+            label: { en: "MICROFIBER LEATHER", ja: "MICROFIBER LEATHER" },
+            href: "/materials/vegan-leather/microfiber-leather/microfiber-leather-0308"
+          }
+        ]
       },
       {
         label: { en: "Fabric", ja: "ファブリック" },
@@ -110,6 +152,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [invert, setInvert] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [expandedQuickLinks, setExpandedQuickLinks] = useState<Record<string, boolean>>({});
   const rafRef = useRef(0);
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
@@ -194,19 +237,63 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                   <div className="mx-auto w-full max-w-container-max px-margin-mobile py-10 md:px-margin-desktop">
                     <div className="grid gap-x-16 gap-y-5 md:grid-cols-2">
                       {item.children.map((child) => (
-                        <Link
-                          className={`block py-2 transition-colors ${dropdownItemHover}`}
-                          href={localizedPath(locale, child.href)}
+                        <div
+                          className={`py-2 transition-colors ${dropdownItemHover}`}
                           key={child.href}
-                          onClick={() => (document.activeElement as HTMLElement)?.blur()}
                         >
-                          <span className="block font-label text-[10px] font-semibold uppercase tracking-[0.24em]">
-                            {child.label[locale]}
-                          </span>
-                          <span className={`mt-1 block font-sans text-[0.78rem] font-normal normal-case leading-5 tracking-normal ${dropdownMutedText}`}>
-                            {child.description[locale]}
-                          </span>
-                        </Link>
+                          <div className="flex items-center gap-2">
+                            <Link
+                              className="block"
+                              href={localizedPath(locale, child.href)}
+                              onClick={() => (document.activeElement as HTMLElement)?.blur()}
+                            >
+                              <span className="block font-label text-[10px] font-semibold uppercase tracking-[0.24em]">
+                                {child.label[locale]}
+                              </span>
+                            </Link>
+                            {child.quickLinks ? (
+                              <button
+                                aria-expanded={Boolean(expandedQuickLinks[child.href])}
+                                aria-label={`${child.label[locale]} ${locale === "en" ? "quick links" : "クイックリンク"}`}
+                                className="inline-flex h-5 w-5 items-center justify-center text-charcoal/45 transition-colors hover:text-charcoal"
+                                onClick={() => setExpandedQuickLinks((current) => ({
+                                  ...current,
+                                  [child.href]: !current[child.href]
+                                }))}
+                                type="button"
+                              >
+                                <ChevronDown
+                                  className={`transition-transform duration-300 ease-expo ${expandedQuickLinks[child.href] ? "rotate-180" : ""}`}
+                                  size={12}
+                                  strokeWidth={1.4}
+                                />
+                              </button>
+                            ) : null}
+                          </div>
+                          {child.description[locale] && !expandedQuickLinks[child.href] ? (
+                            <span className={`mt-1 block font-sans text-[0.78rem] font-normal normal-case leading-5 tracking-normal ${dropdownMutedText}`}>
+                              {child.description[locale]}
+                            </span>
+                          ) : null}
+                          {child.quickLinks ? (
+                            <div className={`grid overflow-hidden transition-[grid-template-rows,opacity,margin] duration-300 ease-expo ${expandedQuickLinks[child.href] ? "mt-2 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"}`}>
+                              <div className="flex min-h-0 flex-wrap items-center gap-x-2.5 gap-y-2 font-label text-[8px] font-semibold uppercase tracking-[0.18em] text-charcoal/45">
+                              {child.quickLinks.map((quickLink, index) => (
+                                <span className="inline-flex items-center gap-2.5" key={quickLink.href}>
+                                  {index > 0 ? <span aria-hidden="true" className="text-charcoal/20">·</span> : null}
+                                  <Link
+                                    className="transition-colors hover:text-charcoal focus-visible:text-charcoal"
+                                    href={localizedPath(locale, quickLink.href)}
+                                    onClick={() => (document.activeElement as HTMLElement)?.blur()}
+                                  >
+                                    {quickLink.label[locale]}
+                                  </Link>
+                                </span>
+                              ))}
+                              </div>
+                            </div>
+                          ) : null}
+                        </div>
                       ))}
                     </div>
                   </div>
