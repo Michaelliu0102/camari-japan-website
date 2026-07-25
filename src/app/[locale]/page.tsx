@@ -64,11 +64,13 @@ export default async function HomePage({ params }: PageProps) {
 
       <CTASection
         backgroundImage={homeSettings.showroomBackgroundImage}
-        body={locale === "en" ? "Speak with the CAMARI team about material availability, technical sheets, and project-fit recommendations." : "素材の在庫、技術資料、プロジェクトに適した選定について CAMARI チームにご相談ください。"}
+        body={locale === "en" ? "Speak with our team about material specification,\nbespoke production, and project-fit solutions." : "技術仕様やデザインコンセプトをお送りください。素材選定、カスタム試作、納品まで専門スタッフがサポートします。"}
+        eyebrow={null}
         label={locale === "en" ? "Our location" : "所在地"}
         locale={locale}
-        secondaryLabel={locale === "en" ? "Make Appointment" : "ご予約"}
-        title={locale === "en" ? "Build the next surface with restraint and precision." : "抑制と精密さで、次のサーフェスをつくる。"}
+        secondaryAction="message"
+        secondaryLabel={locale === "en" ? "Inquiry Now" : "お問い合わせ"}
+        title={locale === "en" ? "Tailored Surfaces\nBespoke Creations" : "先見性あるデザインのために、素材とカスタムプロダクトを最適化します。"}
       />
     </main>
   );
