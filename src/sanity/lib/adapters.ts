@@ -39,6 +39,7 @@ import type {
 const emptyLocalized: LocalizedString = { en: "", ja: "" };
 const premiumCollection: LocalizedString = { en: "Premium Collection", ja: "プレミアムコレクション" };
 const materialHeroImageOverrides: Record<string, string> = {
+  leather: "/uploads/hero/leather-hero.png",
   "vegan-leather": "/uploads/veganleather/interior.jpg"
 };
 const materialIntroImageOverrides: Record<string, string> = {
@@ -328,14 +329,19 @@ export function adaptProductCategory(raw: RawProductCategory): ProductCategory {
     }))
     .filter((highlight) => highlight.title.en || highlight.title.ja || highlight.body.en || highlight.body.ja);
   const carouselItems = (raw.carouselItems ?? [])
-    .map((item) => {
+    .map((item, index) => {
       const coverImage = item.coverImageUrl ?? "";
       const galleryImages = uniqueImageUrls((item.galleryImageUrls ?? []).filter((url): url is string => Boolean(url)));
+      const fixtureItem = fixture?.curvedCarouselImages?.[index];
 
       return {
         src: coverImage,
         title: localized(item.title),
         description: localized(item.description),
+        customizedOption:
+          item.customizedOption?.en || item.customizedOption?.ja
+            ? localized(item.customizedOption)
+            : fixtureItem?.customizedOption ?? emptyLocalized,
         details: (item.details ?? []).map((detail) => localized(detail)).filter((detail) => detail.en || detail.ja),
         galleryImages: galleryImages.length ? galleryImages : coverImage ? [coverImage] : []
       };

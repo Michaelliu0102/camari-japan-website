@@ -254,10 +254,10 @@ export const homePageSettings: HomePageSettings = {
         title: { en: "PRODUCT", ja: "PRODUCT" },
         category: { en: "Product", ja: "Product" },
         description: {
-          en: "Surface programs organized by product context and customer use.",
+          en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
           ja: "製品用途と顧客体験に合わせたサーフェスプログラム。"
         },
-        image: "/uploads/product/product-hero.jpg",
+        image: "/uploads/product/product.jpg",
         href: "/products"
       }
     ]
@@ -766,52 +766,7 @@ export const skus: Sku[] = mergeSkusByProductType(
   (generatedCatalog.skus ?? []) as Sku[]
 );
 
-export const projectCases: ProjectCase[] = [
-  {
-    slug: "private-automotive-cabin",
-    title: { en: "Private Automotive Cabin", ja: "プライベートオートモーティブキャビン" },
-    industry: { en: "Automotive", ja: "自動車" },
-    image: images.alcantara,
-    projectImages: [images.alcantara],
-    summary: {
-      en: "A restrained cabin material program using deep Alcantara surfaces and precision panel transitions.",
-      ja: "深い Alcantara サーフェスと精密なパネル遷移で構成した、抑制されたキャビンプログラム。"
-    },
-    materialSlug: "alcantara",
-    linkedMaterials: [{ slug: "alcantara", name: { en: "Alcantara", ja: "アルカンターラ" } }],
-    linkedArticles: [{ slug: "alcantara-panel", materialSlug: "alcantara", name: { en: "Alcantara Panel", ja: "Alcantara パネル" } }],
-    seo: {
-      title: { en: "Private Automotive Cabin | CAMARI JAPAN", ja: "プライベートオートモーティブキャビン | CAMARI JAPAN" },
-      description: {
-        en: "OEM/ODM automotive material case using Alcantara surfaces.",
-        ja: "Alcantara サーフェスを用いた OEM/ODM 自動車素材事例。"
-      },
-      image: images.alcantara
-    }
-  },
-  {
-    slug: "hospitality-lounge-surface",
-    title: { en: "Hospitality Lounge Surface", ja: "ホスピタリティラウンジサーフェス" },
-    industry: { en: "Interior", ja: "インテリア" },
-    image: images.interior,
-    projectImages: [images.interior],
-    summary: {
-      en: "Warm stone palettes, tactile panels, and quiet upholstery for an intimate lounge environment.",
-      ja: "ウォームストーンの色調、触感のあるパネル、静かな張地で構成したラウンジ空間。"
-    },
-    materialSlug: "alcantara",
-    linkedMaterials: [{ slug: "alcantara", name: { en: "Alcantara", ja: "アルカンターラ" } }],
-    linkedArticles: [{ slug: "alcantara-panel", materialSlug: "alcantara", name: { en: "Alcantara Panel", ja: "Alcantara パネル" } }],
-    seo: {
-      title: { en: "Hospitality Lounge Surface | CAMARI JAPAN", ja: "ホスピタリティラウンジサーフェス | CAMARI JAPAN" },
-      description: {
-        en: "Interior material case for premium hospitality environments.",
-        ja: "プレミアムホスピタリティ空間向けのインテリア素材事例。"
-      },
-      image: images.interior
-    }
-  }
-];
+export const projectCases: ProjectCase[] = [];
 
 export const newsItems: NewsItem[] = [
   {

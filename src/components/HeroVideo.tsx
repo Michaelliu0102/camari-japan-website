@@ -43,6 +43,7 @@ export function HeroVideo({ hero, locale }: HeroVideoProps) {
         poster={hero.poster}
       />
       <div className="absolute inset-0 bg-black/25" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32svh] bg-gradient-to-b from-transparent via-charcoal/45 to-charcoal" />
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-margin-mobile text-center text-white">
         <h1 className="mb-8 max-w-[20rem] font-serif text-[1.35rem] uppercase leading-[1.08] tracking-[0.12em] md:max-w-[26rem] md:text-[1.9rem] lg:text-[2.2rem]">
           {hero.title.en}
@@ -61,6 +62,14 @@ export function HeroVideo({ hero, locale }: HeroVideoProps) {
           {hero.ctaLabel[locale]}
         </Link>
       </div>
+      <a
+        aria-label={locale === "en" ? "Scroll to explore" : "Explore へスクロール"}
+        className="group absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-3 text-white/75 transition-colors hover:text-white md:flex"
+        href="#home-explore"
+      >
+        <span className="font-sans text-[0.62rem] uppercase tracking-[0.32em]">Explore</span>
+        <span className="h-10 w-px origin-top bg-gradient-to-b from-current to-transparent transition-transform duration-500 ease-expo group-hover:scale-y-125" />
+      </a>
     </section>
   );
 }

@@ -105,6 +105,12 @@ export const productCategory = defineType({
               fields: localizedText
             }),
             defineField({
+              name: "customizedOption",
+              title: "Customized Option",
+              type: "object",
+              fields: localizedText
+            }),
+            defineField({
               name: "details",
               title: "Details",
               type: "array",

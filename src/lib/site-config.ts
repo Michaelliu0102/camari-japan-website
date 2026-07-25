@@ -44,7 +44,7 @@ const defaultSites: Record<SiteKey, Omit<SiteConfig, "siteUrl" | "alternateSiteH
       ja: "上質な素材、Alcantara コレクション、OEM/ODM による空間・車両・プロダクト向けサーフェス。"
     },
     contact: {
-      email: "info@camari-international.com",
+      email: "info@camari-international.co.jp",
       phone: "+81 3 0000 0000",
       address: {
         en: "Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan",
@@ -69,7 +69,7 @@ const defaultSites: Record<SiteKey, Omit<SiteConfig, "siteUrl" | "alternateSiteH
       ja: "上質な素材、Alcantara コレクション、OEM/ODM による空間・車両・プロダクト向けサーフェス。"
     },
     contact: {
-      email: "contact@camari.co.jp",
+      email: "info@camari-international.co.jp",
       phone: "+81 3 0000 0000",
       address: {
         en: "Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan",

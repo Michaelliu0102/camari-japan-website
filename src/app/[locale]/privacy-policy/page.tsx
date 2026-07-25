@@ -10,7 +10,7 @@ type PageProps = {
 const privacyEntity = {
   en: {
     name: "Camari International",
-    email: "info@camari-international.com"
+    email: site.contact.email
   },
   ja: {
     name: site.organizationName,

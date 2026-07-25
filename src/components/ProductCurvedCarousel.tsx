@@ -2,15 +2,17 @@
 
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useMemo, useState, type PointerEvent } from "react";
+import Link from "next/link";
+import { useEffect, useMemo, useState, type CSSProperties, type PointerEvent } from "react";
 import { createPortal } from "react-dom";
 import type { LocalizedString } from "@/lib/content";
-import type { Locale } from "@/lib/locales";
+import { localizedPath, type Locale } from "@/lib/locales";
 
 type ProductCarouselImage = {
   src: string;
   title: LocalizedString;
   description: LocalizedString;
+  customizedOption?: LocalizedString;
   details: LocalizedString[];
   galleryImages: string[];
 };
@@ -19,28 +21,69 @@ type ProductCurvedCarouselProps = {
   heroImage: string;
   images: ProductCarouselImage[];
   locale: Locale;
+  categorySlug: string;
   subtitle: string;
   title: string;
 };
 
-export function ProductCurvedCarousel({ heroImage, images, locale, subtitle, title }: ProductCurvedCarouselProps) {
+type CarouselLayout = {
+  cardHeight: number;
+  cardWidth: number;
+  duration: number;
+  perspective: number;
+  planeWidth: number;
+};
+
+function getCarouselLayout(itemCount: number): CarouselLayout {
+  if (itemCount <= 6) {
+    return { cardHeight: 420, cardWidth: 340, duration: 36, perspective: 720, planeWidth: 1180 };
+  }
+
+  if (itemCount <= 8) {
+    return { cardHeight: 410, cardWidth: 322, duration: 42, perspective: 660, planeWidth: 1280 };
+  }
+
+  if (itemCount <= 10) {
+    return { cardHeight: 400, cardWidth: 308, duration: 60, perspective: 600, planeWidth: 1400 };
+  }
+
+  return { cardHeight: 390, cardWidth: 292, duration: 66, perspective: 560, planeWidth: 1480 };
+}
+
+function getOrbitSlotCount(itemCount: number) {
+  const minimumSlots = 10;
+
+  return itemCount >= minimumSlots ? itemCount : Math.ceil(minimumSlots / itemCount) * itemCount;
+}
+
+export function ProductCurvedCarousel({ categorySlug, heroImage, images, locale, subtitle, title }: ProductCurvedCarouselProps) {
   const [activeDetailIndex, setActiveDetailIndex] = useState<number | null>(null);
   const [activeGalleryImageIndex, setActiveGalleryImageIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const heroCarouselPlanes = useMemo(() => {
-    const angles = [90, 120, 150, 180, 60, 30];
+  const orbitSlotCount = useMemo(() => getOrbitSlotCount(images.length), [images.length]);
+  const carouselLayout = useMemo(() => getCarouselLayout(orbitSlotCount), [orbitSlotCount]);
+  const heroCarouselItems = useMemo(() => {
+    const angleStep = 360 / orbitSlotCount;
 
-    return angles.map((angle, planeIndex) => ({
-      angle,
-      cards: [0, 1].map((cardIndex) => {
-        const sourceIndex = planeIndex * 2 + cardIndex;
-        const item = images[sourceIndex];
+    return Array.from({ length: orbitSlotCount }, (_, slotIndex) => {
+      const sourceIndex = slotIndex % images.length;
 
-        return { item, sourceIndex };
-      })
-    }));
-  }, [images]);
+      return {
+        angle: slotIndex * angleStep,
+        item: images[sourceIndex],
+        slotIndex,
+        sourceIndex
+      };
+    });
+  }, [images, orbitSlotCount]);
+  const carouselStyle = {
+    "--hero-card-height": `${carouselLayout.cardHeight}px`,
+    "--hero-card-width": `${carouselLayout.cardWidth}px`,
+    "--hero-orbit-duration": `${carouselLayout.duration}s`,
+    "--hero-perspective": `${carouselLayout.perspective}px`,
+    "--hero-plane-width": `${carouselLayout.planeWidth}px`
+  } as CSSProperties;
   const activeItem = activeDetailIndex === null ? null : images[activeDetailIndex];
   const detailGalleryImages = activeItem ? (activeItem.galleryImages.length ? activeItem.galleryImages : [activeItem.src]) : [];
   const isDetailOpen = activeDetailIndex !== null;
@@ -176,69 +219,59 @@ export function ProductCurvedCarousel({ heroImage, images, locale, subtitle, tit
         <p className="mx-auto mt-6 max-w-[56rem] font-sans text-[clamp(0.98rem,1.3vw,1.35rem)] font-normal leading-[1.55] tracking-normal text-charcoal/78 md:mt-7">
           {subtitle}
         </p>
-        <a
+        <Link
           className="mt-6 inline-flex min-h-[2.75rem] min-w-[10.5rem] items-center justify-center border border-charcoal bg-transparent px-8 font-label text-[0.66rem] font-semibold uppercase tracking-[0.34em] text-charcoal transition duration-300 hover:bg-charcoal hover:text-paper focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal/35 md:mt-7 md:min-w-[14rem]"
-          href="#curved-gallery"
+          href={localizedPath(locale, `/products?category=${encodeURIComponent(categorySlug)}`)}
         >
           View All
-        </a>
+        </Link>
       </div>
 
       <div className="absolute left-1/2 top-[414px] z-30 h-[400px] w-[1600px] -translate-x-1/2 overflow-hidden md:top-[396px] md:h-[600px]" id="curved-gallery">
-        <div className="hero-orbit-stage absolute inset-0" onPointerDown={openNearestHeroCard}>
+        <div
+          className="hero-orbit-stage absolute inset-0"
+          data-item-count={orbitSlotCount}
+          onPointerDown={openNearestHeroCard}
+          style={carouselStyle}
+        >
           <div
             className="hero-orbit-track"
             style={{
               animationPlayState: prefersReducedMotion || isDetailOpen ? "paused" : "running"
             }}
           >
-            {heroCarouselPlanes.map((plane, planeIndex) => (
+            {heroCarouselItems.map(({ angle, item, slotIndex, sourceIndex }) => (
               <div
                 className="hero-orbit-plane"
-                key={`plane-${plane.angle}`}
-                style={{ transform: `translate3d(-50%, -50%, 0) rotateY(${plane.angle}deg)` }}
+                key={`${slotIndex}-${sourceIndex}-${item.src}`}
+                style={{ transform: `translate3d(-50%, -50%, 0) rotateY(${angle}deg)` }}
               >
-                {plane.cards.map(({ item, sourceIndex }, cardIndex) =>
-                  item ? (
-                    <a
-                      aria-label={`${locale === "en" ? "Open details for" : "詳細を開く"} ${item.title[locale]}`}
-                      className={`hero-orbit-card group cursor-zoom-in ${cardIndex === 0 ? "hero-orbit-card-left" : "hero-orbit-card-right"}`}
-                      data-carousel-index={sourceIndex}
-                      href={`#surface-detail-${sourceIndex}`}
-                      key={`${planeIndex}-${cardIndex}-${item.src}`}
-                      style={{
-                        cursor: "zoom-in",
-                        transform: `rotateY(${cardIndex === 0 ? 90 : -90}deg)`
-                      }}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        openDetailView(sourceIndex);
-                      }}
-                      onPointerDown={(event) => {
-                        event.preventDefault();
-                        openDetailView(sourceIndex);
-                      }}
-                    >
-                      <Image
-                        alt={item.title[locale]}
-                        className="pointer-events-none object-cover"
-                        fill
-                        sizes="(min-width: 1024px) 18rem, 42vw"
-                        src={item.src}
-                      />
-                      <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-4 bg-gradient-to-t from-black/70 to-transparent px-4 pb-5 pt-12 text-xs font-semibold uppercase tracking-[0.18em] text-white opacity-0 transition duration-200 group-hover:translate-y-0 group-hover:opacity-100">
-                        {locale === "en" ? "View surface" : "詳細を見る"}
-                      </span>
-                    </a>
-                  ) : (
-                    <span
-                      aria-hidden="true"
-                      className={`hero-orbit-card hero-orbit-placeholder ${cardIndex === 0 ? "hero-orbit-card-left" : "hero-orbit-card-right"}`}
-                      key={`placeholder-${planeIndex}-${cardIndex}`}
-                      style={{ transform: `rotateY(${cardIndex === 0 ? 90 : -90}deg)` }}
-                    />
-                  )
-                )}
+                <a
+                  aria-label={`${locale === "en" ? "Open details for" : "詳細を開く"} ${item.title[locale]}`}
+                  className="hero-orbit-card group cursor-zoom-in"
+                  data-carousel-index={sourceIndex}
+                  href={`#surface-detail-${sourceIndex}`}
+                  style={{ cursor: "zoom-in", transform: "rotateY(-90deg)" }}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    openDetailView(sourceIndex);
+                  }}
+                  onPointerDown={(event) => {
+                    event.preventDefault();
+                    openDetailView(sourceIndex);
+                  }}
+                >
+                  <Image
+                    alt={item.title[locale]}
+                    className="pointer-events-none object-cover"
+                    fill
+                    sizes="(min-width: 1024px) 21rem, 48vw"
+                    src={item.src}
+                  />
+                  <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-4 bg-gradient-to-t from-black/70 to-transparent px-4 pb-5 pt-12 text-xs font-semibold uppercase tracking-[0.18em] text-white opacity-0 transition duration-200 group-hover:translate-y-0 group-hover:opacity-100">
+                    {locale === "en" ? "View surface" : "詳細を見る"}
+                  </span>
+                </a>
               </div>
             ))}
           </div>
@@ -342,24 +375,12 @@ export function ProductCurvedCarousel({ heroImage, images, locale, subtitle, tit
 
                   <details className="group py-5" open>
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-sans text-sm font-semibold uppercase tracking-[0.12em]">
-                      {locale === "en" ? "Other images" : "その他の画像"}
+                      {locale === "en" ? "Customized option" : "カスタマイズオプション"}
                       <span className="text-lg leading-none text-muted transition group-open:rotate-45">+</span>
                     </summary>
-                    <div className="mt-5 grid grid-cols-3 gap-3">
-                      {detailGalleryImages.map((gallerySrc, index) => (
-                        <button
-                          aria-label={`${locale === "en" ? "Open gallery image" : "ギャラリー画像を開く"} ${index + 1}`}
-                          className={`relative aspect-square overflow-hidden border bg-white transition ${
-                            index === activeGalleryImageIndex ? "border-charcoal" : "border-charcoal/10 opacity-75 hover:opacity-100"
-                          }`}
-                          key={`related-${activeItem.src}-${gallerySrc}`}
-                          onClick={() => setActiveGalleryImageIndex(index)}
-                          type="button"
-                        >
-                          <Image alt="" className="object-cover" fill sizes="9rem" src={gallerySrc} />
-                        </button>
-                      ))}
-                    </div>
+                    <p className="mt-5 max-w-xl text-sm leading-7 text-muted md:text-base">
+                      {activeItem.customizedOption?.[locale]}
+                    </p>
                   </details>
                 </div>
 
@@ -389,10 +410,6 @@ export function ProductCurvedCarousel({ heroImage, images, locale, subtitle, tit
         }
 
         .hero-orbit-stage {
-          --hero-card-width: 280px;
-          --hero-card-height: 400px;
-          --hero-perspective: 600px;
-          --hero-plane-width: 1400px;
           --hero-plane-height: 400px;
           --hero-scale: clamp(0.76, 0.1vw + 0.72, 1.08);
           cursor: zoom-in;
@@ -403,7 +420,7 @@ export function ProductCurvedCarousel({ heroImage, images, locale, subtitle, tit
         }
 
         .hero-orbit-track {
-          animation: hero-orbit-spin 60s linear infinite;
+          animation: hero-orbit-spin var(--hero-orbit-duration) linear infinite;
           height: var(--hero-plane-height);
           left: 50%;
           position: absolute;
@@ -443,11 +460,7 @@ export function ProductCurvedCarousel({ heroImage, images, locale, subtitle, tit
           will-change: transform;
         }
 
-        .hero-orbit-card-left {
-          left: 0;
-        }
-
-        .hero-orbit-card-right {
+        .hero-orbit-card {
           right: 0;
         }
 
@@ -465,25 +478,6 @@ export function ProductCurvedCarousel({ heroImage, images, locale, subtitle, tit
 
         .hero-orbit-card:hover img {
           transform: scale(1.045);
-        }
-
-        .hero-orbit-placeholder {
-          background:
-            linear-gradient(135deg, rgb(255 255 255 / 0.28), rgb(255 255 255 / 0) 42%),
-            linear-gradient(160deg, rgb(31 30 27 / 0.18), rgb(147 132 105 / 0.2) 52%, rgb(31 30 27 / 0.12));
-          box-shadow: 0 28px 80px rgb(0 0 0 / 0.14);
-          cursor: default;
-        }
-
-        .hero-orbit-placeholder::before {
-          background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.28), transparent);
-          content: "";
-          height: 100%;
-          left: -80%;
-          position: absolute;
-          top: 0;
-          transform: skewX(-18deg);
-          width: 45%;
         }
 
         .hero-orbit-stage:hover .hero-orbit-track {

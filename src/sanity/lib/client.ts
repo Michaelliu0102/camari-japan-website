@@ -8,7 +8,7 @@ export function getSanityClient(): SanityClient {
       projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "bfjhbpbx",
       dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
       apiVersion: "2026-05-12",
-      useCdn: true
+      useCdn: process.env.NODE_ENV === "production"
     });
   }
 

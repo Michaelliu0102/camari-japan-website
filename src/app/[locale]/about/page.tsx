@@ -35,12 +35,12 @@ const stats = [
     detail: "Customized interior & lifestyle accessories"
   },
   {
-    value: "ISO 9001:2015",
+    value: "ISO9001",
     label: "Quality management",
     detail: "Certified system"
   },
   {
-    value: "IATF 16949:2016",
+    value: "IATF16949",
     label: "Automotive quality management",
     detail: "Certified production"
   }
@@ -162,11 +162,11 @@ export default async function AboutPage({ params }: PageProps) {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden bg-stone">
                 <Image
-                  alt="CAMARI showroom with a wall of material samples"
+                  alt="CAMARI brand value material showroom"
                   className="object-cover"
                   fill
                   sizes="(min-width: 1024px) 62vw, 100vw"
-                  src="/uploads/hero/showroom.png"
+                  src="/uploads/about/brandvalue.jpg"
                 />
               </div>
             </div>

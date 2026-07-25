@@ -5,9 +5,11 @@ import { useEffect, useId, useState } from "react";
 import type { Locale } from "@/lib/locales";
 
 type CTAMessageDrawerProps = {
+  articleLabel?: string;
   buttonClassName: string;
   buttonLabel: string;
   locale: Locale;
+  placement?: "bottom" | "top";
 };
 
 type FormState = {
@@ -40,6 +42,7 @@ const copy = {
     phonePlaceholder: "Optional",
     company: "Company Name",
     companyPlaceholder: "Company Name",
+    article: "Article",
     interests: "Interest",
     materials: "Material",
     customProducts: "Custom Projects",
@@ -50,7 +53,7 @@ const copy = {
     required: "Please enter your name, business email, company name, and project message.",
     sending: "Sending your inquiry...",
     success: "Thank you. Your inquiry has been sent.",
-    error: "We could not send your inquiry. Please email info@camari-international.com directly."
+    error: "We could not send your inquiry. Please email info@camari-international.co.jp directly."
   },
   ja: {
     title: "Write us a message.",
@@ -63,6 +66,7 @@ const copy = {
     phonePlaceholder: "Optional",
     company: "Company Name",
     companyPlaceholder: "Company Name",
+    article: "Article",
     interests: "Interest",
     materials: "Material",
     customProducts: "Custom Projects",
@@ -73,17 +77,18 @@ const copy = {
     required: "お名前、Business Email、Company Name、Message / Project Specs を入力してください。",
     sending: "お問い合わせを送信しています...",
     success: "お問い合わせを送信しました。",
-    error: "送信できませんでした。contact@camari-international.co.jp まで直接お問い合わせください。"
+    error: "送信できませんでした。info@camari-international.co.jp まで直接お問い合わせください。"
   }
 } satisfies Record<Locale, Record<string, string>>;
 
-export function CTAMessageDrawer({ buttonClassName, buttonLabel, locale }: CTAMessageDrawerProps) {
+export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, locale, placement = "bottom" }: CTAMessageDrawerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState<FormState>(initialFormState);
   const [feedback, setFeedback] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const titleId = useId();
   const labels = copy[locale];
+  const isTopPlacement = placement === "top";
 
   useEffect(() => {
     if (!isOpen) return;
@@ -138,6 +143,7 @@ export function CTAMessageDrawer({ buttonClassName, buttonLabel, locale }: CTAMe
         body: JSON.stringify({
           locale,
           ...form,
+          ...(articleLabel ? { article: articleLabel } : {}),
           pageUrl: window.location.href
         })
       });
@@ -162,16 +168,18 @@ export function CTAMessageDrawer({ buttonClassName, buttonLabel, locale }: CTAMe
       </button>
       <div
         aria-hidden={!isOpen}
-        className={`fixed inset-0 z-[90] flex items-end justify-center bg-charcoal/70 px-3 pb-3 pt-16 backdrop-blur-[8px] transition-opacity duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] md:px-6 md:pb-6 ${
+        className={`fixed inset-0 z-[90] flex justify-center bg-charcoal/70 px-3 backdrop-blur-[8px] transition-opacity duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] md:px-6 ${
           isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        } ${isTopPlacement ? "items-start pb-16 pt-3 md:pb-6 md:pt-6" : "items-end pb-3 pt-16 md:pb-6"}`}
         onClick={() => setIsOpen(false)}
       >
         <section
           aria-labelledby={titleId}
           aria-modal="true"
-          className={`relative max-h-[92svh] w-full max-w-[54rem] overflow-y-auto rounded-t-[1.5rem] border border-white/30 bg-stone px-5 pb-6 pt-6 text-left text-charcoal shadow-[0_-2rem_6rem_rgb(0_0_0_/_0.35)] transition-transform duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] md:rounded-[1.5rem] md:px-8 md:pb-8 md:pt-8 ${
-            isOpen ? "translate-y-0" : "translate-y-full"
+          className={`relative max-h-[92svh] w-full max-w-[54rem] overflow-y-auto border border-white/30 bg-stone px-5 pb-6 pt-6 text-left text-charcoal transition-transform duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] md:rounded-[1.5rem] md:px-8 md:pb-8 md:pt-8 ${
+            isTopPlacement ? "rounded-b-[1.5rem] shadow-[0_2rem_6rem_rgb(0_0_0_/_0.35)]" : "rounded-t-[1.5rem] shadow-[0_-2rem_6rem_rgb(0_0_0_/_0.35)]"
+          } ${
+            isOpen ? "translate-y-0" : isTopPlacement ? "-translate-y-[calc(100%+2rem)]" : "translate-y-full"
           }`}
           onClick={(event) => event.stopPropagation()}
           role="dialog"
@@ -239,32 +247,41 @@ export function CTAMessageDrawer({ buttonClassName, buttonLabel, locale }: CTAMe
               </label>
             </div>
 
-            <fieldset className="flex flex-wrap items-center gap-4 pt-1">
-              <legend className="sr-only">{labels.interests}</legend>
-              {[labels.materials, labels.customProducts].map((interest) => {
-                const checked = form.interests.includes(interest);
+            {articleLabel ? (
+              <div className="grid gap-3 pt-1">
+                <span className="label-caps text-charcoal/70">{labels.article}</span>
+                <div className="inline-flex min-h-[3rem] w-fit max-w-full items-center border border-charcoal px-5 py-3 font-sans text-[13px] tracking-[0.04em] text-charcoal">
+                  {articleLabel}
+                </div>
+              </div>
+            ) : (
+              <fieldset className="flex flex-wrap items-center gap-4 pt-1">
+                <legend className="sr-only">{labels.interests}</legend>
+                {[labels.materials, labels.customProducts].map((interest) => {
+                  const checked = form.interests.includes(interest);
 
-                return (
-                  <label
-                    className={`inline-flex cursor-pointer items-center gap-3 rounded-full border px-5 py-3 text-[11px] uppercase tracking-[0.18em] transition-colors ${
-                      checked ? "border-charcoal bg-charcoal text-stone" : "border-charcoal text-charcoal/75 hover:border-charcoal"
-                    }`}
-                    key={interest}
-                  >
-                    <input
-                      checked={checked}
-                      className="sr-only"
-                      onChange={() => toggleInterest(interest)}
-                      type="checkbox"
-                    />
-                    <span aria-hidden="true" className={`grid h-4 w-4 place-items-center border text-[10px] leading-none ${checked ? "border-gold bg-gold text-charcoal" : "border-charcoal bg-stone text-transparent"}`}>
-                      ✓
-                    </span>
-                    {interest}
-                  </label>
-                );
-              })}
-            </fieldset>
+                  return (
+                    <label
+                      className={`inline-flex cursor-pointer items-center gap-3 rounded-full border px-5 py-3 text-[11px] uppercase tracking-[0.18em] transition-colors ${
+                        checked ? "border-charcoal bg-charcoal text-stone" : "border-charcoal text-charcoal/75 hover:border-charcoal"
+                      }`}
+                      key={interest}
+                    >
+                      <input
+                        checked={checked}
+                        className="sr-only"
+                        onChange={() => toggleInterest(interest)}
+                        type="checkbox"
+                      />
+                      <span aria-hidden="true" className={`grid h-4 w-4 place-items-center border text-[10px] leading-none ${checked ? "border-gold bg-gold text-charcoal" : "border-charcoal bg-stone text-transparent"}`}>
+                        ✓
+                      </span>
+                      {interest}
+                    </label>
+                  );
+                })}
+              </fieldset>
+            )}
 
             <label className="grid gap-3">
               <span className="label-caps text-charcoal/70">{labels.message} <span className="text-gold">*</span></span>

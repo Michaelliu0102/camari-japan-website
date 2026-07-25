@@ -1,8 +1,8 @@
 import type { Locale } from "./locales";
 
 export const CONTACT_INQUIRY_RECIPIENTS = {
-  en: "info@camari-international.com",
-  ja: "contact@camari-international.co.jp"
+  en: "info@camari-international.co.jp",
+  ja: "info@camari-international.co.jp"
 } satisfies Record<Locale, string>;
 
 export type ContactInquiry = {
@@ -13,6 +13,7 @@ export type ContactInquiry = {
   company: string;
   message: string;
   interests: string[];
+  article?: string;
   pageUrl?: string;
 };
 
@@ -48,6 +49,7 @@ export function parseContactInquiryPayload(payload: unknown): ParseResult {
   const phone = readString(payload.phone);
   const company = readString(payload.company);
   const message = readString(payload.message);
+  const article = readString(payload.article);
   const pageUrl = readString(payload.pageUrl);
   const interests = Array.isArray(payload.interests)
     ? payload.interests.map(readString).filter(Boolean).slice(0, 6)
@@ -71,6 +73,7 @@ export function parseContactInquiryPayload(payload: unknown): ParseResult {
       company,
       message,
       interests,
+      ...(article ? { article } : {}),
       ...(pageUrl ? { pageUrl } : {})
     }
   };
@@ -90,6 +93,7 @@ export function buildContactInquiryText(inquiry: ContactInquiry, recipient: stri
     `Phone: ${inquiry.phone || "Not provided"}`,
     `Company Name: ${inquiry.company}`,
     `Interest: ${interestText}`,
+    ...(inquiry.article ? [`Article: ${inquiry.article}`] : []),
     ...(inquiry.pageUrl ? [`Page URL: ${inquiry.pageUrl}`] : []),
     "",
     "Message / Project Specs:",

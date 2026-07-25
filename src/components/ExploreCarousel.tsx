@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import SplitText from "@/components/SplitText";
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import type { HomeExploreSlide, LocalizedString, Material, MaterialCategory } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
 
@@ -44,6 +44,18 @@ const sideCardSize = {
 };
 
 const cardTransition = "height 1250ms cubic-bezier(.18,.86,.18,1), width 1250ms cubic-bezier(.18,.86,.18,1), transform 1250ms cubic-bezier(.18,.86,.18,1), opacity 1250ms cubic-bezier(.18,.86,.18,1), filter 1250ms cubic-bezier(.18,.86,.18,1)";
+
+const homeExploreImageOverrides: Record<string, string> = {
+  alcantara: "/uploads/carousel/alcantara2.jpg",
+  fabric: "/uploads/carousel/fabric.jpg",
+  "vegan-leather": "/uploads/veganleather/home-vegan-leather.jpg"
+};
+
+const homeExploreDescriptionOverrides: Record<string, Partial<LocalizedString>> = {
+  projects: {
+    en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC"
+  }
+};
 
 function circularDistance(from: number, to: number, length: number) {
   return ((from - to) % length + length) % length;
@@ -112,10 +124,10 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
           title: { en: "PRODUCT", ja: "PRODUCT" },
           category: { en: "Product", ja: "Product" },
           description: {
-            en: "Surface programs organized by product context and customer use.",
+            en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
             ja: "製品用途と顧客体験に合わせたサーフェスプログラム。"
           },
-          image: "/uploads/product/product-hero.jpg",
+          image: "/uploads/product/product.jpg",
           href: "/products"
         }
       ]
@@ -123,7 +135,13 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
   const selectedCategories = categorySlugs?.length
     ? categorySlugs.map((slug) => categories.find((category) => category.slug === slug)).filter((category): category is MaterialCategory => Boolean(category))
     : categories.slice(0, 3);
-  const productSlides: ExploreSlide[] = configuredProductSlides?.length ? configuredProductSlides : fallbackProductSlides;
+  const productSlides: ExploreSlide[] = (configuredProductSlides?.length ? configuredProductSlides : fallbackProductSlides).map((productSlide) => ({
+    ...productSlide,
+    description: {
+      ...productSlide.description,
+      ...(homeExploreDescriptionOverrides[productSlide.slug] ?? {})
+    }
+  }));
   const slides: ExploreSlide[] = useMemo(
     () => [
       ...selectedCategories.map((category) => ({
@@ -131,7 +149,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
         title: category.name,
         category: { en: `Material — ${category.name.en}`, ja: `Material — ${category.name.ja}` },
         description: category.description,
-        image: category.coverImage,
+        image: homeExploreImageOverrides[category.slug] ?? category.coverImage,
         href: (() => {
             const bySlug = materials.find((m) => m.slug === category.slug);
             if (bySlug) return `/materials/${category.slug}`;
@@ -146,7 +164,6 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
     [materials, productSlides, selectedCategories]
   );
   const [index, setIndex] = useState(0);
-  const sectionRef = useRef<HTMLElement>(null);
   const slide = slides[index];
 
   useEffect(() => {
@@ -159,27 +176,6 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
     return () => window.clearInterval(intervalId);
   }, [slides.length]);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    const section = sectionRef.current;
-
-    if (!section) return;
-
-    const previousSnapType = root.style.scrollSnapType;
-    const previousSnapAlign = section.style.scrollSnapAlign;
-    const previousSnapStop = section.style.scrollSnapStop;
-
-    root.style.scrollSnapType = "y proximity";
-    section.style.scrollSnapAlign = "start";
-    section.style.scrollSnapStop = "always";
-
-    return () => {
-      root.style.scrollSnapType = previousSnapType;
-      section.style.scrollSnapAlign = previousSnapAlign;
-      section.style.scrollSnapStop = previousSnapStop;
-    };
-  }, []);
-
   if (!slide) {
     return null;
   }
@@ -189,7 +185,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
   }
 
   return (
-    <section className="relative isolate flex h-[100svh] overflow-hidden bg-charcoal text-white" data-explore-slider ref={sectionRef}>
+    <section className="relative isolate -mt-px flex h-[100svh] scroll-mt-0 overflow-hidden bg-charcoal text-white" data-explore-slider id="home-explore">
       <div className="absolute inset-0 -z-20 bg-charcoal">
         {slides.map((item, slideIndex) => (
           <Image
@@ -203,6 +199,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
         ))}
       </div>
       <div className="absolute inset-0 -z-10 bg-charcoal/35 backdrop-blur-md" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-[22svh] bg-gradient-to-b from-charcoal via-charcoal/45 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-[34%] bg-charcoal/95" />
       <div className="absolute inset-x-0 bottom-[34%] -z-10 h-[10%] bg-gradient-to-t from-charcoal/85 to-transparent" />
 

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Award, Download, FileText, SprayCan } from "lucide-react";
 import type { CSSProperties, PointerEvent } from "react";
 import { useEffect, useMemo, useState } from "react";
+import { CTAMessageDrawer } from "@/components/CTAMessageDrawer";
 import type { Sku } from "@/lib/content";
 import { toSanityThumbnailUrl } from "@/lib/image-urls";
 import { localizedPath, type Locale } from "@/lib/locales";
@@ -37,6 +38,8 @@ const productInfoLinks = [
 
 const skuSwatchThumbnailSize = 96;
 const fabricAutomotiveBrandPattern = /\b(?:bmw|mercedes(?:-benz)?|porsche|volkswagen|vw|mini|ford|beetle|käfer|kafer|kever|coccinelle|westfalia|capri)\b/i;
+const lightToDarkSwatchProductTypes = new Set(["automotive-nappa"]);
+const skuCodeCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
 const fabricTrademarkDisclaimer = {
   en: "Vehicle brand names and trademarks referenced on this page are the property of their respective owners. CAMARI is not affiliated with, endorsed by, or sponsored by those owners. These fabrics are reproduction or aftermarket materials and are not genuine vehicle manufacturer products.",
@@ -80,13 +83,62 @@ function getSkuSwatchImage(sku: Sku): string | undefined {
   return image ? toSanityThumbnailUrl(image, skuSwatchThumbnailSize) : undefined;
 }
 
+function getHexLuminance(value: string): number {
+  const normalized = value.trim().replace(/^#/, "");
+  const expanded = normalized.length === 3
+    ? normalized.split("").map((channel) => `${channel}${channel}`).join("")
+    : normalized;
+
+  if (!/^[0-9a-f]{6}$/i.test(expanded)) {
+    return -1;
+  }
+
+  const red = Number.parseInt(expanded.slice(0, 2), 16) / 255;
+  const green = Number.parseInt(expanded.slice(2, 4), 16) / 255;
+  const blue = Number.parseInt(expanded.slice(4, 6), 16) / 255;
+
+  return (0.2126 * red) + (0.7152 * green) + (0.0722 * blue);
+}
+
+function sortSkusForSwatches(skus: Sku[], productTypeSlug: string): Sku[] {
+  if (!lightToDarkSwatchProductTypes.has(productTypeSlug)) {
+    return skus;
+  }
+
+  return [...skus].sort((left, right) => {
+    const luminanceDelta = getHexLuminance(right.hex ?? "") - getHexLuminance(left.hex ?? "");
+
+    if (luminanceDelta !== 0) {
+      return luminanceDelta;
+    }
+
+    return skuCodeCollator.compare(left.code, right.code);
+  });
+}
+
+function formatArticleLabelPart(value: string): string {
+  if (value !== value.toUpperCase()) {
+    return value;
+  }
+
+  return value
+    .toLowerCase()
+    .replace(/\b[a-z]/g, (letter) => letter.toUpperCase())
+    .replace(/\bBmw\b/g, "BMW")
+    .replace(/\bVw\b/g, "VW")
+    .replace(/\bOem\b/g, "OEM")
+    .replace(/\bOdm\b/g, "ODM");
+}
+
 export function SkuSwatches({ locale, materialName, materialSlug, productTypeName, productTypeSlug, productTypeCode, productTypeSummary, skus, initialSku, compact = false }: SkuSwatchesProps) {
   const router = useRouter();
   const [selectedSlug, setSelectedSlug] = useState(initialSku.slug);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const selected = useMemo(() => skus.find((sku) => sku.slug === selectedSlug) ?? initialSku, [initialSku, selectedSlug, skus]);
+  const swatchSkus = useMemo(() => sortSkusForSwatches(skus, productTypeSlug), [productTypeSlug, skus]);
   const hasVisualSwatches = useMemo(() => skus.some((s) => s.hex || s.swatchImage || s.previewImage || s.image), [skus]);
   const showFabricTrademarkDisclaimer = hasFabricAutomotiveBrandReference(materialSlug, productTypeSlug, productTypeName, productTypeSummary, selected);
+  const contactArticleLabel = `${formatArticleLabelPart(materialName)} - ${formatArticleLabelPart(productTypeName)}`;
   const galleryImages = useMemo(() => {
     const images = [
       {
@@ -411,7 +463,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                   <span className="font-sans text-[10px] tracking-[0.12em] text-charcoal/60">{skus.length} options</span>
                 </div>
                 <div className="flex flex-wrap gap-[10px]">
-                  {skus.map((sku) => {
+                  {swatchSkus.map((sku) => {
                     const active = sku.slug === selected.slug;
                     const swatchImage = getSkuSwatchImage(sku);
                     const swatchStyle = !swatchImage && sku.hex ? { backgroundColor: sku.hex } : undefined;
@@ -441,12 +493,13 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
 
             {/* Action buttons — Dedar's CTA area */}
             <div className="mt-8 space-y-3 md:mt-10">
-              <Link
-                className="inline-flex w-full justify-center bg-charcoal px-10 py-4 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-charcoal/85 md:w-auto md:min-w-[15rem]"
-                href={localizedPath(locale, "/contact")}
-              >
-                Contact Sales
-              </Link>
+              <CTAMessageDrawer
+                articleLabel={contactArticleLabel}
+                buttonClassName="inline-flex w-full justify-center bg-charcoal px-10 py-4 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-charcoal/85 md:w-auto md:min-w-[15rem]"
+                buttonLabel="Contact Sales"
+                locale={locale}
+                placement="top"
+              />
               <p className="font-sans text-[10px] leading-relaxed text-muted">Sample request workflow is reserved for a later release.</p>
               {showFabricTrademarkDisclaimer ? (
                 <p className="max-w-[34rem] font-sans text-[9px] leading-relaxed text-charcoal/45">

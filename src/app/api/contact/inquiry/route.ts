@@ -12,8 +12,7 @@ type EmailDeliveryResult =
   | { ok: false; status: number; error: string };
 
 function getRecipient(locale: ContactInquiry["locale"]): string {
-  const override = locale === "en" ? process.env.CONTACT_FORM_TO_EN : process.env.CONTACT_FORM_TO_JA;
-  return override?.trim() || CONTACT_INQUIRY_RECIPIENTS[locale];
+  return CONTACT_INQUIRY_RECIPIENTS[locale];
 }
 
 function buildSubject(inquiry: ContactInquiry): string {
@@ -29,6 +28,7 @@ function buildHtmlBody(inquiry: ContactInquiry, recipient: string): string {
     ["Phone", inquiry.phone || "Not provided"],
     ["Company Name", inquiry.company],
     ["Interest", inquiry.interests.length ? inquiry.interests.join(", ") : "Not specified"],
+    ...(inquiry.article ? ([["Article", inquiry.article]] as Array<[string, string]>) : []),
     ...(inquiry.pageUrl ? ([["Page URL", inquiry.pageUrl]] as Array<[string, string]>) : [])
   ];
 

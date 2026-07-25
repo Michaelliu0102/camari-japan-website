@@ -47,11 +47,19 @@ export default async function HomePage({ params }: PageProps) {
             <div>
               <p className="label-caps text-gold">Brand Value</p>
               <h2 className="mt-6 font-label text-xl uppercase tracking-[0.1em] md:text-[1.65rem] md:leading-tight">
-                {locale === "en" ? "European material quality, Japanese spatial restraint." : "欧州品質の素材感と、日本的な空間の抑制。"}
+                {locale === "en" ? (
+                  <>
+                    LOCAL SERVICE.
+                    <br />
+                    GLOBAL REACH.
+                  </>
+                ) : (
+                  "欧州品質の素材感と、日本的な空間の抑制。"
+                )}
               </h2>
               <p className="mt-7 text-sm leading-7 text-muted md:text-[0.95rem]">
                 {locale === "en"
-                  ? `${site.organizationName} curates materials for teams who need surfaces to communicate quality before a word is spoken: automotive cabins, hospitality interiors, product panels, and bespoke OEM/ODM programs.`
+                  ? "Across China, Italy, Japan, and Australia, CAMARI connects local material expertise, certified manufacturing, and coordinated logistics in one responsive network, from concept to delivery."
                   : `${site.organizationName} は、言葉より先に品質を伝えるサーフェスを求めるチームに向けて素材を選定します。車両キャビン、ホスピタリティ空間、プロダクトパネル、特注 OEM/ODM プログラムに対応します。`}
               </p>
             </div>

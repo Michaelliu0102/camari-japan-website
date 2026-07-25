@@ -73,6 +73,7 @@ export type RawProductCarouselItem = {
   title?: LocalizedString | null;
   coverImageUrl?: string | null;
   description?: LocalizedString | null;
+  customizedOption?: LocalizedString | null;
   details?: Array<LocalizedString | null> | null;
   galleryImageUrls?: Array<string | null> | null;
 };
@@ -301,6 +302,7 @@ export const productCategoriesQuery = `*[_type == "productCategory"] | order(sor
     title,
     "coverImageUrl": coverImage.asset->url,
     description,
+    customizedOption,
     details,
     "galleryImageUrls": gallery[].asset->url
   },

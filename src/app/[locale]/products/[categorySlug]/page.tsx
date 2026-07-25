@@ -53,6 +53,7 @@ export default async function ProductCategoryPage({ params }: PageProps) {
     return (
       <main>
         <ProductCurvedCarousel
+          categorySlug={category.slug}
           heroImage={category.heroImage}
           images={category.curvedCarouselImages}
           locale={locale}
