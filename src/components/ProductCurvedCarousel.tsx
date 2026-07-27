@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState, type CSSProperties, type PointerEvent } from "react";
 import { createPortal } from "react-dom";
+import { CTAMessageDrawer } from "@/components/CTAMessageDrawer";
 import type { LocalizedString } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
 
@@ -89,6 +90,7 @@ export function ProductCurvedCarousel({ categorySlug, heroImage, images, locale,
   const isDetailOpen = activeDetailIndex !== null;
   const titleWords = title.split(" ").filter(Boolean);
   const titleLines = titleWords.length > 2 ? [titleWords.slice(0, -1).join(" "), titleWords[titleWords.length - 1]] : titleWords;
+  const contactArticleLabel = activeItem ? `${title} - ${activeItem.title[locale]}` : undefined;
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -382,6 +384,19 @@ export function ProductCurvedCarousel({ categorySlug, heroImage, images, locale,
                       {activeItem.customizedOption?.[locale]}
                     </p>
                   </details>
+                </div>
+
+                <div className="mt-8 border-b border-charcoal/12 pb-8">
+                  <CTAMessageDrawer
+                    articleLabel={contactArticleLabel}
+                    buttonClassName="inline-flex min-h-[3.75rem] w-full items-center justify-center bg-charcoal px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-charcoal/85"
+                    buttonLabel="Contact Sales"
+                    locale={locale}
+                    placement="top"
+                  />
+                  <p className="mt-4 max-w-[26rem] font-sans text-[13px] leading-relaxed tracking-[0.02em] text-muted">
+                    B2B Custom Solutions & Wholesale Only. Contact our team to discuss your project.
+                  </p>
                 </div>
 
                 <div className="mt-auto flex gap-3 pt-8 lg:hidden">

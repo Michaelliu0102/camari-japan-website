@@ -168,7 +168,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
       </button>
       <div
         aria-hidden={!isOpen}
-        className={`fixed inset-0 z-[90] flex justify-center bg-charcoal/70 px-3 backdrop-blur-[8px] transition-opacity duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] md:px-6 ${
+        className={`fixed inset-0 z-[260] flex justify-center bg-charcoal/70 px-3 backdrop-blur-[8px] transition-opacity duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] md:px-6 ${
           isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         } ${isTopPlacement ? "items-start pb-16 pt-3 md:pb-6 md:pt-6" : "items-end pb-3 pt-16 md:pb-6"}`}
         onClick={() => setIsOpen(false)}

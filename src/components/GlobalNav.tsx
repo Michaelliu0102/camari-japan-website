@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SearchOverlay } from "@/components/SearchOverlay";
-import { getAlternateLocale, localizedPath, type Locale } from "@/lib/locales";
+import { absoluteLocalizedUrl, getAlternateLocale, localizedPath, type Locale } from "@/lib/locales";
 import { siteConfig } from "@/lib/site-config";
 
 type GlobalNavProps = {
@@ -15,7 +16,7 @@ type GlobalNavProps = {
 type NavChild = {
   label: Record<Locale, string>;
   href: string;
-  description: Record<Locale, string>;
+  description?: Record<Locale, string>;
   quickLinks?: {
     label: Record<Locale, string>;
     href: string;
@@ -28,7 +29,7 @@ type NavItem = {
   children?: NavChild[];
 };
 
-const navItems = [
+const navItems: NavItem[] = [
   { label: { en: "Home", ja: "ホーム" }, href: "" },
   { label: { en: "About", ja: "会社情報" }, href: "/about" },
   {
@@ -101,23 +102,19 @@ const navItems = [
     children: [
       {
         label: { en: "Automotive Interior Accessories", ja: "自動車内装アクセサリー" },
-        href: "/products/automotive-interior-accessories",
-        description: { en: "Cabin panels, steering surfaces, seating, and trim for automotive and mobility interiors", ja: "車両・モビリティ内装向けのパネル、ステアリング、シート、トリム" }
+        href: "/products/automotive-interior-accessories"
       },
       {
         label: { en: "Tech Accessories", ja: "テックアクセサリー" },
-        href: "/products/tech-accessories",
-        description: { en: "Surface programs for consumer electronics, wearables, and device accessories", ja: "デバイス、ウェアラブル、電子機器向けのサーフェスプログラム" }
+        href: "/products/tech-accessories"
       },
       {
         label: { en: "Lifestyle", ja: "ライフスタイル" },
-        href: "/products/lifestyle",
-        description: { en: "Material solutions for lifestyle products, packaging, and personal goods", ja: "ライフスタイル製品、パッケージ、パーソナルグッズ向け素材提案" }
+        href: "/products/lifestyle"
       },
       {
         label: { en: "Corporate Gifts", ja: "法人ギフト" },
-        href: "/products/corporation-gift",
-        description: { en: "Premium material programs for corporate gifting, awards, and brand merchandise", ja: "法人ギフト、表彰品、ブランドグッズ向けの上質な素材プログラム" }
+        href: "/products/corporation-gift"
       }
     ]
   },
@@ -138,17 +135,20 @@ const navItems = [
     ]
   },
   { label: { en: "Contact", ja: "お問い合わせ" }, href: "/contact" }
-] satisfies NavItem[];
+];
 
-function getLanguageSwitchHref(locale: Locale): string {
+function getLanguageSwitchHref(locale: Locale, pathname: string): string {
+  const alternateLocale = getAlternateLocale(locale);
+
   if (siteConfig.enableLocalePreview) {
-    return `/${getAlternateLocale(locale)}`;
+    return localizedPath(alternateLocale, pathname);
   }
 
-  return siteConfig.alternateSiteHomeUrl;
+  return absoluteLocalizedUrl(alternateLocale, pathname);
 }
 
 export function GlobalNav({ locale }: GlobalNavProps) {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [invert, setInvert] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -196,7 +196,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
   const dropdownGlassClass = "border-y border-charcoal/10 bg-white text-charcoal shadow-material";
   const dropdownMutedText = "text-muted";
   const dropdownItemHover = "hover:bg-charcoal/5";
-  const languageSwitchHref = getLanguageSwitchHref(locale);
+  const languageSwitchHref = getLanguageSwitchHref(locale, pathname);
   const logoSrc = invert ? "/uploads/logo/black-int.png" : "/uploads/logo/white-int.png";
 
   return (
@@ -270,7 +270,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                               </button>
                             ) : null}
                           </div>
-                          {child.description[locale] && !expandedQuickLinks[child.href] ? (
+                          {child.description?.[locale] && !expandedQuickLinks[child.href] ? (
                             <span className={`mt-1 block font-sans text-[0.78rem] font-normal normal-case leading-5 tracking-normal ${dropdownMutedText}`}>
                               {child.description[locale]}
                             </span>
