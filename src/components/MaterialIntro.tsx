@@ -9,6 +9,7 @@ type MaterialIntroProps = {
 
 export function MaterialIntro({ locale, material }: MaterialIntroProps) {
   const introParagraphs = material.introBody[locale].split(/\n{2,}/).filter(Boolean);
+  const quote = material.quote[locale].trim();
 
   return (
     <section className="bg-stone py-24 md:py-36" data-nav-invert>
@@ -21,7 +22,7 @@ export function MaterialIntro({ locale, material }: MaterialIntroProps) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <p className="mt-8 max-w-xl font-serif text-xl italic leading-8 text-charcoal/70">{material.quote[locale]}</p>
+          {quote ? <p className="mt-8 max-w-xl font-serif text-xl italic leading-8 text-charcoal/70">{quote}</p> : null}
         </div>
         <div className="relative min-h-[520px] md:col-span-6 md:col-start-7">
           <Image alt={material.name[locale]} className="object-cover shadow-material" fill sizes="(min-width: 768px) 48vw, 100vw" src={material.introImage} />

@@ -20,6 +20,11 @@ import {
 } from "@/lib/content";
 import { productCategories as fallbackProductCategories, type ProductCategory } from "@/content/products/categories";
 import type { Locale } from "@/lib/locales";
+import {
+  applyJapaneseHomePageCopy,
+  applyJapaneseMaterialCategoryCopy,
+  applyJapaneseMaterialCopy,
+} from "@/lib/japanese-copy";
 import { loadSkaiVinylProductTypes, loadSkaiVinylSkus } from "@/lib/skai-vinyl";
 import {
   adaptAboutPageSettings,
@@ -377,27 +382,28 @@ async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
 }
 
 export async function loadMaterialCategories(): Promise<MaterialCategory[]> {
-  return fetchAndMergeBySlug<RawMaterialCategory, MaterialCategory>(materialCategoriesQuery, {}, fallbackCategories, adaptMaterialCategory);
+  const categories = await fetchAndMergeBySlug<RawMaterialCategory, MaterialCategory>(materialCategoriesQuery, {}, fallbackCategories, adaptMaterialCategory);
+  return applyJapaneseMaterialCategoryCopy(categories);
 }
 
 export async function loadHomePageSettings(): Promise<HomePageSettings> {
   if (!isSanityConfigured()) {
-    return fallbackHomePageSettings;
+    return applyJapaneseHomePageCopy(fallbackHomePageSettings);
   }
 
   try {
     const result = await getSanityClient().fetch<RawHomePageSettings>(homePageSettingsQuery);
     if (!result) {
-      return fallbackHomePageSettings;
+      return applyJapaneseHomePageCopy(fallbackHomePageSettings);
     }
-    return adaptHomePageSettings(result);
+    return applyJapaneseHomePageCopy(adaptHomePageSettings(result));
   } catch (error) {
     if (process.env.NODE_ENV === "production") {
       throw error;
     }
 
     console.warn("Sanity homepage fetch failed; using local fixture content.", error);
-    return fallbackHomePageSettings;
+    return applyJapaneseHomePageCopy(fallbackHomePageSettings);
   }
 }
 
@@ -423,7 +429,8 @@ export async function loadAboutPageSettings(): Promise<AboutPageSettings> {
 }
 
 export async function loadMaterials(): Promise<Material[]> {
-  return fetchAndMergeBySlug<RawMaterial, Material>(materialsQuery, {}, fallbackMaterials, adaptMaterial);
+  const materials = await fetchAndMergeBySlug<RawMaterial, Material>(materialsQuery, {}, fallbackMaterials, adaptMaterial);
+  return applyJapaneseMaterialCopy(materials);
 }
 
 export async function loadProductTypes(): Promise<ProductType[]> {

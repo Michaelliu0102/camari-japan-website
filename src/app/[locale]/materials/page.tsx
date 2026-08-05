@@ -42,18 +42,20 @@ export default async function MaterialsPage({ params }: PageProps) {
       {heroCategory ? (
         <PageHero
           image={heroCategory.coverImage}
-          subtitle={locale === "en" ? "The intersection of Italian sensory tension and Japanese restraint" : "イタリアの感性的な緊張と日本の抑制の交点"}
+          subtitle={locale === "en" ? "The intersection of Italian sensory tension and Japanese restraint" : undefined}
           title="Material"
         />
       ) : null}
       <section className="bg-stone py-24 md:py-32" data-nav-invert>
         <div className="mx-auto max-w-4xl px-margin-mobile text-center">
-          <p className="label-caps text-gold">Our Philosophy</p>
-          <h2 className="mt-6 font-serif text-4xl uppercase tracking-luxury">Tactile Silence</h2>
+          {locale === "en" ? <p className="label-caps text-gold">Our Philosophy</p> : null}
+          <h2 className={`${locale === "en" ? "mt-6 " : ""}font-serif text-4xl uppercase tracking-luxury`}>
+            {locale === "en" ? "Tactile Silence" : "質感へのこだわり"}
+          </h2>
           <p className="mt-8 text-lg leading-9 text-muted">
             {locale === "en"
               ? "Every textile and hide is selected for its ability to harmonize with spatial design, offering a sensory transition between craft precision and expressive warmth."
-              : "すべてのテキスタイルとレザーは、空間デザインと調和し、精密なクラフトと表情豊かな温度をつなぐ素材として選定されています。"}
+              : "空間に調和する、心地よい手ざわりの素材を厳選しています。"}
           </p>
         </div>
       </section>

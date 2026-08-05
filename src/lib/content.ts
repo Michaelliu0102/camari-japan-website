@@ -255,7 +255,7 @@ export const homePageSettings: HomePageSettings = {
         category: { en: "Product", ja: "Product" },
         description: {
           en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
-          ja: "製品用途と顧客体験に合わせたサーフェスプログラム。"
+          ja: "製品の用途や使い心地に合わせた最適なデザイン・加工をご提案します。"
         },
         image: "/uploads/product/product.jpg",
         href: "/products"
@@ -299,10 +299,10 @@ export const materialCategories: MaterialCategory[] = [
   {
     slug: "alcantara",
     name: { en: "Alcantara", ja: "アルカンターラ" },
-    tagline: { en: "Italian precision / carbon neutral", ja: "イタリアの精密性 / カーボンニュートラル" },
+    tagline: { en: "Italian precision / carbon neutral", ja: "イタリアの美意識と精密な技術が生み出す素材。" },
     description: {
       en: "A sensory microfiber surface for automotive, interiors, aviation, and product spaces.",
-      ja: "車両、インテリア、航空、プロダクト空間に向けた感性的なマイクロファイバー素材。"
+      ja: "スエードのような質感と優れた機能性を兼ね備えた、イタリア製プレミアム素材。"
     },
     coverImage: images.alcantaraSoft,
     accent: "#1A1A1A"
@@ -310,10 +310,10 @@ export const materialCategories: MaterialCategory[] = [
   {
     slug: "fabric",
     name: { en: "Fabric", ja: "ファブリック" },
-    tagline: { en: "Washi, weave, and quiet tactility", ja: "和紙、織り、静かな触感" },
+    tagline: { en: "Washi, weave, and quiet tactility", ja: "クラシックカーの魅力を受け継ぐ、高耐久な欧州製ファブリック。" },
     description: {
       en: "Architectural textiles selected for spatial restraint and practical durability.",
-      ja: "空間の余白と実用性を両立する建築的テキスタイル。"
+      ja: "伝統技術が生み出す、クラシックカー向けの上質な内装素材。"
     },
     coverImage: images.fabric,
     accent: "#A68A5E"
@@ -321,10 +321,10 @@ export const materialCategories: MaterialCategory[] = [
   {
     slug: "vegan-leather",
     name: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
-    tagline: { en: "Sustainable luxury alternatives", ja: "持続可能なラグジュアリー素材" },
+    tagline: { en: "Sustainable luxury alternatives", ja: "本革の質感と環境への配慮を両立した高機能マイクロファイバーレザー。" },
     description: {
       en: "Matte, refined surfaces for contemporary spaces and brand-led product programs.",
-      ja: "現代的な空間とブランドプロダクトに向けた、上品なマットサーフェス。"
+      ja: "環境に配慮した次世代マイクロファイバーレザー。"
     },
     coverImage: images.vegan,
     accent: "#735B33"
@@ -340,15 +340,15 @@ export const materials: Material[] = [
     heroTitle: { en: "Alcantara", ja: "Alcantara" },
     heroSubtitle: { en: "The sensory revolution", ja: "触感の革新" },
     heroImage: images.alcantara,
-    introTitle: { en: "The Art of Italian Innovation", ja: "イタリアンイノベーションの美学" },
+    introTitle: { en: "The Art of Italian Innovation", ja: "イタリアの技術と美意識の融合" },
     introBody: {
       en: "Alcantara represents a singular vision: one company, one brand, and one remarkable material. Founded in 1972, this symbol of Italian excellence is built on a unique, proprietary technology that blends advanced science with premium craftsmanship.\n\nAlcantara brings together advanced technology and great craftsmanship. It is uniquely soft, comfortable, and distinct to the touch, yet it is also durable, lightweight, breathable, temperature-regulating, and completely washable. These excellent qualities allow it to easily wrap around complex shapes and surfaces while keeping a clean, premium look.\n\nChosen by leading brands in automotive, interiors, marine, aviation, fashion, and consumer electronics, Alcantara turns high performance into a true design language. It supports custom solutions for demanding creative and technical projects through a wide range of options, including personalized colors, textures, printing, perforation, laser processing, embossing, embroidery, and lamination.\n\nSustainability is a core part of its industrial culture. Alcantara has maintained its Carbon Neutral certification since 2009.",
-      ja: "Alcantara は、ひとつの企業、ひとつのブランド、ひとつの素材として成立するイタリアのエクセレンスです。1972年にイタリアで生産が始まり、独自の専有技術から発展してきました。\n\nこの素材は、先端技術とクラフツマンシップを結びつけています。柔らかく包み込むような独自の触感を持ちながら、耐久性、軽さ、通気性、温度調整性、メンテナンス性、耐摩耗性にも優れています。複雑な形状や多様な表面に適応しながら、洗練された視覚的な存在感を保つことができます。\n\n自動車、インテリア、船舶、航空、ファッション、コンシューマーエレクトロニクスまで、Alcantara は世界の主要ブランドに選ばれています。カラー、テクスチャー、プリント、パンチング、レーザー加工、エンボス、刺繍、ラミネーションなどのカスタマイズに対応し、高度な意匠性と技術要件を持つプロジェクトに合わせたソリューションを提供します。\n\nサステナビリティも Alcantara の産業文化の一部です。2009年からカーボンニュートラル認証を継続し、責任ある生産、製品認証、リサイクル素材、循環型経済に向けた研究開発を進めています。"
+      ja: "アルカンターラは、1972年にイタリアで誕生した独自素材です。上質な手触りと軽さ、耐久性、通気性などを兼ね備え、自動車やインテリア、ファッションなど幅広い分野で世界のトップブランドに採用されています。豊富なカラーや加工に対応し、多様なデザインを実現できることも特長です。また、カーボンニュートラル認証の継続やリサイクル素材の活用など、環境に配慮したものづくりにも取り組んでいます。"
     },
     introImage: images.interior,
     quote: {
       en: "Alcantara turns technical performance into a sensory language for contemporary design.",
-      ja: "Alcantara は、技術性能を現代デザインのための触感の言語へと変える。"
+      ja: ""
     },
     applications: [
       { slug: "automotive", name: { en: "Automotive", ja: "自動車" }, colorCount: 71, image: images.alcantara },
@@ -408,15 +408,15 @@ export const materials: Material[] = [
     heroTitle: { en: "Fabric", ja: "Fabric" },
     heroSubtitle: { en: "Washi, weave, and quiet tactility", ja: "和紙、織り、静かな触感" },
     heroImage: images.fabric,
-    introTitle: { en: "The Architecture of Weave", ja: "織りの建築" },
+    introTitle: { en: "The Architecture of Weave", ja: "名車にふさわしい品質" },
     introBody: {
       en: "Architectural textiles selected for spatial restraint and practical durability. From Japanese washi paper weaves to high-performance technical fabrics, each selection balances acoustic softness with structural integrity for interior, hospitality, and product applications.",
-      ja: "空間の余白と実用性のために選ばれた建築的テキスタイル。和紙の織りから高機能テクニカルファブリックまで、それぞれがインテリア、ホスピタリティ、プロダクト用途における吸音性と構造的な完全性のバランスを取ります。"
+      ja: "欧州クラシックカーの純正仕様を忠実に再現したファブリックです。千鳥格子やタータンチェック、ウールなど、多彩な生地を取り揃え、当時のインテリアを美しく再現します。現代の基準に対応した耐久性を備え、クラシックカーの価値を大切にしたレストアを支えます。"
     },
     introImage: images.alcantara,
     quote: {
       en: "Fabric does not decorate space. It completes it.",
-      ja: "ファブリックは空間を飾らない。それを完成させる。"
+      ja: ""
     },
     applications: [
       { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 62, image: images.fabric },

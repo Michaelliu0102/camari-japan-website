@@ -99,7 +99,7 @@ test("adapts material reference fields and fixture-backed quote defaults", async
   assert.deepEqual(material.eyebrow, { en: "Alcantara", ja: "アルカンターラ" });
   assert.deepEqual(material.quote, {
     en: "Alcantara turns technical performance into a sensory language for contemporary design.",
-    ja: "Alcantara は、技術性能を現代デザインのための触感の言語へと変える。",
+    ja: "",
   });
   assert.equal(material.applications[0].slug, "automotive-cabin");
   assert.equal(material.applications[0].image, "https://cdn.sanity.io/images/project/dataset/application.jpg");

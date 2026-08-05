@@ -4,6 +4,7 @@ import Showcase4, { type ShowcaseCategory, type ShowcaseProduct } from "@/compon
 import { PageHero } from "@/components/PageHero";
 import { productCategories } from "@/content/products/categories";
 import { site } from "@/lib/content";
+import { JAPANESE_PRODUCT_SURFACE_DESCRIPTION } from "@/lib/japanese-copy";
 import type { Locale } from "@/lib/locales";
 import { localizedPath } from "@/lib/locales";
 import { createPageMetadata } from "@/lib/metadata";
@@ -58,7 +59,7 @@ export default async function ProductsPage({ params, searchParams }: PageProps) 
         subtitle={
           locale === "en"
             ? "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC"
-            : "製品用途と顧客体験に合わせたサーフェスプログラム"
+            : JAPANESE_PRODUCT_SURFACE_DESCRIPTION
         }
         title="Product"
       />

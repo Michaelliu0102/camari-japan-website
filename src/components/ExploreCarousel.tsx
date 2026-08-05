@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import SplitText from "@/components/SplitText";
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import type { HomeExploreSlide, LocalizedString, Material, MaterialCategory } from "@/lib/content";
+import { JAPANESE_PRODUCT_SURFACE_DESCRIPTION } from "@/lib/japanese-copy";
 import { localizedPath, type Locale } from "@/lib/locales";
 
 type ExploreSlide = {
@@ -53,7 +54,8 @@ const homeExploreImageOverrides: Record<string, string> = {
 
 const homeExploreDescriptionOverrides: Record<string, Partial<LocalizedString>> = {
   projects: {
-    en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC"
+    en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
+    ja: JAPANESE_PRODUCT_SURFACE_DESCRIPTION,
   }
 };
 
@@ -125,7 +127,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
           category: { en: "Product", ja: "Product" },
           description: {
             en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
-            ja: "製品用途と顧客体験に合わせたサーフェスプログラム。"
+            ja: JAPANESE_PRODUCT_SURFACE_DESCRIPTION
           },
           image: "/uploads/product/product.jpg",
           href: "/products"
