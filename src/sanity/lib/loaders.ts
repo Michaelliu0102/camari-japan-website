@@ -529,7 +529,15 @@ export async function loadProject(slug: string): Promise<ProjectCase | undefined
 }
 
 export async function loadNewsItems(): Promise<NewsItem[]> {
-  return fetchOrFallback<RawNewsItem, NewsItem>(newsItemsQuery, {}, fallbackNewsItems, adaptNewsItem);
+  const items = await fetchAndMergeBySlug<RawNewsItem, NewsItem>(newsItemsQuery, {}, fallbackNewsItems, adaptNewsItem);
+  return items
+    .filter((item) => item.slug !== "new-material-study")
+    .sort((left, right) => right.date.localeCompare(left.date));
+}
+
+export async function loadNewsItem(slug: string): Promise<NewsItem | undefined> {
+  const items = await loadNewsItems();
+  return items.find((item) => item.slug === slug);
 }
 
 export async function loadCatalogs(locale: Locale): Promise<Download[]> {

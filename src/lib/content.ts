@@ -108,6 +108,8 @@ export type ProjectCase = {
 
 export type NewsItem = {
   slug: string;
+  updatedAt?: string;
+  availableLocales?: Locale[];
   title: LocalizedString;
   category: LocalizedString;
   date: string;
@@ -770,22 +772,63 @@ export const projectCases: ProjectCase[] = [];
 
 export const newsItems: NewsItem[] = [
   {
-    slug: "new-material-study",
-    title: { en: "New Material Study for Quiet Luxury Interiors", ja: "静かなラグジュアリー空間に向けた新素材研究" },
-    category: { en: "Material", ja: "素材" },
-    date: "2026-05-12",
-    image: images.fabric,
+    slug: "camari-tokyo-auto-salon-2026",
+    availableLocales: ["en", "ja"],
+    title: { en: "CAMARI INTERNATIONAL JAPAN Makes Its Tokyo Auto Salon Debut", ja: "東京オートサロン初出展を無事終了いたしました" },
+    category: { en: "Exhibition", ja: "展示会" },
+    date: "2026-01-11",
+    image: "/uploads/news/2026 Tokyo Auto Salon/hero.jpg",
     summary: {
-      en: "A short editorial note on texture, restraint, and how surfaces guide perception in premium spaces.",
-      ja: "質感、抑制、そして上質な空間におけるサーフェスの知覚についての編集ノート。"
+      en: "CAMARI INTERNATIONAL JAPAN concluded its participation at the Tokyo Auto Salon after three days of highlighting premium materials, OEM capabilities, and finished products.",
+      ja: "カマリ・インターナショナル・ジャパンは、「東京オートサロン」に初出展し、盛況のうちに3日間の会期を終えることができました。"
     },
     seo: {
-      title: { en: "New Material Study | CAMARI JAPAN", ja: "新素材研究 | CAMARI JAPAN" },
+      title: { en: "CAMARI INTERNATIONAL JAPAN Makes Its Tokyo Auto Salon Debut", ja: "東京オートサロン初出展を無事終了いたしました" },
       description: {
-        en: "Material research notes from CAMARI JAPAN.",
-        ja: "CAMARI JAPAN の素材研究ノート。"
+        en: "Discover CAMARI INTERNATIONAL JAPAN's Tokyo Auto Salon 2026 debut, featuring Alcantara, Italian leathers, OEM manufacturing, automotive accessories, and lifestyle products.",
+        ja: "東京オートサロン初出展の様子と、アルカンターラ、イタリアンレザー、OEM製品、カー用品、ライフスタイル用品の展示をご紹介します。"
       },
-      image: images.fabric
+      image: "/uploads/news/2026 Tokyo Auto Salon/hero.jpg"
+    }
+  },
+  {
+    slug: "alcantara-camari-third-strategic-chapter",
+    availableLocales: ["en", "ja"],
+    title: { en: "ALCANTARA × CAMARI: A Third Strategic Chapter Begins", ja: "ALCANTARA × CAMARI、3度目の戦略提携で新章へ" },
+    category: { en: "Partnership", ja: "パートナーシップ" },
+    date: "2025-04-15",
+    image: "/uploads/news/2025 Alcantara distribution contract/hero.jpg",
+    summary: {
+      en: "Alcantara and CAMARI have renewed their partnership for a third five-year term, continuing a decade-long collaboration across Asia Pacific.",
+      ja: "アルカンターラとカマリは、アジア太平洋市場における10年以上の協業を基盤に、3期目となる5カ年契約を締結しました。"
+    },
+    seo: {
+      title: { en: "ALCANTARA × CAMARI: A Third Strategic Chapter Begins", ja: "ALCANTARA × CAMARI、3度目の戦略提携で新章へ" },
+      description: {
+        en: "Alcantara and CAMARI signed their third five-year distribution agreement in Milan, renewing a strategic partnership serving the Asia Pacific market.",
+        ja: "アルカンターラとカマリはミラノで3度目となる5カ年の販売代理店契約を締結し、アジア太平洋市場における戦略的パートナーシップを更新しました。"
+      },
+      image: "/uploads/news/2025 Alcantara distribution contract/hero.jpg"
+    }
+  },
+  {
+    slug: "alcantara-design-shanghai-2024",
+    availableLocales: ["en", "ja"],
+    title: { en: "CAMARI at Design Shanghai 2024", ja: "カマリ、Design Shanghai 2024に出展" },
+    category: { en: "Exhibition", ja: "展示会" },
+    date: "2024-06-27",
+    image: "/uploads/news/2024 Design Shanghai/ds1.jpg",
+    summary: {
+      en: "CAMARI presented a comprehensive material portfolio at Design Shanghai 2024, spanning Alcantara, premium leather, automotive fabrics, and bespoke surface solutions.",
+      ja: "カマリは、Design Shanghai 2024に出展し、アルカンターラをはじめ、プレミアムレザー、自動車用ファブリック、特注サーフェスマテリアルまで、幅広い素材ポートフォリオを紹介しました。"
+    },
+    seo: {
+      title: { en: "CAMARI at Design Shanghai 2024", ja: "カマリ、Design Shanghai 2024に出展" },
+      description: {
+        en: "Discover CAMARI's presentation at Design Shanghai 2024, featuring Alcantara, premium leather, automotive fabrics, collectible furniture, and creative surface applications.",
+        ja: "Design Shanghai 2024でカマリが紹介したアルカンターラ、プレミアムレザー、自動車用ファブリック、コレクタブルファニチャー、多彩な表面加工をご覧ください。"
+      },
+      image: "/uploads/news/2024 Design Shanghai/ds1.jpg"
     }
   }
 ];
