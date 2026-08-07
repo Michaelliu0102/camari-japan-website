@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return createPageMetadata({
       locale,
       path: "/materials/leather/interior",
-      title: locale === "en" ? "Interior Leather Articles | CAMARI JAPAN" : "インテリアレザー記事 | CAMARI JAPAN",
+      title: locale === "en" ? "Interior Leather Articles | CAMARI JAPAN" : "インテリアレザー記事 | カマリ・ジャパン",
       description:
         locale === "en"
           ? "Explore refined bovine leather articles for interior, hospitality, marine, design, and bespoke upholstery programs."
@@ -50,7 +50,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       path: "/materials/vegan-leather/vinyl",
       title: "Vinyl Articles | CAMARI JAPAN",
       description: "Vinyl surface articles from the skai collection.",
-      image: skaiVinylHeroImage
+      image: skaiVinylHeroImage,
+      availableLocales: ["en"]
     });
   }
 
@@ -162,9 +163,9 @@ async function LeatherInteriorPage({ locale }: { locale: Locale }) {
       subtitle={
         locale === "en"
           ? "From heavy-duty pigment leather to prestige full grain leather"
-          : "From heavy-duty pigment leather to prestige full grain leather"
+          : "高耐久ピグメントレザーから最高級フルグレインレザーまで"
       }
-      title="Interior"
+      title={locale === "en" ? "Interior" : "インテリア"}
     />
   );
 }
@@ -237,7 +238,7 @@ function ArticleCollectionShell({
                 <div className="pt-7 text-center">
                   <h3 className="label-caps text-charcoal">{article.name.toUpperCase()}</h3>
                   <p className="mt-2 text-sm text-muted">
-                    {article.colorCount} {locale === "en" ? "colours" : "colours"}
+                    {article.colorCount} {locale === "en" ? "colours" : "色"}
                   </p>
                 </div>
               </article>

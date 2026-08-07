@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
 import MagicBento from "@/components/MagicBento/MagicBento";
 import { PageHero } from "@/components/PageHero";
@@ -22,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     locale,
     path: "/materials",
     title: locale === "en" ? `Materials | ${site.name}` : `素材 | ${site.name}`,
-    description: locale === "en" ? "Browse Alcantara, leather, fabric, and sustainable surface materials." : "Alcantara、レザー、ファブリック、サステナブルサーフェス素材をご覧ください。",
+    description: locale === "en" ? "Browse Alcantara, leather, fabric, and sustainable surface materials." : "アルカンターラ、レザー、ファブリック、サステナブルサーフェス素材をご覧ください。",
     image: categories[0]?.coverImage
   });
 }
@@ -43,7 +42,7 @@ export default async function MaterialsPage({ params }: PageProps) {
         <PageHero
           image={heroCategory.coverImage}
           subtitle={locale === "en" ? "The intersection of Italian sensory tension and Japanese restraint" : undefined}
-          title="Material"
+          title={locale === "en" ? "Material" : "素材"}
         />
       ) : null}
       <section className="bg-stone py-24 md:py-32" data-nav-invert>
@@ -76,31 +75,19 @@ export default async function MaterialsPage({ params }: PageProps) {
                 href: materialSlug ? localizedPath(locale, `/materials/${materialSlug}`) : localizedPath(locale, "/materials"),
                 variant: "image" as const,
               };
-            })
-            // Swap European Fabric (index 1) with Vegan Leather (index 2)
-            .map((card, i, arr) => {
-              if (i === 1) return arr[2];
-              if (i === 2) return arr[1];
-              return card;
             })}
           enableStars={false}
           enableSpotlight
           enableBorderGlow
           enableTilt
           enableMagnetism={false}
+          imageCtaLabel={locale === "en" ? "Explore Texture" : "質感を見る"}
           clickEffect
           spotlightRadius={500}
           glowColor="166, 138, 94"
         />
         </div>
       </section>
-      <CTASection
-        body={locale === "en" ? "Download catalogs or contact the team for article availability and technical guidance." : "カタログのダウンロード、品番の在庫、技術情報についてお問い合わせください。"}
-        href="/downloads"
-        label={locale === "en" ? "View Catalogs" : "カタログを見る"}
-        locale={locale}
-        title={locale === "en" ? "Review the material library and request project guidance." : "素材ライブラリを確認し、プロジェクト相談へお進みください。"}
-      />
     </main>
   );
 }

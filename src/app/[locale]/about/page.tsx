@@ -50,17 +50,17 @@ const manufacturingCapabilities = [
   {
     title: "Rapid Prototyping & In-House Sampling",
     body: "Located directly within our China headquarters, our dedicated prototyping lab is staffed by specialized technicians and equipped for cutting, perforation, lamination, quilting, and embroidery. Combined with advanced laser processing, digital printing, and 3D printing capabilities, clients can select from over 1,000 in-stock materials to turn custom design concepts into physical samples with minimal lead times.",
-    image: "/uploads/hero/video/higgsfield/01-color-swatches-real-16x9-exact.jpg"
+    image: "/uploads/about/sampling.jpeg"
   },
   {
     title: "Automotive-Grade Manufacturing",
     body: "Operating under the strict IATF 16949 international automotive quality management system, our facility is engineered for high-volume, uncompromising precision. From raw material inspection to automated CNC cutting, custom surface treatment, and rigorous end-of-line durability testing, we ensure consistency and OEM compliance across every production run.",
-    video: "/uploads/hero/video/higgsfield/02-unroll-motion-reference-v2.mp4"
+    image: "/uploads/about/manufacturing.jpeg"
   },
   {
     title: "Global Logistics & Warehousing",
     body: "Supported by 10,000 m² of central warehousing across China and Italy, alongside strategic regional hubs in Japan and Australia, Camari provides end-to-end supply chain reliability. Our international fulfillment infrastructure guarantees streamlined customs clearance, localized inventory management, and rapid global distribution.",
-    video: "/uploads/hero/video/higgsfield/03-laser-cut-motion-reference.mp4"
+    image: "/uploads/about/warehouseglobal.jpeg"
   }
 ];
 
@@ -162,11 +162,11 @@ export default async function AboutPage({ params }: PageProps) {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden bg-stone">
                 <Image
-                  alt="CAMARI brand value material showroom"
-                  className="object-cover"
+                  alt="CAMARI China warehouse"
+                  className="object-cover object-center"
                   fill
                   sizes="(min-width: 1024px) 62vw, 100vw"
-                  src="/uploads/about/brandvalue.jpg"
+                  src="/uploads/about/china-warehouse.jpg"
                 />
               </div>
             </div>
@@ -227,26 +227,13 @@ export default async function AboutPage({ params }: PageProps) {
               {manufacturingCapabilities.map((capability, index) => (
                 <article key={capability.title}>
                   <div className="relative aspect-[4/3] overflow-hidden bg-stone">
-                    {capability.video ? (
-                      <video
-                        aria-label={capability.title}
-                        autoPlay
-                        className="h-full w-full object-cover"
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
-                        src={capability.video}
-                      />
-                    ) : capability.image ? (
-                      <Image
-                        alt="Material colour samples arranged for bespoke development"
-                        className="object-cover"
-                        fill
-                        sizes="(min-width: 768px) 33vw, 100vw"
-                        src={capability.image}
-                      />
-                    ) : null}
+                    <Image
+                      alt={capability.title}
+                      className="object-cover"
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      src={capability.image}
+                    />
                   </div>
                   <p className="mt-7 text-[0.68rem] uppercase tracking-[0.24em] text-gold">0{index + 1}</p>
                   <h3 className="mt-3 max-w-[21ch] font-serif text-2xl leading-tight">{capability.title}</h3>

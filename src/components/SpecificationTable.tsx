@@ -76,7 +76,7 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
     <>
       <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:pb-16 md:pt-28" data-nav-invert id="specifications">
         <div className="section-shell">
-          <h2 className={sectionTitleClassName}>Specifications</h2>
+          <h2 className={sectionTitleClassName}>{locale === "en" ? "Specifications" : "仕様"}</h2>
           <div className={`${sectionInnerClassName} mt-14`}>
             <dl>
               {specificationRows.map((spec) => (
@@ -92,7 +92,7 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
 
       <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:py-24" data-nav-invert id="certifications">
         <div className="section-shell">
-          <h2 className={sectionTitleClassName}>Certifications</h2>
+          <h2 className={sectionTitleClassName}>{locale === "en" ? "Certifications" : "認証"}</h2>
           <div className={`${sectionInnerClassName} mt-14`}>
             <dl>
               {certifications.map((certification, index) => (
@@ -110,7 +110,7 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
 
       <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:pb-28 md:pt-24" data-nav-invert id="maintenance-and-clean">
         <div className="section-shell">
-          <h2 className={sectionTitleClassName}>Maintenance and clean</h2>
+          <h2 className={sectionTitleClassName}>{locale === "en" ? "Maintenance and clean" : "メンテナンス・お手入れ"}</h2>
           <div className={`${sectionInnerClassName} mt-14`}>
             <dl>
               {maintenanceItems.length > 0 ? (

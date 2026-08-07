@@ -87,7 +87,7 @@ export function MaterialProjectCarousel({ locale, materialName, projectLinks, pr
   return (
     <section className="overflow-hidden bg-stone py-12 md:py-16" data-nav-invert>
       <div className="section-shell mb-6 md:mb-8">
-        <p className="label-caps text-gold">Gallery</p>
+        <p className="label-caps text-gold">{locale === "en" ? "Gallery" : "ギャラリー"}</p>
         <h2 className="mt-5 max-w-3xl font-serif text-4xl leading-tight text-charcoal md:text-6xl">
           {materialName.toUpperCase()}
         </h2>
@@ -118,6 +118,7 @@ export function MaterialProjectCarousel({ locale, materialName, projectLinks, pr
           aria-label={locale === "en" ? "Expanded gallery image" : "拡大ギャラリー画像"}
           aria-modal="true"
           className="fixed inset-0 z-[100] bg-charcoal/92 px-4 py-4 backdrop-blur-md md:px-8 md:py-6"
+          data-lenis-prevent
           onClick={() => setActiveImage(null)}
           role="dialog"
         >

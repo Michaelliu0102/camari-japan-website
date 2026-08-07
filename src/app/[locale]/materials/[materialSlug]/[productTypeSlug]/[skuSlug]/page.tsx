@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { SkuSwatches } from "@/components/SkuSwatches";
 import { SpecificationTable } from "@/components/SpecificationTable";
 import { createPageMetadata } from "@/lib/metadata";
-import type { Locale } from "@/lib/locales";
+import { localizeBrandNames, type Locale } from "@/lib/locales";
 import { loadSkaiVinylProductTypeSlugs } from "@/lib/skai-vinyl";
 import { buildBreadcrumbJsonLd, buildProductJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
@@ -466,24 +466,30 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
   }
 };
 
-function ProductTypeFaq({ items }: { items: FaqItem[] }) {
+function ProductTypeFaq({ items, locale }: { items: FaqItem[]; locale: Locale }) {
   return (
     <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-stone py-20 md:py-28" data-nav-invert id="faq">
       <div className="section-shell">
-        <h2 className="font-serif text-2xl uppercase tracking-[0.06em] text-charcoal">FAQ</h2>
+        <h2 className="font-serif text-2xl uppercase tracking-[0.06em] text-charcoal">
+          {locale === "en" ? "FAQ" : "よくあるご質問"}
+        </h2>
         <div className="mx-auto mt-14 max-w-[46rem]">
           <div className="border-t border-charcoal/10">
             {items.map((item) => (
               <details className="group border-b border-charcoal/10 py-5" key={item.question}>
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-8 text-left marker:hidden">
                   <span>
-                    <span className="label-caps block text-[10px] text-charcoal">{item.question}</span>
+                    <span className="label-caps block text-[10px] text-charcoal">
+                      {localizeBrandNames(item.question, locale)}
+                    </span>
                   </span>
                   <span aria-hidden="true" className="shrink-0 font-sans text-xl leading-none text-muted transition-transform duration-300 ease-expo group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <p className="mt-2 pr-10 text-[0.8rem] leading-relaxed text-muted">{item.answer}</p>
+                <p className="mt-2 pr-10 text-[0.8rem] leading-relaxed text-muted">
+                  {localizeBrandNames(item.answer, locale)}
+                </p>
               </details>
             ))}
           </div>
@@ -494,6 +500,10 @@ function ProductTypeFaq({ items }: { items: FaqItem[] }) {
 }
 
 export async function generateStaticParams() {
+  if (process.env.NODE_ENV === "development" || process.env.SITES_PREVIEW === "1") {
+    return [];
+  }
+
   const materials = await loadMaterials();
   const productTypeGroups = await Promise.all(materials.map((material) => loadProductTypesForMaterial(material.slug)));
   const skaiProductTypeSlugs = await loadSkaiVinylProductTypeSlugs();
@@ -534,12 +544,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {};
   }
 
+  const skaiProductTypeSlugs = materialSlug === "vegan-leather" ? await loadSkaiVinylProductTypeSlugs() : new Set<string>();
+  const availableLocales: readonly Locale[] = skaiProductTypeSlugs.has(productTypeSlug) ? ["en"] : ["en", "ja"];
+
   return createPageMetadata({
     locale,
     path: `/materials/${materialSlug}/${productTypeSlug}/${sku.slug}`,
     title: sku.seo.title[locale],
     description: sku.seo.description[locale],
-    image: sku.seo.image
+    image: sku.seo.image,
+    availableLocales
   });
 }
 
@@ -595,13 +609,15 @@ export default async function ProductTypeSkuDetailPage({ params }: PageProps) {
       <SpecificationTable locale={locale} productType={productType} sku={sku} />
       <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:py-28" data-nav-invert id="downloads">
         <div className="section-shell">
-          <h2 className="font-serif text-2xl uppercase tracking-[0.06em]">Downloads</h2>
+          <h2 className="font-serif text-2xl uppercase tracking-[0.06em]">
+            {locale === "en" ? "Downloads" : "ダウンロード"}
+          </h2>
           <div className="mx-auto mt-14 max-w-[46rem]">
             <DownloadPanel locale={locale} downloads={productType.downloads} />
           </div>
         </div>
       </section>
-      {faqItems ? <ProductTypeFaq items={faqItems} /> : null}
+      {faqItems ? <ProductTypeFaq items={faqItems} locale={locale} /> : null}
     </main>
   );
 }

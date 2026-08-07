@@ -11,7 +11,7 @@ type ApplicationGridProps = {
 
 export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps) {
   const applications =
-    locale === "ja" && material.slug === "vegan-leather"
+    material.slug === "vegan-leather"
       ? material.applications.filter((application) => application.slug !== "vinyl")
       : material.applications;
   const gridColumnsClass = applications.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
@@ -22,10 +22,6 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
   };
 
   function getHref(application: Application): string {
-    if (locale === "en" && material.slug === "vegan-leather" && application.slug === "vinyl") {
-      return `/materials/${material.slug}/vinyl`;
-    }
-
     if (application.productTypeSlug) {
       const matchingSku = skus.find((sku) => sku.productTypeSlug === application.productTypeSlug);
       if (matchingSku) {
@@ -37,10 +33,6 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
   }
 
   function getApplicationName(application: Application): string {
-    if (locale === "en" && material.slug === "vegan-leather" && application.slug === "vinyl") {
-      return "skai VINYL";
-    }
-
     if (locale === "en" && material.slug === "vegan-leather" && application.slug === "microfiber-leather") {
       return "Waterborne Microfiber Leather";
     }
@@ -49,18 +41,18 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
   }
 
   function getApplicationMeta(application: Application): string | null {
-    if (locale === "en" && material.slug === "vegan-leather" && application.slug === "vinyl") {
-      return "11 articles";
-    }
-
-    return typeof application.colorCount === "number" ? `${application.colorCount} colours` : null;
+    return typeof application.colorCount === "number"
+      ? locale === "en" ? `${application.colorCount} colours` : `${application.colorCount}色`
+      : null;
   }
 
   return (
     <section className="bg-paper py-24 md:py-36" data-nav-invert>
       <div className="section-shell">
         <div className="mb-16 text-center">
-          <h2 className="font-label text-3xl uppercase tracking-[0.12em] md:text-4xl">Article</h2>
+          <h2 className="font-label text-3xl uppercase tracking-[0.12em] md:text-4xl">
+            {locale === "en" ? "Article" : "記事"}
+          </h2>
           <div className="mx-auto mt-7 h-px w-20 bg-gold" />
         </div>
         <div className={`grid grid-cols-1 gap-gutter sm:grid-cols-2 ${gridColumnsClass}`}>

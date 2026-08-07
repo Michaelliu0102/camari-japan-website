@@ -42,19 +42,19 @@ const navItems: NavItem[] = [
         description: { en: "Premium Italian Surface Material", ja: "イタリア発の上質なサーフェス素材" },
         quickLinks: [
           {
-            label: { en: "AUTO", ja: "AUTO" },
+            label: { en: "AUTO", ja: "自動車" },
             href: "/materials/alcantara/alcantara-panel/alc-p-1041"
           },
           {
-            label: { en: "INTERIOR", ja: "INTERIOR" },
+            label: { en: "INTERIOR", ja: "インテリア" },
             href: "/materials/alcantara/alcantara-master/alc-m-1001"
           },
           {
-            label: { en: "OUTDOOR", ja: "OUTDOOR" },
+            label: { en: "OUTDOOR", ja: "アウトドア" },
             href: "/materials/alcantara/alcantara-exo/alc-exo-1145"
           },
           {
-            label: { en: "TECH", ja: "TECH" },
+            label: { en: "TECH", ja: "テック" },
             href: "/materials/alcantara/alcantara-04/alc-04-1001"
           }
         ]
@@ -65,11 +65,11 @@ const navItems: NavItem[] = [
         description: { en: "Full-grain and refined hides", ja: "天然皮革と上質な仕上げのマテリアル" },
         quickLinks: [
           {
-            label: { en: "AUTOMOTIVE", ja: "AUTOMOTIVE" },
+            label: { en: "AUTOMOTIVE", ja: "自動車" },
             href: "/materials/leather/automotive-nappa/n-9762-imperial-blue"
           },
           {
-            label: { en: "INTERIOR", ja: "INTERIOR" },
+            label: { en: "INTERIOR", ja: "インテリア" },
             href: "/materials/leather/interior"
           }
         ]
@@ -77,17 +77,7 @@ const navItems: NavItem[] = [
       {
         label: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
         href: "/materials/vegan-leather",
-        description: { en: "High-performance alternatives", ja: "高機能な代替レザー素材" },
-        quickLinks: [
-          {
-            label: { en: "skai VINYL", ja: "skai VINYL" },
-            href: "/materials/vegan-leather/vinyl"
-          },
-          {
-            label: { en: "MICROFIBER LEATHER", ja: "MICROFIBER LEATHER" },
-            href: "/materials/vegan-leather/microfiber-leather/microfiber-leather-0308"
-          }
-        ]
+        description: { en: "High-performance alternatives", ja: "高機能な代替レザー素材" }
       },
       {
         label: { en: "Fabric", ja: "ファブリック" },

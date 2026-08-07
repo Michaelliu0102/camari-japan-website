@@ -382,11 +382,10 @@ export const materials: Material[] = [
     },
     introImage: "/uploads/veganleather/vegan.jpeg",
     quote: {
-      en: "Sustainability is not a constraint. It is a material discipline.",
-      ja: "持続可能性は制約ではない。それは素材の規律である。"
+      en: "Aquapelle combines three-dimensional microfiber construction with waterborne and solvent-free PU technologies, delivering refined touch, durable performance, and consistent color, thickness, and batch quality.",
+      ja: "Aquapelleは、三次元マイクロファイバー構造と水性・無溶剤PU技術を融合し、上質な触感、優れた耐久性、安定した色・厚み・ロット品質を実現します。"
     },
     applications: [
-      { slug: "vinyl", name: { en: "skai VINYL", ja: "ビニール" }, image: "/uploads/veganleather/skai cover .webp" },
       {
         slug: "microfiber-leather",
         name: { en: "Waterborne Microfiber Leather", ja: "マイクロファイバーレザー" },
