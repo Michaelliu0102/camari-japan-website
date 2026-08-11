@@ -1,7 +1,8 @@
 "use client";
 
-import { X } from "lucide-react";
-import { useEffect, useId, useState } from "react";
+import { ChevronDown, X } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
+import { COUNTRY_REGION_OPTIONS } from "@/lib/country-regions";
 import type { Locale } from "@/lib/locales";
 
 type CTAMessageDrawerProps = {
@@ -17,6 +18,7 @@ type FormState = {
   email: string;
   phone: string;
   company: string;
+  countryCode: string;
   message: string;
   interests: string[];
 };
@@ -26,6 +28,7 @@ const initialFormState: FormState = {
   email: "",
   phone: "",
   company: "",
+  countryCode: "",
   message: "",
   interests: []
 };
@@ -42,6 +45,8 @@ const copy = {
     phonePlaceholder: "Optional",
     company: "Company Name",
     companyPlaceholder: "Company Name",
+    countryRegion: "Country / Region",
+    countryRegionPlaceholder: "Select a country or region",
     article: "Article",
     interests: "Interest",
     materials: "Material",
@@ -50,7 +55,7 @@ const copy = {
     messagePlaceholder: "Tell us about your application, quantity, timeline, material direction, or technical requirements.",
     submit: "Submit",
     close: "Close message form",
-    required: "Please enter your name, business email, company name, and project message.",
+    required: "Please enter your name, business email, company name, country / region, and project message.",
     sending: "Sending your inquiry...",
     success: "Thank you. Your inquiry has been sent.",
     error: "We could not send your inquiry. Please email info@camari-international.co.jp directly."
@@ -66,6 +71,8 @@ const copy = {
     phonePlaceholder: "Optional",
     company: "Company Name",
     companyPlaceholder: "Company Name",
+    countryRegion: "Country / Region",
+    countryRegionPlaceholder: "Japan",
     article: "Article",
     interests: "Interest",
     materials: "Material",
@@ -86,6 +93,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
   const [form, setForm] = useState<FormState>(initialFormState);
   const [feedback, setFeedback] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const submissionIdRef = useRef<string | null>(null);
   const titleId = useId();
   const labels = copy[locale];
   const isTopPlacement = placement === "top";
@@ -128,13 +136,20 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!form.name.trim() || !form.email.trim() || !form.company.trim() || !form.message.trim()) {
+    if (
+      !form.name.trim() ||
+      !form.email.trim() ||
+      !form.company.trim() ||
+      (locale === "en" && !form.countryCode) ||
+      !form.message.trim()
+    ) {
       setFeedback(labels.required);
       return;
     }
 
     setIsSubmitting(true);
     setFeedback(labels.sending);
+    submissionIdRef.current ??= crypto.randomUUID();
 
     try {
       const response = await fetch("/api/contact/inquiry", {
@@ -143,6 +158,8 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
         body: JSON.stringify({
           locale,
           ...form,
+          countryCode: locale === "ja" ? "JP" : form.countryCode,
+          submissionId: submissionIdRef.current,
           ...(articleLabel ? { article: articleLabel } : {}),
           pageUrl: window.location.href
         })
@@ -153,6 +170,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
       }
 
       setForm(initialFormState);
+      submissionIdRef.current = null;
       setFeedback(labels.success);
     } catch {
       setFeedback(labels.error);
@@ -245,6 +263,38 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
                   value={form.company}
                 />
               </label>
+              {locale === "en" ? (
+                <label className="grid gap-3 md:col-span-2">
+                  <span className="label-caps text-charcoal/70">
+                    {labels.countryRegion} <span className="text-gold">*</span>
+                  </span>
+                  <span className="relative block">
+                    <select
+                      className={`w-full appearance-none border-b border-charcoal bg-transparent pb-4 pr-10 text-[15px] outline-none transition-colors focus:border-charcoal ${
+                        form.countryCode ? "text-charcoal" : "text-charcoal/35"
+                      }`}
+                      onChange={(event) => updateField("countryCode", event.target.value)}
+                      required
+                      value={form.countryCode}
+                    >
+                      <option disabled value="">
+                        {labels.countryRegionPlaceholder}
+                      </option>
+                      {COUNTRY_REGION_OPTIONS.map((country) => (
+                        <option className="text-charcoal" key={country.code} value={country.code}>
+                          {country.name}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown
+                      aria-hidden="true"
+                      className="pointer-events-none absolute right-1 top-0.5 text-charcoal/55"
+                      size={18}
+                      strokeWidth={1.4}
+                    />
+                  </span>
+                </label>
+              ) : null}
             </div>
 
             {articleLabel ? (

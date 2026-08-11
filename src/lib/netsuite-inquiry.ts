@@ -1,16 +1,12 @@
-import type { NewsletterSubmission } from "./newsletter";
+import type { ContactInquiry } from "./contact-inquiry";
 import {
   getNetSuiteAccessToken,
   getNetSuiteOAuth2Config,
   NetSuiteOAuth2TokenError,
-  type NetSuiteOAuth2Config,
 } from "./netsuite-oauth2";
+import type { NetSuiteRestletConfig } from "./netsuite-newsletter";
 
-export type NetSuiteRestletConfig = NetSuiteOAuth2Config & {
-  endpointUrl: string;
-};
-
-export type NewsletterDeliveryResult =
+export type NetSuiteInquiryDeliveryResult =
   | { ok: true; upstreamStatus: number }
   | { ok: false; status: number; detail?: string };
 
@@ -28,20 +24,26 @@ function readRequiredEnv(env: Record<string, string | undefined>, key: string): 
   return value;
 }
 
-export function getNetSuiteNewsletterConfig(
+export function isNetSuiteInquiryConfigured(
+  env: Record<string, string | undefined> = process.env,
+): boolean {
+  return Boolean(env.NETSUITE_INQUIRY_RESTLET_URL?.trim());
+}
+
+export function getNetSuiteInquiryConfig(
   env: Record<string, string | undefined> = process.env,
 ): NetSuiteRestletConfig {
   return {
     ...getNetSuiteOAuth2Config(env),
-    endpointUrl: readRequiredEnv(env, "NETSUITE_RESTLET_URL"),
+    endpointUrl: readRequiredEnv(env, "NETSUITE_INQUIRY_RESTLET_URL"),
   };
 }
 
-export async function sendNewsletterSubscriptionToNetSuite(
-  submission: NewsletterSubmission,
+export async function sendContactInquiryToNetSuite(
+  inquiry: ContactInquiry,
   options: DeliveryOptions = {},
-): Promise<NewsletterDeliveryResult> {
-  const config = getNetSuiteNewsletterConfig(options.env);
+): Promise<NetSuiteInquiryDeliveryResult> {
+  const config = getNetSuiteInquiryConfig(options.env);
   const fetchImpl = options.fetchImpl ?? fetch;
   let accessToken: string;
 
@@ -66,7 +68,7 @@ export async function sendNewsletterSubscriptionToNetSuite(
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(submission),
+    body: JSON.stringify(inquiry),
   });
 
   if (response.ok) {

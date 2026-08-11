@@ -17,7 +17,9 @@ async function compileModule(sourcePath, outputPath) {
       moduleResolution: ts.ModuleResolutionKind.Bundler,
     },
     fileName: sourcePath,
-  }).outputText;
+  }).outputText.replace(/from "(\.\/[^\"]+)";/g, (_match, specifier) =>
+    `from "${specifier.endsWith(".js") ? specifier : `${specifier}.js`}";`
+  );
 
   await writeFile(outputPath, output);
 }
@@ -26,6 +28,7 @@ async function loadRouteModule() {
   const root = await mkdtemp(path.join(tmpdir(), "camari-newsletter-route-"));
   const compiledRoute = path.join(root, "src/app/api/newsletter/subscribe/handler.js");
   const compiledNewsletter = path.join(root, "src/lib/newsletter.js");
+  const compiledOAuth2 = path.join(root, "src/lib/netsuite-oauth2.js");
   const compiledAdapter = path.join(root, "src/lib/netsuite-newsletter.js");
 
   await mkdir(path.dirname(compiledRoute), { recursive: true });
@@ -34,6 +37,7 @@ async function loadRouteModule() {
 
   await compileModule(path.join(projectRoot, "src/app/api/newsletter/subscribe/handler.ts"), compiledRoute);
   await compileModule(path.join(projectRoot, "src/lib/newsletter.ts"), compiledNewsletter);
+  await compileModule(path.join(projectRoot, "src/lib/netsuite-oauth2.ts"), compiledOAuth2);
   await compileModule(path.join(projectRoot, "src/lib/netsuite-newsletter.ts"), compiledAdapter);
 
   const module = await import(`${pathToFileURL(compiledRoute).href}?${Date.now()}`);

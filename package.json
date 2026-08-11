@@ -13,7 +13,8 @@
     "catalog:build": "python3 scripts/build_product_catalog.py data/import/product-catalog.xlsx",
     "sanity:markets:dry-run": "sanity exec scripts/backfillProductTypeMarkets.mjs",
     "sanity:markets:migrate": "sanity exec scripts/backfillProductTypeMarkets.mjs -- --commit",
-    "netsuite:newsletter:smoke": "node scripts/smoke-test-newsletter.mjs"
+    "netsuite:newsletter:smoke": "node scripts/smoke-test-newsletter.mjs",
+    "netsuite:inquiry:smoke": "node scripts/smoke-test-inquiry.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

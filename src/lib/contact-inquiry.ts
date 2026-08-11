@@ -1,24 +1,36 @@
 import type { Locale } from "./locales";
+import {
+  getCountryRegionName,
+  isCountryRegionCode,
+  type CountryRegionCode
+} from "./country-regions";
 
 export const CONTACT_INQUIRY_RECIPIENTS = {
   en: "info@camari-international.co.jp",
   ja: "info@camari-international.co.jp"
 } satisfies Record<Locale, string>;
 
-export type ContactInquiry = {
+export type ContactInquiryDraft = {
   locale: Locale;
   name: string;
   email: string;
   phone: string;
   company: string;
+  countryCode: CountryRegionCode;
+  countryRegion: string;
   message: string;
   interests: string[];
   article?: string;
   pageUrl?: string;
 };
 
+export type ContactInquiry = ContactInquiryDraft & {
+  submissionId: string;
+  submittedAt: string;
+};
+
 type ParseResult =
-  | { ok: true; value: ContactInquiry }
+  | { ok: true; value: ContactInquiryDraft }
   | { ok: false; error: string };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -48,6 +60,8 @@ export function parseContactInquiryPayload(payload: unknown): ParseResult {
   const email = readString(payload.email).toLowerCase();
   const phone = readString(payload.phone);
   const company = readString(payload.company);
+  const requestedCountryCode = readString(payload.countryCode).toUpperCase();
+  const countryCode = locale === "ja" ? "JP" : requestedCountryCode;
   const message = readString(payload.message);
   const article = readString(payload.article);
   const pageUrl = readString(payload.pageUrl);
@@ -63,6 +77,10 @@ export function parseContactInquiryPayload(payload: unknown): ParseResult {
     return { ok: false, error: "Please enter a valid business email address." };
   }
 
+  if (!isCountryRegionCode(countryCode)) {
+    return { ok: false, error: "Please select a valid country or region." };
+  }
+
   return {
     ok: true,
     value: {
@@ -71,6 +89,8 @@ export function parseContactInquiryPayload(payload: unknown): ParseResult {
       email,
       phone,
       company,
+      countryCode,
+      countryRegion: getCountryRegionName(countryCode),
       message,
       interests,
       ...(article ? { article } : {}),
@@ -92,7 +112,10 @@ export function buildContactInquiryText(inquiry: ContactInquiry, recipient: stri
     `Business Email: ${inquiry.email}`,
     `Phone: ${inquiry.phone || "Not provided"}`,
     `Company Name: ${inquiry.company}`,
+    `Country / Region: ${inquiry.countryRegion} (${inquiry.countryCode})`,
     `Interest: ${interestText}`,
+    `Submission ID: ${inquiry.submissionId}`,
+    `Submitted At: ${inquiry.submittedAt}`,
     ...(inquiry.article ? [`Article: ${inquiry.article}`] : []),
     ...(inquiry.pageUrl ? [`Page URL: ${inquiry.pageUrl}`] : []),
     "",

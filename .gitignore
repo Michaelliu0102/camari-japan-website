@@ -5,6 +5,8 @@ out/
 .sanity/
 tsconfig.tsbuildinfo
 .env.local
+.env.development.local
+.secrets/
 home.html
 .DS_Store
 __pycache__/

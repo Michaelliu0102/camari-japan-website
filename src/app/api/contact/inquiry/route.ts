@@ -1,9 +1,14 @@
+import { randomUUID } from "node:crypto";
 import {
   CONTACT_INQUIRY_RECIPIENTS,
   buildContactInquiryText,
   parseContactInquiryPayload,
   type ContactInquiry
 } from "@/lib/contact-inquiry";
+import {
+  isNetSuiteInquiryConfigured,
+  sendContactInquiryToNetSuite
+} from "@/lib/netsuite-inquiry";
 
 export const runtime = "nodejs";
 
@@ -16,7 +21,7 @@ function getRecipient(locale: ContactInquiry["locale"]): string {
 }
 
 function buildSubject(inquiry: ContactInquiry): string {
-  return `Website inquiry from ${inquiry.name} (${inquiry.company})`;
+  return `[${inquiry.countryCode}] Website inquiry from ${inquiry.name} (${inquiry.company})`;
 }
 
 function buildHtmlBody(inquiry: ContactInquiry, recipient: string): string {
@@ -27,7 +32,10 @@ function buildHtmlBody(inquiry: ContactInquiry, recipient: string): string {
     ["Business Email", inquiry.email],
     ["Phone", inquiry.phone || "Not provided"],
     ["Company Name", inquiry.company],
+    ["Country / Region", `${inquiry.countryRegion} (${inquiry.countryCode})`],
     ["Interest", inquiry.interests.length ? inquiry.interests.join(", ") : "Not specified"],
+    ["Submission ID", inquiry.submissionId],
+    ["Submitted At", inquiry.submittedAt],
     ...(inquiry.article ? ([["Article", inquiry.article]] as Array<[string, string]>) : []),
     ...(inquiry.pageUrl ? ([["Page URL", inquiry.pageUrl]] as Array<[string, string]>) : [])
   ];
@@ -140,10 +148,27 @@ export async function POST(request: Request): Promise<Response> {
     return Response.json({ error: parsed.error }, { status: 400 });
   }
 
-  const recipient = getRecipient(parsed.value.locale);
+  const inquiry: ContactInquiry = {
+    ...parsed.value,
+    submissionId:
+      typeof payload === "object" && payload !== null && "submissionId" in payload &&
+      typeof payload.submissionId === "string" && /^[0-9a-f-]{36}$/i.test(payload.submissionId)
+        ? payload.submissionId
+        : randomUUID(),
+    submittedAt: new Date().toISOString()
+  };
+  const recipient = getRecipient(inquiry.locale);
 
   try {
-    const result = await deliverInquiry(parsed.value, recipient);
+    if (isNetSuiteInquiryConfigured()) {
+      const netSuiteResult = await sendContactInquiryToNetSuite(inquiry);
+
+      if (!netSuiteResult.ok) {
+        return Response.json({ error: "Inquiry CRM sync unavailable." }, { status: 502 });
+      }
+    }
+
+    const result = await deliverInquiry(inquiry, recipient);
 
     if (!result.ok) {
       return Response.json({ error: result.error }, { status: result.status });
