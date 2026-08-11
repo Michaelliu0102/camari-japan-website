@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
-import { buildOrganizationJsonLd } from "@/lib/structured-data";
+import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
 import { loadHomePageSettings, loadMaterialCategories, loadMaterials } from "@/sanity/lib/loaders";
 
@@ -35,6 +35,7 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <main>
       <JsonLd data={buildOrganizationJsonLd(siteConfig)} />
+      <JsonLd data={buildWebSiteJsonLd(siteConfig, locale)} />
       <HeroVideo hero={homeSettings.hero} locale={locale} />
       <ExploreCarousel categories={categories} categorySlugs={homeSettings.explore.categorySlugs} locale={locale} materials={materials} productSlides={homeSettings.explore.productSlides} />
 
@@ -45,7 +46,7 @@ export default async function HomePage({ params }: PageProps) {
           </div>
           <div className="flex flex-col justify-between md:max-w-[25rem] md:self-stretch">
             <div>
-              <p className="label-caps text-gold">Brand Value</p>
+              <p className="label-caps text-gold">{locale === "en" ? "Brand Value" : "ブランド価値"}</p>
               <h2 className="mt-6 font-label text-xl uppercase tracking-[0.1em] md:text-[1.65rem] md:leading-tight">
                 {locale === "en" ? (
                   <>
@@ -64,7 +65,7 @@ export default async function HomePage({ params }: PageProps) {
               </p>
             </div>
             <Link className="label-caps inline-flex min-w-[13rem] justify-center border border-outline px-8 py-4 transition-colors hover:bg-charcoal hover:text-white self-center" href={localizedPath(locale, "/about")}>
-              About Us
+              {locale === "en" ? "About Us" : "会社情報"}
             </Link>
           </div>
         </div>

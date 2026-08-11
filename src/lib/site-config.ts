@@ -5,18 +5,39 @@ export type SiteKey = "global" | "japan";
 type SiteContact = {
   email: string;
   phone: string;
+  fax?: string;
   address: Record<Locale, string>;
+  postalAddress?: {
+    streetAddress: Record<Locale, string>;
+    addressLocality: Record<Locale, string>;
+    addressRegion: Record<Locale, string>;
+    postalCode: string;
+    addressCountry: string;
+  };
+  geo?: {
+    latitude: number;
+    longitude: number;
+  };
+  openingHours?: {
+    dayOfWeek: string[];
+    opens: string;
+    closes: string;
+  };
+  appointmentNotice?: Record<Locale, string>;
 };
 
 export type SiteConfig = {
   siteKey: SiteKey;
   siteUrl: string;
+  localeSiteUrls: Record<Locale, string>;
   siteName: string;
   organizationName: string;
+  legalName?: string;
   defaultLocale: Locale;
   sanityMarket: SiteKey;
   alternateSiteHomeUrl: string;
   enableLocalePreview: boolean;
+  defaultOgImage: string;
   slogan: Record<Locale, string>;
   description: Record<Locale, string>;
   contact: SiteContact;
@@ -25,16 +46,29 @@ export type SiteConfig = {
 type EnvSource = Partial<Record<string, string | undefined>>;
 
 const KNOWN_BRAND_NAMES = ["CAMARI JAPAN", "CAMARI INTERNATIONAL", "CAMARI INTERNATIONAL JAPAN"];
+const DEFAULT_LOCALE_SITE_URLS: Record<Locale, string> = {
+  en: "https://www.camari-international.com",
+  ja: "https://www.camari-international.co.jp"
+};
+const BUILD_ENABLE_LOCALE_PREVIEW = process.env.NEXT_PUBLIC_ENABLE_LOCALE_PREVIEW;
+const DEFAULT_OG_IMAGE = "/uploads/hero/video/higgsfield/01-color-swatches-real-16x9-exact.jpg";
 
-const defaultSites: Record<SiteKey, Omit<SiteConfig, "siteUrl" | "alternateSiteHomeUrl" | "enableLocalePreview"> & { defaultSiteUrl: string; defaultAlternateSiteHomeUrl: string }> = {
+const defaultSites: Record<
+  SiteKey,
+  Omit<SiteConfig, "siteUrl" | "localeSiteUrls" | "alternateSiteHomeUrl" | "enableLocalePreview"> & {
+    defaultSiteUrl: string;
+    defaultAlternateSiteHomeUrl: string;
+  }
+> = {
   global: {
     siteKey: "global",
     siteName: "CAMARI INTERNATIONAL",
     organizationName: "CAMARI INTERNATIONAL",
     defaultLocale: "en",
     sanityMarket: "global",
-    defaultSiteUrl: "https://www.camari-international.com",
-    defaultAlternateSiteHomeUrl: "/",
+    defaultSiteUrl: DEFAULT_LOCALE_SITE_URLS.en,
+    defaultAlternateSiteHomeUrl: DEFAULT_LOCALE_SITE_URLS.ja,
+    defaultOgImage: DEFAULT_OG_IMAGE,
     slogan: {
       en: "The Intersection of Texture and Precision",
       ja: "質感と精密さの交差点"
@@ -56,10 +90,12 @@ const defaultSites: Record<SiteKey, Omit<SiteConfig, "siteUrl" | "alternateSiteH
     siteKey: "japan",
     siteName: "CAMARI INTERNATIONAL JAPAN",
     organizationName: "CAMARI INTERNATIONAL JAPAN",
+    legalName: "株式会社カマリ・インターナショナル・ジャパン",
     defaultLocale: "ja",
     sanityMarket: "japan",
-    defaultSiteUrl: "https://www.camari.co.jp",
-    defaultAlternateSiteHomeUrl: "/",
+    defaultSiteUrl: DEFAULT_LOCALE_SITE_URLS.ja,
+    defaultAlternateSiteHomeUrl: DEFAULT_LOCALE_SITE_URLS.en,
+    defaultOgImage: DEFAULT_OG_IMAGE,
     slogan: {
       en: "The Intersection of Texture and Precision",
       ja: "質感と精密さの交差点"
@@ -70,10 +106,40 @@ const defaultSites: Record<SiteKey, Omit<SiteConfig, "siteUrl" | "alternateSiteH
     },
     contact: {
       email: "info@camari-international.co.jp",
-      phone: "+81 3 0000 0000",
+      phone: "03-6272-4971",
+      fax: "03-6272-4972",
       address: {
-        en: "Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan",
-        ja: "〒102-0073 東京都千代田区九段北1丁目14-16 403号室"
+        en: "PILE KUDAN 4F, 1-14-16 Kudankita, Chiyoda-ku, Tokyo 102-0073, Japan",
+        ja: "〒102-0073 東京都千代田区九段北1丁目14-16 PILE KUDAN 4F"
+      },
+      postalAddress: {
+        streetAddress: {
+          en: "PILE KUDAN 4F, 1-14-16 Kudankita",
+          ja: "九段北1丁目14-16 PILE KUDAN 4F"
+        },
+        addressLocality: {
+          en: "Chiyoda-ku",
+          ja: "千代田区"
+        },
+        addressRegion: {
+          en: "Tokyo",
+          ja: "東京都"
+        },
+        postalCode: "102-0073",
+        addressCountry: "JP"
+      },
+      geo: {
+        latitude: 35.696335,
+        longitude: 139.749207
+      },
+      openingHours: {
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "17:00"
+      },
+      appointmentNotice: {
+        en: "Visits are available by appointment at least one week in advance.",
+        ja: "ご来訪は1週間前までの事前予約制です。"
       }
     }
   }
@@ -107,8 +173,17 @@ export function resolveSiteConfig(env: EnvSource = process.env): SiteConfig {
   const organizationName = env.NEXT_PUBLIC_ORGANIZATION_NAME || defaults.organizationName;
   const configuredLocale = env.NEXT_PUBLIC_DEFAULT_LOCALE;
   const defaultLocale: Locale = configuredLocale === "en" || configuredLocale === "ja" ? configuredLocale : defaults.defaultLocale;
+  const localeSiteUrls: Record<Locale, string> = {
+    en: trimTrailingSlash(env.NEXT_PUBLIC_EN_SITE_URL || (defaultLocale === "en" ? siteUrl : DEFAULT_LOCALE_SITE_URLS.en)),
+    ja: trimTrailingSlash(env.NEXT_PUBLIC_JA_SITE_URL || (defaultLocale === "ja" ? siteUrl : DEFAULT_LOCALE_SITE_URLS.ja))
+  };
   const configuredMarket = env.NEXT_PUBLIC_SANITY_MARKET;
   const sanityMarket: SiteKey = configuredMarket === "global" || configuredMarket === "japan" ? configuredMarket : defaults.sanityMarket;
+  const configuredLocalePreview = (env.NEXT_PUBLIC_ENABLE_LOCALE_PREVIEW || BUILD_ENABLE_LOCALE_PREVIEW)?.trim().toLowerCase();
+  const enableLocalePreview =
+    configuredLocalePreview === "1" ||
+    configuredLocalePreview === "true" ||
+    (!configuredAlternateSiteHomeUrl && process.env.NODE_ENV !== "production");
 
   if (process.env.NODE_ENV === "production" && /example\.com$/i.test(siteUrl)) {
     throw new Error("NEXT_PUBLIC_SITE_URL must be set to a production domain before building SEO metadata.");
@@ -117,12 +192,15 @@ export function resolveSiteConfig(env: EnvSource = process.env): SiteConfig {
   return {
     siteKey,
     siteUrl,
+    localeSiteUrls,
     siteName,
     organizationName,
+    legalName: defaults.legalName,
     defaultLocale,
     sanityMarket,
     alternateSiteHomeUrl,
-    enableLocalePreview: !configuredAlternateSiteHomeUrl && process.env.NODE_ENV !== "production",
+    enableLocalePreview,
+    defaultOgImage: defaults.defaultOgImage,
     slogan: defaults.slogan,
     description: defaults.description,
     contact: defaults.contact

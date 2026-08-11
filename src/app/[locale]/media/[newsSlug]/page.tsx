@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { getNewsArticleContent, type NewsArticleImage } from "@/content/news-articles";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
-import { buildBreadcrumbJsonLd } from "@/lib/structured-data";
+import { buildBreadcrumbJsonLd, buildNewsArticleJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
 import { loadNewsItem } from "@/sanity/lib/loaders";
 
@@ -67,7 +67,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: item.seo.title[locale] || item.title[locale],
     description: item.seo.description[locale] || item.summary[locale],
     image: item.seo.image || item.image,
-    availableLocales: item.availableLocales
+    availableLocales: item.availableLocales,
+    article: {
+      publishedTime: item.date,
+      modifiedTime: item.updatedAt
+    }
   });
 }
 
@@ -86,10 +90,21 @@ export default async function NewsDetailPage({ params }: PageProps) {
     { name: locale === "en" ? "Media" : "メディア", path: "/media" },
     { name: item.title[locale], path: `/media/${item.slug}` }
   ]);
+  const articleSchema = buildNewsArticleJsonLd(siteConfig, {
+    headline: item.title[locale],
+    description: item.seo.description[locale] || item.summary[locale],
+    path: `/media/${item.slug}`,
+    image: item.seo.image || articleHeroImage,
+    datePublished: item.date,
+    dateModified: item.updatedAt,
+    articleSection: item.category[locale],
+    locale
+  });
 
   return (
     <main className="bg-paper pt-[var(--nav-height)]" data-nav-invert>
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={articleSchema} />
       <article>
         <header className="mx-auto max-w-[62rem] px-margin-mobile py-14 md:px-margin-desktop md:py-20">
           <Link

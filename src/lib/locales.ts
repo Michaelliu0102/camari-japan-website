@@ -64,3 +64,7 @@ export function localizedPath(_locale: Locale, path = ""): string {
 
   return normalizedPath;
 }
+
+export function absoluteLocalizedUrl(locale: Locale, path = ""): string {
+  return new URL(normalizePublicPath(path), `${siteConfig.localeSiteUrls[locale]}/`).toString();
+}
