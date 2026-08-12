@@ -63,7 +63,7 @@ const navItems: NavItem[] = [
       {
         label: { en: "Leather", ja: "レザー" },
         href: "/materials/leather",
-        description: { en: "Full-grain and refined hides", ja: "イタリアで一貫生産された上質な本革" },
+        description: { en: "Top selection Italian leather", ja: "イタリアで一貫生産された上質な本革" },
         hideQuickLinksFor: ["ja"],
         quickLinks: [
           {
