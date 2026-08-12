@@ -1,5 +1,5 @@
 import { normalizePublicPath, type Locale } from "./locales";
-import type { SiteConfig } from "./site-config";
+import { getSeoBrandName, type SiteConfig } from "./site-config";
 
 type BreadcrumbEntry = {
   name: string;
@@ -38,11 +38,11 @@ function entityId(site: Pick<SiteConfig, "siteUrl">, entity: "organization" | "w
   return `${new URL("/", `${site.siteUrl}/`).toString()}#${entity}`;
 }
 
-function organizationReference(site: Pick<SiteConfig, "siteUrl" | "organizationName">) {
+function organizationReference(site: Pick<SiteConfig, "siteUrl">, locale: Locale) {
   return {
     "@type": "Organization",
     "@id": entityId(site, "organization"),
-    name: site.organizationName,
+    name: getSeoBrandName(locale),
     url: new URL("/", `${site.siteUrl}/`).toString(),
     logo: {
       "@type": "ImageObject",
@@ -51,10 +51,13 @@ function organizationReference(site: Pick<SiteConfig, "siteUrl" | "organizationN
   };
 }
 
-export function buildOrganizationJsonLd(site: Pick<SiteConfig, "siteUrl" | "organizationName" | "legalName" | "contact">) {
+export function buildOrganizationJsonLd(
+  site: Pick<SiteConfig, "siteUrl" | "legalName" | "contact">,
+  locale: Locale
+) {
   return {
     "@context": "https://schema.org",
-    ...organizationReference(site),
+    ...organizationReference(site, locale),
     legalName: site.legalName,
     email: site.contact.email,
     telephone: site.contact.phone,
@@ -63,7 +66,8 @@ export function buildOrganizationJsonLd(site: Pick<SiteConfig, "siteUrl" | "orga
 }
 
 export function buildLocalBusinessJsonLd(
-  site: Pick<SiteConfig, "siteUrl" | "organizationName" | "legalName" | "contact" | "defaultLocale">
+  site: Pick<SiteConfig, "siteUrl" | "legalName" | "contact" | "defaultLocale">,
+  locale: Locale
 ) {
   const { appointmentNotice, geo, openingHours, postalAddress } = site.contact;
 
@@ -71,8 +75,8 @@ export function buildLocalBusinessJsonLd(
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": entityId(site, "organization"),
-    name: site.legalName ?? site.organizationName,
-    alternateName: site.legalName ? site.organizationName : undefined,
+    name: getSeoBrandName(locale),
+    legalName: site.legalName,
     url: site.siteUrl,
     logo: {
       "@type": "ImageObject",
@@ -116,7 +120,7 @@ export function buildWebSiteJsonLd(site: Pick<SiteConfig, "siteKey" | "siteUrl" 
     "@type": "WebSite",
     "@id": entityId(site, "website"),
     url: new URL("/", `${site.siteUrl}/`).toString(),
-    name: site.siteName,
+    name: getSeoBrandName(locale),
     alternateName: site.siteKey === "japan" ? ["CAMARI JAPAN", "CAMARI"] : "CAMARI",
     inLanguage: locale === "ja" ? "ja-JP" : "en",
     publisher: {
@@ -138,7 +142,7 @@ export function buildBreadcrumbJsonLd(site: Pick<SiteConfig, "siteUrl">, items: 
   };
 }
 
-export function buildProductJsonLd(site: Pick<SiteConfig, "siteUrl" | "organizationName">, product: ProductEntry) {
+export function buildProductJsonLd(site: Pick<SiteConfig, "siteUrl">, product: ProductEntry, locale: Locale) {
   const url = toAbsoluteUrl(site, product.path);
 
   return {
@@ -153,13 +157,13 @@ export function buildProductJsonLd(site: Pick<SiteConfig, "siteUrl" | "organizat
     url,
     brand: {
       "@type": "Brand",
-      name: site.organizationName
+      name: getSeoBrandName(locale)
     }
   };
 }
 
 export function buildNewsArticleJsonLd(
-  site: Pick<SiteConfig, "siteUrl" | "organizationName">,
+  site: Pick<SiteConfig, "siteUrl">,
   article: NewsArticleEntry
 ) {
   const url = toAbsoluteUrl(site, article.path);
@@ -179,7 +183,7 @@ export function buildNewsArticleJsonLd(
     dateModified: article.dateModified ?? article.datePublished,
     articleSection: article.articleSection,
     inLanguage: article.locale === "ja" ? "ja-JP" : "en",
-    author: organizationReference(site),
-    publisher: organizationReference(site)
+    author: organizationReference(site, article.locale),
+    publisher: organizationReference(site, article.locale)
   };
 }

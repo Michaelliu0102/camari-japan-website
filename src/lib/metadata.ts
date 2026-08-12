@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { absoluteLocalizedUrl, type Locale } from "./locales";
-import { formatPageTitle, replaceSiteBrand, siteConfig } from "./site-config";
+import { formatPageTitle, getSeoBrandName, replaceSiteBrand, siteConfig } from "./site-config";
 
 type MetadataInput = {
   locale: Locale;
@@ -35,8 +35,9 @@ export function createPageMetadata({
   article
 }: MetadataInput): Metadata {
   const url = absoluteLocalizedUrl(locale, path);
-  const normalizedTitle = formatPageTitle(title);
-  const normalizedDescription = replaceSiteBrand(description, siteConfig.organizationName);
+  const seoBrandName = getSeoBrandName(locale);
+  const normalizedTitle = formatPageTitle(title, locale);
+  const normalizedDescription = replaceSiteBrand(description, seoBrandName);
   const socialImage = image || siteConfig.defaultOgImage;
   const languageAlternates = Object.fromEntries(
     availableLocales.map((availableLocale) => [hreflangCodes[availableLocale], absoluteLocalizedUrl(availableLocale, path)])
@@ -48,7 +49,7 @@ export function createPageMetadata({
         title: normalizedTitle,
         description: normalizedDescription,
         url,
-        siteName: siteConfig.siteName,
+        siteName: seoBrandName,
         locale: openGraphLocales[locale],
         alternateLocale: availableLocales
           .filter((availableLocale) => availableLocale !== locale)
@@ -56,14 +57,14 @@ export function createPageMetadata({
         type: "article",
         publishedTime: article.publishedTime,
         modifiedTime: article.modifiedTime,
-        authors: [siteConfig.organizationName],
+        authors: [seoBrandName],
         images: [{ url: socialImage, alt: normalizedTitle }]
       }
     : {
         title: normalizedTitle,
         description: normalizedDescription,
         url,
-        siteName: siteConfig.siteName,
+        siteName: seoBrandName,
         locale: openGraphLocales[locale],
         alternateLocale: availableLocales
           .filter((availableLocale) => availableLocale !== locale)

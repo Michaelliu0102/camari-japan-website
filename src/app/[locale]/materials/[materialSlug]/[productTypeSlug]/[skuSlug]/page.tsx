@@ -588,7 +588,7 @@ export default async function ProductTypeSkuDetailPage({ params }: PageProps) {
     image: sku.image,
     sku: sku.code,
     category: productType.name[locale]
-  });
+  }, locale);
   const faqItems = productTypeFaqs[productType.slug]?.[locale];
 
   return (

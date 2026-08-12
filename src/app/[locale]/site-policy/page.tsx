@@ -7,13 +7,16 @@ type PageProps = {
   params: Promise<{ locale: Locale }>;
 };
 
+const englishLegalEntity = "CAMARI INTERNATIONAL LIMITED";
+const englishContactEmail = "info@camari-international.com";
+
 const content = {
   en: {
     eyebrow: "Terms of Use",
     title: "Terms of Use / Site Policy",
-    description: `Terms, site policy, disclaimer, and copyright information for the ${site.organizationName} website.`,
+    description: `Terms, site policy, disclaimer, and copyright information for the ${englishLegalEntity} website.`,
     intro:
-      `Please review these terms before using this website. By browsing ${site.organizationName}, you agree to use the content responsibly and for legitimate business reference.`,
+      `Please review these terms before using this website. By browsing ${englishLegalEntity}, you agree to use the content responsibly and for legitimate business reference.`,
     sections: [
       {
         title: "Use of Content",
@@ -21,19 +24,19 @@ const content = {
       },
       {
         title: "Accuracy",
-        body: `We aim to keep material, specification, and availability information accurate, but published content may change without notice. Please confirm final project requirements directly with ${site.organizationName}.`
+        body: `We aim to keep material, specification, and availability information accurate, but published content may change without notice. Please confirm final project requirements directly with ${englishLegalEntity}.`
       },
       {
         title: "External Links",
-        body: `This website may include links to external services. ${site.organizationName} is not responsible for the content, security, or policies of external websites.`
+        body: `This website may include links to external services. ${englishLegalEntity} is not responsible for the content, security, or policies of external websites.`
       },
       {
         title: "Copyright",
-        body: `Copyright © 2026 ${site.organizationName}. All rights reserved.`
+        body: `Copyright © 2026 ${englishLegalEntity}. All rights reserved.`
       },
       {
         title: "Contact",
-        body: `For questions about this site policy, contact ${site.contact.email}.`
+        body: `For questions about this site policy, contact ${englishContactEmail}.`
       }
     ]
   },
@@ -84,7 +87,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/site-policy",
-    title: `${labels.title} | ${site.name}`,
+    title: labels.title,
     description: labels.description
   });
 }

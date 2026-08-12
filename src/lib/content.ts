@@ -771,6 +771,32 @@ export const projectCases: ProjectCase[] = [];
 
 export const newsItems: NewsItem[] = [
   {
+    slug: "aquapelle-waterborne-microfiber-launch",
+    availableLocales: ["en", "ja"],
+    title: {
+      en: "Introducing Aquapelle: Premium Waterborne Microfiber Leather",
+      ja: "新品 Aquapelle：プレミアム水性マイクロファイバーレザー"
+    },
+    category: { en: "Product Launch", ja: "新製品" },
+    date: "2026-08-12",
+    image: "/uploads/news/2026 Aquapelle/MF COVER.jpeg",
+    summary: {
+      en: "Aquapelle combines a Nappa-inspired touch, durable four-layer construction, cleaner waterborne chemistry, and repeatable quality for automotive, interior, and lifestyle surfaces.",
+      ja: "Aquapelleは、ナッパレザーを思わせる上質な触感、耐久性に優れた4層構造、よりクリーンな水性技術、安定した品質を、自動車・インテリア・ライフスタイル向けに提供します。"
+    },
+    seo: {
+      title: {
+        en: "Aquapelle Waterborne Microfiber Leather | New Product",
+        ja: "Aquapelle 水性マイクロファイバーレザー | 新製品"
+      },
+      description: {
+        en: "Discover Aquapelle, a premium waterborne microfiber leather with Nappa-inspired tactility, four-layer performance, cleaner processing, and customizable finishes.",
+        ja: "ナッパ調の触感、4層構造による性能、よりクリーンな製造工程、多彩なカスタマイズ性を備えたプレミアム水性マイクロファイバーレザー、Aquapelleをご紹介します。"
+      },
+      image: "/uploads/news/2026 Aquapelle/MF COVER.jpeg"
+    }
+  },
+  {
     slug: "camari-tokyo-auto-salon-2026",
     availableLocales: ["en", "ja"],
     title: { en: "CAMARI INTERNATIONAL JAPAN Makes Its Tokyo Auto Salon Debut", ja: "東京オートサロン初出展を無事終了いたしました" },

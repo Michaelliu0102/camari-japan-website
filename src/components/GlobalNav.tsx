@@ -17,6 +17,7 @@ type NavChild = {
   label: Record<Locale, string>;
   href: string;
   description?: Record<Locale, string>;
+  hideQuickLinksFor?: Locale[];
   quickLinks?: {
     label: Record<Locale, string>;
     href: string;
@@ -62,7 +63,8 @@ const navItems: NavItem[] = [
       {
         label: { en: "Leather", ja: "レザー" },
         href: "/materials/leather",
-        description: { en: "Full-grain and refined hides", ja: "天然皮革と上質な仕上げのマテリアル" },
+        description: { en: "Full-grain and refined hides", ja: "イタリアで一貫生産された上質な本革" },
+        hideQuickLinksFor: ["ja"],
         quickLinks: [
           {
             label: { en: "AUTOMOTIVE", ja: "自動車" },
@@ -241,7 +243,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                                 {child.label[locale]}
                               </span>
                             </Link>
-                            {child.quickLinks ? (
+                            {child.quickLinks && !child.hideQuickLinksFor?.includes(locale) ? (
                               <button
                                 aria-expanded={Boolean(expandedQuickLinks[child.href])}
                                 aria-label={`${child.label[locale]} ${locale === "en" ? "quick links" : "クイックリンク"}`}
@@ -265,7 +267,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                               {child.description[locale]}
                             </span>
                           ) : null}
-                          {child.quickLinks ? (
+                          {child.quickLinks && !child.hideQuickLinksFor?.includes(locale) ? (
                             <div className={`grid overflow-hidden transition-[grid-template-rows,opacity,margin] duration-300 ease-expo ${expandedQuickLinks[child.href] ? "mt-2 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"}`}>
                               <div className="flex min-h-0 flex-wrap items-center gap-x-2.5 gap-y-2 font-label text-[8px] font-semibold uppercase tracking-[0.18em] text-charcoal/45">
                               {child.quickLinks.map((quickLink, index) => (

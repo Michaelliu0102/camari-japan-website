@@ -45,7 +45,26 @@ export type SiteConfig = {
 
 type EnvSource = Partial<Record<string, string | undefined>>;
 
-const KNOWN_BRAND_NAMES = ["CAMARI JAPAN", "CAMARI INTERNATIONAL", "CAMARI INTERNATIONAL JAPAN"];
+const SEO_BRAND_NAMES: Record<Locale, string> = {
+  en: "CAMARI INTERNATIONAL",
+  ja: "カマリ・インターナショナル"
+};
+const KNOWN_BRAND_NAMES = [
+  "CAMARI INTERNATIONAL JAPAN",
+  "CAMARI INTERNATIONAL LIMITED",
+  "CAMARI INTERNATIONAL",
+  "CAMARI JAPAN",
+  "カマリ・インターナショナル・ジャパン",
+  "カマリ・インターナショナル",
+  "カマリ・ジャパン"
+];
+const BRAND_NAME_PATTERN = new RegExp(
+  KNOWN_BRAND_NAMES
+    .sort((left, right) => right.length - left.length)
+    .map((brand) => brand.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+    .join("|"),
+  "gi"
+);
 const DEFAULT_LOCALE_SITE_URLS: Record<Locale, string> = {
   en: "https://www.camari-international.com",
   ja: "https://www.camari-international.co.jp"
@@ -209,15 +228,20 @@ export function resolveSiteConfig(env: EnvSource = process.env): SiteConfig {
 
 export const siteConfig = resolveSiteConfig();
 
-export function replaceSiteBrand(text: string, replacement: string): string {
-  return KNOWN_BRAND_NAMES.reduce((value, brand) => value.replaceAll(brand, replacement), text);
+export function getSeoBrandName(locale: Locale): string {
+  return SEO_BRAND_NAMES[locale];
 }
 
-export function formatPageTitle(title: string, site: Pick<SiteConfig, "siteName"> = siteConfig): string {
-  const titleWithCurrentBrand = replaceSiteBrand(title, site.siteName).trim();
+export function replaceSiteBrand(text: string, replacement: string): string {
+  return text.replace(BRAND_NAME_PATTERN, replacement);
+}
+
+export function formatPageTitle(title: string, locale: Locale = siteConfig.defaultLocale): string {
+  const brandName = getSeoBrandName(locale);
+  const titleWithCurrentBrand = replaceSiteBrand(title, brandName).trim();
   let base = titleWithCurrentBrand;
 
-  for (const brand of KNOWN_BRAND_NAMES) {
+  for (const brand of [...KNOWN_BRAND_NAMES, ...Object.values(SEO_BRAND_NAMES)]) {
     const escaped = brand.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     base = base.replace(new RegExp(`^${escaped}\\s*\\|\\s*`, "i"), "");
     base = base.replace(new RegExp(`\\s*\\|\\s*${escaped}$`, "i"), "");
@@ -226,12 +250,12 @@ export function formatPageTitle(title: string, site: Pick<SiteConfig, "siteName"
   base = base.trim();
 
   if (!base) {
-    return site.siteName;
+    return brandName;
   }
 
-  if (base.toLowerCase() === site.siteName.toLowerCase()) {
-    return site.siteName;
+  if (base.toLowerCase() === brandName.toLowerCase()) {
+    return brandName;
   }
 
-  return `${base} | ${site.siteName}`;
+  return `${base} | ${brandName}`;
 }

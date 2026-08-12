@@ -34,7 +34,7 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <main>
-      <JsonLd data={buildOrganizationJsonLd(siteConfig)} />
+      <JsonLd data={buildOrganizationJsonLd(siteConfig, locale)} />
       <JsonLd data={buildWebSiteJsonLd(siteConfig, locale)} />
       <HeroVideo hero={homeSettings.hero} locale={locale} />
       <ExploreCarousel categories={categories} categorySlugs={homeSettings.explore.categorySlugs} locale={locale} materials={materials} productSlides={homeSettings.explore.productSlides} />

@@ -71,7 +71,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ContactPage({ params }: PageProps) {
   const { locale } = await params;
-  const organizationSchema = siteConfig.siteKey === "japan" ? buildLocalBusinessJsonLd(siteConfig) : buildOrganizationJsonLd(siteConfig);
+  const organizationSchema =
+    siteConfig.siteKey === "japan"
+      ? buildLocalBusinessJsonLd(siteConfig, locale)
+      : buildOrganizationJsonLd(siteConfig, locale);
 
   return (
     <main>

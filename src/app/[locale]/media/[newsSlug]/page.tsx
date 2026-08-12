@@ -176,6 +176,17 @@ export default async function NewsDetailPage({ params }: PageProps) {
               <NewsGallery images={section.images} />
             </section>
           ))}
+
+          {article?.relatedLink ? (
+            <div className="mt-20 border-t border-charcoal/15 pt-10 md:mt-24 md:pt-12">
+              <Link
+                className="label-caps inline-flex border-b border-charcoal/30 pb-2 text-charcoal transition-colors duration-300 hover:border-gold hover:text-gold"
+                href={localizedPath(locale, article.relatedLink.href)}
+              >
+                {article.relatedLink.label}
+              </Link>
+            </div>
+          ) : null}
         </div>
       </article>
     </main>

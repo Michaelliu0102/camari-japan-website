@@ -6,7 +6,7 @@ import { formatPageTitle, siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${siteConfig.siteUrl}/`),
-  title: formatPageTitle(siteConfig.slogan[siteConfig.defaultLocale]),
+  title: formatPageTitle(siteConfig.slogan[siteConfig.defaultLocale], siteConfig.defaultLocale),
   description: siteConfig.description[siteConfig.defaultLocale],
   icons: {
     icon: [

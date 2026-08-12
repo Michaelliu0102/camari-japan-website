@@ -18,6 +18,10 @@ export type NewsArticleContent = {
   heroFormat?: "landscape" | "portrait" | "standard";
   heroImage?: string;
   introduction: string[];
+  relatedLink?: {
+    href: string;
+    label: string;
+  };
   sections: NewsArticleSection[];
   video?: {
     poster?: string;
@@ -29,8 +33,149 @@ export type NewsArticleContent = {
 const designShanghaiImageRoot = "/uploads/news/2024 Design Shanghai";
 const alcantaraContractImageRoot = "/uploads/news/2025 Alcantara distribution contract";
 const tokyoAutoSalonImageRoot = "/uploads/news/2026 Tokyo Auto Salon";
+const aquapelleImageRoot = "/uploads/news/2026 Aquapelle";
 
 const newsArticles: Record<string, Partial<Record<Locale, NewsArticleContent>>> = {
+  "aquapelle-waterborne-microfiber-launch": {
+    en: {
+      dateline: "12 August 2026",
+      heroFormat: "landscape",
+      heroImage: `${aquapelleImageRoot}/MF COVER.jpeg`,
+      introduction: [
+        "CAMARI introduces Aquapelle, a premium waterborne microfiber leather developed for surfaces where refined touch, durable performance, and reliable production must work together. Its three-dimensional microfiber architecture creates a soft, full, Nappa-inspired hand, while controlled colour, thickness, and grain support consistent results from sample development through volume production."
+      ],
+      relatedLink: {
+        href: "/materials/vegan-leather/microfiber-leather/microfiber-leather-0308",
+        label: "Find details"
+      },
+      sections: [
+        {
+          title: "A Three-Dimensional Microfiber Foundation",
+          body: [
+            "Unlike coated woven constructions, microfiber leather is built on a dense three-dimensional network of ultrafine nonwoven fibres. An islands-in-the-sea spinning process forms composite fibres; removing the surrounding sea component separates the island components into extremely fine filaments. This architecture gives Aquapelle its balance of softness, structural strength, dimensional stability, and breathable comfort."
+          ],
+          images: [
+            {
+              aspectRatio: "1774 / 887",
+              featured: true,
+              src: `${aquapelleImageRoot}/comparison.jpg`,
+              alt: "Structural comparison of PVC leather, PU leather, microfiber leather, and natural leather"
+            },
+            {
+              aspectRatio: "1287 / 1222",
+              featured: true,
+              src: `${aquapelleImageRoot}/fiber structure.jpg`,
+              alt: "Islands-in-the-sea fibre structure and microfiber formation"
+            }
+          ]
+        },
+        {
+          title: "A Cleaner Waterborne Route",
+          body: [
+            "Cleaner chemistry is central to the platform. The water-based fibre-opening route avoids traditional toluene or sodium-hydroxide processing, while waterborne PU impregnation and solvent-free PU technologies reduce reliance on organic solvents and help lower VOC emissions. A closed-loop process recovers PVA and water, supporting lower wastewater and a reduced manufacturing footprint compared with conventional solvent-based production."
+          ],
+          images: [
+            {
+              aspectRatio: "1640 / 959",
+              featured: true,
+              src: `${aquapelleImageRoot}/waterborne microfiber produciton process.jpg`,
+              alt: "Waterborne microfiber production route from spinning to impregnation, extraction, drying, and finishing"
+            }
+          ]
+        },
+        {
+          title: "Four Layers, Tailored for Real Applications",
+          body: [
+            "Aquapelle combines a strong waterborne microfiber base, a soft and flexible solvent-free porous interlayer, a stable solid waterborne PU surface, and a waterborne decoration layer that defines grain, gloss, colour, and tactile finish. The resulting material delivers tensile, tear, peel, abrasion, flex, UV, hydrolysis, and chemical resistance, while its micro-porous construction supports moisture transfer.",
+            "Colours, grains, gloss levels, hand feels, thicknesses, widths, backings, and surface treatments can be tailored to the programme. Recycled-content, bio-content, and silicone-surface pathways are also available subject to requirements. Primary uses include automotive seating, door and instrument panels, armrests, consoles, and steering wheels, with further possibilities across upholstered interiors, decorative panels, bags, accessories, protective surfaces, and selected consumer products. Each final specification is validated before production."
+          ],
+          images: [
+            {
+              aspectRatio: "1375 / 1144",
+              featured: true,
+              src: `${aquapelleImageRoot}/Aquapelle structure.jpg`,
+              alt: "Aquapelle four-layer construction with waterborne and solvent-free PU layers"
+            },
+            {
+              aspectRatio: "1672 / 941",
+              featured: true,
+              src: `${aquapelleImageRoot}/Aquapelle Production Process.jpg`,
+              alt: "Aquapelle production process from formulation and coating through inspection and shipment"
+            }
+          ]
+        }
+      ]
+    },
+    ja: {
+      dateline: "2026年8月12日",
+      heroFormat: "landscape",
+      heroImage: `${aquapelleImageRoot}/MF COVER.jpeg`,
+      introduction: [
+        "CAMARIは、上質な触感、優れた耐久性、安定した量産品質を一つの素材で実現する、プレミアム水性マイクロファイバーレザー「Aquapelle」を発表します。三次元マイクロファイバー構造が、ナッパレザーを思わせるソフトでふくよかな手触りを生み出し、色、厚み、シボを精密に管理することで、サンプル開発から量産まで高い再現性を支えます。"
+      ],
+      relatedLink: {
+        href: "/materials/vegan-leather/microfiber-leather/microfiber-leather-0308",
+        label: "詳細を見る"
+      },
+      sections: [
+        {
+          title: "三次元マイクロファイバー構造",
+          body: [
+            "織物に樹脂をコーティングする一般的な構造とは異なり、マイクロファイバーレザーは極細繊維が立体的に絡み合う不織布構造を基材とします。海島型複合紡糸で形成した繊維から海成分を除去すると、島成分が多数の極細フィラメントに分離。この構造が、Aquapelleの柔らかな触感、強度、寸法安定性、通気性を支えます。"
+          ],
+          images: [
+            {
+              aspectRatio: "1774 / 887",
+              featured: true,
+              src: `${aquapelleImageRoot}/comparison.jpg`,
+              alt: "PVCレザー、PUレザー、マイクロファイバーレザー、天然皮革の構造比較"
+            },
+            {
+              aspectRatio: "1287 / 1222",
+              featured: true,
+              src: `${aquapelleImageRoot}/fiber structure.jpg`,
+              alt: "海島型繊維の構造とマイクロファイバー形成の仕組み"
+            }
+          ]
+        },
+        {
+          title: "よりクリーンな水性製造プロセス",
+          body: [
+            "製造工程には、水を媒体とする繊維開繊、水性PU含浸、無溶剤PU技術を採用。従来工程で使われるトルエンや水酸化ナトリウムへの依存を避け、有機溶剤とVOC排出の削減に貢献します。さらに、PVAと水を回収するクローズドループ工程により、排水と製造時の環境負荷を抑えます。"
+          ],
+          images: [
+            {
+              aspectRatio: "1640 / 959",
+              featured: true,
+              src: `${aquapelleImageRoot}/waterborne microfiber produciton process.jpg`,
+              alt: "紡糸から含浸、抽出、乾燥、仕上げまでの水性マイクロファイバー製造工程"
+            }
+          ]
+        },
+        {
+          title: "用途に合わせて設計できる4層構造",
+          body: [
+            "Aquapelleは、高い強度と寸法安定性を担う水性マイクロファイバー基材、柔軟性と通気性を生む無溶剤PU多孔質中間層、均一で耐久性に優れたソリッド水性PU表面層、そしてシボ、艶、色、触感を形づくる水性PU加飾層からなる4層構造です。引張・引裂・剥離性能に加え、摩耗、屈曲、紫外線、加水分解、薬品への耐久性を備え、微多孔構造が水分移動を促します。",
+            "カラー、シボ、艶、手触り、厚み、幅、裏基布、表面処理を用途に合わせてカスタマイズでき、案件条件に応じて再生原料、バイオ由来原料、シリコーン表面にも対応します。主な用途は自動車のシート、ドア・インストルメントパネル、アームレスト、コンソール、ステアリング。家具張り、装飾パネル、バッグ、アクセサリー、保護材などにも展開可能です。最終仕様は量産前に個別の要求性能と試験条件に基づいて検証します。"
+          ],
+          images: [
+            {
+              aspectRatio: "1375 / 1144",
+              featured: true,
+              src: `${aquapelleImageRoot}/Aquapelle structure.jpg`,
+              alt: "水性PUと無溶剤PUを組み合わせたAquapelleの4層構造"
+            },
+            {
+              aspectRatio: "1672 / 941",
+              featured: true,
+              src: `${aquapelleImageRoot}/Aquapelle Production Process.jpg`,
+              alt: "配合、コーティング、検査、出荷までのAquapelle製造工程"
+            }
+          ]
+        }
+      ]
+    }
+  },
   "alcantara-design-shanghai-2024": {
     en: {
       dateline: "Shanghai, China / June 2024",
