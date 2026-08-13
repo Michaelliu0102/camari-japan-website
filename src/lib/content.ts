@@ -15,6 +15,7 @@ export type Download = {
   description: LocalizedString;
   href: string;
   type: "catalog" | "technical" | "care";
+  updatedAt?: string;
 };
 
 export type ProductTypeSpecificationField = {
@@ -31,6 +32,7 @@ export type ProductTypeMaintenanceItem = {
 
 export type MaterialCategory = {
   slug: string;
+  updatedAt?: string;
   name: LocalizedString;
   tagline: LocalizedString;
   description: LocalizedString;
@@ -48,6 +50,7 @@ export type Application = {
 
 export type Material = {
   slug: string;
+  updatedAt?: string;
   categorySlug: string;
   name: LocalizedString;
   eyebrow: LocalizedString;
@@ -64,6 +67,7 @@ export type Material = {
 
 export type ProductType = {
   slug: string;
+  updatedAt?: string;
   materialSlug: string;
   name: LocalizedString;
   summary: LocalizedString;
@@ -77,6 +81,7 @@ export type ProductType = {
 
 export type Sku = {
   slug: string;
+  updatedAt?: string;
   materialSlug: string;
   productTypeSlug: string;
   code: string;
@@ -95,6 +100,7 @@ export type Sku = {
 
 export type ProjectCase = {
   slug: string;
+  updatedAt?: string;
   title: LocalizedString;
   industry: LocalizedString;
   image: string;

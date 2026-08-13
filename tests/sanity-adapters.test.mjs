@@ -20,6 +20,12 @@ async function compileModule(sourcePath, outputPath) {
   }).outputText;
 
   output = output.replaceAll('from "../../lib/content";', 'from "../../lib/content.js";');
+  output = output.replaceAll('from "../../content/products/categories";', 'from "../../content/products/categories.js";');
+  output = output.replaceAll('from "@/data/product-category-carousel-overrides.json";', 'from "../../data/product-category-carousel-overrides.json";');
+  output = output.replaceAll(
+    'from "../../data/product-category-carousel-overrides.json";',
+    'from "../../data/product-category-carousel-overrides.json" with { type: "json" };',
+  );
   output = output.replaceAll('from "./site-config";', 'from "./site-config.js";');
 
   await writeFile(outputPath, output);
@@ -28,10 +34,13 @@ async function compileModule(sourcePath, outputPath) {
 async function loadAdapters() {
   const root = await mkdtemp(path.join(tmpdir(), "camari-sanity-adapters-"));
   const compiledContent = path.join(root, "src/lib/content.js");
+  const compiledProductCategories = path.join(root, "src/content/products/categories.js");
   const compiledAdapters = path.join(root, "src/sanity/lib/adapters.js");
   const generatedCatalogPath = path.join(root, "src/data/product-catalog.generated.json");
+  const carouselOverridesPath = path.join(root, "src/data/product-category-carousel-overrides.json");
 
   await mkdir(path.join(root, "src/lib"), { recursive: true });
+  await mkdir(path.join(root, "src/content/products"), { recursive: true });
   await mkdir(path.join(root, "src/sanity/lib"), { recursive: true });
   await mkdir(path.join(root, "src/data"), { recursive: true });
   await symlink(path.join(projectRoot, "node_modules"), path.join(root, "node_modules"), "dir");
@@ -57,7 +66,12 @@ async function loadAdapters() {
 `,
   );
   await writeFile(generatedCatalogPath, '{ "productTypes": [], "skus": [] }\n');
+  await writeFile(
+    carouselOverridesPath,
+    await readFile(path.join(projectRoot, "src/data/product-category-carousel-overrides.json"), "utf8"),
+  );
   await compileModule(path.join(projectRoot, "src/lib/content.ts"), compiledContent);
+  await compileModule(path.join(projectRoot, "src/content/products/categories.ts"), compiledProductCategories);
   await compileModule(path.join(projectRoot, "src/sanity/lib/adapters.ts"), compiledAdapters);
 
   const module = await import(`${pathToFileURL(compiledAdapters).href}?${Date.now()}`);
@@ -71,6 +85,7 @@ async function loadAdapters() {
 test("adapts material reference fields and fixture-backed quote defaults", async () => {
   const { adaptMaterial, cleanup } = await loadAdapters();
   const material = adaptMaterial({
+    updatedAt: "2026-07-27T02:30:00Z",
     name: { en: "Alcantara", ja: "アルカンターラ" },
     slug: "alcantara",
     categorySlug: "alcantara",
@@ -95,6 +110,7 @@ test("adapts material reference fields and fixture-backed quote defaults", async
   });
 
   assert.equal(material.categorySlug, "alcantara");
+  assert.equal(material.updatedAt, "2026-07-27T02:30:00Z");
   assert.deepEqual(material.heroTitle, material.name);
   assert.deepEqual(material.eyebrow, { en: "Alcantara", ja: "アルカンターラ" });
   assert.deepEqual(material.quote, {
@@ -103,6 +119,27 @@ test("adapts material reference fields and fixture-backed quote defaults", async
   });
   assert.equal(material.applications[0].slug, "automotive-cabin");
   assert.equal(material.applications[0].image, "https://cdn.sanity.io/images/project/dataset/application.jpg");
+
+  await cleanup();
+});
+
+test("uses the local leather hero image override", async () => {
+  const { adaptMaterial, cleanup } = await loadAdapters();
+  const material = adaptMaterial({
+    name: { en: "Leather", ja: "レザー" },
+    slug: "leather",
+    categorySlug: "leather",
+    categoryName: { en: "Leather", ja: "レザー" },
+    heroImageUrl: "https://cdn.sanity.io/images/project/dataset/old-leather.jpg",
+    heroSubtitle: { en: "Natural grain", ja: "自然な銀面" },
+    introTitle: { en: "Intro", ja: "イントロ" },
+    introBody: { en: "Body", ja: "本文" },
+    introImageUrl: "https://cdn.sanity.io/images/project/dataset/intro.jpg",
+    applications: [],
+    seo: null,
+  });
+
+  assert.equal(material.heroImage, "/uploads/hero/leather-hero.png");
 
   await cleanup();
 });

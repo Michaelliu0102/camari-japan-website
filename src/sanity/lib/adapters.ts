@@ -162,7 +162,8 @@ function adaptDownload(raw: RawDownload): Download {
     title: localized(raw.title),
     description: localized(raw.description),
     href: raw.href ?? "",
-    type: raw.type ?? "technical"
+    type: raw.type ?? "technical",
+    updatedAt: raw.updatedAt ?? undefined
   };
 }
 
@@ -237,6 +238,7 @@ export function adaptMaterialCategory(raw: RawMaterialCategory): MaterialCategor
 
   return {
     slug,
+    updatedAt: raw.updatedAt ?? undefined,
     name: localized(raw.name),
     tagline: localized(raw.tagline),
     description: localized(raw.description),
@@ -253,6 +255,7 @@ export function adaptMaterial(raw: RawMaterial): Material {
 
   return {
     slug,
+    updatedAt: raw.updatedAt ?? undefined,
     categorySlug: raw.categorySlug ?? fixture?.categorySlug ?? "",
     name,
     eyebrow: raw.categoryName ? localized(raw.categoryName) : premiumCollection,
@@ -305,6 +308,7 @@ export function adaptProductType(raw: RawProductType): ProductType {
 
   return {
     slug,
+    updatedAt: raw.updatedAt ?? undefined,
     materialSlug: raw.materialSlug ?? fixture?.materialSlug ?? "",
     name,
     summary: raw.summary?.en || raw.summary?.ja ? localized(raw.summary) : fixture?.summary ?? emptyLocalized,
@@ -350,6 +354,7 @@ export function adaptProductCategory(raw: RawProductCategory): ProductCategory {
 
   return {
     slug,
+    updatedAt: raw.updatedAt ?? undefined,
     title,
     subtitle: raw.subtitle?.en || raw.subtitle?.ja ? localized(raw.subtitle) : fixture?.subtitle ?? emptyLocalized,
     heroImage,
@@ -365,6 +370,7 @@ export function adaptSku(raw: RawSku): Sku {
 
   return {
     slug: raw.slug ?? "",
+    updatedAt: raw.updatedAt ?? undefined,
     materialSlug: raw.materialSlug ?? "",
     productTypeSlug: raw.productTypeSlug ?? "",
     code,
@@ -425,6 +431,7 @@ export function adaptProjectCase(raw: RawProjectCase): ProjectCase {
 
   return {
     slug: raw.slug ?? "",
+    updatedAt: raw.updatedAt ?? undefined,
     title,
     industry: localized(raw.industry),
     image,
@@ -454,6 +461,7 @@ export function adaptNewsItem(raw: RawNewsItem): NewsItem {
 
   return {
     slug: raw.slug ?? "",
+    updatedAt: raw.updatedAt ?? undefined,
     title,
     category: localized(raw.category),
     date: raw.publishedAt ? raw.publishedAt.slice(0, 10) : "",
@@ -468,6 +476,7 @@ export function adaptCatalog(raw: RawCatalog): Download {
     title: localized(raw.title),
     description: localized(raw.description),
     href: raw.href ?? "",
-    type: "catalog"
+    type: "catalog",
+    updatedAt: raw.updatedAt ?? undefined
   };
 }

@@ -3,6 +3,7 @@ import carouselContentOverridesData from "@/data/product-category-carousel-overr
 
 export type ProductCategory = {
   slug: string;
+  updatedAt?: string;
   title: LocalizedString;
   subtitle: LocalizedString;
   heroImage: string;

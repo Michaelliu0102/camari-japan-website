@@ -11,6 +11,7 @@ export type RawDownload = {
   description?: LocalizedString | null;
   href?: string | null;
   type?: "catalog" | "technical" | "care" | null;
+  updatedAt?: string | null;
 };
 
 export type RawSanityImage = {
@@ -20,6 +21,7 @@ export type RawSanityImage = {
 } | null;
 
 export type RawMaterialCategory = {
+  updatedAt?: string | null;
   name?: LocalizedString | null;
   slug?: string | null;
   tagline?: LocalizedString | null;
@@ -35,6 +37,7 @@ export type RawApplication = {
 };
 
 export type RawMaterial = {
+  updatedAt?: string | null;
   name?: LocalizedString | null;
   slug?: string | null;
   categorySlug?: string | null;
@@ -49,6 +52,7 @@ export type RawMaterial = {
 };
 
 export type RawProductType = {
+  updatedAt?: string | null;
   name?: LocalizedString | null;
   slug?: string | null;
   markets?: string[] | null;
@@ -79,6 +83,7 @@ export type RawProductCarouselItem = {
 };
 
 export type RawProductCategory = {
+  updatedAt?: string | null;
   title?: LocalizedString | null;
   slug?: string | null;
   subtitle?: LocalizedString | null;
@@ -90,6 +95,7 @@ export type RawProductCategory = {
 };
 
 export type RawSku = {
+  updatedAt?: string | null;
   code?: string | null;
   slug?: string | null;
   materialSlug?: string | null;
@@ -108,6 +114,7 @@ export type RawSku = {
 };
 
 export type RawProjectCase = {
+  updatedAt?: string | null;
   title?: LocalizedString | null;
   slug?: string | null;
   industry?: LocalizedString | null;
@@ -134,6 +141,7 @@ export type RawProjectCase = {
 };
 
 export type RawNewsItem = {
+  updatedAt?: string | null;
   title?: LocalizedString | null;
   slug?: string | null;
   category?: LocalizedString | null;
@@ -145,6 +153,7 @@ export type RawNewsItem = {
 };
 
 export type RawCatalog = {
+  updatedAt?: string | null;
   title?: LocalizedString | null;
   description?: LocalizedString | null;
   href?: string | null;
@@ -227,6 +236,7 @@ export const aboutPageSettingsQuery = `*[_type == "aboutPage"][0] {
 }`;
 
 export const materialCategoriesQuery = `*[_type == "materialCategory"] | order(sortOrder asc, name.en asc) {
+  "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
   tagline,
@@ -235,6 +245,7 @@ export const materialCategoriesQuery = `*[_type == "materialCategory"] | order(s
 }`;
 
 export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
+  "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
   "categorySlug": category->slug.current,
@@ -258,6 +269,7 @@ export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
 }`;
 
 export const productTypesQuery = `*[_type == "productType" && (!defined(markets) || $market in markets)] | order(material->name.en asc, name.en asc) {
+  "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
   markets,
@@ -289,6 +301,7 @@ export const productTypesQuery = `*[_type == "productType" && (!defined(markets)
 }`;
 
 export const productCategoriesQuery = `*[_type == "productCategory"] | order(sortOrder asc, title.en asc) {
+  "updatedAt": _updatedAt,
   title,
   "slug": slug.current,
   subtitle,
@@ -314,6 +327,7 @@ export const productCategoriesQuery = `*[_type == "productCategory"] | order(sor
 }`;
 
 export const skusQuery = `*[_type == "sku" && (!defined(productType->markets) || $market in productType->markets)] | order(code asc) {
+  "updatedAt": _updatedAt,
   code,
   "slug": slug.current,
   "materialSlug": material->slug.current,
@@ -344,6 +358,7 @@ export const skusQuery = `*[_type == "sku" && (!defined(productType->markets) ||
 }`;
 
 export const projectsQuery = `*[_type == "projectCase"] | order(title.en asc) {
+  "updatedAt": _updatedAt,
   title,
   "slug": slug.current,
   industry,
@@ -378,6 +393,7 @@ export const projectsQuery = `*[_type == "projectCase"] | order(title.en asc) {
 }`;
 
 export const newsItemsQuery = `*[_type == "news"] | order(publishedAt desc, title.en asc) {
+  "updatedAt": _updatedAt,
   title,
   "slug": slug.current,
   category,
@@ -393,6 +409,7 @@ export const newsItemsQuery = `*[_type == "news"] | order(publishedAt desc, titl
 }`;
 
 export const catalogsQuery = `*[_type == "catalog" && language == $locale] | order(title.en asc) {
+  "updatedAt": _updatedAt,
   title,
   description,
   "href": pdf.asset->url
