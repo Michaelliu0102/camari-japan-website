@@ -210,7 +210,6 @@ function createDownloadGroups(catalogs: Download[], productDownloads: Download[]
   const careDownloads = uniqueDownloads([
     ...withSupplements.filter((download) => download.type === "care"),
     ...[
-      byHref("/uploads/spec/Instructions-for-maintenance-of-alcantara-material.pdf"),
       byHref("/uploads/spec/Alcantara/Instructions-for-maintenance-of-alcantara-material.pdf"),
       byHref("/uploads/veganleather/skai/Download/2021-01_EN_Cleaning-Care_Faux-Leather_detail.pdf"),
       byHref("/uploads/veganleather/skai/Download/clean and care.pdf")
