@@ -263,12 +263,13 @@ const Plane: React.FC<PlaneProps> = ({
       offsetPx = ((offsetPx + halfStrip) % stripLength + stripLength) % stripLength - halfStrip;
     }
 
+    const viewport = Math.max(size.width, 1);
+    const norm = clamp(offsetPx / viewport, -p.uvScale, p.uvScale);
+
     mesh.position.x = offsetPx;
     mesh.position.y = 0;
     mesh.scale.set(p.imageWidth, p.imageHeight, 1);
 
-    const viewport = Math.max(size.width, 1);
-    const norm = clamp(offsetPx / viewport, -p.uvScale, p.uvScale);
     u.uShift.value = -norm;
     u.uIntensity.value = p.parallaxIntensity;
     u.uMaxShift.value = p.uvScale * p.parallaxIntensity;

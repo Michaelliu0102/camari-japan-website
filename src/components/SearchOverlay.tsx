@@ -89,6 +89,7 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
       className={`fixed inset-0 z-[60] flex flex-col transition-transform duration-500 ease-in-out ${
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
+      data-lenis-prevent
     >
       {/* Top 60% — white */}
       <div className="flex h-[60vh] flex-col bg-white">
