@@ -21,20 +21,21 @@ Request body:
 
 - `NETSUITE_RESTLET_URL`
 - `NETSUITE_ACCOUNT_ID`
-- `NETSUITE_CONSUMER_KEY`
-- `NETSUITE_CONSUMER_SECRET`
-- `NETSUITE_TOKEN_ID`
-- `NETSUITE_TOKEN_SECRET`
+- `NETSUITE_OAUTH2_CLIENT_ID`
+- `NETSUITE_OAUTH2_CERTIFICATE_ID`
+- `NETSUITE_OAUTH2_PRIVATE_KEY_BASE64`（生产环境推荐）
 
 ## Optional environment variables
 
-- `NETSUITE_REALM`
-  Defaults to `NETSUITE_ACCOUNT_ID`
-- `NETSUITE_SIGNATURE_METHOD`
-  Defaults to `HMAC-SHA256`
-  Supported values:
-  - `HMAC-SHA256`
-  - `HMAC-SHA1`
+- `NETSUITE_OAUTH2_TOKEN_URL`
+  Defaults to the account-specific NetSuite OAuth 2.0 token endpoint derived from `NETSUITE_ACCOUNT_ID`.
+- `NETSUITE_OAUTH2_PRIVATE_KEY_PATH`
+  Local development alternative to `NETSUITE_OAUTH2_PRIVATE_KEY_BASE64`; use an absolute path to the PKCS#8 PEM file.
+
+The backend uses the OAuth 2.0 client credentials flow with a PS256 certificate assertion. The
+private key must be supplied either as the base64 encoding of the complete PKCS#8 PEM file or,
+for local development, through an absolute server-side file path.
+The Integration Record client secret is not used by the certificate-based M2M flow.
 
 ## NetSuite payload
 

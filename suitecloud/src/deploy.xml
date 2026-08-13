@@ -1,8 +1,11 @@
 <deploy>
   <files>
+    <path>~/FileCabinet/SuiteScripts/Camari/Inquiry/inquiry-restlet.js</path>
     <path>~/FileCabinet/SuiteScripts/Camari/Newsletter/newsletter-restlet.js</path>
   </files>
   <objects>
+    <path>~/Objects/customrecord_camari_inquiry.xml</path>
+    <path>~/Objects/customscript_camari_inquiry_rl.xml</path>
     <path>~/Objects/customrecord_camari_newsletter.xml</path>
     <path>~/Objects/customscript_camari_newsletter_rl.xml</path>
   </objects>

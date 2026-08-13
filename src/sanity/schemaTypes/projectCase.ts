@@ -11,7 +11,19 @@ export const projectCase = defineType({
     defineField({ name: "industry", title: "Industry", type: "object", fields: localizedString }),
     defineField({ name: "coverImage", title: "Cover Image", type: "image", options: { hotspot: true } }),
     defineField({ name: "summary", title: "Summary", type: "object", fields: localizedText }),
-    defineField({ name: "relatedMaterial", title: "Related Material", type: "reference", to: [{ type: "material" }] }),
+    defineField({ name: "relatedMaterial", title: "Primary Material", type: "reference", to: [{ type: "material" }] }),
+    defineField({
+      name: "linkedMaterials",
+      title: "Additional Materials",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "material" }] }]
+    }),
+    defineField({
+      name: "linkedArticles",
+      title: "Linked Articles",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "productType" }] }]
+    }),
     defineField({ name: "gallery", title: "Gallery", type: "array", of: [{ type: "image", options: { hotspot: true } }] }),
     defineField({ name: "seo", title: "SEO", type: "seo" })
   ]

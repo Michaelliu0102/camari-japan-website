@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/locales";
 type SearchResult = {
   label: string;
   sub: string;
-  localeHrefs: Record<string, string>;
+  href: string;
 };
 
 type SearchOverlayProps = {
@@ -89,6 +89,7 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
       className={`fixed inset-0 z-[60] flex flex-col transition-transform duration-500 ease-in-out ${
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
+      data-lenis-prevent
     >
       {/* Top 60% — white */}
       <div className="flex h-[60vh] flex-col bg-white">
@@ -120,10 +121,10 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
             {results.length > 0 ? (
               <ul className="mt-8 space-y-1">
                 {results.map((result) => (
-                  <li key={result.localeHrefs[locale] ?? result.localeHrefs.en}>
+                  <li key={result.href}>
                     <Link
                       className="flex items-baseline gap-4 rounded-md px-4 py-3 transition-colors hover:bg-stone"
-                      href={result.localeHrefs[locale] ?? result.localeHrefs.en}
+                      href={result.href}
                       onClick={onClose}
                     >
                       <span className="font-serif text-lg text-charcoal">

@@ -1,19 +1,512 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DownloadPanel } from "@/components/DownloadPanel";
+import { JsonLd } from "@/components/JsonLd";
 import { SkuSwatches } from "@/components/SkuSwatches";
 import { SpecificationTable } from "@/components/SpecificationTable";
 import { createPageMetadata } from "@/lib/metadata";
-import type { Locale } from "@/lib/locales";
+import { localizeBrandNames, type Locale } from "@/lib/locales";
+import { loadSkaiVinylProductTypeSlugs } from "@/lib/skai-vinyl";
+import { buildBreadcrumbJsonLd, buildProductJsonLd } from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site-config";
 import { loadMaterial, loadMaterials, loadProductType, loadProductTypesForMaterial, loadSku, loadSkusForProductType } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale; materialSlug: string; productTypeSlug: string; skuSlug: string }>;
 };
 
+type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+async function isEnglishOnlySkaiVinylRoute(locale: Locale, materialSlug: string, productTypeSlug: string): Promise<boolean> {
+  if (locale === "en" || materialSlug !== "vegan-leather") {
+    return false;
+  }
+
+  const skaiProductTypeSlugs = await loadSkaiVinylProductTypeSlugs();
+  return skaiProductTypeSlugs.has(productTypeSlug);
+}
+
+const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
+  "automotive-nappa": {
+    en: [
+      {
+        question: "What is Automotive Nappa leather?",
+        answer:
+          "In the automotive world, Nappa leather is the gold standard for premium and luxury car interiors. It is not a specific type of animal skin, but rather a generic term for exceptionally soft, smooth, bovine (cow) leather that has been treated with a specialized chrome-tanning process."
+      },
+      {
+        question: "Why do OEMs require automotive-grade Nappa leather?",
+        answer:
+          "Standard leather cannot survive the extreme conditions inside a car. Automotive-grade Nappa undergoes rigorous laboratory testing to ensure superior UV and heat resistance against solar cracking, high tensile strength to prevent tearing under heavy use, and strict compliance with global fire-retardant safety standards."
+      },
+      {
+        question: "What is Automotive Nappa intended for?",
+        answer:
+          "Automotive Nappa is intended for premium automotive interiors, including seating, steering wheels, door panels, dashboards, consoles, and trim surfaces."
+      },
+      {
+        question: "What is the standard thickness and average size?",
+        answer:
+          "The standard thickness is 1.1-1.3 mm, with an average hide size of 48-54 sf."
+      },
+      {
+        question: "Is Automotive Nappa fire resistant?",
+        answer:
+          "Automotive Nappa is tested to comply with FMVSS 302."
+      }
+    ],
+    ja: [
+      {
+        question: "Automotive Nappa leather とは何ですか？",
+        answer:
+          "自動車の世界では、Nappa leather はプレミアムおよびラグジュアリーカー内装のゴールドスタンダードです。特定の動物皮革を指すものではなく、専用のクロムなめし工程で処理された、非常に柔らかく滑らかな牛革を表す一般的な名称です。"
+      },
+      {
+        question: "なぜ OEM は自動車グレードの Nappa leather を求めるのですか？",
+        answer:
+          "一般的なレザーは、車内の過酷な環境に耐えられません。自動車グレードの Nappa は、日射によるひび割れを防ぐための優れた耐紫外線性と耐熱性、激しい使用でも破れにくい高い引張強度、そして国際的な難燃安全基準への適合を確認するため、厳格なラボ試験を受けています。"
+      },
+      {
+        question: "Automotive Nappa はどの用途に適していますか？",
+        answer:
+          "Automotive Nappa は、シート、ステアリングホイール、ドアパネル、ダッシュボード、コンソール、トリムなどの上質な自動車内装に適しています。"
+      },
+      {
+        question: "標準厚みと平均サイズはどのくらいですか？",
+        answer:
+          "標準厚みは 1.1-1.3 mm、平均サイズは 48-54 sf です。"
+      },
+      {
+        question: "Automotive Nappa は難燃性がありますか？",
+        answer:
+          "Automotive Nappa は FMVSS 302 に適合するよう試験されています。"
+      }
+    ]
+  },
+  "alcantara-panel": {
+    en: [
+      {
+        question: "What is Alcantara Pannel made of?",
+        answer:
+          "Alcantara Pannel is composed of 68% polyester and 32% polyurethane."
+      },
+      {
+        question: "What is Alcantara Pannel intended for?",
+        answer:
+          "Alcantara Pannel is specified for door pannels, dashboards, headliners and consoles."
+      },
+      {
+        question: "Can Alcantara Pannel be used for seats?",
+        answer:
+          "For seating surfaces, specify Alcantara Cover. Pannel is selected for trim and upholstery applications rather than seat-cover construction."
+      },
+      {
+        question: "Can Alcantara Pannel be used for steering wheel?",
+        answer:
+          "While Alcantara Pannel is suitable for steering wheels, our 1.2mm Multilayer application offers an upgraded option. The additional thickness enhances the hand-feel, delivering a more robust and luxurious tactile experience. It is only available in black."
+      },
+      {
+        question: "Is Alcantara Pannel Fire Retardant?",
+        answer:
+          "Product 5012 is the standard version with fire retardant treatment, while 5856 (Pannel FR) is the fire-retardant equivalent available in the same color range. Likewise, 5205 represents the non-FR Cover, and 5268 is the Cover FR version."
+      }
+    ],
+    ja: [
+      {
+        question: "Alcantara Pannel の素材構成は何ですか？",
+        answer:
+          "Alcantara Pannel は、ポリエステル 68%、ポリウレタン 32% で構成されています。"
+      },
+      {
+        question: "Alcantara Pannel はどの用途に適していますか？",
+        answer:
+          "Alcantara Pannel は、ドアパネル、ダッシュボード、ヘッドライナー、コンソールに適しています。"
+      },
+      {
+        question: "シートにも使用できますか？",
+        answer:
+          "シート表皮には Alcantara Cover を推奨します。Pannel は主にトリム、内装パネル、張り込み用途向けの仕様です。"
+      },
+      {
+        question: "ステアリングホイールにも使用できますか？",
+        answer:
+          "Alcantara Pannel はステアリングホイールにも使用できますが、1.2mm の Multilayer 仕様はアップグレードされた選択肢です。厚みが増すことで手触りが高まり、よりしっかりとした上質な触感が得られます。カラーはブラックのみです。"
+      },
+      {
+        question: "Alcantara Pannel は難燃仕様ですか？",
+        answer:
+          "5012 は難燃処理を施した標準仕様で、5856（Pannel FR）は同じカラー範囲で展開される難燃相当品です。同様に、5205 は非 FR の Cover、5268 は Cover FR 仕様です。"
+      }
+    ]
+  },
+  "alcantara-cover": {
+    en: [
+      {
+        question: "What is Alcantara Cover made of?",
+        answer:
+          "Alcantara Cover is composed of 68% polyester and 32% polyurethane, laminated with polyester textile backing."
+      },
+      {
+        question: "What is Alcantara Cover intended for?",
+        answer:
+          "Alcantara Cover is intended for automotive seats and seat-cover upholstery where a soft Alcantara surface needs durable wear performance."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of ≥0.95 mm."
+      },
+      {
+        question: "Is Alcantara Cover Fire Retardant?",
+        answer:
+          "Product 5205 is the standard non-FR Cover, while 5268 is the Cover FR version with <100 mm/min fire-resistance performance. Confirm the applicable specification sheet before production."
+      }
+    ],
+    ja: [
+      {
+        question: "Alcantara Cover の素材構成は何ですか？",
+        answer:
+          "Alcantara Cover は、ポリエステル 68%、ポリウレタン 32% で構成され、ポリエステル織物の裏地でラミネートされています。"
+      },
+      {
+        question: "Alcantara Cover はどの用途に適していますか？",
+        answer:
+          "Alcantara Cover は、柔らかな Alcantara 表面と耐摩耗性が求められる自動車シートおよびシート表皮向けの素材です。"
+      },
+      {
+        question: "標準幅と厚みはどのくらいですか？",
+        answer:
+          "標準幅は 142 cm 以上、厚みは 0.95 mm 以上です。"
+      },
+      {
+        question: "Alcantara Cover は難燃仕様ですか？",
+        answer:
+          "5205 は標準の非 FR Cover で、5268 は <100 mm/min の難燃性能を持つ Cover FR 仕様です。生産前に該当仕様書をご確認ください。"
+      }
+    ]
+  },
+  "alcantara-exo": {
+    en: [
+      {
+        question: "What is Alcantara EXO made of?",
+        answer:
+          "Alcantara EXO is composed of 71% polyester and 29% polyurethane and laminated 100% polyester backing."
+      },
+      {
+        question: "What is Alcantara EXO intended for?",
+        answer:
+          "Alcantara EXO is intended for motocycle, outdoor upholstery, marine applications, and exterior surfaces where a soft Alcantara finish needs resistance to harsh weather, salt air, and seawater."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of ≤1.30 mm and unit weight of ≥310 g/m²."
+      },
+      {
+        question: "How does Alcantara EXO perform outdoors?",
+        answer:
+          "Alcantara EXO uses a layered outdoor structure: a soft Alcantara surface on top, a waterproof membrane beneath it, and a backing layer for stability. Water and wind stay out, while vapour can pass through for transpiration. This construction combines water impermeability of ≥2 meters water column with vapour permeability of ≥300 g/m²/day, while maintaining high light fastness for outdoor exposure."
+      }
+    ],
+    ja: [
+      {
+        question: "Alcantara EXO の素材構成は何ですか？",
+        answer:
+          "Alcantara EXO は、ポリエステル 71%、ポリウレタン 29% で構成され、100% ポリエステルの裏地でラミネートされています。"
+      },
+      {
+        question: "Alcantara EXO はどの用途に適していますか？",
+        answer:
+          "Alcantara EXO は、過酷な天候、潮風、海水への耐性が求められるモーターサイクル、アウトドア張り地、マリン用途、外装表面に適しています。"
+      },
+      {
+        question: "標準幅と厚みはどのくらいですか？",
+        answer:
+          "標準幅は 142 cm 以上、厚みは 1.30 mm 以下、単位重量は 310 g/m² 以上です。"
+      },
+      {
+        question: "Alcantara EXO の屋外性能はどのようなものですか？",
+        answer:
+          "Alcantara EXO は、上層の柔らかな Alcantara 表面、その下の防水メンブレン、安定性を支える裏地で構成された屋外向けレイヤー構造です。水と風を外側で防ぎながら、内部の水蒸気は外へ逃がす透湿性を備えています。この構造により、2 m 水柱以上の防水性と 300 g/m²/日以上の透湿性を両立し、屋外暴露に向けた高い耐光性を保ちます。"
+      }
+    ]
+  },
+  "alcantara-04": {
+    en: [
+      {
+        question: "What is Alcantara 0.4 made of?",
+        answer:
+          "Alcantara 0.4 is composed of 70% polyester and 30% polyurethane."
+      },
+      {
+        question: "What is Alcantara 0.4 intended for?",
+        answer:
+          "Alcantara 0.4 is designed for consumer electronics, wearables, and accessories, bringing a sophisticated soft-touch Alcantara finish to laptops, smartphones, headphones, and device surfaces."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with an ultra-thin thickness of 0.43 ± 0.05 mm and unit weight of 115-145 g/m²."
+      },
+      {
+        question: "Why is Alcantara 0.4 suitable for high-tech products?",
+        answer:
+          "Its thin, lightweight construction adapts well to precise product surfaces while keeping the premium tactile quality of Alcantara. It also supports color fastness to light, washing, perspiration, rubbing, and dry cleaning for demanding consumer electronics programs. Other than P/N 5010, P/N 5030 is designed specifically for high-tech products. It complies with REACH, Rohs and CA65 certification."
+      }
+    ],
+    ja: [
+      {
+        question: "Alcantara 0.4 の素材構成は何ですか？",
+        answer:
+          "Alcantara 0.4 は、ポリエステル 70%、ポリウレタン 30% で構成されています。"
+      },
+      {
+        question: "Alcantara 0.4 はどの用途に適していますか？",
+        answer:
+          "Alcantara 0.4 は、コンシューマーエレクトロニクス、ウェアラブル、アクセサリー向けに設計されています。ノートパソコン、スマートフォン、ヘッドフォン、デバイス表面に、上質で柔らかな Alcantara の触感を与えます。"
+      },
+      {
+        question: "標準幅と厚みはどのくらいですか？",
+        answer:
+          "標準幅は 142 cm 以上、厚みは 0.43 ± 0.05 mm、単位重量は 115-145 g/m² です。"
+      },
+      {
+        question: "Alcantara 0.4 がハイテク製品に適している理由は何ですか？",
+        answer:
+          "薄く軽量な構造により、精密な製品表面へなじみやすく、Alcantara らしい上質な触感を保つことができます。また、コンシューマーエレクトロニクス向けの厳しいプログラムに対応するため、耐光性、洗濯、汗、摩擦、ドライクリーニングに対する堅牢度も備えています。P/N 5010 とは別に、P/N 5030 はハイテク製品向けに特別に設計されており、REACH、Rohs、CA65 認証に適合しています。"
+      }
+    ]
+  },
+  "alcantara-master": {
+    en: [
+      {
+        question: "What is Alcantara Master made of?",
+        answer:
+          "Alcantara Master is composed of 68% polyester and 32% polyurethane."
+      },
+      {
+        question: "What is Alcantara Master intended for?",
+        answer:
+          "Alcantara Master is intended for interior, wall, and furniture upholstery, with color solutions for residential, commercial, aviation, marine, and refined mobility interiors."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of 0.83 ± 0.1 mm."
+      },
+      {
+        question: "Is Alcantara Master Fire Retardant?",
+        answer:
+          "The standard Master article is not fire retardant. For FR requirements, use the FR version 5763 and confirm the applicable B-s2,d0 specification sheet before production."
+      }
+    ],
+    ja: [
+      {
+        question: "Alcantara Master の素材構成は何ですか？",
+        answer:
+          "Alcantara Master は、ポリエステル 68%、ポリウレタン 32% で構成されています。"
+      },
+      {
+        question: "Alcantara Master はどの用途に適していますか？",
+        answer:
+          "Alcantara Master は、インテリア、壁面、家具張り地向けの素材です。住宅、商業空間、航空、船舶、上質なモビリティ内装に向けたカラーソリューションとして使用できます。"
+      },
+      {
+        question: "標準幅と厚みはどのくらいですか？",
+        answer:
+          "標準幅は 142 cm 以上、厚みは 0.83 ± 0.1 mm です。"
+      },
+      {
+        question: "Alcantara Master は難燃仕様ですか？",
+        answer:
+          "標準の Master は難燃仕様ではありません。FR 条件が必要な場合は FR バージョン 5763 を使用し、生産前に B-s2,d0 の該当仕様書をご確認ください。"
+      }
+    ]
+  },
+  "alcantara-multilayer": {
+    en: [
+      {
+        question: "What is Alcantara Multilayer made of?",
+        answer:
+          "Alcantara Multilayer is composed of 71% polyester and 29% polyurethane."
+      },
+      {
+        question: "What is Alcantara Multilayer intended for?",
+        answer:
+          "Alcantara Multilayer is intended for sofa upholstery where a soft Alcantara surface needs a structured backing for furniture applications."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of 1.2 ± 0.2 mm."
+      },
+      {
+        question: "Is Alcantara Multilayer Fire Retardant?",
+        answer:
+          "Alcantara Multilayer complies with California Technical Bulletin 117:2013 Section 1."
+      }
+    ],
+    ja: [
+      {
+        question: "Alcantara Multilayer の素材構成は何ですか？",
+        answer:
+          "Alcantara Multilayer は、ポリエステル 71%、ポリウレタン 29% で構成されています。"
+      },
+      {
+        question: "Alcantara Multilayer はどの用途に適していますか？",
+        answer:
+          "Alcantara Multilayer は、家具用途で安定した裏地と柔らかな Alcantara 表面が求められるソファ張り地向けの素材です。"
+      },
+      {
+        question: "標準幅と厚みはどのくらいですか？",
+        answer:
+          "標準幅は 142 cm 以上、厚みは 1.2 ± 0.2 mm です。"
+      },
+      {
+        question: "Alcantara Multilayer は難燃仕様ですか？",
+        answer:
+          "Alcantara Multilayer は California Technical Bulletin 117:2013 Section 1 に適合しています。"
+      }
+    ]
+  },
+  "alcantara-avant": {
+    en: [
+      {
+        question: "What is Alcantara Avant made of?",
+        answer:
+          "Alcantara Avant is composed of 68% polyester and 32% polyurethane, laminated with polyester textile backing."
+      },
+      {
+        question: "What is Alcantara Avant intended for?",
+        answer:
+          "Alcantara Avant is intended for aviation, contract, and marine upholstery where flame-retardant performance and UV stability are required."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of ≥0.95 mm."
+      },
+      {
+        question: "Is Alcantara Avant Fire Retardant?",
+        answer:
+          "Alcantara Avant complies with BS 5852 Crib 5, IMO RES A652, and FAR/JAR 25.853 flame-resistance requirements."
+      }
+    ],
+    ja: [
+      {
+        question: "Alcantara Avant の素材構成は何ですか？",
+        answer:
+          "Alcantara Avant は、ポリエステル 68%、ポリウレタン 32% で構成され、ポリエステル織物の裏地でラミネートされています。"
+      },
+      {
+        question: "Alcantara Avant はどの用途に適していますか？",
+        answer:
+          "Alcantara Avant は、難燃性能と紫外線安定性が求められる航空、契約、船舶向けの張り地に適しています。"
+      },
+      {
+        question: "標準幅と厚みはどのくらいですか？",
+        answer:
+          "標準幅は 142 cm 以上、厚みは 0.95 mm 以上です。"
+      },
+      {
+        question: "Alcantara Avant は難燃仕様ですか？",
+        answer:
+          "Alcantara Avant は BS 5852 Crib 5、IMO RES A652、FAR/JAR 25.853 の難燃要件に適合しています。"
+      }
+    ]
+  },
+  "alcantara-board-fr": {
+    en: [
+      {
+        question: "What is Alcantara Board FR made of?",
+        answer:
+          "Alcantara Board FR is composed of 70% polyester and 30% polyurethane, with FR content for marine wall-covering applications."
+      },
+      {
+        question: "What is Alcantara Board FR intended for?",
+        answer:
+          "Alcantara Board FR is intended for marine wall covering where a lightweight Alcantara surface needs IMO flame-retardant performance."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of 0.4 ± 0.05 mm."
+      },
+      {
+        question: "Is Alcantara Board FR Fire Retardant?",
+        answer:
+          "Alcantara Board FR complies with IMO RES A653, with calorific value ≤44.9 MJ/m² and smoke density ≤200."
+      }
+    ],
+    ja: [
+      {
+        question: "Alcantara Board FR の素材構成は何ですか？",
+        answer:
+          "Alcantara Board FR は、ポリエステル 70%、ポリウレタン 30% で構成され、船舶壁面用途向けの難燃成分を含みます。"
+      },
+      {
+        question: "Alcantara Board FR はどの用途に適していますか？",
+        answer:
+          "Alcantara Board FR は、軽量な Alcantara 表面と IMO 難燃性能が求められる船舶壁面仕上げに適しています。"
+      },
+      {
+        question: "標準幅と厚みはどのくらいですか？",
+        answer:
+          "標準幅は 142 cm 以上、厚みは 0.4 ± 0.05 mm です。"
+      },
+      {
+        question: "Alcantara Board FR は難燃仕様ですか？",
+        answer:
+          "Alcantara Board FR は IMO RES A653 に適合し、発熱量 ≤44.9 MJ/m²、煙濃度 ≤200 の仕様です。"
+      }
+    ]
+  }
+};
+
+function ProductTypeFaq({ items, locale }: { items: FaqItem[]; locale: Locale }) {
+  return (
+    <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-stone py-20 md:py-28" data-nav-invert id="faq">
+      <div className="section-shell">
+        <h2 className="font-serif text-2xl uppercase tracking-[0.06em] text-charcoal">
+          {locale === "en" ? "FAQ" : "よくあるご質問"}
+        </h2>
+        <div className="mx-auto mt-14 max-w-[46rem]">
+          <div className="border-t border-charcoal/10">
+            {items.map((item) => (
+              <details className="group border-b border-charcoal/10 py-5" key={item.question}>
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-8 text-left marker:hidden">
+                  <span>
+                    <span className="label-caps block text-[10px] text-charcoal">
+                      {localizeBrandNames(item.question, locale)}
+                    </span>
+                  </span>
+                  <span aria-hidden="true" className="shrink-0 font-sans text-xl leading-none text-muted transition-transform duration-300 ease-expo group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-2 pr-10 text-[0.8rem] leading-relaxed text-muted">
+                  {localizeBrandNames(item.answer, locale)}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export async function generateStaticParams() {
+  if (process.env.NODE_ENV === "development" || process.env.SITES_PREVIEW === "1") {
+    return [];
+  }
+
   const materials = await loadMaterials();
   const productTypeGroups = await Promise.all(materials.map((material) => loadProductTypesForMaterial(material.slug)));
+  const skaiProductTypeSlugs = await loadSkaiVinylProductTypeSlugs();
   const skuGroups = await Promise.all(
     materials.map(async (material, materialIndex) =>
       Promise.all(
@@ -27,33 +520,49 @@ export async function generateStaticParams() {
 
   return materials.flatMap((material, materialIndex) =>
     (skuGroups[materialIndex] ?? []).flatMap(({ productType, skus }) =>
-      skus.flatMap((sku) => [
-        { locale: "en", materialSlug: material.slug, productTypeSlug: productType.slug, skuSlug: sku.slug },
-        { locale: "ja", materialSlug: material.slug, productTypeSlug: productType.slug, skuSlug: sku.slug }
-      ])
+      skus.flatMap((sku) => {
+        const params = [{ locale: "en", materialSlug: material.slug, productTypeSlug: productType.slug, skuSlug: sku.slug }];
+        const isSkaiVinyl = material.slug === "vegan-leather" && skaiProductTypeSlugs.has(productType.slug);
+
+        return isSkaiVinyl
+          ? params
+          : [...params, { locale: "ja", materialSlug: material.slug, productTypeSlug: productType.slug, skuSlug: sku.slug }];
+      })
     )
   );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, materialSlug, productTypeSlug, skuSlug } = await params;
+  if (await isEnglishOnlySkaiVinylRoute(locale, materialSlug, productTypeSlug)) {
+    return {};
+  }
+
   const sku = await loadSku(materialSlug, productTypeSlug, skuSlug);
 
   if (!sku) {
     return {};
   }
 
+  const skaiProductTypeSlugs = materialSlug === "vegan-leather" ? await loadSkaiVinylProductTypeSlugs() : new Set<string>();
+  const availableLocales: readonly Locale[] = skaiProductTypeSlugs.has(productTypeSlug) ? ["en"] : ["en", "ja"];
+
   return createPageMetadata({
     locale,
     path: `/materials/${materialSlug}/${productTypeSlug}/${sku.slug}`,
     title: sku.seo.title[locale],
     description: sku.seo.description[locale],
-    image: sku.seo.image
+    image: sku.seo.image,
+    availableLocales
   });
 }
 
 export default async function ProductTypeSkuDetailPage({ params }: PageProps) {
   const { locale, materialSlug, productTypeSlug, skuSlug } = await params;
+  if (await isEnglishOnlySkaiVinylRoute(locale, materialSlug, productTypeSlug)) {
+    notFound();
+  }
+
   const [material, productType, sku] = await Promise.all([
     loadMaterial(materialSlug),
     loadProductType(materialSlug, productTypeSlug),
@@ -65,9 +574,27 @@ export default async function ProductTypeSkuDetailPage({ params }: PageProps) {
   }
 
   const skus = await loadSkusForProductType(material.slug, productType.slug);
+  const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
+    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "en" ? "Materials" : "素材", path: "/materials" },
+    { name: material.name[locale], path: `/materials/${material.slug}` },
+    { name: productType.name[locale], path: `/materials/${material.slug}/${productType.slug}/${sku.slug}` },
+    { name: sku.code, path: `/materials/${material.slug}/${productType.slug}/${sku.slug}` }
+  ]);
+  const productSchema = buildProductJsonLd(siteConfig, {
+    name: sku.colorName?.[locale] ? `${productType.name[locale]} ${sku.colorName[locale]}` : `${productType.name[locale]} ${sku.code}`,
+    description: sku.summary[locale],
+    path: `/materials/${material.slug}/${productType.slug}/${sku.slug}`,
+    image: sku.image,
+    sku: sku.code,
+    category: productType.name[locale]
+  }, locale);
+  const faqItems = productTypeFaqs[productType.slug]?.[locale];
 
   return (
     <main>
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={productSchema} />
       <SkuSwatches
         initialSku={sku}
         locale={locale}
@@ -82,12 +609,15 @@ export default async function ProductTypeSkuDetailPage({ params }: PageProps) {
       <SpecificationTable locale={locale} productType={productType} sku={sku} />
       <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:py-28" data-nav-invert id="downloads">
         <div className="section-shell">
-          <h2 className="font-serif text-2xl uppercase tracking-[0.06em]">Downloads</h2>
+          <h2 className="font-serif text-2xl uppercase tracking-[0.06em]">
+            {locale === "en" ? "Downloads" : "ダウンロード"}
+          </h2>
           <div className="mx-auto mt-14 max-w-[46rem]">
             <DownloadPanel locale={locale} downloads={productType.downloads} />
           </div>
         </div>
       </section>
+      {faqItems ? <ProductTypeFaq items={faqItems} locale={locale} /> : null}
     </main>
   );
 }

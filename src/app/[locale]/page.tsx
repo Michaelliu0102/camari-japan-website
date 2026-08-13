@@ -4,9 +4,12 @@ import Link from "next/link";
 import { CTASection } from "@/components/CTASection";
 import { ExploreCarousel } from "@/components/ExploreCarousel";
 import { HeroVideo } from "@/components/HeroVideo";
+import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
+import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site-config";
 import { loadHomePageSettings, loadMaterialCategories, loadMaterials } from "@/sanity/lib/loaders";
 
 type PageProps = {
@@ -31,6 +34,8 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <main>
+      <JsonLd data={buildOrganizationJsonLd(siteConfig, locale)} />
+      <JsonLd data={buildWebSiteJsonLd(siteConfig, locale)} />
       <HeroVideo hero={homeSettings.hero} locale={locale} />
       <ExploreCarousel categories={categories} categorySlugs={homeSettings.explore.categorySlugs} locale={locale} materials={materials} productSlides={homeSettings.explore.productSlides} />
 
@@ -41,18 +46,26 @@ export default async function HomePage({ params }: PageProps) {
           </div>
           <div className="flex flex-col justify-between md:max-w-[25rem] md:self-stretch">
             <div>
-              <p className="label-caps text-gold">Brand Value</p>
+              <p className="label-caps text-gold">{locale === "en" ? "Brand Value" : "ブランド価値"}</p>
               <h2 className="mt-6 font-label text-xl uppercase tracking-[0.1em] md:text-[1.65rem] md:leading-tight">
-                {locale === "en" ? "European material quality, Japanese spatial restraint." : "欧州品質の素材感と、日本的な空間の抑制。"}
+                {locale === "en" ? (
+                  <>
+                    LOCAL SERVICE.
+                    <br />
+                    GLOBAL REACH.
+                  </>
+                ) : (
+                  "欧州品質の素材感と、日本的な空間の抑制。"
+                )}
               </h2>
               <p className="mt-7 text-sm leading-7 text-muted md:text-[0.95rem]">
                 {locale === "en"
-                  ? "CAMARI JAPAN curates materials for teams who need surfaces to communicate quality before a word is spoken: automotive cabins, hospitality interiors, product panels, and bespoke OEM/ODM programs."
-                  : "CAMARI JAPAN は、言葉より先に品質を伝えるサーフェスを求めるチームに向けて素材を選定します。車両キャビン、ホスピタリティ空間、プロダクトパネル、特注 OEM/ODM プログラムに対応します。"}
+                  ? "Across China, Italy, Japan, and Australia, CAMARI connects local material expertise, certified manufacturing, and coordinated logistics in one responsive network, from concept to delivery."
+                  : `${site.organizationName} は、言葉より先に品質を伝えるサーフェスを求めるチームに向けて素材を選定します。車両キャビン、ホスピタリティ空間、プロダクトパネル、特注 OEM/ODM プログラムに対応します。`}
               </p>
             </div>
             <Link className="label-caps inline-flex min-w-[13rem] justify-center border border-outline px-8 py-4 transition-colors hover:bg-charcoal hover:text-white self-center" href={localizedPath(locale, "/about")}>
-              About Us
+              {locale === "en" ? "About Us" : "会社情報"}
             </Link>
           </div>
         </div>
@@ -60,11 +73,13 @@ export default async function HomePage({ params }: PageProps) {
 
       <CTASection
         backgroundImage={homeSettings.showroomBackgroundImage}
-        body={locale === "en" ? "Speak with the CAMARI team about material availability, technical sheets, and project-fit recommendations." : "素材の在庫、技術資料、プロジェクトに適した選定について CAMARI チームにご相談ください。"}
+        body={locale === "en" ? "Speak with our team about material specification,\nbespoke production, and project-fit solutions." : "技術仕様やデザインコンセプトをお送りください。素材選定、カスタム試作、納品まで専門スタッフがサポートします。"}
+        eyebrow={null}
         label={locale === "en" ? "Our location" : "所在地"}
         locale={locale}
-        secondaryLabel={locale === "en" ? "Make Appointment" : "ご予約"}
-        title={locale === "en" ? "Build the next surface with restraint and precision." : "抑制と精密さで、次のサーフェスをつくる。"}
+        secondaryAction="message"
+        secondaryLabel={locale === "en" ? "Inquiry Now" : "お問い合わせ"}
+        title={locale === "en" ? "Tailored Surfaces\nBespoke Creations" : "先見性あるデザインのために、素材とカスタムプロダクトを最適化します。"}
       />
     </main>
   );

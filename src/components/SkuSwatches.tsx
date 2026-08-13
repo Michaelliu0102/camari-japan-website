@@ -6,7 +6,9 @@ import { useRouter } from "next/navigation";
 import { Award, Download, FileText, SprayCan } from "lucide-react";
 import type { CSSProperties, PointerEvent } from "react";
 import { useEffect, useMemo, useState } from "react";
+import { CTAMessageDrawer } from "@/components/CTAMessageDrawer";
 import type { Sku } from "@/lib/content";
+import { toSanityThumbnailUrl } from "@/lib/image-urls";
 import { localizedPath, type Locale } from "@/lib/locales";
 
 type SkuZoomStyle = CSSProperties & {
@@ -28,23 +30,120 @@ type SkuSwatchesProps = {
 };
 
 const productInfoLinks = [
-  { href: "#specifications", label: "Specifications", Icon: FileText },
-  { href: "#certifications", label: "Certifications", Icon: Award },
-  { href: "#maintenance-and-clean", label: "Maintenance and clean", Icon: SprayCan },
-  { href: "#downloads", label: "Downloads", Icon: Download }
+  { href: "#specifications", label: { en: "Specifications", ja: "仕様" }, Icon: FileText },
+  { href: "#certifications", label: { en: "Certifications", ja: "認証" }, Icon: Award },
+  { href: "#maintenance-and-clean", label: { en: "Maintenance and clean", ja: "メンテナンス・お手入れ" }, Icon: SprayCan },
+  { href: "#downloads", label: { en: "Downloads", ja: "ダウンロード" }, Icon: Download }
 ];
+
+const skuSwatchThumbnailSize = 96;
+const fabricAutomotiveBrandPattern = /\b(?:bmw|mercedes(?:-benz)?|porsche|volkswagen|vw|mini|ford|beetle|käfer|kafer|kever|coccinelle|westfalia|capri)\b/i;
+const lightToDarkSwatchProductTypes = new Set(["automotive-nappa"]);
+const skuCodeCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
+
+const fabricTrademarkDisclaimer = {
+  en: "Vehicle brand names and trademarks referenced on this page are the property of their respective owners. CAMARI is not affiliated with, endorsed by, or sponsored by those owners. These fabrics are reproduction or aftermarket materials and are not genuine vehicle manufacturer products.",
+  ja: "本ページに記載されている車両ブランド名および商標は、それぞれの権利者に帰属します。カマリ・ジャパンは各権利者と提携、承認、またはスポンサー関係にありません。これらの生地は再現品またはアフターマーケット素材であり、車両メーカーの純正品ではありません。"
+};
+
+function hasFabricAutomotiveBrandReference(
+  materialSlug: string,
+  productTypeSlug: string,
+  productTypeName: string,
+  productTypeSummary: string,
+  sku: Sku
+) {
+  if (materialSlug !== "fabric") {
+    return false;
+  }
+
+  const text = [
+    productTypeSlug,
+    productTypeName,
+    productTypeSummary,
+    sku.code,
+    sku.colorName?.en,
+    sku.colorName?.ja,
+    sku.summary?.en,
+    sku.summary?.ja,
+    sku.seo?.title?.en,
+    sku.seo?.title?.ja,
+    sku.seo?.description?.en,
+    sku.seo?.description?.ja
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return fabricAutomotiveBrandPattern.test(text);
+}
+
+function getSkuSwatchImage(sku: Sku): string | undefined {
+  const image = sku.swatchImage ?? sku.previewImage ?? (sku.image || undefined);
+
+  return image ? toSanityThumbnailUrl(image, skuSwatchThumbnailSize) : undefined;
+}
+
+function getHexLuminance(value: string): number {
+  const normalized = value.trim().replace(/^#/, "");
+  const expanded = normalized.length === 3
+    ? normalized.split("").map((channel) => `${channel}${channel}`).join("")
+    : normalized;
+
+  if (!/^[0-9a-f]{6}$/i.test(expanded)) {
+    return -1;
+  }
+
+  const red = Number.parseInt(expanded.slice(0, 2), 16) / 255;
+  const green = Number.parseInt(expanded.slice(2, 4), 16) / 255;
+  const blue = Number.parseInt(expanded.slice(4, 6), 16) / 255;
+
+  return (0.2126 * red) + (0.7152 * green) + (0.0722 * blue);
+}
+
+function sortSkusForSwatches(skus: Sku[], productTypeSlug: string): Sku[] {
+  if (!lightToDarkSwatchProductTypes.has(productTypeSlug)) {
+    return skus;
+  }
+
+  return [...skus].sort((left, right) => {
+    const luminanceDelta = getHexLuminance(right.hex ?? "") - getHexLuminance(left.hex ?? "");
+
+    if (luminanceDelta !== 0) {
+      return luminanceDelta;
+    }
+
+    return skuCodeCollator.compare(left.code, right.code);
+  });
+}
+
+function formatArticleLabelPart(value: string): string {
+  if (value !== value.toUpperCase()) {
+    return value;
+  }
+
+  return value
+    .toLowerCase()
+    .replace(/\b[a-z]/g, (letter) => letter.toUpperCase())
+    .replace(/\bBmw\b/g, "BMW")
+    .replace(/\bVw\b/g, "VW")
+    .replace(/\bOem\b/g, "OEM")
+    .replace(/\bOdm\b/g, "ODM");
+}
 
 export function SkuSwatches({ locale, materialName, materialSlug, productTypeName, productTypeSlug, productTypeCode, productTypeSummary, skus, initialSku, compact = false }: SkuSwatchesProps) {
   const router = useRouter();
   const [selectedSlug, setSelectedSlug] = useState(initialSku.slug);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const selected = useMemo(() => skus.find((sku) => sku.slug === selectedSlug) ?? initialSku, [initialSku, selectedSlug, skus]);
-  const hasVisualSwatches = useMemo(() => skus.some((s) => s.hex || s.swatchImage || s.image), [skus]);
+  const swatchSkus = useMemo(() => sortSkusForSwatches(skus, productTypeSlug), [productTypeSlug, skus]);
+  const hasVisualSwatches = useMemo(() => skus.some((s) => s.hex || s.swatchImage || s.previewImage || s.image), [skus]);
+  const showFabricTrademarkDisclaimer = hasFabricAutomotiveBrandReference(materialSlug, productTypeSlug, productTypeName, productTypeSummary, selected);
+  const contactArticleLabel = `${formatArticleLabelPart(materialName)} - ${formatArticleLabelPart(productTypeName)}`;
   const galleryImages = useMemo(() => {
     const images = [
       {
         image: selected.image,
-        thumbnail: selected.swatchImage ?? selected.image,
+        thumbnail: getSkuSwatchImage(selected) ?? selected.image,
         alt: `${materialName}${selected.colorName?.[locale] ? ` — ${selected.colorName[locale]}` : ""}`
       },
       ...(selected.caseGallery ?? []).map((item) => ({
@@ -159,7 +258,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
             </div>
 
             <p className="mt-5 text-center font-sans text-[12px] leading-[19px] md:mt-6">
-              <span className="font-semibold text-charcoal">Color Code: </span>
+              <span className="font-semibold text-charcoal">{locale === "en" ? "Color Code: " : "カラーコード："}</span>
               <span className="text-charcoal/70">{selected.code}</span>
             </p>
           </div>
@@ -169,17 +268,17 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
         <div className="flex flex-col md:pl-[5%] md:pt-0 lg:pl-[10%]">
           <div className="md:max-w-[20rem] lg:max-w-[24rem]">
             {/* Breadcrumb */}
-            <nav aria-label="Breadcrumb" className="mb-4">
+            <nav aria-label={locale === "en" ? "Breadcrumb" : "パンくずリスト"} className="mb-4">
               <ol className="flex flex-wrap items-center gap-x-2 font-sans text-[10px] uppercase tracking-[0.12em] text-muted">
                 <li>
                   <Link className="transition-colors hover:text-charcoal" href={localizedPath(locale, "/")}>
-                    Home
+                    {locale === "en" ? "Home" : "ホーム"}
                   </Link>
                 </li>
                 <li aria-hidden="true" className="select-none">/</li>
                 <li>
                   <Link className="transition-colors hover:text-charcoal" href={localizedPath(locale, "/materials")}>
-                    Material
+                    {locale === "en" ? "Material" : "素材"}
                   </Link>
                 </li>
                 <li aria-hidden="true" className="select-none">/</li>
@@ -201,7 +300,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
             </h1>
             {productTypeCode ? (
               <p className="mt-1 font-sans text-[11px] text-muted">
-                Product code: {productTypeCode}
+                {locale === "en" ? "Product code: " : "製品コード："}{productTypeCode}
               </p>
             ) : null}
 
@@ -212,144 +311,144 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
 
             {productTypeSlug === "alcantara-panel" ? (
               <p className="mt-6 font-sans text-[0.85rem] leading-relaxed text-muted">
-                For seats, please see{" "}
+                {locale === "en" ? "For seats, please see " : "シート用途には"}
                 <Link
                   className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                   href={localizedPath(locale, `/materials/${materialSlug}/alcantara-cover/alc-c-1108`)}
                 >
-                  ALCANTARA COVER
+                  {locale === "en" ? "ALCANTARA COVER" : "アルカンターラ COVER"}
                 </Link>
-                .
+                {locale === "en" ? "." : "をご覧ください。"}
               </p>
             ) : productTypeSlug === "alcantara-cover" ? (
               <p className="mt-6 font-sans text-[0.85rem] leading-relaxed text-muted">
-                For door panel, dashboard and other upholstery, please see{" "}
+                {locale === "en" ? "For door panel, dashboard and other upholstery, please see " : "ドアパネル、ダッシュボード、その他の張り地用途には"}
                 <Link
                   className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                   href={localizedPath(locale, `/materials/${materialSlug}/alcantara-panel/alc-p-1108`)}
                 >
-                  ALCANTARA PANNEL
+                  {locale === "en" ? "ALCANTARA PANNEL" : "アルカンターラ PANNEL"}
                 </Link>
-                .
+                {locale === "en" ? "." : "をご覧ください。"}
               </p>
             ) : productTypeSlug === "alcantara-master" ? (
               <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
                 <p>
-                  For upholstery sofa, please see Alcantara{" "}
+                  {locale === "en" ? "For upholstery sofa, please see Alcantara " : "ソファの張り地にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-multilayer/alc-ml-1001`)}
                   >
                     Multilayer
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
                 <p>
-                  For upholstery aviation, contract, marine, please see Alcantara{" "}
+                  {locale === "en" ? "For upholstery aviation, contract, marine, please see Alcantara " : "航空機、コントラクト、マリン用途の張り地にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-avant/alc-av-1001`)}
                   >
                     Avant
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
                 <p>
-                  For marine wall covering, please see Alcantara{" "}
+                  {locale === "en" ? "For marine wall covering, please see Alcantara " : "マリン用途の壁装材にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-board-fr/alc-bf-1001`)}
                   >
                     Board FR
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
               </div>
             ) : productTypeSlug === "alcantara-multilayer" ? (
               <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
                 <p>
-                  For interior decoration, please see Alcantara{" "}
+                  {locale === "en" ? "For interior decoration, please see Alcantara " : "インテリア装飾にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-master/alc-m-1001`)}
                   >
                     Master
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
                 <p>
-                  For upholstery aviation, contract, marine, please see Alcantara{" "}
+                  {locale === "en" ? "For upholstery aviation, contract, marine, please see Alcantara " : "航空機、コントラクト、マリン用途の張り地にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-avant/alc-av-1001`)}
                   >
                     Avant
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
                 <p>
-                  For marine wall covering, please see Alcantara{" "}
+                  {locale === "en" ? "For marine wall covering, please see Alcantara " : "マリン用途の壁装材にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-board-fr/alc-bf-1001`)}
                   >
                     Board FR
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
               </div>
             ) : productTypeSlug === "alcantara-avant" ? (
               <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
                 <p>
-                  For interior decoration, please see Alcantara{" "}
+                  {locale === "en" ? "For interior decoration, please see Alcantara " : "インテリア装飾にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-master/alc-m-1001`)}
                   >
                     Master
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
                 <p>
-                  For upholstery sofa, please see Alcantara{" "}
+                  {locale === "en" ? "For upholstery sofa, please see Alcantara " : "ソファの張り地にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-multilayer/alc-ml-1001`)}
                   >
                     Multilayer
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
                 <p>
-                  For marine wall covering, please see Alcantara{" "}
+                  {locale === "en" ? "For marine wall covering, please see Alcantara " : "マリン用途の壁装材にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-board-fr/alc-bf-1001`)}
                   >
                     Board FR
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
               </div>
             ) : productTypeSlug === "alcantara-board-fr" ? (
               <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
                 <p>
-                  For interior decoration, please see Alcantara{" "}
+                  {locale === "en" ? "For interior decoration, please see Alcantara " : "インテリア装飾にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-master/alc-m-1001`)}
                   >
                     Master
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
                 <p>
-                  For upholstery sofa, please see Alcantara{" "}
+                  {locale === "en" ? "For upholstery sofa, please see Alcantara " : "ソファの張り地にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-multilayer/alc-ml-1001`)}
                   >
                     Multilayer
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
                 <p>
-                  For upholstery aviation, contract, marine, please see Alcantara{" "}
+                  {locale === "en" ? "For upholstery aviation, contract, marine, please see Alcantara " : "航空機、コントラクト、マリン用途の張り地にはアルカンターラ "}
                   <Link
                     className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
                     href={localizedPath(locale, `/materials/${materialSlug}/alcantara-avant/alc-av-1001`)}
                   >
                     Avant
-                  </Link>.
+                  </Link>{locale === "en" ? "." : "をご覧ください。"}
                 </p>
               </div>
             ) : null}
@@ -359,33 +458,37 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
               <div className="mt-10 scroll-mt-[calc(var(--nav-height)+2rem)] md:mt-12" id="you-may-also-like">
                 <div className="mb-4 flex items-baseline justify-between">
                   <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-charcoal/80">
-                    {selected.colorName?.[locale] ? `Colour — ${selected.colorName[locale]}` : `Colour`}
+                    {selected.colorName?.[locale]
+                      ? `${locale === "en" ? "Colour" : "カラー"} — ${selected.colorName[locale]}`
+                      : locale === "en" ? "Colour" : "カラー"}
                   </span>
-                  <span className="font-sans text-[10px] tracking-[0.12em] text-charcoal/60">{skus.length} options</span>
+                  <span className="font-sans text-[10px] tracking-[0.12em] text-charcoal/60">
+                    {locale === "en" ? `${skus.length} options` : `${skus.length}色`}
+                  </span>
                 </div>
-                    <div className="flex flex-wrap gap-[10px]">
-                      {skus.map((sku) => {
-                        const active = sku.slug === selected.slug;
-                        const swatchImage = materialSlug === "fabric" ? sku.swatchImage ?? sku.image : sku.swatchImage;
-                        const swatchStyle = !swatchImage && sku.hex ? { backgroundColor: sku.hex } : undefined;
+                <div className="flex flex-wrap gap-[10px]">
+                  {swatchSkus.map((sku) => {
+                    const active = sku.slug === selected.slug;
+                    const swatchImage = getSkuSwatchImage(sku);
+                    const swatchStyle = !swatchImage && sku.hex ? { backgroundColor: sku.hex } : undefined;
 
-                        return (
-                          <button
-                            aria-label={sku.colorName?.[locale] ? `${sku.colorName[locale]} — ${sku.code}` : sku.code}
-                            aria-pressed={active}
-                            className={`relative h-9 w-9 shrink-0 overflow-hidden border border-charcoal/15 bg-[#f3f3f2] transition-all ${
-                              active
-                                ? "outline outline-1 outline-offset-[3px] outline-charcoal"
-                                : "hover:scale-110"
-                            }`}
-                            key={sku.slug}
-                            onClick={() => handleSwatchClick(sku.slug)}
-                            style={swatchStyle}
-                            title={sku.colorName?.[locale] ? `${sku.code} ${sku.colorName[locale]}` : sku.code}
-                            type="button"
-                          >
-                            {swatchImage ? <Image alt="" className="object-cover" fill sizes="36px" src={swatchImage} /> : null}
-                          </button>
+                    return (
+                      <button
+                        aria-label={sku.colorName?.[locale] ? `${sku.colorName[locale]} — ${sku.code}` : sku.code}
+                        aria-pressed={active}
+                        className={`relative h-9 w-9 shrink-0 overflow-hidden border border-charcoal/15 bg-[#f3f3f2] transition-all ${
+                          active
+                            ? "outline outline-1 outline-offset-[3px] outline-charcoal"
+                            : "hover:scale-110"
+                        }`}
+                        key={sku.slug}
+                        onClick={() => handleSwatchClick(sku.slug)}
+                        style={swatchStyle}
+                        title={sku.colorName?.[locale] ? `${sku.code} ${sku.colorName[locale]}` : sku.code}
+                        type="button"
+                      >
+                        {swatchImage ? <Image alt="" className="object-cover" fill sizes="36px" src={swatchImage} unoptimized /> : null}
+                      </button>
                     );
                   })}
                 </div>
@@ -394,20 +497,30 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
 
             {/* Action buttons — Dedar's CTA area */}
             <div className="mt-8 space-y-3 md:mt-10">
-              <Link
-                className="inline-flex w-full justify-center bg-charcoal px-10 py-4 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-charcoal/85 md:w-auto md:min-w-[15rem]"
-                href={localizedPath(locale, "/contact")}
-              >
-                Contact Sales
-              </Link>
-              <p className="font-sans text-[10px] leading-relaxed text-muted">Sample request workflow is reserved for a later release.</p>
+              <CTAMessageDrawer
+                articleLabel={contactArticleLabel}
+                buttonClassName="inline-flex w-full justify-center bg-charcoal px-10 py-4 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-charcoal/85 md:w-auto md:min-w-[15rem]"
+                buttonLabel={locale === "en" ? "Contact Sales" : "営業担当に相談"}
+                locale={locale}
+                placement="top"
+              />
+              <p className="font-sans text-[10px] leading-relaxed text-muted">
+                {locale === "en"
+                  ? "Sample request workflow is reserved for a later release."
+                  : "サンプル請求機能は現在準備中です。"}
+              </p>
+              {showFabricTrademarkDisclaimer ? (
+                <p className="max-w-[34rem] font-sans text-[9px] leading-relaxed text-charcoal/45">
+                  {fabricTrademarkDisclaimer[locale]}
+                </p>
+              ) : null}
             </div>
           </div>
         </div>
       </div>
 
       <nav
-        aria-label="Product information sections"
+        aria-label={locale === "en" ? "Product information sections" : "製品情報セクション"}
         className="mt-8 border-y border-charcoal/20 bg-paper md:mt-12"
         data-nav-invert
         id="product-info-nav"
@@ -420,7 +533,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
               key={href}
             >
               <Icon aria-hidden="true" className="h-5 w-5 stroke-[1.25] transition-transform duration-300 ease-expo group-hover:-translate-y-0.5" />
-              <span>{label}</span>
+              <span>{label[locale]}</span>
             </Link>
           ))}
         </div>

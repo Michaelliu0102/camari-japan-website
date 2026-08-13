@@ -21,6 +21,20 @@ export const productType = defineType({
       validation: (rule) => rule.required()
     }),
     defineField({
+      name: "markets",
+      title: "Target Markets / Websites",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        list: [
+          { title: "Global International (.com)", value: "global" },
+          { title: "Japan Only (.co.jp)", value: "japan" }
+        ],
+        layout: "tags"
+      },
+      validation: (rule) => rule.required().min(1).error("At least one target market must be selected.")
+    }),
+    defineField({
       name: "material",
       title: "Material",
       type: "reference",

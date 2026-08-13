@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import ShinyText from "@/components/ShinyText/ShinyText";
 import type { ProductType, Sku } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
 
@@ -13,8 +14,15 @@ type MaterialArticleGridProps = {
   skus: Sku[];
 };
 
-export function MaterialArticleGrid({ locale, materialSlug, productTypes, skus }: MaterialArticleGridProps) {
-  const [previewBySlug, setPreviewBySlug] = useState<Record<string, string | undefined>>({});
+export function MaterialArticleGrid({
+  locale,
+  materialSlug,
+  productTypes,
+  skus,
+}: MaterialArticleGridProps) {
+  const [previewBySlug, setPreviewBySlug] = useState<
+    Record<string, string | undefined>
+  >({});
   const skuGroups = new Map<string, Sku[]>();
 
   for (const sku of skus) {
@@ -28,11 +36,19 @@ export function MaterialArticleGrid({ locale, materialSlug, productTypes, skus }
       <div className="section-shell">
         <div className="mb-14 grid gap-8 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
-            <p className="label-caps text-gold">Fabric Article</p>
-            <h2 className="mt-5 font-label text-3xl uppercase tracking-[0.12em] md:text-4xl">Pattern Library</h2>
+            <p className="label-caps text-gold">{locale === "en" ? "Fabric Article" : "ファブリック記事"}</p>
+            <h2 className="mt-5 font-label text-3xl uppercase tracking-[0.12em] md:text-4xl">
+              <ShinyText
+                color="#1a1a1a"
+                shineColor="#ffffff"
+                text={locale === "en" ? "Pattern Library" : "パターンライブラリー"}
+              />
+            </h2>
           </div>
           <p className="max-w-2xl text-sm leading-7 text-muted md:col-span-5 md:justify-self-end md:text-right">
-            Restored automotive textiles arranged by marque, weave, and period reference.
+            {locale === "en"
+              ? "Automotive fabric displayed by pattern and marques."
+              : "パターンとブランド別に自動車用ファブリックをご覧いただけます。"}
           </p>
         </div>
 
@@ -42,14 +58,21 @@ export function MaterialArticleGrid({ locale, materialSlug, productTypes, skus }
             const firstSku = productSkus[0];
             const image = productType.seo.image || firstSku?.image;
             const previewImage = previewBySlug[productType.slug] ?? image;
-            const href = firstSku ? `/materials/${materialSlug}/${productType.slug}/${firstSku.slug}` : `/materials/${materialSlug}`;
+            const href = firstSku
+              ? `/materials/${materialSlug}/${productType.slug}/${firstSku.slug}`
+              : `/materials/${materialSlug}`;
             const previewSkus = productSkus.slice(0, 5);
 
             return (
               <article className="group block" key={productType.slug}>
                 <div
                   className="relative aspect-square overflow-hidden bg-stone shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-material"
-                  onMouseLeave={() => setPreviewBySlug((current) => ({ ...current, [productType.slug]: undefined }))}
+                  onMouseLeave={() =>
+                    setPreviewBySlug((current) => ({
+                      ...current,
+                      [productType.slug]: undefined,
+                    }))
+                  }
                 >
                   {previewImage ? (
                     <Image
@@ -68,24 +91,45 @@ export function MaterialArticleGrid({ locale, materialSlug, productTypes, skus }
 
                   {previewSkus.length > 1 ? (
                     <div className="absolute left-4 top-4 z-20 flex max-h-[calc(100%-2rem)] w-16 flex-col gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
-                      {previewSkus.map((sku) => (
+                      {previewSkus.map((sku) =>
                         (() => {
-                          const cardPreviewImage = sku.previewImage ?? sku.swatchImage ?? sku.image;
+                          const cardPreviewImage =
+                            sku.previewImage ?? sku.swatchImage ?? sku.image;
 
                           return (
                             <button
-                              aria-label={sku.code ? `Preview ${sku.code}` : "Preview fabric colour"}
+                              aria-label={
+                                sku.code
+                                  ? `Preview ${sku.code}`
+                                  : "Preview fabric colour"
+                              }
                               className="relative aspect-square overflow-hidden border border-white/85 bg-stone shadow-sm transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
                               key={sku.slug}
-                              onFocus={() => setPreviewBySlug((current) => ({ ...current, [productType.slug]: cardPreviewImage }))}
-                              onMouseEnter={() => setPreviewBySlug((current) => ({ ...current, [productType.slug]: cardPreviewImage }))}
+                              onFocus={() =>
+                                setPreviewBySlug((current) => ({
+                                  ...current,
+                                  [productType.slug]: cardPreviewImage,
+                                }))
+                              }
+                              onMouseEnter={() =>
+                                setPreviewBySlug((current) => ({
+                                  ...current,
+                                  [productType.slug]: cardPreviewImage,
+                                }))
+                              }
                               type="button"
                             >
-                              <Image alt="" className="object-cover" fill sizes="64px" src={cardPreviewImage} />
+                              <Image
+                                alt=""
+                                className="object-cover"
+                                fill
+                                sizes="64px"
+                                src={cardPreviewImage}
+                              />
                             </button>
                           );
-                        })()
-                      ))}
+                        })(),
+                      )}
                       {productSkus.length > previewSkus.length ? (
                         <span className="label-caps flex min-h-8 items-center justify-center bg-charcoal/70 text-[8px] tracking-[0.18em] text-white">
                           +{productSkus.length - previewSkus.length}
@@ -96,7 +140,10 @@ export function MaterialArticleGrid({ locale, materialSlug, productTypes, skus }
                 </div>
 
                 <div className="pt-7 text-center">
-                  <Link className="label-caps text-charcoal transition-colors hover:text-gold" href={localizedPath(locale, href)}>
+                  <Link
+                    className="label-caps text-charcoal transition-colors hover:text-gold"
+                    href={localizedPath(locale, href)}
+                  >
                     {productType.name[locale].toUpperCase()}
                   </Link>
                 </div>

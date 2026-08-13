@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
-import { SearchOverlay } from "@/components/SearchOverlay";
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import SplitText from "@/components/SplitText";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import type { HomeExploreSlide, LocalizedString, Material, MaterialCategory } from "@/lib/content";
+import { JAPANESE_PRODUCT_SURFACE_DESCRIPTION } from "@/lib/japanese-copy";
 import { localizedPath, type Locale } from "@/lib/locales";
 
 type ExploreSlide = {
@@ -44,6 +45,19 @@ const sideCardSize = {
 };
 
 const cardTransition = "height 1250ms cubic-bezier(.18,.86,.18,1), width 1250ms cubic-bezier(.18,.86,.18,1), transform 1250ms cubic-bezier(.18,.86,.18,1), opacity 1250ms cubic-bezier(.18,.86,.18,1), filter 1250ms cubic-bezier(.18,.86,.18,1)";
+
+const homeExploreImageOverrides: Record<string, string> = {
+  alcantara: "/uploads/carousel/alcantara2.jpg",
+  fabric: "/uploads/carousel/fabric.jpg",
+  "vegan-leather": "/uploads/veganleather/home-vegan-leather.jpg"
+};
+
+const homeExploreDescriptionOverrides: Record<string, Partial<LocalizedString>> = {
+  projects: {
+    en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
+    ja: JAPANESE_PRODUCT_SURFACE_DESCRIPTION,
+  }
+};
 
 function circularDistance(from: number, to: number, length: number) {
   return ((from - to) % length + length) % length;
@@ -109,21 +123,27 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
         },
         {
           slug: "projects",
-          title: { en: "Applied Precision", ja: "応用される精密性" },
-          category: { en: "Product — ODM", ja: "Product — ODM" },
+          title: { en: "PRODUCT", ja: "PRODUCT" },
+          category: { en: "Product", ja: "Product" },
           description: {
-            en: "Case-led development from concept, material matching, and surface execution.",
-            ja: "コンセプト、素材選定、サーフェス実装までのケース主導型開発。"
+            en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
+            ja: JAPANESE_PRODUCT_SURFACE_DESCRIPTION
           },
-          image: categories[3]?.coverImage ?? fallbackImage,
-          href: "/projects"
+          image: "/uploads/product/product.jpg",
+          href: "/products"
         }
       ]
     : [];
   const selectedCategories = categorySlugs?.length
     ? categorySlugs.map((slug) => categories.find((category) => category.slug === slug)).filter((category): category is MaterialCategory => Boolean(category))
     : categories.slice(0, 3);
-  const productSlides: ExploreSlide[] = configuredProductSlides?.length ? configuredProductSlides : fallbackProductSlides;
+  const productSlides: ExploreSlide[] = (configuredProductSlides?.length ? configuredProductSlides : fallbackProductSlides).map((productSlide) => ({
+    ...productSlide,
+    description: {
+      ...productSlide.description,
+      ...(homeExploreDescriptionOverrides[productSlide.slug] ?? {})
+    }
+  }));
   const slides: ExploreSlide[] = useMemo(
     () => [
       ...selectedCategories.map((category) => ({
@@ -131,16 +151,21 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
         title: category.name,
         category: { en: `Material — ${category.name.en}`, ja: `Material — ${category.name.ja}` },
         description: category.description,
-        image: category.coverImage,
-        href: materials.some((material) => material.slug === category.slug) ? `/materials/${category.slug}` : "/materials"
+        image: homeExploreImageOverrides[category.slug] ?? category.coverImage,
+        href: (() => {
+            const bySlug = materials.find((m) => m.slug === category.slug);
+            if (bySlug) return `/materials/${category.slug}`;
+            const byName = materials.find(
+              (m) => m.name.en.toLowerCase() === category.name.en.toLowerCase()
+            );
+            return byName ? `/materials/${byName.slug}` : "/materials";
+          })()
       })),
       ...productSlides
     ],
     [materials, productSlides, selectedCategories]
   );
   const [index, setIndex] = useState(0);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
   const slide = slides[index];
 
   useEffect(() => {
@@ -153,27 +178,6 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
     return () => window.clearInterval(intervalId);
   }, [slides.length]);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    const section = sectionRef.current;
-
-    if (!section) return;
-
-    const previousSnapType = root.style.scrollSnapType;
-    const previousSnapAlign = section.style.scrollSnapAlign;
-    const previousSnapStop = section.style.scrollSnapStop;
-
-    root.style.scrollSnapType = "y proximity";
-    section.style.scrollSnapAlign = "start";
-    section.style.scrollSnapStop = "always";
-
-    return () => {
-      root.style.scrollSnapType = previousSnapType;
-      section.style.scrollSnapAlign = previousSnapAlign;
-      section.style.scrollSnapStop = previousSnapStop;
-    };
-  }, []);
-
   if (!slide) {
     return null;
   }
@@ -183,7 +187,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
   }
 
   return (
-    <section className="relative isolate flex h-[100svh] overflow-hidden bg-charcoal text-white" data-explore-slider ref={sectionRef}>
+    <section className="relative isolate -mt-px flex h-[100svh] scroll-mt-0 overflow-hidden bg-charcoal text-white" data-explore-slider id="home-explore">
       <div className="absolute inset-0 -z-20 bg-charcoal">
         {slides.map((item, slideIndex) => (
           <Image
@@ -197,15 +201,20 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
         ))}
       </div>
       <div className="absolute inset-0 -z-10 bg-charcoal/35 backdrop-blur-md" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-[22svh] bg-gradient-to-b from-charcoal via-charcoal/45 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-[34%] bg-charcoal/95" />
       <div className="absolute inset-x-0 bottom-[34%] -z-10 h-[10%] bg-gradient-to-t from-charcoal/85 to-transparent" />
 
       <div className="section-shell box-border flex h-full items-center pb-4 pt-[calc(var(--nav-height)+1rem)] md:pb-5 md:pt-[calc(var(--nav-height)+1.5rem)]">
         <div className="relative mx-auto h-full max-h-[50rem] w-full max-w-[92rem]" style={{ perspective: "1200px" }}>
           <div className="pointer-events-none absolute inset-x-0 top-[1%] text-center md:top-[1.5%]">
-            <h2 className="font-display text-[2.05rem] uppercase leading-none tracking-[0.24em] text-white/90 md:text-[3.4rem]">
-              Explore
-            </h2>
+            <SplitText
+              className="font-display text-[2.05rem] uppercase leading-none tracking-[0.24em] text-white/90 md:text-[3.4rem]"
+              delay={60}
+              tag="h2"
+              text="Explore"
+              threshold={0}
+            />
           </div>
 
           <div className="absolute inset-x-0 top-[15%] h-[56%]" style={{ transformStyle: "preserve-3d" }}>
@@ -279,16 +288,11 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
 
           <div className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[54rem] flex-col items-center justify-center gap-3 sm:flex-row">
             <Link className="label-caps inline-flex min-w-[12rem] justify-center border border-white/35 px-7 py-3 transition-colors hover:bg-white hover:text-charcoal md:min-w-[13rem] md:px-8 md:py-3.5" href={localizedPath(locale, slide.href)}>
-              View
+              {locale === "en" ? "View" : "詳細を見る"}
             </Link>
-            <button className="label-caps inline-flex min-w-[12rem] items-center justify-center gap-2 border border-white/35 px-7 py-3 transition-colors hover:bg-white hover:text-charcoal md:min-w-[13rem] md:px-8 md:py-3.5" onClick={() => setSearchOpen(true)} type="button">
-              <Search size={14} strokeWidth={1.4} />
-              Search
-            </button>
           </div>
         </div>
       </div>
-      <SearchOverlay locale={locale} onClose={() => setSearchOpen(false)} open={searchOpen} />
     </section>
   );
 }

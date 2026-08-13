@@ -11,9 +11,17 @@ export type RawDownload = {
   description?: LocalizedString | null;
   href?: string | null;
   type?: "catalog" | "technical" | "care" | null;
+  updatedAt?: string | null;
 };
 
+export type RawSanityImage = {
+  asset?: { _ref?: string | null; _id?: string | null; url?: string | null } | null;
+  crop?: { left?: number | null; top?: number | null; right?: number | null; bottom?: number | null } | null;
+  hotspot?: { x?: number | null; y?: number | null; width?: number | null; height?: number | null } | null;
+} | null;
+
 export type RawMaterialCategory = {
+  updatedAt?: string | null;
   name?: LocalizedString | null;
   slug?: string | null;
   tagline?: LocalizedString | null;
@@ -29,6 +37,7 @@ export type RawApplication = {
 };
 
 export type RawMaterial = {
+  updatedAt?: string | null;
   name?: LocalizedString | null;
   slug?: string | null;
   categorySlug?: string | null;
@@ -43,8 +52,10 @@ export type RawMaterial = {
 };
 
 export type RawProductType = {
+  updatedAt?: string | null;
   name?: LocalizedString | null;
   slug?: string | null;
+  markets?: string[] | null;
   materialSlug?: string | null;
   summary?: LocalizedString | null;
   productCode?: string | null;
@@ -62,7 +73,29 @@ export type RawProductType = {
   seo?: RawSeo;
 };
 
+export type RawProductCarouselItem = {
+  title?: LocalizedString | null;
+  coverImageUrl?: string | null;
+  description?: LocalizedString | null;
+  customizedOption?: LocalizedString | null;
+  details?: Array<LocalizedString | null> | null;
+  galleryImageUrls?: Array<string | null> | null;
+};
+
+export type RawProductCategory = {
+  updatedAt?: string | null;
+  title?: LocalizedString | null;
+  slug?: string | null;
+  subtitle?: LocalizedString | null;
+  heroImageUrl?: string | null;
+  description?: LocalizedString | null;
+  highlights?: Array<{ title?: LocalizedString | null; body?: LocalizedString | null } | null> | null;
+  carouselItems?: RawProductCarouselItem[] | null;
+  seo?: RawSeo;
+};
+
 export type RawSku = {
+  updatedAt?: string | null;
   code?: string | null;
   slug?: string | null;
   materialSlug?: string | null;
@@ -70,6 +103,7 @@ export type RawSku = {
   colorName?: LocalizedString | null;
   hex?: string | null;
   heroImageUrl?: string | null;
+  swatchImageUrl?: string | null;
   previewImageUrl?: string | null;
   caseGallery?: Array<{ imageUrl?: string | null; alt?: LocalizedString | null }> | null;
   summary?: LocalizedString | null;
@@ -80,16 +114,34 @@ export type RawSku = {
 };
 
 export type RawProjectCase = {
+  updatedAt?: string | null;
   title?: LocalizedString | null;
   slug?: string | null;
   industry?: LocalizedString | null;
+  image?: RawSanityImage;
   imageUrl?: string | null;
+  galleryImages?: Array<RawSanityImage> | null;
+  galleryImageUrls?: Array<string | null> | null;
   summary?: LocalizedString | null;
   materialSlug?: string | null;
+  linkedMaterials?:
+    | Array<{
+        slug?: string | null;
+        name?: LocalizedString | null;
+      } | null>
+    | null;
+  linkedArticles?:
+    | Array<{
+        slug?: string | null;
+        materialSlug?: string | null;
+        name?: LocalizedString | null;
+      } | null>
+    | null;
   seo?: RawSeo;
 };
 
 export type RawNewsItem = {
+  updatedAt?: string | null;
   title?: LocalizedString | null;
   slug?: string | null;
   category?: LocalizedString | null;
@@ -101,6 +153,7 @@ export type RawNewsItem = {
 };
 
 export type RawCatalog = {
+  updatedAt?: string | null;
   title?: LocalizedString | null;
   description?: LocalizedString | null;
   href?: string | null;
@@ -129,6 +182,22 @@ export type RawHomePageSettings = {
   exploreProductSlides?: RawHomeExploreSlide[] | null;
 } | null;
 
+export type RawAboutPageSettings = {
+  seoTitle?: LocalizedString | null;
+  seoDescription?: LocalizedString | null;
+  seoImageUrl?: string | null;
+  heroImageUrl?: string | null;
+  heroAlt?: LocalizedString | null;
+  heroTitle?: LocalizedString | null;
+  exploreLabel?: LocalizedString | null;
+  bodyLabel?: LocalizedString | null;
+  bodyTitle?: LocalizedString | null;
+  bodyParagraphs?: Array<LocalizedString | null> | null;
+  manufacturingLabel?: LocalizedString | null;
+  manufacturingTitle?: LocalizedString | null;
+  manufacturingParagraphs?: Array<LocalizedString | null> | null;
+} | null;
+
 export const homePageSettingsQuery = `*[_type == "homePage"][0] {
   heroTitle,
   heroSubtitle,
@@ -150,7 +219,24 @@ export const homePageSettingsQuery = `*[_type == "homePage"][0] {
   }
 }`;
 
+export const aboutPageSettingsQuery = `*[_type == "aboutPage"][0] {
+  seoTitle,
+  seoDescription,
+  "seoImageUrl": seoImage.asset->url,
+  "heroImageUrl": heroImage.asset->url,
+  heroAlt,
+  heroTitle,
+  exploreLabel,
+  bodyLabel,
+  bodyTitle,
+  bodyParagraphs,
+  manufacturingLabel,
+  manufacturingTitle,
+  manufacturingParagraphs
+}`;
+
 export const materialCategoriesQuery = `*[_type == "materialCategory"] | order(sortOrder asc, name.en asc) {
+  "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
   tagline,
@@ -159,6 +245,7 @@ export const materialCategoriesQuery = `*[_type == "materialCategory"] | order(s
 }`;
 
 export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
+  "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
   "categorySlug": category->slug.current,
@@ -181,9 +268,11 @@ export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
   }
 }`;
 
-export const productTypesQuery = `*[_type == "productType"] | order(material->name.en asc, name.en asc) {
+export const productTypesQuery = `*[_type == "productType" && (!defined(markets) || $market in markets)] | order(material->name.en asc, name.en asc) {
+  "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
+  markets,
   "materialSlug": material->slug.current,
   summary,
   productCode,
@@ -211,7 +300,34 @@ export const productTypesQuery = `*[_type == "productType"] | order(material->na
   }
 }`;
 
-export const skusQuery = `*[_type == "sku"] | order(code asc) {
+export const productCategoriesQuery = `*[_type == "productCategory"] | order(sortOrder asc, title.en asc) {
+  "updatedAt": _updatedAt,
+  title,
+  "slug": slug.current,
+  subtitle,
+  "heroImageUrl": heroImage.asset->url,
+  description,
+  highlights[] {
+    title,
+    body
+  },
+  carouselItems[] {
+    title,
+    "coverImageUrl": coverImage.asset->url,
+    description,
+    customizedOption,
+    details,
+    "galleryImageUrls": gallery[].asset->url
+  },
+  seo {
+    title,
+    description,
+    "imageUrl": image.asset->url
+  }
+}`;
+
+export const skusQuery = `*[_type == "sku" && (!defined(productType->markets) || $market in productType->markets)] | order(code asc) {
+  "updatedAt": _updatedAt,
   code,
   "slug": slug.current,
   "materialSlug": material->slug.current,
@@ -219,6 +335,7 @@ export const skusQuery = `*[_type == "sku"] | order(code asc) {
   colorName,
   hex,
   "heroImageUrl": heroImage.asset->url,
+  "swatchImageUrl": swatchImage.asset->url,
   "previewImageUrl": previewImage.asset->url,
   caseGallery[] {
     "imageUrl": image.asset->url,
@@ -241,12 +358,33 @@ export const skusQuery = `*[_type == "sku"] | order(code asc) {
 }`;
 
 export const projectsQuery = `*[_type == "projectCase"] | order(title.en asc) {
+  "updatedAt": _updatedAt,
   title,
   "slug": slug.current,
   industry,
+  "image": coverImage{
+    asset,
+    crop,
+    hotspot
+  },
   "imageUrl": coverImage.asset->url,
+  "galleryImages": gallery[]{
+    asset,
+    crop,
+    hotspot
+  },
+  "galleryImageUrls": gallery[].asset->url,
   summary,
   "materialSlug": relatedMaterial->slug.current,
+  "linkedMaterials": linkedMaterials[]->{
+    "slug": slug.current,
+    name
+  },
+  "linkedArticles": linkedArticles[]->{
+    "slug": slug.current,
+    "materialSlug": material->slug.current,
+    name
+  },
   seo {
     title,
     description,
@@ -255,6 +393,7 @@ export const projectsQuery = `*[_type == "projectCase"] | order(title.en asc) {
 }`;
 
 export const newsItemsQuery = `*[_type == "news"] | order(publishedAt desc, title.en asc) {
+  "updatedAt": _updatedAt,
   title,
   "slug": slug.current,
   category,
@@ -270,6 +409,7 @@ export const newsItemsQuery = `*[_type == "news"] | order(publishedAt desc, titl
 }`;
 
 export const catalogsQuery = `*[_type == "catalog" && language == $locale] | order(title.en asc) {
+  "updatedAt": _updatedAt,
   title,
   description,
   "href": pdf.asset->url

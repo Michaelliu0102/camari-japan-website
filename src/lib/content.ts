@@ -1,5 +1,6 @@
 import type { Locale } from "./locales";
 import generatedCatalog from "../data/product-catalog.generated.json" with { type: "json" };
+import { siteConfig } from "./site-config";
 
 export type LocalizedString = Record<Locale, string>;
 
@@ -14,6 +15,7 @@ export type Download = {
   description: LocalizedString;
   href: string;
   type: "catalog" | "technical" | "care";
+  updatedAt?: string;
 };
 
 export type ProductTypeSpecificationField = {
@@ -30,6 +32,7 @@ export type ProductTypeMaintenanceItem = {
 
 export type MaterialCategory = {
   slug: string;
+  updatedAt?: string;
   name: LocalizedString;
   tagline: LocalizedString;
   description: LocalizedString;
@@ -40,13 +43,14 @@ export type MaterialCategory = {
 export type Application = {
   slug: string;
   name: LocalizedString;
-  colorCount: number;
+  colorCount?: number;
   image: string;
   productTypeSlug?: string;
 };
 
 export type Material = {
   slug: string;
+  updatedAt?: string;
   categorySlug: string;
   name: LocalizedString;
   eyebrow: LocalizedString;
@@ -63,6 +67,7 @@ export type Material = {
 
 export type ProductType = {
   slug: string;
+  updatedAt?: string;
   materialSlug: string;
   name: LocalizedString;
   summary: LocalizedString;
@@ -76,6 +81,7 @@ export type ProductType = {
 
 export type Sku = {
   slug: string;
+  updatedAt?: string;
   materialSlug: string;
   productTypeSlug: string;
   code: string;
@@ -94,16 +100,22 @@ export type Sku = {
 
 export type ProjectCase = {
   slug: string;
+  updatedAt?: string;
   title: LocalizedString;
   industry: LocalizedString;
   image: string;
+  projectImages: string[];
   summary: LocalizedString;
   materialSlug: string;
+  linkedMaterials: Array<{ slug: string; name: LocalizedString }>;
+  linkedArticles: Array<{ slug: string; materialSlug: string; name: LocalizedString }>;
   seo: Seo;
 };
 
 export type NewsItem = {
   slug: string;
+  updatedAt?: string;
+  availableLocales?: Locale[];
   title: LocalizedString;
   category: LocalizedString;
   date: string;
@@ -142,6 +154,20 @@ export type HomePageSettings = {
   showroomBackgroundImage: string;
 };
 
+export type AboutPageSettings = {
+  seo: Seo;
+  heroImage: string;
+  heroAlt: LocalizedString;
+  heroTitle: LocalizedString;
+  exploreLabel: LocalizedString;
+  bodyLabel: LocalizedString;
+  bodyTitle: LocalizedString;
+  bodyParagraphs: LocalizedString[];
+  manufacturingLabel: LocalizedString;
+  manufacturingTitle: LocalizedString;
+  manufacturingParagraphs: LocalizedString[];
+};
+
 function mergeBySlug<T extends { slug: string }>(defaults: T[], imported: T[]): T[] {
   const merged = new Map(defaults.map((item) => [item.slug, item]));
   for (const item of imported) {
@@ -168,24 +194,14 @@ function mergeSkusByProductType(defaults: Sku[], imported: Sku[]): Sku[] {
 }
 
 export const site = {
-  name: "CAMARI JAPAN",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://camari-japan.example.com",
-  slogan: {
-    en: "The Intersection of Texture and Precision",
-    ja: "質感と精密さの交差点"
-  },
-  description: {
-    en: "Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces.",
-    ja: "上質な素材、Alcantara コレクション、OEM/ODM による空間・車両・プロダクト向けサーフェス。"
-  },
-  contact: {
-    email: "contact@camari.jp",
-    phone: "+81 3 0000 0000",
-    address: {
-      en: "Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan",
-      ja: "〒102-0073 東京都千代田区九段北１丁目１４−１６　403号室"
-    }
-  }
+  name: siteConfig.siteName,
+  url: siteConfig.siteUrl,
+  organizationName: siteConfig.organizationName,
+  alternateSiteHomeUrl: siteConfig.alternateSiteHomeUrl,
+  defaultLocale: siteConfig.defaultLocale,
+  slogan: siteConfig.slogan,
+  description: siteConfig.description,
+  contact: siteConfig.contact
 };
 
 const images = {
@@ -243,27 +259,58 @@ export const homePageSettings: HomePageSettings = {
       },
       {
         slug: "projects",
-        title: { en: "Applied Precision", ja: "応用される精密性" },
-        category: { en: "Product — ODM", ja: "Product — ODM" },
+        title: { en: "PRODUCT", ja: "PRODUCT" },
+        category: { en: "Product", ja: "Product" },
         description: {
-          en: "Case-led development from concept, material matching, and surface execution.",
-          ja: "コンセプト、素材選定、サーフェス実装までのケース主導型開発。"
+          en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
+          ja: "製品の用途や使い心地に合わせた最適なデザイン・加工をご提案します。"
         },
-        image: images.interior,
-        href: "/projects"
+        image: "/uploads/product/product.jpg",
+        href: "/products"
       }
     ]
   }
+};
+
+export const aboutPageSettings: AboutPageSettings = {
+  seo: {
+    title: { en: `About | ${site.name}`, ja: `会社情報 | ${site.name}` },
+    description: {
+      en: `Learn about ${site.organizationName}'s material philosophy, company values, and contact information.`,
+      ja: `${site.organizationName} の素材哲学、企業価値、連絡先について。`
+    },
+    image: "/uploads/hero/showroom.png"
+  },
+  heroImage: "/uploads/hero/showroom.png",
+  heroAlt: { en: "CAMARI showroom interior", ja: "CAMARI ショールーム内観" },
+  heroTitle: { en: "CAMARI", ja: "CAMARI" },
+  exploreLabel: { en: "Explore", ja: "Explore" },
+  bodyLabel: { en: "Company", ja: "Company" },
+  bodyTitle: { en: "ABOUT CAMARI", ja: "ABOUT CAMARI" },
+  bodyParagraphs: [
+    {
+      en: `${site.organizationName} curates premium surface materials for teams who treat texture as an essential part of brand, space, and product quality.`,
+      ja: `${site.organizationName} は、質感をブランド、空間、プロダクト品質の中核として扱うチームに向けて、上質なサーフェス素材を選定します。`
+    }
+  ],
+  manufacturingLabel: { en: "Manufacturing", ja: "Manufacturing" },
+  manufacturingTitle: { en: "OUR FACTORY", ja: "OUR FACTORY" },
+  manufacturingParagraphs: [
+    {
+      en: "SHENGHUA is factory from 2000.",
+      ja: "SHENGHUA is factory from 2000."
+    }
+  ]
 };
 
 export const materialCategories: MaterialCategory[] = [
   {
     slug: "alcantara",
     name: { en: "Alcantara", ja: "アルカンターラ" },
-    tagline: { en: "Italian precision / carbon neutral", ja: "イタリアの精密性 / カーボンニュートラル" },
+    tagline: { en: "Italian precision / carbon neutral", ja: "イタリアの美意識と精密な技術が生み出す素材。" },
     description: {
       en: "A sensory microfiber surface for automotive, interiors, aviation, and product spaces.",
-      ja: "車両、インテリア、航空、プロダクト空間に向けた感性的なマイクロファイバー素材。"
+      ja: "スエードのような質感と優れた機能性を兼ね備えた、イタリア製プレミアム素材。"
     },
     coverImage: images.alcantaraSoft,
     accent: "#1A1A1A"
@@ -271,10 +318,10 @@ export const materialCategories: MaterialCategory[] = [
   {
     slug: "fabric",
     name: { en: "Fabric", ja: "ファブリック" },
-    tagline: { en: "Washi, weave, and quiet tactility", ja: "和紙、織り、静かな触感" },
+    tagline: { en: "Washi, weave, and quiet tactility", ja: "クラシックカーの魅力を受け継ぐ、高耐久な欧州製ファブリック。" },
     description: {
       en: "Architectural textiles selected for spatial restraint and practical durability.",
-      ja: "空間の余白と実用性を両立する建築的テキスタイル。"
+      ja: "伝統技術が生み出す、クラシックカー向けの上質な内装素材。"
     },
     coverImage: images.fabric,
     accent: "#A68A5E"
@@ -282,25 +329,14 @@ export const materialCategories: MaterialCategory[] = [
   {
     slug: "vegan-leather",
     name: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
-    tagline: { en: "Sustainable luxury alternatives", ja: "持続可能なラグジュアリー素材" },
+    tagline: { en: "Sustainable luxury alternatives", ja: "本革の質感と環境への配慮を両立した高機能マイクロファイバーレザー。" },
     description: {
       en: "Matte, refined surfaces for contemporary spaces and brand-led product programs.",
-      ja: "現代的な空間とブランドプロダクトに向けた、上品なマットサーフェス。"
+      ja: "環境に配慮した次世代マイクロファイバーレザー。"
     },
     coverImage: images.vegan,
     accent: "#735B33"
   },
-  {
-    slug: "leather",
-    name: { en: "Leather", ja: "レザー" },
-    tagline: { en: "Natural depth and architectural warmth", ja: "自然な奥行きと建築的な温度" },
-    description: {
-      en: "Premium hides and finishes for bespoke interior and mobility programs.",
-      ja: "特注インテリアとモビリティ開発に向けたプレミアムレザー。"
-    },
-    coverImage: images.interior,
-    accent: "#2A4386"
-  }
 ];
 
 export const materials: Material[] = [
@@ -312,15 +348,15 @@ export const materials: Material[] = [
     heroTitle: { en: "Alcantara", ja: "Alcantara" },
     heroSubtitle: { en: "The sensory revolution", ja: "触感の革新" },
     heroImage: images.alcantara,
-    introTitle: { en: "The Art of Italian Innovation", ja: "イタリアンイノベーションの美学" },
+    introTitle: { en: "The Art of Italian Innovation", ja: "イタリアの技術と美意識の融合" },
     introBody: {
-      en: "Born at the intersection of avant-garde technology and artisanal heritage, Alcantara is a carbon-neutral canvas for contemporary luxury that balances softness, performance, and architectural control.",
-      ja: "先端技術と職人性の交点から生まれた Alcantara は、柔らかさ、性能、建築的な抑制を兼ね備えたカーボンニュートラルなラグジュアリー素材です。"
+      en: "Alcantara represents a singular vision: one company, one brand, and one remarkable material. Founded in 1972, this symbol of Italian excellence is built on a unique, proprietary technology that blends advanced science with premium craftsmanship.\n\nAlcantara brings together advanced technology and great craftsmanship. It is uniquely soft, comfortable, and distinct to the touch, yet it is also durable, lightweight, breathable, temperature-regulating, and completely washable. These excellent qualities allow it to easily wrap around complex shapes and surfaces while keeping a clean, premium look.\n\nChosen by leading brands in automotive, interiors, marine, aviation, fashion, and consumer electronics, Alcantara turns high performance into a true design language. It supports custom solutions for demanding creative and technical projects through a wide range of options, including personalized colors, textures, printing, perforation, laser processing, embossing, embroidery, and lamination.\n\nSustainability is a core part of its industrial culture. Alcantara has maintained its Carbon Neutral certification since 2009.",
+      ja: "アルカンターラは、1972年にイタリアで誕生した独自素材です。上質な手触りと軽さ、耐久性、通気性などを兼ね備え、自動車やインテリア、ファッションなど幅広い分野で世界のトップブランドに採用されています。豊富なカラーや加工に対応し、多様なデザインを実現できることも特長です。また、カーボンニュートラル認証の継続やリサイクル素材の活用など、環境に配慮したものづくりにも取り組んでいます。"
     },
     introImage: images.interior,
     quote: {
-      en: "Alcantara transforms the experience of touch into an architectural statement.",
-      ja: "Alcantara は触れる体験を、空間の意思へと変える。"
+      en: "Alcantara turns technical performance into a sensory language for contemporary design.",
+      ja: ""
     },
     applications: [
       { slug: "automotive", name: { en: "Automotive", ja: "自動車" }, colorCount: 71, image: images.alcantara },
@@ -338,62 +374,29 @@ export const materials: Material[] = [
     }
   },
   {
-    slug: "leather",
-    categorySlug: "leather",
-    name: { en: "Leather", ja: "レザー" },
-    eyebrow: { en: "Full-Grain Collection", ja: "フルグレインコレクション" },
-    heroTitle: { en: "Leather", ja: "Leather" },
-    heroSubtitle: { en: "Natural depth and architectural warmth", ja: "自然な奥行きと建築的な温度" },
-    heroImage: images.interior,
-    introTitle: { en: "The Character of Natural Grain", ja: "天然の木目が持つ個性" },
-    introBody: {
-      en: "Premium full-grain and top-grain hides selected for their supple hand, natural markings, and ability to patina with intention. Each hide carries the trace of its origin, bringing warmth and presence to cabins, lounges, and bespoke product programs.",
-      ja: "しなやかな手触り、自然な風合い、意図を持った経年変化のために選ばれたプレミアムフルグレインおよびトップグレインレザー。一枚一枚がその起源の痕跡を持ち、キャビン、ラウンジ、特注プロダクトに温もりと存在感をもたらします。"
-    },
-    introImage: images.alcantaraSoft,
-    quote: {
-      en: "Leather is not a surface. It is a record of time.",
-      ja: "レザーは表面ではない。それは時間の記録である。"
-    },
-    applications: [
-      { slug: "automotive-nappa", name: { en: "Automotive Nappa", ja: "オートモーティブナッパ" }, colorCount: 69, image: images.interior, productTypeSlug: "automotive-nappa" },
-      { slug: "verona", name: { en: "Verona", ja: "ヴェローナ" }, colorCount: 68, image: images.alcantaraSoft, productTypeSlug: "verona" },
-      { slug: "roma", name: { en: "Roma", ja: "ローマ" }, colorCount: 62, image: images.alcantara, productTypeSlug: "roma" },
-      { slug: "heritage", name: { en: "Heritage", ja: "ヘリテージ" }, colorCount: 12, image: images.outdoor, productTypeSlug: "heritage" },
-      { slug: "linea", name: { en: "Linea", ja: "リネア" }, colorCount: 101, image: images.vegan, productTypeSlug: "linea" }
-    ],
-    seo: {
-      title: { en: "Leather Materials | CAMARI JAPAN", ja: "レザー素材 | CAMARI JAPAN" },
-      description: {
-        en: "Full-grain and top-grain leather collections for automotive, interior, and bespoke product applications.",
-        ja: "自動車、インテリア、特注プロダクト向けのフルグレインおよびトップグレインレザーコレクション。"
-      },
-      image: images.interior
-    }
-  },
-  {
     slug: "vegan-leather",
     categorySlug: "vegan-leather",
     name: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
     eyebrow: { en: "Sustainable Collection", ja: "サステナブルコレクション" },
     heroTitle: { en: "Vegan Leather", ja: "Vegan Leather" },
     heroSubtitle: { en: "Performance without compromise", ja: "妥協なき性能" },
-    heroImage: images.vegan,
+    heroImage: "/uploads/veganleather/interior.jpg",
     introTitle: { en: "High-Performance Alternatives", ja: "ハイパフォーマンスな選択肢" },
     introBody: {
       en: "Engineered surface materials that match or exceed the tactile and durability standards of traditional leather, without animal content. Matte finishes, micro-textures, and colorfast pigments define a collection built for contemporary product and interior programs.",
       ja: "伝統的なレザーの触感と耐久性基準を満たし、それを超えるように設計された素材。マット仕上げ、マイクロテクスチャ、退色しにくい顔料が、現代的なプロダクトとインテリアのためのコレクションを形作ります。"
     },
-    introImage: images.outdoor,
+    introImage: "/uploads/veganleather/vegan.jpeg",
     quote: {
-      en: "Sustainability is not a constraint. It is a material discipline.",
-      ja: "持続可能性は制約ではない。それは素材の規律である。"
+      en: "Aquapelle combines three-dimensional microfiber construction with waterborne and solvent-free PU technologies, delivering refined touch, durable performance, and consistent color, thickness, and batch quality.",
+      ja: "Aquapelleは、三次元マイクロファイバー構造と水性・無溶剤PU技術を融合し、上質な触感、優れた耐久性、安定した色・厚み・ロット品質を実現します。"
     },
     applications: [
-      { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 48, image: images.vegan },
-      { slug: "outdoor", name: { en: "Outdoor", ja: "アウトドア" }, colorCount: 22, image: images.outdoor },
-      { slug: "electronics", name: { en: "Consumer Electronics", ja: "コンシューマー機器" }, colorCount: 16, image: images.alcantara },
-      { slug: "fashion", name: { en: "Fashion", ja: "ファッション" }, colorCount: 35, image: images.fabric }
+      {
+        slug: "microfiber-leather",
+        name: { en: "Waterborne Microfiber Leather", ja: "マイクロファイバーレザー" },
+        image: "/uploads/veganleather/color.png"
+      }
     ],
     seo: {
       title: { en: "Vegan Leather Materials | CAMARI JAPAN", ja: "ヴィーガンレザー素材 | CAMARI JAPAN" },
@@ -412,15 +415,15 @@ export const materials: Material[] = [
     heroTitle: { en: "Fabric", ja: "Fabric" },
     heroSubtitle: { en: "Washi, weave, and quiet tactility", ja: "和紙、織り、静かな触感" },
     heroImage: images.fabric,
-    introTitle: { en: "The Architecture of Weave", ja: "織りの建築" },
+    introTitle: { en: "The Architecture of Weave", ja: "名車にふさわしい品質" },
     introBody: {
       en: "Architectural textiles selected for spatial restraint and practical durability. From Japanese washi paper weaves to high-performance technical fabrics, each selection balances acoustic softness with structural integrity for interior, hospitality, and product applications.",
-      ja: "空間の余白と実用性のために選ばれた建築的テキスタイル。和紙の織りから高機能テクニカルファブリックまで、それぞれがインテリア、ホスピタリティ、プロダクト用途における吸音性と構造的な完全性のバランスを取ります。"
+      ja: "欧州クラシックカーの純正仕様を忠実に再現したファブリックです。千鳥格子やタータンチェック、ウールなど、多彩な生地を取り揃え、当時のインテリアを美しく再現します。現代の基準に対応した耐久性を備え、クラシックカーの価値を大切にしたレストアを支えます。"
     },
     introImage: images.alcantara,
     quote: {
       en: "Fabric does not decorate space. It completes it.",
-      ja: "ファブリックは空間を飾らない。それを完成させる。"
+      ja: ""
     },
     applications: [
       { slug: "interior", name: { en: "Interior", ja: "インテリア" }, colorCount: 62, image: images.fabric },
@@ -616,76 +619,6 @@ const fixtureProductTypes: ProductType[] = [
 ];
 
 const fixtureSkus: Sku[] = [
-  {
-    slug: "l-ftg-2101-ebony-black",
-    materialSlug: "leather",
-    productTypeSlug: "automotive-nappa",
-    code: "L-FTG-2101",
-    colorName: { en: "Ebony Black", ja: "エボニーブラック" },
-    hex: "#1C1B1B",
-    image: images.interior,
-    summary: {
-      en: "Full-grain aniline leather in deep black with natural grain visible under low light. Suited for luxury automotive cabins and executive interiors.",
-      ja: "低光量下で自然な木目が見えるディープブラックのフルグレインアニリンレザー。ラグジュアリー自動車キャビンおよびエグゼクティブインテリアに最適。"
-    },
-    specs: [
-      { label: { en: "Unit", ja: "単位" }, value: { en: "Square meters", ja: "平方メートル" } },
-      { label: { en: "Code", ja: "コード" }, value: { en: "L-FTG-2101", ja: "L-FTG-2101" } },
-      { label: { en: "Grain", ja: "木目" }, value: { en: "Full-grain aniline", ja: "フルグレインアニリン" } },
-      { label: { en: "Thickness", ja: "厚さ" }, value: { en: "1.2–1.4 mm", ja: "1.2–1.4 mm" } }
-    ],
-    certifications: [
-      { en: "Automotive-grade abrasion resistance", ja: "自動車グレード耐摩耗性" },
-      { en: "European tannery traceability protocol", ja: "欧州タンナリー追跡プロトコル" }
-    ],
-    downloads: [
-      {
-        title: { en: "Leather Grade Guide", ja: "レザーグレードガイド" },
-        description: { en: "Full-grain, top-grain, and finish comparisons.", ja: "フルグレイン、トップグレイン、仕上げの比較。" },
-        href: "/catalogs/leather-grade-guide.pdf",
-        type: "technical"
-      }
-    ],
-    seo: {
-      title: { en: "L-FTG-2101 Ebony Black | CAMARI JAPAN", ja: "L-FTG-2101 エボニーブラック | CAMARI JAPAN" },
-      description: {
-        en: "Full-grain aniline leather in deep black for luxury automotive and interior applications.",
-        ja: "ラグジュアリー自動車およびインテリア向けディープブラックのフルグレインアニリンレザー。"
-      },
-      image: images.interior
-    }
-  },
-  {
-    slug: "l-tpg-3345-cognac",
-    materialSlug: "leather",
-    productTypeSlug: "verona",
-    code: "L-TPG-3345",
-    colorName: { en: "Cognac", ja: "コニャック" },
-    hex: "#8B5E3C",
-    image: images.alcantaraSoft,
-    summary: {
-      en: "Top-grain semi-aniline leather in warm cognac tones. Balanced hand-feel with UV-stable pigment for hospitality and residential seating.",
-      ja: "ウォームコニャックトーンのトップグレインセミアニリンレザー。ホスピタリティおよび住宅用シート向けに、バランスの良い手触りと UV 安定顔料を採用。"
-    },
-    specs: [
-      { label: { en: "Unit", ja: "単位" }, value: { en: "Square meters", ja: "平方メートル" } },
-      { label: { en: "Code", ja: "コード" }, value: { en: "L-TPG-3345", ja: "L-TPG-3345" } },
-      { label: { en: "Grain", ja: "木目" }, value: { en: "Top-grain semi-aniline", ja: "トップグレインセミアニリン" } },
-      { label: { en: "Thickness", ja: "厚さ" }, value: { en: "1.0–1.2 mm", ja: "1.0–1.2 mm" } }
-    ],
-    certifications: [
-      { en: "UV-stable pigment finish", ja: "紫外線安定顔料仕上げ" }
-    ],
-    downloads: [],
-    seo: {
-      title: { en: "L-TPG-3345 Cognac | CAMARI JAPAN", ja: "L-TPG-3345 コニャック | CAMARI JAPAN" },
-      description: {
-        en: "Top-grain semi-aniline leather in warm cognac for hospitality and residential use.",
-        ja: "ホスピタリティおよび住宅用のウォームコニャックトップグレインセミアニリンレザー。"
-      },
-      image: images.alcantaraSoft
-    }
-  },
   // Vegan Leather SKUs
   {
     slug: "vl-mtt-8801-obsidian",
@@ -840,65 +773,93 @@ export const skus: Sku[] = mergeSkusByProductType(
   (generatedCatalog.skus ?? []) as Sku[]
 );
 
-export const projectCases: ProjectCase[] = [
-  {
-    slug: "private-automotive-cabin",
-    title: { en: "Private Automotive Cabin", ja: "プライベートオートモーティブキャビン" },
-    industry: { en: "Automotive", ja: "自動車" },
-    image: images.alcantara,
-    summary: {
-      en: "A restrained cabin material program using deep Alcantara surfaces and precision panel transitions.",
-      ja: "深い Alcantara サーフェスと精密なパネル遷移で構成した、抑制されたキャビンプログラム。"
-    },
-    materialSlug: "alcantara",
-    seo: {
-      title: { en: "Private Automotive Cabin | CAMARI JAPAN", ja: "プライベートオートモーティブキャビン | CAMARI JAPAN" },
-      description: {
-        en: "OEM/ODM automotive material case using Alcantara surfaces.",
-        ja: "Alcantara サーフェスを用いた OEM/ODM 自動車素材事例。"
-      },
-      image: images.alcantara
-    }
-  },
-  {
-    slug: "hospitality-lounge-surface",
-    title: { en: "Hospitality Lounge Surface", ja: "ホスピタリティラウンジサーフェス" },
-    industry: { en: "Interior", ja: "インテリア" },
-    image: images.interior,
-    summary: {
-      en: "Warm stone palettes, tactile panels, and quiet upholstery for an intimate lounge environment.",
-      ja: "ウォームストーンの色調、触感のあるパネル、静かな張地で構成したラウンジ空間。"
-    },
-    materialSlug: "alcantara",
-    seo: {
-      title: { en: "Hospitality Lounge Surface | CAMARI JAPAN", ja: "ホスピタリティラウンジサーフェス | CAMARI JAPAN" },
-      description: {
-        en: "Interior material case for premium hospitality environments.",
-        ja: "プレミアムホスピタリティ空間向けのインテリア素材事例。"
-      },
-      image: images.interior
-    }
-  }
-];
+export const projectCases: ProjectCase[] = [];
 
 export const newsItems: NewsItem[] = [
   {
-    slug: "new-material-study",
-    title: { en: "New Material Study for Quiet Luxury Interiors", ja: "静かなラグジュアリー空間に向けた新素材研究" },
-    category: { en: "Material", ja: "素材" },
-    date: "2026-05-12",
-    image: images.fabric,
+    slug: "aquapelle-waterborne-microfiber-launch",
+    availableLocales: ["en", "ja"],
+    title: {
+      en: "Introducing Aquapelle: Premium Waterborne Microfiber Leather",
+      ja: "新品 Aquapelle：プレミアム水性マイクロファイバーレザー"
+    },
+    category: { en: "Product Launch", ja: "新製品" },
+    date: "2026-08-12",
+    image: "/uploads/news/2026 Aquapelle/MF COVER.jpeg",
     summary: {
-      en: "A short editorial note on texture, restraint, and how surfaces guide perception in premium spaces.",
-      ja: "質感、抑制、そして上質な空間におけるサーフェスの知覚についての編集ノート。"
+      en: "Aquapelle combines a Nappa-inspired touch, durable four-layer construction, cleaner waterborne chemistry, and repeatable quality for automotive, interior, and lifestyle surfaces.",
+      ja: "Aquapelleは、ナッパレザーを思わせる上質な触感、耐久性に優れた4層構造、よりクリーンな水性技術、安定した品質を、自動車・インテリア・ライフスタイル向けに提供します。"
     },
     seo: {
-      title: { en: "New Material Study | CAMARI JAPAN", ja: "新素材研究 | CAMARI JAPAN" },
-      description: {
-        en: "Material research notes from CAMARI JAPAN.",
-        ja: "CAMARI JAPAN の素材研究ノート。"
+      title: {
+        en: "Aquapelle Waterborne Microfiber Leather | New Product",
+        ja: "Aquapelle 水性マイクロファイバーレザー | 新製品"
       },
-      image: images.fabric
+      description: {
+        en: "Discover Aquapelle, a premium waterborne microfiber leather with Nappa-inspired tactility, four-layer performance, cleaner processing, and customizable finishes.",
+        ja: "ナッパ調の触感、4層構造による性能、よりクリーンな製造工程、多彩なカスタマイズ性を備えたプレミアム水性マイクロファイバーレザー、Aquapelleをご紹介します。"
+      },
+      image: "/uploads/news/2026 Aquapelle/MF COVER.jpeg"
+    }
+  },
+  {
+    slug: "camari-tokyo-auto-salon-2026",
+    availableLocales: ["en", "ja"],
+    title: { en: "CAMARI INTERNATIONAL JAPAN Makes Its Tokyo Auto Salon Debut", ja: "東京オートサロン初出展を無事終了いたしました" },
+    category: { en: "Exhibition", ja: "展示会" },
+    date: "2026-01-11",
+    image: "/uploads/news/2026 Tokyo Auto Salon/hero.jpg",
+    summary: {
+      en: "CAMARI INTERNATIONAL JAPAN concluded its participation at the Tokyo Auto Salon after three days of highlighting premium materials, OEM capabilities, and finished products.",
+      ja: "カマリ・インターナショナル・ジャパンは、「東京オートサロン」に初出展し、盛況のうちに3日間の会期を終えることができました。"
+    },
+    seo: {
+      title: { en: "CAMARI INTERNATIONAL JAPAN Makes Its Tokyo Auto Salon Debut", ja: "東京オートサロン初出展を無事終了いたしました" },
+      description: {
+        en: "Discover CAMARI INTERNATIONAL JAPAN's Tokyo Auto Salon 2026 debut, featuring Alcantara, Italian leathers, OEM manufacturing, automotive accessories, and lifestyle products.",
+        ja: "東京オートサロン初出展の様子と、アルカンターラ、イタリアンレザー、OEM製品、カー用品、ライフスタイル用品の展示をご紹介します。"
+      },
+      image: "/uploads/news/2026 Tokyo Auto Salon/hero.jpg"
+    }
+  },
+  {
+    slug: "alcantara-camari-third-strategic-chapter",
+    availableLocales: ["en", "ja"],
+    title: { en: "ALCANTARA × CAMARI: A Third Strategic Chapter Begins", ja: "ALCANTARA × CAMARI、3度目の戦略提携で新章へ" },
+    category: { en: "Partnership", ja: "パートナーシップ" },
+    date: "2025-04-15",
+    image: "/uploads/news/2025 Alcantara distribution contract/hero.jpg",
+    summary: {
+      en: "Alcantara and CAMARI have renewed their partnership for a third five-year term, continuing a decade-long collaboration across Asia Pacific.",
+      ja: "アルカンターラとカマリは、アジア太平洋市場における10年以上の協業を基盤に、3期目となる5カ年契約を締結しました。"
+    },
+    seo: {
+      title: { en: "ALCANTARA × CAMARI: A Third Strategic Chapter Begins", ja: "ALCANTARA × CAMARI、3度目の戦略提携で新章へ" },
+      description: {
+        en: "Alcantara and CAMARI signed their third five-year distribution agreement in Milan, renewing a strategic partnership serving the Asia Pacific market.",
+        ja: "アルカンターラとカマリはミラノで3度目となる5カ年の販売代理店契約を締結し、アジア太平洋市場における戦略的パートナーシップを更新しました。"
+      },
+      image: "/uploads/news/2025 Alcantara distribution contract/hero.jpg"
+    }
+  },
+  {
+    slug: "alcantara-design-shanghai-2024",
+    availableLocales: ["en", "ja"],
+    title: { en: "CAMARI at Design Shanghai 2024", ja: "カマリ、Design Shanghai 2024に出展" },
+    category: { en: "Exhibition", ja: "展示会" },
+    date: "2024-06-27",
+    image: "/uploads/news/2024 Design Shanghai/ds1.jpg",
+    summary: {
+      en: "CAMARI presented a comprehensive material portfolio at Design Shanghai 2024, spanning Alcantara, premium leather, automotive fabrics, and bespoke surface solutions.",
+      ja: "カマリは、Design Shanghai 2024に出展し、アルカンターラをはじめ、プレミアムレザー、自動車用ファブリック、特注サーフェスマテリアルまで、幅広い素材ポートフォリオを紹介しました。"
+    },
+    seo: {
+      title: { en: "CAMARI at Design Shanghai 2024", ja: "カマリ、Design Shanghai 2024に出展" },
+      description: {
+        en: "Discover CAMARI's presentation at Design Shanghai 2024, featuring Alcantara, premium leather, automotive fabrics, collectible furniture, and creative surface applications.",
+        ja: "Design Shanghai 2024でカマリが紹介したアルカンターラ、プレミアムレザー、自動車用ファブリック、コレクタブルファニチャー、多彩な表面加工をご覧ください。"
+      },
+      image: "/uploads/news/2024 Design Shanghai/ds1.jpg"
     }
   }
 ];

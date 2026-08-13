@@ -16,7 +16,7 @@ type FormStatus = "idle" | "submitting" | "success" | "error";
 const copy = {
   en: {
     label: "Subscribe to our newsletter",
-    placeholder: "Email Address",
+    placeholder: "Enter your email address",
     invalid: "Enter a valid email address.",
     submitting: "Submitting...",
     success: "Thanks for subscribing.",
@@ -112,7 +112,7 @@ export function FooterNewsletterForm({ className = "", layout = "stacked", local
 
   return (
     <form className={`sm:col-span-2 ${isInline ? "items-end gap-8 lg:flex" : ""} ${className}`.trim()} onSubmit={handleSubmit}>
-      <label className={`label-caps shrink-0 text-muted ${isInline ? "lg:pb-3" : ""}`} htmlFor="footer-email">
+      <label className={`shrink-0 font-label text-[0.95rem] [font-weight:500] tracking-[0.08em] text-charcoal/75 ${isInline ? "lg:pb-3" : ""}`} htmlFor="footer-email">
         {labels.label}
       </label>
       <div className={`${isInline ? "mt-5 lg:mt-0 lg:min-w-[22rem] lg:flex-1" : "mt-5"} flex border-b border-charcoal/20 pb-3`}>

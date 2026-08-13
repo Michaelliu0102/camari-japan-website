@@ -7,13 +7,16 @@ type PageProps = {
   params: Promise<{ locale: Locale }>;
 };
 
+const englishLegalEntity = "CAMARI INTERNATIONAL LIMITED";
+const englishContactEmail = "info@camari-international.com";
+
 const content = {
   en: {
     eyebrow: "Terms of Use",
     title: "Terms of Use / Site Policy",
-    description: "Terms, site policy, disclaimer, and copyright information for the CAMARI JAPAN website.",
+    description: `Terms, site policy, disclaimer, and copyright information for the ${englishLegalEntity} website.`,
     intro:
-      "Please review these terms before using this website. By browsing CAMARI JAPAN, you agree to use the content responsibly and for legitimate business reference.",
+      `Please review these terms before using this website. By browsing ${englishLegalEntity}, you agree to use the content responsibly and for legitimate business reference.`,
     sections: [
       {
         title: "Use of Content",
@@ -21,26 +24,26 @@ const content = {
       },
       {
         title: "Accuracy",
-        body: "We aim to keep material, specification, and availability information accurate, but published content may change without notice. Please confirm final project requirements directly with CAMARI JAPAN."
+        body: `We aim to keep material, specification, and availability information accurate, but published content may change without notice. Please confirm final project requirements directly with ${englishLegalEntity}.`
       },
       {
         title: "External Links",
-        body: "This website may include links to external services. CAMARI JAPAN is not responsible for the content, security, or policies of external websites."
+        body: `This website may include links to external services. ${englishLegalEntity} is not responsible for the content, security, or policies of external websites.`
       },
       {
         title: "Copyright",
-        body: "Copyright © 2026 CAMARI JAPAN. All rights reserved."
+        body: `Copyright © 2026 ${englishLegalEntity}. All rights reserved.`
       },
       {
         title: "Contact",
-        body: `For questions about this site policy, contact ${site.contact.email}.`
+        body: `For questions about this site policy, contact ${englishContactEmail}.`
       }
     ]
   },
   ja: {
     eyebrow: "利用規約",
     title: "利用規約 / サイトポリシー",
-    description: "CAMARI JAPAN ウェブサイトの利用規約、免責事項、著作権について。",
+    description: `${site.organizationName} ウェブサイトの利用規約、免責事項、著作権について。`,
     intro:
       "本ウェブサイトをご利用になる前に、以下の内容をご確認ください。閲覧により、正当な業務上の参照目的で利用することに同意したものとします。",
     sections: [
@@ -50,15 +53,15 @@ const content = {
       },
       {
         title: "掲載情報",
-        body: "素材、仕様、在庫等の情報は正確性に配慮していますが、予告なく変更される場合があります。最終的な要件は CAMARI JAPAN へ直接ご確認ください。"
+        body: `素材、仕様、在庫等の情報は正確性に配慮していますが、予告なく変更される場合があります。最終的な要件は ${site.organizationName} へ直接ご確認ください。`
       },
       {
         title: "外部リンク",
-        body: "外部サービスへのリンクを含む場合があります。外部サイトの内容、安全性、方針について CAMARI JAPAN は責任を負いません。"
+        body: `外部サービスへのリンクを含む場合があります。外部サイトの内容、安全性、方針について ${site.organizationName} は責任を負いません。`
       },
       {
         title: "著作権",
-        body: "Copyright © 2026 CAMARI JAPAN. All rights reserved."
+        body: `Copyright © 2026 ${site.organizationName}. All rights reserved.`
       },
       {
         title: "お問い合わせ",
@@ -84,7 +87,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/site-policy",
-    title: `${labels.title} | CAMARI JAPAN`,
+    title: labels.title,
     description: labels.description
   });
 }

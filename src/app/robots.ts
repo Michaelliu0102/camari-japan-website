@@ -1,12 +1,21 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/lib/content";
+import { siteConfig } from "@/lib/site-config";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/"
-    },
-    sitemap: `${site.url}/sitemap.xml`
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api", "/studio", "/test-animation"]
+      },
+      {
+        userAgent: "OAI-SearchBot",
+        allow: "/",
+        disallow: ["/api", "/studio", "/test-animation"]
+      }
+    ],
+    sitemap: `${siteConfig.siteUrl}/sitemap.xml`,
+    host: siteConfig.siteUrl
   };
 }

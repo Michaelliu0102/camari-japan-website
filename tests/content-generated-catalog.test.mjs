@@ -10,7 +10,7 @@ const projectRoot = path.resolve(import.meta.dirname, "..");
 
 async function compileContentModule(sourcePath, outputPath) {
   const source = await readFile(sourcePath, "utf8");
-  const output = ts.transpileModule(source, {
+  let output = ts.transpileModule(source, {
     compilerOptions: {
       module: ts.ModuleKind.ES2022,
       target: ts.ScriptTarget.ES2022,
@@ -18,6 +18,8 @@ async function compileContentModule(sourcePath, outputPath) {
     },
     fileName: sourcePath,
   }).outputText;
+
+  output = output.replaceAll('from "./site-config";', 'from "./site-config.js";');
 
   await writeFile(outputPath, output);
 }
@@ -31,6 +33,24 @@ async function loadContentModule() {
   await mkdir(path.join(root, "src/data"), { recursive: true });
   await writeFile(path.join(root, "package.json"), '{"type":"module"}');
   await writeFile(path.join(root, "src/lib/locales.js"), "export const locales = ['en', 'ja'];\n");
+  await writeFile(
+    path.join(root, "src/lib/site-config.js"),
+    `export const siteConfig = {
+  siteName: "CAMARI INTERNATIONAL",
+  siteUrl: "https://www.camari-international.com",
+  organizationName: "CAMARI INTERNATIONAL",
+  alternateSiteHomeUrl: "https://www.camari-international.co.jp",
+  defaultLocale: "en",
+  slogan: { en: "Texture and Precision", ja: "質感と精密さの交差点" },
+  description: { en: "Description", ja: "説明" },
+  contact: {
+    email: "info@example.com",
+    phone: "+81 00 0000 0000",
+    address: { en: "Tokyo", ja: "東京" },
+  },
+};
+`
+  );
   await writeFile(generatedCatalogPath, await readFile(path.join(projectRoot, "src/data/product-catalog.generated.json"), "utf8"));
   await compileContentModule(path.join(projectRoot, "src/lib/content.ts"), compiledContent);
 
