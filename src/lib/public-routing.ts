@@ -33,6 +33,16 @@ function isCurrentRequestPath(destination: string, requestUrl?: string): boolean
   }
 }
 
+function buildAlternateSiteDestination(alternateSiteHomeUrl: string, pathname: string): string {
+  const normalizedPath = normalizePublicPath(pathname);
+
+  if (alternateSiteHomeUrl === "/") {
+    return normalizedPath;
+  }
+
+  return new URL(normalizedPath, `${alternateSiteHomeUrl}/`).toString();
+}
+
 export function resolvePublicRoute(pathname: string, siteConfig: PublicRoutingSiteConfig, requestUrl?: string): RoutingDecision {
   if (passthroughPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)) || isStaticAsset(pathname)) {
     return { type: "next" };
@@ -47,13 +57,15 @@ export function resolvePublicRoute(pathname: string, siteConfig: PublicRoutingSi
         return { type: "next" };
       }
 
-      if (isCurrentRequestPath(siteConfig.alternateSiteHomeUrl, requestUrl)) {
+      const alternateDestination = buildAlternateSiteDestination(siteConfig.alternateSiteHomeUrl, pathname);
+
+      if (isCurrentRequestPath(alternateDestination, requestUrl)) {
         return { type: "next" };
       }
 
       return {
         type: "redirect",
-        destination: siteConfig.alternateSiteHomeUrl
+        destination: alternateDestination
       };
     }
 

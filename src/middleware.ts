@@ -3,7 +3,13 @@ import { NextResponse } from "next/server";
 import { resolvePublicRoute } from "@/lib/public-routing";
 import { siteConfig } from "@/lib/site-config";
 
-export function proxy(request: NextRequest) {
+const internalLocaleRewriteHeader = "x-camari-locale-rewrite";
+
+export function middleware(request: NextRequest) {
+  if (request.headers.get(internalLocaleRewriteHeader) === "1") {
+    return NextResponse.next();
+  }
+
   const decision = resolvePublicRoute(request.nextUrl.pathname, siteConfig, request.url);
 
   if (decision.type === "next") {
@@ -16,7 +22,14 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(targetUrl, 308);
   }
 
-  return NextResponse.rewrite(targetUrl);
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set(internalLocaleRewriteHeader, "1");
+
+  return NextResponse.rewrite(targetUrl, {
+    request: {
+      headers: requestHeaders
+    }
+  });
 }
 
 export const config = {
