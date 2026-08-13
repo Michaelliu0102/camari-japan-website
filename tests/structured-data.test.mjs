@@ -58,15 +58,15 @@ test("structured data builders emit organization and breadcrumb schema for the a
   assert.match(structuredDataSource, /datePublished: article\.datePublished/);
   assert.match(structuredDataSource, /dateModified: article\.dateModified \?\? article\.datePublished/);
   assert.match(structuredDataSource, /inLanguage: article\.locale === "ja" \? "ja-JP" : "en"/);
-  assert.match(structuredDataSource, /author: organizationReference\(site\)/);
-  assert.match(structuredDataSource, /publisher: organizationReference\(site\)/);
+  assert.match(structuredDataSource, /author: organizationReference\(site, article\.locale\)/);
+  assert.match(structuredDataSource, /publisher: organizationReference\(site, article\.locale\)/);
 });
 
 test("homepage renders WebSite and Organization entities together", async () => {
   const homepageSource = await readFile(path.join(projectRoot, "src/app/[locale]/page.tsx"), "utf8");
 
   assert.match(homepageSource, /buildOrganizationJsonLd, buildWebSiteJsonLd/);
-  assert.match(homepageSource, /<JsonLd data=\{buildOrganizationJsonLd\(siteConfig\)\} \/>/);
+  assert.match(homepageSource, /<JsonLd data=\{buildOrganizationJsonLd\(siteConfig, locale\)\} \/>/);
   assert.match(homepageSource, /<JsonLd data=\{buildWebSiteJsonLd\(siteConfig, locale\)\} \/>/);
 });
 

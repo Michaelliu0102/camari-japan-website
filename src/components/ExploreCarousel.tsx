@@ -288,7 +288,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
 
           <div className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[54rem] flex-col items-center justify-center gap-3 sm:flex-row">
             <Link className="label-caps inline-flex min-w-[12rem] justify-center border border-white/35 px-7 py-3 transition-colors hover:bg-white hover:text-charcoal md:min-w-[13rem] md:px-8 md:py-3.5" href={localizedPath(locale, slide.href)}>
-              View
+              {locale === "en" ? "View" : "詳細を見る"}
             </Link>
           </div>
         </div>

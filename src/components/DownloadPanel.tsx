@@ -17,7 +17,7 @@ export function DownloadPanel({ locale, downloads }: DownloadPanelProps) {
             <span className="mt-1 block text-[0.8rem] leading-relaxed text-muted">{download.description[locale]}</span>
           </span>
           <span className="label-caps shrink-0 text-[9px] text-muted transition-colors group-hover:text-charcoal">
-            {download.type === "catalog" ? "PDF" : download.type === "technical" ? "Tech" : "Care"}
+            {locale === "en" ? "Download" : "ダウンロード"}
           </span>
         </Link>
       ))}

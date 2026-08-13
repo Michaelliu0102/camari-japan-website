@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { CalendarClock, Clock, Mail, MapPin, Phone, Printer } from "lucide-react";
 import { BranchLocationMap, type BranchLocation } from "@/components/BranchLocationMap";
 import { ContactNeonHero } from "@/components/ContactNeonHero";
 import { JsonLd } from "@/components/JsonLd";
@@ -18,11 +18,11 @@ const worldLocations: BranchLocation[] = [
   {
     country: "JAPAN",
     city: "Tokyo",
-    address: "Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073",
+    address: "PILE KUDAN 4F, 1-14-16 Kudankita, Chiyoda-ku, Tokyo 102-0073",
     phone: site.contact.phone,
     email: site.contact.email,
-    lat: 35.696226,
-    lng: 139.746589
+    lat: 35.696335,
+    lng: 139.749207
   },
   {
     country: "CHINA",
@@ -53,6 +53,12 @@ const worldLocations: BranchLocation[] = [
   }
 ];
 
+const japaneseCountryNames: Record<string, string> = {
+  CHINA: "中国",
+  AUSTRALIA: "オーストラリア",
+  ITALY: "イタリア"
+};
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const categories = await loadMaterialCategories();
@@ -79,7 +85,7 @@ export default async function ContactPage({ params }: PageProps) {
   return (
     <main>
       <JsonLd data={organizationSchema} />
-      <ContactNeonHero />
+      <ContactNeonHero locale={locale} />
       <section className="bg-paper py-24 md:py-36" data-nav-invert>
         {locale === "en" ? (
           <BranchLocationMap locations={worldLocations} />
@@ -87,19 +93,22 @@ export default async function ContactPage({ params }: PageProps) {
           <>
             <div className="section-shell grid gap-16 md:grid-cols-12">
               <div className="md:col-span-5">
-                <p className="label-caps text-gold">Contact</p>
+                <p className="label-caps text-gold">お問い合わせ</p>
                 <h1 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">
-                  {`${site.organizationName} へ直接ご相談ください。`}
+                  カマリ・インターナショナル・ジャパンへ直接ご相談ください。
                 </h1>
                 <p className="mt-8 leading-8 text-muted">
-                  v1 では問い合わせフォームを設置していません。素材に関するご相談やショールーム予約は、メールまたは電話でご連絡ください。
+                  素材に関するご相談やショールームのご予約は、メールまたはお電話にてお問い合わせください。
                 </p>
               </div>
               <div className="space-y-8 md:col-span-6 md:col-start-7">
                 {[
-                  { icon: Mail, label: "Email", value: site.contact.email, href: `mailto:${site.contact.email}` },
-                  { icon: Phone, label: "Phone", value: site.contact.phone, href: `tel:${site.contact.phone.replaceAll(" ", "")}` },
-                  { icon: MapPin, label: "Showroom & Office", value: site.contact.address[locale], href: null }
+                  { icon: Mail, label: "メール", value: site.contact.email, href: `mailto:${site.contact.email}` },
+                  { icon: Phone, label: "電話", value: site.contact.phone, href: `tel:${site.contact.phone.replaceAll(" ", "")}` },
+                  { icon: Printer, label: "ファクス", value: site.contact.fax, href: null },
+                  { icon: MapPin, label: "ショールーム・オフィス", value: site.contact.address[locale], href: null },
+                  { icon: Clock, label: "営業時間", value: "月曜日〜金曜日 9:00–17:00", href: null },
+                  { icon: CalendarClock, label: "ご来訪予約", value: site.contact.appointmentNotice?.[locale], href: null }
                 ].map((item) => {
                   const Icon = item.icon;
                   const content = (
@@ -118,16 +127,41 @@ export default async function ContactPage({ params }: PageProps) {
             </div>
             <div className="section-shell mt-16">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.2190681844904!2d139.7465886761085!3d35.69622637258232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c6a434665ff%3A0xf42a369a2d1fb59!2s1-ch%C5%8Dme-14-16%20Kudankita%2C%20Chiyoda%20City%2C%20Tokyo%20102-0073%2C%20Japan!5e0!3m2!1sen!2sus!4v1779262577002!5m2!1sen!2sus"
+                src="https://www.google.com/maps?q=35.696335%2C139.749207&z=16&output=embed"
                 width="600"
                 height="450"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title={`${site.organizationName} Office Location`}
+                title="カマリ・インターナショナル・ジャパン 所在地"
                 className="w-full"
               />
+            </div>
+            <div className="section-shell mt-20 border-t border-charcoal/10 pt-12 md:mt-28 md:pt-16">
+              <p className="label-caps text-gold">世界に広がるカマリ</p>
+              <div className="mt-10 grid gap-x-12 gap-y-12 md:grid-cols-3">
+                {worldLocations
+                  .filter((location) => location.country !== "JAPAN")
+                  .map((location) => (
+                    <address className="not-italic text-charcoal" key={location.country}>
+                      <h2 className="font-sans text-xl font-semibold leading-none tracking-normal md:text-2xl">
+                        {japaneseCountryNames[location.country]}
+                      </h2>
+                      <div className="mt-5 space-y-2 text-base leading-7 text-muted md:text-lg md:leading-8">
+                        <p>住所：{location.address}</p>
+                        <p>
+                          電話：
+                          <a href={`tel:${location.phone.replaceAll(" ", "")}`}>{location.phone}</a>
+                        </p>
+                        <p className="break-words">
+                          メール：
+                          <a href={`mailto:${location.email}`}>{location.email}</a>
+                        </p>
+                      </div>
+                    </address>
+                  ))}
+              </div>
             </div>
           </>
         )}

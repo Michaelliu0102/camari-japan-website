@@ -77,7 +77,7 @@ const navItems: NavItem[] = [
         ]
       },
       {
-        label: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
+        label: { en: "Vegan Leather", ja: "マイクロファイバーレザー" },
         href: "/materials/vegan-leather",
         description: { en: "High-performance alternatives", ja: "高機能な代替レザー素材" }
       },

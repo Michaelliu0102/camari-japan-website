@@ -225,7 +225,7 @@ export function ProductCurvedCarousel({ categorySlug, heroImage, images, locale,
           className="mt-6 inline-flex min-h-[2.75rem] min-w-[10.5rem] items-center justify-center border border-charcoal bg-transparent px-8 font-label text-[0.66rem] font-semibold uppercase tracking-[0.34em] text-charcoal transition duration-300 hover:bg-charcoal hover:text-paper focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal/35 md:mt-7 md:min-w-[14rem]"
           href={localizedPath(locale, `/products?category=${encodeURIComponent(categorySlug)}`)}
         >
-          View All
+          {locale === "en" ? "View All" : "すべて見る"}
         </Link>
       </div>
 
@@ -390,12 +390,14 @@ export function ProductCurvedCarousel({ categorySlug, heroImage, images, locale,
                   <CTAMessageDrawer
                     articleLabel={contactArticleLabel}
                     buttonClassName="inline-flex min-h-[3.75rem] w-full items-center justify-center bg-charcoal px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-charcoal/85"
-                    buttonLabel="Contact Sales"
+                    buttonLabel={locale === "en" ? "Contact Sales" : "営業担当に相談"}
                     locale={locale}
                     placement="top"
                   />
                   <p className="mt-4 max-w-[26rem] font-sans text-[13px] leading-relaxed tracking-[0.02em] text-muted">
-                    B2B Custom Solutions & Wholesale Only. Contact our team to discuss your project.
+                    {locale === "en"
+                      ? "B2B Custom Solutions & Wholesale Only. Contact our team to discuss your project."
+                      : "B2B向けカスタムソリューションおよび卸売専用です。プロジェクトについては、担当チームまでご相談ください。"}
                   </p>
                 </div>
 

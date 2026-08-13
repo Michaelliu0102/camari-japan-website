@@ -300,7 +300,7 @@ export default async function DownloadsPage({ params }: PageProps) {
         <PageHero
           image={heroCategory.coverImage}
           subtitle={locale === "en" ? "PDF catalogs and technical sheets" : "PDF カタログと技術資料"}
-          title="Downloads"
+          title={locale === "en" ? "Downloads" : "ダウンロード"}
         />
       ) : null}
       <section className="bg-paper py-24 md:py-36" data-nav-invert>

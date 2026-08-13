@@ -19,7 +19,7 @@ import {
   type Sku
 } from "@/lib/content";
 import { productCategories as fallbackProductCategories, type ProductCategory } from "@/content/products/categories";
-import type { Locale } from "@/lib/locales";
+import { normalizeLocalizedBrandNames, type Locale } from "@/lib/locales";
 import {
   applyJapaneseHomePageCopy,
   applyJapaneseMaterialCategoryCopy,
@@ -312,22 +312,22 @@ async function fetchOrFallback<Raw, Value>(
   adapter: (raw: Raw) => Value
 ): Promise<Value[]> {
   if (!isSanityConfigured()) {
-    return fallback;
+    return normalizeLocalizedBrandNames(fallback);
   }
 
   try {
     const results = await getSanityClient().fetch<Raw[]>(query, params);
     if (!results || results.length === 0) {
-      return fallback;
+      return normalizeLocalizedBrandNames(fallback);
     }
-    return results.map(adapter);
+    return normalizeLocalizedBrandNames(results.map(adapter));
   } catch (error) {
     if (process.env.NODE_ENV === "production") {
       throw error;
     }
 
     console.warn("Sanity fetch failed; using local fixture content.", error);
-    return fallback;
+    return normalizeLocalizedBrandNames(fallback);
   }
 }
 
@@ -341,13 +341,13 @@ async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
   const { includeFallbackRecords = true, fallbackOnEmpty = true } = options;
 
   if (!isSanityConfigured()) {
-    return fallback;
+    return normalizeLocalizedBrandNames(fallback);
   }
 
   try {
     const results = await getSanityClient().fetch<Raw[]>(query, params);
     if (!results || results.length === 0) {
-      return fallbackOnEmpty ? fallback : [];
+      return normalizeLocalizedBrandNames(fallbackOnEmpty ? fallback : []);
     }
 
     const merged = new Map(includeFallbackRecords ? fallback.map((item) => [item.slug, item]) : []);
@@ -370,14 +370,14 @@ async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
       }
       merged.set(item.slug, item);
     }
-    return [...merged.values()];
+    return normalizeLocalizedBrandNames([...merged.values()]);
   } catch (error) {
     if (process.env.NODE_ENV === "production") {
       throw error;
     }
 
     console.warn("Sanity fetch failed; using local fixture content.", error);
-    return fallback;
+    return normalizeLocalizedBrandNames(fallback);
   }
 }
 
@@ -388,43 +388,43 @@ export async function loadMaterialCategories(): Promise<MaterialCategory[]> {
 
 export async function loadHomePageSettings(): Promise<HomePageSettings> {
   if (!isSanityConfigured()) {
-    return applyJapaneseHomePageCopy(fallbackHomePageSettings);
+    return applyJapaneseHomePageCopy(normalizeLocalizedBrandNames(fallbackHomePageSettings));
   }
 
   try {
     const result = await getSanityClient().fetch<RawHomePageSettings>(homePageSettingsQuery);
     if (!result) {
-      return applyJapaneseHomePageCopy(fallbackHomePageSettings);
+      return applyJapaneseHomePageCopy(normalizeLocalizedBrandNames(fallbackHomePageSettings));
     }
-    return applyJapaneseHomePageCopy(adaptHomePageSettings(result));
+    return applyJapaneseHomePageCopy(normalizeLocalizedBrandNames(adaptHomePageSettings(result)));
   } catch (error) {
     if (process.env.NODE_ENV === "production") {
       throw error;
     }
 
     console.warn("Sanity homepage fetch failed; using local fixture content.", error);
-    return applyJapaneseHomePageCopy(fallbackHomePageSettings);
+    return applyJapaneseHomePageCopy(normalizeLocalizedBrandNames(fallbackHomePageSettings));
   }
 }
 
 export async function loadAboutPageSettings(): Promise<AboutPageSettings> {
   if (!isSanityConfigured()) {
-    return fallbackAboutPageSettings;
+    return normalizeLocalizedBrandNames(fallbackAboutPageSettings);
   }
 
   try {
     const result = await getSanityClient().withConfig({ useCdn: false }).fetch<RawAboutPageSettings>(aboutPageSettingsQuery);
     if (!result) {
-      return fallbackAboutPageSettings;
+      return normalizeLocalizedBrandNames(fallbackAboutPageSettings);
     }
-    return adaptAboutPageSettings(result);
+    return normalizeLocalizedBrandNames(adaptAboutPageSettings(result));
   } catch (error) {
     if (process.env.NODE_ENV === "production") {
       throw error;
     }
 
     console.warn("Sanity about page fetch failed; using local fixture content.", error);
-    return fallbackAboutPageSettings;
+    return normalizeLocalizedBrandNames(fallbackAboutPageSettings);
   }
 }
 
@@ -446,7 +446,9 @@ export async function loadProductTypes(): Promise<ProductType[]> {
     merged.set(productType.slug, productType);
   }
 
-  return withLocalLeatherSpecDownloads(withLocalAlcantaraDownloads([...merged.values()]));
+  return normalizeLocalizedBrandNames(
+    withLocalLeatherSpecDownloads(withLocalAlcantaraDownloads([...merged.values()])),
+  );
 }
 
 export async function loadProductCategories(): Promise<ProductCategory[]> {
@@ -486,7 +488,7 @@ export async function loadSkus(): Promise<Sku[]> {
     merged.set(sku.slug, sku);
   }
 
-  return [...merged.values()];
+  return normalizeLocalizedBrandNames([...merged.values()]);
 }
 
 export async function loadSkusForMaterial(materialSlug: string): Promise<Sku[]> {

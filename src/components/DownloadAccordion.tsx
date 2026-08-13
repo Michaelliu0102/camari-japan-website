@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Download } from "@/lib/content";
-import type { Locale } from "@/lib/locales";
+import { localizeBrandNames, type Locale } from "@/lib/locales";
 
 type DownloadAccordionGroup = {
   slug: string;
@@ -59,11 +59,11 @@ export function DownloadAccordion({ downloadLabel, fileLabel, groups, locale }: 
                   {String(group.downloads.length).padStart(2, "0")} {fileLabel}
                 </span>
                 <span className="mt-5 block font-serif text-4xl leading-none text-charcoal md:text-5xl">
-                  {group.label[locale]}
+                  {localizeBrandNames(group.label[locale], locale)}
                 </span>
               </span>
               <span className="max-w-[34rem] text-base leading-8 text-muted md:text-right">
-                {group.intro[locale]}
+                {localizeBrandNames(group.intro[locale], locale)}
               </span>
               <span
                 aria-hidden="true"
@@ -92,10 +92,10 @@ export function DownloadAccordion({ downloadLabel, fileLabel, groups, locale }: 
                     >
                       <span>
                         <span className="label-caps block text-[10px] text-charcoal">
-                          {download.title[locale]}
+                          {localizeBrandNames(download.title[locale], locale)}
                         </span>
                         <span className="mt-1 block text-[0.8rem] leading-relaxed text-muted">
-                          {download.description[locale]}
+                          {localizeBrandNames(download.description[locale], locale)}
                         </span>
                       </span>
                       <span className="label-caps shrink-0 text-[9px] text-muted transition-colors group-hover/download:text-charcoal">

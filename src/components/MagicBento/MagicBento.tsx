@@ -17,6 +17,7 @@ export interface BentoCardData {
 
 export interface MagicBentoProps {
   cards?: BentoCardData[];
+  imageCtaLabel?: string;
   textAutoHide?: boolean;
   enableStars?: boolean;
   enableSpotlight?: boolean;
@@ -329,6 +330,7 @@ function useMobile() {
 
 export default function MagicBento({
   cards = defaultCards,
+  imageCtaLabel = "Explore Texture",
   textAutoHide = true,
   enableStars = true,
   enableSpotlight = true,
@@ -382,7 +384,7 @@ export default function MagicBento({
                 {card.description ? (
                   <p className="magic-bento-card__image-desc">{card.description}</p>
                 ) : null}
-                <span className="magic-bento-card__cta">Explore Texture</span>
+                <span className="magic-bento-card__cta">{imageCtaLabel}</span>
               </div>
             </>
           ) : (

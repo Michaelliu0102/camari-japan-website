@@ -61,7 +61,7 @@ export default async function ProductsPage({ params, searchParams }: PageProps) 
             ? "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC"
             : JAPANESE_PRODUCT_SURFACE_DESCRIPTION
         }
-        title="Product"
+        title={locale === "en" ? "Product" : "製品"}
       />
       <Showcase4 categories={showcaseCategories} initialCategory={initialCategory} items={items} locale={locale} />
       <CTASection

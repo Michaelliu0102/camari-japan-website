@@ -1,6 +1,11 @@
 import NeonReveal from "@/components/react-bits/neon-reveal";
+import type { Locale } from "@/lib/locales";
 
-export function ContactNeonHero() {
+type ContactNeonHeroProps = {
+  locale: Locale;
+};
+
+export function ContactNeonHero({ locale }: ContactNeonHeroProps) {
   return (
     <section
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-paper text-center"
@@ -20,7 +25,7 @@ export function ContactNeonHero() {
       <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(180deg,transparent,oklch(0.985_0.006_82))]" />
       <div className="relative px-margin-mobile">
         <h1 className="display-caps text-5xl font-normal leading-none text-charcoal [text-shadow:0_1px_0_oklch(0.985_0.006_82_/_0.55)] md:text-8xl">
-          CONTACTS
+          {locale === "ja" ? "お問い合わせ" : "CONTACTS"}
         </h1>
       </div>
     </section>
