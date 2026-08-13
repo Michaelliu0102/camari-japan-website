@@ -268,7 +268,12 @@ const productCategoryFixtures: ProductCategory[] = [
         title: { en: "Watch Case", ja: "ウォッチケース" },
         description: { en: "Watch cases that protect timepieces with a soft, presentation-ready material interior.", ja: "柔らかくプレゼンテーションに適した素材内装で時計を保護するウォッチケース。" },
         details: [{ en: "Timepiece protection", ja: "時計の保護" }, { en: "Soft interior surface", ja: "柔らかな内装表面" }, { en: "Suitable for luxury gifting", ja: "ラグジュアリーギフトに対応" }],
-        galleryImages: ["/uploads/product/product/lifestyle/watch case/watch case-01.jpg", "/uploads/product/product/lifestyle/watch case/watch case-02.jpg"]
+        galleryImages: [
+          "/uploads/product/product/lifestyle/watch case/watch case-01.jpg",
+          "/uploads/product/product/lifestyle/watch case/watch case-02.jpg",
+          "/uploads/product/product/lifestyle/watch case/leather-watch-case.jpeg",
+          "/uploads/product/product/lifestyle/watch case/leather-watch-case1.jpeg"
+        ]
       }
     ],
     description: { en: "Lifestyle collections spanning bags, luggage, wallets, cases, pouches, caps, and travel accessories for daily use and gifting.", ja: "バッグ、ラゲージ、ウォレット、ケース、ポーチ、キャップ、トラベルアクセサリーまで、日常使いとギフトに向けたライフスタイルコレクション。" },
