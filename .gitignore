@@ -13,11 +13,23 @@ tsconfig.tsbuildinfo
 .env.development.local
 .secrets/
 .claude/settings.local.json
+.claude/skills/
 home.html
 .DS_Store
 __pycache__/
 *.pyc
 *.inspect.ndjson
 previous_chat_history.md
+outputs/**/*-preview.png
+outputs/aquapelle-update/
+suitecloud/project.json
 ~$*.xlsx
 public/uploads/fabric/Hover/
+public/uploads/about/factory.jpeg
+public/uploads/about/italy-warehouse.jpg
+public/uploads/about/warehouse.jpg
+public/uploads/about/warehouseglobal.jpg
+public/uploads/hero/video/trim2.mov
+public/uploads/news/2024 Design Shanghai/designshanghai.jpeg
+public/uploads/news/2024 Design Shanghai/designshanghai.jpg
+public/uploads/news/2026 Aquapelle/Aquapelle_DECA_GLOBAL_v4.pptx
