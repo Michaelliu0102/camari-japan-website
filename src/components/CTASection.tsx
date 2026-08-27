@@ -20,9 +20,9 @@ type CTASectionProps = {
 export function CTASection({ locale, title, body, eyebrow = "Showroom", label = "Contact Sales", href = "/contact", secondaryLabel, secondaryAction = "link", secondaryHref = "/contact", tone = "dark", backgroundImage }: CTASectionProps) {
   const isDark = tone === "dark";
   const outlineClass = isDark
-    ? "inline-flex min-h-[4.5rem] items-center justify-center gap-4 border border-white/35 px-10 text-center label-caps transition-colors hover:bg-white hover:text-charcoal"
-    : "inline-flex min-h-[4.5rem] items-center justify-center gap-4 border border-charcoal/25 px-10 text-center label-caps transition-colors hover:bg-charcoal hover:text-white";
-  const primaryClass = "inline-flex min-h-[4.5rem] items-center justify-center gap-4 bg-gold px-10 text-center label-caps text-charcoal transition-colors hover:bg-gold/80";
+    ? "inline-flex min-h-14 w-full max-w-[20rem] items-center justify-center gap-4 border border-white/35 px-7 text-center label-caps transition-colors hover:bg-white hover:text-charcoal md:min-h-[4.5rem] md:w-auto md:max-w-none md:px-10"
+    : "inline-flex min-h-14 w-full max-w-[20rem] items-center justify-center gap-4 border border-charcoal/25 px-7 text-center label-caps transition-colors hover:bg-charcoal hover:text-white md:min-h-[4.5rem] md:w-auto md:max-w-none md:px-10";
+  const primaryClass = "inline-flex min-h-14 w-full max-w-[20rem] items-center justify-center gap-4 bg-gold px-7 text-center label-caps text-charcoal transition-colors hover:bg-gold/80 md:min-h-[4.5rem] md:w-auto md:max-w-none md:px-10";
 
   return (
     <section className={`relative overflow-hidden text-white ${!backgroundImage && (isDark ? "bg-charcoal" : "bg-stone text-charcoal")}`} {...(!isDark && !backgroundImage ? { "data-nav-invert": true } : {})}>
@@ -38,7 +38,7 @@ export function CTASection({ locale, title, body, eyebrow = "Showroom", label = 
           {title}
         </h2>
         <p className="mx-auto mt-6 max-w-[540px] whitespace-pre-line text-center text-[15px] leading-[1.6] tracking-[0.02em] text-white/85">{body}</p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-4">
           {secondaryLabel ? (
             secondaryAction === "message" ? (
               <CTAMessageDrawer buttonClassName={primaryClass} buttonLabel={secondaryLabel} locale={locale} />

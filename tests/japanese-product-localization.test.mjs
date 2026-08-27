@@ -16,7 +16,7 @@ test("Japanese navigation localizes material quick links", async () => {
   assert.match(content, /label: \{ en: "INTERIOR", ja: "インテリア" \}/);
   assert.match(content, /label: \{ en: "OUTDOOR", ja: "アウトドア" \}/);
   assert.match(content, /label: \{ en: "TECH", ja: "テック" \}/);
-  assert.match(content, /label: \{ en: "Vegan Leather", ja: "マイクロファイバーレザー" \}/);
+  assert.match(content, /label: \{ en: "Vegan Leather", ja: "合成皮革" \}/);
 });
 
 test("Japanese product surfaces localize sales actions and supporting copy", async () => {
@@ -67,6 +67,9 @@ test("Japanese copy sheet overrides Sanity-backed material and home content", as
   assert.match(copy, /上品なマットな質感が魅力のイタリア製本革。/);
   assert.match(copy, /クラシックカーの魅力を受け継ぐ、高耐久な欧州製ファブリック。/);
   assert.match(copy, /本革の質感と環境への配慮を両立した高機能マイクロファイバーレザー。/);
+  assert.match(copy, /category\.slug === "vegan-leather"[\s\S]*?ja: "合成皮革"/);
+  assert.match(copy, /material\.slug === "vegan-leather"[\s\S]*?heroTitle: \{ \.\.\.material\.heroTitle, ja: "合成皮革" \}/);
+  assert.match(copy, /ja: "合成皮革素材 \| カマリ・インターナショナル"/);
   assert.match(copy, /イタリアの技術と美意識の融合/);
   assert.match(copy, /名車にふさわしい品質/);
   assert.match(copy, /職人の技が息づくイタリア製本革/);

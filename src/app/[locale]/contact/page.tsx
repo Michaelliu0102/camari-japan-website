@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
+import { ConsentControlledMap } from "@/components/ConsentControlledMap";
 import { buildLocalBusinessJsonLd, buildOrganizationJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
 import { loadMaterialCategories } from "@/sanity/lib/loaders";
@@ -126,16 +127,11 @@ export default async function ContactPage({ params }: PageProps) {
               </div>
             </div>
             <div className="section-shell mt-16">
-              <iframe
+              <ConsentControlledMap
                 src="https://www.google.com/maps?q=35.696335%2C139.749207&z=16&output=embed"
-                width="600"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                directUrl="https://www.google.com/maps/search/?api=1&query=35.696335%2C139.749207"
                 title="カマリ・インターナショナル・ジャパン 所在地"
-                className="w-full"
+                className="h-[450px] w-full"
               />
             </div>
             <div className="section-shell mt-20 border-t border-charcoal/10 pt-12 md:mt-28 md:pt-16">

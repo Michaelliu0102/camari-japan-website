@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ConsentControlledMap } from "@/components/ConsentControlledMap";
 
 export type BranchLocation = {
   country: string;
@@ -19,6 +20,11 @@ type BranchLocationMapProps = {
 function mapEmbedUrl(location: BranchLocation) {
   const query = encodeURIComponent(`${location.lat},${location.lng}`);
   return `https://www.google.com/maps?q=${query}&z=12&output=embed`;
+}
+
+function mapDirectUrl(location: BranchLocation) {
+  const query = encodeURIComponent(`${location.lat},${location.lng}`);
+  return `https://www.google.com/maps/search/?api=1&query=${query}`;
 }
 
 export function BranchLocationMap({ locations }: BranchLocationMapProps) {
@@ -74,13 +80,10 @@ export function BranchLocationMap({ locations }: BranchLocationMapProps) {
         </div>
 
         <div className="relative h-[420px] bg-stone md:h-[560px]">
-          <iframe
-            allowFullScreen
+          <ConsentControlledMap
             className="absolute inset-0 h-full w-full"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
+            directUrl={mapDirectUrl(activeLocation)}
             src={mapUrl}
-            style={{ border: 0 }}
             title={`${activeLocation.country} branch location`}
           />
           <div className="pointer-events-none absolute inset-0 bg-charcoal/10" />

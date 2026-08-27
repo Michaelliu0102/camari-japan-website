@@ -59,7 +59,7 @@ const MATERIALS = {
   },
   "vegan-leather": {
     id: "material-vegan-leather",
-    name: { en: "Vegan Leather", ja: "ヴィーガンレザー" }
+    name: { en: "Vegan Leather", ja: "合成皮革" }
   }
 };
 

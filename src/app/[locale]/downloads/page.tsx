@@ -246,7 +246,7 @@ function createDownloadGroups(catalogs: Download[], productDownloads: Download[]
     },
     {
       slug: "vegan-leather",
-      label: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
+      label: { en: "Vegan Leather", ja: "合成皮革" },
       intro: {
         en: "Aquapelle and synthetic leather technical documents.",
         ja: "Aquapelle と合成レザーの技術資料。"

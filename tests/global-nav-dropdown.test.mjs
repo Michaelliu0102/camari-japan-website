@@ -26,7 +26,8 @@ test("GlobalNav gives Material, Product, and Media hover dropdowns", async () =>
 test("GlobalNav dropdown glass switches with the background-aware nav theme", async () => {
   const content = await source("src/components/GlobalNav.tsx");
 
-  assert.match(content, /glassClass\s*=\s*invert\s*\?/);
+  assert.match(content, /const glassClass = mobileOpen/);
+  assert.match(content, /:\s*invert\s*\?/);
   assert.match(content, /glass-nav-light/);
   assert.match(content, /glass-nav/);
   assert.match(content, /bg-white text-charcoal shadow-material/);
@@ -37,8 +38,27 @@ test("GlobalNav swaps between uploaded light and dark logo assets", async () => 
   const content = await source("src/components/GlobalNav.tsx");
 
   assert.match(content, /import Image from "next\/image"/);
-  assert.match(content, /const logoSrc = invert \? "\/uploads\/logo\/black-int\.png" : "\/uploads\/logo\/white-int\.png";/);
-  assert.match(content, /className="h-auto w-\[10\.5rem\] md:w-\[12rem\]"/);
+  assert.match(content, /const logoSrc = useDarkControls \? "\/uploads\/logo\/black-int\.png" : "\/uploads\/logo\/white-int\.png";/);
+  assert.match(content, /className="h-auto w-\[8\.5rem\].*md:w-\[12rem\]"/);
   assert.match(content, /src=\{logoSrc\}/);
   assert.match(content, /alt="CAMARI"/);
+});
+
+test("GlobalNav keeps every primary route visible in a scrollable mobile menu", async () => {
+  const content = await source("src/components/GlobalNav.tsx");
+
+  assert.match(content, /label:\s*\{\s*en:\s*"Home",\s*ja:\s*"ホーム"\s*\}/);
+  assert.match(content, /label:\s*\{\s*en:\s*"About",\s*ja:\s*"会社情報"\s*\}/);
+  assert.match(content, /label:\s*\{\s*en:\s*"Material",\s*ja:\s*"素材"\s*\}/);
+  assert.match(content, /overflow-y-auto overscroll-contain bg-paper text-charcoal/);
+  assert.match(content, /aria-label=\{locale === "en" \? "Mobile navigation"/);
+  assert.match(content, /document\.body\.style\.overflow = "hidden"/);
+});
+
+test("GlobalNav uses compact touch-safe controls on narrow screens", async () => {
+  const content = await source("src/components/GlobalNav.tsx");
+
+  assert.match(content, /h-11 w-11 shrink-0/);
+  assert.match(content, /min-h-11 items-center/);
+  assert.match(content, /useDarkControls = invert \|\| mobileOpen/);
 });

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CTASection } from "@/components/CTASection";
 import { OemLogoLoop } from "@/components/OemLogoLoop";
 import { ShinyHeading } from "@/components/ShinyHeading";
+import { JAPANESE_ABOUT_PAGE_COPY } from "@/lib/japanese-copy";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
 import { loadAboutPageSettings, loadHomePageSettings } from "@/sanity/lib/loaders";
@@ -64,14 +65,8 @@ const manufacturingCapabilities = [
   }
 ];
 
-function splitParagraphs(paragraphs: Array<Record<Locale, string>>, locale: Locale): string[] {
-  return paragraphs.flatMap((paragraph) =>
-    paragraph[locale]
-      .split(/\n\s*\n/)
-      .map((item) => item.trim())
-      .filter(Boolean)
-  );
-}
+const japaneseSectionLabelClass =
+  "font-label text-[0.78rem] font-semibold uppercase tracking-[0.28em] text-gold md:text-[0.9rem]";
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -260,8 +255,7 @@ export default async function AboutPage({ params }: PageProps) {
     );
   }
 
-  const bodyParagraphs = splitParagraphs(aboutSettings.bodyParagraphs, locale);
-  const manufacturingParagraphs = splitParagraphs(aboutSettings.manufacturingParagraphs, locale);
+  const aboutCopy = JAPANESE_ABOUT_PAGE_COPY;
 
   return (
     <main>
@@ -290,39 +284,89 @@ export default async function AboutPage({ params }: PageProps) {
           <span className="about-hero-explore-line h-14 w-px bg-[linear-gradient(180deg,rgba(103,95,88,0.95)_0%,rgba(103,95,88,0.18)_100%)] transition-transform duration-500 group-hover:scale-y-110" />
         </a>
       </section>
-      <section className="bg-paper py-24 md:py-36" data-nav-invert id="about-company">
+      <section className="bg-paper py-20 md:py-32" data-nav-invert id="about-company">
         <div className="section-shell">
-          <div className="max-w-[92rem]">
-            <p className="label-caps text-gold">{aboutSettings.bodyLabel[locale]}</p>
+          <div className="max-w-[76rem]">
+            <p className={japaneseSectionLabelClass}>{aboutCopy.intro.label}</p>
             <ShinyHeading
-              className="about-copy-title mt-5 text-[2.05rem] leading-[1.04] md:text-[3.25rem] lg:text-[3.7rem]"
+              className="about-copy-title mt-5 text-[clamp(1.8rem,7vw,2.6rem)] leading-[1.08] md:text-[3.1rem]"
               color="#2f2d2a"
               shineColor="#ffffff"
-              text={aboutSettings.bodyTitle[locale]}
+              text={aboutCopy.intro.title}
             />
+            <p className="mt-5 text-[1.15rem] font-medium leading-[1.8] tracking-[0.04em] text-charcoal md:text-[1.35rem]">
+              {aboutCopy.intro.subtitle}
+            </p>
           </div>
-          <div className="mt-14 max-w-[92rem] space-y-10 text-[1.05rem] leading-[1.72] text-muted md:mt-16 md:text-[1.12rem] md:leading-[1.78]">
-            {bodyParagraphs.map((paragraph, index) => (
-              <p className="max-w-none" key={`${locale}-about-copy-${index}`}>
+          <div className="mt-12 max-w-[54rem] space-y-7 text-base leading-[1.95] text-muted md:mt-16 md:text-[1.08rem] md:leading-[2]">
+            {aboutCopy.intro.paragraphs.map((paragraph, index) => (
+              <p className="whitespace-pre-line" key={`ja-about-intro-${index}`}>
                 {paragraph}
               </p>
             ))}
           </div>
-          <div className="mt-24 max-w-[92rem] md:mt-32">
-            <p className="label-caps text-gold">{aboutSettings.manufacturingLabel[locale]}</p>
-            <ShinyHeading
-              className="about-copy-title mt-5 text-[2.05rem] leading-[1.04] md:text-[3.25rem] lg:text-[3.7rem]"
-              color="#2f2d2a"
-              shineColor="#ffffff"
-              text={aboutSettings.manufacturingTitle[locale]}
-            />
+        </div>
+      </section>
+
+      <section className="bg-linen py-20 md:py-32" data-nav-invert>
+        <div className="section-shell grid gap-12 lg:grid-cols-[minmax(16rem,0.68fr)_minmax(0,1.32fr)] lg:gap-24">
+          <div>
+            <p className={japaneseSectionLabelClass}>{aboutCopy.mission.label}</p>
+            <h2 className="mt-5 max-w-[18ch] whitespace-pre-line text-[clamp(1.75rem,6vw,2.75rem)] font-medium leading-[1.45] tracking-[0.02em] text-charcoal">
+              {aboutCopy.mission.title}
+            </h2>
           </div>
-          <div className="mt-10 max-w-[92rem] space-y-10 text-[1.05rem] leading-[1.72] text-muted md:mt-12 md:text-[1.12rem] md:leading-[1.78]">
-            {manufacturingParagraphs.map((paragraph, index) => (
-              <p className="max-w-none" key={`${locale}-about-manufacturing-${index}`}>
+          <div className="max-w-[54rem] space-y-7 text-base leading-[1.95] text-muted md:text-[1.08rem] md:leading-[2]">
+            {aboutCopy.mission.paragraphs.map((paragraph, index) => (
+              <p
+                className={`whitespace-pre-line ${index === 2 ? "border-y border-charcoal/15 py-7" : ""}`}
+                key={`ja-about-mission-${index}`}
+              >
                 {paragraph}
               </p>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-paper py-20 md:py-32" data-nav-invert>
+        <div className="section-shell">
+          <p className={japaneseSectionLabelClass}>{aboutCopy.business.label}</p>
+          <div className="mt-10 grid border-y border-charcoal/15 md:mt-14 md:grid-cols-3">
+            {aboutCopy.business.items.map((item, index) => (
+              <article
+                className="border-b border-charcoal/15 py-9 last:border-b-0 md:border-b-0 md:border-r md:px-8 md:py-12 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
+                key={item.title}
+              >
+                <p className="text-[0.65rem] font-semibold tracking-[0.24em] text-gold">0{index + 1}</p>
+                <h2 className="mt-4 font-label text-[1.35rem] font-medium tracking-[0.12em] text-charcoal md:text-[1.55rem]">
+                  {item.title}
+                </h2>
+                <p className="mt-6 text-base leading-[1.95] text-muted">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-stone py-20 md:py-32" data-nav-invert>
+        <div className="section-shell grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(24rem,0.92fr)] lg:items-center lg:gap-20">
+          <div className="relative aspect-[4/3] overflow-hidden bg-linen">
+            <Image
+              alt="CAMARI 中国自社工場の製造設備"
+              className="object-cover"
+              fill
+              sizes="(min-width: 1024px) 54vw, 100vw"
+              src="/uploads/about/manufacturing.jpeg"
+            />
+          </div>
+          <div className="max-w-[42rem] lg:justify-self-end">
+            <h2 className={japaneseSectionLabelClass}>{aboutCopy.factory.label}</h2>
+            <div className="mt-8 space-y-7 text-base leading-[1.95] text-muted md:text-[1.08rem] md:leading-[2]">
+              {aboutCopy.factory.paragraphs.map((paragraph, index) => (
+                <p key={`ja-about-factory-${index}`}>{paragraph}</p>
+              ))}
+            </div>
           </div>
         </div>
       </section>

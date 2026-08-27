@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { ConsentProvider } from "@/components/ConsentManager";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { formatPageTitle, siteConfig } from "@/lib/site-config";
 
@@ -22,8 +23,10 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang={siteConfig.defaultLocale}>
       <body>
-        <SmoothScroll />
-        {children}
+        <ConsentProvider defaultLocale={siteConfig.defaultLocale}>
+          <SmoothScroll />
+          {children}
+        </ConsentProvider>
       </body>
     </html>
   );

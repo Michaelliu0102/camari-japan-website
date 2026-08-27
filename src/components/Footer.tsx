@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Instagram, Linkedin } from "lucide-react";
 import { localizedPath, type Locale } from "@/lib/locales";
 import { FooterNewsletterForm } from "@/components/FooterNewsletterForm";
+import { CookiePreferencesButton } from "@/components/CookiePreferencesButton";
 import { siteConfig } from "@/lib/site-config";
 
 type FooterProps = {
@@ -14,6 +15,7 @@ const footerCopy = {
     nav: [
       { label: "Company Profile", href: "/about" },
       { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Cookie Policy", href: "/cookie-policy" },
       { label: "Terms of Use", href: "/site-policy" },
       { label: "Contact Us", href: "/contact" },
       { label: "Sitemap", href: "/sitemap" }
@@ -24,6 +26,7 @@ const footerCopy = {
     nav: [
       { label: "会社概要", href: "/about" },
       { label: "プライバシーポリシー", href: "/privacy-policy" },
+      { label: "Cookie ポリシー", href: "/cookie-policy" },
       { label: "利用規約 / サイトポリシー", href: "/site-policy" },
       { label: "お問い合わせ", href: "/contact" },
       { label: "サイトマップ", href: "/sitemap" }
@@ -83,6 +86,9 @@ export function Footer({ locale }: FooterProps) {
                   </Link>
                 </li>
               ))}
+              <li>
+                <CookiePreferencesButton locale={locale} />
+              </li>
             </ul>
           </nav>
         </div>

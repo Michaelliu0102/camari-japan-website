@@ -36,6 +36,7 @@ const copy = {
         title: "Legal",
         links: [
           { label: "Privacy Policy", href: "/privacy-policy" },
+          { label: "Cookie Policy", href: "/cookie-policy" },
           { label: "Terms of Use / Site Policy", href: "/site-policy" }
         ]
       }
@@ -68,6 +69,7 @@ const copy = {
         title: "Legal",
         links: [
           { label: "プライバシーポリシー", href: "/privacy-policy" },
+          { label: "Cookie ポリシー", href: "/cookie-policy" },
           { label: "利用規約 / サイトポリシー", href: "/site-policy" }
         ]
       }

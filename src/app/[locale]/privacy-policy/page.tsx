@@ -22,7 +22,7 @@ const content = {
   en: {
     eyebrow: "Privacy Policy",
     title: "Privacy Policy",
-    updated: "Last updated: July 25, 2026",
+    updated: "Last updated: August 14, 2026",
     organizationName: privacyEntity.en.name,
     description: `How ${privacyEntity.en.name} handles personal information received from business contacts, inquiries, newsletter subscriptions, and website use.`,
     intro:
@@ -70,7 +70,7 @@ const content = {
       },
       {
         title: "Cookies",
-        body: "Our website may use cookies, pixels, local storage, or similar technologies for essential functionality, security, performance, analytics, and user experience. You can manage cookies through your browser settings. Some features may not work as intended if cookies are disabled."
+        body: "We use local storage to remember your privacy preferences. Embedded Google Maps are treated as optional external media and remain blocked until you consent. If enabled, Google may receive technical data such as your IP address and may use cookies or similar technologies under its own policies. We do not currently use advertising or audience-analytics cookies. You can accept, reject, or change optional settings at any time through Cookie Preferences in the footer."
       },
       {
         title: "Service Providers",
@@ -129,7 +129,7 @@ const content = {
   ja: {
     eyebrow: "プライバシーポリシー",
     title: "プライバシーポリシー",
-    updated: "最終更新日：2026年7月25日",
+    updated: "最終更新日：2026年8月14日",
     organizationName: privacyEntity.ja.name,
     description: `${privacyEntity.ja.name} におけるビジネス上のご連絡、お問い合わせ、ニュースレター登録、ウェブサイト利用に伴う個人情報の取り扱いについて。`,
     intro:
@@ -177,7 +177,7 @@ const content = {
       },
       {
         title: "Cookie 等",
-        body: "本サイトでは、基本的なサイト機能、セキュリティ、パフォーマンス、アクセス解析、ユーザー体験のために Cookie、ピクセル、ローカルストレージまたは類似技術を使用する場合があります。Cookie はブラウザ設定で管理できますが、無効化すると一部機能が意図通り動作しない場合があります。"
+        body: "本サイトでは、プライバシー設定を保存するためにローカルストレージを使用します。埋め込みの Google Maps は任意の外部メディアとして扱い、同意いただくまで読み込まれません。有効にした場合、Google は IP アドレス等の技術情報を受信し、同社のポリシーに基づき Cookie 等を使用する場合があります。現在、広告またはアクセス解析を目的とする Cookie は使用していません。任意設定は、フッターの「Cookie 設定」からいつでも許可、拒否、変更できます。"
       },
       {
         title: "委託先",

@@ -328,7 +328,7 @@ export const materialCategories: MaterialCategory[] = [
   },
   {
     slug: "vegan-leather",
-    name: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
+    name: { en: "Vegan Leather", ja: "合成皮革" },
     tagline: { en: "Sustainable luxury alternatives", ja: "本革の質感と環境への配慮を両立した高機能マイクロファイバーレザー。" },
     description: {
       en: "Matte, refined surfaces for contemporary spaces and brand-led product programs.",
@@ -376,9 +376,9 @@ export const materials: Material[] = [
   {
     slug: "vegan-leather",
     categorySlug: "vegan-leather",
-    name: { en: "Vegan Leather", ja: "ヴィーガンレザー" },
+    name: { en: "Vegan Leather", ja: "合成皮革" },
     eyebrow: { en: "Sustainable Collection", ja: "サステナブルコレクション" },
-    heroTitle: { en: "Vegan Leather", ja: "Vegan Leather" },
+    heroTitle: { en: "Vegan Leather", ja: "合成皮革" },
     heroSubtitle: { en: "Performance without compromise", ja: "妥協なき性能" },
     heroImage: "/uploads/veganleather/interior.jpg",
     introTitle: { en: "High-Performance Alternatives", ja: "ハイパフォーマンスな選択肢" },
@@ -399,7 +399,7 @@ export const materials: Material[] = [
       }
     ],
     seo: {
-      title: { en: "Vegan Leather Materials | CAMARI JAPAN", ja: "ヴィーガンレザー素材 | CAMARI JAPAN" },
+      title: { en: "Vegan Leather Materials | CAMARI JAPAN", ja: "合成皮革素材 | カマリ・インターナショナル" },
       description: {
         en: "Sustainable vegan leather alternatives with matte finishes and micro-textures for interior and product spaces.",
         ja: "マット仕上げとマイクロテクスチャを備えた、インテリアとプロダクト空間のためのサステナブルなヴィーガンレザー素材。"

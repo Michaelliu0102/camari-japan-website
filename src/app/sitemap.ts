@@ -62,7 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  ["", "/oem-odm", "/about", "/contact", "/privacy-policy", "/site-policy", "/sitemap"].forEach((path) => add(path));
+  ["", "/oem-odm", "/about", "/contact", "/privacy-policy", "/cookie-policy", "/site-policy", "/sitemap"].forEach((path) => add(path));
 
   add("/materials", latestLastModified([...materialCategories, ...materials].map((item) => item.updatedAt)));
   add("/products", latestLastModified(productCategories.map((category) => category.updatedAt)));

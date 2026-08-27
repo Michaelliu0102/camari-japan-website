@@ -5,7 +5,7 @@
 
 :root {
   color-scheme: light;
-  --nav-height: 80px;
+  --nav-height: 72px;
 }
 
 * {
@@ -220,6 +220,10 @@ video {
 }
 
 @media (min-width: 768px) {
+  :root {
+    --nav-height: 80px;
+  }
+
   .section-shell {
     width: min(100% - 128px, 1440px);
   }

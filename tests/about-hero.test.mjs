@@ -32,39 +32,43 @@ test("about page hero uses the showroom image and concise CAMARI wordmark copy",
   assert.match(styles, /\.about-hero-wordmark/);
 });
 
-test("about content uses a single-column ABOUT CAMARI heading with company label styling and shiny effect", async () => {
+test("Japanese about content uses the new material-led brand narrative", async () => {
   const page = await source("src/app/[locale]/about/page.tsx");
-  const content = await source("src/lib/content.ts");
-  const schema = await source("src/sanity/schemaTypes/aboutPage.ts");
-  const seed = await source("scripts/seedAboutPage.mjs");
+  const copy = await source("src/lib/japanese-copy.ts");
 
-  assert.match(page, /aboutSettings\.bodyLabel\[locale\]/);
-  assert.match(page, /aboutSettings\.bodyTitle\[locale\]/);
-  assert.doesNotMatch(page, /ABOUT CAMARI INTERNATIONAL/);
+  assert.match(page, /JAPANESE_ABOUT_PAGE_COPY/);
   assert.match(page, /about-copy-title/);
   assert.match(page, /ShinyHeading/);
-  assert.match(page, /splitParagraphs\(aboutSettings\.bodyParagraphs/);
-  assert.match(page, /flatMap/);
-  assert.match(page, /split\(\/\\n\\s\*\\n\/\)/);
-  assert.doesNotMatch(page, /md:text-\[4\.4rem\]/);
-  assert.doesNotMatch(content, /Our work balances/);
-  assert.doesNotMatch(schema, /Our work balances/);
-  assert.doesNotMatch(seed, /Our work balances/);
-  assert.doesNotMatch(page, /md:grid-cols-12/);
+  assert.match(copy, /FROM MATERIAL TO MORE\./);
+  assert.match(copy, /素材から、その先へ。/);
+  assert.match(copy, /世界のいい素材を、\\nもっと身近に。/);
+  assert.match(copy, /日本・イタリア・上海・オーストラリア/);
+  assert.match(copy, /CAMARIは、素材への専門性を軸に、その可能性をさまざまなかたちで届けていきます。/);
+  assert.doesNotMatch(copy, /CAMARIは、素材が持つ可能性を引き出し/);
 });
 
-test("about content includes an editable manufacturing section below company copy", async () => {
+test("Japanese about content presents Material, OEM, Brand, and certified factory operations", async () => {
   const page = await source("src/app/[locale]/about/page.tsx");
-  const content = await source("src/lib/content.ts");
-  const schema = await source("src/sanity/schemaTypes/aboutPage.ts");
-  const seed = await source("scripts/seedAboutPage.mjs");
+  const copy = await source("src/lib/japanese-copy.ts");
 
-  assert.match(page, /aboutSettings\.manufacturingLabel\[locale\]/);
-  assert.match(page, /aboutSettings\.manufacturingTitle\[locale\]/);
-  assert.match(page, /aboutSettings\.manufacturingParagraphs/);
-  assert.match(page, /manufacturingParagraphs\.map/);
-  assert.match(content, /SHENGHUA is factory from 2000\./);
-  assert.match(schema, /manufacturingLabel/);
-  assert.match(schema, /manufacturingTitle/);
-  assert.match(seed, /SHENGHUA is factory from 2000\./);
+  assert.match(page, /aboutCopy\.business\.items\.map/);
+  assert.match(page, /aboutCopy\.factory\.paragraphs\.map/);
+  assert.match(page, /\/uploads\/about\/manufacturing\.jpeg/);
+  assert.match(copy, /title: "MATERIAL"/);
+  assert.match(copy, /title: "OEM"/);
+  assert.match(copy, /title: "BRAND"/);
+  assert.match(copy, /IATF 16949認証/);
+});
+
+test("Japanese about typography follows the annotated hierarchy and removes the crossed-out OEM label", async () => {
+  const page = await source("src/app/[locale]/about/page.tsx");
+  const oemLoop = await source("src/components/OemLogoLoop.tsx");
+
+  assert.match(page, /const japaneseSectionLabelClass/);
+  assert.match(page, /md:text-\[0\.9rem\]/);
+  assert.match(page, /md:text-\[3\.1rem\]/);
+  assert.match(page, /max-w-\[18ch\] whitespace-pre-line/);
+  assert.doesNotMatch(page, /py-7 font-medium leading-\[2\.15\] text-charcoal/);
+  assert.doesNotMatch(oemLoop, /自動車パートナー/);
+  assert.match(oemLoop, />ご一緒したOEM<\/h2>/);
 });

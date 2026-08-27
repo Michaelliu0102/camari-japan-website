@@ -63,8 +63,7 @@ export function OemLogoLoop({ locale }: OemLogoLoopProps) {
           ) : (
             <>
               <div>
-                <p className="label-caps text-gold">自動車パートナー</p>
-                <h2 className="mt-5 max-w-2xl font-serif text-4xl leading-tight text-charcoal md:text-6xl">ご一緒したOEM</h2>
+                <h2 className="max-w-2xl font-serif text-4xl leading-tight text-charcoal md:text-6xl">ご一緒したOEM</h2>
               </div>
               <p className="max-w-sm text-sm leading-7 text-muted md:text-right">
                 自動車ブランド、モビリティチーム、パフォーマンス分野の専門家と形づくる素材プログラム。

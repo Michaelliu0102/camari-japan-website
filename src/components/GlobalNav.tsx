@@ -77,7 +77,7 @@ const navItems: NavItem[] = [
         ]
       },
       {
-        label: { en: "Vegan Leather", ja: "マイクロファイバーレザー" },
+        label: { en: "Vegan Leather", ja: "合成皮革" },
         href: "/materials/vegan-leather",
         description: { en: "High-performance alternatives", ja: "高機能な代替レザー素材" }
       },
@@ -150,6 +150,27 @@ export function GlobalNav({ locale }: GlobalNavProps) {
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
   useEffect(() => {
+    closeMobile();
+  }, [closeMobile, pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event: globalThis.KeyboardEvent) {
+      if (event.key === "Escape") closeMobile();
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [closeMobile, mobileOpen]);
+
+  useEffect(() => {
     function check() {
       const invertEls = document.querySelectorAll("[data-nav-invert]");
       let shouldInvert = false;
@@ -178,23 +199,28 @@ export function GlobalNav({ locale }: GlobalNavProps) {
     };
   }, []);
 
-  const textColor = invert ? "text-charcoal" : "text-white";
-  const borderColor = invert ? "border-charcoal/25" : "border-white/25";
-  const hoverBg = invert
+  const useDarkControls = invert || mobileOpen;
+  const textColor = useDarkControls ? "text-charcoal" : "text-white";
+  const borderColor = useDarkControls ? "border-charcoal/25" : "border-white/25";
+  const hoverBg = useDarkControls
     ? "hover:bg-charcoal hover:text-white"
     : "hover:bg-white hover:text-charcoal";
-  const btnBg = invert ? "bg-charcoal/6" : "bg-white/8";
-  const glassClass = invert ? "glass-nav-light" : "glass-nav";
+  const btnBg = useDarkControls ? "bg-charcoal/6" : "bg-white/8";
+  const glassClass = mobileOpen
+    ? "border-b border-charcoal/10 bg-paper"
+    : invert
+      ? "glass-nav-light"
+      : "glass-nav";
   const dropdownGlassClass = "border-y border-charcoal/10 bg-white text-charcoal shadow-material";
   const dropdownMutedText = "text-muted";
   const dropdownItemHover = "hover:bg-charcoal/5";
   const languageSwitchHref = getLanguageSwitchHref(locale, pathname);
-  const logoSrc = invert ? "/uploads/logo/black-int.png" : "/uploads/logo/white-int.png";
+  const logoSrc = useDarkControls ? "/uploads/logo/black-int.png" : "/uploads/logo/white-int.png";
 
   return (
     <>
       <header className={`${glassClass} fixed left-0 top-0 z-50 w-full`}>
-      <nav className="mx-auto flex h-[var(--nav-height)] w-full max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop">
+      <nav className="mx-auto flex h-[var(--nav-height)] w-full max-w-container-max items-center justify-between px-4 min-[390px]:px-margin-mobile md:px-margin-desktop">
         <Link
           aria-label={`${siteConfig.siteName} home`}
           className="inline-flex items-center"
@@ -202,9 +228,9 @@ export function GlobalNav({ locale }: GlobalNavProps) {
         >
           <Image
             alt="CAMARI"
-            className="h-auto w-[10.5rem] md:w-[12rem]"
+            className="h-auto w-[8.5rem] min-[390px]:w-[9.25rem] md:w-[12rem]"
             height={1780}
-            sizes="(min-width: 768px) 192px, 168px"
+            sizes="(min-width: 768px) 192px, (min-width: 390px) 148px, 136px"
             src={logoSrc}
             width={4994}
           />
@@ -303,7 +329,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
           )}
         </div>
 
-        <div className={`flex items-center gap-3 ${textColor}`}>
+        <div className={`flex items-center gap-2 md:gap-3 ${textColor}`}>
           <button
             aria-label={locale === "en" ? "Search materials" : "素材を検索"}
             className={`hidden h-10 w-10 items-center justify-center border transition-colors md:flex ${borderColor} ${btnBg} ${hoverBg}`}
@@ -313,19 +339,19 @@ export function GlobalNav({ locale }: GlobalNavProps) {
             <Search size={16} strokeWidth={1.4} />
           </button>
           <Link
-            className={`flex border font-label text-[10px] font-semibold uppercase tracking-[0.24em] transition-colors ${borderColor} ${btnBg} ${hoverBg}`}
+            className={`flex min-h-11 items-center border font-label text-[9px] font-semibold uppercase tracking-[0.18em] transition-colors md:text-[10px] md:tracking-[0.24em] ${borderColor} ${btnBg} ${hoverBg}`}
             href={languageSwitchHref}
           >
-            <span className={`px-3 py-3 ${locale === "en" ? "" : "opacity-50"}`}>EN</span>
-            <span className="px-1 py-3 opacity-20">/</span>
-            <span className={`px-3 py-3 ${locale === "ja" ? "" : "opacity-50"}`}>JP</span>
+            <span className={`px-2.5 py-3 min-[390px]:px-3 ${locale === "en" ? "" : "opacity-50"}`}>EN</span>
+            <span className="py-3 opacity-20">/</span>
+            <span className={`px-2.5 py-3 min-[390px]:px-3 ${locale === "ja" ? "" : "opacity-50"}`}>JP</span>
           </Link>
           <button
             aria-expanded={mobileOpen}
             aria-label={
               mobileOpen ? "Close navigation" : "Open navigation"
             }
-            className={`flex h-10 w-10 items-center justify-center border transition-colors md:hidden ${borderColor} ${btnBg} ${hoverBg}`}
+            className={`flex h-11 w-11 shrink-0 items-center justify-center border transition-colors md:hidden ${borderColor} ${btnBg} ${hoverBg}`}
             onClick={() => setMobileOpen((prev) => !prev)}
             type="button"
           >
@@ -339,22 +365,26 @@ export function GlobalNav({ locale }: GlobalNavProps) {
       </nav>
 
       {mobileOpen ? (
-        <div className="fixed inset-0 top-[var(--nav-height)] z-40 bg-white md:hidden">
-          <nav className="flex h-full flex-col items-center justify-center gap-7">
+        <div className="fixed inset-x-0 bottom-0 top-[var(--nav-height)] z-40 overflow-y-auto overscroll-contain bg-paper text-charcoal md:hidden">
+          <nav
+            aria-label={locale === "en" ? "Mobile navigation" : "モバイルナビゲーション"}
+            className="mx-auto flex min-h-full w-full max-w-xl flex-col px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-4"
+          >
+            <div className="divide-y divide-charcoal/12 border-y border-charcoal/12">
             {navItems.map((item) => (
-              <div className="text-center" key={item.href || "home"}>
+              <div className="py-2" key={item.href || "home"}>
                 <Link
-                  className="font-serif text-3xl uppercase tracking-luxury text-charcoal/85 transition-colors hover:text-charcoal"
+                  className="flex min-h-11 items-center font-label text-[0.82rem] font-semibold uppercase tracking-[0.18em] text-charcoal transition-colors hover:text-gold focus-visible:text-gold"
                   href={localizedPath(locale, item.href)}
                   onClick={closeMobile}
                 >
                   {item.label[locale]}
                 </Link>
                 {item.children ? (
-                  <div className="mt-3 grid gap-2">
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 pb-2">
                     {item.children.map((child) => (
                       <Link
-                        className="font-label text-[10px] font-semibold uppercase tracking-[0.24em] text-muted transition-colors hover:text-charcoal"
+                        className="flex min-h-11 items-center font-label text-[0.62rem] font-semibold uppercase leading-5 tracking-[0.13em] text-muted transition-colors hover:text-charcoal focus-visible:text-charcoal"
                         href={localizedPath(locale, child.href)}
                         key={child.href}
                         onClick={closeMobile}
@@ -366,8 +396,9 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                 ) : null}
               </div>
             ))}
+            </div>
             <button
-              className="mt-8 border border-charcoal/25 px-8 py-4 font-label text-[10px] font-semibold uppercase tracking-[0.24em] text-charcoal transition-colors hover:bg-charcoal hover:text-white"
+              className="mt-6 min-h-12 w-full border border-charcoal/30 px-6 py-3 font-label text-[10px] font-semibold uppercase tracking-[0.22em] text-charcoal transition-colors hover:bg-charcoal hover:text-paper focus-visible:bg-charcoal focus-visible:text-paper"
               onClick={() => {
                 closeMobile();
                 setSearchOpen(true);
