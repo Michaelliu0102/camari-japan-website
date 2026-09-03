@@ -80,6 +80,27 @@ test("Japanese copy sheet overrides Sanity-backed material and home content", as
   assert.match(materialIntro, /quote \?/);
 });
 
+test("Japanese product-category copy mirrors the upload template on local and Sanity-backed pages", async () => {
+  const copy = await source("src/lib/japanese-copy.ts");
+  const loaders = await source("src/sanity/lib/loaders.ts");
+  const categoryPage = await source("src/app/[locale]/products/[categorySlug]/page.tsx");
+  const carousel = await source("src/components/ProductCurvedCarousel.tsx");
+  const translatedContent = JSON.parse(await source("src/data/product-category-ja.json"));
+
+  assert.equal(Object.keys(translatedContent).length, 4);
+  assert.equal(translatedContent["automotive-interior-accessories"].carouselItems.length, 10);
+  assert.equal(translatedContent["tech-accessories"].carouselItems.length, 7);
+  assert.equal(translatedContent.lifestyle.carouselItems.length, 11);
+  assert.equal(translatedContent["corporation-gift"].carouselItems.length, 6);
+  assert.equal(translatedContent["tech-accessories"].carouselItems[2].title, "Apple Watchバンド");
+  assert.equal(translatedContent.lifestyle.carouselItems[9].title, "トラベルポーチ");
+  assert.match(copy, /applyJapaneseProductCategoryCopy/);
+  assert.match(copy, /getJapaneseProductCategorySeo/);
+  assert.match(loaders, /return applyJapaneseProductCategoryCopy\(categories\)/);
+  assert.match(categoryPage, /getJapaneseProductCategorySeo/);
+  assert.match(carousel, /details\.filter\(\(detail\) => detail\[locale\]\)/);
+});
+
 test("Japanese overview pages localize the remaining English section labels", async () => {
   const downloadsPage = await source("src/app/[locale]/downloads/page.tsx");
   const productsPage = await source("src/app/[locale]/products/page.tsx");

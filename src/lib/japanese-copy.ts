@@ -1,7 +1,95 @@
 import type { HomePageSettings, Material, MaterialCategory } from "./content";
+import type { ProductCategory } from "@/content/products/categories";
+import productCategoryJapaneseContentData from "@/data/product-category-ja.json";
 
 export const JAPANESE_PRODUCT_SURFACE_DESCRIPTION =
   "製品の用途や使い心地に合わせた最適なデザイン・加工をご提案します。";
+
+type ProductCategoryJapaneseContent = {
+  title: string;
+  subtitle: string;
+  description: string;
+  seoTitle: string;
+  seoDescription: string;
+  highlights: Array<{
+    sourceTitle: string;
+    title: string;
+    body: string;
+  }>;
+  carouselItems: Array<{
+    sourceTitle: string;
+    title: string;
+    customizedOption: string;
+    description: string;
+    details: string[];
+  }>;
+};
+
+const productCategoryJapaneseContent = productCategoryJapaneseContentData as Record<
+  string,
+  ProductCategoryJapaneseContent
+>;
+
+export function applyJapaneseProductCategoryCopy(
+  categories: ProductCategory[],
+): ProductCategory[] {
+  return categories.map((category) => {
+    const copy = productCategoryJapaneseContent[category.slug];
+
+    if (!copy) {
+      return category;
+    }
+
+    return {
+      ...category,
+      title: { ...category.title, ja: copy.title },
+      subtitle: { ...category.subtitle, ja: copy.subtitle },
+      description: { ...category.description, ja: copy.description },
+      highlights: category.highlights.map((highlight, index) => {
+        const highlightCopy = copy.highlights[index];
+
+        return highlightCopy
+          ? {
+              title: { ...highlight.title, ja: highlightCopy.title },
+              body: { ...highlight.body, ja: highlightCopy.body },
+            }
+          : highlight;
+      }),
+      curvedCarouselImages: category.curvedCarouselImages?.map((item, index) => {
+        const itemCopy = copy.carouselItems[index];
+
+        if (!itemCopy) {
+          return item;
+        }
+
+        return {
+          ...item,
+          title: { ...item.title, ja: itemCopy.title },
+          description: { ...item.description, ja: itemCopy.description },
+          customizedOption: {
+            en: item.customizedOption?.en ?? "",
+            ja: itemCopy.customizedOption,
+          },
+          details: Array.from(
+            { length: Math.max(item.details.length, itemCopy.details.length) },
+            (_, detailIndex) => ({
+              en: item.details[detailIndex]?.en ?? "",
+              ja: itemCopy.details[detailIndex] ?? "",
+            }),
+          ),
+        };
+      }),
+    };
+  });
+}
+
+export function getJapaneseProductCategorySeo(slug: string) {
+  const copy = productCategoryJapaneseContent[slug];
+
+  return copy
+    ? { title: copy.seoTitle, description: copy.seoDescription }
+    : undefined;
+}
 
 export const JAPANESE_ABOUT_PAGE_COPY = {
   intro: {

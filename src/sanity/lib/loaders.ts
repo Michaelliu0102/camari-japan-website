@@ -24,6 +24,7 @@ import {
   applyJapaneseHomePageCopy,
   applyJapaneseMaterialCategoryCopy,
   applyJapaneseMaterialCopy,
+  applyJapaneseProductCategoryCopy,
 } from "@/lib/japanese-copy";
 import { loadSkaiVinylProductTypes, loadSkaiVinylSkus } from "@/lib/skai-vinyl";
 import {
@@ -452,7 +453,14 @@ export async function loadProductTypes(): Promise<ProductType[]> {
 }
 
 export async function loadProductCategories(): Promise<ProductCategory[]> {
-  return fetchAndMergeBySlug<RawProductCategory, ProductCategory>(productCategoriesQuery, {}, fallbackProductCategories, adaptProductCategory);
+  const categories = await fetchAndMergeBySlug<RawProductCategory, ProductCategory>(
+    productCategoriesQuery,
+    {},
+    fallbackProductCategories,
+    adaptProductCategory,
+  );
+
+  return applyJapaneseProductCategoryCopy(categories);
 }
 
 export async function loadProductCategory(slug: string): Promise<ProductCategory | undefined> {

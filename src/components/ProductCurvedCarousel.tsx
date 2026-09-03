@@ -367,8 +367,8 @@ export function ProductCurvedCarousel({ categorySlug, heroImage, images, locale,
                       <span className="text-lg leading-none text-muted transition group-open:rotate-45">+</span>
                     </summary>
                     <ul className="mt-5 space-y-3 text-sm leading-6 text-muted">
-                      {activeItem.details.map((detail) => (
-                        <li className="border-l border-gold/45 pl-4" key={detail.en}>
+                      {activeItem.details.filter((detail) => detail[locale]).map((detail) => (
+                        <li className="border-l border-gold/45 pl-4" key={`${detail.en}-${detail.ja}`}>
                           {detail[locale]}
                         </li>
                       ))}

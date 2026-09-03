@@ -4,6 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { ProductCurvedCarousel } from "@/components/ProductCurvedCarousel";
 import { createPageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/content";
+import { getJapaneseProductCategorySeo } from "@/lib/japanese-copy";
 import type { Locale } from "@/lib/locales";
 import { productCategories } from "@/content/products/categories";
 import { loadProductCategory } from "@/sanity/lib/loaders";
@@ -22,6 +23,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, categorySlug } = await params;
   const category = await loadProductCategory(categorySlug);
+  const japaneseSeo = locale === "ja" ? getJapaneseProductCategorySeo(categorySlug) : undefined;
 
   if (!category) {
     return createPageMetadata({
@@ -35,8 +37,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: `/products/${categorySlug}`,
-    title: locale === "en" ? `${category.title.en} | ${site.name}` : `${category.title.ja} | ${site.name}`,
-    description: category.description[locale],
+    title: japaneseSeo?.title ?? (locale === "en" ? `${category.title.en} | ${site.name}` : `${category.title.ja} | ${site.name}`),
+    description: japaneseSeo?.description ?? category.description[locale],
     image: category.heroImage
   });
 }
