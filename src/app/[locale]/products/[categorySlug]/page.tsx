@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
+import { ProductCategorySummary } from "@/components/ProductCategorySummary";
 import { ProductCurvedCarousel } from "@/components/ProductCurvedCarousel";
 import { createPageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/content";
@@ -62,6 +63,7 @@ export default async function ProductCategoryPage({ params }: PageProps) {
           subtitle={category.subtitle[locale]}
           title={category.title[locale]}
         />
+        <ProductCategorySummary category={category} locale={locale} />
       </main>
     );
   }

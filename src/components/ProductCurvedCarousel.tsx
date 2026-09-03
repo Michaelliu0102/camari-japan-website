@@ -252,7 +252,7 @@ export function ProductCurvedCarousel({ categorySlug, heroImage, images, locale,
                   aria-label={`${locale === "en" ? "Open details for" : "詳細を開く"} ${item.title[locale]}`}
                   className="hero-orbit-card group cursor-zoom-in"
                   data-carousel-index={sourceIndex}
-                  href={`#surface-detail-${sourceIndex}`}
+                  href={`#product-summary-${sourceIndex}`}
                   style={{ cursor: "zoom-in", transform: "rotateY(-90deg)" }}
                   onClick={(event) => {
                     event.preventDefault();
