@@ -198,6 +198,14 @@ export type RawAboutPageSettings = {
   manufacturingParagraphs?: Array<LocalizedString | null> | null;
 } | null;
 
+export type RawProductBusinessSettings = {
+  eyebrow?: LocalizedString | null;
+  title?: LocalizedString | null;
+  body?: LocalizedString | null;
+  accordionLabel?: LocalizedString | null;
+  accordionSummary?: LocalizedString | null;
+} | null;
+
 export const homePageSettingsQuery = `*[_type == "homePage"][0] {
   heroTitle,
   heroSubtitle,
@@ -233,6 +241,14 @@ export const aboutPageSettingsQuery = `*[_type == "aboutPage"][0] {
   manufacturingLabel,
   manufacturingTitle,
   manufacturingParagraphs
+}`;
+
+export const productBusinessSettingsQuery = `*[_type == "productBusinessSettings"][0] {
+  eyebrow,
+  title,
+  body,
+  accordionLabel,
+  accordionSummary
 }`;
 
 export const materialCategoriesQuery = `*[_type == "materialCategory"] | order(sortOrder asc, name.en asc) {

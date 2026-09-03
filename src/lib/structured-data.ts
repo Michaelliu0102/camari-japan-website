@@ -15,6 +15,36 @@ type ProductEntry = {
   category?: string;
 };
 
+type CollectionItemEntry = {
+  name: string;
+  description: string;
+  path: string;
+  image?: string;
+};
+
+type ProductCategoryEntry = {
+  name: string;
+  description: string;
+  path: string;
+  items: CollectionItemEntry[];
+  locale: Locale;
+};
+
+type ProductVariantEntry = ProductEntry & {
+  color: string;
+};
+
+type ProductGroupEntry = {
+  name: string;
+  description: string;
+  path: string;
+  image?: string;
+  productGroupId: string;
+  category?: string;
+  locale: Locale;
+  variants: ProductVariantEntry[];
+};
+
 type NewsArticleEntry = {
   headline: string;
   description: string;
@@ -159,6 +189,116 @@ export function buildProductJsonLd(site: Pick<SiteConfig, "siteUrl">, product: P
       "@type": "Brand",
       name: getSeoBrandName(locale)
     }
+  };
+}
+
+export function buildProductGroupJsonLd(
+  site: Pick<SiteConfig, "siteUrl">,
+  productGroup: ProductGroupEntry
+) {
+  const url = toAbsoluteUrl(site, productGroup.path);
+  const brand = {
+    "@type": "Brand",
+    name: getSeoBrandName(productGroup.locale)
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProductGroup",
+    "@id": `${url}#product-group`,
+    name: productGroup.name,
+    description: productGroup.description,
+    url,
+    image: productGroup.image ? toAbsoluteResourceUrl(site, productGroup.image) : undefined,
+    category: productGroup.category,
+    brand,
+    productGroupID: productGroup.productGroupId,
+    variesBy: ["https://schema.org/color"],
+    hasVariant: productGroup.variants.map((variant) => ({
+      "@type": "Product",
+      "@id": `${toAbsoluteUrl(site, variant.path)}#product`,
+      name: variant.name,
+      description: variant.description,
+      url: toAbsoluteUrl(site, variant.path),
+      image: variant.image ? toAbsoluteResourceUrl(site, variant.image) : undefined,
+      sku: variant.sku,
+      color: variant.color,
+      category: variant.category || productGroup.category,
+      brand,
+      inProductGroupWithID: productGroup.productGroupId
+    }))
+  };
+}
+
+export function buildProductCategoryJsonLd(
+  site: Pick<SiteConfig, "siteUrl">,
+  category: ProductCategoryEntry
+) {
+  const url = toAbsoluteUrl(site, category.path);
+  const breadcrumbId = `${url}#breadcrumb`;
+  const itemListId = `${url}#itemlist`;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": breadcrumbId,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: category.locale === "en" ? "Home" : "ホーム",
+            item: toAbsoluteUrl(site, "/")
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: category.locale === "en" ? "Products" : "製品",
+            item: toAbsoluteUrl(site, "/products")
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: category.name,
+            item: url
+          }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: category.name,
+        description: category.description,
+        inLanguage: category.locale === "ja" ? "ja-JP" : "en",
+        breadcrumb: {
+          "@id": breadcrumbId
+        },
+        mainEntity: {
+          "@id": itemListId
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": itemListId,
+        name: `${category.name} ${category.locale === "en" ? "product index" : "製品インデックス"}`,
+        numberOfItems: category.items.length,
+        itemListOrder: "https://schema.org/ItemListOrderAscending",
+        itemListElement: category.items.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Thing",
+            "@id": toAbsoluteUrl(site, item.path),
+            name: item.name,
+            description: item.description,
+            image: item.image ? toAbsoluteResourceUrl(site, item.image) : undefined,
+            url: toAbsoluteUrl(site, item.path)
+          }
+        }))
+      }
+    ]
   };
 }
 

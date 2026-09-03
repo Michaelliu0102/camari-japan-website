@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
 import Showcase4, { type ShowcaseCategory, type ShowcaseProduct } from "@/components/blocks/showcase-4";
 import { PageHero } from "@/components/PageHero";
+import { ProductBusinessInformation } from "@/components/ProductBusinessInformation";
 import { productCategories } from "@/content/products/categories";
 import { site } from "@/lib/content";
 import { JAPANESE_PRODUCT_SURFACE_DESCRIPTION } from "@/lib/japanese-copy";
 import type { Locale } from "@/lib/locales";
 import { localizedPath } from "@/lib/locales";
 import { createPageMetadata } from "@/lib/metadata";
-import { loadHomePageSettings, loadProductCategories } from "@/sanity/lib/loaders";
+import { loadHomePageSettings, loadProductBusinessSettings, loadProductCategories } from "@/sanity/lib/loaders";
 
 type PageProps = {
   params: Promise<{ locale: Locale }>;
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description:
       locale === "en"
         ? `Browse ${site.organizationName} surface programs for automotive interiors, technology accessories, lifestyle goods, and corporate gifts.`
-        : `自動車インテリア、テックアクセサリー、ライフスタイル用品、法人ギフト向けの ${site.organizationName} サーフェスプログラムをご覧ください。`,
+        : `自動車インテリア、デジタルアクセサリー、ライフスタイル用品、法人ギフト向けの ${site.organizationName} サーフェスプログラムをご覧ください。`,
     image: productCategories[0]?.heroImage
   });
 }
@@ -35,7 +36,11 @@ export default async function ProductsPage({ params, searchParams }: PageProps) 
   const query = searchParams ? await searchParams : {};
   const rawCategory = query.category;
   const initialCategory = Array.isArray(rawCategory) ? rawCategory[0] : rawCategory;
-  const [categories, homeSettings] = await Promise.all([loadProductCategories(), loadHomePageSettings()]);
+  const [categories, homeSettings, businessInformation] = await Promise.all([
+    loadProductCategories(),
+    loadHomePageSettings(),
+    loadProductBusinessSettings()
+  ]);
   const sourceCategories = categories.length ? categories : productCategories;
   const showcaseCategories: ShowcaseCategory[] = sourceCategories.map((category) => ({
     label: category.title[locale],
@@ -61,9 +66,10 @@ export default async function ProductsPage({ params, searchParams }: PageProps) 
             ? "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC"
             : JAPANESE_PRODUCT_SURFACE_DESCRIPTION
         }
-        title={locale === "en" ? "Product" : "製品"}
+        title={locale === "en" ? "Products" : "製品"}
       />
       <Showcase4 categories={showcaseCategories} initialCategory={initialCategory} items={items} locale={locale} />
+      <ProductBusinessInformation content={businessInformation} locale={locale} />
       <CTASection
         backgroundImage={homeSettings.showroomBackgroundImage}
         body={

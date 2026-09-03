@@ -2,6 +2,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import {
   aboutPageSettings as fallbackAboutPageSettings,
   homePageSettings as fallbackHomePageSettings,
+  productBusinessSettings as fallbackProductBusinessSettings,
   materialCategories as fallbackCategories,
   materials as fallbackMaterials,
   projectCases as fallbackProjects,
@@ -16,6 +17,7 @@ import {
   type NewsItem,
   type ProductType,
   type ProjectCase,
+  type ProductBusinessSettings,
   type Seo,
   type Sku
 } from "../../lib/content";
@@ -25,6 +27,7 @@ import type {
   RawCatalog,
   RawDownload,
   RawHomePageSettings,
+  RawProductBusinessSettings,
   RawMaterial,
   RawMaterialCategory,
   RawNewsItem,
@@ -229,6 +232,18 @@ export function adaptAboutPageSettings(raw: RawAboutPageSettings): AboutPageSett
     manufacturingLabel: localized(raw?.manufacturingLabel ?? fallback.manufacturingLabel),
     manufacturingTitle: localized(raw?.manufacturingTitle ?? fallback.manufacturingTitle),
     manufacturingParagraphs: manufacturingParagraphs.length ? manufacturingParagraphs : fallback.manufacturingParagraphs
+  };
+}
+
+export function adaptProductBusinessSettings(raw: RawProductBusinessSettings): ProductBusinessSettings {
+  const fallback = fallbackProductBusinessSettings;
+
+  return {
+    eyebrow: localized(raw?.eyebrow ?? fallback.eyebrow),
+    title: localized(raw?.title ?? fallback.title),
+    body: localized(raw?.body ?? fallback.body),
+    accordionLabel: localized(raw?.accordionLabel ?? fallback.accordionLabel),
+    accordionSummary: localized(raw?.accordionSummary ?? fallback.accordionSummary)
   };
 }
 

@@ -2,6 +2,7 @@ import {
   aboutPageSettings as fallbackAboutPageSettings,
   catalogs as fallbackCatalogs,
   homePageSettings as fallbackHomePageSettings,
+  productBusinessSettings as fallbackProductBusinessSettings,
   materialCategories as fallbackCategories,
   materials as fallbackMaterials,
   newsItems as fallbackNewsItems,
@@ -15,6 +16,7 @@ import {
   type MaterialCategory,
   type NewsItem,
   type ProductType,
+  type ProductBusinessSettings,
   type ProjectCase,
   type Sku
 } from "@/lib/content";
@@ -31,6 +33,7 @@ import {
   adaptAboutPageSettings,
   adaptCatalog,
   adaptHomePageSettings,
+  adaptProductBusinessSettings,
   adaptMaterial,
   adaptMaterialCategory,
   adaptNewsItem,
@@ -45,6 +48,7 @@ import {
   catalogsQuery,
   aboutPageSettingsQuery,
   homePageSettingsQuery,
+  productBusinessSettingsQuery,
   materialCategoriesQuery,
   materialsQuery,
   newsItemsQuery,
@@ -55,6 +59,7 @@ import {
   type RawAboutPageSettings,
   type RawCatalog,
   type RawHomePageSettings,
+  type RawProductBusinessSettings,
   type RawMaterial,
   type RawMaterialCategory,
   type RawNewsItem,
@@ -426,6 +431,27 @@ export async function loadAboutPageSettings(): Promise<AboutPageSettings> {
 
     console.warn("Sanity about page fetch failed; using local fixture content.", error);
     return normalizeLocalizedBrandNames(fallbackAboutPageSettings);
+  }
+}
+
+export async function loadProductBusinessSettings(): Promise<ProductBusinessSettings> {
+  if (!isSanityConfigured()) {
+    return normalizeLocalizedBrandNames(fallbackProductBusinessSettings);
+  }
+
+  try {
+    const result = await getSanityClient().fetch<RawProductBusinessSettings>(productBusinessSettingsQuery);
+    if (!result) {
+      return normalizeLocalizedBrandNames(fallbackProductBusinessSettings);
+    }
+    return normalizeLocalizedBrandNames(adaptProductBusinessSettings(result));
+  } catch (error) {
+    if (process.env.NODE_ENV === "production") {
+      throw error;
+    }
+
+    console.warn("Sanity product business information fetch failed; using local fixture content.", error);
+    return normalizeLocalizedBrandNames(fallbackProductBusinessSettings);
   }
 }
 
