@@ -361,7 +361,7 @@ function buildProjectLinks(
 
         links.set(articleKey, {
           label,
-          href: `/materials/${linkedArticle.materialSlug}/${linkedArticle.slug}/${firstSku.slug}`,
+          href: `/materials/${linkedArticle.materialSlug}/${linkedArticle.slug}`,
         });
       }
 

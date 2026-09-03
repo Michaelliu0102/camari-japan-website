@@ -4,12 +4,19 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
+import { ProductTypeDetailPage } from "@/components/ProductTypeDetailPage";
 import { localizedPath, type Locale } from "@/lib/locales";
 import { createPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site-config";
-import { loadSkaiVinylArticles } from "@/lib/skai-vinyl";
+import { loadSkaiVinylArticles, loadSkaiVinylProductTypeSlugs } from "@/lib/skai-vinyl";
 import { buildBreadcrumbJsonLd } from "@/lib/structured-data";
-import { loadMaterial, loadProductTypes, loadSkus } from "@/sanity/lib/loaders";
+import {
+  loadMaterial,
+  loadProductType,
+  loadProductTypes,
+  loadSkus,
+  loadSkusForProductType
+} from "@/sanity/lib/loaders";
 
 export const dynamic = "force-dynamic";
 
@@ -55,10 +62,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     });
   }
 
-  return {};
+  const [productType, skus] = await Promise.all([
+    loadProductType(materialSlug, productTypeSlug),
+    loadSkusForProductType(materialSlug, productTypeSlug)
+  ]);
+
+  if (!productType || skus.length === 0) {
+    return {};
+  }
+
+  const skaiProductTypeSlugs = materialSlug === "vegan-leather"
+    ? await loadSkaiVinylProductTypeSlugs()
+    : new Set<string>();
+  const availableLocales: readonly Locale[] = skaiProductTypeSlugs.has(productTypeSlug) ? ["en"] : ["en", "ja"];
+
+  return createPageMetadata({
+    locale,
+    path: `/materials/${materialSlug}/${productTypeSlug}`,
+    title: productType.seo.title[locale],
+    description: productType.seo.description[locale],
+    image: productType.seo.image || skus[0]?.seo.image || skus[0]?.image,
+    availableLocales
+  });
 }
 
-export default async function VinylArticlePage({ params }: PageProps) {
+export default async function ProductTypeRoute({ params }: PageProps) {
   const { locale, materialSlug, productTypeSlug } = await params;
 
   if (isLeatherInteriorPage(materialSlug, productTypeSlug)) {
@@ -69,7 +97,33 @@ export default async function VinylArticlePage({ params }: PageProps) {
     return <VinylCollectionPage locale={locale} materialSlug={materialSlug} />;
   }
 
-  notFound();
+  const [material, productType, skus] = await Promise.all([
+    loadMaterial(materialSlug),
+    loadProductType(materialSlug, productTypeSlug),
+    loadSkusForProductType(materialSlug, productTypeSlug)
+  ]);
+
+  if (!material || !productType || skus.length === 0) {
+    notFound();
+  }
+
+  const skaiProductTypeSlugs = materialSlug === "vegan-leather"
+    ? await loadSkaiVinylProductTypeSlugs()
+    : new Set<string>();
+
+  if (locale !== "en" && skaiProductTypeSlugs.has(productTypeSlug)) {
+    notFound();
+  }
+
+  return (
+    <ProductTypeDetailPage
+      initialSku={skus[0]}
+      locale={locale}
+      material={material}
+      productType={productType}
+      skus={skus}
+    />
+  );
 }
 
 async function VinylCollectionPage({ locale, materialSlug }: { locale: Locale; materialSlug: string }) {
@@ -93,7 +147,7 @@ async function VinylCollectionPage({ locale, materialSlug }: { locale: Locale; m
         name: article.name,
         coverImage: article.coverImage,
         colorCount: article.colorCount,
-        href: `/materials/${material.slug}/${article.slug}/${article.firstSkuSlug}`
+        href: `/materials/${material.slug}/${article.slug}`
       }))}
       breadcrumbSchema={breadcrumbSchema}
       eyebrow="Vegan Leather"
@@ -130,7 +184,7 @@ async function LeatherInteriorPage({ locale }: { locale: Locale }) {
         name: productType.name[locale],
         coverImage: productType.seo.image ?? firstSku.previewImage ?? firstSku.image,
         colorCount: articleSkus.length,
-        href: `/materials/leather/${productType.slug}/${firstSku.slug}`
+        href: `/materials/leather/${productType.slug}`
       };
     })
     .filter((article): article is ArticleCollectionItem => Boolean(article));

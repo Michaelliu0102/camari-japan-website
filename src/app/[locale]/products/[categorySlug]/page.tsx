@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { ProductCategorySummary } from "@/components/ProductCategorySummary";
+import { ProductBusinessInformation } from "@/components/ProductBusinessInformation";
 import { ProductCurvedCarousel } from "@/components/ProductCurvedCarousel";
 import { createPageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/content";
 import { getJapaneseProductCategorySeo } from "@/lib/japanese-copy";
 import type { Locale } from "@/lib/locales";
+import { buildProductCategoryJsonLd } from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site-config";
 import { productCategories } from "@/content/products/categories";
-import { loadProductCategory } from "@/sanity/lib/loaders";
+import { loadProductBusinessSettings, loadProductCategory } from "@/sanity/lib/loaders";
 import { notFound } from "next/navigation";
 
 type PageProps = {
@@ -52,30 +56,49 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProductCategoryPage({ params }: PageProps) {
   const { locale, categorySlug } = await params;
-  const category = await loadProductCategory(categorySlug);
+  const [category, businessInformation] = await Promise.all([
+    loadProductCategory(categorySlug),
+    loadProductBusinessSettings()
+  ]);
 
   if (!category) {
     notFound();
   }
 
+  const categoryPath = `/products/${category.slug}`;
+  const categorySchema = buildProductCategoryJsonLd(siteConfig, {
+    name: category.title[locale],
+    description: category.description[locale],
+    path: categoryPath,
+    locale,
+    items: (category.curvedCarouselImages ?? []).map((item, index) => ({
+      name: item.title[locale],
+      description: item.description[locale],
+      image: item.src,
+      path: `${categoryPath}#product-summary-${index}`
+    }))
+  });
+
   if (category.curvedCarouselImages) {
     return (
       <main>
+        <JsonLd data={categorySchema} />
         <ProductCurvedCarousel
           categorySlug={category.slug}
-          heroImage={category.heroImage}
           images={category.curvedCarouselImages}
           locale={locale}
           subtitle={category.subtitle[locale]}
           title={category.title[locale]}
         />
         <ProductCategorySummary category={category} locale={locale} />
+        <ProductBusinessInformation content={businessInformation} locale={locale} variant="compact" />
       </main>
     );
   }
 
   return (
     <main>
+      <JsonLd data={categorySchema} />
       <PageHero
         image={category.heroImage}
         subtitle={category.subtitle[locale]}
@@ -99,6 +122,7 @@ export default async function ProductCategoryPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+      <ProductBusinessInformation content={businessInformation} locale={locale} variant="compact" />
       <CTASection
         body={
           locale === "en"
