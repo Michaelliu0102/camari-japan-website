@@ -50,7 +50,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     loadCatalogs(locale),
     loadSkaiVinylProductTypeSlugs()
   ]);
-  const productTypeByKey = new Map(productTypes.map((productType) => [`${productType.materialSlug}::${productType.slug}`, productType]));
+  const skusByProductType = new Map<string, typeof skus>();
+  for (const sku of skus) {
+    const key = `${sku.materialSlug}::${sku.productTypeSlug}`;
+    const group = skusByProductType.get(key) ?? [];
+    group.push(sku);
+    skusByProductType.set(key, group);
+  }
   const entries = new Map<string, SitemapEntry>();
 
   function add(path: string, lastModified?: string) {
@@ -79,11 +85,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   productCategories.forEach((category) => add(`/products/${category.slug}`, category.updatedAt));
   materials.forEach((material) => add(`/materials/${material.slug}`, material.updatedAt));
 
-  skus
-    .filter((sku) => locale === "en" || !skaiProductTypeSlugs.has(sku.productTypeSlug))
-    .forEach((sku) => {
-      const productType = productTypeByKey.get(`${sku.materialSlug}::${sku.productTypeSlug}`);
-      add(`/materials/${sku.materialSlug}/${sku.productTypeSlug}/${sku.slug}`, sku.updatedAt || productType?.updatedAt);
+  productTypes
+    .filter((productType) => locale === "en" || !skaiProductTypeSlugs.has(productType.slug))
+    .forEach((productType) => {
+      const productTypeSkus = skusByProductType.get(`${productType.materialSlug}::${productType.slug}`) ?? [];
+
+      if (productTypeSkus.length === 0) {
+        return;
+      }
+
+      add(
+        `/materials/${productType.materialSlug}/${productType.slug}`,
+        latestLastModified([productType.updatedAt, ...productTypeSkus.map((sku) => sku.updatedAt)])
+      );
     });
 
   const leatherInteriorProductTypes = productTypes.filter(

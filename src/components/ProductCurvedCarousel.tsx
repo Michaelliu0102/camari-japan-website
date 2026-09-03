@@ -19,7 +19,6 @@ type ProductCarouselImage = {
 };
 
 type ProductCurvedCarouselProps = {
-  heroImage: string;
   images: ProductCarouselImage[];
   locale: Locale;
   categorySlug: string;
@@ -57,13 +56,16 @@ function getOrbitSlotCount(itemCount: number) {
   return itemCount >= minimumSlots ? itemCount : Math.ceil(minimumSlots / itemCount) * itemCount;
 }
 
-export function ProductCurvedCarousel({ categorySlug, heroImage, images, locale, subtitle, title }: ProductCurvedCarouselProps) {
+export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, title }: ProductCurvedCarouselProps) {
   const [activeDetailIndex, setActiveDetailIndex] = useState<number | null>(null);
   const [activeGalleryImageIndex, setActiveGalleryImageIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const orbitSlotCount = useMemo(() => getOrbitSlotCount(images.length), [images.length]);
   const carouselLayout = useMemo(() => getCarouselLayout(orbitSlotCount), [orbitSlotCount]);
+  const initialFrontSlot = orbitSlotCount / 4;
+  const initialFrontSlotStart = Math.floor(initialFrontSlot);
+  const initialFrontSlotEnd = Math.ceil(initialFrontSlot);
   const heroCarouselItems = useMemo(() => {
     const angleStep = 360 / orbitSlotCount;
 
@@ -267,6 +269,7 @@ export function ProductCurvedCarousel({ categorySlug, heroImage, images, locale,
                     alt={item.title[locale]}
                     className="pointer-events-none object-cover"
                     fill
+                    preload={slotIndex === initialFrontSlotStart || slotIndex === initialFrontSlotEnd}
                     sizes="(min-width: 1024px) 21rem, 48vw"
                     src={item.src}
                   />

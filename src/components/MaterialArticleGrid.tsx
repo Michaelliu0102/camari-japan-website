@@ -59,7 +59,7 @@ export function MaterialArticleGrid({
             const image = productType.seo.image || firstSku?.image;
             const previewImage = previewBySlug[productType.slug] ?? image;
             const href = firstSku
-              ? `/materials/${materialSlug}/${productType.slug}/${firstSku.slug}`
+              ? `/materials/${materialSlug}/${productType.slug}`
               : `/materials/${materialSlug}`;
             const previewSkus = productSkus.slice(0, 5);
 

@@ -44,19 +44,19 @@ const navItems: NavItem[] = [
         quickLinks: [
           {
             label: { en: "AUTO", ja: "自動車" },
-            href: "/materials/alcantara/alcantara-panel/alc-p-1041"
+            href: "/materials/alcantara/alcantara-panel"
           },
           {
             label: { en: "INTERIOR", ja: "インテリア" },
-            href: "/materials/alcantara/alcantara-master/alc-m-1001"
+            href: "/materials/alcantara/alcantara-master"
           },
           {
             label: { en: "OUTDOOR", ja: "アウトドア" },
-            href: "/materials/alcantara/alcantara-exo/alc-exo-1145"
+            href: "/materials/alcantara/alcantara-exo"
           },
           {
             label: { en: "TECH", ja: "テック" },
-            href: "/materials/alcantara/alcantara-04/alc-04-1001"
+            href: "/materials/alcantara/alcantara-04"
           }
         ]
       },
@@ -68,7 +68,7 @@ const navItems: NavItem[] = [
         quickLinks: [
           {
             label: { en: "AUTOMOTIVE", ja: "自動車" },
-            href: "/materials/leather/automotive-nappa/n-9762-imperial-blue"
+            href: "/materials/leather/automotive-nappa"
           },
           {
             label: { en: "INTERIOR", ja: "インテリア" },
@@ -89,7 +89,7 @@ const navItems: NavItem[] = [
     ]
   },
   {
-    label: { en: "Product", ja: "製品" },
+    label: { en: "Products", ja: "製品" },
     href: "/products",
     children: [
       {
@@ -97,7 +97,7 @@ const navItems: NavItem[] = [
         href: "/products/automotive-interior-accessories"
       },
       {
-        label: { en: "Tech Accessories", ja: "テックアクセサリー" },
+        label: { en: "Tech Accessories", ja: "デジタルアクセサリー" },
         href: "/products/tech-accessories"
       },
       {

@@ -18,14 +18,14 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
 
   const defaultHref = () => {
     const firstSku = skus[0];
-    return firstSku ? `/materials/${material.slug}/${firstSku.productTypeSlug}/${firstSku.slug}` : `/materials/${material.slug}`;
+    return firstSku ? `/materials/${material.slug}/${firstSku.productTypeSlug}` : `/materials/${material.slug}`;
   };
 
   function getHref(application: Application): string {
     if (application.productTypeSlug) {
       const matchingSku = skus.find((sku) => sku.productTypeSlug === application.productTypeSlug);
       if (matchingSku) {
-        return `/materials/${material.slug}/${application.productTypeSlug}/${matchingSku.slug}`;
+        return `/materials/${material.slug}/${application.productTypeSlug}`;
       }
       return `/materials/${material.slug}`;
     }

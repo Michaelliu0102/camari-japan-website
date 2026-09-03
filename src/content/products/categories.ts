@@ -119,14 +119,14 @@ const productCategoryFixtures: ProductCategory[] = [
   },
   {
     slug: "tech-accessories",
-    title: { en: "Tech Accessories", ja: "テックアクセサリー" },
+    title: { en: "Tech Accessories", ja: "デジタルアクセサリー" },
     subtitle: { en: "Device accessories that bring premium tactile materials into everyday technology.", ja: "日常のテクノロジーにプレミアムな触感素材を取り入れるデバイスアクセサリー。" },
     heroImage: "/uploads/product/product/cover-photo/magsafe-cover.jpg",
     curvedCarouselImages: [
       {
         src: "/uploads/product/product/cover-photo/airpod-case-cover.jpg",
         title: { en: "AirPods Case", ja: "AirPodsケース" },
-        description: { en: "Compact AirPods cases with a premium surface finish for daily carry and coordinated tech accessories.", ja: "日常携行と統一感のあるテックアクセサリーに向けた、上質な表面仕上げのコンパクトなAirPodsケース。" },
+        description: { en: "Compact AirPods cases with a premium surface finish for daily carry and coordinated tech accessories.", ja: "日常携行と統一感のあるデジタルアクセサリーに向けた、上質な表面仕上げのコンパクトなAirPodsケース。" },
         details: [{ en: "Compact protective case", ja: "コンパクトな保護ケース" }, { en: "Daily pocket and bag carry", ja: "ポケット・バッグでの日常携行" }, { en: "Coordinates with phone and laptop accessories", ja: "スマートフォン・ラップトップアクセサリーと調和" }],
         galleryImages: ["/uploads/product/product/tech/airpod case/airpod case-01.jpg", "/uploads/product/product/tech/airpod case/airpod case-02.jpg", "/uploads/product/product/tech/airpod case/airpod case-03.jpg", "/uploads/product/product/tech/airpod case/airpod case-04.jpg"]
       },
