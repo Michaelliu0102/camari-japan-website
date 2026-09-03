@@ -38,9 +38,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: `/products/${categorySlug}`,
-    title: japaneseSeo?.title ?? (locale === "en" ? `${category.title.en} | ${site.name}` : `${category.title.ja} | ${site.name}`),
-    description: japaneseSeo?.description ?? category.description[locale],
-    image: category.heroImage
+    title:
+      category.seo?.title[locale] ||
+      japaneseSeo?.title ||
+      `${category.title[locale]} | ${site.name}`,
+    description:
+      category.seo?.description[locale] ||
+      japaneseSeo?.description ||
+      category.description[locale],
+    image: category.seo?.image || category.heroImage
   });
 }
 

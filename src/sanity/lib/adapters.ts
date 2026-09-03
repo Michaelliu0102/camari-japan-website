@@ -326,6 +326,7 @@ export function adaptProductCategory(raw: RawProductCategory): ProductCategory {
   const fixture = fixtureProductCategory(slug);
   const title = raw.title?.en || raw.title?.ja ? localized(raw.title) : fixture?.title ?? emptyLocalized;
   const heroImage = raw.heroImageUrl ?? fixture?.heroImage ?? "";
+  const description = raw.description?.en || raw.description?.ja ? localized(raw.description) : fixture?.description ?? emptyLocalized;
   const highlights = (raw.highlights ?? [])
     .map((highlight) => ({
       title: localized(highlight?.title),
@@ -355,11 +356,12 @@ export function adaptProductCategory(raw: RawProductCategory): ProductCategory {
   return {
     slug,
     updatedAt: raw.updatedAt ?? undefined,
+    seo: adaptSeo(raw.seo, title, description, raw.seo?.imageUrl ?? heroImage),
     title,
     subtitle: raw.subtitle?.en || raw.subtitle?.ja ? localized(raw.subtitle) : fixture?.subtitle ?? emptyLocalized,
     heroImage,
     curvedCarouselImages: carouselItems.length ? carouselItems : fixture?.curvedCarouselImages,
-    description: raw.description?.en || raw.description?.ja ? localized(raw.description) : fixture?.description ?? emptyLocalized,
+    description,
     highlights: highlights.length ? highlights : fixture?.highlights ?? []
   };
 }

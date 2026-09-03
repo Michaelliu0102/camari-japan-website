@@ -1,9 +1,10 @@
-import type { LocalizedString } from "@/lib/content";
+import type { LocalizedString, Seo } from "@/lib/content";
 import carouselContentOverridesData from "@/data/product-category-carousel-overrides.json";
 
 export type ProductCategory = {
   slug: string;
   updatedAt?: string;
+  seo?: Seo;
   title: LocalizedString;
   subtitle: LocalizedString;
   heroImage: string;
