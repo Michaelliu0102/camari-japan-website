@@ -109,7 +109,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   if (locale === "en" && skaiProductTypeSlugs.size > 0) {
     add(
-      "/materials/vegan-leather/vinyl",
+      "/materials/vegan-leather/skai",
       latestLastModified(
         productTypes.filter((productType) => skaiProductTypeSlugs.has(productType.slug)).map((productType) => productType.updatedAt)
       )

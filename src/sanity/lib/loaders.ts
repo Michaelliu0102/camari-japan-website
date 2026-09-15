@@ -1,3 +1,4 @@
+import { cache } from "react";
 import {
   aboutPageSettings as fallbackAboutPageSettings,
   catalogs as fallbackCatalogs,
@@ -28,7 +29,7 @@ import {
   applyJapaneseMaterialCopy,
   applyJapaneseProductCategoryCopy,
 } from "@/lib/japanese-copy";
-import { loadSkaiVinylProductTypes, loadSkaiVinylSkus } from "@/lib/skai-vinyl";
+import { isLegacySkaiCollection, isSkaiProductType, legacySkaiSlugs } from "@/lib/skai-collections";
 import {
   adaptAboutPageSettings,
   adaptCatalog,
@@ -56,6 +57,8 @@ import {
   productTypesQuery,
   projectsQuery,
   skusQuery,
+  skaiProductTypesQuery,
+  skaiSkusQuery,
   type RawAboutPageSettings,
   type RawCatalog,
   type RawHomePageSettings,
@@ -339,19 +342,20 @@ async function fetchOrFallback<Raw, Value>(
 
 async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
   query: string,
-  params: Record<string, string>,
+  params: Record<string, string | string[]>,
   fallback: Value[],
   adapter: (raw: Raw) => Value,
-  options: { includeFallbackRecords?: boolean; fallbackOnEmpty?: boolean } = {}
+  options: { includeFallbackRecords?: boolean; fallbackOnEmpty?: boolean; fresh?: boolean } = {}
 ): Promise<Value[]> {
-  const { includeFallbackRecords = true, fallbackOnEmpty = true } = options;
+  const { includeFallbackRecords = true, fallbackOnEmpty = true, fresh = false } = options;
 
   if (!isSanityConfigured()) {
     return normalizeLocalizedBrandNames(fallback);
   }
 
   try {
-    const results = await getSanityClient().fetch<Raw[]>(query, params);
+    const client = fresh ? getSanityClient().withConfig({ useCdn: false, perspective: "published" }) : getSanityClient();
+    const results = await client.fetch<Raw[]>(query, params, fresh ? { cache: "no-store" } : undefined);
     if (!results || results.length === 0) {
       return normalizeLocalizedBrandNames(fallbackOnEmpty ? fallback : []);
     }
@@ -460,23 +464,21 @@ export async function loadMaterials(): Promise<Material[]> {
   return applyJapaneseMaterialCopy(materials);
 }
 
-export async function loadProductTypes(): Promise<ProductType[]> {
+export const loadProductTypes = cache(async (): Promise<ProductType[]> => {
   const market = getSanityMarket();
-  const productTypes = await fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, { market }, fallbackProductTypes, adaptProductType, {
+  const [productTypes, globalSkai] = await Promise.all([
+    fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, { market }, fallbackProductTypes.filter((productType) => !isSkaiProductType(productType)), adaptProductType, {
     includeFallbackRecords: true,
-    fallbackOnEmpty: true
-  });
-  const skaiProductTypes = await loadSkaiVinylProductTypes();
-  const merged = new Map(productTypes.map((productType) => [productType.slug, productType]));
-
-  for (const productType of skaiProductTypes) {
-    merged.set(productType.slug, productType);
-  }
-
+    fallbackOnEmpty: true,
+    fresh: true
+    }),
+    market === "global" ? Promise.resolve([] as ProductType[]) : fetchAndMergeBySlug<RawProductType, ProductType>(skaiProductTypesQuery, { skaiSlugs: [...legacySkaiSlugs] }, [], adaptProductType, { fresh: true, fallbackOnEmpty: false })
+  ]);
+  const merged = new Map([...productTypes, ...globalSkai].map((productType) => [productType.slug, productType]));
   return normalizeLocalizedBrandNames(
     withLocalLeatherSpecDownloads(withLocalAlcantaraDownloads([...merged.values()])),
   );
-}
+});
 
 export async function loadProductCategories(): Promise<ProductCategory[]> {
   const categories = await fetchAndMergeBySlug<RawProductCategory, ProductCategory>(
@@ -509,21 +511,21 @@ export async function loadProductType(materialSlug: string, productTypeSlug: str
   return productTypes.find((productType) => productType.slug === productTypeSlug);
 }
 
-export async function loadSkus(): Promise<Sku[]> {
+export const loadSkus = cache(async (): Promise<Sku[]> => {
   const market = getSanityMarket();
-  const skus = await fetchAndMergeBySlug<RawSku, Sku>(skusQuery, { market }, fallbackSkus, adaptSku, {
+  const skaiFallbackSlugs = new Set(fallbackProductTypes.filter(isSkaiProductType).map((productType) => productType.slug));
+  const localSkus = fallbackSkus.filter((sku) => !isLegacySkaiCollection(sku.materialSlug, sku.productTypeSlug)
+    && !(sku.materialSlug === "vegan-leather" && skaiFallbackSlugs.has(sku.productTypeSlug)));
+  const [skus, globalSkai] = await Promise.all([
+    fetchAndMergeBySlug<RawSku, Sku>(skusQuery, { market }, localSkus, adaptSku, {
     includeFallbackRecords: true,
-    fallbackOnEmpty: true
-  });
-  const skaiSkus = await loadSkaiVinylSkus();
-  const merged = new Map(skus.map((sku) => [sku.slug, sku]));
-
-  for (const sku of skaiSkus) {
-    merged.set(sku.slug, sku);
-  }
-
-  return normalizeLocalizedBrandNames([...merged.values()]);
-}
+    fallbackOnEmpty: true,
+    fresh: true
+    }),
+    market === "global" ? Promise.resolve([] as Sku[]) : fetchAndMergeBySlug<RawSku, Sku>(skaiSkusQuery, { skaiSlugs: [...legacySkaiSlugs] }, [], adaptSku, { fresh: true, fallbackOnEmpty: false })
+  ]);
+  return normalizeLocalizedBrandNames([...new Map([...skus, ...globalSkai].map((sku) => [sku.slug, sku])).values()]);
+});
 
 export async function loadSkusForMaterial(materialSlug: string): Promise<Sku[]> {
   const skus = await loadSkus();

@@ -1,4 +1,5 @@
 import imageUrlBuilder from "@sanity/image-url";
+import { isSkaiProductType } from "../../lib/skai-collections";
 import {
   aboutPageSettings as fallbackAboutPageSettings,
   homePageSettings as fallbackHomePageSettings,
@@ -302,7 +303,9 @@ export function adaptMaterial(raw: RawMaterial): Material {
 export function adaptProductType(raw: RawProductType): ProductType {
   const slug = raw.slug ?? "";
   const name = localized(raw.name);
-  const fixture = fixtureProductType(slug);
+  const fixture = isSkaiProductType({ slug, name, materialSlug: raw.materialSlug ?? "" })
+    ? undefined
+    : fixtureProductType(slug);
   const specTemplate = (raw.specTemplate ?? [])
     .map((field) => ({
       key: field?.key ?? "",

@@ -284,7 +284,7 @@ export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
   }
 }`;
 
-export const productTypesQuery = `*[_type == "productType" && (!defined(markets) || $market in markets)] | order(material->name.en asc, name.en asc) {
+const productTypeProjection = `{
   "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
@@ -316,6 +316,11 @@ export const productTypesQuery = `*[_type == "productType" && (!defined(markets)
   }
 }`;
 
+export const productTypesQuery = `*[_type == "productType" && (!defined(markets) || $market in markets)] | order(material->name.en asc, name.en asc) ${productTypeProjection}`;
+
+// SKAI has English-only routes even when the rest of the site uses the Japan market.
+export const skaiProductTypesQuery = `*[_type == "productType" && material->slug.current == "vegan-leather" && (name.en match "skai*" || slug.current in $skaiSlugs) && "global" in markets] | order(name.en asc) ${productTypeProjection}`;
+
 export const productCategoriesQuery = `*[_type == "productCategory"] | order(sortOrder asc, title.en asc) {
   "updatedAt": _updatedAt,
   title,
@@ -342,7 +347,7 @@ export const productCategoriesQuery = `*[_type == "productCategory"] | order(sor
   }
 }`;
 
-export const skusQuery = `*[_type == "sku" && (!defined(productType->markets) || $market in productType->markets)] | order(code asc) {
+const skuProjection = `{
   "updatedAt": _updatedAt,
   code,
   "slug": slug.current,
@@ -372,6 +377,10 @@ export const skusQuery = `*[_type == "sku" && (!defined(productType->markets) ||
     "imageUrl": image.asset->url
   }
 }`;
+
+export const skusQuery = `*[_type == "sku" && (!defined(productType->markets) || $market in productType->markets)] | order(code asc) ${skuProjection}`;
+
+export const skaiSkusQuery = `*[_type == "sku" && productType->material->slug.current == "vegan-leather" && (productType->name.en match "skai*" || productType->slug.current in $skaiSlugs) && "global" in productType->markets] | order(code asc) ${skuProjection}`;
 
 export const projectsQuery = `*[_type == "projectCase"] | order(title.en asc) {
   "updatedAt": _updatedAt,

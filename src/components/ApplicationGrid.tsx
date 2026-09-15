@@ -7,12 +7,23 @@ type ApplicationGridProps = {
   locale: Locale;
   material: Material;
   skus: Sku[];
+  skaiArticleCount?: number;
 };
 
-export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps) {
+export function ApplicationGrid({ locale, material, skus, skaiArticleCount }: ApplicationGridProps) {
   const applications =
     material.slug === "vegan-leather"
-      ? material.applications.filter((application) => application.slug !== "vinyl")
+      ? [
+          ...material.applications.filter((application) => application.slug !== "vinyl"),
+          ...(locale === "en"
+            ? [{
+                slug: "vinyl",
+                name: { en: "SKAI VINYL", ja: "SKAI VINYL" },
+                image: "/uploads/veganleather/skai.svg",
+                productTypeSlug: "vinyl",
+              }]
+            : []),
+        ]
       : material.applications;
   const gridColumnsClass = applications.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
 
@@ -22,6 +33,10 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
   };
 
   function getHref(application: Application): string {
+    if (locale === "en" && material.slug === "vegan-leather" && application.slug === "vinyl") {
+      return "/materials/vegan-leather/skai";
+    }
+
     if (application.productTypeSlug) {
       const matchingSku = skus.find((sku) => sku.productTypeSlug === application.productTypeSlug);
       if (matchingSku) {
@@ -34,13 +49,16 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
 
   function getApplicationName(application: Application): string {
     if (locale === "en" && material.slug === "vegan-leather" && application.slug === "microfiber-leather") {
-      return "Waterborne Microfiber Leather";
+      return "AQUAPELLE Microfiber Leather";
     }
 
     return application.name[locale];
   }
 
   function getApplicationMeta(application: Application): string | null {
+    if (material.slug === "vegan-leather" && application.slug === "vinyl" && typeof skaiArticleCount === "number") {
+      return `${skaiArticleCount} ${skaiArticleCount === 1 ? "article" : "articles"}`;
+    }
     return typeof application.colorCount === "number"
       ? locale === "en" ? `${application.colorCount} colours` : `${application.colorCount}色`
       : null;
@@ -58,8 +76,8 @@ export function ApplicationGrid({ locale, material, skus }: ApplicationGridProps
         <div className={`grid grid-cols-1 gap-gutter sm:grid-cols-2 ${gridColumnsClass}`}>
           {applications.map((application) => (
             <Link className="group" href={localizedPath(locale, getHref(application))} key={application.slug}>
-              <div className="relative aspect-square overflow-hidden bg-stone shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-material">
-                <Image alt={getApplicationName(application)} className="object-cover transition-transform duration-700 group-hover:scale-110" fill sizes="(min-width: 1024px) 25vw, 50vw" src={application.image} />
+              <div className={`relative aspect-square overflow-hidden shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-material ${material.slug === "vegan-leather" && application.slug === "vinyl" ? "bg-white" : "bg-stone"}`}>
+                <Image alt={getApplicationName(application)} className={`${material.slug === "vegan-leather" && application.slug === "vinyl" ? "object-contain p-[18%]" : "object-cover"} transition-transform duration-700 group-hover:scale-110`} fill sizes="(min-width: 1024px) 25vw, 50vw" src={application.image} />
               </div>
               <div className="pt-6 text-center">
                 <h3 className="label-caps text-charcoal">{getApplicationName(application)}</h3>

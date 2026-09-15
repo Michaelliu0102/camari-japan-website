@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
+import { ArticleApplicationIcons } from "@/components/ArticleApplicationIcons";
+import { SkaiCollectionFaq } from "@/components/SkaiCollectionFaq";
 import { PageHero } from "@/components/PageHero";
 import { ProductTypeDetailPage } from "@/components/ProductTypeDetailPage";
 import { localizedPath, type Locale } from "@/lib/locales";
@@ -29,7 +32,7 @@ type PageProps = {
 };
 
 function isVinylArticlePage(locale: Locale, materialSlug: string, productTypeSlug: string): boolean {
-  return locale === "en" && materialSlug === "vegan-leather" && productTypeSlug === "vinyl";
+  return locale === "en" && materialSlug === "vegan-leather" && productTypeSlug === "skai";
 }
 
 function isLeatherInteriorPage(materialSlug: string, productTypeSlug: string): boolean {
@@ -54,9 +57,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (isVinylArticlePage(locale, materialSlug, productTypeSlug)) {
     return createPageMetadata({
       locale,
-      path: "/materials/vegan-leather/vinyl",
-      title: "Vinyl Articles | CAMARI JAPAN",
-      description: "Vinyl surface articles from the skai collection.",
+      path: "/materials/vegan-leather/skai",
+      title: "skai Collection",
+      description: "Explore skai upholstery materials, colours and specifications.",
       image: skaiVinylHeroImage,
       availableLocales: ["en"]
     });
@@ -133,12 +136,13 @@ async function VinylCollectionPage({ locale, materialSlug }: { locale: Locale; m
     notFound();
   }
 
-  const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
+  const breadcrumbs = [
     { name: "Home", path: "/" },
-    { name: "Materials", path: "/materials" },
+    { name: "Material", path: "/materials" },
     { name: material.name.en, path: `/materials/${material.slug}` },
-    { name: "Vinyl", path: `/materials/${material.slug}/vinyl` }
-  ]);
+    { name: "SKAI VINYL", path: `/materials/${material.slug}/skai` }
+  ];
+  const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, breadcrumbs);
 
   return (
     <ArticleCollectionShell
@@ -147,14 +151,17 @@ async function VinylCollectionPage({ locale, materialSlug }: { locale: Locale; m
         name: article.name,
         coverImage: article.coverImage,
         colorCount: article.colorCount,
+        fieldOfApplication: article.fieldOfApplication,
         href: `/materials/${material.slug}/${article.slug}`
       }))}
       breadcrumbSchema={breadcrumbSchema}
+      breadcrumbs={breadcrumbs}
       eyebrow="Vegan Leather"
       heading="skai collection"
+      footer={<SkaiCollectionFaq />}
       heroImage={skaiVinylHeroImage}
-      intro="Contract vinyl surfaces selected for upholstery, panels, and exterior-facing programs."
-      label="Vinyl Article"
+      intro="Explore skai upholstery materials, colours and specifications."
+      label="skai Article"
       locale={locale}
       subtitle="comfortable solution for variety of applications"
       title="skai"
@@ -230,11 +237,14 @@ type ArticleCollectionItem = {
   coverImage: string;
   colorCount: number;
   href: string;
+  fieldOfApplication?: string;
 };
 
 function ArticleCollectionShell({
   articles,
+  footer,
   breadcrumbSchema,
+  breadcrumbs,
   eyebrow,
   heading,
   heroImage,
@@ -245,7 +255,9 @@ function ArticleCollectionShell({
   title
 }: {
   articles: ArticleCollectionItem[];
+  footer?: ReactNode;
   breadcrumbSchema: Record<string, unknown>;
+  breadcrumbs?: { name: string; path: string }[];
   eyebrow: string;
   heading: string;
   heroImage: string;
@@ -261,6 +273,22 @@ function ArticleCollectionShell({
       <PageHero eyebrow={eyebrow} image={heroImage} subtitle={subtitle} title={title} />
       <section className="bg-paper py-20 md:py-28" data-nav-invert>
         <div className="section-shell">
+          {breadcrumbs ? (
+            <nav aria-label={locale === "en" ? "Breadcrumb" : "パンくずリスト"} className="mb-10">
+              <ol className="flex flex-wrap items-center gap-x-2 gap-y-2 font-sans text-[10px] uppercase tracking-[0.12em] text-muted">
+                {breadcrumbs.map((item, index) => (
+                  <li className="flex items-center gap-x-2" key={item.path}>
+                    {index > 0 ? <span aria-hidden="true" className="select-none">/</span> : null}
+                    {index === breadcrumbs.length - 1 ? (
+                      <span aria-current="page" className="text-charcoal/70">{item.name}</span>
+                    ) : (
+                      <Link className="transition-colors hover:text-charcoal" href={localizedPath(locale, item.path)}>{item.name}</Link>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          ) : null}
           <div className="mb-14 grid gap-8 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
               <p className="label-caps text-gold">{label}</p>
@@ -274,7 +302,7 @@ function ArticleCollectionShell({
           <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {articles.map((article) => (
               <article className="group block" key={article.slug}>
-                <div className="relative aspect-square overflow-hidden bg-stone shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-material">
+                <div className="group/image relative aspect-square overflow-hidden bg-stone shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-material">
                   <Image
                     alt={article.name}
                     className="object-cover transition-transform duration-700 ease-expo group-hover:scale-105"
@@ -288,6 +316,7 @@ function ArticleCollectionShell({
                     href={localizedPath(locale, article.href)}
                     id={article.slug}
                   />
+                  {article.fieldOfApplication ? <ArticleApplicationIcons fieldOfApplication={article.fieldOfApplication} /> : null}
                 </div>
                 <div className="pt-7 text-center">
                   <h3 className="label-caps text-charcoal">{article.name.toUpperCase()}</h3>
@@ -300,6 +329,7 @@ function ArticleCollectionShell({
           </div>
         </div>
       </section>
+      {footer}
     </main>
   );
 }

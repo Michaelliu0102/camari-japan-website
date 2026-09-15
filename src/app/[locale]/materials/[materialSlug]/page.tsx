@@ -14,6 +14,7 @@ import { createPageMetadata } from "@/lib/metadata";
 import { localizeBrandNames, type Locale } from "@/lib/locales";
 import { buildBreadcrumbJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
+import { loadSkaiVinylArticles } from "@/lib/skai-vinyl";
 import {
   loadMaterials,
   loadProductTypes,
@@ -372,10 +373,11 @@ function buildProjectLinks(
 
 export default async function MaterialDetailPage({ params }: PageProps) {
   const { locale, materialSlug } = await params;
-  const [materials, allProductTypes, allSkus] = await Promise.all([
+  const [materials, allProductTypes, allSkus, skaiArticles] = await Promise.all([
     loadMaterials(),
     loadProductTypes(),
     loadSkus(),
+    materialSlug === "vegan-leather" && locale === "en" ? loadSkaiVinylArticles() : Promise.resolve([]),
   ]);
   const material = materials.find((entry) => entry.slug === materialSlug);
 
@@ -433,7 +435,7 @@ export default async function MaterialDetailPage({ params }: PageProps) {
           skus={articleSkus}
         />
       ) : (
-        <ApplicationGrid locale={locale} material={material} skus={skus} />
+        <ApplicationGrid locale={locale} material={material} skus={skus} skaiArticleCount={skaiArticles.length} />
       )}
       <MaterialProjectCarousel
         locale={locale}
