@@ -1,0 +1,8 @@
+.china-shared-site { font-family: Arial, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; }
+.china-shared-site .font-serif { font-family: Georgia, "Songti SC", "SimSun", serif; }
+.china-shared-site .font-label, .china-shared-site .font-sans { font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
+.china-shared-site h1, .china-shared-site h2, .china-shared-site .label-caps { overflow-wrap: anywhere; }
+.china-preview-note { position: fixed; bottom: 12px; right: 12px; z-index: 55; max-width: min(580px, calc(100vw - 24px)); padding: 8px 12px; color: #fff; background: rgb(30 31 28 / 88%); font: 12px/1.6 Arial, "PingFang SC", sans-serif; border: 1px solid rgb(255 255 255 / 20%); border-radius: 4px; }
+.china-preview-note a { margin-left: 12px; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 640px) { .china-preview-note {font-size: 10px;} }
+.china-shared-site header nav a { white-space: nowrap; }

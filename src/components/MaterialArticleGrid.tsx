@@ -1,5 +1,6 @@
 "use client";
 
+import { chineseCopy } from "../china/copy";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -36,17 +37,17 @@ export function MaterialArticleGrid({
       <div className="section-shell">
         <div className="mb-14 grid gap-8 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
-            <p className="label-caps text-gold">{locale === "en" ? "Fabric Article" : "ファブリック記事"}</p>
+            <p className="label-caps text-gold">{locale === "zh" ? chineseCopy("Fabric Article") : locale === "en" ? "Fabric Article" : "ファブリック記事"}</p>
             <h2 className="mt-5 font-label text-3xl uppercase tracking-[0.12em] md:text-4xl">
               <ShinyText
                 color="#1a1a1a"
                 shineColor="#ffffff"
-                text={locale === "en" ? "Pattern Library" : "パターンライブラリー"}
+                text={locale === "zh" ? chineseCopy("Pattern Library") : locale === "en" ? "Pattern Library" : "パターンライブラリー"}
               />
             </h2>
           </div>
           <p className="max-w-2xl text-sm leading-7 text-muted md:col-span-5 md:justify-self-end md:text-right">
-            {locale === "en"
+            {locale === "zh" ? chineseCopy("Automotive fabric displayed by pattern and marques.") : locale === "en"
               ? "Automotive fabric displayed by pattern and marques."
               : "パターンとブランド別に自動車用ファブリックをご覧いただけます。"}
           </p>

@@ -12,11 +12,11 @@ async function source(relativePath) {
 test("Japanese navigation localizes material quick links", async () => {
   const content = await source("src/components/GlobalNav.tsx");
 
-  assert.match(content, /label: \{ en: "AUTO", ja: "自動車" \}/);
-  assert.match(content, /label: \{ en: "INTERIOR", ja: "インテリア" \}/);
-  assert.match(content, /label: \{ en: "OUTDOOR", ja: "アウトドア" \}/);
-  assert.match(content, /label: \{ en: "TECH", ja: "テック" \}/);
-  assert.match(content, /label: \{ en: "Vegan Leather", ja: "合成皮革" \}/);
+  assert.match(content, /label: \{(?: zh: chineseCopy\([^\n]*?\),)? en: "AUTO", ja: "自動車" \}/);
+  assert.match(content, /label: \{(?: zh: chineseCopy\([^\n]*?\),)? en: "INTERIOR", ja: "インテリア" \}/);
+  assert.match(content, /label: \{(?: zh: chineseCopy\([^\n]*?\),)? en: "OUTDOOR", ja: "アウトドア" \}/);
+  assert.match(content, /label: \{(?: zh: chineseCopy\([^\n]*?\),)? en: "TECH", ja: "テック" \}/);
+  assert.match(content, /label: \{(?: zh: chineseCopy\([^\n]*?\),)? en: "Vegan Leather", ja: "合成皮革" \}/);
 });
 
 test("Japanese product surfaces localize sales actions and supporting copy", async () => {
@@ -32,10 +32,10 @@ test("Japanese product surfaces localize sales actions and supporting copy", asy
   assert.match(swatches, /`\$\{skus\.length\}色`/);
   assert.match(swatches, /locale === "en" \? "Contact Sales" : "営業担当に相談"/);
   assert.match(swatches, /サンプル請求機能は現在準備中です。/);
-  assert.match(swatches, /label: \{ en: "Specifications", ja: "仕様" \}/);
-  assert.match(swatches, /label: \{ en: "Certifications", ja: "認証" \}/);
-  assert.match(swatches, /label: \{ en: "Maintenance and clean", ja: "メンテナンス・お手入れ" \}/);
-  assert.match(swatches, /label: \{ en: "Downloads", ja: "ダウンロード" \}/);
+  assert.match(swatches, /label: \{(?: zh: chineseCopy\([^\n]*?\),)? en: "Specifications", ja: "仕様" \}/);
+  assert.match(swatches, /label: \{(?: zh: chineseCopy\([^\n]*?\),)? en: "Certifications", ja: "認証" \}/);
+  assert.match(swatches, /label: \{(?: zh: chineseCopy\([^\n]*?\),)? en: "Maintenance and clean", ja: "メンテナンス・お手入れ" \}/);
+  assert.match(swatches, /label: \{(?: zh: chineseCopy\([^\n]*?\),)? en: "Downloads", ja: "ダウンロード" \}/);
 });
 
 test("Japanese material and specification sections localize their visible headings", async () => {
@@ -44,8 +44,8 @@ test("Japanese material and specification sections localize their visible headin
   const downloadPanel = await source("src/components/DownloadPanel.tsx");
   const skuPage = await source("src/components/ProductTypeDetailPage.tsx");
 
-  assert.match(materialsPage, /title=\{locale === "en" \? "Material" : "素材"\}/);
-  assert.match(materialsPage, /subtitle=\{locale === "en" \? "The intersection of Italian sensory tension and Japanese restraint" : undefined\}/);
+  assert.match(materialsPage, /locale === "en" \? "Material" : "素材"/);
+  assert.match(materialsPage, /locale === "en" \? "The intersection of Italian sensory tension and Japanese restraint" : undefined/);
   assert.doesNotMatch(materialsPage, /素材へのこだわり/);
   assert.match(materialsPage, /locale === "en" \? "Tactile Silence" : "質感へのこだわり"/);
   assert.match(materialsPage, /空間に調和する、心地よい手ざわりの素材を厳選しています。/);

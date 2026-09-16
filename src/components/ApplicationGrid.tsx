@@ -1,3 +1,4 @@
+import { chineseCopy } from "../china/copy";
 import Image from "next/image";
 import Link from "next/link";
 import type { Application, Material, Sku } from "@/lib/content";
@@ -15,10 +16,10 @@ export function ApplicationGrid({ locale, material, skus, skaiArticleCount }: Ap
     material.slug === "vegan-leather"
       ? [
           ...material.applications.filter((application) => application.slug !== "vinyl"),
-          ...(locale === "en"
+          ...(locale !== "ja"
             ? [{
                 slug: "vinyl",
-                name: { en: "SKAI VINYL", ja: "SKAI VINYL" },
+                name: { zh: chineseCopy("SKAI VINYL"), en: "SKAI VINYL", ja: "SKAI VINYL" },
                 image: "/uploads/veganleather/skai.svg",
                 productTypeSlug: "vinyl",
               }]
@@ -33,7 +34,7 @@ export function ApplicationGrid({ locale, material, skus, skaiArticleCount }: Ap
   };
 
   function getHref(application: Application): string {
-    if (locale === "en" && material.slug === "vegan-leather" && application.slug === "vinyl") {
+    if (locale !== "ja" && material.slug === "vegan-leather" && application.slug === "vinyl") {
       return "/materials/vegan-leather/skai";
     }
 
@@ -48,7 +49,7 @@ export function ApplicationGrid({ locale, material, skus, skaiArticleCount }: Ap
   }
 
   function getApplicationName(application: Application): string {
-    if (locale === "en" && material.slug === "vegan-leather" && application.slug === "microfiber-leather") {
+    if (locale !== "ja" && material.slug === "vegan-leather" && application.slug === "microfiber-leather") {
       return "AQUAPELLE Microfiber Leather";
     }
 
@@ -60,7 +61,7 @@ export function ApplicationGrid({ locale, material, skus, skaiArticleCount }: Ap
       return `${skaiArticleCount} ${skaiArticleCount === 1 ? "article" : "articles"}`;
     }
     return typeof application.colorCount === "number"
-      ? locale === "en" ? `${application.colorCount} colours` : `${application.colorCount}色`
+      ? locale === "zh" ? chineseCopy(`${application.colorCount} colours`) : locale === "en" ? `${application.colorCount} colours` : `${application.colorCount}色`
       : null;
   }
 
@@ -69,7 +70,7 @@ export function ApplicationGrid({ locale, material, skus, skaiArticleCount }: Ap
       <div className="section-shell">
         <div className="mb-16 text-center">
           <h2 className="font-label text-3xl uppercase tracking-[0.12em] md:text-4xl">
-            {locale === "en" ? "Article" : "記事"}
+            {locale === "zh" ? chineseCopy("Article") : locale === "en" ? "Article" : "記事"}
           </h2>
           <div className="mx-auto mt-7 h-px w-20 bg-gold" />
         </div>

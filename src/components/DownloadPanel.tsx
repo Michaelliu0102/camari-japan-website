@@ -1,3 +1,4 @@
+import { chineseCopy } from "../china/copy";
 import Link from "next/link";
 import type { Download as DownloadItem } from "@/lib/content";
 import type { Locale } from "@/lib/locales";
@@ -17,7 +18,7 @@ export function DownloadPanel({ locale, downloads }: DownloadPanelProps) {
             <span className="mt-1 block text-[0.8rem] leading-relaxed text-muted">{download.description[locale]}</span>
           </span>
           <span className="label-caps shrink-0 text-[9px] text-muted transition-colors group-hover:text-charcoal">
-            {locale === "en" ? "Download" : "ダウンロード"}
+            {locale === "zh" ? chineseCopy("Download") : locale === "en" ? "Download" : "ダウンロード"}
           </span>
         </Link>
       ))}

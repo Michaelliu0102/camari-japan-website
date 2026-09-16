@@ -36,6 +36,25 @@ type ConsentContextValue = {
 const ConsentContext = createContext<ConsentContextValue | null>(null);
 
 const copy = {
+  zh: {
+    title: "Cookie 政策",
+    intro: "我们使用必要的本地存储来记住您的隐私选择。如果您允许可选外部媒体，高德地图可能使用 Cookie 或类似技术，并接收 IP 地址等技术信息。我们不使用广告或分析 Cookie。",
+    policyLead: "请阅读我们的",
+    policy: "Cookie 政策",
+    reject: "仅使用必要 Cookie",
+    manage: "Cookie 设置",
+    accept: "允许全部 Cookie",
+    preferencesTitle: "Cookie 设置",
+    necessaryTitle: "必要项",
+    necessaryDescription: "用于记住您的隐私选择并保障网站正常运行。",
+    alwaysOn: "始终启用",
+    externalTitle: "外部媒体",
+    externalDescription: "允许加载高德地图。高德可能接收技术信息，并使用 Cookie 或类似技术。",
+    on: "开启",
+    off: "关闭",
+    back: "返回",
+    save: "保存选择",
+  },
   en: {
     title: "Cookie Policy",
     intro:
@@ -103,7 +122,7 @@ export function ConsentProvider({
 }) {
   const pathname = usePathname();
   const dialogRef = useRef<HTMLDivElement>(null);
-  const locale: Locale = pathname === "/ja" || pathname.startsWith("/ja/")
+  const locale: Locale = pathname === "/zh" || pathname.startsWith("/zh/") ? "zh" : pathname === "/ja" || pathname.startsWith("/ja/")
     ? "ja"
     : pathname === "/en" || pathname.startsWith("/en/")
       ? "en"
@@ -328,7 +347,7 @@ export function ConsentProvider({
                   >
                     {labels.policy}
                   </Link>
-                  {locale === "en" ? "." : "をご覧ください。"}
+                  {locale === "zh" ? "。" : locale === "en" ? "." : "をご覧ください。"}
                 </p>
 
                 <div className="mt-9 flex flex-col gap-7 md:mt-auto md:flex-row md:items-end md:justify-between md:gap-10">

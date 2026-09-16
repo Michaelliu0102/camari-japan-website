@@ -1,3 +1,4 @@
+import { chinaSite } from "./chinaSite";
 import { downloadPage } from "./downloadPage";
 import { catalog } from "./catalog";
 import { aboutPage } from "./aboutPage";
@@ -12,4 +13,4 @@ import { projectCase } from "./projectCase";
 import { seo } from "./seo";
 import { sku } from "./sku";
 
-export const schemaTypes = [downloadPage, seo, homePage, aboutPage, productBusinessSettings, materialCategory, material, productCategory, productType, sku, projectCase, news, catalog];
+export const schemaTypes = [chinaSite, downloadPage, seo, homePage, aboutPage, productBusinessSettings, materialCategory, material, productCategory, productType, sku, projectCase, news, catalog];

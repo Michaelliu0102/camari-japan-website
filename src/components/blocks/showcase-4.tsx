@@ -1,5 +1,6 @@
 "use client";
 
+import { chineseCopy } from "../../china/copy";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -21,12 +22,12 @@ export type ShowcaseCategory = {
 type Showcase4Props = {
   items: ShowcaseProduct[];
   categories: ShowcaseCategory[];
-  locale: "en" | "ja";
+  locale: "en" | "ja" | "zh";
   initialCategory?: string;
 };
 
 export default function Showcase4({ items, categories, locale, initialCategory }: Showcase4Props) {
-  const allFilter = locale === "en" ? "All" : "すべて";
+  const allFilter = locale === "zh" ? chineseCopy("All") : locale === "en" ? "All" : "すべて";
   const availableSlugs = useMemo(() => new Set(categories.map((category) => category.slug)), [categories]);
   const [activeFilter, setActiveFilter] = useState(
     initialCategory && availableSlugs.has(initialCategory) ? initialCategory : "all"
@@ -38,7 +39,7 @@ export default function Showcase4({ items, categories, locale, initialCategory }
       <div className="mx-auto w-full max-w-[1440px]">
         <div className="border-y border-charcoal/15 py-5 md:flex md:items-center md:justify-between">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-3 md:gap-x-8">
-            <span className="label-caps text-muted">{locale === "en" ? "Filter" : "絞り込み"}</span>
+            <span className="label-caps text-muted">{locale === "zh" ? chineseCopy("Filter") : locale === "en" ? "Filter" : "絞り込み"}</span>
             <button
               className={`label-caps border-b pb-1 transition-colors ${activeFilter === "all" ? "border-charcoal text-charcoal" : "border-transparent text-muted hover:text-charcoal"}`}
               onClick={() => setActiveFilter("all")}
@@ -58,7 +59,7 @@ export default function Showcase4({ items, categories, locale, initialCategory }
             ))}
           </div>
           <p className="mt-5 text-xs uppercase tracking-[0.2em] text-muted md:mt-0">
-            {visibleItems.length} {locale === "en" ? (visibleItems.length === 1 ? "product" : "products") : "製品"}
+            {visibleItems.length} {locale !== "ja" ? (visibleItems.length === 1 ? "product" : "products") : "製品"}
           </p>
         </div>
 

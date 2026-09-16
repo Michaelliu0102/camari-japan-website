@@ -11,9 +11,16 @@ type FooterNewsletterFormProps = {
   locale: Locale;
 };
 
-type FormStatus = "idle" | "submitting" | "success" | "error";
-
 const copy = {
+  zh: {
+    label: "订阅我们的通讯",
+    placeholder: "请输入你的邮箱地址",
+    invalid: "请输入有效的邮箱地址。",
+    submitting: "正在提交…",
+    success: "感谢订阅。",
+    error: "订阅未能完成，请重试。",
+    submitLabel: "订阅",
+  },
   en: {
     label: "Subscribe to our newsletter",
     placeholder: "Enter your email address",
@@ -53,6 +60,7 @@ export function FooterNewsletterForm({ className = "", layout = "stacked", local
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (locale === "zh") { setMessage("中国站预览暂不发送，请通过电话或邮箱联系我们。"); return; }
 
     const normalizedEmail = normalizeNewsletterEmail(email);
     if (!isValidNewsletterEmail(normalizedEmail)) {

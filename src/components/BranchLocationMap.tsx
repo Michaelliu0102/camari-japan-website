@@ -16,6 +16,8 @@ export type BranchLocation = {
 
 type BranchLocationMapProps = {
   locations: BranchLocation[];
+  locale?: "en" | "ja" | "zh";
+  companyName?:string;
 };
 
 function mapEmbedUrl(location: BranchLocation) {
@@ -28,7 +30,7 @@ function mapDirectUrl(location: BranchLocation) {
   return `https://www.google.com/maps/search/?api=1&query=${query}`;
 }
 
-export function BranchLocationMap({ locations }: BranchLocationMapProps) {
+export function BranchLocationMap({ locations, locale="en", companyName }: BranchLocationMapProps) {
   const [activeCountry, setActiveCountry] = useState(locations[0]?.country ?? "");
   const activeLocation =
     locations.find((location) => location.country === activeCountry) ?? locations[0];
@@ -46,11 +48,10 @@ export function BranchLocationMap({ locations }: BranchLocationMapProps) {
     <div className="section-shell">
       <div className="mx-auto max-w-5xl text-center">
         <h1 className="mx-auto max-w-5xl font-serif text-[clamp(2.75rem,4.4vw,4.6rem)] leading-[1.04] text-charcoal">
-          Camari&apos;s Global Network
+          {locale === "zh" ? `${companyName??"CAMARI"} · 全球网络` : "Camari’s Global Network"}
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-muted md:text-lg">
-          Reach the regional team closest to your project for material
-          availability, catalogs, and showroom appointments.
+          {locale === "zh" ? "联系就近的区域团队，了解材料供应、产品资料和展厅预约。" : "Reach the regional team closest to your project for material availability, catalogs, and showroom appointments."}
         </p>
       </div>
 

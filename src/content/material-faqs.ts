@@ -1,3 +1,4 @@
+import { chineseCopy } from "../china/copy";
 import type { Locale } from "@/lib/locales";
 
 export type MaterialFaqItem = {
@@ -12,7 +13,37 @@ export type MaterialFaqItem = {
 export const materialFaqs: Partial<Record<string, Record<Locale, MaterialFaqItem[]>>> =
   {
     alcantara: {
-      en: [
+      zh: chineseCopy([
+        {
+          question: "What is Alcantara?",
+          answer:
+            "Alcantara is a premium Italian material developed through a unique proprietary technology. It is known for its soft touch, refined appearance, and high-performance qualities.",
+        },
+        {
+          question: "Where is Alcantara produced?",
+          answer: "ALCANTARA is 100% made in Italy.",
+        },
+        {
+          question: "Is Alcantara leather?",
+          answer:
+            "No. Alcantara is a high-tech material made with patented technology. It combines a premium luxury feel with unmatched durability.",
+        },
+        {
+          question: "Where can Alcantara be used?",
+          answer:
+            "Alcantara is used across automotive interiors, residential and contract interiors, marine, aviation, fashion, and consumer electronics.",
+        },
+        {
+          question: "Can Alcantara be customized?",
+          answer:
+            "Yes. Alcantara supports custom colors, textures, printing, perforation, laser processing, embossing, embroidery, and lamination for bespoke design programs.",
+        },
+        {
+          question: "Is Alcantara sustainable?",
+          answer:
+            "Sustainability is part of Alcantara's industrial culture. The material has maintained Carbon Neutral certification since 2009.",
+        },
+      ]), en: [
         {
           question: "What is Alcantara?",
           answer:
@@ -76,7 +107,35 @@ export const materialFaqs: Partial<Record<string, Record<Locale, MaterialFaqItem
       ],
     },
     leather: {
-      en: [
+      zh: chineseCopy([
+        {
+          question: "Is leather a natural material?",
+          answer:
+            "Yes. Leather is a natural material, so subtle variation in grain, tone, and surface character is part of its identity. These variations should be considered during specification and production.",
+        },
+        {
+          question:
+            "Why does the leather have an irregular shape and natural markings?",
+          answer:
+            "Because it is a 100% natural product. Genuine leather naturally retains the organic shape of the animal's hide. To ensure the highest quality, we select only the top tier of premium European hides, which minimizes surface imperfections from the start. Any remaining minor variations are simply natural characteristics of premium grain leather, serving as proof of its authentic origin.",
+        },
+        {
+          question:
+            "What is the difference between Aniline, Semi-Aniline, and Pigmented leather?",
+          answer:
+            "The difference lies in the surface treatment, balancing natural luxury against durability:\n\nAniline (Pure Luxury): Treated with transparent dyes only. It leaves the natural grain 100% visible and offers the softest, most breathable feel, but lacks stain protection.\n\nSemi-Aniline (The Balanced Choice): Combines a natural grain and supple touch with a micro-thin protective topcoat, offering excellent resistance to fading and daily spills.\n\nPigmented / Corrected (Maximum Durability): Coated with an opaque layer and embossed with a uniform pattern. It is firmer to the touch but highly resistant to scratches, scuffs, and heavy wear.",
+        },
+        {
+          question: "Which leather finish is right for my project?",
+          answer:
+            "Aniline: Elite, low-traffic residential furniture.\n\nSemi-Aniline: Premium automotive cabins, high-end furniture, and luxury contract projects.\n\nPigmented: Heavy-traffic commercial seating and high-use environments where 100% color uniformity and maximum cleanability are the top priorities.\n\nCAMARI staff can help match the right leather article to the design and technical brief.",
+        },
+        {
+          question: "Can leather colors and finishes be customized?",
+          answer:
+            "Custom color and finish development may be available depending on the leather article, project quantity, and technical requirements.",
+        },
+      ]), en: [
         {
           question: "Is leather a natural material?",
           answer:
@@ -135,7 +194,33 @@ export const materialFaqs: Partial<Record<string, Record<Locale, MaterialFaqItem
       ],
     },
     "vegan-leather": {
-      en: [
+      zh: chineseCopy([
+        {
+          question: "What is vegan leather?",
+          answer:
+            "Vegan leather is a material designed to mimic the look, feel, and functionality of traditional animal leather, but made entirely without animal products. Technically, vegan leather includes Vinyl, PU leather and microfiber leather.",
+        },
+        {
+          question:
+            "What is the difference between vinyl (PVC), PU leather, and microfiber leather?",
+          answer:
+            "The main differences lie in their backing structure, durability, hand feel, breathability, and VOC profile:\n\nVinyl (PVC): A textile backing coated with polyvinyl chloride (PVC) mixed with plasticizers and pigments. It offers heavy-duty durability, waterproof performance, and a plasticky feel; it is less breathable and relatively higher in VOCs.\n\nPU Leather: A textile backing, often knitted or woven polyester, covered with a layer of polyurethane. It is frequently produced as a multi-layer construction with a microporous or foam intermediate layer to mimic real leather's grain and breathability. It is softer, more flexible, and generally lower in VOCs.\n\nMicrofiber Leather: A premium material that replicates the exact 3D fiber network of real animal hide using microscopic synthetic fibers. It is exceptionally soft, highly breathable, and lower in VOCs. Our sustainable water-borne, solvent-free microfiber is crafted through the greenest engineering. The entire process is free of toluene, DMF, and sodium hydroxide, setting a new ecological benchmark by eliminating the chemical residues traditional methods cannot avoid.",
+          link: {
+            href: "/uploads/veganleather/comparison.png",
+            label: "See structural comparison of leather materials",
+          },
+        },
+        {
+          question: "What is Waterborne Microfiber?",
+          answer:
+            "Waterborne microfiber is defined by its fine fiber architecture and water-based production route. It uses water for fiber opening and PU impregnation, avoiding toluene, sodium hydroxide, and solvent-based PU while reducing manufacturing impact.",
+        },
+        {
+          question: "What's the advantage of Aquapelle?",
+          answer:
+            "Aquapelle offers a natural leather-like hand, strong mechanical performance, breathable comfort, consistent color, and stable quality. Its waterborne, solvent-free process is also DMF-free and VOC-free.",
+        },
+      ]), en: [
         {
           question: "What is vegan leather?",
           answer:
@@ -181,7 +266,24 @@ export const materialFaqs: Partial<Record<string, Record<Locale, MaterialFaqItem
       ],
     },
     fabric: {
-      en: [
+      zh: chineseCopy([
+        {
+          question: "What automotive fabric does CAMARI offer?",
+          answer:
+            "CAMARI offers original or reproduced automotive fabric matching the original specification for classic cars.",
+        },
+        {
+          question: "Where can CAMARI fabrics be used?",
+          answer:
+            "CAMARI fabrics can be specified for automotive seats, door panels, heritage restoration, and bespoke trim. The fabrics can also be used for car and fashion accessories, as displayed in our Product section.",
+        },
+        {
+          question:
+            "Will the pattern and texture of fabric match original classic interior?",
+          answer:
+            "Yes. We source the fabric from Europe to match the factory originals.",
+        },
+      ]), en: [
         {
           question: "What automotive fabric does CAMARI offer?",
           answer:

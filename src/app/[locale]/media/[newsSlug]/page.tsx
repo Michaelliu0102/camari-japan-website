@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../../../china/copy";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale, newsSlug } = await params;
   const item = await loadNewsItem(newsSlug);
 
-  if (!item || (item.availableLocales && !item.availableLocales.includes(locale))) {
+  if (!item || (item.availableLocales && !item.availableLocales.includes(locale === "zh" ? "en" : locale))) {
     return {};
   }
 
@@ -79,17 +80,17 @@ export default async function NewsDetailPage({ params }: PageProps) {
   const { locale, newsSlug } = await params;
   const item = await loadNewsItem(newsSlug);
 
-  if (!item || (item.availableLocales && !item.availableLocales.includes(locale))) {
+  if (!item || (item.availableLocales && !item.availableLocales.includes(locale === "zh" ? "en" : locale))) {
     notFound();
   }
 
-  const article = item.articleContent?.[locale];
+  const article = item.articleContent?.[locale] ?? (locale === "zh" ? item.articleContent?.en : undefined);
   const articleHeroImage = article?.heroImage ?? item.image;
   const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
-    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
-    { name: locale === "en" ? "Media" : "メディア", path: "/media" },
+    { name: locale === "zh" ? chineseCopy("Home") : locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "zh" ? chineseCopy("Media") : locale === "en" ? "Media" : "メディア", path: "/media" },
     { name: item.title[locale], path: `/media/${item.slug}` }
-  ]);
+  ], locale);
   const articleSchema = buildNewsArticleJsonLd(siteConfig, {
     headline: item.title[locale],
     description: item.seo.description[locale] || item.summary[locale],
@@ -111,7 +112,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
             className="label-caps inline-flex border-b border-charcoal/30 pb-2 text-[9px] text-charcoal transition-colors duration-300 hover:border-gold hover:text-gold"
             href={localizedPath(locale, "/media")}
           >
-            {locale === "en" ? "Back to Media" : "メディアへ戻る"}
+            {locale === "zh" ? chineseCopy("Back to Media") : locale === "en" ? "Back to Media" : "メディアへ戻る"}
           </Link>
           <div className="mt-14 max-w-[48rem]">
             <p className="label-caps text-[9px] text-gold">{item.category[locale]}</p>

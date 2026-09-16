@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../china/copy";
 import { materialFaqs } from "@/content/material-faqs";
 import { getNewsArticleContent } from "@/content/news-articles";
 import { createDownloadGroups, downloadPageCopy, type DownloadPageSettings } from "@/content/downloads";
@@ -48,7 +49,7 @@ import {
   adaptSku
 } from "./adapters";
 import { getSanityClient } from "./client";
-import { getSanityMarket } from "./market";
+import { getDeliveryMarket } from "../../china/delivery";
 import {
   catalogsQuery,
   aboutPageSettingsQuery,
@@ -78,77 +79,77 @@ import {
 
 const leatherSpecDownloads: Record<string, Download> = {
   aida: {
-    title: { en: "Aida Spec Sheet", ja: "Aida 仕様書" },
-    description: { en: "Technical specification PDF for Aida leather.", ja: "Aida レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Aida Spec Sheet"), en: "Aida Spec Sheet", ja: "Aida 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Aida leather."), en: "Technical specification PDF for Aida leather.", ja: "Aida レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/aida_spec_sheet.pdf",
     type: "technical"
   },
   "automotive-nappa": {
-    title: { en: "Automotive Nappa Spec Sheet", ja: "Automotive Nappa 仕様書" },
-    description: { en: "Technical specification PDF for Automotive Nappa leather.", ja: "Automotive Nappa レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Automotive Nappa Spec Sheet"), en: "Automotive Nappa Spec Sheet", ja: "Automotive Nappa 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Automotive Nappa leather."), en: "Technical specification PDF for Automotive Nappa leather.", ja: "Automotive Nappa レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/automotive_nappa_spec_sheet.pdf",
     type: "technical"
   },
   capri: {
-    title: { en: "Capri Spec Sheet", ja: "Capri 仕様書" },
-    description: { en: "Technical specification PDF for Capri leather.", ja: "Capri レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Capri Spec Sheet"), en: "Capri Spec Sheet", ja: "Capri 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Capri leather."), en: "Technical specification PDF for Capri leather.", ja: "Capri レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/capri_spec_sheet.pdf",
     type: "technical"
   },
   classic: {
-    title: { en: "Classic Spec Sheet", ja: "Classic 仕様書" },
-    description: { en: "Technical specification PDF for Classic leather.", ja: "Classic レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Classic Spec Sheet"), en: "Classic Spec Sheet", ja: "Classic 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Classic leather."), en: "Technical specification PDF for Classic leather.", ja: "Classic レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/classic_spec_sheet.pdf",
     type: "technical"
   },
   heritage: {
-    title: { en: "Heritage Spec Sheet", ja: "Heritage 仕様書" },
-    description: { en: "Technical specification PDF for Heritage leather.", ja: "Heritage レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Heritage Spec Sheet"), en: "Heritage Spec Sheet", ja: "Heritage 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Heritage leather."), en: "Technical specification PDF for Heritage leather.", ja: "Heritage レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/heritage_spec_sheet.pdf",
     type: "technical"
   },
   linea: {
-    title: { en: "Linea Spec Sheet", ja: "Linea 仕様書" },
-    description: { en: "Technical specification PDF for Linea leather.", ja: "Linea レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Linea Spec Sheet"), en: "Linea Spec Sheet", ja: "Linea 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Linea leather."), en: "Technical specification PDF for Linea leather.", ja: "Linea レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/linea_spec_sheet.pdf",
     type: "technical"
   },
   luna: {
-    title: { en: "Luna Spec Sheet", ja: "Luna 仕様書" },
-    description: { en: "Technical specification PDF for Luna leather.", ja: "Luna レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Luna Spec Sheet"), en: "Luna Spec Sheet", ja: "Luna 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Luna leather."), en: "Technical specification PDF for Luna leather.", ja: "Luna レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/luna_spec_sheet.pdf",
     type: "technical"
   },
   roma: {
-    title: { en: "Roma Spec Sheet", ja: "Roma 仕様書" },
-    description: { en: "Technical specification PDF for Roma leather.", ja: "Roma レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Roma Spec Sheet"), en: "Roma Spec Sheet", ja: "Roma 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Roma leather."), en: "Technical specification PDF for Roma leather.", ja: "Roma レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/roma_spec_sheet.pdf",
     type: "technical"
   },
   seta: {
-    title: { en: "Seta Spec Sheet", ja: "Seta 仕様書" },
-    description: { en: "Technical specification PDF for Seta leather.", ja: "Seta レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Seta Spec Sheet"), en: "Seta Spec Sheet", ja: "Seta 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Seta leather."), en: "Technical specification PDF for Seta leather.", ja: "Seta レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/seta_spec_sheet.pdf",
     type: "technical"
   },
   tuscania: {
-    title: { en: "Tuscania Spec Sheet", ja: "Tuscania 仕様書" },
-    description: { en: "Technical specification PDF for Tuscania leather.", ja: "Tuscania レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Tuscania Spec Sheet"), en: "Tuscania Spec Sheet", ja: "Tuscania 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Tuscania leather."), en: "Technical specification PDF for Tuscania leather.", ja: "Tuscania レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/tuscania_spec_sheet.pdf",
     type: "technical"
   },
   verona: {
-    title: { en: "Verona Spec Sheet", ja: "Verona 仕様書" },
-    description: { en: "Technical specification PDF for Verona leather.", ja: "Verona レザーの技術仕様PDF。" },
+    title: { zh: chineseCopy("Verona Spec Sheet"), en: "Verona Spec Sheet", ja: "Verona 仕様書" },
+    description: { zh: chineseCopy("Technical specification PDF for Verona leather."), en: "Technical specification PDF for Verona leather.", ja: "Verona レザーの技術仕様PDF。" },
     href: "/uploads/spec/leather/verona_spec_sheet.pdf",
     type: "technical"
   }
 };
 
 const alcantaraCareDownload: Download = {
-  title: { en: "Alcantara Material Maintenance Guide", ja: "Alcantara 素材メンテナンスガイド" },
+  title: { zh: chineseCopy("Alcantara Material Maintenance Guide"), en: "Alcantara Material Maintenance Guide", ja: "Alcantara 素材メンテナンスガイド" },
   description: {
-    en: "Recommended maintenance and cleaning instructions for Alcantara materials.",
+    zh: chineseCopy("Recommended maintenance and cleaning instructions for Alcantara materials."), en: "Recommended maintenance and cleaning instructions for Alcantara materials.",
     ja: "Alcantara 素材の推奨メンテナンスおよび清掃手順。"
   },
   href: "/uploads/spec/Alcantara/Instructions-for-maintenance-of-alcantara-material.pdf",
@@ -157,36 +158,36 @@ const alcantaraCareDownload: Download = {
 
 const alcantaraSwatchDownloads: Record<"automotive" | "consumerElectronics" | "indoor" | "outdoorExo", Download> = {
   automotive: {
-    title: { en: "Alcantara Automotive Colors", ja: "Alcantara 自動車向けカラー" },
+    title: { zh: chineseCopy("Alcantara Automotive Colors"), en: "Alcantara Automotive Colors", ja: "Alcantara 自動車向けカラー" },
     description: {
-      en: "Colour reference for Alcantara automotive programs.",
+      zh: chineseCopy("Colour reference for Alcantara automotive programs."), en: "Colour reference for Alcantara automotive programs.",
       ja: "Alcantara 自動車用途向けカラーリファレンス。"
     },
     href: "/uploads/alcantara/swatches/alcantara-automotive-colors.pdf",
     type: "catalog"
   },
   consumerElectronics: {
-    title: { en: "Alcantara Consumer Electronics Colors", ja: "Alcantara コンシューマーエレクトロニクス向けカラー" },
+    title: { zh: chineseCopy("Alcantara Consumer Electronics Colors"), en: "Alcantara Consumer Electronics Colors", ja: "Alcantara コンシューマーエレクトロニクス向けカラー" },
     description: {
-      en: "Colour reference for Alcantara consumer electronics applications.",
+      zh: chineseCopy("Colour reference for Alcantara consumer electronics applications."), en: "Colour reference for Alcantara consumer electronics applications.",
       ja: "Alcantara コンシューマーエレクトロニクス用途向けカラーリファレンス。"
     },
     href: "/uploads/alcantara/swatches/alcantara-consumer-electronics-colors.pdf",
     type: "catalog"
   },
   indoor: {
-    title: { en: "Alcantara Interiors, Marine & Aviation Indoor Colors", ja: "Alcantara インテリア、マリン、航空機インドアカラー" },
+    title: { zh: chineseCopy("Alcantara Interiors, Marine & Aviation Indoor Colors"), en: "Alcantara Interiors, Marine & Aviation Indoor Colors", ja: "Alcantara インテリア、マリン、航空機インドアカラー" },
     description: {
-      en: "Colour reference for Alcantara indoor interiors, marine, and aviation applications.",
+      zh: chineseCopy("Colour reference for Alcantara indoor interiors, marine, and aviation applications."), en: "Colour reference for Alcantara indoor interiors, marine, and aviation applications.",
       ja: "Alcantara のインドアインテリア、マリン、航空機用途向けカラーリファレンス。"
     },
     href: "/uploads/alcantara/swatches/alcantara-interiors-marine-aviation-indoor.pdf",
     type: "catalog"
   },
   outdoorExo: {
-    title: { en: "Alcantara Interiors, Marine Outdoor EXO Colors", ja: "Alcantara インテリア、マリンアウトドア EXO カラー" },
+    title: { zh: chineseCopy("Alcantara Interiors, Marine Outdoor EXO Colors"), en: "Alcantara Interiors, Marine Outdoor EXO Colors", ja: "Alcantara インテリア、マリンアウトドア EXO カラー" },
     description: {
-      en: "Colour reference for Alcantara outdoor EXO and marine exterior applications.",
+      zh: chineseCopy("Colour reference for Alcantara outdoor EXO and marine exterior applications."), en: "Colour reference for Alcantara outdoor EXO and marine exterior applications.",
       ja: "Alcantara EXO とマリン屋外用途向けカラーリファレンス。"
     },
     href: "/uploads/alcantara/swatches/alcantara-interiors-marine-outdoor-exo.pdf",
@@ -197,8 +198,8 @@ const alcantaraSwatchDownloads: Record<"automotive" | "consumerElectronics" | "i
 const alcantaraDownloadSets: Record<string, Download[]> = {
   "alcantara-panel": [
     {
-      title: { en: "Alcantara Panel Spec Sheet", ja: "Alcantara Panel 仕様書" },
-      description: { en: "Technical specification PDF for Alcantara Panel.", ja: "Alcantara Panel の技術仕様PDF。" },
+      title: { zh: chineseCopy("Alcantara Panel Spec Sheet"), en: "Alcantara Panel Spec Sheet", ja: "Alcantara Panel 仕様書" },
+      description: { zh: chineseCopy("Technical specification PDF for Alcantara Panel."), en: "Technical specification PDF for Alcantara Panel.", ja: "Alcantara Panel の技術仕様PDF。" },
       href: "/uploads/spec/Alcantara/Alcantara 5012 - Pannel.pdf",
       type: "technical"
     },
@@ -207,8 +208,8 @@ const alcantaraDownloadSets: Record<string, Download[]> = {
   ],
   "alcantara-cover": [
     {
-      title: { en: "Alcantara COVER Spec Sheet", ja: "Alcantara COVER 仕様書" },
-      description: { en: "Technical specification PDF for Alcantara COVER.", ja: "Alcantara COVER の技術仕様PDF。" },
+      title: { zh: chineseCopy("Alcantara COVER Spec Sheet"), en: "Alcantara COVER Spec Sheet", ja: "Alcantara COVER 仕様書" },
+      description: { zh: chineseCopy("Technical specification PDF for Alcantara COVER."), en: "Technical specification PDF for Alcantara COVER.", ja: "Alcantara COVER の技術仕様PDF。" },
       href: "/uploads/spec/Alcantara/Alcantara 5205 - COVER Spec sheet.pdf",
       type: "technical"
     },
@@ -217,8 +218,8 @@ const alcantaraDownloadSets: Record<string, Download[]> = {
   ],
   "alcantara-master": [
     {
-      title: { en: "Alcantara Master Spec Sheet", ja: "Alcantara Master 仕様書" },
-      description: { en: "Technical specification PDF for Alcantara Master.", ja: "Alcantara Master の技術仕様PDF。" },
+      title: { zh: chineseCopy("Alcantara Master Spec Sheet"), en: "Alcantara Master Spec Sheet", ja: "Alcantara Master 仕様書" },
+      description: { zh: chineseCopy("Technical specification PDF for Alcantara Master."), en: "Technical specification PDF for Alcantara Master.", ja: "Alcantara Master の技術仕様PDF。" },
       href: "/uploads/spec/Alcantara/Alcantara 5015 ( BP ) Regular.pdf",
       type: "technical"
     },
@@ -227,8 +228,8 @@ const alcantaraDownloadSets: Record<string, Download[]> = {
   ],
   "alcantara-exo": [
     {
-      title: { en: "Alcantara EXO Spec Sheet", ja: "Alcantara EXO 仕様書" },
-      description: { en: "Technical specification PDF for Alcantara EXO.", ja: "Alcantara EXO の技術仕様PDF。" },
+      title: { zh: chineseCopy("Alcantara EXO Spec Sheet"), en: "Alcantara EXO Spec Sheet", ja: "Alcantara EXO 仕様書" },
+      description: { zh: chineseCopy("Technical specification PDF for Alcantara EXO."), en: "Technical specification PDF for Alcantara EXO.", ja: "Alcantara EXO の技術仕様PDF。" },
       href: "/uploads/spec/Alcantara/Alcantara 5143 - EXO.pdf",
       type: "technical"
     },
@@ -237,14 +238,14 @@ const alcantaraDownloadSets: Record<string, Download[]> = {
   ],
   "alcantara-04": [
     {
-      title: { en: "Alcantara 5010, 0.4 Thin Spec Sheet", ja: "Alcantara 5010, 0.4 Thin 仕様書" },
-      description: { en: "Technical specification PDF for Alcantara 0.4 Thin.", ja: "Alcantara 0.4 Thin の技術仕様PDF。" },
+      title: { zh: chineseCopy("Alcantara 5010, 0.4 Thin Spec Sheet"), en: "Alcantara 5010, 0.4 Thin Spec Sheet", ja: "Alcantara 5010, 0.4 Thin 仕様書" },
+      description: { zh: chineseCopy("Technical specification PDF for Alcantara 0.4 Thin."), en: "Technical specification PDF for Alcantara 0.4 Thin.", ja: "Alcantara 0.4 Thin の技術仕様PDF。" },
       href: "/uploads/spec/Alcantara/Alcantara 5010 - 0.4 Thin 5010 Datasheet(1).pdf",
       type: "technical"
     },
     {
-      title: { en: "Alcantara 5030, 0.4 Thin ECG Spec Sheet", ja: "Alcantara 5030, 0.4 Thin ECG 仕様書" },
-      description: { en: "Technical specification PDF for Alcantara 0.4 Thin ECG.", ja: "Alcantara 0.4 Thin ECG の技術仕様PDF。" },
+      title: { zh: chineseCopy("Alcantara 5030, 0.4 Thin ECG Spec Sheet"), en: "Alcantara 5030, 0.4 Thin ECG Spec Sheet", ja: "Alcantara 5030, 0.4 Thin ECG 仕様書" },
+      description: { zh: chineseCopy("Technical specification PDF for Alcantara 0.4 Thin ECG."), en: "Technical specification PDF for Alcantara 0.4 Thin ECG.", ja: "Alcantara 0.4 Thin ECG の技術仕様PDF。" },
       href: "/uploads/spec/Alcantara/Alcantara 5030 - 0.4 Thin ECG.pdf",
       type: "technical"
     },
@@ -253,8 +254,8 @@ const alcantaraDownloadSets: Record<string, Download[]> = {
   ],
   "alcantara-multilayer": [
     {
-      title: { en: "Alcantara Multilayer Spec Sheet", ja: "Alcantara Multilayer 仕様書" },
-      description: { en: "Technical specification PDF for Alcantara Multilayer.", ja: "Alcantara Multilayer の技術仕様PDF。" },
+      title: { zh: chineseCopy("Alcantara Multilayer Spec Sheet"), en: "Alcantara Multilayer Spec Sheet", ja: "Alcantara Multilayer 仕様書" },
+      description: { zh: chineseCopy("Technical specification PDF for Alcantara Multilayer."), en: "Technical specification PDF for Alcantara Multilayer.", ja: "Alcantara Multilayer の技術仕様PDF。" },
       href: "/uploads/spec/Alcantara/Alcantara 5170 Multilayer.pdf",
       type: "technical"
     },
@@ -263,8 +264,8 @@ const alcantaraDownloadSets: Record<string, Download[]> = {
   ],
   "alcantara-avant": [
     {
-      title: { en: "Alcantara Avant Spec Sheet", ja: "Alcantara Avant 仕様書" },
-      description: { en: "Technical specification PDF for Alcantara Avant.", ja: "Alcantara Avant の技術仕様PDF。" },
+      title: { zh: chineseCopy("Alcantara Avant Spec Sheet"), en: "Alcantara Avant Spec Sheet", ja: "Alcantara Avant 仕様書" },
+      description: { zh: chineseCopy("Technical specification PDF for Alcantara Avant."), en: "Technical specification PDF for Alcantara Avant.", ja: "Alcantara Avant の技術仕様PDF。" },
       href: "/uploads/spec/Alcantara/Alcantara 5466 - Avant.pdf",
       type: "technical"
     },
@@ -273,8 +274,8 @@ const alcantaraDownloadSets: Record<string, Download[]> = {
   ],
   "alcantara-board-fr": [
     {
-      title: { en: "Alcantara Bord FR 5056 Spec Sheet", ja: "Alcantara Bord FR 5056 仕様書" },
-      description: { en: "Technical specification PDF for Alcantara Bord FR 5056.", ja: "Alcantara Bord FR 5056 の技術仕様PDF。" },
+      title: { zh: chineseCopy("Alcantara Bord FR 5056 Spec Sheet"), en: "Alcantara Bord FR 5056 Spec Sheet", ja: "Alcantara Bord FR 5056 仕様書" },
+      description: { zh: chineseCopy("Technical specification PDF for Alcantara Bord FR 5056."), en: "Technical specification PDF for Alcantara Bord FR 5056.", ja: "Alcantara Bord FR 5056 の技術仕様PDF。" },
       href: "/uploads/spec/Alcantara/Alcantara Bord FR 5056.pdf",
       type: "technical"
     },
@@ -487,7 +488,7 @@ export async function loadMaterials(): Promise<Material[]> {
 }
 
 export const loadProductTypes = cache(async (): Promise<ProductType[]> => {
-  const market = getSanityMarket();
+  const market = await getDeliveryMarket();
   const fallback = withLocalLeatherSpecDownloads(withLocalAlcantaraDownloads(fallbackProductTypes.filter((item) => !isSkaiProductType(item))));
   const [productTypes, globalSkai] = await Promise.all([
     fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, { market }, fallback, (raw) => adaptProductType(raw, fallback.find((item) => item.slug === raw.slug)?.downloads), {
@@ -529,8 +530,8 @@ export async function loadProductType(materialSlug: string, productTypeSlug: str
   return productTypes.find((productType) => productType.slug === productTypeSlug);
 }
 
-export const loadSkus = cache(async (): Promise<Sku[]> => {
-  const market = getSanityMarket();
+export const loadSkus = cache(async (locale?:Locale): Promise<Sku[]> => {
+  const market = await getDeliveryMarket(locale);
   const skaiFallbackSlugs = new Set(fallbackProductTypes.filter(isSkaiProductType).map((productType) => productType.slug));
   const localSkus = fallbackSkus.filter((sku) => !isLegacySkaiCollection(sku.materialSlug, sku.productTypeSlug)
     && !(sku.materialSlug === "vegan-leather" && skaiFallbackSlugs.has(sku.productTypeSlug)));
@@ -585,7 +586,7 @@ export async function loadProject(slug: string): Promise<ProjectCase | undefined
 }
 
 export async function loadNewsItems(): Promise<NewsItem[]> {
-  const fallback = fallbackNewsItems.map(item => ({ ...item, articleContent: { en: getNewsArticleContent(item.slug, "en"), ja: getNewsArticleContent(item.slug, "ja") } }));
+  const fallback = fallbackNewsItems.map(item => ({ ...item, articleContent: { zh: chineseCopy(getNewsArticleContent(item.slug, "en")), en: getNewsArticleContent(item.slug, "en"), ja: getNewsArticleContent(item.slug, "ja") } }));
   const items = await fetchAndMergeBySlug<RawNewsItem, NewsItem>(newsItemsQuery, {}, fallback, adaptNewsItem, { includeFallbackRecords: false, fallbackOnEmpty: false });
   return items
     .filter((item) => item.slug !== "new-material-study")
@@ -598,13 +599,13 @@ export async function loadNewsItem(slug: string): Promise<NewsItem | undefined> 
 }
 
 export async function loadCatalogs(locale: Locale): Promise<Download[]> {
-  return fetchOrFallback<RawCatalog, Download>(catalogsQuery, { locale }, fallbackCatalogs, adaptCatalog);
+  return fetchOrFallback<RawCatalog, Download>(catalogsQuery, { locale: locale === "zh" ? "en" : locale }, fallbackCatalogs, adaptCatalog);
 }
 
 export async function loadDownloadPageSettings(locale: Locale): Promise<DownloadPageSettings> {
   if (isSanityConfigured()) {
     const raw = await getSanityClient().fetch<RawDownloadPage | null>(downloadPageQuery);
-    if (raw) return adaptDownloadPage(raw);
+    if (raw) return normalizeLocalizedBrandNames(adaptDownloadPage(raw));
   }
   const [catalogs, productTypes] = await Promise.all([loadCatalogs(locale), loadProductTypes()]);
   return { ...downloadPageCopy, groups: createDownloadGroups(catalogs, productTypes.flatMap(item => item.downloads)) };

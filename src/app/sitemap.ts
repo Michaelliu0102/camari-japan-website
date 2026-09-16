@@ -1,3 +1,7 @@
+import { isChinaBuild, chinaSiteUrl } from "@/china/config";
+import { loadChinaContent, filterChinaRecords } from "@/china/loader";
+import { chinaPageReady } from "@/china/routes";
+import { chinaRecordPath } from "@/china/content";
 import type { MetadataRoute } from "next";
 import { absoluteLocalizedUrl } from "@/lib/locales";
 import { siteConfig } from "@/lib/site-config";
@@ -38,6 +42,14 @@ function latestLastModified(values: Array<string | undefined>): string | undefin
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  if (isChinaBuild) {
+    const { settings, records: allRecords, siteReady } = await loadChinaContent();
+    const records = filterChinaRecords(allRecords, false);
+    if (!siteReady) return [];
+    const paths = ["/", "/about", "/materials", "/products", "/projects", "/media", "/downloads", "/contact", ...records.map(chinaRecordPath).filter((path): path is string => Boolean(path))];
+    return [...new Set(paths)].filter(path => chinaPageReady(path, settings, records)).map(path => ({url:new URL(path, chinaSiteUrl).toString()}));
+  }
+
   const locale = siteConfig.defaultLocale;
   const [materialCategories, materials, productTypes, productCategories, skus, projects, newsItems, catalogGroups, skaiProductTypeSlugs] = await Promise.all([
     loadMaterialCategories(),

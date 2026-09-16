@@ -1,5 +1,6 @@
 "use client";
 
+import { chineseCopy } from "../china/copy";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -54,7 +55,7 @@ const homeExploreImageOverrides: Record<string, string> = {
 
 const homeExploreDescriptionOverrides: Record<string, Partial<LocalizedString>> = {
   projects: {
-    en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
+    zh: chineseCopy("CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC"), en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
     ja: JAPANESE_PRODUCT_SURFACE_DESCRIPTION,
   }
 };
@@ -112,10 +113,10 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
     ? [
         {
           slug: "oem-odm",
-          title: { en: "Bespoke Surfaces", ja: "特注サーフェス" },
-          category: { en: "Product — OEM", ja: "Product — OEM" },
+          title: { zh: chineseCopy("Bespoke Surfaces"), en: "Bespoke Surfaces", ja: "特注サーフェス" },
+          category: { zh: chineseCopy("Product — OEM"), en: "Product — OEM", ja: "Product — OEM" },
           description: {
-            en: "Material programs for automotive, product, hospitality, and architectural teams.",
+            zh: chineseCopy("Material programs for automotive, product, hospitality, and architectural teams."), en: "Material programs for automotive, product, hospitality, and architectural teams.",
             ja: "車両、プロダクト、ホスピタリティ、建築チームに向けた素材プログラム。"
           },
           image: categories[0]?.coverImage ?? fallbackImage,
@@ -123,10 +124,10 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
         },
         {
           slug: "projects",
-          title: { en: "PRODUCT", ja: "PRODUCT" },
-          category: { en: "Product", ja: "Product" },
+          title: { zh: chineseCopy("PRODUCT"), en: "PRODUCT", ja: "PRODUCT" },
+          category: { zh: chineseCopy("Product"), en: "Product", ja: "Product" },
           description: {
-            en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
+            zh: chineseCopy("CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC"), en: "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC",
             ja: JAPANESE_PRODUCT_SURFACE_DESCRIPTION
           },
           image: "/uploads/product/product.jpg",
@@ -149,7 +150,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
       ...selectedCategories.map((category) => ({
         slug: category.slug,
         title: category.name,
-        category: { en: `Material — ${category.name.en}`, ja: `Material — ${category.name.ja}` },
+        category: { zh: chineseCopy(`Material — ${category.name.en}`), en: `Material — ${category.name.en}`, ja: `Material — ${category.name.ja}` },
         description: category.description,
         image: homeExploreImageOverrides[category.slug] ?? category.coverImage,
         href: (() => {
@@ -223,7 +224,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
       >
         <div className="flex items-end justify-between gap-4">
           <h2 className="font-display text-[clamp(1.85rem,10vw,2.7rem)] uppercase leading-none tracking-[0.16em] text-white/95">
-            Explore
+            {locale === "zh" ? "探索" : "Explore"}
           </h2>
           <span className="font-label text-[0.62rem] font-semibold tracking-[0.2em] text-white/65">
             {String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
@@ -247,7 +248,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
           </div>
 
           <button
-            aria-label={locale === "en" ? "Previous slide" : "前のスライド"}
+            aria-label={locale === "zh" ? chineseCopy("Previous slide") : locale === "en" ? "Previous slide" : "前のスライド"}
             className="absolute left-0 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-paper text-charcoal shadow-material transition-colors active:bg-gold active:text-paper"
             onClick={() => move(-1)}
             type="button"
@@ -255,7 +256,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
             <ChevronLeft size={22} strokeWidth={1.4} />
           </button>
           <button
-            aria-label={locale === "en" ? "Next slide" : "次のスライド"}
+            aria-label={locale === "zh" ? chineseCopy("Next slide") : locale === "en" ? "Next slide" : "次のスライド"}
             className="absolute right-0 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-white/70 bg-charcoal/25 text-white backdrop-blur-sm transition-colors active:bg-paper active:text-charcoal"
             onClick={() => move(1)}
             type="button"
@@ -275,7 +276,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
             className="label-caps mt-7 inline-flex min-h-12 w-full max-w-[20rem] items-center justify-center border border-white/45 px-7 py-3 transition-colors active:bg-paper active:text-charcoal"
             href={localizedPath(locale, slide.href)}
           >
-            {locale === "en" ? "View" : "詳細を見る"}
+            {locale === "zh" ? chineseCopy("View") : locale === "en" ? "View" : "詳細を見る"}
           </Link>
         </div>
       </div>
@@ -286,7 +287,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
               className="font-display text-[2.05rem] uppercase leading-none tracking-[0.24em] text-white/90 md:text-[3.4rem]"
               delay={60}
               tag="h2"
-              text="Explore"
+              text={locale === "zh" ? "探索" : "Explore"}
               threshold={0}
             />
         </div>
@@ -328,10 +329,10 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
           </div>
 
           <div className="pointer-events-none absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-between">
-            <button aria-label="Previous slide" className="pointer-events-auto grid h-10 w-14 place-items-center rounded-full border border-white/70 text-white transition-colors hover:bg-white hover:text-charcoal md:h-12 md:w-16" onClick={() => move(-1)} type="button">
+            <button aria-label={locale === "zh" ? "上一张" : "Previous slide"} className="pointer-events-auto grid h-10 w-14 place-items-center rounded-full border border-white/70 text-white transition-colors hover:bg-white hover:text-charcoal md:h-12 md:w-16" onClick={() => move(-1)} type="button">
               <ChevronLeft size={22} strokeWidth={1.4} />
             </button>
-            <button aria-label="Next slide" className="pointer-events-auto grid h-10 w-14 place-items-center rounded-full border border-white/70 text-white transition-colors hover:bg-white hover:text-charcoal md:h-12 md:w-16" onClick={() => move(1)} type="button">
+            <button aria-label={locale === "zh" ? "下一张" : "Next slide"} className="pointer-events-auto grid h-10 w-14 place-items-center rounded-full border border-white/70 text-white transition-colors hover:bg-white hover:text-charcoal md:h-12 md:w-16" onClick={() => move(1)} type="button">
               <ChevronRight size={22} strokeWidth={1.4} />
             </button>
           </div>
@@ -362,7 +363,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
             </div>
           <div className="mt-2 flex items-center justify-center">
             <Link className="label-caps inline-flex min-h-12 min-w-[12rem] items-center justify-center border border-white/35 px-7 py-3 transition-colors hover:bg-white hover:text-charcoal md:min-w-[13rem] md:px-8 md:py-3.5" href={localizedPath(locale, slide.href)}>
-              {locale === "en" ? "View" : "詳細を見る"}
+              {locale === "zh" ? chineseCopy("View") : locale === "en" ? "View" : "詳細を見る"}
             </Link>
           </div>
         </div>

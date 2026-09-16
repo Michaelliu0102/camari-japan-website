@@ -1,3 +1,4 @@
+import { chinaStatusField, chinaMarketsField } from "./chinaFields";
 import { faqField } from "./editorialFields";
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
@@ -7,6 +8,8 @@ export const material = defineType({
   title: "Material",
   type: "document",
   fields: [
+    chinaStatusField,
+    chinaMarketsField,
     faqField,
     defineField({
       name: "name",

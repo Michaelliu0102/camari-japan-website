@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../../china/copy";
 import type { Metadata } from "next";
 import { DownloadAccordion } from "@/components/DownloadAccordion";
 import { PageHero } from "@/components/PageHero";
@@ -17,9 +18,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/downloads",
-    title: locale === "en" ? `Downloads | ${site.name}` : `ダウンロード | ${site.name}`,
+    title: locale === "zh" ? chineseCopy(`Downloads | ${site.name}`) : locale === "en" ? `Downloads | ${site.name}` : `ダウンロード | ${site.name}`,
     description:
-      locale === "en"
+      locale === "zh" ? chineseCopy(`Download ${site.organizationName} material catalogs and technical sheets.`) : locale === "en"
         ? `Download ${site.organizationName} material catalogs and technical sheets.`
         : `${site.organizationName} の素材カタログと技術資料をダウンロード。`,
     image: categories[0]?.coverImage

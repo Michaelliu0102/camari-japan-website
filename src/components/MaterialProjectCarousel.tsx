@@ -1,5 +1,6 @@
 "use client";
 
+import { chineseCopy } from "../china/copy";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -87,7 +88,7 @@ export function MaterialProjectCarousel({ locale, materialName, projectLinks, pr
   return (
     <section className="overflow-hidden bg-stone py-12 md:py-16" data-nav-invert>
       <div className="section-shell mb-6 md:mb-8">
-        <p className="label-caps text-gold">{locale === "en" ? "Gallery" : "ギャラリー"}</p>
+        <p className="label-caps text-gold">{locale === "zh" ? chineseCopy("Gallery") : locale === "en" ? "Gallery" : "ギャラリー"}</p>
         <h2 className="mt-5 max-w-3xl font-serif text-4xl leading-tight text-charcoal md:text-6xl">
           {materialName.toUpperCase()}
         </h2>
@@ -115,7 +116,7 @@ export function MaterialProjectCarousel({ locale, materialName, projectLinks, pr
 
       {activeImage && activeImageEntry ? (
         <div
-          aria-label={locale === "en" ? "Expanded gallery image" : "拡大ギャラリー画像"}
+          aria-label={locale === "zh" ? chineseCopy("Expanded gallery image") : locale === "en" ? "Expanded gallery image" : "拡大ギャラリー画像"}
           aria-modal="true"
           className="fixed inset-0 z-[100] bg-charcoal/92 px-4 py-4 backdrop-blur-md md:px-8 md:py-6"
           data-lenis-prevent
@@ -150,7 +151,7 @@ export function MaterialProjectCarousel({ locale, materialName, projectLinks, pr
                 ) : null}
               </div>
               <button
-                aria-label={locale === "en" ? "Close expanded image" : "拡大画像を閉じる"}
+                aria-label={locale === "zh" ? chineseCopy("Close expanded image") : locale === "en" ? "Close expanded image" : "拡大画像を閉じる"}
                 className="absolute right-0 top-0 flex h-12 w-12 items-center justify-center bg-white text-charcoal shadow-[0_18px_48px_rgba(0,0,0,0.28)] transition-transform hover:scale-[1.03]"
                 onClick={() => setActiveImage(null)}
                 type="button"
@@ -161,7 +162,7 @@ export function MaterialProjectCarousel({ locale, materialName, projectLinks, pr
 
             <div className="relative min-h-0 flex-1">
               <Image
-                alt={activeImageEntry.title || (locale === "en" ? `${materialName} gallery image` : `${materialName} のギャラリー画像`)}
+                alt={activeImageEntry.title || (locale === "zh" ? chineseCopy(`${materialName} gallery image`) : locale === "en" ? `${materialName} gallery image` : `${materialName} のギャラリー画像`)}
                 className="object-contain"
                 fill
                 sizes="100vw"

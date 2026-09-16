@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../../../china/copy";
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
@@ -125,13 +126,13 @@ export default async function ProductCategoryPage({ params }: PageProps) {
       <ProductBusinessInformation content={businessInformation} locale={locale} variant="compact" />
       <CTASection
         body={
-          locale === "en"
+          locale === "zh" ? chineseCopy("Share your use case, finish target, and production requirements to discuss the right material program.") : locale === "en"
             ? "Share your use case, finish target, and production requirements to discuss the right material program."
             : "用途、仕上げの方向性、生産条件を共有いただくことで、最適な素材プログラムをご提案します。"
         }
         locale={locale}
         title={
-          locale === "en"
+          locale === "zh" ? chineseCopy(`Discuss a surface program with ${site.organizationName}.`) : locale === "en"
             ? `Discuss a surface program with ${site.organizationName}.`
             : `${site.organizationName} とサーフェス開発をご相談ください。`
         }

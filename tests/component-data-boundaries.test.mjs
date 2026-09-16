@@ -31,8 +31,8 @@ test("ExploreCarousel auto-rotates slides and keeps arrows as unframed controls"
 
   assert.match(content, /setInterval/);
   assert.match(content, /clearInterval/);
-  assert.match(content, /aria-label="Previous slide"/);
-  assert.match(content, /aria-label="Next slide"/);
+  assert.match(content, /aria-label=\{locale === "zh" \? "上一张" : "Previous slide"\}/);
+  assert.match(content, /aria-label=\{locale === "zh" \? "下一张" : "Next slide"\}/);
   assert.doesNotMatch(content, /border border-charcoal\/20 bg-paper\/90/);
 });
 
@@ -351,7 +351,7 @@ test("SkuSwatches renders the selected color code directly beneath the main imag
   );
   assert.match(
     content,
-    /<span className="font-semibold text-charcoal">\{locale === "en" \? "Color Code: " : "カラーコード："\}<\/span>/,
+    /<span className="font-semibold text-charcoal">\{(?:locale === "zh" \? chineseCopy\("Color Code: "\) : )?locale === "en" \? "Color Code: " : "カラーコード："\}<\/span>/,
   );
   assert.match(
     content,
@@ -391,11 +391,11 @@ test("SpecificationTable renders certifications and maintenance as standalone se
   assert.match(content, /sectionInnerClassName = "mx-auto max-w-\[46rem\]"/);
   assert.match(
     content,
-    /<h2 className=\{sectionTitleClassName\}>\{locale === "en" \? "Certifications" : "認証"\}<\/h2>/,
+    /<h2 className=\{sectionTitleClassName\}>\{(?:locale === "zh" \? chineseCopy\("Certifications"\) : )?locale === "en" \? "Certifications" : "認証"\}<\/h2>/,
   );
   assert.match(
     content,
-    /<h2 className=\{sectionTitleClassName\}>\{locale === "en" \? "Maintenance and clean" : "メンテナンス・お手入れ"\}<\/h2>/,
+    /<h2 className=\{sectionTitleClassName\}>\{(?:locale === "zh" \? chineseCopy\("Maintenance and clean"\) : )?locale === "en" \? "Maintenance and clean" : "メンテナンス・お手入れ"\}<\/h2>/,
   );
   assert.match(content, /download\.type === "care"/);
 });
@@ -487,8 +487,8 @@ test("Sanity product queries filter by deployment market", async () => {
 test("Sanity loaders pass the active market to product and SKU queries", async () => {
   const loaders = await source("src/sanity/lib/loaders.ts");
 
-  assert.match(loaders, /getSanityMarket/);
-  assert.match(loaders, /const market = getSanityMarket\(\)/);
+  assert.match(loaders, /getDeliveryMarket/);
+  assert.match(loaders, /const market = await getDeliveryMarket\(/);
   assert.match(loaders, /productTypesQuery, \{ market \}/);
   assert.match(loaders, /skusQuery, \{ market \}/);
 });

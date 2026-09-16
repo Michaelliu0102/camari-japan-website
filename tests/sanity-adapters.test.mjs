@@ -31,6 +31,7 @@ async function compileModule(sourcePath, outputPath) {
   output = output.replaceAll('from "../content/home-page-copy";', 'from "../content/home-page-copy.js";');
   output = output.replaceAll('from "../lib/site-config";', 'from "../lib/site-config.js";');
 
+  output = output.replace(/from "(\.{1,2}\/[^";]+)";/g, (match, specifier) => /\.(?:js|json)$/.test(specifier) ? match : `from "${specifier}.js";`);
   await writeFile(outputPath, output);
 }
 
@@ -42,6 +43,9 @@ async function loadAdapters() {
   const generatedCatalogPath = path.join(root, "src/data/product-catalog.generated.json");
   const carouselOverridesPath = path.join(root, "src/data/product-category-carousel-overrides.json");
 
+  await mkdir(path.join(root, "src/china"), { recursive: true });
+  await writeFile(path.join(root, "src/china/editorial-copy.json"), await readFile(path.join(projectRoot,"src/china/editorial-copy.json")));
+  await compileModule(path.join(projectRoot, "src/china/copy.ts"), path.join(root, "src/china/copy.js"));
   await mkdir(path.join(root, "src/lib"), { recursive: true });
   await mkdir(path.join(root, "src/content/products"), { recursive: true });
   await mkdir(path.join(root, "src/sanity/lib"), { recursive: true });
@@ -75,6 +79,7 @@ async function loadAdapters() {
   );
   await writeFile(path.join(root, "src/data/about-page-ja.json"), await readFile(path.join(projectRoot, "src/data/about-page-ja.json"), "utf8"));
   await mkdir(path.join(root, "src/content"), { recursive: true });
+  await compileModule(path.join(projectRoot, "src/lib/locales.ts"), path.join(root, "src/lib/locales.js"));
   await compileModule(path.join(projectRoot, "src/content/home-page-copy.ts"), path.join(root, "src/content/home-page-copy.js"));
   await compileModule(path.join(projectRoot, "src/lib/content.ts"), compiledContent);
   await compileModule(path.join(projectRoot, "src/lib/skai-collections.ts"), path.join(root, "src/lib/skai-collections.js"));
@@ -149,8 +154,9 @@ test("adapts material reference fields and fixture-backed quote defaults", async
   assert.equal(material.categorySlug, "alcantara");
   assert.equal(material.updatedAt, "2026-07-27T02:30:00Z");
   assert.deepEqual(material.heroTitle, material.name);
-  assert.deepEqual(material.eyebrow, { en: "Alcantara", ja: "アルカンターラ" });
+  assert.deepEqual(material.eyebrow, { en: "Alcantara", ja: "アルカンターラ", zh: "Alcantara" });
   assert.deepEqual(material.quote, {
+    zh: "Alcantara turns technical performance into a sensory language for contemporary design.",
     en: "Alcantara turns technical performance into a sensory language for contemporary design.",
     ja: "",
   });
@@ -195,7 +201,7 @@ test("adapts about page singleton content with local defaults", async () => {
     bodyTitle: { en: "ABOUT CAMARI", ja: "ABOUT CAMARI" },
     bodyParagraphs: [
       { en: "First paragraph.", ja: "最初の段落。" },
-      { en: "", ja: "" },
+      { en: "", ja: "", zh: "" },
       null,
     ],
     manufacturingLabel: { en: "Manufacturing", ja: "Manufacturing" },
@@ -204,11 +210,11 @@ test("adapts about page singleton content with local defaults", async () => {
   });
 
   assert.equal(about.heroImage, "https://cdn.sanity.io/images/project/dataset/about.jpg");
-  assert.deepEqual(about.heroTitle, { en: "CAMARI", ja: "CAMARI" });
-  assert.deepEqual(about.bodyParagraphs, [{ en: "First paragraph.", ja: "最初の段落。" }]);
-  assert.deepEqual(about.manufacturingLabel, { en: "Manufacturing", ja: "Manufacturing" });
-  assert.deepEqual(about.manufacturingTitle, { en: "OUR FACTORY", ja: "OUR FACTORY" });
-  assert.deepEqual(about.manufacturingParagraphs, [{ en: "SHENGHUA is factory from 2000.", ja: "SHENGHUA is factory from 2000." }]);
+  assert.deepEqual(about.heroTitle, { en: "CAMARI", ja: "CAMARI", zh: "CAMARI" });
+  assert.deepEqual(about.bodyParagraphs, [{ en: "First paragraph.", ja: "最初の段落。", zh: "First paragraph." }]);
+  assert.deepEqual(about.manufacturingLabel, { en: "Manufacturing", ja: "Manufacturing", zh: "生产制造" });
+  assert.deepEqual(about.manufacturingTitle, { en: "OUR FACTORY", ja: "OUR FACTORY", zh: "我们的工厂" });
+  assert.deepEqual(about.manufacturingParagraphs, [{ en: "SHENGHUA is factory from 2000.", ja: "SHENGHUA is factory from 2000.", zh: "SHENGHUA is factory from 2000." }]);
   assert.equal(about.seo.image, "https://cdn.sanity.io/images/project/dataset/about.jpg");
 
   await cleanup();
@@ -231,7 +237,7 @@ test("uses explicit material and category defaults when fixture records do not e
       applications: null,
       seo: null,
     }).quote,
-    { en: "", ja: "" },
+    { en: "", ja: "", zh: "" },
   );
 
   assert.equal(
@@ -305,7 +311,7 @@ test("adapts product type, SKU, project, catalog, and news naming differences", 
   assert.deepEqual(sku.caseGallery, [
     {
       image: "https://cdn.sanity.io/images/project/dataset/case.jpg",
-      alt: { en: "Installed case", ja: "施工事例" },
+      alt: { en: "Installed case", ja: "施工事例", zh: "Installed case" },
     },
   ]);
 

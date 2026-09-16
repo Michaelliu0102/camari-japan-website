@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../china/copy";
 import imageUrlBuilder from "@sanity/image-url";
 import { isSkaiProductType } from "../../lib/skai-collections";
 import {
@@ -40,8 +41,8 @@ import type {
   RawSku
 } from "./queries";
 
-const emptyLocalized: LocalizedString = { en: "", ja: "" };
-const premiumCollection: LocalizedString = { en: "Premium Collection", ja: "プレミアムコレクション" };
+const emptyLocalized: LocalizedString = { zh: chineseCopy(""), en: "", ja: "" };
+const premiumCollection: LocalizedString = { zh: chineseCopy("Premium Collection"), en: "Premium Collection", ja: "プレミアムコレクション" };
 const materialHeroImageOverrides: Record<string, string> = {
   leather: "/uploads/hero/leather-hero.png",
   "vegan-leather": "/uploads/veganleather/interior.jpg"
@@ -68,7 +69,7 @@ type SanityImageUrlOptions = {
 
 function localized(value: LocalizedString | null | undefined): LocalizedString {
   return {
-    en: value?.en ?? "",
+    zh: value?.zh?.trim() ? value.zh : chineseCopy(value?.en ?? ""), en: value?.en ?? "",
     ja: value?.ja ?? ""
   };
 }
@@ -431,7 +432,7 @@ export function adaptSku(raw: RawSku): Sku {
     })),
     certifications: (raw.certifications ?? []).map((certification) => localized(certification)),
     downloads: (raw.downloads ?? []).map(adaptDownload),
-    seo: adaptSeo(raw.seo, { en: code, ja: code }, raw.summary ?? emptyLocalized, raw.seo?.imageUrl ?? raw.heroImageUrl ?? "")
+    seo: adaptSeo(raw.seo, { zh: chineseCopy(code), en: code, ja: code }, raw.summary ?? emptyLocalized, raw.seo?.imageUrl ?? raw.heroImageUrl ?? "")
   };
 }
 

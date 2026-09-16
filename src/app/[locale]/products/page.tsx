@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../../china/copy";
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
 import Showcase4, { type ShowcaseCategory, type ShowcaseProduct } from "@/components/blocks/showcase-4";
@@ -22,9 +23,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/products",
-    title: locale === "en" ? `Products | ${site.name}` : `製品 | ${site.name}`,
+    title: locale === "zh" ? chineseCopy(`Products | ${site.name}`) : locale === "en" ? `Products | ${site.name}` : `製品 | ${site.name}`,
     description:
-      locale === "en"
+      locale === "zh" ? chineseCopy(`Browse ${site.organizationName} surface programs for automotive interiors, technology accessories, lifestyle goods, and corporate gifts.`) : locale === "en"
         ? `Browse ${site.organizationName} surface programs for automotive interiors, technology accessories, lifestyle goods, and corporate gifts.`
         : `自動車インテリア、デジタルアクセサリー、ライフスタイル用品、法人ギフト向けの ${site.organizationName} サーフェスプログラムをご覧ください。`,
     image: productCategories[0]?.heroImage
@@ -62,28 +63,28 @@ export default async function ProductsPage({ params, searchParams }: PageProps) 
       <PageHero
         image="/uploads/product/product.jpg"
         subtitle={
-          locale === "en"
+          locale === "zh" ? chineseCopy("CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC") : locale === "en"
             ? "CUSTOMIZED PRODUCTS MADE OF ALCANTARA, LEATHER AND FABRIC"
             : JAPANESE_PRODUCT_SURFACE_DESCRIPTION
         }
-        title={locale === "en" ? "Products" : "製品"}
+        title={locale === "zh" ? chineseCopy("Products") : locale === "en" ? "Products" : "製品"}
       />
       <Showcase4 categories={showcaseCategories} initialCategory={initialCategory} items={items} locale={locale} />
       <ProductBusinessInformation content={businessInformation} locale={locale} />
       <CTASection
         backgroundImage={homeSettings.showroomBackgroundImage}
         body={
-          locale === "en"
+          locale === "zh" ? chineseCopy("Share your application, finish, and production requirements.\nOur team will match premium materials with prototyping and made-to-spec manufacturing.") : locale === "en"
             ? "Share your application, finish, and production requirements.\nOur team will match premium materials with prototyping and made-to-spec manufacturing."
             : "用途、仕上がり、生産条件をお聞かせください。\nプレミアム素材の選定から、試作、オーダーメイド生産まで一貫してサポートします。"
         }
         eyebrow={null}
-        label={locale === "en" ? "Our location" : "所在地"}
+        label={locale === "zh" ? chineseCopy("Our location") : locale === "en" ? "Our location" : "所在地"}
         locale={locale}
         secondaryAction="message"
-        secondaryLabel={locale === "en" ? "Inquiry Now" : "お問い合わせ"}
+        secondaryLabel={locale === "zh" ? chineseCopy("Inquiry Now") : locale === "en" ? "Inquiry Now" : "お問い合わせ"}
         title={
-          locale === "en"
+          locale === "zh" ? chineseCopy("Materials Selected\nProducts Realized") : locale === "en"
             ? "Materials Selected\nProducts Realized"
             : "素材を選び、\n製品へと仕立てる。"
         }

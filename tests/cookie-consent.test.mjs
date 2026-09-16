@@ -12,7 +12,7 @@ async function source(relativePath) {
 test("the global layout provides consent state to every localized route", async () => {
   const layout = await source("src/app/layout.tsx");
 
-  assert.match(layout, /<ConsentProvider defaultLocale=\{siteConfig\.defaultLocale\}>/);
+  assert.match(layout, /<ConsentProvider defaultLocale=\{china \? "zh" : siteConfig\.defaultLocale\}>/);
 });
 
 test("Google Maps only renders after external-media consent", async () => {

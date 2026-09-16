@@ -1,16 +1,15 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
+import { build } from "esbuild";
 import { test } from "node:test";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
 
 async function importOptionalTsModule(relativePath) {
   try {
-    const moduleUrl = pathToFileURL(path.join(projectRoot, relativePath));
-    moduleUrl.searchParams.set("t", `${Date.now()}-${Math.random()}`);
-    return await import(moduleUrl.href);
+    const result=await build({entryPoints:[path.join(projectRoot,relativePath)],bundle:true,write:false,format:"esm",platform:"node",packages:"external"});
+    return await import(`data:text/javascript;base64,${Buffer.from(result.outputFiles[0].text).toString("base64")}#${Math.random()}`);
   } catch (error) {
     if (
       error &&
@@ -44,7 +43,7 @@ test("structured data builders emit organization and breadcrumb schema for the a
   assert.match(structuredDataSource, /export function buildWebSiteJsonLd/);
   assert.match(structuredDataSource, /"@type": "WebSite"/);
   assert.match(structuredDataSource, /alternateName: site\.siteKey === "japan" \? \["CAMARI JAPAN", "CAMARI"\] : "CAMARI"/);
-  assert.match(structuredDataSource, /inLanguage: locale === "ja" \? "ja-JP" : "en"/);
+  assert.match(structuredDataSource, /locale === "ja" \? "ja-JP" : "en"/);
   assert.match(structuredDataSource, /publisher:\s*\{\s*"@id": entityId\(site, "organization"\)/);
   assert.match(structuredDataSource, /export function buildBreadcrumbJsonLd/);
   assert.match(structuredDataSource, /"@type": "BreadcrumbList"/);
@@ -57,7 +56,7 @@ test("structured data builders emit organization and breadcrumb schema for the a
   assert.match(structuredDataSource, /mainEntityOfPage/);
   assert.match(structuredDataSource, /datePublished: article\.datePublished/);
   assert.match(structuredDataSource, /dateModified: article\.dateModified \?\? article\.datePublished/);
-  assert.match(structuredDataSource, /inLanguage: article\.locale === "ja" \? "ja-JP" : "en"/);
+  assert.match(structuredDataSource, /article\.locale === "ja" \? "ja-JP" : "en"/);
   assert.match(structuredDataSource, /author: organizationReference\(site, article\.locale\)/);
   assert.match(structuredDataSource, /publisher: organizationReference\(site, article\.locale\)/);
 });

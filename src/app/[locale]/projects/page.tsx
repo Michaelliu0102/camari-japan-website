@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../../china/copy";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,8 +22,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/projects",
-    title: locale === "en" ? `Projects | ${site.name}` : `事例 | ${site.name}`,
-    description: locale === "en" ? "OEM/ODM material cases across automotive, interior, and product spaces." : "自動車、インテリア、プロダクト空間の OEM/ODM 素材事例。",
+    title: locale === "zh" ? chineseCopy(`Projects | ${site.name}`) : locale === "en" ? `Projects | ${site.name}` : `事例 | ${site.name}`,
+    description: locale === "zh" ? chineseCopy("OEM/ODM material cases across automotive, interior, and product spaces.") : locale === "en" ? "OEM/ODM material cases across automotive, interior, and product spaces." : "自動車、インテリア、プロダクト空間の OEM/ODM 素材事例。",
     image: projects[0]?.image
   });
 }
@@ -32,14 +33,14 @@ export default async function ProjectsPage({ params }: PageProps) {
   const projects = await loadProjects();
   const heroProject = projects[0];
   const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
-    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
-    { name: locale === "en" ? "Projects" : "事例", path: "/projects" }
-  ]);
+    { name: locale === "zh" ? chineseCopy("Home") : locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "zh" ? chineseCopy("Projects") : locale === "en" ? "Projects" : "事例", path: "/projects" }
+  ], locale);
 
   return (
     <main>
       <JsonLd data={breadcrumbSchema} />
-      {heroProject ? <PageHero image={heroProject.image} subtitle={locale === "en" ? "OEM/ODM cases across material, space, and product" : "素材、空間、プロダクトにわたる OEM/ODM 事例"} title="Projects" /> : null}
+      {heroProject ? <PageHero image={heroProject.image} subtitle={locale === "zh" ? chineseCopy("OEM/ODM cases across material, space, and product") : locale === "en" ? "OEM/ODM cases across material, space, and product" : "素材、空間、プロダクトにわたる OEM/ODM 事例"} title="Projects" /> : null}
       <section className="bg-paper py-24 md:py-36" data-nav-invert>
         <div className="section-shell grid gap-gutter md:grid-cols-2">
           {projects.map((project) => (

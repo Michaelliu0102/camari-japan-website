@@ -1,3 +1,4 @@
+import { withChineseCopy } from "../china/copy";
 import type { Locale } from "@/lib/locales";
 
 export type NewsArticleImage = {
@@ -36,10 +37,10 @@ const tokyoAutoSalonImageRoot = "/uploads/news/2026 Tokyo Auto Salon";
 const aquapelleImageRoot = "/uploads/news/2026 Aquapelle";
 
 const newsArticles: Record<string, Partial<Record<Locale, NewsArticleContent>>> = {
-  "aquapelle-waterborne-microfiber-launch": {
+  "aquapelle-waterborne-microfiber-launch": withChineseCopy({
     en: {
       dateline: "12 August 2026",
-      heroFormat: "landscape",
+      heroFormat: "landscape" as const,
       heroImage: `${aquapelleImageRoot}/MF COVER.jpeg`,
       introduction: [
         "CAMARI introduces Aquapelle, a premium waterborne microfiber leather developed for surfaces where refined touch, durable performance, and reliable production must work together. Its three-dimensional microfiber architecture creates a soft, full, Nappa-inspired hand, while controlled colour, thickness, and grain support consistent results from sample development through volume production."
@@ -108,7 +109,7 @@ const newsArticles: Record<string, Partial<Record<Locale, NewsArticleContent>>> 
     },
     ja: {
       dateline: "2026年8月12日",
-      heroFormat: "landscape",
+      heroFormat: "landscape" as const,
       heroImage: `${aquapelleImageRoot}/MF COVER.jpeg`,
       introduction: [
         "CAMARIは、上質な触感、優れた耐久性、安定した量産品質を一つの素材で実現する、プレミアム水性マイクロファイバーレザー「Aquapelle」を発表します。三次元マイクロファイバー構造が、ナッパレザーを思わせるソフトでふくよかな手触りを生み出し、色、厚み、シボを精密に管理することで、サンプル開発から量産まで高い再現性を支えます。"
@@ -175,8 +176,8 @@ const newsArticles: Record<string, Partial<Record<Locale, NewsArticleContent>>> 
         }
       ]
     }
-  },
-  "alcantara-design-shanghai-2024": {
+  }),
+  "alcantara-design-shanghai-2024": withChineseCopy({
     en: {
       dateline: "Shanghai, China / June 2024",
       introduction: [
@@ -303,11 +304,11 @@ const newsArticles: Record<string, Partial<Record<Locale, NewsArticleContent>>> 
         }
       ]
     }
-  },
-  "alcantara-camari-third-strategic-chapter": {
+  }),
+  "alcantara-camari-third-strategic-chapter": withChineseCopy({
     en: {
       dateline: "Milan, Italy / 15 April 2025",
-      heroFormat: "portrait",
+      heroFormat: "portrait" as const,
       introduction: [
         "On 15 April 2025, Alcantara and CAMARI signed their third five-year distribution agreement in Milan, Italy. CAMARI CEO Chenqi Yu and Alcantara S.p.A. CEO Eugenio Lolli attended the signing ceremony, marking the start of a new chapter in a partnership that now spans more than a decade.",
         "The renewed agreement reflects a shared commitment to developing the Alcantara business across Asia Pacific through material expertise, close market collaboration, and a long-term approach to customers and creative partners."
@@ -344,7 +345,7 @@ const newsArticles: Record<string, Partial<Record<Locale, NewsArticleContent>>> 
     },
     ja: {
       dateline: "イタリア・ミラノ / 2025年4月15日",
-      heroFormat: "portrait",
+      heroFormat: "portrait" as const,
       introduction: [
         "2025年4月15日、アルカンターラとカマリは、イタリア・ミラノにて3度目となる5カ年の販売代理店契約を締結しました。調印式には、カマリCEOの于臣琪（Chenqi Yu）とAlcantara S.p.A. CEOのEugenio Lolli（エウジェニオ・ロッリ）氏が出席。10年以上にわたる両社のパートナーシップは、新たな章を迎えます。",
         "今回の契約更新は、素材に関する専門知識、市場との緊密な連携、顧客やクリエイティブパートナーとの長期的な関係を軸に、アジア太平洋地域でアルカンターラの事業を発展させていくという両社の共通の姿勢を示すものです。"
@@ -379,11 +380,11 @@ const newsArticles: Record<string, Partial<Record<Locale, NewsArticleContent>>> 
         }
       ]
     }
-  },
-  "camari-tokyo-auto-salon-2026": {
+  }),
+  "camari-tokyo-auto-salon-2026": withChineseCopy({
     en: {
       dateline: "Japan / 11 January 2026",
-      heroFormat: "standard",
+      heroFormat: "standard" as const,
       heroImage: `${tokyoAutoSalonImageRoot}/herowologo.jpg?v=20260808`,
       introduction: [
         "CAMARI INTERNATIONAL JAPAN successfully concluded its first appearance at Tokyo Auto Salon on 11 January 2026, following three dynamic days of exhibitions, conversations, and new connections.",
@@ -449,7 +450,7 @@ const newsArticles: Record<string, Partial<Record<Locale, NewsArticleContent>>> 
     },
     ja: {
       dateline: "日本 / 2026年1月11日",
-      heroFormat: "standard",
+      heroFormat: "standard" as const,
       heroImage: `${tokyoAutoSalonImageRoot}/herowologo.jpg?v=20260808`,
       introduction: [
         "カマリ・インターナショナル・ジャパンは、このたび「東京オートサロン」に初出展し、盛況のうちに3日間の会期を終えることができました。",
@@ -513,7 +514,7 @@ const newsArticles: Record<string, Partial<Record<Locale, NewsArticleContent>>> 
         }
       ]
     }
-  }
+  })
 };
 
 export function getNewsArticleContent(slug: string, locale: Locale): NewsArticleContent | undefined {

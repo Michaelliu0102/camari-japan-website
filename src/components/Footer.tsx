@@ -1,3 +1,5 @@
+import { withChineseCopy } from "../china/copy";
+import type { ChinaSiteSettings } from "@/china/content";
 import Link from "next/link";
 import { Instagram, Linkedin } from "lucide-react";
 import { localizedPath, type Locale } from "@/lib/locales";
@@ -7,9 +9,10 @@ import { siteConfig } from "@/lib/site-config";
 
 type FooterProps = {
   locale: Locale;
+  chinaSettings?: ChinaSiteSettings;
 };
 
-const footerCopy = {
+const footerCopy = withChineseCopy({
   en: {
     copyrightName: "CAMARI INTERNATIONAL",
     nav: [
@@ -32,7 +35,7 @@ const footerCopy = {
       { label: "サイトマップ", href: "/sitemap" }
     ]
   }
-} satisfies Record<
+}) satisfies Record<
   Locale,
   {
     copyrightName: string;
@@ -46,7 +49,7 @@ const socialLinks = [
   { label: "LinkedIn", href: "#", icon: Linkedin }
 ];
 
-export function Footer({ locale }: FooterProps) {
+export function Footer({ locale, chinaSettings }: FooterProps) {
   const labels = footerCopy[locale];
 
   return (
@@ -76,7 +79,7 @@ export function Footer({ locale }: FooterProps) {
         </div>
 
         <div className="flex flex-col gap-4 pt-6 text-[10px] uppercase tracking-[0.28em] text-muted md:flex-row md:items-center md:justify-between">
-          <p>© 2026 {labels.copyrightName}. ALL RIGHTS RESERVED.</p>
+          <p>© 2026 {chinaSettings?.brandName ?? labels.copyrightName}. {locale === "zh" ? "保留所有权利。" : "ALL RIGHTS RESERVED."}</p>
           <nav aria-label="Footer navigation">
             <ul className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-3 md:justify-end">
               {labels.nav.map((item) => (
@@ -92,6 +95,7 @@ export function Footer({ locale }: FooterProps) {
             </ul>
           </nav>
         </div>
+        {chinaSettings?<div className="mt-8 border-t border-charcoal/10 pt-6 text-xs leading-7 text-muted"><p>{chinaSettings.contact.address} · {chinaSettings.contact.phone} · {chinaSettings.contact.email}</p><p>备案主体：{chinaSettings.legalName}{chinaSettings.icpNumber?<> · <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">{chinaSettings.icpNumber}</a></>:null}</p></div>:null}
       </div>
     </footer>
   );

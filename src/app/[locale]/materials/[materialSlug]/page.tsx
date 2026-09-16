@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../../../china/copy";
 import type { Metadata } from "next";
 import type { MaterialFaqItem } from "@/content/material-faqs";
 import { notFound } from "next/navigation";
@@ -41,7 +42,7 @@ function MaterialFaq({ items, locale }: { items: MaterialFaqItem[]; locale: Loca
     >
       <div className="section-shell">
         <h2 className="font-serif text-2xl uppercase tracking-[0.06em] text-charcoal">
-          {locale === "en" ? "FAQ" : "よくあるご質問"}
+          {locale === "zh" ? chineseCopy("FAQ") : locale === "en" ? "FAQ" : "よくあるご質問"}
         </h2>
         <div className="mx-auto mt-14 max-w-[46rem]">
           <div className="border-t border-charcoal/10">
@@ -158,7 +159,7 @@ export default async function MaterialDetailPage({ params }: PageProps) {
     loadMaterials(),
     loadProductTypes(),
     loadSkus(),
-    materialSlug === "vegan-leather" && locale === "en" ? loadSkaiVinylArticles() : Promise.resolve([]),
+    materialSlug === "vegan-leather" && locale !== "ja" ? loadSkaiVinylArticles() : Promise.resolve([]),
   ]);
   const material = materials.find((entry) => entry.slug === materialSlug);
 
@@ -191,12 +192,12 @@ export default async function MaterialDetailPage({ params }: PageProps) {
     : skus;
   const showArticleGrid =
     showArticleGridForMaterial && articleProductTypes.length > 0;
-  const faqItems = material.faq?.[locale];
+  const faqItems = (material.faq?.[locale] ?? (locale === "zh" ? material.faq?.en : undefined));
   const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
-    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
-    { name: locale === "en" ? "Materials" : "素材", path: "/materials" },
+    { name: locale === "zh" ? chineseCopy("Home") : locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "zh" ? chineseCopy("Materials") : locale === "en" ? "Materials" : "素材", path: "/materials" },
     { name: material.name[locale], path: `/materials/${material.slug}` },
-  ]);
+  ], locale);
 
   return (
     <main>

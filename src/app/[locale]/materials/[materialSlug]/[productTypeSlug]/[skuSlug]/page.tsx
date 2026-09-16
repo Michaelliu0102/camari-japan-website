@@ -22,7 +22,7 @@ async function isEnglishOnlySkaiVinylRoute(
   materialSlug: string,
   productTypeSlug: string
 ): Promise<boolean> {
-  if (locale === "en" || materialSlug !== "vegan-leather") {
+  if (locale !== "ja" || materialSlug !== "vegan-leather") {
     return false;
   }
 

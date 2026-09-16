@@ -25,7 +25,7 @@ export function ContactNeonHero({ locale }: ContactNeonHeroProps) {
       <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(180deg,transparent,oklch(0.985_0.006_82))]" />
       <div className="relative px-margin-mobile">
         <h1 className="display-caps text-5xl font-normal leading-none text-charcoal [text-shadow:0_1px_0_oklch(0.985_0.006_82_/_0.55)] md:text-8xl">
-          {locale === "ja" ? "お問い合わせ" : "CONTACTS"}
+          {locale === "zh" ? "联系我们" : locale === "ja" ? "お問い合わせ" : "CONTACTS"}
         </h1>
       </div>
     </section>

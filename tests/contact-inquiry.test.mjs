@@ -79,7 +79,7 @@ test("Japanese inquiries default to Japan without a visible country field", asyn
   await cleanup();
 });
 
-test("Inquiry form only renders Country / Region for English", async () => {
+test("Inquiry form renders Country / Region only for English", async () => {
   const source = await readFile(
     path.join(projectRoot, "src/components/CTAMessageDrawer.tsx"),
     "utf8",

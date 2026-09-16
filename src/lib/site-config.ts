@@ -1,3 +1,4 @@
+import { chineseCopy } from "../china/copy";
 import type { Locale } from "./locales";
 
 export type SiteKey = "global" | "japan";
@@ -46,7 +47,7 @@ export type SiteConfig = {
 type EnvSource = Partial<Record<string, string | undefined>>;
 
 const SEO_BRAND_NAMES: Record<Locale, string> = {
-  en: "CAMARI INTERNATIONAL",
+  zh: "卡玛瑞国际有限公司", en: "CAMARI INTERNATIONAL",
   ja: "カマリ・インターナショナル"
 };
 const KNOWN_BRAND_NAMES = [
@@ -66,7 +67,7 @@ const BRAND_NAME_PATTERN = new RegExp(
   "gi"
 );
 const DEFAULT_LOCALE_SITE_URLS: Record<Locale, string> = {
-  en: "https://www.camari-international.com",
+  zh: "https://camari-international.com.cn", en: "https://www.camari-international.com",
   ja: "https://www.camari-international.co.jp"
 };
 const BUILD_ENABLE_LOCALE_PREVIEW = process.env.NEXT_PUBLIC_ENABLE_LOCALE_PREVIEW;
@@ -89,18 +90,18 @@ const defaultSites: Record<
     defaultAlternateSiteHomeUrl: DEFAULT_LOCALE_SITE_URLS.ja,
     defaultOgImage: DEFAULT_OG_IMAGE,
     slogan: {
-      en: "The Intersection of Texture and Precision",
+      zh: chineseCopy("The Intersection of Texture and Precision"), en: "The Intersection of Texture and Precision",
       ja: "質感と精密さの交差点"
     },
     description: {
-      en: "Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces.",
+      zh: chineseCopy("Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces."), en: "Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces.",
       ja: "上質な素材、Alcantara コレクション、OEM/ODM による空間・車両・プロダクト向けサーフェス。"
     },
     contact: {
       email: "info@camari-international.co.jp",
       phone: "+81 3 0000 0000",
       address: {
-        en: "Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan",
+        zh: chineseCopy("Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan"), en: "Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan",
         ja: "〒102-0073 東京都千代田区九段北1丁目14-16 403号室"
       }
     }
@@ -116,11 +117,11 @@ const defaultSites: Record<
     defaultAlternateSiteHomeUrl: DEFAULT_LOCALE_SITE_URLS.en,
     defaultOgImage: DEFAULT_OG_IMAGE,
     slogan: {
-      en: "The Intersection of Texture and Precision",
+      zh: chineseCopy("The Intersection of Texture and Precision"), en: "The Intersection of Texture and Precision",
       ja: "質感と精密さの交差点"
     },
     description: {
-      en: "Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces.",
+      zh: chineseCopy("Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces."), en: "Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces.",
       ja: "上質な素材、Alcantara コレクション、OEM/ODM による空間・車両・プロダクト向けサーフェス。"
     },
     contact: {
@@ -128,20 +129,20 @@ const defaultSites: Record<
       phone: "03-6272-4971",
       fax: "03-6272-4972",
       address: {
-        en: "PILE KUDAN 4F, 1-14-16 Kudankita, Chiyoda-ku, Tokyo 102-0073, Japan",
+        zh: chineseCopy("PILE KUDAN 4F, 1-14-16 Kudankita, Chiyoda-ku, Tokyo 102-0073, Japan"), en: "PILE KUDAN 4F, 1-14-16 Kudankita, Chiyoda-ku, Tokyo 102-0073, Japan",
         ja: "〒102-0073 東京都千代田区九段北1丁目14-16 PILE KUDAN 4F"
       },
       postalAddress: {
         streetAddress: {
-          en: "PILE KUDAN 4F, 1-14-16 Kudankita",
+          zh: chineseCopy("PILE KUDAN 4F, 1-14-16 Kudankita"), en: "PILE KUDAN 4F, 1-14-16 Kudankita",
           ja: "九段北1丁目14-16 PILE KUDAN 4F"
         },
         addressLocality: {
-          en: "Chiyoda-ku",
+          zh: chineseCopy("Chiyoda-ku"), en: "Chiyoda-ku",
           ja: "千代田区"
         },
         addressRegion: {
-          en: "Tokyo",
+          zh: chineseCopy("Tokyo"), en: "Tokyo",
           ja: "東京都"
         },
         postalCode: "102-0073",
@@ -157,7 +158,7 @@ const defaultSites: Record<
         closes: "17:00"
       },
       appointmentNotice: {
-        en: "Visits are available by appointment at least one week in advance.",
+        zh: chineseCopy("Visits are available by appointment at least one week in advance."), en: "Visits are available by appointment at least one week in advance.",
         ja: "ご来訪は1週間前までの事前予約制です。"
       }
     }
@@ -193,7 +194,7 @@ export function resolveSiteConfig(env: EnvSource = process.env): SiteConfig {
   const configuredLocale = env.NEXT_PUBLIC_DEFAULT_LOCALE;
   const defaultLocale: Locale = configuredLocale === "en" || configuredLocale === "ja" ? configuredLocale : defaults.defaultLocale;
   const localeSiteUrls: Record<Locale, string> = {
-    en: trimTrailingSlash(env.NEXT_PUBLIC_EN_SITE_URL || (defaultLocale === "en" ? siteUrl : DEFAULT_LOCALE_SITE_URLS.en)),
+    zh: "https://camari-international.com.cn", en: trimTrailingSlash(env.NEXT_PUBLIC_EN_SITE_URL || (defaultLocale === "en" ? siteUrl : DEFAULT_LOCALE_SITE_URLS.en)),
     ja: trimTrailingSlash(env.NEXT_PUBLIC_JA_SITE_URL || (defaultLocale === "ja" ? siteUrl : DEFAULT_LOCALE_SITE_URLS.ja))
   };
   const configuredMarket = env.NEXT_PUBLIC_SANITY_MARKET;

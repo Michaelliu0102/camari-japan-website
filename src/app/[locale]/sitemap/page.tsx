@@ -1,3 +1,4 @@
+import { withChineseCopy } from "../../../china/copy";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/lib/content";
@@ -8,7 +9,7 @@ type PageProps = {
   params: Promise<{ locale: Locale }>;
 };
 
-const copy = {
+const copy = withChineseCopy({
   en: {
     eyebrow: "Sitemap",
     title: "Sitemap",
@@ -75,7 +76,7 @@ const copy = {
       }
     ]
   }
-} satisfies Record<
+}) satisfies Record<
   Locale,
   {
     eyebrow: string;

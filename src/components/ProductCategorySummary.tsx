@@ -1,3 +1,4 @@
+import { chineseCopy } from "../china/copy";
 import type { ProductCategory } from "@/content/products/categories";
 import type { Locale } from "@/lib/locales";
 
@@ -20,18 +21,18 @@ export function ProductCategorySummary({ category, locale }: ProductCategorySumm
       data-nav-invert
     >
       <h2 className="sr-only" id="product-index-heading">
-        {locale === "en" ? `${category.title.en} product index` : `${category.title.ja}製品インデックス`}
+        {locale === "zh" ? chineseCopy(`${category.title.en} product index`) : locale === "en" ? `${category.title.en} product index` : `${category.title.ja}製品インデックス`}
       </h2>
 
       <details className="group/index">
         <summary className="section-shell flex min-h-20 cursor-pointer list-none items-center justify-between gap-6 py-5 font-sans text-charcoal marker:hidden focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-[-1px] focus-visible:outline-charcoal [&::-webkit-details-marker]:hidden">
           <span className="label-caps">
-            {locale === "en" ? "Collection index" : "製品インデックス"}
+            {locale === "zh" ? chineseCopy("Collection index") : locale === "en" ? "Collection index" : "製品インデックス"}
           </span>
 
           <span className="ml-auto flex items-center gap-5 text-[0.68rem] uppercase tracking-[0.18em] text-muted">
             <span>
-              {items.length} {locale === "en" ? "products" : "製品"}
+              {items.length} {locale === "zh" ? chineseCopy("products") : locale === "en" ? "products" : "製品"}
             </span>
             <span
               aria-hidden="true"
@@ -82,7 +83,7 @@ export function ProductCategorySummary({ category, locale }: ProductCategorySumm
                     <div className="grid gap-7 md:col-span-6 md:col-start-7 md:grid-cols-2">
                       {details.length ? (
                         <div>
-                          <p className="label-caps text-charcoal">{locale === "en" ? "Details" : "詳細"}</p>
+                          <p className="label-caps text-charcoal">{locale === "zh" ? chineseCopy("Details") : locale === "en" ? "Details" : "詳細"}</p>
                           <ul className="mt-4 space-y-2 text-sm leading-6 text-muted">
                             {details.map((detail) => (
                               <li key={`${detail.en}-${detail.ja}`}>{detail[locale]}</li>
@@ -94,7 +95,7 @@ export function ProductCategorySummary({ category, locale }: ProductCategorySumm
                       {customization ? (
                         <div>
                           <p className="label-caps text-charcoal">
-                            {locale === "en" ? "Customization" : "カスタマイズ"}
+                            {locale === "zh" ? chineseCopy("Customization") : locale === "en" ? "Customization" : "カスタマイズ"}
                           </p>
                           <p className="mt-4 text-sm leading-7 text-muted">{customization}</p>
                         </div>

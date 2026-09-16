@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-page-custom-font -- App Router root layout; China pages intentionally omit external fonts. */
+import { headers } from "next/headers";
+import { isChinaBuild, isChinaPreview, chinaSiteUrl } from "@/china/config";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
@@ -6,7 +9,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { formatPageTitle, siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`${siteConfig.siteUrl}/`),
+  metadataBase: new URL(isChinaBuild ? chinaSiteUrl : `${siteConfig.siteUrl}/`),
   title: formatPageTitle(siteConfig.slogan[siteConfig.defaultLocale], siteConfig.defaultLocale),
   description: siteConfig.description[siteConfig.defaultLocale],
   icons: {
@@ -19,14 +22,16 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  const china = isChinaBuild || (isChinaPreview && (await headers()).get("x-camari-site") === "china");
   return (
-    <html lang={siteConfig.defaultLocale}>
+    <html lang={china ? "zh-CN" : siteConfig.defaultLocale}>
+      {!china ? <head><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&family=Noto+Sans+JP:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500&display=swap" /></head> : null}
       <body>
-        <ConsentProvider defaultLocale={siteConfig.defaultLocale}>
+        {<ConsentProvider defaultLocale={china ? "zh" : siteConfig.defaultLocale}>
           <SmoothScroll />
           {children}
-        </ConsentProvider>
+        </ConsentProvider>}
       </body>
     </html>
   );

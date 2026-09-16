@@ -16,12 +16,12 @@ type MetadataInput = {
 };
 
 const hreflangCodes: Record<Locale, string> = {
-  en: "en",
+  zh: "zh-CN", en: "en",
   ja: "ja-JP"
 };
 
 const openGraphLocales: Record<Locale, string> = {
-  en: "en_US",
+  zh: "zh_CN", en: "en_US",
   ja: "ja_JP"
 };
 
@@ -34,6 +34,7 @@ export function createPageMetadata({
   availableLocales = ["en", "ja"],
   article
 }: MetadataInput): Metadata {
+  if(locale === "zh") availableLocales = ["zh"];
   const url = absoluteLocalizedUrl(locale, path);
   const seoBrandName = getSeoBrandName(locale);
   const normalizedTitle = formatPageTitle(title, locale);

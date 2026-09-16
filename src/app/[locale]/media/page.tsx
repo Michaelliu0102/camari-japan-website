@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../../china/copy";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,9 +19,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/media",
-    title: locale === "en" ? `Media | ${site.name}` : `メディア | ${site.name}`,
+    title: locale === "zh" ? chineseCopy(`Media | ${site.name}`) : locale === "en" ? `Media | ${site.name}` : `メディア | ${site.name}`,
     description:
-      locale === "en"
+      locale === "zh" ? chineseCopy(`News, exhibitions, materials, and editorial updates from ${site.organizationName}.`) : locale === "en"
         ? `News, exhibitions, materials, and editorial updates from ${site.organizationName}.`
         : `${site.organizationName} のニュース、展示会、素材、編集記事。`,
     image: newsItems[0]?.image
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function MediaPage({ params }: PageProps) {
   const { locale } = await params;
   const newsItems = await loadNewsItems();
-  const visibleNewsItems = newsItems.filter((item) => !item.availableLocales || item.availableLocales.includes(locale));
+  const visibleNewsItems = newsItems.filter((item) => !item.availableLocales || item.availableLocales.includes(locale === "zh" ? "en" : locale));
 
   return (
     <main>
@@ -38,8 +39,8 @@ export default async function MediaPage({ params }: PageProps) {
         contentClassName="-translate-y-[15vh]"
         image="/uploads/news/hero.jpg"
         imagePosition="center center"
-        subtitle={locale === "en" ? "News, materials, exhibitions, and project notes" : "ニュース、素材、展示会、プロジェクトノート"}
-        title={locale === "en" ? "Media" : "メディア"}
+        subtitle={locale === "zh" ? chineseCopy("News, materials, exhibitions, and project notes") : locale === "en" ? "News, materials, exhibitions, and project notes" : "ニュース、素材、展示会、プロジェクトノート"}
+        title={locale === "zh" ? chineseCopy("Media") : locale === "en" ? "Media" : "メディア"}
       />
       <section className="bg-paper py-24 md:py-36" data-nav-invert>
         <div className="section-shell grid gap-gutter md:grid-cols-3">

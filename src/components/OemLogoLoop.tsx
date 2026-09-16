@@ -48,16 +48,16 @@ export function OemLogoLoop({ locale }: OemLogoLoopProps) {
     <section className="overflow-hidden border-t border-charcoal/10 bg-linen py-20 md:py-28" data-nav-invert>
       <div className="section-shell">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          {locale === "en" ? (
+          {locale !== "ja" ? (
             <>
               <h2 className="max-w-[38rem] font-serif text-[2.5rem] leading-[1.04] text-charcoal md:text-[4.25rem] lg:text-[4.75rem]">
-                Brands We Have
+                {locale === "zh" ? "我们服务过的" : "Brands We Have"}
                 <br />
-                Worked With
+                {locale === "zh" ? "合作品牌" : "Worked With"}
               </h2>
               <p className="max-w-[40rem] text-sm leading-7 text-muted md:text-right md:text-base md:leading-8">
-                <span className="md:block">Materials and crafted solutions selected for global automotive platforms,</span>
-                <span className="md:block">performance specialists, and interior programs.</span>
+                <span className="md:block">{locale === "zh" ? "为全球汽车平台、性能领域专业团队及内饰项目" : "Materials and crafted solutions selected for global automotive platforms,"}</span>
+                <span className="md:block">{locale === "zh" ? "提供精选材料与精工定制解决方案。" : "performance specialists, and interior programs."}</span>
               </p>
             </>
           ) : (
@@ -74,7 +74,7 @@ export function OemLogoLoop({ locale }: OemLogoLoopProps) {
       </div>
 
       <div
-        aria-label={locale === "en" ? "OEMs we worked with" : "ご一緒したOEM"}
+        aria-label={locale === "zh" ? "我们服务过的汽车品牌" : locale === "en" ? "OEMs we worked with" : "ご一緒したOEM"}
         className="oem-logo-loop mt-16 border-y border-charcoal/10 py-8 md:mt-24 md:py-10"
         onBlur={() => setIsHoveredOrFocused(false)}
         onFocus={() => setIsHoveredOrFocused(true)}

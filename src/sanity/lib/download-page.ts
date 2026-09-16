@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../china/copy";
 import { downloadPageCopy, type DownloadGroup, type DownloadPageSettings } from "@/content/downloads";
 import type { RawDownload } from "./queries";
 
@@ -14,9 +15,9 @@ export function adaptDownloadPage(raw: RawDownloadPage): DownloadPageSettings {
   return {
     ...Object.fromEntries(Object.entries(downloadPageCopy).map(([key, value]) => [key, raw[key as keyof typeof downloadPageCopy] ?? value])) as typeof downloadPageCopy,
     groups: (raw.groups ?? []).map(group => ({
-      slug: group.slug ?? "", label: group.label ?? { en: "", ja: "" }, intro: group.intro ?? { en: "", ja: "" },
+      slug: group.slug ?? "", label: group.label ?? { zh: chineseCopy(""), en: "", ja: "" }, intro: group.intro ?? { zh: chineseCopy(""), en: "", ja: "" },
       downloads: (group.downloads ?? []).filter(item => Boolean(item.href)).map(item => ({
-        title: item.title ?? { en: "", ja: "" }, description: item.description ?? { en: "", ja: "" },
+        title: item.title ?? { zh: chineseCopy(""), en: "", ja: "" }, description: item.description ?? { zh: chineseCopy(""), en: "", ja: "" },
         href: item.href ?? "", type: item.type ?? "technical"
       }))
     })).filter(group => group.slug && group.downloads.length)

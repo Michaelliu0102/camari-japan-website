@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../../../china/copy";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,10 +52,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   const material = await loadMaterial(project.materialSlug);
   const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
-    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
-    { name: locale === "en" ? "Projects" : "事例", path: "/projects" },
+    { name: locale === "zh" ? chineseCopy("Home") : locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "zh" ? chineseCopy("Projects") : locale === "en" ? "Projects" : "事例", path: "/projects" },
     { name: project.title[locale], path: `/projects/${project.slug}` }
-  ]);
+  ], locale);
 
   return (
     <main className="bg-paper pt-[var(--nav-height)]" data-nav-invert>
@@ -69,7 +70,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               className="label-caps mt-10 inline-flex items-center gap-4 border border-charcoal/25 px-8 py-5 transition-colors hover:bg-charcoal hover:text-white"
               href={localizedPath(locale, `/materials/${material.slug}`)}
             >
-              {locale === "en" ? "View Material" : "素材を見る"} — {material.name[locale]}
+              {locale === "zh" ? chineseCopy("View Material") : locale === "en" ? "View Material" : "素材を見る"} — {material.name[locale]}
             </Link>
           ) : null}
         </div>
@@ -80,9 +81,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
       <section className="bg-stone py-24" data-nav-invert>
         <div className="mx-auto max-w-3xl px-margin-mobile text-center">
-          <p className="label-caps text-gold">{locale === "en" ? "Case Notes" : "事例ノート"}</p>
+          <p className="label-caps text-gold">{locale === "zh" ? chineseCopy("Case Notes") : locale === "en" ? "Case Notes" : "事例ノート"}</p>
           <p className="mt-8 text-xl leading-10 text-charcoal/75">
-            {locale === "en"
+            {locale === "zh" ? chineseCopy("Each case study brings together project context, material selection, and surface intent to support future program conversations.") : locale === "en"
               ? "Each case study brings together project context, material selection, and surface intent to support future program conversations."
               : "各事例では、プロジェクト背景、素材選定、サーフェスの意図を整理し、今後のプログラム相談に役立つ情報としてまとめています。"}
           </p>
@@ -90,10 +91,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       </section>
 
       <CTASection
-        body={locale === "en" ? `Contact ${site.organizationName} for project-fit material recommendations.` : `${site.organizationName} へプロジェクトに適した素材提案をご相談ください。`}
-        label={locale === "en" ? "Discuss a Program" : "プログラムを相談する"}
+        body={locale === "zh" ? chineseCopy(`Contact ${site.organizationName} for project-fit material recommendations.`) : locale === "en" ? `Contact ${site.organizationName} for project-fit material recommendations.` : `${site.organizationName} へプロジェクトに適した素材提案をご相談ください。`}
+        label={locale === "zh" ? chineseCopy("Discuss a Program") : locale === "en" ? "Discuss a Program" : "プログラムを相談する"}
         locale={locale}
-        title={locale === "en" ? "Plan a comparable material program." : "同様の素材プログラムを計画する。"}
+        title={locale === "zh" ? chineseCopy("Plan a comparable material program.") : locale === "en" ? "Plan a comparable material program." : "同様の素材プログラムを計画する。"}
       />
     </main>
   );

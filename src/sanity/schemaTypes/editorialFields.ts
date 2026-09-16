@@ -22,8 +22,8 @@ export const downloadFields = [
 export const faqField = defineField({
   name: "faq", title: "Frequently Asked Questions / よくあるご質問", type: "object",
   description: "Edit each language separately. Remove all entries to hide its FAQ section.",
-  fields: ["en", "ja"].map((locale) => defineField({
-    name: locale, title: locale === "en" ? "English" : "Japanese", type: "array", of: [{
+  fields: ["en", "ja", "zh"].map((locale) => defineField({
+    name: locale, title: locale === "en" ? "English" : locale === "ja" ? "Japanese" : "简体中文", type: "array", of: [{
       type: "object", fields: [
         defineField({ name: "question", title: "Question", type: "string" }),
         defineField({ name: "answer", title: "Answer", type: "text", rows: 5 }),
@@ -58,5 +58,5 @@ const articleFields = [
 ];
 export const articleContentField = defineField({
   name: "articleContent", title: "Article Content / 記事本文", type: "object",
-  fields: ["en", "ja"].map(locale => defineField({ name: locale, title: locale === "en" ? "English" : "Japanese", type: "object", fields: articleFields }))
+  fields: ["en", "ja", "zh"].map(locale => defineField({ name: locale, title: locale === "en" ? "English" : locale === "ja" ? "Japanese" : "简体中文", type: "object", fields: articleFields }))
 });

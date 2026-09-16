@@ -1,4 +1,5 @@
-import type { Locale } from "./locales";
+import type { Locale as WebsiteLocale } from "./locales";
+type Locale = Exclude<WebsiteLocale, "zh">;
 import {
   getCountryRegionName,
   isCountryRegionCode,

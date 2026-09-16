@@ -1,3 +1,5 @@
+import { privacyPolicyZh } from "@/content/policies-zh";
+import { withChineseCopy } from "../../../china/copy";
 import type { Metadata } from "next";
 import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
@@ -7,7 +9,7 @@ type PageProps = {
   params: Promise<{ locale: Locale }>;
 };
 
-const privacyEntity = {
+const privacyEntity = withChineseCopy({
   en: {
     name: "Camari International",
     email: site.contact.email
@@ -16,9 +18,10 @@ const privacyEntity = {
     name: site.organizationName,
     email: site.contact.email
   }
-} satisfies Record<Locale, { name: string; email: string }>;
+}) satisfies Record<Locale, { name: string; email: string }>;
 
 const content = {
+  zh: privacyPolicyZh,
   en: {
     eyebrow: "Privacy Policy",
     title: "Privacy Policy",

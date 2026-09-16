@@ -23,6 +23,7 @@ async function compileContentModule(sourcePath, outputPath) {
   output = output.replaceAll('from "../content/home-page-copy";', 'from "../content/home-page-copy.js";');
   output = output.replaceAll('from "../lib/site-config";', 'from "../lib/site-config.js";');
 
+  output=output.replace(/from "(\.{1,2}\/[^";]+)";/g,(match,specifier)=>/\.(?:js|json)$/.test(specifier)?match:`from "${specifier}.js";`);
   await writeFile(outputPath, output);
 }
 
@@ -31,6 +32,9 @@ async function loadContentModule() {
   const compiledContent = path.join(root, "src/lib/content.js");
   const generatedCatalogPath = path.join(root, "src/data/product-catalog.generated.json");
 
+  await mkdir(path.join(root, "src/china"), { recursive: true });
+  await writeFile(path.join(root,"src/china/editorial-copy.json"),await readFile(path.join(projectRoot,"src/china/editorial-copy.json")));
+  await compileContentModule(path.join(projectRoot,"src/china/copy.ts"),path.join(root,"src/china/copy.js"));
   await mkdir(path.join(root, "src/lib"), { recursive: true });
   await mkdir(path.join(root, "src/data"), { recursive: true });
   await writeFile(path.join(root, "package.json"), '{"type":"module"}');
@@ -56,6 +60,7 @@ async function loadContentModule() {
   await writeFile(generatedCatalogPath, await readFile(path.join(projectRoot, "src/data/product-catalog.generated.json"), "utf8"));
   await writeFile(path.join(root, "src/data/about-page-ja.json"), await readFile(path.join(projectRoot, "src/data/about-page-ja.json"), "utf8"));
   await mkdir(path.join(root, "src/content"), { recursive: true });
+  await compileContentModule(path.join(projectRoot,"src/lib/locales.ts"),path.join(root,"src/lib/locales.js"));
   await compileContentModule(path.join(projectRoot, "src/content/home-page-copy.ts"), path.join(root, "src/content/home-page-copy.js"));
   await compileContentModule(path.join(projectRoot, "src/lib/content.ts"), compiledContent);
 

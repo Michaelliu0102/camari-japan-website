@@ -472,7 +472,8 @@ export const newsItemsQuery = `*[_type == "news"] | order(publishedAt desc, titl
   availableLocales,
   articleContent {
     en ${articleProjection},
-    ja ${articleProjection}
+    ja ${articleProjection},
+    zh ${articleProjection}
   },
   seo {
     title,

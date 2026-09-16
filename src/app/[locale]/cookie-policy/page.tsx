@@ -1,3 +1,4 @@
+import { cookiePolicyZh } from "@/content/policies-zh";
 import type { Metadata } from "next";
 import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
@@ -17,6 +18,7 @@ const englishEntity = "CAMARI INTERNATIONAL LIMITED";
 const englishEmail = "info@camari-international.com";
 
 const content = {
+  zh: cookiePolicyZh,
   en: {
     eyebrow: "Cookie Policy",
     title: "Cookie Policy",

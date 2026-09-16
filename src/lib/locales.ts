@@ -1,6 +1,7 @@
+import { chineseCopy } from "../china/copy";
 import { siteConfig } from "./site-config";
 
-export const locales = ["en", "ja"] as const;
+export const locales = ["en", "ja", "zh"] as const;
 
 export type Locale = (typeof locales)[number];
 
@@ -34,6 +35,8 @@ export function normalizeLocalizedBrandNames<T>(value: T): T {
     return value;
   }
 
+  const translated = value as Record<string, unknown>;
+  if (typeof translated.en === "string") return { ...translated, ja: typeof translated.ja === "string" ? localizeBrandNames(translated.ja, "ja") : translated.ja, zh: typeof translated.zh === "string" && translated.zh.trim() ? translated.zh : chineseCopy(translated.en) } as T;
   return Object.fromEntries(
     Object.entries(value).map(([key, nestedValue]) => [
       key,
@@ -46,7 +49,7 @@ export function normalizeLocalizedBrandNames<T>(value: T): T {
 
 export function normalizePublicPath(path = ""): string {
   const normalized = path ? (path.startsWith("/") ? path : `/${path}`) : "/";
-  const withoutLocalePrefix = normalized.replace(/^\/(?:en|ja)(?=\/|$)/, "");
+  const withoutLocalePrefix = normalized.replace(/^\/(?:en|ja|zh)(?=\/|$)/, "");
 
   if (!withoutLocalePrefix || withoutLocalePrefix === "/") {
     return "/";
@@ -57,6 +60,7 @@ export function normalizePublicPath(path = ""): string {
 
 export function localizedPath(_locale: Locale, path = ""): string {
   const normalizedPath = normalizePublicPath(path);
+  if (_locale === "zh") return process.env.NEXT_PUBLIC_SITE_KEY === "china" ? normalizedPath : `/zh${normalizedPath === "/" ? "" : normalizedPath}`;
 
   if (siteConfig.enableLocalePreview && _locale !== siteConfig.defaultLocale) {
     return normalizedPath === "/" ? `/${_locale}` : `/${_locale}${normalizedPath}`;

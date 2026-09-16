@@ -13,10 +13,10 @@ test("GlobalNav gives Material, Product, and Media hover dropdowns", async () =>
   const content = await source("src/components/GlobalNav.tsx");
 
   assert.match(content, /children:\s*\[/);
-  assert.match(content, /label:\s*\{\s*en:\s*"Material",\s*ja:\s*"素材"\s*\}/);
-  assert.match(content, /label:\s*\{\s*en:\s*"Automotive Interior Accessories"/);
-  assert.match(content, /label:\s*\{\s*en:\s*"Corporate Gifts"/);
-  assert.match(content, /label:\s*\{\s*en:\s*"Press & Notes"/);
+  assert.match(content, /label:\s*\{(?:\s*zh: chineseCopy\([^\n]*?\),)?\s*en:\s*"Material",\s*ja:\s*"素材"\s*\}/);
+  assert.match(content, /label:\s*\{(?:\s*zh: chineseCopy\([^\n]*?\),)?\s*en:\s*"Automotive Interior Accessories"/);
+  assert.match(content, /label:\s*\{(?:\s*zh: chineseCopy\([^\n]*?\),)?\s*en:\s*"Corporate Gifts"/);
+  assert.match(content, /label:\s*\{(?:\s*zh: chineseCopy\([^\n]*?\),)?\s*en:\s*"Press & Notes"/);
   assert.match(content, /h-\[var\(--nav-height\)\]/);
   assert.match(content, /fixed left-0 top-\[var\(--nav-height\)\] w-screen/);
   assert.match(content, /group-hover\/nav-item:visible/);
@@ -47,11 +47,11 @@ test("GlobalNav swaps between uploaded light and dark logo assets", async () => 
 test("GlobalNav keeps every primary route visible in a scrollable mobile menu", async () => {
   const content = await source("src/components/GlobalNav.tsx");
 
-  assert.match(content, /label:\s*\{\s*en:\s*"Home",\s*ja:\s*"ホーム"\s*\}/);
-  assert.match(content, /label:\s*\{\s*en:\s*"About",\s*ja:\s*"会社情報"\s*\}/);
-  assert.match(content, /label:\s*\{\s*en:\s*"Material",\s*ja:\s*"素材"\s*\}/);
+  assert.match(content, /label:\s*\{(?:\s*zh: chineseCopy\([^\n]*?\),)?\s*en:\s*"Home",\s*ja:\s*"ホーム"\s*\}/);
+  assert.match(content, /label:\s*\{(?:\s*zh: chineseCopy\([^\n]*?\),)?\s*en:\s*"About",\s*ja:\s*"会社情報"\s*\}/);
+  assert.match(content, /label:\s*\{(?:\s*zh: chineseCopy\([^\n]*?\),)?\s*en:\s*"Material",\s*ja:\s*"素材"\s*\}/);
   assert.match(content, /overflow-y-auto overscroll-contain bg-paper text-charcoal/);
-  assert.match(content, /aria-label=\{locale === "en" \? "Mobile navigation"/);
+  assert.match(content, /aria-label=\{(?:locale === "zh" \? chineseCopy\("Mobile navigation"\) : )?locale === "en" \? "Mobile navigation"/);
   assert.match(content, /document\.body\.style\.overflow = "hidden"/);
 });
 

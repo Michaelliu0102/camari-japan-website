@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../../china/copy";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import MagicBento from "@/components/MagicBento/MagicBento";
@@ -20,8 +21,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/materials",
-    title: locale === "en" ? `Materials | ${site.name}` : `素材 | ${site.name}`,
-    description: locale === "en" ? "Browse Alcantara, leather, fabric, and sustainable surface materials." : "アルカンターラ、レザー、ファブリック、サステナブルサーフェス素材をご覧ください。",
+    title: locale === "zh" ? chineseCopy(`Materials | ${site.name}`) : locale === "en" ? `Materials | ${site.name}` : `素材 | ${site.name}`,
+    description: locale === "zh" ? chineseCopy("Browse Alcantara, leather, fabric, and sustainable surface materials.") : locale === "en" ? "Browse Alcantara, leather, fabric, and sustainable surface materials." : "アルカンターラ、レザー、ファブリック、サステナブルサーフェス素材をご覧ください。",
     image: categories[0]?.coverImage
   });
 }
@@ -31,9 +32,9 @@ export default async function MaterialsPage({ params }: PageProps) {
   const [categories, materials] = await Promise.all([loadMaterialCategories(), loadMaterials()]);
   const heroCategory = categories[0];
   const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
-    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
-    { name: locale === "en" ? "Materials" : "素材", path: "/materials" }
-  ]);
+    { name: locale === "zh" ? chineseCopy("Home") : locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "zh" ? chineseCopy("Materials") : locale === "en" ? "Materials" : "素材", path: "/materials" }
+  ], locale);
 
   return (
     <main>
@@ -41,18 +42,18 @@ export default async function MaterialsPage({ params }: PageProps) {
       {heroCategory ? (
         <PageHero
           image={heroCategory.coverImage}
-          subtitle={locale === "en" ? "The intersection of Italian sensory tension and Japanese restraint" : undefined}
-          title={locale === "en" ? "Material" : "素材"}
+          subtitle={locale === "zh" ? chineseCopy("The intersection of Italian sensory tension and Japanese restraint") : locale === "en" ? "The intersection of Italian sensory tension and Japanese restraint" : undefined}
+          title={locale === "zh" ? chineseCopy("Material") : locale === "en" ? "Material" : "素材"}
         />
       ) : null}
       <section className="bg-stone py-24 md:py-32" data-nav-invert>
         <div className="mx-auto max-w-4xl px-margin-mobile text-center">
-          {locale === "en" ? <p className="label-caps text-gold">Our Philosophy</p> : null}
-          <h2 className={`${locale === "en" ? "mt-6 " : ""}font-serif text-4xl uppercase tracking-luxury`}>
-            {locale === "en" ? "Tactile Silence" : "質感へのこだわり"}
+          {locale !== "ja" ? <p className="label-caps text-gold">Our Philosophy</p> : null}
+          <h2 className={`${locale === "zh" ? chineseCopy("mt-6 ") : locale === "en" ? "mt-6 " : ""}font-serif text-4xl uppercase tracking-luxury`}>
+            {locale === "zh" ? chineseCopy("Tactile Silence") : locale === "en" ? "Tactile Silence" : "質感へのこだわり"}
           </h2>
           <p className="mt-8 text-lg leading-9 text-muted">
-            {locale === "en"
+            {locale === "zh" ? chineseCopy("Every textile and hide is selected for its ability to harmonize with spatial design, offering a sensory transition between craft precision and expressive warmth.") : locale === "en"
               ? "Every textile and hide is selected for its ability to harmonize with spatial design, offering a sensory transition between craft precision and expressive warmth."
               : "空間に調和する、心地よい手ざわりの素材を厳選しています。"}
           </p>
@@ -81,7 +82,7 @@ export default async function MaterialsPage({ params }: PageProps) {
           enableBorderGlow
           enableTilt
           enableMagnetism={false}
-          imageCtaLabel={locale === "en" ? "Explore Texture" : "質感を見る"}
+          imageCtaLabel={locale === "zh" ? chineseCopy("Explore Texture") : locale === "en" ? "Explore Texture" : "質感を見る"}
           clickEffect
           spotlightRadius={500}
           glowColor="166, 138, 94"

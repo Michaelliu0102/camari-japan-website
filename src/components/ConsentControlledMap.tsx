@@ -1,8 +1,9 @@
 "use client";
 
+import { withChineseCopy } from "../china/copy";
 import { useConsent } from "@/components/ConsentManager";
 
-const copy = {
+const copy = withChineseCopy({
   en: {
     eyebrow: "Google Maps",
     message: "This map is provided by Google and remains blocked until you allow external media.",
@@ -15,18 +16,24 @@ const copy = {
     enable: "許可して地図を表示",
     open: "Google Maps で開く",
   },
-} as const;
+});
 
 type ConsentControlledMapProps = {
+  provider?: "google" | "amap";
   className?: string;
   directUrl: string;
   src: string;
   title: string;
 };
 
-export function ConsentControlledMap({ className = "", directUrl, src, title }: ConsentControlledMapProps) {
+export function ConsentControlledMap({ className = "", directUrl, src, title, provider = "google" }: ConsentControlledMapProps) {
   const { externalMediaAllowed, grantExternalMedia, locale } = useConsent();
-  const labels = copy[locale];
+  const labels = provider === "amap" ? {
+    eyebrow: "高德地图",
+    message: "此地图由高德提供，允许外部媒体后即可加载。",
+    enable: "允许并显示地图",
+    open: "在高德地图中打开",
+  } : copy[locale];
 
   if (externalMediaAllowed) {
     return (
@@ -34,7 +41,7 @@ export function ConsentControlledMap({ className = "", directUrl, src, title }: 
         allowFullScreen
         className={className}
         loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
+        referrerPolicy={provider === "amap" ? "strict-origin-when-cross-origin" : "no-referrer-when-downgrade"}
         src={src}
         style={{ border: 0 }}
         title={title}

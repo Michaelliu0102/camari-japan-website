@@ -1,3 +1,4 @@
+import { chineseCopy } from "../../../../../china/copy";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -32,7 +33,7 @@ type PageProps = {
 };
 
 function isVinylArticlePage(locale: Locale, materialSlug: string, productTypeSlug: string): boolean {
-  return locale === "en" && materialSlug === "vegan-leather" && productTypeSlug === "skai";
+  return locale !== "ja" && materialSlug === "vegan-leather" && productTypeSlug === "skai";
 }
 
 function isLeatherInteriorPage(materialSlug: string, productTypeSlug: string): boolean {
@@ -46,9 +47,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return createPageMetadata({
       locale,
       path: "/materials/leather/interior",
-      title: locale === "en" ? "Interior Leather Articles | CAMARI JAPAN" : "インテリアレザー記事 | カマリ・ジャパン",
+      title: locale === "zh" ? chineseCopy("Interior Leather Articles | CAMARI JAPAN") : locale === "en" ? "Interior Leather Articles | CAMARI JAPAN" : "インテリアレザー記事 | カマリ・ジャパン",
       description:
-        locale === "en"
+        locale === "zh" ? chineseCopy("Explore refined bovine leather articles for interior, hospitality, marine, design, and bespoke upholstery programs.") : locale === "en"
           ? "Explore refined bovine leather articles for interior, hospitality, marine, design, and bespoke upholstery programs."
           : "インテリア、ホスピタリティ、マリン、デザイン、特注張り地向けの上質な牛革記事をご覧ください。"
     });
@@ -114,7 +115,7 @@ export default async function ProductTypeRoute({ params }: PageProps) {
     ? await loadSkaiVinylProductTypeSlugs()
     : new Set<string>();
 
-  if (locale !== "en" && skaiProductTypeSlugs.has(productTypeSlug)) {
+  if (locale === "ja" && skaiProductTypeSlugs.has(productTypeSlug)) {
     notFound();
   }
 
@@ -142,7 +143,7 @@ async function VinylCollectionPage({ locale, materialSlug }: { locale: Locale; m
     { name: material.name.en, path: `/materials/${material.slug}` },
     { name: "SKAI VINYL", path: `/materials/${material.slug}/skai` }
   ];
-  const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, breadcrumbs);
+  const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, breadcrumbs, locale);
 
   return (
     <ArticleCollectionShell
@@ -205,28 +206,28 @@ async function LeatherInteriorPage({ locale }: { locale: Locale }) {
     { name: "Materials", path: "/materials" },
     { name: material.name.en, path: `/materials/${material.slug}` },
     { name: "Interior", path: `/materials/${material.slug}/interior` }
-  ]);
+  ], locale);
 
   return (
     <ArticleCollectionShell
       articles={articles}
       breadcrumbSchema={breadcrumbSchema}
-      eyebrow={locale === "en" ? "Leather" : "レザー"}
-      heading={locale === "en" ? "interior leather collection" : "インテリアレザーコレクション"}
+      eyebrow={locale === "zh" ? chineseCopy("Leather") : locale === "en" ? "Leather" : "レザー"}
+      heading={locale === "zh" ? chineseCopy("interior leather collection") : locale === "en" ? "interior leather collection" : "インテリアレザーコレクション"}
       heroImage={leatherInteriorHeroImage}
       intro={
-        locale === "en"
+        locale === "zh" ? chineseCopy("Refined bovine leathers selected for interiors, hospitality, marine, design, and bespoke upholstery programs.") : locale === "en"
           ? "Refined bovine leathers selected for interiors, hospitality, marine, design, and bespoke upholstery programs."
           : "インテリア、ホスピタリティ、マリン、デザイン、特注張り地向けに選定した上質な牛革コレクション。"
       }
-      label={locale === "en" ? "Interior Article" : "インテリア記事"}
+      label={locale === "zh" ? chineseCopy("Interior Article") : locale === "en" ? "Interior Article" : "インテリア記事"}
       locale={locale}
       subtitle={
-        locale === "en"
+        locale === "zh" ? chineseCopy("From heavy-duty pigment leather to prestige full grain leather") : locale === "en"
           ? "From heavy-duty pigment leather to prestige full grain leather"
           : "高耐久ピグメントレザーから最高級フルグレインレザーまで"
       }
-      title={locale === "en" ? "Interior" : "インテリア"}
+      title={locale === "zh" ? chineseCopy("Interior") : locale === "en" ? "Interior" : "インテリア"}
     />
   );
 }
@@ -274,7 +275,7 @@ function ArticleCollectionShell({
       <section className="bg-paper py-20 md:py-28" data-nav-invert>
         <div className="section-shell">
           {breadcrumbs ? (
-            <nav aria-label={locale === "en" ? "Breadcrumb" : "パンくずリスト"} className="mb-10">
+            <nav aria-label={locale === "zh" ? chineseCopy("Breadcrumb") : locale === "en" ? "Breadcrumb" : "パンくずリスト"} className="mb-10">
               <ol className="flex flex-wrap items-center gap-x-2 gap-y-2 font-sans text-[10px] uppercase tracking-[0.12em] text-muted">
                 {breadcrumbs.map((item, index) => (
                   <li className="flex items-center gap-x-2" key={item.path}>
@@ -321,7 +322,7 @@ function ArticleCollectionShell({
                 <div className="pt-7 text-center">
                   <h3 className="label-caps text-charcoal">{article.name.toUpperCase()}</h3>
                   <p className="mt-2 text-sm text-muted">
-                    {article.colorCount} {locale === "en" ? "colours" : "色"}
+                    {article.colorCount} {locale === "zh" ? chineseCopy("colours") : locale === "en" ? "colours" : "色"}
                   </p>
                 </div>
               </article>

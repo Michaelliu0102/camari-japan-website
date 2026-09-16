@@ -1,3 +1,5 @@
+import { chineseCopy } from "../../../china/copy";
+import { translateAboutCopy } from "@/content/about-page-copy";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CTASection } from "@/components/CTASection";
@@ -74,9 +76,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/about",
-    title: locale === "en" ? "About CAMARI | CAMARI INTERNATIONAL JAPAN" : aboutSettings.seo.title[locale],
+    title: locale === "zh" ? chineseCopy("About CAMARI | CAMARI INTERNATIONAL JAPAN") : locale === "en" ? "About CAMARI | CAMARI INTERNATIONAL JAPAN" : aboutSettings.seo.title[locale],
     description:
-      locale === "en"
+      locale === "zh" ? chineseCopy("Meet CAMARI, a global partner for premium automotive materials, bespoke prototyping, and IATF 16949 certified production.") : locale === "en"
         ? "Meet CAMARI, a global partner for premium automotive materials, bespoke prototyping, and IATF 16949 certified production."
         : aboutSettings.seo.description[locale],
     image: aboutSettings.seo.image ?? aboutSettings.heroImage
@@ -87,7 +89,8 @@ export default async function AboutPage({ params }: PageProps) {
   const { locale } = await params;
   const [aboutSettings, homeSettings] = await Promise.all([loadAboutPageSettings(), loadHomePageSettings()]);
 
-  if (locale === "en") {
+  if (locale !== "ja") {
+    const t = (text: string) => locale === "zh" ? translateAboutCopy(text) : text;
     return (
       <main>
         <section
@@ -97,7 +100,7 @@ export default async function AboutPage({ params }: PageProps) {
           <div className="section-shell grid gap-12 lg:grid-cols-[minmax(0,1.55fr)_minmax(24rem,0.85fr)] lg:items-center lg:gap-20 xl:gap-24">
             <div className="relative order-2 aspect-[4/3] overflow-hidden bg-paper md:aspect-[3/2] lg:order-1">
               <Image
-                alt="CASA CAMARI office and material showroom interior"
+                alt={t("CASA CAMARI office and material showroom interior")}
                 className="object-cover object-center"
                 fill
                 priority
@@ -106,13 +109,9 @@ export default async function AboutPage({ params }: PageProps) {
               />
             </div>
             <div className="order-1 max-w-[36rem] lg:order-2 lg:justify-self-end">
-              <p className="label-caps text-gold">Company</p>
-              <h1 className="mt-5 max-w-[12ch] font-serif text-3xl leading-[1.06] md:text-5xl lg:text-[4.25rem]">
-                About CAMARI
-              </h1>
-              <p className="mt-11 max-w-[39rem] text-[1.02rem] leading-[1.8] text-muted md:text-[1.1rem] md:leading-[1.85]">
-                Established in 2014 and headquartered in Hong Kong, Camari International is a multinational leader specializing in high-performance automotive materials, bespoke interior accessories, and lifestyle products. With regional operating hubs in China, Italy, Japan, and Australia, we deliver technical excellence and seamless supply chain solutions to clients worldwide.
-              </p>
+              <p className="label-caps text-gold">{t("Company")}</p>
+              <h1 className="mt-5 max-w-[12ch] font-serif text-3xl leading-[1.06] md:text-5xl lg:text-[4.25rem]">{t("About Camari")}</h1>
+              <p className="mt-11 max-w-[39rem] text-[1.02rem] leading-[1.8] text-muted md:text-[1.1rem] md:leading-[1.85]">{t("Established in 2014 and headquartered in Hong Kong, Camari International is a multinational leader specializing in high-performance automotive materials, bespoke interior accessories, and lifestyle products. With regional operating hubs in China, Italy, Japan, and Australia, we deliver technical excellence and seamless supply chain solutions to clients worldwide.")}</p>
             </div>
           </div>
         </section>
@@ -121,14 +120,10 @@ export default async function AboutPage({ params }: PageProps) {
           <div className="section-shell">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(28rem,1.2fr)] lg:items-end lg:gap-24">
               <div>
-                <p className="label-caps text-gold">Global footprint</p>
-                <h2 className="mt-5 max-w-[14ch] font-serif text-3xl leading-[1.06] text-charcoal md:text-5xl">
-                  Integrated Supply Infrastructure
-                </h2>
+                <p className="label-caps text-gold">{t("Global footprint")}</p>
+                <h2 className="mt-5 max-w-[14ch] font-serif text-3xl leading-[1.06] text-charcoal md:text-5xl">{t("Integrated Supply Infrastructure")}</h2>
               </div>
-              <p className="max-w-[42rem] text-[1rem] leading-[1.8] text-muted md:text-[1.08rem]">
-                With established corporate entities across four strategic regions, China, Italy, Japan, and Australia, CAMARI unifies regional supply strengths under one seamless export infrastructure. By aggregating localized specialty products into a centralized export channel, we offer global clients direct access to premium regional materials, optimized logistics, and end-to-end supply chain reliability.
-              </p>
+              <p className="max-w-[42rem] text-[1rem] leading-[1.8] text-muted md:text-[1.08rem]">{t("With established corporate entities across four strategic regions, China, Italy, Japan, and Australia, CAMARI unifies regional supply strengths under one seamless export infrastructure. By aggregating localized specialty products into a centralized export channel, we offer global clients direct access to premium regional materials, optimized logistics, and end-to-end supply chain reliability.")}</p>
             </div>
 
             <div className="mt-16 grid border-y border-charcoal/15 md:mt-24 md:grid-cols-2 lg:grid-cols-3">
@@ -140,23 +135,21 @@ export default async function AboutPage({ params }: PageProps) {
                   <p className="font-sans text-[clamp(1.7rem,2.6vw,2.85rem)] font-medium leading-none tracking-[0.01em] text-charcoal">
                     {stat.value}
                   </p>
-                  <p className="mt-6 text-xs font-medium uppercase tracking-[0.16em] text-charcoal">{stat.label}</p>
-                  <p className="mt-2 text-sm leading-6 text-muted">{stat.detail}</p>
+                  <p className="mt-6 text-xs font-medium uppercase tracking-[0.16em] text-charcoal">{t(stat.label)}</p>
+                  <p className="mt-2 text-sm leading-6 text-muted">{t(stat.detail)}</p>
                 </div>
               ))}
             </div>
 
             <div className="mt-20 grid gap-10 md:mt-28 lg:grid-cols-[minmax(20rem,0.72fr)_minmax(0,1.28fr)] lg:items-center lg:gap-24">
               <div className="max-w-[32rem]">
-                <p className="label-caps text-gold">China · Italy · Japan · Australia</p>
-                <h3 className="mt-5 font-serif text-3xl leading-[1.06] text-charcoal md:text-5xl">Local Service & Global Collaboration</h3>
-                <p className="mt-7 text-[1rem] leading-[1.8] text-muted">
-                  Clients work with specialists in their own market, while CAMARI teams share specifications, sampling feedback, and production planning across borders. Central warehousing in China and Italy keeps material access close to each project and coordination consistent from concept to delivery.
-                </p>
+                <p className="label-caps text-gold">{t("China \u00b7 Italy \u00b7 Japan \u00b7 Australia")}</p>
+                <h3 className="mt-5 font-serif text-3xl leading-[1.06] text-charcoal md:text-5xl">{t("Local Service & Global Collaboration")}</h3>
+                <p className="mt-7 text-[1rem] leading-[1.8] text-muted">{t("Clients work with specialists in their own market, while CAMARI teams share specifications, sampling feedback, and production planning across borders. Central warehousing in China and Italy keeps material access close to each project and coordination consistent from concept to delivery.")}</p>
               </div>
               <div className="relative aspect-[4/3] overflow-hidden bg-stone">
                 <Image
-                  alt="CAMARI China warehouse"
+                  alt={t("CAMARI China warehouse")}
                   className="object-cover object-center"
                   fill
                   sizes="(min-width: 1024px) 62vw, 100vw"
@@ -171,7 +164,7 @@ export default async function AboutPage({ params }: PageProps) {
           <div className="section-shell grid gap-12 lg:grid-cols-[minmax(0,1.24fr)_minmax(23rem,0.76fr)] lg:items-center lg:gap-20">
             <div className="relative aspect-[3/2] overflow-hidden bg-stone">
               <Image
-                alt="Alcantara Milan headquarters interior"
+                alt={t("Alcantara Milan headquarters interior")}
                 className="object-cover"
                 fill
                 sizes="(min-width: 1024px) 58vw, 100vw"
@@ -179,17 +172,17 @@ export default async function AboutPage({ params }: PageProps) {
               />
             </div>
             <div className="max-w-[34rem] lg:justify-self-end">
-              <p className="label-caps text-gold">Official authorization</p>
+              <p className="label-caps text-gold">{t("Official authorization")}</p>
               <h2 className="mt-5 font-serif text-3xl leading-[1.06] text-charcoal md:text-5xl">
-                Official Distributor of Alcantara<sup className="ml-1 align-super font-sans text-[0.28em]">®</sup>
+                {locale === "zh" ? (
+                  <><span className="whitespace-nowrap">Alcantara<sup className="ml-1 align-super font-sans text-[0.28em]">®</sup></span> 官方经销商</>
+                ) : (
+                  <>{t("Official Distributor of Alcantara")}<sup className="ml-1 align-super font-sans text-[0.28em]">®</sup></>
+                )}
               </h2>
               <div className="mt-8 space-y-6 text-[1rem] leading-[1.82] text-muted md:text-[1.08rem]">
-                <p>
-                  As the official Asia-Pacific regional distributor for Alcantara®, Camari supplies authentic premium microfibers to key international markets, including Greater China, Japan, Korea, Southeast Asia, Australia, and New Zealand.
-                </p>
-                <p>
-                  Beyond Alcantara, our material library spans luxury bovine leathers, technical woven fabrics, and synthetic materials tailored for automotive upholstery, marine, aviation, and bespoke interior architecture.
-                </p>
+                <p>{t("As the official Asia-Pacific regional distributor for Alcantara\u00ae, Camari supplies authentic premium microfibers to key international markets, including Greater China, Japan, Korea, Southeast Asia, Australia, and New Zealand.")}</p>
+                <p>{t("Beyond Alcantara, our material library spans luxury bovine leathers, technical woven fabrics, and synthetic materials tailored for automotive upholstery, marine, aviation, and bespoke interior architecture.")}</p>
               </div>
             </div>
           </div>
@@ -199,20 +192,32 @@ export default async function AboutPage({ params }: PageProps) {
           <div className="section-shell">
             <div className="grid gap-10 lg:grid-cols-[minmax(18rem,0.7fr)_minmax(0,1.3fr)] lg:gap-24">
               <div>
-                <p className="label-caps text-gold">Manufacturing</p>
-                <h2 className="mt-5 max-w-[14ch] font-serif text-3xl leading-[1.06] md:text-5xl">
-                  Heritage Craft, Certified Precision.
+                <p className="label-caps text-gold">{t("Manufacturing")}</p>
+                <h2 className={`mt-5 max-w-[14ch] font-serif text-3xl md:text-5xl ${locale === "zh" ? "leading-[1.2]" : "leading-[1.06]"}`}>
+                  {locale === "zh" ? <><span className="block whitespace-nowrap">传承工艺，</span><span className="block whitespace-nowrap">认证精度。</span></> : t("Heritage Craft, Certified Precision.")}
                 </h2>
               </div>
               <div className="max-w-[46rem] self-end space-y-6 text-[1rem] leading-[1.85] text-muted md:text-[1.08rem]">
                 <p>
+                  {locale === "zh" ? (
+                    <>盛华是卡玛瑞在中国的自有制造工厂，其纺织工艺传承始于 <strong className="font-semibold text-charcoal">2000</strong> 年。工厂最初专注于高端服装制造，随着卡玛瑞于 <strong className="font-semibold text-charcoal">2014</strong> 年成立，工厂进行了战略转型，逐步发展为专注于汽车及生活方式配件的生产中心。</>
+                  ) : (
+                    <>
                   <strong className="font-semibold text-charcoal">SHENGHUA</strong>, Camari&apos;s proprietary manufacturing facility in China, brings a rich heritage of textile craftsmanship dating back to{" "}
                   <strong className="font-semibold text-charcoal">2000</strong>. Originally established as a high-end garment manufacturing hub, the facility underwent a strategic transformation in{" "}
                   <strong className="font-semibold text-charcoal">2014</strong> following the inception of Camari, evolving into a specialized production center for automotive and lifestyle accessory creations.
+                    </>
+                  )}
                 </p>
                 <p>
+                  {locale === "zh" ? (
+                    <>如今，盛华严格遵循 <strong className="font-semibold text-charcoal">IATF 16949 与 ISO 9001</strong> 质量体系，配备自动化裁切、激光雕刻和定制内饰加工设备，将数十年积累的精湛裁缝工艺与严谨的汽车级制造精度相结合。</>
+                  ) : (
+                    <>
                   Today, operating strictly under the{" "}
                   <strong className="font-semibold text-charcoal">IATF 16949 & ISO 9001</strong> quality system and equipped with automated cutting, laser engraving, and custom upholstery machinery, SHENGHUA seamlessly unites decades of refined tailoring expertise with rigorous automotive precision.
+                    </>
+                  )}
                 </p>
               </div>
             </div>
@@ -222,7 +227,7 @@ export default async function AboutPage({ params }: PageProps) {
                 <article key={capability.title}>
                   <div className="relative aspect-[4/3] overflow-hidden bg-stone">
                     <Image
-                      alt={capability.title}
+                      alt={t(capability.title)}
                       className="object-cover"
                       fill
                       sizes="(min-width: 768px) 33vw, 100vw"
@@ -230,8 +235,8 @@ export default async function AboutPage({ params }: PageProps) {
                     />
                   </div>
                   <p className="mt-7 text-[0.68rem] uppercase tracking-[0.24em] text-gold">0{index + 1}</p>
-                  <h3 className="mt-3 max-w-[21ch] font-serif text-2xl leading-tight">{capability.title}</h3>
-                  <p className="mt-4 max-w-[36rem] text-sm leading-7 text-muted">{capability.body}</p>
+                  <h3 className="mt-3 max-w-[21ch] font-serif text-2xl leading-tight">{t(capability.title)}</h3>
+                  <p className="mt-4 max-w-[36rem] text-sm leading-7 text-muted">{t(capability.body)}</p>
                 </article>
               ))}
             </div>
@@ -242,13 +247,13 @@ export default async function AboutPage({ params }: PageProps) {
 
         <CTASection
           backgroundImage={homeSettings.showroomBackgroundImage}
-          body="Speak with our specialists about material specifications, bespoke prototyping, and bulk production."
+          body={t("Speak with our specialists about material specifications, bespoke prototyping, and bulk production.")}
           eyebrow={null}
-          label="Our location"
+          label={t("Our location")}
           locale={locale}
           secondaryAction="message"
-          secondaryLabel="Write message"
-          title="Ready to integrate premium materials into your next project?"
+          secondaryLabel={t("Write message")}
+          title={t("Ready to integrate premium materials into your next project?")}
         />
       </main>
     );

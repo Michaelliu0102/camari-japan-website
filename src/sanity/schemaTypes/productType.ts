@@ -1,3 +1,4 @@
+import { chinaStatusField } from "./chinaFields";
 import { downloadFields } from "./editorialFields";
 import { validateMarketContent } from "./marketValidation";
 import { defineField, defineType } from "sanity";
@@ -9,6 +10,7 @@ export const productType = defineType({
   type: "document",
   validation: rule => rule.custom(validateMarketContent),
   fields: [
+    chinaStatusField,
     defineField({ name: "editorialDownloadsMigrated", title: "Editorial Download Migration", type: "boolean", hidden: true, readOnly: true }),
     defineField({
       name: "name",
@@ -31,6 +33,7 @@ export const productType = defineType({
       of: [{ type: "string" }],
       options: {
         list: [
+          { title: "China 中国大陆 (.com.cn)", value: "china" },
           { title: "Global International (.com)", value: "global" },
           { title: "Japan Only (.co.jp)", value: "japan" }
         ],

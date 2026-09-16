@@ -1,3 +1,4 @@
+import { sitePolicyZh } from "@/content/policies-zh";
 import type { Metadata } from "next";
 import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
@@ -11,6 +12,7 @@ const englishLegalEntity = "CAMARI INTERNATIONAL LIMITED";
 const englishContactEmail = "info@camari-international.com";
 
 const content = {
+  zh: sitePolicyZh,
   en: {
     eyebrow: "Terms of Use",
     title: "Terms of Use / Site Policy",

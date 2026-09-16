@@ -1,3 +1,4 @@
+import { chineseCopy } from "../china/copy";
 import { DownloadPanel } from "@/components/DownloadPanel";
 import { JsonLd } from "@/components/JsonLd";
 import { SkuSwatches } from "@/components/SkuSwatches";
@@ -14,7 +15,33 @@ type FaqItem = {
 
 const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
   "automotive-nappa": {
-    en: [
+    zh: chineseCopy([
+      {
+        question: "What is Automotive Nappa leather?",
+        answer:
+          "In the automotive world, Nappa leather is the gold standard for premium and luxury car interiors. It is not a specific type of animal skin, but rather a generic term for exceptionally soft, smooth, bovine (cow) leather that has been treated with a specialized chrome-tanning process."
+      },
+      {
+        question: "Why do OEMs require automotive-grade Nappa leather?",
+        answer:
+          "Standard leather cannot survive the extreme conditions inside a car. Automotive-grade Nappa undergoes rigorous laboratory testing to ensure superior UV and heat resistance against solar cracking, high tensile strength to prevent tearing under heavy use, and strict compliance with global fire-retardant safety standards."
+      },
+      {
+        question: "What is Automotive Nappa intended for?",
+        answer:
+          "Automotive Nappa is intended for premium automotive interiors, including seating, steering wheels, door panels, dashboards, consoles, and trim surfaces."
+      },
+      {
+        question: "What is the standard thickness and average size?",
+        answer:
+          "The standard thickness is 1.1-1.3 mm, with an average hide size of 48-54 sf."
+      },
+      {
+        question: "Is Automotive Nappa fire resistant?",
+        answer:
+          "Automotive Nappa is tested to comply with FMVSS 302."
+      }
+    ]), en: [
       {
         question: "What is Automotive Nappa leather?",
         answer:
@@ -70,7 +97,33 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
     ]
   },
   "alcantara-panel": {
-    en: [
+    zh: chineseCopy([
+      {
+        question: "What is Alcantara Pannel made of?",
+        answer:
+          "Alcantara Pannel is composed of 68% polyester and 32% polyurethane."
+      },
+      {
+        question: "What is Alcantara Pannel intended for?",
+        answer:
+          "Alcantara Pannel is specified for door pannels, dashboards, headliners and consoles."
+      },
+      {
+        question: "Can Alcantara Pannel be used for seats?",
+        answer:
+          "For seating surfaces, specify Alcantara Cover. Pannel is selected for trim and upholstery applications rather than seat-cover construction."
+      },
+      {
+        question: "Can Alcantara Pannel be used for steering wheel?",
+        answer:
+          "While Alcantara Pannel is suitable for steering wheels, our 1.2mm Multilayer application offers an upgraded option. The additional thickness enhances the hand-feel, delivering a more robust and luxurious tactile experience. It is only available in black."
+      },
+      {
+        question: "Is Alcantara Pannel Fire Retardant?",
+        answer:
+          "Product 5012 is the standard version with fire retardant treatment, while 5856 (Pannel FR) is the fire-retardant equivalent available in the same color range. Likewise, 5205 represents the non-FR Cover, and 5268 is the Cover FR version."
+      }
+    ]), en: [
       {
         question: "What is Alcantara Pannel made of?",
         answer:
@@ -126,7 +179,28 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
     ]
   },
   "alcantara-cover": {
-    en: [
+    zh: chineseCopy([
+      {
+        question: "What is Alcantara Cover made of?",
+        answer:
+          "Alcantara Cover is composed of 68% polyester and 32% polyurethane, laminated with polyester textile backing."
+      },
+      {
+        question: "What is Alcantara Cover intended for?",
+        answer:
+          "Alcantara Cover is intended for automotive seats and seat-cover upholstery where a soft Alcantara surface needs durable wear performance."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of ≥0.95 mm."
+      },
+      {
+        question: "Is Alcantara Cover Fire Retardant?",
+        answer:
+          "Product 5205 is the standard non-FR Cover, while 5268 is the Cover FR version with <100 mm/min fire-resistance performance. Confirm the applicable specification sheet before production."
+      }
+    ]), en: [
       {
         question: "What is Alcantara Cover made of?",
         answer:
@@ -172,7 +246,28 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
     ]
   },
   "alcantara-exo": {
-    en: [
+    zh: chineseCopy([
+      {
+        question: "What is Alcantara EXO made of?",
+        answer:
+          "Alcantara EXO is composed of 71% polyester and 29% polyurethane and laminated 100% polyester backing."
+      },
+      {
+        question: "What is Alcantara EXO intended for?",
+        answer:
+          "Alcantara EXO is intended for motocycle, outdoor upholstery, marine applications, and exterior surfaces where a soft Alcantara finish needs resistance to harsh weather, salt air, and seawater."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of ≤1.30 mm and unit weight of ≥310 g/m²."
+      },
+      {
+        question: "How does Alcantara EXO perform outdoors?",
+        answer:
+          "Alcantara EXO uses a layered outdoor structure: a soft Alcantara surface on top, a waterproof membrane beneath it, and a backing layer for stability. Thanks to its waterproof- transpirant membrane, the water could not peremate it while the vapour can be transpired in case of the humidity inside the sofa.\n\nAs an outdoor material, EXO has excellent performance on UV resistance to retain seats colors and prevent color fading."
+      }
+    ]), en: [
       {
         question: "What is Alcantara EXO made of?",
         answer:
@@ -218,7 +313,28 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
     ]
   },
   "alcantara-04": {
-    en: [
+    zh: chineseCopy([
+      {
+        question: "What is Alcantara 0.4 made of?",
+        answer:
+          "Alcantara 0.4 is composed of 70% polyester and 30% polyurethane."
+      },
+      {
+        question: "What is Alcantara 0.4 intended for?",
+        answer:
+          "Alcantara 0.4 is designed for consumer electronics, wearables, and accessories, bringing a sophisticated soft-touch Alcantara finish to laptops, smartphones, headphones, and device surfaces."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with an ultra-thin thickness of 0.43 ± 0.05 mm and unit weight of 115-145 g/m²."
+      },
+      {
+        question: "Why is Alcantara 0.4 suitable for high-tech products?",
+        answer:
+          "Its thin, lightweight construction adapts well to precise product surfaces while keeping the premium tactile quality of Alcantara. It also supports color fastness to light, washing, perspiration, rubbing, and dry cleaning for demanding consumer electronics programs. Other than P/N 5010, P/N 5030 is designed specifically for high-tech products. It complies with REACH, Rohs and CA65 certification."
+      }
+    ]), en: [
       {
         question: "What is Alcantara 0.4 made of?",
         answer:
@@ -264,7 +380,28 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
     ]
   },
   "alcantara-master": {
-    en: [
+    zh: chineseCopy([
+      {
+        question: "What is Alcantara Master made of?",
+        answer:
+          "Alcantara Master is composed of 68% polyester and 32% polyurethane."
+      },
+      {
+        question: "What is Alcantara Master intended for?",
+        answer:
+          "Alcantara Master is intended for interior, wall, and furniture upholstery, with color solutions for residential, commercial, aviation, marine, and refined mobility interiors."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of 0.83 ± 0.1 mm."
+      },
+      {
+        question: "Is Alcantara Master Fire Retardant?",
+        answer:
+          "The standard Master article is not fire retardant. For FR requirements, use the FR version 5763 and confirm the applicable B-s2,d0 specification sheet before production."
+      }
+    ]), en: [
       {
         question: "What is Alcantara Master made of?",
         answer:
@@ -310,7 +447,28 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
     ]
   },
   "alcantara-multilayer": {
-    en: [
+    zh: chineseCopy([
+      {
+        question: "What is Alcantara Multilayer made of?",
+        answer:
+          "Alcantara Multilayer is composed of 71% polyester and 29% polyurethane."
+      },
+      {
+        question: "What is Alcantara Multilayer intended for?",
+        answer:
+          "Alcantara Multilayer is intended for sofa upholstery where a soft Alcantara surface needs a structured backing for furniture applications."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of 1.2 ± 0.2 mm."
+      },
+      {
+        question: "Is Alcantara Multilayer Fire Retardant?",
+        answer:
+          "Alcantara Multilayer complies with California Technical Bulletin 117:2013 Section 1."
+      }
+    ]), en: [
       {
         question: "What is Alcantara Multilayer made of?",
         answer:
@@ -356,7 +514,28 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
     ]
   },
   "alcantara-avant": {
-    en: [
+    zh: chineseCopy([
+      {
+        question: "What is Alcantara Avant made of?",
+        answer:
+          "Alcantara Avant is composed of 68% polyester and 32% polyurethane, laminated with polyester textile backing."
+      },
+      {
+        question: "What is Alcantara Avant intended for?",
+        answer:
+          "Alcantara Avant is intended for aviation, contract, and marine upholstery where flame-retardant performance and UV stability are required."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of ≥0.95 mm."
+      },
+      {
+        question: "Is Alcantara Avant Fire Retardant?",
+        answer:
+          "Alcantara Avant complies with BS 5852 Crib 5, IMO RES A652, and FAR/JAR 25.853 flame-resistance requirements."
+      }
+    ]), en: [
       {
         question: "What is Alcantara Avant made of?",
         answer:
@@ -402,7 +581,28 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
     ]
   },
   "alcantara-board-fr": {
-    en: [
+    zh: chineseCopy([
+      {
+        question: "What is Alcantara Board FR made of?",
+        answer:
+          "Alcantara Board FR is composed of 70% polyester and 30% polyurethane, with FR content for marine wall-covering applications."
+      },
+      {
+        question: "What is Alcantara Board FR intended for?",
+        answer:
+          "Alcantara Board FR is intended for marine wall covering where a lightweight Alcantara surface needs IMO flame-retardant performance."
+      },
+      {
+        question: "What is the standard width and thickness?",
+        answer:
+          "The standard width is ≥142 cm, with a thickness of 0.4 ± 0.05 mm."
+      },
+      {
+        question: "Is Alcantara Board FR Fire Retardant?",
+        answer:
+          "Alcantara Board FR complies with IMO RES A653, with calorific value ≤44.9 MJ/m² and smoke density ≤200."
+      }
+    ]), en: [
       {
         question: "What is Alcantara Board FR made of?",
         answer:
@@ -454,7 +654,7 @@ function ProductTypeFaq({ items, locale }: { items: FaqItem[]; locale: Locale })
     <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-stone py-20 md:py-28" data-nav-invert id="faq">
       <div className="section-shell">
         <h2 className="font-serif text-2xl uppercase tracking-[0.06em] text-charcoal">
-          {locale === "en" ? "FAQ" : "よくあるご質問"}
+          {locale === "zh" ? chineseCopy("FAQ") : locale === "en" ? "FAQ" : "よくあるご質問"}
         </h2>
         <div className="mx-auto mt-14 max-w-[46rem]">
           <div className="border-t border-charcoal/10">
@@ -493,11 +693,11 @@ type ProductTypeDetailPageProps = {
 export function ProductTypeDetailPage({ initialSku, locale, material, productType, skus }: ProductTypeDetailPageProps) {
   const canonicalPath = `/materials/${material.slug}/${productType.slug}`;
   const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
-    { name: locale === "en" ? "Home" : "ホーム", path: "/" },
-    { name: locale === "en" ? "Materials" : "素材", path: "/materials" },
+    { name: locale === "zh" ? chineseCopy("Home") : locale === "en" ? "Home" : "ホーム", path: "/" },
+    { name: locale === "zh" ? chineseCopy("Materials") : locale === "en" ? "Materials" : "素材", path: "/materials" },
     { name: material.name[locale], path: `/materials/${material.slug}` },
     { name: productType.name[locale], path: canonicalPath }
-  ]);
+  ], locale);
   const productGroupSchema = buildProductGroupJsonLd(siteConfig, {
     name: productType.name[locale],
     description: productType.summary[locale],
@@ -538,7 +738,7 @@ export function ProductTypeDetailPage({ initialSku, locale, material, productTyp
       <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:py-28" data-nav-invert id="downloads">
         <div className="section-shell">
           <h2 className="font-serif text-2xl uppercase tracking-[0.06em]">
-            {locale === "en" ? "Downloads" : "ダウンロード"}
+            {locale === "zh" ? chineseCopy("Downloads") : locale === "en" ? "Downloads" : "ダウンロード"}
           </h2>
           <div className="mx-auto mt-14 max-w-[46rem]">
             <DownloadPanel locale={locale} downloads={productType.downloads} />

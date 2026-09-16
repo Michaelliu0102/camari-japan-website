@@ -1,3 +1,5 @@
+import { resolveChinaRoute } from "@/china/routes";
+import { isChinaBuild, isChinaPreview } from "@/china/config";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { resolvePublicRoute } from "@/lib/public-routing";
@@ -10,10 +12,25 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  const chinaDecision = resolveChinaRoute(request.nextUrl.pathname, isChinaBuild, isChinaPreview);
+  if (chinaDecision.type === "blocked") return new NextResponse("未找到页面", { status: 404, headers: { "X-Robots-Tag": "noindex, nofollow" } });
+  if (chinaDecision.type === "redirect") return NextResponse.redirect(new URL(chinaDecision.destination!, request.url), 308);
+  if (chinaDecision.type === "next" || chinaDecision.type === "rewrite") {
+    const headers = new Headers(request.headers);
+    headers.set("x-camari-site", "china");
+    headers.set(internalLocaleRewriteHeader, "1");
+    const response = chinaDecision.type === "rewrite"
+      ? NextResponse.rewrite(new URL(chinaDecision.destination!, request.url), { request: { headers } })
+      : NextResponse.next({ request: { headers } });
+    if (isChinaPreview) response.headers.set("X-Robots-Tag", "noindex, nofollow");
+    return response;
+  }
   const decision = resolvePublicRoute(request.nextUrl.pathname, siteConfig, request.url);
 
   if (decision.type === "next") {
-    return NextResponse.next();
+    const headers = new Headers(request.headers);
+    if(request.nextUrl.pathname.startsWith("/en")) headers.set("x-camari-locale","en");
+    return NextResponse.next({request:{headers}});
   }
 
   const targetUrl = new URL(decision.destination, request.url);

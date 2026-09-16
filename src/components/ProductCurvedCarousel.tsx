@@ -1,5 +1,6 @@
 "use client";
 
+import { chineseCopy } from "../china/copy";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -227,7 +228,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
           className="mt-6 inline-flex min-h-[2.75rem] min-w-[10.5rem] items-center justify-center border border-charcoal bg-transparent px-8 font-label text-[0.66rem] font-semibold uppercase tracking-[0.34em] text-charcoal transition duration-300 hover:bg-charcoal hover:text-paper focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal/35 md:mt-7 md:min-w-[14rem]"
           href={localizedPath(locale, `/products?category=${encodeURIComponent(categorySlug)}`)}
         >
-          {locale === "en" ? "View All" : "すべて見る"}
+          {locale === "zh" ? chineseCopy("View All") : locale === "en" ? "View All" : "すべて見る"}
         </Link>
       </div>
 
@@ -251,7 +252,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
                 style={{ transform: `translate3d(-50%, -50%, 0) rotateY(${angle}deg)` }}
               >
                 <a
-                  aria-label={`${locale === "en" ? "Open details for" : "詳細を開く"} ${item.title[locale]}`}
+                  aria-label={`${locale === "zh" ? chineseCopy("Open details for") : locale === "en" ? "Open details for" : "詳細を開く"} ${item.title[locale]}`}
                   className="hero-orbit-card group cursor-zoom-in"
                   data-carousel-index={sourceIndex}
                   href={`#product-summary-${sourceIndex}`}
@@ -274,7 +275,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
                     src={item.src}
                   />
                   <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-4 bg-gradient-to-t from-black/70 to-transparent px-4 pb-5 pt-12 text-xs font-semibold uppercase tracking-[0.18em] text-white opacity-0 transition duration-200 group-hover:translate-y-0 group-hover:opacity-100">
-                    {locale === "en" ? "View surface" : "詳細を見る"}
+                    {locale === "zh" ? chineseCopy("View surface") : locale === "en" ? "View surface" : "詳細を見る"}
                   </span>
                 </a>
               </div>
@@ -296,7 +297,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
             role="dialog"
           >
             <button
-              aria-label={locale === "en" ? "Close detail view" : "詳細ビューを閉じる"}
+              aria-label={locale === "zh" ? chineseCopy("Close detail view") : locale === "en" ? "Close detail view" : "詳細ビューを閉じる"}
               className="fixed right-5 top-5 z-[120] flex h-12 w-12 items-center justify-center rounded-full border border-charcoal/15 bg-white/90 text-charcoal shadow-[0_18px_60px_rgba(26,26,26,0.16)] backdrop-blur transition hover:bg-white"
               onClick={closeDetailView}
               type="button"
@@ -318,7 +319,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
                 <div className="grid grid-cols-4 gap-2 border-t border-charcoal/10 bg-white p-3 sm:grid-cols-6 lg:grid-cols-8">
                   {detailGalleryImages.map((thumbnailSrc, index) => (
                     <button
-                      aria-label={`${locale === "en" ? "Open gallery image" : "ギャラリー画像を開く"} ${index + 1}`}
+                      aria-label={`${locale === "zh" ? chineseCopy("Open gallery image") : locale === "en" ? "Open gallery image" : "ギャラリー画像を開く"} ${index + 1}`}
                       className={`relative aspect-[4/3] overflow-hidden border transition ${
                         index === activeGalleryImageIndex ? "border-charcoal" : "border-transparent opacity-70 hover:opacity-100"
                       }`}
@@ -331,7 +332,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
                   ))}
                 </div>
                 <button
-                  aria-label={locale === "en" ? "Previous image" : "前の画像"}
+                  aria-label={locale === "zh" ? chineseCopy("Previous image") : locale === "en" ? "Previous image" : "前の画像"}
                   className="absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-charcoal shadow-lg transition hover:bg-white lg:flex"
                   onClick={showPreviousImage}
                   type="button"
@@ -339,7 +340,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
                   <ChevronLeft className="h-5 w-5" />
                 </button>
                 <button
-                  aria-label={locale === "en" ? "Next image" : "次の画像"}
+                  aria-label={locale === "zh" ? chineseCopy("Next image") : locale === "en" ? "Next image" : "次の画像"}
                   className="absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-charcoal shadow-lg transition hover:bg-white lg:flex"
                   onClick={showNextImage}
                   type="button"
@@ -350,7 +351,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
 
               <aside className="flex min-h-screen flex-col bg-[#f7f4ed] px-6 py-7 md:px-10 lg:px-12 lg:py-10">
                 <div className="mb-8 flex items-center gap-6">
-                  <p className="label-caps text-gold">{locale === "en" ? "Surface detail" : "サーフェス詳細"}</p>
+                  <p className="label-caps text-gold">{locale === "zh" ? chineseCopy("Surface detail") : locale === "en" ? "Surface detail" : "サーフェス詳細"}</p>
                 </div>
 
                 <div className="border-b border-charcoal/12 pb-8">
@@ -366,7 +367,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
                 <div className="divide-y divide-charcoal/12 border-b border-charcoal/12">
                   <details className="group py-5" open>
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-sans text-sm font-semibold uppercase tracking-[0.12em]">
-                      {locale === "en" ? "Details" : "詳細"}
+                      {locale === "zh" ? chineseCopy("Details") : locale === "en" ? "Details" : "詳細"}
                       <span className="text-lg leading-none text-muted transition group-open:rotate-45">+</span>
                     </summary>
                     <ul className="mt-5 space-y-3 text-sm leading-6 text-muted">
@@ -380,7 +381,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
 
                   <details className="group py-5" open>
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-sans text-sm font-semibold uppercase tracking-[0.12em]">
-                      {locale === "en" ? "Customized option" : "カスタマイズオプション"}
+                      {locale === "zh" ? chineseCopy("Customized option") : locale === "en" ? "Customized option" : "カスタマイズオプション"}
                       <span className="text-lg leading-none text-muted transition group-open:rotate-45">+</span>
                     </summary>
                     <p className="mt-5 max-w-xl text-sm leading-7 text-muted md:text-base">
@@ -393,12 +394,12 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
                   <CTAMessageDrawer
                     articleLabel={contactArticleLabel}
                     buttonClassName="inline-flex min-h-[3.75rem] w-full items-center justify-center bg-charcoal px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-charcoal/85"
-                    buttonLabel={locale === "en" ? "Contact Sales" : "営業担当に相談"}
+                    buttonLabel={locale === "zh" ? chineseCopy("Contact Sales") : locale === "en" ? "Contact Sales" : "営業担当に相談"}
                     locale={locale}
                     placement="top"
                   />
                   <p className="mt-4 max-w-[26rem] font-sans text-[13px] leading-relaxed tracking-[0.02em] text-muted">
-                    {locale === "en"
+                    {locale === "zh" ? chineseCopy("B2B Custom Solutions & Wholesale Only. Contact our team to discuss your project.") : locale === "en"
                       ? "B2B Custom Solutions & Wholesale Only. Contact our team to discuss your project."
                       : "B2B向けカスタムソリューションおよび卸売専用です。プロジェクトについては、担当チームまでご相談ください。"}
                   </p>
@@ -406,10 +407,10 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
 
                 <div className="mt-auto flex gap-3 pt-8 lg:hidden">
                   <button className="flex min-h-12 flex-1 items-center justify-center border border-charcoal/15 bg-white text-sm font-semibold" onClick={showPreviousImage} type="button">
-                    {locale === "en" ? "Previous" : "前へ"}
+                    {locale === "zh" ? chineseCopy("Previous") : locale === "en" ? "Previous" : "前へ"}
                   </button>
                   <button className="flex min-h-12 flex-1 items-center justify-center border border-charcoal/15 bg-charcoal text-sm font-semibold text-white" onClick={showNextImage} type="button">
-                    {locale === "en" ? "Next" : "次へ"}
+                    {locale === "zh" ? chineseCopy("Next") : locale === "en" ? "Next" : "次へ"}
                   </button>
                 </div>
               </aside>

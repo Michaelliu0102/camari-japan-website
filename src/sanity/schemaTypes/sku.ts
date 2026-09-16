@@ -1,3 +1,4 @@
+import { chinaStatusField, chinaMarketsField } from "./chinaFields";
 import { validateMarketContent } from "./marketValidation";
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
@@ -8,6 +9,8 @@ export const sku = defineType({
   type: "document",
   validation: rule => rule.custom(validateMarketContent),
   fields: [
+    chinaStatusField,
+    chinaMarketsField,
     defineField({
       name: "code",
       title: "SKU Code",

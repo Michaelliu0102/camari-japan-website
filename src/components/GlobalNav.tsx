@@ -1,12 +1,14 @@
 "use client";
 
+import { chineseCopy } from "../china/copy";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SearchOverlay } from "@/components/SearchOverlay";
-import { absoluteLocalizedUrl, getAlternateLocale, localizedPath, type Locale } from "@/lib/locales";
+import { SiteSwitcher } from "@/components/SiteSwitcher";
+import { localizedPath, type Locale } from "@/lib/locales";
 import { siteConfig } from "@/lib/site-config";
 
 type GlobalNavProps = {
@@ -31,113 +33,103 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { label: { en: "Home", ja: "ホーム" }, href: "" },
-  { label: { en: "About", ja: "会社情報" }, href: "/about" },
+  { label: { zh: chineseCopy("Home"), en: "Home", ja: "ホーム" }, href: "" },
+  { label: { zh: chineseCopy("About"), en: "About", ja: "会社情報" }, href: "/about" },
   {
-    label: { en: "Material", ja: "素材" },
+    label: { zh: chineseCopy("Material"), en: "Material", ja: "素材" },
     href: "/materials",
     children: [
       {
-        label: { en: "Alcantara", ja: "アルカンターラ" },
+        label: { zh: chineseCopy("Alcantara"), en: "Alcantara", ja: "アルカンターラ" },
         href: "/materials/alcantara",
-        description: { en: "Premium Italian Surface Material", ja: "イタリア発の上質なサーフェス素材" },
+        description: { zh: chineseCopy("Premium Italian Surface Material"), en: "Premium Italian Surface Material", ja: "イタリア発の上質なサーフェス素材" },
         quickLinks: [
           {
-            label: { en: "AUTO", ja: "自動車" },
+            label: { zh: chineseCopy("AUTO"), en: "AUTO", ja: "自動車" },
             href: "/materials/alcantara/alcantara-panel"
           },
           {
-            label: { en: "INTERIOR", ja: "インテリア" },
+            label: { zh: chineseCopy("INTERIOR"), en: "INTERIOR", ja: "インテリア" },
             href: "/materials/alcantara/alcantara-master"
           },
           {
-            label: { en: "OUTDOOR", ja: "アウトドア" },
+            label: { zh: chineseCopy("OUTDOOR"), en: "OUTDOOR", ja: "アウトドア" },
             href: "/materials/alcantara/alcantara-exo"
           },
           {
-            label: { en: "TECH", ja: "テック" },
+            label: { zh: chineseCopy("TECH"), en: "TECH", ja: "テック" },
             href: "/materials/alcantara/alcantara-04"
           }
         ]
       },
       {
-        label: { en: "Leather", ja: "レザー" },
+        label: { zh: chineseCopy("Leather"), en: "Leather", ja: "レザー" },
         href: "/materials/leather",
-        description: { en: "Top selection Italian leather", ja: "イタリアで一貫生産された上質な本革" },
+        description: { zh: chineseCopy("Top selection Italian leather"), en: "Top selection Italian leather", ja: "イタリアで一貫生産された上質な本革" },
         hideQuickLinksFor: ["ja"],
         quickLinks: [
           {
-            label: { en: "AUTOMOTIVE", ja: "自動車" },
+            label: { zh: chineseCopy("AUTOMOTIVE"), en: "AUTOMOTIVE", ja: "自動車" },
             href: "/materials/leather/automotive-nappa"
           },
           {
-            label: { en: "INTERIOR", ja: "インテリア" },
+            label: { zh: chineseCopy("INTERIOR"), en: "INTERIOR", ja: "インテリア" },
             href: "/materials/leather/interior"
           }
         ]
       },
       {
-        label: { en: "Vegan Leather", ja: "合成皮革" },
+        label: { zh: chineseCopy("Vegan Leather"), en: "Vegan Leather", ja: "合成皮革" },
         href: "/materials/vegan-leather",
-        description: { en: "High-performance alternatives", ja: "高機能な代替レザー素材" }
+        description: { zh: chineseCopy("High-performance alternatives"), en: "High-performance alternatives", ja: "高機能な代替レザー素材" }
       },
       {
-        label: { en: "Fabric", ja: "ファブリック" },
+        label: { zh: chineseCopy("Fabric"), en: "Fabric", ja: "ファブリック" },
         href: "/materials/fabric",
-        description: { en: "Technical and decorative textiles", ja: "意匠性と機能性を備えたテキスタイル" }
+        description: { zh: chineseCopy("Technical and decorative textiles"), en: "Technical and decorative textiles", ja: "意匠性と機能性を備えたテキスタイル" }
       }
     ]
   },
   {
-    label: { en: "Products", ja: "製品" },
+    label: { zh: chineseCopy("Products"), en: "Products", ja: "製品" },
     href: "/products",
     children: [
       {
-        label: { en: "Automotive Interior Accessories", ja: "自動車内装アクセサリー" },
+        label: { zh: chineseCopy("Automotive Interior Accessories"), en: "Automotive Interior Accessories", ja: "自動車内装アクセサリー" },
         href: "/products/automotive-interior-accessories"
       },
       {
-        label: { en: "Tech Accessories", ja: "デジタルアクセサリー" },
+        label: { zh: chineseCopy("Tech Accessories"), en: "Tech Accessories", ja: "デジタルアクセサリー" },
         href: "/products/tech-accessories"
       },
       {
-        label: { en: "Lifestyle", ja: "ライフスタイル" },
+        label: { zh: chineseCopy("Lifestyle"), en: "Lifestyle", ja: "ライフスタイル" },
         href: "/products/lifestyle"
       },
       {
-        label: { en: "Corporate Gifts", ja: "法人ギフト" },
+        label: { zh: chineseCopy("Corporate Gifts"), en: "Corporate Gifts", ja: "法人ギフト" },
         href: "/products/corporation-gift"
       }
     ]
   },
   {
-    label: { en: "Media", ja: "メディア" },
+    label: { zh: chineseCopy("Media"), en: "Media", ja: "メディア" },
     href: "/media",
     children: [
       {
-        label: { en: "Press & Notes", ja: "ニュース・ノート" },
+        label: { zh: chineseCopy("Press & Notes"), en: "Press & Notes", ja: "ニュース・ノート" },
         href: "/media",
-        description: { en: "News, exhibitions, and material stories", ja: "ニュース、展示会、素材にまつわるストーリー" }
+        description: { zh: chineseCopy("News, exhibitions, and material stories"), en: "News, exhibitions, and material stories", ja: "ニュース、展示会、素材にまつわるストーリー" }
       },
       {
-        label: { en: "Downloads", ja: "ダウンロード" },
+        label: { zh: chineseCopy("Downloads"), en: "Downloads", ja: "ダウンロード" },
         href: "/downloads",
-        description: { en: "Brand and material files for project teams", ja: "プロジェクトチーム向けのブランド・素材資料" }
+        description: { zh: chineseCopy("Brand and material files for project teams"), en: "Brand and material files for project teams", ja: "プロジェクトチーム向けのブランド・素材資料" }
       }
     ]
   },
-  { label: { en: "Contact", ja: "お問い合わせ" }, href: "/contact" }
+  { label: { zh: chineseCopy("Contact"), en: "Contact", ja: "お問い合わせ" }, href: "/contact" }
 ];
-
-function getLanguageSwitchHref(locale: Locale, pathname: string): string {
-  const alternateLocale = getAlternateLocale(locale);
-
-  if (siteConfig.enableLocalePreview) {
-    return localizedPath(alternateLocale, pathname);
-  }
-
-  return absoluteLocalizedUrl(alternateLocale, pathname);
-}
 
 export function GlobalNav({ locale }: GlobalNavProps) {
   const pathname = usePathname();
@@ -214,7 +206,6 @@ export function GlobalNav({ locale }: GlobalNavProps) {
   const dropdownGlassClass = "border-y border-charcoal/10 bg-white text-charcoal shadow-material";
   const dropdownMutedText = "text-muted";
   const dropdownItemHover = "hover:bg-charcoal/5";
-  const languageSwitchHref = getLanguageSwitchHref(locale, pathname);
   const logoSrc = useDarkControls ? "/uploads/logo/black-int.png" : "/uploads/logo/white-int.png";
 
   return (
@@ -222,8 +213,8 @@ export function GlobalNav({ locale }: GlobalNavProps) {
       <header className={`${glassClass} fixed left-0 top-0 z-50 w-full`}>
       <nav className="mx-auto flex h-[var(--nav-height)] w-full max-w-container-max items-center justify-between px-4 min-[390px]:px-margin-mobile md:px-margin-desktop">
         <Link
-          aria-label={`${siteConfig.siteName} home`}
-          className="inline-flex items-center"
+          aria-label={locale === "zh" ? "卡玛瑞国际首页" : `${siteConfig.siteName} home`}
+          className="inline-flex shrink-0 items-center"
           href={localizedPath(locale)}
         >
           <Image
@@ -237,7 +228,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
         </Link>
 
         <div
-          className={`hidden items-center gap-10 font-label text-[10px] font-semibold uppercase tracking-[0.2em] md:flex ${textColor}`}
+          className={`hidden items-center gap-10 font-label font-semibold uppercase tracking-[0.2em] xl:flex ${locale === "zh" ? "text-[12px]" : "text-[10px]"} ${textColor}`}
         >
           {navItems.map((item) =>
             item.children ? (
@@ -265,14 +256,14 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                               href={localizedPath(locale, child.href)}
                               onClick={() => (document.activeElement as HTMLElement)?.blur()}
                             >
-                              <span className="block font-label text-[10px] font-semibold uppercase tracking-[0.24em]">
+                              <span className={`block font-label font-semibold uppercase tracking-[0.24em] ${locale === "zh" ? "text-[12px]" : "text-[10px]"}`}>
                                 {child.label[locale]}
                               </span>
                             </Link>
                             {child.quickLinks && !child.hideQuickLinksFor?.includes(locale) ? (
                               <button
                                 aria-expanded={Boolean(expandedQuickLinks[child.href])}
-                                aria-label={`${child.label[locale]} ${locale === "en" ? "quick links" : "クイックリンク"}`}
+                                aria-label={`${child.label[locale]} ${locale === "zh" ? chineseCopy("quick links") : locale === "en" ? "quick links" : "クイックリンク"}`}
                                 className="inline-flex h-5 w-5 items-center justify-center text-charcoal/45 transition-colors hover:text-charcoal"
                                 onClick={() => setExpandedQuickLinks((current) => ({
                                   ...current,
@@ -289,13 +280,13 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                             ) : null}
                           </div>
                           {child.description?.[locale] && !expandedQuickLinks[child.href] ? (
-                            <span className={`mt-1 block font-sans text-[0.78rem] font-normal normal-case leading-5 tracking-normal ${dropdownMutedText}`}>
+                            <span className={`mt-1 block font-sans font-normal normal-case leading-5 tracking-normal ${locale === "zh" ? "text-[14px]" : "text-[0.78rem]"} ${dropdownMutedText}`}>
                               {child.description[locale]}
                             </span>
                           ) : null}
                           {child.quickLinks && !child.hideQuickLinksFor?.includes(locale) ? (
                             <div className={`grid overflow-hidden transition-[grid-template-rows,opacity,margin] duration-300 ease-expo ${expandedQuickLinks[child.href] ? "mt-2 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"}`}>
-                              <div className="flex min-h-0 flex-wrap items-center gap-x-2.5 gap-y-2 font-label text-[8px] font-semibold uppercase tracking-[0.18em] text-charcoal/45">
+                              <div className={`flex min-h-0 flex-wrap items-center gap-x-2.5 gap-y-2 font-label font-semibold uppercase tracking-[0.18em] text-charcoal/45 ${locale === "zh" ? "text-[10px]" : "text-[8px]"}`}>
                               {child.quickLinks.map((quickLink, index) => (
                                 <span className="inline-flex items-center gap-2.5" key={quickLink.href}>
                                   {index > 0 ? <span aria-hidden="true" className="text-charcoal/20">·</span> : null}
@@ -331,27 +322,20 @@ export function GlobalNav({ locale }: GlobalNavProps) {
 
         <div className={`flex items-center gap-2 md:gap-3 ${textColor}`}>
           <button
-            aria-label={locale === "en" ? "Search materials" : "素材を検索"}
+            aria-label={locale === "zh" ? chineseCopy("Search materials") : locale === "en" ? "Search materials" : "素材を検索"}
             className={`hidden h-10 w-10 items-center justify-center border transition-colors md:flex ${borderColor} ${btnBg} ${hoverBg}`}
             onClick={() => setSearchOpen(true)}
             type="button"
           >
             <Search size={16} strokeWidth={1.4} />
           </button>
-          <Link
-            className={`flex min-h-11 items-center border font-label text-[9px] font-semibold uppercase tracking-[0.18em] transition-colors md:text-[10px] md:tracking-[0.24em] ${borderColor} ${btnBg} ${hoverBg}`}
-            href={languageSwitchHref}
-          >
-            <span className={`px-2.5 py-3 min-[390px]:px-3 ${locale === "en" ? "" : "opacity-50"}`}>EN</span>
-            <span className="py-3 opacity-20">/</span>
-            <span className={`px-2.5 py-3 min-[390px]:px-3 ${locale === "ja" ? "" : "opacity-50"}`}>JP</span>
-          </Link>
+          <SiteSwitcher darkControls={useDarkControls} key={`${locale}:${pathname}`} locale={locale} pathname={pathname} />
           <button
             aria-expanded={mobileOpen}
             aria-label={
-              mobileOpen ? "Close navigation" : "Open navigation"
+              locale === "zh" ? (mobileOpen ? "关闭导航" : "打开导航") : mobileOpen ? "Close navigation" : "Open navigation"
             }
-            className={`flex h-11 w-11 shrink-0 items-center justify-center border transition-colors md:hidden ${borderColor} ${btnBg} ${hoverBg}`}
+            className={`flex h-11 w-11 shrink-0 items-center justify-center border transition-colors xl:hidden ${borderColor} ${btnBg} ${hoverBg}`}
             onClick={() => setMobileOpen((prev) => !prev)}
             type="button"
           >
@@ -365,16 +349,16 @@ export function GlobalNav({ locale }: GlobalNavProps) {
       </nav>
 
       {mobileOpen ? (
-        <div className="fixed inset-x-0 bottom-0 top-[var(--nav-height)] z-40 overflow-y-auto overscroll-contain bg-paper text-charcoal md:hidden">
+        <div className="fixed inset-x-0 bottom-0 top-[var(--nav-height)] z-40 overflow-y-auto overscroll-contain bg-paper text-charcoal xl:hidden">
           <nav
-            aria-label={locale === "en" ? "Mobile navigation" : "モバイルナビゲーション"}
+            aria-label={locale === "zh" ? chineseCopy("Mobile navigation") : locale === "en" ? "Mobile navigation" : "モバイルナビゲーション"}
             className="mx-auto flex min-h-full w-full max-w-xl flex-col px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-4"
           >
             <div className="divide-y divide-charcoal/12 border-y border-charcoal/12">
             {navItems.map((item) => (
               <div className="py-2" key={item.href || "home"}>
                 <Link
-                  className="flex min-h-11 items-center font-label text-[0.82rem] font-semibold uppercase tracking-[0.18em] text-charcoal transition-colors hover:text-gold focus-visible:text-gold"
+                  className={`flex min-h-11 items-center font-label font-semibold uppercase tracking-[0.18em] text-charcoal transition-colors hover:text-gold focus-visible:text-gold ${locale === "zh" ? "text-[14px]" : "text-[0.82rem]"}`}
                   href={localizedPath(locale, item.href)}
                   onClick={closeMobile}
                 >
@@ -384,7 +368,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                   <div className="grid grid-cols-2 gap-x-4 gap-y-1 pb-2">
                     {item.children.map((child) => (
                       <Link
-                        className="flex min-h-11 items-center font-label text-[0.62rem] font-semibold uppercase leading-5 tracking-[0.13em] text-muted transition-colors hover:text-charcoal focus-visible:text-charcoal"
+                        className={`flex min-h-11 items-center font-label font-semibold uppercase leading-5 tracking-[0.13em] text-muted transition-colors hover:text-charcoal focus-visible:text-charcoal ${locale === "zh" ? "text-[12px]" : "text-[0.62rem]"}`}
                         href={localizedPath(locale, child.href)}
                         key={child.href}
                         onClick={closeMobile}
@@ -398,14 +382,14 @@ export function GlobalNav({ locale }: GlobalNavProps) {
             ))}
             </div>
             <button
-              className="mt-6 min-h-12 w-full border border-charcoal/30 px-6 py-3 font-label text-[10px] font-semibold uppercase tracking-[0.22em] text-charcoal transition-colors hover:bg-charcoal hover:text-paper focus-visible:bg-charcoal focus-visible:text-paper"
+              className={`mt-6 min-h-12 w-full border border-charcoal/30 px-6 py-3 font-label font-semibold uppercase tracking-[0.22em] text-charcoal transition-colors hover:bg-charcoal hover:text-paper focus-visible:bg-charcoal focus-visible:text-paper ${locale === "zh" ? "text-[12px]" : "text-[10px]"}`}
               onClick={() => {
                 closeMobile();
                 setSearchOpen(true);
               }}
               type="button"
             >
-              {locale === "en" ? "Search Materials" : "素材を検索"}
+              {locale === "zh" ? chineseCopy("Search Materials") : locale === "en" ? "Search Materials" : "素材を検索"}
             </button>
           </nav>
         </div>

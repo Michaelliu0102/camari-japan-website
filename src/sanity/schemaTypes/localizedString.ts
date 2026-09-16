@@ -18,7 +18,8 @@ export const localizedString = [
     type: "string",
     description: "For products/SKUs, Japanese requirements follow the target market. Original colour names may remain untranslated.",
     validation: (rule) => rule.custom((value, context) => !isLocaleRequired(context.document, "ja") || Boolean(value?.trim()) ? true : "Japanese is required.")
-  })
+  }),
+  defineField({ name: "zh", title: "简体中文", type: "string", description: "中文内容独立编辑；未完成时不影响英日文更新。" })
 ];
 
 export const localizedText = [
@@ -36,5 +37,6 @@ export const localizedText = [
     rows: 4,
     description: "For products/SKUs, Japanese requirements follow the target market.",
     validation: (rule) => rule.custom((value, context) => !isLocaleRequired(context.document, "ja") || Boolean(value?.trim()) ? true : "Japanese is required.")
-  })
+  }),
+  defineField({ name: "zh", title: "简体中文", type: "text", rows: 4, description: "中文内容独立编辑；审核通过前仅供预览。" })
 ];

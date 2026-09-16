@@ -34,6 +34,32 @@ const initialFormState: FormState = {
 };
 
 const copy = {
+  zh: {
+    title: "给我们留言",
+    intro: "告诉我们您的材料需求或定制项目构想",
+    name: "姓名",
+    namePlaceholder: "请输入您的姓名",
+    email: "工作邮箱",
+    emailPlaceholder: "请输入您的邮箱地址",
+    phone: "联系电话",
+    phonePlaceholder: "选填",
+    company: "公司名称",
+    companyPlaceholder: "请输入公司名称",
+    countryRegion: "国家／地区",
+    countryRegionPlaceholder: "请选择国家或地区",
+    article: "材料系列",
+    interests: "咨询方向",
+    materials: "材料",
+    customProducts: "定制项目",
+    message: "留言／项目要求",
+    messagePlaceholder: "请说明应用场景、数量、交付时间、材料方向或技术要求。",
+    submit: "提交",
+    close: "关闭留言表单",
+    required: "请填写姓名、工作邮箱、公司名称及项目需求。",
+    sending: "正在发送您的咨询…",
+    success: "感谢您的联系，咨询已发送。",
+    error: "咨询未能发送，请直接发送邮件至 info@camari-international.com。",
+  },
   en: {
     title: "Write us a message.",
     intro: "Send us your material brief or custom project idea",
@@ -135,6 +161,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (locale === "zh") { setFeedback("中国站预览暂不发送，请通过电话或邮箱联系我们。"); return; }
 
     if (
       !form.name.trim() ||
@@ -218,7 +245,18 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
             <p className="mt-4 text-[15px] leading-[1.6] tracking-[0.02em] text-charcoal/65">{labels.intro}</p>
           </div>
 
-          <form className="mt-8 grid gap-6" onSubmit={handleSubmit}>
+          <form
+            className="mt-8 grid gap-6"
+            onSubmit={handleSubmit}
+            onInvalid={(event) => {
+              if (locale !== "zh") return;
+              const field = event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+              field.setCustomValidity(field.validity.valueMissing ? "请填写此必填项。" : "请输入有效的邮箱地址。");
+            }}
+            onInput={(event) => {
+              if (locale === "zh") (event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).setCustomValidity("");
+            }}
+          >
             <div className="grid gap-x-10 gap-y-8 md:grid-cols-2">
               <label className="grid gap-3">
                 <span className="label-caps text-charcoal/70">{labels.name} <span className="text-gold">*</span></span>

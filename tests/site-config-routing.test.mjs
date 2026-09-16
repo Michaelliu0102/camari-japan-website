@@ -1,15 +1,14 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
+import { build } from "esbuild";
 import { test } from "node:test";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
 
 async function importTsModule(relativePath) {
-  const moduleUrl = pathToFileURL(path.join(projectRoot, relativePath));
-  moduleUrl.searchParams.set("t", `${Date.now()}-${Math.random()}`);
-  return import(moduleUrl.href);
+  const result=await build({entryPoints:[path.join(projectRoot,relativePath)],bundle:true,write:false,format:"esm",platform:"node",packages:"external"});
+  return import(`data:text/javascript;base64,${Buffer.from(result.outputFiles[0].text).toString("base64")}#${Math.random()}`);
 }
 
 async function importOptionalTsModule(relativePath) {
@@ -74,6 +73,7 @@ test("site config resolves deployment-specific identity for global and japan sit
       siteUrl: "https://www.camari-international.com",
       alternateSiteHomeUrl: "https://www.camari-international.co.jp",
       localeSiteUrls: {
+        zh: "https://camari-international.com.cn",
         en: "https://www.camari-international.com",
         ja: "https://www.camari-international.co.jp"
       }
@@ -105,6 +105,7 @@ test("site config resolves deployment-specific identity for global and japan sit
       siteUrl: "https://www.camari-international.co.jp",
       alternateSiteHomeUrl: "https://www.camari-international.com",
       localeSiteUrls: {
+        zh: "https://camari-international.com.cn",
         en: "https://www.camari-international.com",
         ja: "https://www.camari-international.co.jp"
       }
@@ -132,6 +133,7 @@ test("site config falls back to the matching production locale domains", async (
 
   assert.equal(japanSite.alternateSiteHomeUrl, "https://www.camari-international.com");
   assert.deepEqual(japanSite.localeSiteUrls, {
+    zh: "https://camari-international.com.cn",
     en: "https://www.camari-international.com",
     ja: "https://www.camari-international.co.jp"
   });
@@ -152,6 +154,7 @@ test("site config can keep both languages inside a production preview deployment
 
   assert.equal(previewSite.enableLocalePreview, true);
   assert.deepEqual(previewSite.localeSiteUrls, {
+    zh: "https://camari-international.com.cn",
     en: "https://camari-japan-preview.example.test",
     ja: "https://camari-japan-preview.example.test"
   });

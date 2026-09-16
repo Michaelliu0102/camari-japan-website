@@ -1,3 +1,4 @@
+import { chinaSiteDefaults } from "../china/defaults";
 import { normalizePublicPath, type Locale } from "./locales";
 import { getSeoBrandName, type SiteConfig } from "./site-config";
 
@@ -69,6 +70,7 @@ function entityId(site: Pick<SiteConfig, "siteUrl">, entity: "organization" | "w
 }
 
 function organizationReference(site: Pick<SiteConfig, "siteUrl">, locale: Locale) {
+  if(locale === "zh") site={...site,siteUrl:"https://camari-international.com.cn"};
   return {
     "@type": "Organization",
     "@id": entityId(site, "organization"),
@@ -85,6 +87,7 @@ export function buildOrganizationJsonLd(
   site: Pick<SiteConfig, "siteUrl" | "legalName" | "contact">,
   locale: Locale
 ) {
+  if(locale === "zh") site={...site,siteUrl:"https://camari-international.com.cn",legalName:chinaSiteDefaults.legalName,contact:{email:chinaSiteDefaults.contact.email!,phone:chinaSiteDefaults.contact.phone!,address:{en:chinaSiteDefaults.contact.address!,ja:chinaSiteDefaults.contact.address!,zh:chinaSiteDefaults.contact.address!}}};
   return {
     "@context": "https://schema.org",
     ...organizationReference(site, locale),
@@ -145,6 +148,7 @@ export function buildLocalBusinessJsonLd(
 }
 
 export function buildWebSiteJsonLd(site: Pick<SiteConfig, "siteKey" | "siteUrl" | "siteName">, locale: Locale) {
+  if(locale === "zh") site={...site,siteUrl:"https://camari-international.com.cn",siteKey:"global"};
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -152,14 +156,15 @@ export function buildWebSiteJsonLd(site: Pick<SiteConfig, "siteKey" | "siteUrl" 
     url: new URL("/", `${site.siteUrl}/`).toString(),
     name: getSeoBrandName(locale),
     alternateName: site.siteKey === "japan" ? ["CAMARI JAPAN", "CAMARI"] : "CAMARI",
-    inLanguage: locale === "ja" ? "ja-JP" : "en",
+    inLanguage: locale === "zh" ? "zh-CN" : locale === "ja" ? "ja-JP" : "en",
     publisher: {
       "@id": entityId(site, "organization")
     }
   };
 }
 
-export function buildBreadcrumbJsonLd(site: Pick<SiteConfig, "siteUrl">, items: BreadcrumbEntry[]) {
+export function buildBreadcrumbJsonLd(site: Pick<SiteConfig, "siteUrl">, items: BreadcrumbEntry[], locale?:Locale) {
+  if(locale === "zh")site={...site,siteUrl:"https://camari-international.com.cn"};
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -173,6 +178,7 @@ export function buildBreadcrumbJsonLd(site: Pick<SiteConfig, "siteUrl">, items: 
 }
 
 export function buildProductJsonLd(site: Pick<SiteConfig, "siteUrl">, product: ProductEntry, locale: Locale) {
+  if(locale === "zh")site={...site,siteUrl:"https://camari-international.com.cn"};
   const url = toAbsoluteUrl(site, product.path);
 
   return {
@@ -196,6 +202,7 @@ export function buildProductGroupJsonLd(
   site: Pick<SiteConfig, "siteUrl">,
   productGroup: ProductGroupEntry
 ) {
+  if(productGroup.locale === "zh")site={...site,siteUrl:"https://camari-international.com.cn"};
   const url = toAbsoluteUrl(site, productGroup.path);
   const brand = {
     "@type": "Brand",
@@ -234,6 +241,7 @@ export function buildProductCategoryJsonLd(
   site: Pick<SiteConfig, "siteUrl">,
   category: ProductCategoryEntry
 ) {
+  if(category.locale === "zh")site={...site,siteUrl:"https://camari-international.com.cn"};
   const url = toAbsoluteUrl(site, category.path);
   const breadcrumbId = `${url}#breadcrumb`;
   const itemListId = `${url}#itemlist`;
@@ -248,13 +256,13 @@ export function buildProductCategoryJsonLd(
           {
             "@type": "ListItem",
             position: 1,
-            name: category.locale === "en" ? "Home" : "ホーム",
+            name: category.locale === "zh" ? "首页" : category.locale === "en" ? "Home" : "ホーム",
             item: toAbsoluteUrl(site, "/")
           },
           {
             "@type": "ListItem",
             position: 2,
-            name: category.locale === "en" ? "Products" : "製品",
+            name: category.locale === "zh" ? "产品" : category.locale === "en" ? "Products" : "製品",
             item: toAbsoluteUrl(site, "/products")
           },
           {
@@ -271,7 +279,7 @@ export function buildProductCategoryJsonLd(
         url,
         name: category.name,
         description: category.description,
-        inLanguage: category.locale === "ja" ? "ja-JP" : "en",
+        inLanguage: category.locale === "zh" ? "zh-CN" : category.locale === "ja" ? "ja-JP" : "en",
         breadcrumb: {
           "@id": breadcrumbId
         },
@@ -306,6 +314,7 @@ export function buildNewsArticleJsonLd(
   site: Pick<SiteConfig, "siteUrl">,
   article: NewsArticleEntry
 ) {
+  if(article.locale === "zh")site={...site,siteUrl:"https://camari-international.com.cn"};
   const url = toAbsoluteUrl(site, article.path);
 
   return {
@@ -322,7 +331,7 @@ export function buildNewsArticleJsonLd(
     datePublished: article.datePublished,
     dateModified: article.dateModified ?? article.datePublished,
     articleSection: article.articleSection,
-    inLanguage: article.locale === "ja" ? "ja-JP" : "en",
+    inLanguage: article.locale === "zh" ? "zh-CN" : article.locale === "ja" ? "ja-JP" : "en",
     author: organizationReference(site, article.locale),
     publisher: organizationReference(site, article.locale)
   };
