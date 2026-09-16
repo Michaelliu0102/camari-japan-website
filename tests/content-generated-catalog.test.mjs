@@ -20,6 +20,8 @@ async function compileContentModule(sourcePath, outputPath) {
   }).outputText;
 
   output = output.replaceAll('from "./site-config";', 'from "./site-config.js";');
+  output = output.replaceAll('from "../content/home-page-copy";', 'from "../content/home-page-copy.js";');
+  output = output.replaceAll('from "../lib/site-config";', 'from "../lib/site-config.js";');
 
   await writeFile(outputPath, output);
 }
@@ -52,6 +54,9 @@ async function loadContentModule() {
 `
   );
   await writeFile(generatedCatalogPath, await readFile(path.join(projectRoot, "src/data/product-catalog.generated.json"), "utf8"));
+  await writeFile(path.join(root, "src/data/about-page-ja.json"), await readFile(path.join(projectRoot, "src/data/about-page-ja.json"), "utf8"));
+  await mkdir(path.join(root, "src/content"), { recursive: true });
+  await compileContentModule(path.join(projectRoot, "src/content/home-page-copy.ts"), path.join(root, "src/content/home-page-copy.js"));
   await compileContentModule(path.join(projectRoot, "src/lib/content.ts"), compiledContent);
 
   const module = await import(`${pathToFileURL(compiledContent).href}?${Date.now()}`);

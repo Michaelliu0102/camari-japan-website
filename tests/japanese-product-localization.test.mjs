@@ -42,7 +42,7 @@ test("Japanese material and specification sections localize their visible headin
   const materialsPage = await source("src/app/[locale]/materials/page.tsx");
   const specificationTable = await source("src/components/SpecificationTable.tsx");
   const downloadPanel = await source("src/components/DownloadPanel.tsx");
-  const skuPage = await source("src/app/[locale]/materials/[materialSlug]/[productTypeSlug]/[skuSlug]/page.tsx");
+  const skuPage = await source("src/components/ProductTypeDetailPage.tsx");
 
   assert.match(materialsPage, /title=\{locale === "en" \? "Material" : "素材"\}/);
   assert.match(materialsPage, /subtitle=\{locale === "en" \? "The intersection of Italian sensory tension and Japanese restraint" : undefined\}/);
@@ -56,7 +56,7 @@ test("Japanese material and specification sections localize their visible headin
   assert.match(skuPage, /locale === "en" \? "Downloads" : "ダウンロード"/);
 });
 
-test("Japanese copy sheet overrides Sanity-backed material and home content", async () => {
+test("Japanese copy sheet supplies fallbacks without overriding Sanity content", async () => {
   const copy = await source("src/lib/japanese-copy.ts");
   const loaders = await source("src/sanity/lib/loaders.ts");
   const productsPage = await source("src/app/[locale]/products/page.tsx");
@@ -73,8 +73,8 @@ test("Japanese copy sheet overrides Sanity-backed material and home content", as
   assert.match(copy, /イタリアの技術と美意識の融合/);
   assert.match(copy, /名車にふさわしい品質/);
   assert.match(copy, /職人の技が息づくイタリア製本革/);
-  assert.match(loaders, /applyJapaneseMaterialCategoryCopy\(categories\)/);
-  assert.match(loaders, /applyJapaneseMaterialCopy\(materials\)/);
+  assert.match(loaders, /applyJapaneseMaterialCategoryCopy\(fallbackCategories\)/);
+  assert.match(loaders, /applyJapaneseMaterialCopy\(fallbackMaterials\)/);
   assert.match(loaders, /applyJapaneseHomePageCopy/);
   assert.match(productsPage, /JAPANESE_PRODUCT_SURFACE_DESCRIPTION/);
   assert.match(materialIntro, /quote \?/);
@@ -96,7 +96,7 @@ test("Japanese product-category copy mirrors the upload template on local and Sa
   assert.equal(translatedContent.lifestyle.carouselItems[9].title, "トラベルポーチ");
   assert.match(copy, /applyJapaneseProductCategoryCopy/);
   assert.match(copy, /getJapaneseProductCategorySeo/);
-  assert.match(loaders, /return applyJapaneseProductCategoryCopy\(categories\)/);
+  assert.match(loaders, /applyJapaneseProductCategoryCopy\(fallbackProductCategories\)/);
   assert.match(categoryPage, /getJapaneseProductCategorySeo/);
   assert.match(carousel, /details\.filter\(\(detail\) => detail\[locale\]\)/);
 });
@@ -112,8 +112,8 @@ test("Japanese overview pages localize the remaining English section labels", as
   const materialBento = await source("src/components/MaterialBentoGrid.tsx");
   const exploreCarousel = await source("src/components/ExploreCarousel.tsx");
 
-  assert.match(downloadsPage, /locale === "en" \? "Downloads" : "ダウンロード"/);
-  assert.match(productsPage, /locale === "en" \? "Product" : "製品"/);
+  assert.match(downloadsPage, /settings\.title\[locale\]/);
+  assert.match(productsPage, /locale === "en" \? "Products" : "製品"/);
   assert.match(productCarousel, /locale === "en" \? "View All" : "すべて見る"/);
   assert.match(applicationGrid, /locale === "en" \? "Article" : "記事"/);
   assert.match(applicationGrid, /`\$\{application\.colorCount\}色`/);
@@ -122,15 +122,15 @@ test("Japanese overview pages localize the remaining English section labels", as
   assert.match(materialArticles, /locale === "en" \? "Pattern Library" : "パターンライブラリー"/);
   assert.match(materialBento, /locale === "en" \? "Explore Texture" : "質感を見る"/);
   assert.match(exploreCarousel, /locale === "en" \? "View" : "詳細を見る"/);
-  assert.match(homePage, /locale === "en" \? "Brand Value" : "ブランド価値"/);
-  assert.match(homePage, /locale === "en" \? "About Us" : "会社情報"/);
+  assert.match(homePage, /homeSettings\.brandValueLabel\[locale\]/);
+  assert.match(homePage, /homeSettings\.brandValueLinkLabel\[locale\]/);
 });
 
 test("Japanese visible content converts ALCANTARA and CAMARI to katakana", async () => {
   const locales = await source("src/lib/locales.ts");
   const loaders = await source("src/sanity/lib/loaders.ts");
   const materialPage = await source("src/app/[locale]/materials/[materialSlug]/page.tsx");
-  const skuPage = await source("src/app/[locale]/materials/[materialSlug]/[productTypeSlug]/[skuSlug]/page.tsx");
+  const skuPage = await source("src/components/ProductTypeDetailPage.tsx");
   const downloads = await source("src/components/DownloadAccordion.tsx");
   const swatches = await source("src/components/SkuSwatches.tsx");
 

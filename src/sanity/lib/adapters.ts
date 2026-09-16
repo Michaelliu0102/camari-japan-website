@@ -175,8 +175,7 @@ function muxVideoUrl(playbackId: string): string {
   return `https://stream.mux.com/${playbackId}.m3u8`;
 }
 
-export function adaptHomePageSettings(raw: RawHomePageSettings): HomePageSettings {
-  const fallback = fallbackHomePageSettings;
+export function adaptHomePageSettings(raw: RawHomePageSettings, fallback = fallbackHomePageSettings): HomePageSettings {
   const playbackId = raw?.heroVideoPlaybackId?.trim();
   const productSlides = (raw?.exploreProductSlides ?? [])
     .map<HomeExploreSlide>((slide) => ({
@@ -190,6 +189,14 @@ export function adaptHomePageSettings(raw: RawHomePageSettings): HomePageSetting
     .filter((slide) => slide.slug && slide.image && slide.href);
 
   return {
+    brandValueLabel: localized(raw?.brandValueLabel ?? fallback.brandValueLabel),
+    brandValueTitle: localized(raw?.brandValueTitle ?? fallback.brandValueTitle),
+    brandValueBody: localized(raw?.brandValueBody ?? fallback.brandValueBody),
+    brandValueLinkLabel: localized(raw?.brandValueLinkLabel ?? fallback.brandValueLinkLabel),
+    ctaTitle: localized(raw?.ctaTitle ?? fallback.ctaTitle),
+    ctaBody: localized(raw?.ctaBody ?? fallback.ctaBody),
+    ctaLabel: localized(raw?.ctaLabel ?? fallback.ctaLabel),
+    ctaSecondaryLabel: localized(raw?.ctaSecondaryLabel ?? fallback.ctaSecondaryLabel),
     hero: {
       title: localized(raw?.heroTitle ?? fallback.hero.title),
       subtitle: localized(raw?.heroSubtitle ?? fallback.hero.subtitle),
@@ -216,6 +223,11 @@ export function adaptAboutPageSettings(raw: RawAboutPageSettings): AboutPageSett
   const manufacturingParagraphs = (raw?.manufacturingParagraphs ?? [])
     .map((paragraph) => localized(paragraph))
     .filter((paragraph) => paragraph.en || paragraph.ja);
+  const missionParagraphs = raw?.missionParagraphs?.filter(Boolean).map((paragraph) => localized(paragraph));
+  const businessItems = raw?.businessItems?.filter((item) => item != null).map((item) => ({
+    title: localized(item.title),
+    body: localized(item.body)
+  }));
 
   return {
     seo: {
@@ -229,10 +241,16 @@ export function adaptAboutPageSettings(raw: RawAboutPageSettings): AboutPageSett
     exploreLabel: localized(raw?.exploreLabel ?? fallback.exploreLabel),
     bodyLabel: localized(raw?.bodyLabel ?? fallback.bodyLabel),
     bodyTitle: localized(raw?.bodyTitle ?? fallback.bodyTitle),
-    bodyParagraphs: bodyParagraphs.length ? bodyParagraphs : fallback.bodyParagraphs,
+    bodySubtitle: localized(raw?.bodySubtitle ?? fallback.bodySubtitle),
+    bodyParagraphs: raw?.bodyParagraphs == null ? fallback.bodyParagraphs : bodyParagraphs,
+    missionLabel: localized(raw?.missionLabel ?? fallback.missionLabel),
+    missionTitle: localized(raw?.missionTitle ?? fallback.missionTitle),
+    missionParagraphs: missionParagraphs ?? fallback.missionParagraphs,
+    businessLabel: localized(raw?.businessLabel ?? fallback.businessLabel),
+    businessItems: businessItems ?? fallback.businessItems,
     manufacturingLabel: localized(raw?.manufacturingLabel ?? fallback.manufacturingLabel),
     manufacturingTitle: localized(raw?.manufacturingTitle ?? fallback.manufacturingTitle),
-    manufacturingParagraphs: manufacturingParagraphs.length ? manufacturingParagraphs : fallback.manufacturingParagraphs
+    manufacturingParagraphs: raw?.manufacturingParagraphs == null ? fallback.manufacturingParagraphs : manufacturingParagraphs
   };
 }
 
@@ -263,13 +281,13 @@ export function adaptMaterialCategory(raw: RawMaterialCategory): MaterialCategor
   };
 }
 
-export function adaptMaterial(raw: RawMaterial): Material {
+export function adaptMaterial(raw: RawMaterial, fixture = fixtureMaterial(raw.slug ?? "")): Material {
   const slug = raw.slug ?? "";
   const name = localized(raw.name);
-  const fixture = fixtureMaterial(slug);
   const heroImage = materialHeroImageOverrides[slug] ?? raw.heroImageUrl ?? fixture?.heroImage ?? "";
 
   return {
+    faq: raw.faq ? Object.fromEntries(Object.entries(raw.faq).map(([locale, items]) => [locale, (items ?? []).filter(item => item != null && (item.question || item.answer)).map(item => ({ ...item, question: item.question ?? "", answer: item.answer ?? "" }))])) : {},
     slug,
     updatedAt: raw.updatedAt ?? undefined,
     categorySlug: raw.categorySlug ?? fixture?.categorySlug ?? "",
@@ -300,7 +318,7 @@ export function adaptMaterial(raw: RawMaterial): Material {
   };
 }
 
-export function adaptProductType(raw: RawProductType): ProductType {
+export function adaptProductType(raw: RawProductType, fallbackDownloads?: Download[]): ProductType {
   const slug = raw.slug ?? "";
   const name = localized(raw.name);
   const fixture = isSkaiProductType({ slug, name, materialSlug: raw.materialSlug ?? "" })
@@ -331,7 +349,7 @@ export function adaptProductType(raw: RawProductType): ProductType {
     name,
     summary: raw.summary?.en || raw.summary?.ja ? localized(raw.summary) : fixture?.summary ?? emptyLocalized,
     productCode: raw.productCode ?? fixture?.productCode,
-    downloads: raw.downloads?.length ? raw.downloads.map(adaptDownload) : fixture?.downloads ?? [],
+    downloads: raw.downloads == null ? (raw.editorialDownloadsMigrated ? [] : fallbackDownloads ?? fixture?.downloads ?? []) : raw.downloads.map(adaptDownload),
     specTemplate: specTemplate.length ? specTemplate : fixture?.specTemplate ?? [],
     certifications: certifications.length ? certifications : fixture?.certifications ?? [],
     maintenance: maintenance.length ? maintenance : fixture?.maintenance ?? [],
@@ -339,9 +357,8 @@ export function adaptProductType(raw: RawProductType): ProductType {
   };
 }
 
-export function adaptProductCategory(raw: RawProductCategory): ProductCategory {
+export function adaptProductCategory(raw: RawProductCategory, fixture = fixtureProductCategory(raw.slug ?? "")): ProductCategory {
   const slug = raw.slug ?? "";
-  const fixture = fixtureProductCategory(slug);
   const title = raw.title?.en || raw.title?.ja ? localized(raw.title) : fixture?.title ?? emptyLocalized;
   const heroImage = raw.heroImageUrl ?? fixture?.heroImage ?? "";
   const description = raw.description?.en || raw.description?.ja ? localized(raw.description) : fixture?.description ?? emptyLocalized;
@@ -386,6 +403,8 @@ export function adaptProductCategory(raw: RawProductCategory): ProductCategory {
 
 export function adaptSku(raw: RawSku): Sku {
   const colorName = localized(raw.colorName);
+  // Manufacturer colour names remain recognizable when a Japanese alias is not provided.
+  if (!colorName.ja) colorName.ja = colorName.en;
   const code = raw.code ?? "";
 
   return {
@@ -480,6 +499,11 @@ export function adaptNewsItem(raw: RawNewsItem): NewsItem {
   const image = raw.imageUrl ?? "";
 
   return {
+    availableLocales: raw.availableLocales ?? undefined,
+    articleContent: raw.articleContent ? Object.fromEntries(Object.entries(raw.articleContent).filter(([, article]) => article != null).map(([locale, article]) => [locale, {
+      ...article, dateline: article.dateline ?? "", introduction: article.introduction ?? [],
+      sections: (article.sections ?? []).map(section => ({ ...section, title: section.title ?? "", body: section.body ?? [], images: (section.images ?? []).filter(image => Boolean(image.src)) }))
+    }])) : undefined,
     slug: raw.slug ?? "",
     updatedAt: raw.updatedAt ?? undefined,
     title,

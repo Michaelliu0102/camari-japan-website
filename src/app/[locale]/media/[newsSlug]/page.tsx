@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
-import { getNewsArticleContent, type NewsArticleImage } from "@/content/news-articles";
+import type { NewsArticleImage } from "@/content/news-articles";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
 import { buildBreadcrumbJsonLd, buildNewsArticleJsonLd } from "@/lib/structured-data";
@@ -83,7 +83,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const article = getNewsArticleContent(item.slug, locale);
+  const article = item.articleContent?.[locale];
   const articleHeroImage = article?.heroImage ?? item.image;
   const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
     { name: locale === "en" ? "Home" : "ホーム", path: "/" },
@@ -181,7 +181,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
             <div className="mt-20 border-t border-charcoal/15 pt-10 md:mt-24 md:pt-12">
               <Link
                 className="label-caps inline-flex border-b border-charcoal/30 pb-2 text-charcoal transition-colors duration-300 hover:border-gold hover:text-gold"
-                href={localizedPath(locale, article.relatedLink.href)}
+                href={article.relatedLink.href.startsWith("/") ? localizedPath(locale, article.relatedLink.href) : article.relatedLink.href}
               >
                 {article.relatedLink.label}
               </Link>

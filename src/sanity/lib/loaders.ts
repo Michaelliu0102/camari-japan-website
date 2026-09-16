@@ -1,3 +1,7 @@
+import { materialFaqs } from "@/content/material-faqs";
+import { getNewsArticleContent } from "@/content/news-articles";
+import { createDownloadGroups, downloadPageCopy, type DownloadPageSettings } from "@/content/downloads";
+import { adaptDownloadPage, downloadPageQuery, type RawDownloadPage } from "./download-page";
 import { cache } from "react";
 import {
   aboutPageSettings as fallbackAboutPageSettings,
@@ -279,7 +283,7 @@ const alcantaraDownloadSets: Record<string, Download[]> = {
   ]
 };
 
-function withLocalAlcantaraDownloads(productTypes: ProductType[]): ProductType[] {
+export function withLocalAlcantaraDownloads(productTypes: ProductType[]): ProductType[] {
   return productTypes.map((productType) => {
     const downloads = alcantaraDownloadSets[productType.slug];
 
@@ -294,7 +298,7 @@ function withLocalAlcantaraDownloads(productTypes: ProductType[]): ProductType[]
   });
 }
 
-function withLocalLeatherSpecDownloads(productTypes: ProductType[]): ProductType[] {
+export function withLocalLeatherSpecDownloads(productTypes: ProductType[]): ProductType[] {
   return productTypes.map((productType) => {
     const specDownload = leatherSpecDownloads[productType.slug];
 
@@ -329,7 +333,7 @@ async function fetchOrFallback<Raw, Value>(
     if (!results || results.length === 0) {
       return normalizeLocalizedBrandNames(fallback);
     }
-    return normalizeLocalizedBrandNames(results.map(adapter));
+    return normalizeLocalizedBrandNames(results.map((raw) => adapter(raw)));
   } catch (error) {
     if (process.env.NODE_ENV === "production") {
       throw error;
@@ -361,7 +365,7 @@ async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
     }
 
     const merged = new Map(includeFallbackRecords ? fallback.map((item) => [item.slug, item]) : []);
-    for (const item of results.map(adapter)) {
+    for (const item of results.map((raw) => adapter(raw))) {
       const existing = merged.get(item.slug) ?? fallback.find((fallbackItem) => fallbackItem.slug === item.slug);
       if (existing) {
         const existingAny = existing as Record<string, unknown>;
@@ -392,49 +396,64 @@ async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
 }
 
 export async function loadMaterialCategories(): Promise<MaterialCategory[]> {
-  const categories = await fetchAndMergeBySlug<RawMaterialCategory, MaterialCategory>(materialCategoriesQuery, {}, fallbackCategories, adaptMaterialCategory);
-  return applyJapaneseMaterialCategoryCopy(categories);
+  return fetchAndMergeBySlug<RawMaterialCategory, MaterialCategory>(
+    materialCategoriesQuery, {}, applyJapaneseMaterialCategoryCopy(fallbackCategories), adaptMaterialCategory,
+  );
 }
 
 export async function loadHomePageSettings(): Promise<HomePageSettings> {
+  // Keep editable editorial copy literal; retain existing brand styling for hero/explore only.
+  const normalizeHomeSettings = (settings: HomePageSettings): HomePageSettings => ({
+    ...settings, hero: normalizeLocalizedBrandNames(settings.hero), explore: normalizeLocalizedBrandNames(settings.explore)
+  });
+  const fallback = applyJapaneseHomePageCopy(fallbackHomePageSettings);
   if (!isSanityConfigured()) {
-    return applyJapaneseHomePageCopy(normalizeLocalizedBrandNames(fallbackHomePageSettings));
+    return normalizeHomeSettings(fallback);
   }
 
   try {
     const result = await getSanityClient().fetch<RawHomePageSettings>(homePageSettingsQuery);
     if (!result) {
-      return applyJapaneseHomePageCopy(normalizeLocalizedBrandNames(fallbackHomePageSettings));
+      return normalizeHomeSettings(fallback);
     }
-    return applyJapaneseHomePageCopy(normalizeLocalizedBrandNames(adaptHomePageSettings(result)));
+    return normalizeHomeSettings(adaptHomePageSettings(result, fallback));
   } catch (error) {
     if (process.env.NODE_ENV === "production") {
       throw error;
     }
 
     console.warn("Sanity homepage fetch failed; using local fixture content.", error);
-    return applyJapaneseHomePageCopy(normalizeLocalizedBrandNames(fallbackHomePageSettings));
+    return normalizeHomeSettings(fallback);
   }
 }
 
 export async function loadAboutPageSettings(): Promise<AboutPageSettings> {
+  // Editorial body copy must retain the spelling saved in Studio (including brand names).
+  // Keep the existing normalization only for metadata and hero text.
+  const normalizeAboutSettings = (settings: AboutPageSettings): AboutPageSettings => ({
+    ...settings,
+    seo: normalizeLocalizedBrandNames(settings.seo),
+    heroAlt: normalizeLocalizedBrandNames(settings.heroAlt),
+    heroTitle: normalizeLocalizedBrandNames(settings.heroTitle),
+    exploreLabel: normalizeLocalizedBrandNames(settings.exploreLabel)
+  });
   if (!isSanityConfigured()) {
-    return normalizeLocalizedBrandNames(fallbackAboutPageSettings);
+    return normalizeAboutSettings(fallbackAboutPageSettings);
   }
 
   try {
     const result = await getSanityClient().withConfig({ useCdn: false }).fetch<RawAboutPageSettings>(aboutPageSettingsQuery);
     if (!result) {
-      return normalizeLocalizedBrandNames(fallbackAboutPageSettings);
+      return normalizeAboutSettings(fallbackAboutPageSettings);
     }
-    return normalizeLocalizedBrandNames(adaptAboutPageSettings(result));
+    return normalizeAboutSettings(adaptAboutPageSettings(result));
   } catch (error) {
     if (process.env.NODE_ENV === "production") {
       throw error;
     }
 
     console.warn("Sanity about page fetch failed; using local fixture content.", error);
-    return normalizeLocalizedBrandNames(fallbackAboutPageSettings);
+    return normalizeAboutSettings(fallbackAboutPageSettings);
   }
 }
 
@@ -460,14 +479,18 @@ export async function loadProductBusinessSettings(): Promise<ProductBusinessSett
 }
 
 export async function loadMaterials(): Promise<Material[]> {
-  const materials = await fetchAndMergeBySlug<RawMaterial, Material>(materialsQuery, {}, fallbackMaterials, adaptMaterial);
-  return applyJapaneseMaterialCopy(materials);
+  const fallback = applyJapaneseMaterialCopy(fallbackMaterials).map(item => ({ ...item, faq: materialFaqs[item.slug] }));
+  return fetchAndMergeBySlug<RawMaterial, Material>(
+    materialsQuery, {}, fallback,
+    (raw) => adaptMaterial(raw, fallback.find((item) => item.slug === raw.slug)),
+  );
 }
 
 export const loadProductTypes = cache(async (): Promise<ProductType[]> => {
   const market = getSanityMarket();
+  const fallback = withLocalLeatherSpecDownloads(withLocalAlcantaraDownloads(fallbackProductTypes.filter((item) => !isSkaiProductType(item))));
   const [productTypes, globalSkai] = await Promise.all([
-    fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, { market }, fallbackProductTypes.filter((productType) => !isSkaiProductType(productType)), adaptProductType, {
+    fetchAndMergeBySlug<RawProductType, ProductType>(productTypesQuery, { market }, fallback, (raw) => adaptProductType(raw, fallback.find((item) => item.slug === raw.slug)?.downloads), {
     includeFallbackRecords: true,
     fallbackOnEmpty: true,
     fresh: true
@@ -475,20 +498,15 @@ export const loadProductTypes = cache(async (): Promise<ProductType[]> => {
     market === "global" ? Promise.resolve([] as ProductType[]) : fetchAndMergeBySlug<RawProductType, ProductType>(skaiProductTypesQuery, { skaiSlugs: [...legacySkaiSlugs] }, [], adaptProductType, { fresh: true, fallbackOnEmpty: false })
   ]);
   const merged = new Map([...productTypes, ...globalSkai].map((productType) => [productType.slug, productType]));
-  return normalizeLocalizedBrandNames(
-    withLocalLeatherSpecDownloads(withLocalAlcantaraDownloads([...merged.values()])),
-  );
+  return normalizeLocalizedBrandNames([...merged.values()]);
 });
 
 export async function loadProductCategories(): Promise<ProductCategory[]> {
-  const categories = await fetchAndMergeBySlug<RawProductCategory, ProductCategory>(
-    productCategoriesQuery,
-    {},
-    fallbackProductCategories,
-    adaptProductCategory,
+  const fallback = applyJapaneseProductCategoryCopy(fallbackProductCategories);
+  return fetchAndMergeBySlug<RawProductCategory, ProductCategory>(
+    productCategoriesQuery, {}, fallback,
+    (raw) => adaptProductCategory(raw, fallback.find((item) => item.slug === raw.slug)),
   );
-
-  return applyJapaneseProductCategoryCopy(categories);
 }
 
 export async function loadProductCategory(slug: string): Promise<ProductCategory | undefined> {
@@ -567,7 +585,8 @@ export async function loadProject(slug: string): Promise<ProjectCase | undefined
 }
 
 export async function loadNewsItems(): Promise<NewsItem[]> {
-  const items = await fetchAndMergeBySlug<RawNewsItem, NewsItem>(newsItemsQuery, {}, fallbackNewsItems, adaptNewsItem);
+  const fallback = fallbackNewsItems.map(item => ({ ...item, articleContent: { en: getNewsArticleContent(item.slug, "en"), ja: getNewsArticleContent(item.slug, "ja") } }));
+  const items = await fetchAndMergeBySlug<RawNewsItem, NewsItem>(newsItemsQuery, {}, fallback, adaptNewsItem, { includeFallbackRecords: false, fallbackOnEmpty: false });
   return items
     .filter((item) => item.slug !== "new-material-study")
     .sort((left, right) => right.date.localeCompare(left.date));
@@ -580,4 +599,13 @@ export async function loadNewsItem(slug: string): Promise<NewsItem | undefined> 
 
 export async function loadCatalogs(locale: Locale): Promise<Download[]> {
   return fetchOrFallback<RawCatalog, Download>(catalogsQuery, { locale }, fallbackCatalogs, adaptCatalog);
+}
+
+export async function loadDownloadPageSettings(locale: Locale): Promise<DownloadPageSettings> {
+  if (isSanityConfigured()) {
+    const raw = await getSanityClient().fetch<RawDownloadPage | null>(downloadPageQuery);
+    if (raw) return adaptDownloadPage(raw);
+  }
+  const [catalogs, productTypes] = await Promise.all([loadCatalogs(locale), loadProductTypes()]);
+  return { ...downloadPageCopy, groups: createDownloadGroups(catalogs, productTypes.flatMap(item => item.downloads)) };
 }

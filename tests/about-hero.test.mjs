@@ -34,9 +34,9 @@ test("about page hero uses the showroom image and concise CAMARI wordmark copy",
 
 test("Japanese about content uses the new material-led brand narrative", async () => {
   const page = await source("src/app/[locale]/about/page.tsx");
-  const copy = await source("src/lib/japanese-copy.ts");
+  const copy = await source("src/data/about-page-ja.json");
 
-  assert.match(page, /JAPANESE_ABOUT_PAGE_COPY/);
+  assert.match(page, /aboutSettings\.bodyTitle\[locale\]/);
   assert.match(page, /about-copy-title/);
   assert.match(page, /ShinyHeading/);
   assert.match(copy, /FROM MATERIAL TO MORE\./);
@@ -49,14 +49,14 @@ test("Japanese about content uses the new material-led brand narrative", async (
 
 test("Japanese about content presents Material, OEM, Brand, and certified factory operations", async () => {
   const page = await source("src/app/[locale]/about/page.tsx");
-  const copy = await source("src/lib/japanese-copy.ts");
+  const copy = await source("src/data/about-page-ja.json");
 
-  assert.match(page, /aboutCopy\.business\.items\.map/);
-  assert.match(page, /aboutCopy\.factory\.paragraphs\.map/);
+  assert.match(page, /aboutSettings\.businessItems\.map/);
+  assert.match(page, /aboutSettings\.manufacturingParagraphs/);
   assert.match(page, /\/uploads\/about\/manufacturing\.jpeg/);
-  assert.match(copy, /title: "MATERIAL"/);
-  assert.match(copy, /title: "OEM"/);
-  assert.match(copy, /title: "BRAND"/);
+  assert.match(copy, /"title": "MATERIAL"/);
+  assert.match(copy, /"title": "OEM"/);
+  assert.match(copy, /"title": "BRAND"/);
   assert.match(copy, /IATF 16949認証/);
 });
 

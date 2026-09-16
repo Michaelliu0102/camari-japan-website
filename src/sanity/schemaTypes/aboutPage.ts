@@ -1,5 +1,16 @@
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
+import japaneseCopy from "../../data/about-page-ja.json";
+
+// About layouts differ by market, so paragraph entries may belong to one language only.
+const optionalLocalizedString = [
+  defineField({ name: "en", title: "English", type: "string" }),
+  defineField({ name: "ja", title: "Japanese", type: "string" })
+];
+const optionalLocalizedText = [
+  defineField({ name: "en", title: "English", type: "text", rows: 4 }),
+  defineField({ name: "ja", title: "Japanese", type: "text", rows: 4 })
+];
 
 export const aboutPage = defineType({
   name: "aboutPage",
@@ -61,14 +72,58 @@ export const aboutPage = defineType({
       fields: localizedString
     }),
     defineField({
+      name: "bodySubtitle",
+      title: "Company Subtitle",
+      type: "object",
+      fields: optionalLocalizedString
+    }),
+    defineField({
       name: "bodyParagraphs",
       title: "Body Paragraphs",
       type: "array",
-      of: [{ type: "object", fields: localizedText }]
+      of: [{ type: "object", fields: optionalLocalizedText }]
+    }),
+    defineField({
+      name: "missionLabel",
+      title: "Mission Label",
+      type: "object",
+      fields: optionalLocalizedString
+    }),
+    defineField({
+      name: "missionTitle",
+      title: "Mission Title",
+      type: "object",
+      fields: optionalLocalizedText
+    }),
+    defineField({
+      name: "missionParagraphs",
+      title: "Mission Paragraphs",
+      type: "array",
+      of: [{ type: "object", fields: optionalLocalizedText }]
+    }),
+    defineField({
+      name: "businessLabel",
+      title: "Business Label",
+      type: "object",
+      fields: optionalLocalizedString
+    }),
+    defineField({
+      name: "businessItems",
+      title: "Business Areas",
+      type: "array",
+      of: [{
+        type: "object",
+        fields: [
+          defineField({ name: "title", title: "Title", type: "object", fields: optionalLocalizedString }),
+          defineField({ name: "body", title: "Description", type: "object", fields: optionalLocalizedText })
+        ],
+        preview: { select: { title: "title.ja", subtitle: "body.ja" } }
+      }]
     }),
     defineField({
       name: "manufacturingLabel",
       title: "Manufacturing Label",
+      description: "Legacy label. The Japanese factory section uses Manufacturing Title below.",
       type: "object",
       fields: localizedString
     }),
@@ -82,7 +137,7 @@ export const aboutPage = defineType({
       name: "manufacturingParagraphs",
       title: "Manufacturing Paragraphs",
       type: "array",
-      of: [{ type: "object", fields: localizedText }]
+      of: [{ type: "object", fields: optionalLocalizedText }]
     })
   ],
   initialValue: {
@@ -94,21 +149,19 @@ export const aboutPage = defineType({
     heroAlt: { en: "CAMARI showroom interior", ja: "CAMARI ショールーム内観" },
     heroTitle: { en: "CAMARI", ja: "CAMARI" },
     exploreLabel: { en: "Explore", ja: "Explore" },
-    bodyLabel: { en: "Company", ja: "Company" },
-    bodyTitle: { en: "ABOUT CAMARI", ja: "ABOUT CAMARI" },
-    bodyParagraphs: [
-      {
-        en: "CAMARI INTERNATIONAL JAPAN curates premium surface materials for teams who treat texture as an essential part of brand, space, and product quality.",
-        ja: "CAMARI INTERNATIONAL JAPAN は、質感をブランド、空間、プロダクト品質の中核として扱うチームに向けて、上質なサーフェス素材を選定します。"
-      }
-    ],
-    manufacturingLabel: { en: "Manufacturing", ja: "Manufacturing" },
-    manufacturingTitle: { en: "OUR FACTORY", ja: "OUR FACTORY" },
-    manufacturingParagraphs: [
-      {
-        en: "SHENGHUA is factory from 2000.",
-        ja: "SHENGHUA is factory from 2000."
-      }
-    ]
+    bodyLabel: { en: "Company", ja: japaneseCopy.intro.label },
+    bodyTitle: { en: "ABOUT CAMARI", ja: japaneseCopy.intro.title },
+    bodySubtitle: { ja: japaneseCopy.intro.subtitle },
+    bodyParagraphs: japaneseCopy.intro.paragraphs.map((ja, index) => ({ _key: `intro-${index + 1}`, ja })),
+    missionLabel: { ja: japaneseCopy.mission.label },
+    missionTitle: { ja: japaneseCopy.mission.title },
+    missionParagraphs: japaneseCopy.mission.paragraphs.map((ja, index) => ({ _key: `mission-${index + 1}`, ja })),
+    businessLabel: { ja: japaneseCopy.business.label },
+    businessItems: japaneseCopy.business.items.map((item, index) => ({
+      _key: `business-${index + 1}`, title: { ja: item.title }, body: { ja: item.body }
+    })),
+    manufacturingLabel: { en: "Manufacturing", ja: japaneseCopy.factory.label },
+    manufacturingTitle: { en: "OUR FACTORY", ja: japaneseCopy.factory.label },
+    manufacturingParagraphs: japaneseCopy.factory.paragraphs.map((ja, index) => ({ _key: `factory-${index + 1}`, ja }))
   }
 });

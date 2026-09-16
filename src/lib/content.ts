@@ -1,4 +1,8 @@
+import { homePageCopy } from "../content/home-page-copy";
+import type { MaterialFaqItem } from "../content/material-faqs";
+import type { NewsArticleContent } from "../content/news-articles";
 import type { Locale } from "./locales";
+import aboutJapaneseCopy from "../data/about-page-ja.json" with { type: "json" };
 import generatedCatalog from "../data/product-catalog.generated.json" with { type: "json" };
 import { siteConfig } from "./site-config";
 
@@ -49,6 +53,7 @@ export type Application = {
 };
 
 export type Material = {
+  faq?: Partial<Record<Locale, MaterialFaqItem[]>>;
   slug: string;
   updatedAt?: string;
   categorySlug: string;
@@ -113,6 +118,7 @@ export type ProjectCase = {
 };
 
 export type NewsItem = {
+  articleContent?: Partial<Record<Locale, NewsArticleContent>>;
   slug: string;
   updatedAt?: string;
   availableLocales?: Locale[];
@@ -147,7 +153,7 @@ export type HomeExploreSettings = {
   productSlides: HomeExploreSlide[];
 };
 
-export type HomePageSettings = {
+export type HomePageSettings = typeof homePageCopy & {
   hero: HomeHero;
   explore: HomeExploreSettings;
   brandValueImage: string;
@@ -162,7 +168,13 @@ export type AboutPageSettings = {
   exploreLabel: LocalizedString;
   bodyLabel: LocalizedString;
   bodyTitle: LocalizedString;
+  bodySubtitle: LocalizedString;
   bodyParagraphs: LocalizedString[];
+  missionLabel: LocalizedString;
+  missionTitle: LocalizedString;
+  missionParagraphs: LocalizedString[];
+  businessLabel: LocalizedString;
+  businessItems: Array<{ title: LocalizedString; body: LocalizedString }>;
   manufacturingLabel: LocalizedString;
   manufacturingTitle: LocalizedString;
   manufacturingParagraphs: LocalizedString[];
@@ -241,6 +253,7 @@ export const heroVideo = {
 };
 
 export const homePageSettings: HomePageSettings = {
+  ...homePageCopy,
   brandValueImage: images.alcantaraSoft,
   showroomBackgroundImage: images.interior,
   hero: {
@@ -307,22 +320,27 @@ export const aboutPageSettings: AboutPageSettings = {
   heroAlt: { en: "CAMARI showroom interior", ja: "CAMARI ショールーム内観" },
   heroTitle: { en: "CAMARI", ja: "CAMARI" },
   exploreLabel: { en: "Explore", ja: "Explore" },
-  bodyLabel: { en: "Company", ja: "Company" },
-  bodyTitle: { en: "ABOUT CAMARI", ja: "ABOUT CAMARI" },
-  bodyParagraphs: [
-    {
-      en: `${site.organizationName} curates premium surface materials for teams who treat texture as an essential part of brand, space, and product quality.`,
-      ja: `${site.organizationName} は、質感をブランド、空間、プロダクト品質の中核として扱うチームに向けて、上質なサーフェス素材を選定します。`
-    }
-  ],
-  manufacturingLabel: { en: "Manufacturing", ja: "Manufacturing" },
-  manufacturingTitle: { en: "OUR FACTORY", ja: "OUR FACTORY" },
-  manufacturingParagraphs: [
-    {
-      en: "SHENGHUA is factory from 2000.",
-      ja: "SHENGHUA is factory from 2000."
-    }
-  ]
+  bodyLabel: { en: "Company", ja: aboutJapaneseCopy.intro.label },
+  bodyTitle: { en: "ABOUT CAMARI", ja: aboutJapaneseCopy.intro.title },
+  bodySubtitle: { en: "", ja: aboutJapaneseCopy.intro.subtitle },
+  bodyParagraphs: aboutJapaneseCopy.intro.paragraphs.map((ja, index) => ({
+    en: index === 0 ? `${site.organizationName} curates premium surface materials for teams who treat texture as an essential part of brand, space, and product quality.` : "",
+    ja
+  })),
+  missionLabel: { en: "", ja: aboutJapaneseCopy.mission.label },
+  missionTitle: { en: "", ja: aboutJapaneseCopy.mission.title },
+  missionParagraphs: aboutJapaneseCopy.mission.paragraphs.map((ja) => ({ en: "", ja })),
+  businessLabel: { en: "", ja: aboutJapaneseCopy.business.label },
+  businessItems: aboutJapaneseCopy.business.items.map((item) => ({
+    title: { en: "", ja: item.title },
+    body: { en: "", ja: item.body }
+  })),
+  manufacturingLabel: { en: "Manufacturing", ja: aboutJapaneseCopy.factory.label },
+  manufacturingTitle: { en: "OUR FACTORY", ja: aboutJapaneseCopy.factory.label },
+  manufacturingParagraphs: aboutJapaneseCopy.factory.paragraphs.map((ja, index) => ({
+    en: index === 0 ? "SHENGHUA is factory from 2000." : "",
+    ja
+  }))
 };
 
 export const materialCategories: MaterialCategory[] = [

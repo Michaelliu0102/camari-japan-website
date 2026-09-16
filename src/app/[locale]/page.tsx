@@ -46,26 +46,16 @@ export default async function HomePage({ params }: PageProps) {
           </div>
           <div className="flex flex-col justify-between md:max-w-[25rem] md:self-stretch">
             <div>
-              <p className="label-caps text-gold">{locale === "en" ? "Brand Value" : "ブランド価値"}</p>
-              <h2 className="mt-5 font-label text-[1.35rem] uppercase leading-[1.25] tracking-[0.08em] md:mt-6 md:text-[1.65rem] md:leading-tight md:tracking-[0.1em]">
-                {locale === "en" ? (
-                  <>
-                    LOCAL SERVICE.
-                    <br />
-                    GLOBAL REACH.
-                  </>
-                ) : (
-                  "欧州品質の素材感と、日本的な空間の抑制。"
-                )}
+              <p className="label-caps text-gold">{homeSettings.brandValueLabel[locale]}</p>
+              <h2 className="mt-5 whitespace-pre-line font-label text-[1.35rem] uppercase leading-[1.25] tracking-[0.08em] md:mt-6 md:text-[1.65rem] md:leading-tight md:tracking-[0.1em]">
+                {homeSettings.brandValueTitle[locale]}
               </h2>
               <p className="mt-6 text-base leading-8 text-muted md:mt-7 md:text-[0.95rem] md:leading-7">
-                {locale === "en"
-                  ? "Across China, Italy, Japan, and Australia, CAMARI connects local material expertise, certified manufacturing, and coordinated logistics in one responsive network, from concept to delivery."
-                  : `${site.organizationName} は、言葉より先に品質を伝えるサーフェスを求めるチームに向けて素材を選定します。車両キャビン、ホスピタリティ空間、プロダクトパネル、特注 OEM/ODM プログラムに対応します。`}
+                {homeSettings.brandValueBody[locale]}
               </p>
             </div>
             <Link className="label-caps mt-9 inline-flex min-h-12 w-full max-w-[20rem] items-center justify-center self-center border border-outline px-8 py-3 transition-colors hover:bg-charcoal hover:text-white md:mt-0 md:min-w-[13rem] md:w-auto md:py-4" href={localizedPath(locale, "/about")}>
-              {locale === "en" ? "About Us" : "会社情報"}
+              {homeSettings.brandValueLinkLabel[locale]}
             </Link>
           </div>
         </div>
@@ -73,13 +63,13 @@ export default async function HomePage({ params }: PageProps) {
 
       <CTASection
         backgroundImage={homeSettings.showroomBackgroundImage}
-        body={locale === "en" ? "Speak with our team about material specification,\nbespoke production, and project-fit solutions." : "技術仕様やデザインコンセプトをお送りください。素材選定、カスタム試作、納品まで専門スタッフがサポートします。"}
+        body={homeSettings.ctaBody[locale]}
         eyebrow={null}
-        label={locale === "en" ? "Our location" : "所在地"}
+        label={homeSettings.ctaLabel[locale]}
         locale={locale}
         secondaryAction="message"
-        secondaryLabel={locale === "en" ? "Inquiry Now" : "お問い合わせ"}
-        title={locale === "en" ? "Tailored Surfaces\nBespoke Creations" : "先見性あるデザインのために、素材とカスタムプロダクトを最適化します。"}
+        secondaryLabel={homeSettings.ctaSecondaryLabel[locale]}
+        title={homeSettings.ctaTitle[locale]}
       />
     </main>
   );

@@ -3,7 +3,6 @@ import Image from "next/image";
 import { CTASection } from "@/components/CTASection";
 import { OemLogoLoop } from "@/components/OemLogoLoop";
 import { ShinyHeading } from "@/components/ShinyHeading";
-import { JAPANESE_ABOUT_PAGE_COPY } from "@/lib/japanese-copy";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
 import { loadAboutPageSettings, loadHomePageSettings } from "@/sanity/lib/loaders";
@@ -255,8 +254,6 @@ export default async function AboutPage({ params }: PageProps) {
     );
   }
 
-  const aboutCopy = JAPANESE_ABOUT_PAGE_COPY;
-
   return (
     <main>
       <section className="relative flex min-h-screen items-center overflow-hidden bg-[oklch(0.82_0.01_82)] text-[oklch(0.96_0.01_85)]">
@@ -287,21 +284,21 @@ export default async function AboutPage({ params }: PageProps) {
       <section className="bg-paper py-20 md:py-32" data-nav-invert id="about-company">
         <div className="section-shell">
           <div className="max-w-[76rem]">
-            <p className={japaneseSectionLabelClass}>{aboutCopy.intro.label}</p>
+            <p className={japaneseSectionLabelClass}>{aboutSettings.bodyLabel[locale]}</p>
             <ShinyHeading
               className="about-copy-title mt-5 text-[clamp(1.8rem,7vw,2.6rem)] leading-[1.08] md:text-[3.1rem]"
               color="#2f2d2a"
               shineColor="#ffffff"
-              text={aboutCopy.intro.title}
+              text={aboutSettings.bodyTitle[locale]}
             />
             <p className="mt-5 text-[1.15rem] font-medium leading-[1.8] tracking-[0.04em] text-charcoal md:text-[1.35rem]">
-              {aboutCopy.intro.subtitle}
+              {aboutSettings.bodySubtitle[locale]}
             </p>
           </div>
           <div className="mt-12 max-w-[54rem] space-y-7 text-base leading-[1.95] text-muted md:mt-16 md:text-[1.08rem] md:leading-[2]">
-            {aboutCopy.intro.paragraphs.map((paragraph, index) => (
+            {aboutSettings.bodyParagraphs.filter((paragraph) => paragraph[locale]).map((paragraph, index) => (
               <p className="whitespace-pre-line" key={`ja-about-intro-${index}`}>
-                {paragraph}
+                {paragraph[locale]}
               </p>
             ))}
           </div>
@@ -311,18 +308,18 @@ export default async function AboutPage({ params }: PageProps) {
       <section className="bg-linen py-20 md:py-32" data-nav-invert>
         <div className="section-shell grid gap-12 lg:grid-cols-[minmax(16rem,0.68fr)_minmax(0,1.32fr)] lg:gap-24">
           <div>
-            <p className={japaneseSectionLabelClass}>{aboutCopy.mission.label}</p>
+            <p className={japaneseSectionLabelClass}>{aboutSettings.missionLabel[locale]}</p>
             <h2 className="mt-5 max-w-[18ch] whitespace-pre-line text-[clamp(1.75rem,6vw,2.75rem)] font-medium leading-[1.45] tracking-[0.02em] text-charcoal">
-              {aboutCopy.mission.title}
+              {aboutSettings.missionTitle[locale]}
             </h2>
           </div>
           <div className="max-w-[54rem] space-y-7 text-base leading-[1.95] text-muted md:text-[1.08rem] md:leading-[2]">
-            {aboutCopy.mission.paragraphs.map((paragraph, index) => (
+            {aboutSettings.missionParagraphs.filter((paragraph) => paragraph[locale]).map((paragraph, index) => (
               <p
                 className={`whitespace-pre-line ${index === 2 ? "border-y border-charcoal/15 py-7" : ""}`}
                 key={`ja-about-mission-${index}`}
               >
-                {paragraph}
+                {paragraph[locale]}
               </p>
             ))}
           </div>
@@ -331,18 +328,18 @@ export default async function AboutPage({ params }: PageProps) {
 
       <section className="bg-paper py-20 md:py-32" data-nav-invert>
         <div className="section-shell">
-          <p className={japaneseSectionLabelClass}>{aboutCopy.business.label}</p>
+          <p className={japaneseSectionLabelClass}>{aboutSettings.businessLabel[locale]}</p>
           <div className="mt-10 grid border-y border-charcoal/15 md:mt-14 md:grid-cols-3">
-            {aboutCopy.business.items.map((item, index) => (
+            {aboutSettings.businessItems.map((item, index) => (
               <article
                 className="border-b border-charcoal/15 py-9 last:border-b-0 md:border-b-0 md:border-r md:px-8 md:py-12 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
-                key={item.title}
+                key={index}
               >
                 <p className="text-[0.65rem] font-semibold tracking-[0.24em] text-gold">0{index + 1}</p>
                 <h2 className="mt-4 font-label text-[1.35rem] font-medium tracking-[0.12em] text-charcoal md:text-[1.55rem]">
-                  {item.title}
+                  {item.title[locale]}
                 </h2>
-                <p className="mt-6 text-base leading-[1.95] text-muted">{item.body}</p>
+                <p className="mt-6 text-base leading-[1.95] text-muted">{item.body[locale]}</p>
               </article>
             ))}
           </div>
@@ -361,10 +358,10 @@ export default async function AboutPage({ params }: PageProps) {
             />
           </div>
           <div className="max-w-[42rem] lg:justify-self-end">
-            <h2 className={japaneseSectionLabelClass}>{aboutCopy.factory.label}</h2>
+            <h2 className={japaneseSectionLabelClass}>{aboutSettings.manufacturingTitle[locale]}</h2>
             <div className="mt-8 space-y-7 text-base leading-[1.95] text-muted md:text-[1.08rem] md:leading-[2]">
-              {aboutCopy.factory.paragraphs.map((paragraph, index) => (
-                <p key={`ja-about-factory-${index}`}>{paragraph}</p>
+              {aboutSettings.manufacturingParagraphs.filter((paragraph) => paragraph[locale]).map((paragraph, index) => (
+                <p key={`ja-about-factory-${index}`}>{paragraph[locale]}</p>
               ))}
             </div>
           </div>

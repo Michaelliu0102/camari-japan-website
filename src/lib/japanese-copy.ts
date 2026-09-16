@@ -91,55 +91,7 @@ export function getJapaneseProductCategorySeo(slug: string) {
     : undefined;
 }
 
-export const JAPANESE_ABOUT_PAGE_COPY = {
-  intro: {
-    label: "ABOUT CAMARI",
-    title: "FROM MATERIAL TO MORE.",
-    subtitle: "素材から、その先へ。",
-    paragraphs: [
-      "CAMARIは、Alcantara®をはじめ、ヨーロッパ産のレザーやマイクロファイバー、テキスタイルなど、世界の優れた素材を取り扱い、マテリアル・OEM・ブランディングの3つの領域で事業を展開しています。",
-      "それぞれ異なる事業でありながら、すべてに共通しているのは、素材への深い理解です。",
-      "素材を知り、その特性を理解し、その魅力を最大限に引き出す。\n素材そのものを届けるときも、企業のアイデアを製品として形にするときも、自社ブランドから新たな価値を提案するときも、素材を深く知る私たちだからこそできることがあります。",
-      "CAMARIは、素材への専門性を軸に、その可能性をさまざまなかたちで届けていきます。",
-    ],
-  },
-  mission: {
-    label: "MISSION",
-    title: "世界のいい素材を、\nもっと身近に。",
-    paragraphs: [
-      "CAMARIが目指しているのは、世界の優れた素材と、それを求める人との距離をもっと近くすること。",
-      "素材メーカーとの強いパートナーシップと、日本・イタリア・上海・オーストラリアに広がる供給ネットワークを活かし、世界の優れた素材を、より身近に、よりスピーディーに届けます。",
-      "日本では流通していなかった。\n買いたくても、買えなかった。\nどこから買えばいいのか、分からなかった。",
-      "世界の優れた素材を、必要とする人がもっと自由に選べるものへ。",
-      "それが、CAMARIの目指す未来です。",
-    ],
-  },
-  business: {
-    label: "OUR BUSINESS",
-    items: [
-      {
-        title: "MATERIAL",
-        body: "Alcantara®をはじめ、イタリアンレザー、マイクロファイバー、ファブリックなど、世界の優れた素材を取り扱っています。",
-      },
-      {
-        title: "OEM",
-        body: "素材選定から企画、デザイン、サンプル製作、製造、検品、納品まで一貫して対応。自動車内装アクセサリーやノベルティ、バッグ、小物など、幅広い製品を手がけています。",
-      },
-      {
-        title: "BRAND",
-        body: "自社ブランド「SUPER CAMARI」を展開。素材への知識とものづくりの経験を活かし、自動車アクセサリー、ファッション小物、ガジェットアクセサリーなどを企画・販売しています。",
-      },
-    ],
-  },
-  factory: {
-    label: "OUR FACTORY",
-    paragraphs: [
-      "中国にはカマリの自社工場があり、自動車産業における品質マネジメントシステムの国際規格として広く認められているIATF 16949認証を取得しています。",
-      "この認証は、お客様の細かな仕様やご要望に的確に応える製品を提供するという、カマリの品質への取り組みを裏付けるものです。",
-      "工場では、自動車メーカーやディーラー向けの車内アクセサリーや法人向けギフトの製造を専門としており、すべての製品において高い精度、耐久性、そして革新性を追求しています。",
-    ],
-  },
-} as const;
+export { default as JAPANESE_ABOUT_PAGE_COPY } from "../data/about-page-ja.json";
 
 const materialCategoryCopy: Record<
   string,
@@ -201,7 +153,7 @@ export function applyJapaneseMaterialCategoryCopy(
   categories: MaterialCategory[],
 ): MaterialCategory[] {
   return categories.map((category) => {
-    const copy = materialCategoryCopy[category.slug];
+    const copy = materialCategoryCopy[category.slug === "italian-genuine-leather" ? "leather" : category.slug];
 
     if (!copy) {
       return category;

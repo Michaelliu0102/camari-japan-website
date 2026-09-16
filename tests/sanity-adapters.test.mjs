@@ -20,6 +20,7 @@ async function compileModule(sourcePath, outputPath) {
   }).outputText;
 
   output = output.replaceAll('from "../../lib/content";', 'from "../../lib/content.js";');
+  output = output.replaceAll('from "../../lib/skai-collections";', 'from "../../lib/skai-collections.js";');
   output = output.replaceAll('from "../../content/products/categories";', 'from "../../content/products/categories.js";');
   output = output.replaceAll('from "@/data/product-category-carousel-overrides.json";', 'from "../../data/product-category-carousel-overrides.json";');
   output = output.replaceAll(
@@ -27,6 +28,8 @@ async function compileModule(sourcePath, outputPath) {
     'from "../../data/product-category-carousel-overrides.json" with { type: "json" };',
   );
   output = output.replaceAll('from "./site-config";', 'from "./site-config.js";');
+  output = output.replaceAll('from "../content/home-page-copy";', 'from "../content/home-page-copy.js";');
+  output = output.replaceAll('from "../lib/site-config";', 'from "../lib/site-config.js";');
 
   await writeFile(outputPath, output);
 }
@@ -70,17 +73,51 @@ async function loadAdapters() {
     carouselOverridesPath,
     await readFile(path.join(projectRoot, "src/data/product-category-carousel-overrides.json"), "utf8"),
   );
+  await writeFile(path.join(root, "src/data/about-page-ja.json"), await readFile(path.join(projectRoot, "src/data/about-page-ja.json"), "utf8"));
+  await mkdir(path.join(root, "src/content"), { recursive: true });
+  await compileModule(path.join(projectRoot, "src/content/home-page-copy.ts"), path.join(root, "src/content/home-page-copy.js"));
   await compileModule(path.join(projectRoot, "src/lib/content.ts"), compiledContent);
+  await compileModule(path.join(projectRoot, "src/lib/skai-collections.ts"), path.join(root, "src/lib/skai-collections.js"));
   await compileModule(path.join(projectRoot, "src/content/products/categories.ts"), compiledProductCategories);
   await compileModule(path.join(projectRoot, "src/sanity/lib/adapters.ts"), compiledAdapters);
 
-  const module = await import(`${pathToFileURL(compiledAdapters).href}?${Date.now()}`);
+  const adapterModule = await import(`${pathToFileURL(compiledAdapters).href}?${Date.now()}`);
 
   return {
-    ...module,
+    ...adapterModule,
     cleanup: () => rm(root, { recursive: true, force: true }),
   };
 }
+
+test("About copy follows CMS edits and preserves deliberately empty sections", async () => {
+  const { adaptAboutPageSettings, cleanup } = await loadAdapters();
+  try {
+    const about = adaptAboutPageSettings({
+      bodyTitle: { en: "Existing English", ja: "CMSで編集した見出し" },
+      bodySubtitle: { en: "", ja: "新しいサブタイトル" },
+      bodyParagraphs: [{ en: "English only", ja: "" }, { en: "", ja: "CAMARIの編集済み本文" }],
+      missionTitle: { en: "", ja: "新しいミッション\n二行目" },
+      missionParagraphs: [],
+      businessItems: [{ title: { en: "", ja: "MATERIAL" }, body: { en: "", ja: "編集済みの事業紹介" } }],
+      manufacturingParagraphs: []
+    });
+    assert.equal(about.bodyTitle.en, "Existing English");
+    assert.equal(about.bodyTitle.ja, "CMSで編集した見出し");
+    assert.equal(about.bodySubtitle.ja, "新しいサブタイトル");
+    assert.equal(about.bodyParagraphs[1].ja, "CAMARIの編集済み本文");
+    assert.equal(about.missionTitle.ja, "新しいミッション\n二行目");
+    assert.deepEqual(about.missionParagraphs, []);
+    assert.equal(about.businessItems[0].body.ja, "編集済みの事業紹介");
+    assert.deepEqual(about.manufacturingParagraphs, []);
+    const fallback = adaptAboutPageSettings(null);
+    assert.equal(fallback.bodyTitle.ja, "FROM MATERIAL TO MORE.");
+    assert.equal(fallback.missionParagraphs.length, 5);
+    assert.equal(fallback.businessItems.length, 3);
+    assert.equal(fallback.manufacturingParagraphs.length, 3);
+  } finally {
+    await cleanup();
+  }
+});
 
 test("adapts material reference fields and fixture-backed quote defaults", async () => {
   const { adaptMaterial, cleanup } = await loadAdapters();
@@ -485,4 +522,32 @@ test("adapts homepage settings for CMS-managed hero and carousel images", async 
   assert.equal(settings.explore.productSlides[0].image, "https://cdn.sanity.io/images/project/dataset/product.jpg");
 
   await cleanup();
+});
+
+test("Japanese CMS edits take precedence over localized homepage, material and category fallbacks", async () => {
+  const { adaptHomePageSettings, adaptMaterial, adaptProductCategory, cleanup } = await loadAdapters();
+  try {
+    const home = adaptHomePageSettings({ exploreProductSlides: [{
+      slug: "projects", title: { en: "Product", ja: "製品" },
+      description: { en: "Original English", ja: "バックエンドで更新した紹介文" },
+      imageUrl: "/test.jpg", href: "/products"
+    }] });
+    assert.equal(home.explore.productSlides[0].description.ja, "バックエンドで更新した紹介文");
+    const material = adaptMaterial({ slug: "alcantara", name: { en: "Alcantara", ja: "編集後の素材名" },
+      introTitle: { en: "Original English", ja: "新しい見出し" }, introBody: { en: "Original English", ja: "" }
+    }, { quote: { en: "English quote", ja: "" } });
+    assert.equal(material.introTitle.ja, "新しい見出し");
+    assert.equal(material.introBody.ja, "");
+    assert.equal(material.introBody.en, "Original English");
+    assert.equal(material.quote.ja, "");
+    const category = adaptProductCategory({ slug: "tech-accessories", title: { en: "Tech", ja: "新しい分類名" },
+      description: { en: "English description", ja: "編集した説明文" },
+      carouselItems: [{ coverImageUrl: "/test.jpg", title: { en: "Item", ja: "新しい商品名" },
+        description: { en: "English", ja: "新しい商品説明" }, details: [{ en: "Extra English bullet", ja: "" }] }]
+    });
+    assert.equal(category.title.ja, "新しい分類名");
+    assert.equal(category.description.ja, "編集した説明文");
+    assert.equal(category.curvedCarouselImages[0].description.ja, "新しい商品説明");
+    assert.equal(category.curvedCarouselImages[0].details[0].ja, "");
+  } finally { await cleanup(); }
 });

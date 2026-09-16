@@ -1,3 +1,6 @@
+import type { NewsArticleContent } from "@/content/news-articles";
+import type { MaterialFaqItem } from "@/content/material-faqs";
+import type { Locale } from "@/lib/locales";
 import type { LocalizedString } from "@/lib/content";
 
 export type RawSeo = {
@@ -37,6 +40,7 @@ export type RawApplication = {
 };
 
 export type RawMaterial = {
+  faq?: Partial<Record<Locale, MaterialFaqItem[]>> | null;
   updatedAt?: string | null;
   name?: LocalizedString | null;
   slug?: string | null;
@@ -52,6 +56,7 @@ export type RawMaterial = {
 };
 
 export type RawProductType = {
+  editorialDownloadsMigrated?: boolean;
   updatedAt?: string | null;
   name?: LocalizedString | null;
   slug?: string | null;
@@ -141,6 +146,8 @@ export type RawProjectCase = {
 };
 
 export type RawNewsItem = {
+  articleContent?: Partial<Record<Locale, Partial<NewsArticleContent>>> | null;
+  availableLocales?: Locale[] | null;
   updatedAt?: string | null;
   title?: LocalizedString | null;
   slug?: string | null;
@@ -169,6 +176,15 @@ export type RawHomeExploreSlide = {
 };
 
 export type RawHomePageSettings = {
+  brandValueLabel?: LocalizedString | null;
+  brandValueTitle?: LocalizedString | null;
+  brandValueBody?: LocalizedString | null;
+  brandValueLinkLabel?: LocalizedString | null;
+  ctaTitle?: LocalizedString | null;
+  ctaBody?: LocalizedString | null;
+  ctaLabel?: LocalizedString | null;
+  ctaSecondaryLabel?: LocalizedString | null;
+
   heroTitle?: LocalizedString | null;
   heroSubtitle?: LocalizedString | null;
   heroVideoPlaybackId?: string | null;
@@ -192,7 +208,13 @@ export type RawAboutPageSettings = {
   exploreLabel?: LocalizedString | null;
   bodyLabel?: LocalizedString | null;
   bodyTitle?: LocalizedString | null;
+  bodySubtitle?: LocalizedString | null;
   bodyParagraphs?: Array<LocalizedString | null> | null;
+  missionLabel?: LocalizedString | null;
+  missionTitle?: LocalizedString | null;
+  missionParagraphs?: Array<LocalizedString | null> | null;
+  businessLabel?: LocalizedString | null;
+  businessItems?: Array<{ title?: LocalizedString | null; body?: LocalizedString | null } | null> | null;
   manufacturingLabel?: LocalizedString | null;
   manufacturingTitle?: LocalizedString | null;
   manufacturingParagraphs?: Array<LocalizedString | null> | null;
@@ -207,6 +229,14 @@ export type RawProductBusinessSettings = {
 } | null;
 
 export const homePageSettingsQuery = `*[_type == "homePage"][0] {
+  brandValueLabel,
+  brandValueTitle,
+  brandValueBody,
+  brandValueLinkLabel,
+  ctaTitle,
+  ctaBody,
+  ctaLabel,
+  ctaSecondaryLabel,
   heroTitle,
   heroSubtitle,
   heroVideoPlaybackId,
@@ -237,7 +267,13 @@ export const aboutPageSettingsQuery = `*[_type == "aboutPage"][0] {
   exploreLabel,
   bodyLabel,
   bodyTitle,
+  bodySubtitle,
   bodyParagraphs,
+  missionLabel,
+  missionTitle,
+  missionParagraphs,
+  businessLabel,
+  businessItems,
   manufacturingLabel,
   manufacturingTitle,
   manufacturingParagraphs
@@ -270,6 +306,7 @@ export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
   heroSubtitle,
   introTitle,
   introBody,
+  faq,
   "introImageUrl": introImage.asset->url,
   applications[] {
     name,
@@ -285,6 +322,7 @@ export const materialsQuery = `*[_type == "material"] | order(name.en asc) {
 }`;
 
 const productTypeProjection = `{
+  editorialDownloadsMigrated,
   "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
@@ -296,7 +334,7 @@ const productTypeProjection = `{
     title,
     description,
     type,
-    "href": file.asset->url
+    "href": coalesce(file.asset->url, href)
   },
   specTemplate[] {
     key,
@@ -417,15 +455,25 @@ export const projectsQuery = `*[_type == "projectCase"] | order(title.en asc) {
   }
 }`;
 
+const articleProjection = `{
+  dateline, heroFormat, "heroImage": coalesce(heroAsset.asset->url, heroImage), introduction,
+  relatedLink, video {title, poster, "src": coalesce(file.asset->url, src)},
+  sections[] {title, body, images[] {alt, aspectRatio, featured, "src": coalesce(assetImage.asset->url, src)}}
+}`;
+
 export const newsItemsQuery = `*[_type == "news"] | order(publishedAt desc, title.en asc) {
   "updatedAt": _updatedAt,
   title,
   "slug": slug.current,
   category,
   publishedAt,
-  "imageUrl": coverImage.asset->url,
+  "imageUrl": coalesce(coverImage.asset->url, coverImagePath),
   summary,
-  body,
+  availableLocales,
+  articleContent {
+    en ${articleProjection},
+    ja ${articleProjection}
+  },
   seo {
     title,
     description,

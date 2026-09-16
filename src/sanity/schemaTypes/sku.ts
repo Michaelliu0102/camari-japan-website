@@ -1,3 +1,4 @@
+import { validateMarketContent } from "./marketValidation";
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
 
@@ -5,6 +6,7 @@ export const sku = defineType({
   name: "sku",
   title: "SKU",
   type: "document",
+  validation: rule => rule.custom(validateMarketContent),
   fields: [
     defineField({
       name: "code",
@@ -35,7 +37,8 @@ export const sku = defineType({
     }),
     defineField({
       name: "colorName",
-      title: "Color Name",
+      title: "Manufacturer Colour Name / 原厂色名",
+      description: "English stores the original manufacturer name. Japanese is an optional alias; when empty the original name is displayed.",
       type: "object",
       fields: localizedString
     }),

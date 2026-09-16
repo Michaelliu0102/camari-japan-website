@@ -1,3 +1,5 @@
+import { downloadFields } from "./editorialFields";
+import { validateMarketContent } from "./marketValidation";
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
 
@@ -5,7 +7,9 @@ export const productType = defineType({
   name: "productType",
   title: "Product Type",
   type: "document",
+  validation: rule => rule.custom(validateMarketContent),
   fields: [
+    defineField({ name: "editorialDownloadsMigrated", title: "Editorial Download Migration", type: "boolean", hidden: true, readOnly: true }),
     defineField({
       name: "name",
       title: "Name",
@@ -54,12 +58,7 @@ export const productType = defineType({
       of: [
         {
           type: "object",
-          fields: [
-            defineField({ name: "title", title: "Title", type: "object", fields: localizedString }),
-            defineField({ name: "description", title: "Description", type: "object", fields: localizedText }),
-            defineField({ name: "file", title: "File", type: "file" }),
-            defineField({ name: "type", title: "Type", type: "string", options: { list: ["catalog", "technical", "care"] } })
-          ]
+          fields: downloadFields
         }
       ]
     }),
