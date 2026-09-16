@@ -233,10 +233,10 @@ const images = {
     "https://lh3.googleusercontent.com/aida-public/AB6AXuBkwrCmJel_tnN4FVxJfvhrYmrLtSVQxP1QAWAZFQ5klWej8HSzJcqjZnitNZ4JQAmddyfPvBmGx6bB5yq0_o5jPbmw4vUgltZchTBVjF81Ru258t0lQVqOChelwa3qdW8fvMiipFpa9q_DABEXoavvCG7TsXFDb0ZrZ9riwHK3BuZJSSaXsNXk7_uHXrFNp8gF0Ult5vm7DQ-ZeusOlFAGnzBeYei3K078qr27IWNV71ps6VAkEebGXfjw-CtW_wmPCwcGfxlWDJU"
 };
 
-const muxPlaybackId = "JSVVPfT9fUoZwnzXbIIXXOV16g4wPdmXBF9pRWA49mI";
+const muxPlaybackId = "kvPIcT021KDW3ETit9N1AFzRyVapSU701RRE01e39IOVo4";
 
 export const heroVideo = {
-  poster: `https://image.mux.com/${muxPlaybackId}/thumbnail.jpg`,
+  poster: `https://image.mux.com/${muxPlaybackId}/thumbnail.jpg?width=1920&height=1080&time=2.285617`,
   src: `https://stream.mux.com/${muxPlaybackId}.m3u8`
 };
 
