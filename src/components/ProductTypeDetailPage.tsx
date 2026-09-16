@@ -191,7 +191,7 @@ const productTypeFaqs: Partial<Record<string, Record<Locale, FaqItem[]>>> = {
       {
         question: "How does Alcantara EXO perform outdoors?",
         answer:
-          "Alcantara EXO uses a layered outdoor structure: a soft Alcantara surface on top, a waterproof membrane beneath it, and a backing layer for stability. Water and wind stay out, while vapour can pass through for transpiration. This construction combines water impermeability of ≥2 meters water column with vapour permeability of ≥300 g/m²/day, while maintaining high light fastness for outdoor exposure."
+          "Alcantara EXO uses a layered outdoor structure: a soft Alcantara surface on top, a waterproof membrane beneath it, and a backing layer for stability. Thanks to its waterproof- transpirant membrane, the water could not peremate it while the vapour can be transpired in case of the humidity inside the sofa.\n\nAs an outdoor material, EXO has excellent performance on UV resistance to retain seats colors and prevent color fading."
       }
     ],
     ja: [
@@ -470,7 +470,7 @@ function ProductTypeFaq({ items, locale }: { items: FaqItem[]; locale: Locale })
                     +
                   </span>
                 </summary>
-                <p className="mt-2 pr-10 text-[0.8rem] leading-relaxed text-muted">
+                <p className="mt-2 whitespace-pre-line pr-10 text-[0.8rem] leading-relaxed text-muted">
                   {localizeBrandNames(item.answer, locale)}
                 </p>
               </details>

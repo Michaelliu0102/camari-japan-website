@@ -305,9 +305,11 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
             ) : null}
 
             {/* Payoff / description — Dedar's productView-payoff */}
-            <p className="mt-4 font-sans text-[0.875rem] leading-relaxed text-muted md:mt-5">
-              {productTypeSummary}
-            </p>
+            <div className="mt-4 space-y-4 font-sans text-[0.875rem] leading-relaxed text-muted md:mt-5">
+              {productTypeSummary.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
 
             {productTypeSlug === "alcantara-panel" ? (
               <p className="mt-6 font-sans text-[0.85rem] leading-relaxed text-muted">

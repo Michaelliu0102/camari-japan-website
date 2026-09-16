@@ -7,6 +7,7 @@ export type BranchLocation = {
   country: string;
   city: string;
   address: string;
+  addressLines?: [string, string];
   phone: string;
   email: string;
   lat: number;
@@ -101,16 +102,20 @@ export function BranchLocationMap({ locations }: BranchLocationMapProps) {
 
       <div className="mt-16 border-t border-charcoal/10 pt-12 md:mt-20 md:pt-16">
         <p className="label-caps text-gold">Camari in the world</p>
-        <div className="mt-10 grid gap-x-12 gap-y-12 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 grid gap-x-6 gap-y-12 md:grid-cols-2 xl:grid-cols-4">
           {locations.map((location) => (
-            <address className="not-italic text-charcoal" key={location.country}>
-              <h2 className="font-sans text-xl font-semibold uppercase leading-none tracking-normal md:text-2xl">
+            <address className="min-w-0 not-italic text-charcoal" key={location.country}>
+              <h2 className="font-sans text-xl font-semibold uppercase leading-none tracking-normal">
                 {location.country}
               </h2>
-              <div className="mt-5 grid grid-rows-[3.5rem_1.75rem_3.5rem] gap-2 text-base leading-7 text-muted 2xl:grid-rows-[4rem_2rem_4rem] 2xl:text-lg 2xl:leading-8">
-                <p className="overflow-hidden">ADD: {location.address}</p>
-                <p className="overflow-hidden">TEL: {location.phone}</p>
-                <p className="overflow-hidden break-words">E-MAIL: {location.email}</p>
+              <div className="mt-5 grid grid-rows-[minmax(3.25rem,auto)_auto_auto] gap-2 text-xs leading-[1.625rem] text-muted sm:text-sm xl:text-xs 2xl:text-sm">
+                <p>
+                  ADD: {location.addressLines ? (
+                    <>{location.addressLines[0]}<br />{location.addressLines[1]}</>
+                  ) : location.address}
+                </p>
+                <p className="whitespace-nowrap">TEL: {location.phone}</p>
+                <p className="whitespace-nowrap">E-MAIL: {location.email}</p>
               </div>
             </address>
           ))}
