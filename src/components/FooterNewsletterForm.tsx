@@ -14,7 +14,7 @@ type FooterNewsletterFormProps = {
 const copy = {
   zh: {
     label: "订阅我们的通讯",
-    placeholder: "请输入你的邮箱地址",
+    placeholder: "请输入邮箱地址",
     invalid: "请输入有效的邮箱地址。",
     submitting: "正在提交…",
     success: "感谢订阅。",

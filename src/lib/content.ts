@@ -259,8 +259,8 @@ export const homePageSettings: HomePageSettings = {
   brandValueImage: images.alcantaraSoft,
   showroomBackgroundImage: images.interior,
   hero: {
-    title: { zh: chineseCopy("The Intersection of"), en: "The Intersection of", ja: "The Intersection of" },
-    subtitle: { zh: chineseCopy("Texture and Precision"), en: "Texture and Precision", ja: "質感と精密さの交差点" },
+    title: { zh: "臻选材质", en: "Premium Materials", ja: "選び抜かれた素材" },
+    subtitle: { zh: "万千可能，由此而生", en: "A World of Choice", ja: "ここから広がる、無限の可能性" },
     videoSrc: heroVideo.src,
     poster: heroVideo.poster,
     ctaLabel: { zh: chineseCopy("Discover the Collection"), en: "Discover the Collection", ja: "コレクションを見る" },
@@ -453,16 +453,17 @@ export const materials: Material[] = [
     slug: "fabric",
     categorySlug: "fabric",
     name: { zh: chineseCopy("Fabric"), en: "Fabric", ja: "ファブリック" },
-    eyebrow: { zh: chineseCopy("Textile Collection"), en: "Textile Collection", ja: "テキスタイルコレクション" },
+    // Keep the offline fallback aligned with the published Fabric page.
+    eyebrow: { zh: "织物", en: "European Fabric", ja: "欧州製生地" },
     heroTitle: { zh: chineseCopy("Fabric"), en: "Fabric", ja: "Fabric" },
-    heroSubtitle: { zh: chineseCopy("Washi, weave, and quiet tactility"), en: "Washi, weave, and quiet tactility", ja: "和紙、織り、静かな触感" },
-    heroImage: images.fabric,
-    introTitle: { zh: chineseCopy("The Architecture of Weave"), en: "The Architecture of Weave", ja: "名車にふさわしい品質" },
+    heroSubtitle: { zh: "", en: "", ja: "" },
+    heroImage: "https://cdn.sanity.io/images/bfjhbpbx/production/05a659d8759809aa13ca017441100d5c86fa1edb-1280x960.jpg",
+    introTitle: { zh: "传承汽车经典的织物", en: "The Fabric of Automotive Heritage", ja: "名車にふさわしい品質" },
     introBody: {
-      zh: chineseCopy("Architectural textiles selected for spatial restraint and practical durability. From Japanese washi paper weaves to high-performance technical fabrics, each selection balances acoustic softness with structural integrity for interior, hospitality, and product applications."), en: "Architectural textiles selected for spatial restraint and practical durability. From Japanese washi paper weaves to high-performance technical fabrics, each selection balances acoustic softness with structural integrity for interior, hospitality, and product applications.",
+      zh: "通过精选经典汽车织物，重温欧洲汽车的黄金年代。从标志性的千鸟格与苏格兰格纹，到高级羊毛与结构感面料，我们为注重细节的收藏者提供适合的内饰选材，帮助经典老车恢复其原有、历久弥新的风采。", en: "Step back into the golden age of European motoring with our premium classic automotive fabrics. From iconic houndstooth and tartans to luxury wools and structured cloths, we provide the perfect finish for the discerning collector looking to restore their vintage classic cars to its true, timeless glory.",
       ja: "欧州クラシックカーの純正仕様を忠実に再現したファブリックです。千鳥格子やタータンチェック、ウールなど、多彩な生地を取り揃え、当時のインテリアを美しく再現します。現代の基準に対応した耐久性を備え、クラシックカーの価値を大切にしたレストアを支えます。"
     },
-    introImage: images.alcantara,
+    introImage: "https://cdn.sanity.io/images/bfjhbpbx/production/3c393dbd31b3b5ec661de582b9186e38d0fea74c-1440x960.jpg",
     quote: {
       zh: chineseCopy("Fabric does not decorate space. It completes it."), en: "Fabric does not decorate space. It completes it.",
       ja: ""

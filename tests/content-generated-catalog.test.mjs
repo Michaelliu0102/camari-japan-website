@@ -33,7 +33,9 @@ async function loadContentModule() {
   const generatedCatalogPath = path.join(root, "src/data/product-catalog.generated.json");
 
   await mkdir(path.join(root, "src/china"), { recursive: true });
-  await writeFile(path.join(root,"src/china/editorial-copy.json"),await readFile(path.join(projectRoot,"src/china/editorial-copy.json")));
+  for (const filename of ["editorial-copy.json", "product-copy.json", "faq-copy.json"]) {
+    await writeFile(path.join(root, "src/china", filename), await readFile(path.join(projectRoot, "src/china", filename)));
+  }
   await compileContentModule(path.join(projectRoot,"src/china/copy.ts"),path.join(root,"src/china/copy.js"));
   await mkdir(path.join(root, "src/lib"), { recursive: true });
   await mkdir(path.join(root, "src/data"), { recursive: true });

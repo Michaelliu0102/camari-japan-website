@@ -1,4 +1,4 @@
-import { privacyPolicyZh } from "@/content/policies-zh";
+import { privacyPolicyZh, sitePolicyZh } from "@/content/policies-zh";
 import { withChineseCopy } from "../../../china/copy";
 import type { Metadata } from "next";
 import { site } from "@/lib/content";
@@ -21,7 +21,12 @@ const privacyEntity = withChineseCopy({
 }) satisfies Record<Locale, { name: string; email: string }>;
 
 const content = {
-  zh: privacyPolicyZh,
+  zh: {
+    ...privacyPolicyZh,
+    eyebrow: "法律信息",
+    title: "隐私政策与使用条款",
+    description: `${privacyPolicyZh.description}${sitePolicyZh.description}`
+  },
   en: {
     eyebrow: "Privacy Policy",
     title: "Privacy Policy",
@@ -284,6 +289,20 @@ export default async function PrivacyPolicyPage({ params }: PageProps) {
                 </section>
               ))}
             </div>
+            {locale === "zh" ? (
+              <section className="mt-16 border-t border-charcoal/15 pt-10" id="terms-of-use">
+                <h2 className="font-serif text-2xl text-charcoal md:text-3xl">使用条款与网站政策</h2>
+                <p className="mt-6 text-lg leading-9 text-muted">{sitePolicyZh.intro}</p>
+                <div className="mt-8 divide-y divide-charcoal/10">
+                  {sitePolicyZh.sections.map((section) => (
+                    <section className="grid gap-5 py-8 md:grid-cols-[0.42fr_0.58fr]" key={section.title}>
+                      <h3 className="label-caps text-charcoal">{section.title}</h3>
+                      <p className="leading-8 text-muted">{section.body}</p>
+                    </section>
+                  ))}
+                </div>
+              </section>
+            ) : null}
           </div>
         </div>
       </section>

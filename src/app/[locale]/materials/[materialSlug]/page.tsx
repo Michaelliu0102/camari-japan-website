@@ -192,7 +192,18 @@ export default async function MaterialDetailPage({ params }: PageProps) {
     : skus;
   const showArticleGrid =
     showArticleGridForMaterial && articleProductTypes.length > 0;
-  const faqItems = (material.faq?.[locale] ?? (locale === "zh" ? material.faq?.en : undefined));
+  const faqItems = material.faq?.[locale] ?? (locale === "zh" ? chineseCopy(material.faq?.en) : undefined);
+  const heroCopy = material.slug === "leather" && locale === "en"
+    ? {
+        eyebrow: "Italian Craftsmanship",
+        title: "Leather",
+        subtitle: "Natural character. Timeless appeal.",
+      }
+    : {
+        eyebrow: material.eyebrow[locale],
+        title: material.heroTitle[locale],
+        subtitle: material.heroSubtitle[locale],
+      };
   const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
     { name: locale === "zh" ? chineseCopy("Home") : locale === "en" ? "Home" : "ホーム", path: "/" },
     { name: locale === "zh" ? chineseCopy("Materials") : locale === "en" ? "Materials" : "素材", path: "/materials" },
@@ -203,10 +214,10 @@ export default async function MaterialDetailPage({ params }: PageProps) {
     <main>
       <JsonLd data={breadcrumbSchema} />
       <PageHero
-        eyebrow={material.eyebrow[locale]}
+        eyebrow={heroCopy.eyebrow}
         image={material.heroImage}
-        subtitle={material.heroSubtitle[locale]}
-        title={material.heroTitle[locale]}
+        subtitle={heroCopy.subtitle}
+        title={heroCopy.title}
       />
       <MaterialIntro locale={locale} material={material} />
       {showArticleGrid ? (

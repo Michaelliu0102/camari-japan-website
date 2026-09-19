@@ -36,10 +36,15 @@ test("Chinese footer destinations, subscription and consent labels are fully loc
       assert.ok(zh.includes("info@camari-international.com"));
       assert.doesNotMatch(zh,/[ぁ-ゟ゠-ヿ]/);
       assert.doesNotMatch(zh,/Google Maps|info@camari-international\.co\.jp/);
-      assert.equal((zh.match(/<h2\b/g)||[]).length,(en.match(/<h2\b/g)||[]).length,`${key}: all sections translated`);
+      assert.equal((zh.match(/<h2\b/g)||[]).length,(en.match(/<h2\b/g)||[]).length+(key==="privacy"?1:0),`${key}: all sections translated`);
+      if(key==="privacy") {
+        assert.match(zh,/隐私政策与使用条款/);
+        assert.match(zh,/id="terms-of-use"/);
+        assert.match(zh,/未经许可，不得复制、分发或修改/);
+      }
     }
     const form=renderToStaticMarkup(createElement(mod.FooterNewsletterForm,{locale:"zh"}));
-    assert.match(form,/placeholder="请输入你的邮箱地址"/);
+    assert.match(form,/placeholder="请输入邮箱地址"/);
     const drawer=renderToStaticMarkup(createElement(mod.CTAMessageDrawer,{locale:"zh",buttonClassName:"",buttonLabel:"给我们留言"}));
     for (const label of ["给我们留言","工作邮箱","定制项目","留言／项目要求","关闭留言表单"]) assert.ok(drawer.includes(label),label);
     assert.doesNotMatch(drawer,/Write us a message|Business Email|Select a country|Custom Projects|Tell us about/);

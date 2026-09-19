@@ -33,10 +33,10 @@ export function ProductBusinessInformation({
           </summary>
 
           <div className="section-shell grid gap-6 pb-12 pt-2 md:grid-cols-12 md:gap-10 md:pb-16">
-            <h2 className="max-w-[16ch] font-serif text-2xl leading-tight text-charcoal md:col-span-4 md:text-3xl">
+            <h2 className={`font-serif text-2xl leading-tight text-charcoal md:text-3xl ${locale === "zh" ? "whitespace-nowrap md:col-span-6 lg:col-span-5" : "max-w-[16ch] md:col-span-4"}`}>
               {content.title[locale]}
             </h2>
-            <p className="max-w-[72ch] text-sm leading-7 text-muted md:col-span-7 md:col-start-6">
+            <p className={`max-w-[72ch] text-sm leading-7 text-muted ${locale === "zh" ? "md:col-span-6 md:col-start-7 lg:col-span-7 lg:col-start-6" : "md:col-span-7 md:col-start-6"}`}>
               {content.body[locale]}
             </p>
           </div>

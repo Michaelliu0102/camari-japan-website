@@ -3195,7 +3195,7 @@
         "ja": "ポルシェ プレイド"
       },
       "summary": {
-        "en": "This is a premium 100% wool flatwoven plaid fabric replicated for the 1973 Porsche 911 RSR",
+        "en": "Premium flatwoven plaid fabric replicated for the 1973 Porsche 911 RSR and 1975 Porsche 914",
         "ja": "1973年ポルシェ911 RSR向けに再現された、プレミアムな100%ウールフラットウーブンプレイドファブリック。"
       },
       "productCode": "",
@@ -3266,12 +3266,12 @@
       "maintenance": [],
       "seo": {
         "title": {
-          "en": "Vintage Porsche Blue Plaid Fabric - 100% Wool Flatwoven Twill",
-          "ja": "ヴィンテージ ポルシェ ブループレイド生地 - 100%ウール フラットウーブンツイル"
+          "en": "Vintage Porsche Blue Plaid Fabric - Flatwoven Twill",
+          "ja": "ヴィンテージ ポルシェ ブループレイド生地 - フラットウーブンツイル"
         },
         "description": {
-          "en": "Discover premium 100% wool automotive fabric featuring the classic 1970s Porsche RSR blue tartan pattern. Durable, period-correct woven cloth for luxury interiors.",
-          "ja": "クラシックな1970年代ポルシェRSRブルータータンパターンを特徴とするプレミアム100%ウール自動車用生地。高級内装向けの耐久性のある時代考証織物。"
+          "en": "Discover premium  automotive fabric featuring the classic 1970s Porsche blue tartan pattern. Durable, period-correct woven cloth for luxury interiors.",
+          "ja": "クラシックな1970年代ポルシェブルータータンパターンを特徴とするプレミアム自動車用生地。高級内装向けの耐久性のある時代考証織物。"
         },
         "image": "/uploads/fabric/Cover/FA8525.jpg"
       }
@@ -7141,6 +7141,214 @@
           "ja": "自動車用シート張地、トリム、異素材内装に向けた、無溶剤のプレミアム マイクロファイバーレザー Aquapelle。"
         },
         "image": "/uploads/veganleather/microfiber leather/0308.jpg"
+      }
+    },
+    {
+      "slug": "3d-fabric",
+      "materialSlug": "fabric",
+      "markets": [
+        "global"
+      ],
+      "name": {
+        "en": "3D FABRIC",
+        "ja": "3Dファブリック"
+      },
+      "summary": {
+        "en": "3D-knit spacer high-performance technical textile primarily used for seating inserts, inner door trims, and lightweight carbon-fiber racing bucket seats in track-oriented and modern road cars",
+        "ja": "3Dニット構造のスペーサー生地を用いた高機能テキスタイルです。主にサーキット走行を重視した車両や現代のロードカーのシートインサート、ドア内張り、軽量カーボンファイバー製レーシングバケットシートに使用されます。"
+      },
+      "productCode": "",
+      "downloads": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.7mm",
+            "ja": "1.7mm"
+          }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive",
+            "ja": "自動車用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "140cm",
+            "ja": "140cm"
+          }
+        },
+        {
+          "key": "material",
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Polyester",
+            "ja": "ポリエステル"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Germany",
+            "ja": "ドイツ"
+          }
+        }
+      ],
+      "certifications": [],
+      "maintenance": [],
+      "seo": {
+        "title": {
+          "en": "Ferrari 3D Fabrics Black Grey | Racing Seat Material",
+          "ja": "フェラーリ 3Dファブリック ブラック・グレー｜レーシングシート素材"
+        },
+        "description": {
+          "en": "3D technical fabric (Tessuto 3D) for lightweight automotive seating. Exceptional airflow, high lateral grip, and durable cushioning for track and road.",
+          "ja": "軽量な自動車シート向けの3Dテクニカルファブリック（Tessuto 3D）。優れた通気性、横方向のグリップ力、耐久性のあるクッション性を備え、サーキット走行と一般道での使用に対応します。"
+        },
+        "image": "/uploads/fabric/Cover/FA1869.jpg"
+      }
+    },
+    {
+      "slug": "superfabric",
+      "materialSlug": "fabric",
+      "markets": [
+        "global"
+      ],
+      "name": {
+        "en": "SUPERFABRIC",
+        "ja": "スーパーファブリック"
+      },
+      "summary": {
+        "en": "SuperFabric® is an advanced, high-performance composite material engineered to deliver extreme levels of abrasion, cut, slash, and puncture resistance while retaining the flexibility, breathability, and weight of conventional textiles.",
+        "ja": "SuperFabric®は、一般的な繊維素材の柔軟性、通気性、軽さを保ちながら、摩耗、切創、切り裂き、突き刺しに対する極めて高い耐性を実現するために開発された高機能複合素材です。"
+      },
+      "productCode": "",
+      "downloads": [],
+      "specTemplate": [
+        {
+          "key": "thickness",
+          "label": {
+            "en": "THICKNESS",
+            "ja": "厚さ"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1.1mm",
+            "ja": "1.1mm"
+          }
+        },
+        {
+          "key": "use",
+          "label": {
+            "en": "USE",
+            "ja": "用途"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "Automotive / Accessory",
+            "ja": "自動車・アクセサリー用"
+          }
+        },
+        {
+          "key": "width",
+          "label": {
+            "en": "WIDTH",
+            "ja": "幅"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "132cm",
+            "ja": "132cm"
+          }
+        },
+        {
+          "key": "weight",
+          "label": {
+            "en": "WEIGHT",
+            "ja": "目付"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "450g/sqm",
+            "ja": "450g/m²"
+          }
+        },
+        {
+          "key": "cut resistance",
+          "label": {
+            "en": "CUT RESISTANCE",
+            "ja": "耐切創性"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "1814g",
+            "ja": "1814g"
+          }
+        },
+        {
+          "key": "abrasion resistance",
+          "label": {
+            "en": "ABRASION RESISTANCE",
+            "ja": "耐摩耗性"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "3000cycles",
+            "ja": "3000回"
+          }
+        },
+        {
+          "key": "country of origin",
+          "label": {
+            "en": "COUNTRY OF ORIGIN",
+            "ja": "製造国"
+          },
+          "aliases": [],
+          "defaultValue": {
+            "en": "USA",
+            "ja": "米国"
+          }
+        }
+      ],
+      "certifications": [],
+      "maintenance": [],
+      "seo": {
+        "title": {
+          "en": "SuperFabric® Technical Textile | Extreme Durability & Protection",
+          "ja": "SuperFabric® テクニカルテキスタイル｜優れた耐久性と保護性能"
+        },
+        "description": {
+          "en": "Explore  SuperFabric® for automotive interiors. Ceramic micro-guard plates deliver extreme abrasion, puncture, and scuff resistance for sports cars.",
+          "ja": "自動車内装向けSuperFabric®。セラミック製の微細なガードプレートが、スポーツカーの内装に高い耐摩耗性、耐突き刺し性、耐擦傷性をもたらします。"
+        },
+        "image": "/uploads/fabric/Cover/FA6107.jpg"
       }
     }
   ],
@@ -37929,6 +38137,115 @@
           "ja": "マイクロファイバーレザー Aquapelle 53772。上質な自動車用シート張地や内装用途に向けた無溶剤ヴィーガンマイクロファイバーレザーです。"
         },
         "image": "/uploads/veganleather/microfiber leather/53772.jpg"
+      }
+    },
+    {
+      "slug": "fa1869",
+      "materialSlug": "fabric",
+      "productTypeSlug": "3d-fabric",
+      "code": "FA1869",
+      "colorName": {
+        "en": "FA1869",
+        "ja": "FA1869"
+      },
+      "hex": "",
+      "image": "/uploads/fabric/3D Fabric/FA1869.jpg",
+      "swatchImage": "/uploads/fabric/3D Fabric/FA1869.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA1869.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "",
+        "ja": ""
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "",
+          "ja": ""
+        },
+        "description": {
+          "en": "",
+          "ja": ""
+        },
+        "image": "/uploads/fabric/Preview/FA1869.jpg"
+      }
+    },
+    {
+      "slug": "fa6107",
+      "materialSlug": "fabric",
+      "productTypeSlug": "superfabric",
+      "code": "FA6107",
+      "colorName": {
+        "en": "FA6107",
+        "ja": "FA6107"
+      },
+      "hex": "",
+      "image": "/uploads/fabric/Superfabric/FA6107.jpg",
+      "swatchImage": "/uploads/fabric/Superfabric/FA6107.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA6107.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "",
+        "ja": ""
+      },
+      "specs": [],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "",
+          "ja": ""
+        },
+        "description": {
+          "en": "",
+          "ja": ""
+        },
+        "image": "/uploads/fabric/Preview/FA6107.jpg"
+      }
+    },
+    {
+      "slug": "fa8526",
+      "materialSlug": "fabric",
+      "productTypeSlug": "porsche-plaid",
+      "code": "FA8526",
+      "colorName": {
+        "en": "FA8526",
+        "ja": "FA8526"
+      },
+      "hex": "",
+      "image": "/uploads/fabric/Porsche Plaid/FA8526.jpg",
+      "swatchImage": "/uploads/fabric/Porsche Plaid/FA8526.jpg",
+      "previewImage": "/uploads/fabric/Preview/FA8526.jpg",
+      "caseGallery": [],
+      "summary": {
+        "en": "Reproduction of Porsche's  914 Ski-Blue Tartan interior fabric",
+        "ja": "ポルシェ914のスキーブルー・タータン柄の内装生地を再現したファブリック。"
+      },
+      "specs": [
+        {
+          "label": {
+            "en": "MATERIAL",
+            "ja": "素材",
+            "zh": "材质"
+          },
+          "value": {
+            "en": "Polyester",
+            "ja": "ポリエステル",
+            "zh": "聚酯纤维"
+          }
+        }
+      ],
+      "certifications": [],
+      "seo": {
+        "title": {
+          "en": "Porsche 914 Tartan Seat Fabric | 1970's Blue Plaid Cloth",
+          "ja": "ポルシェ914 タータン柄シート生地｜1970年代のブルーチェック"
+        },
+        "description": {
+          "en": "Tartan plaid fabric for Porsche 914 interior seats. Twill weave reproduction for seats, inserts, and classic sports car interior trim.",
+          "ja": "ポルシェ914のシート内装向けタータンチェック生地。シート、インサート、クラシックスポーツカーの内装トリムに適したツイル織りの復刻生地です。"
+        },
+        "image": "/uploads/fabric/Porsche Plaid/FA8526.jpg"
       }
     }
   ]

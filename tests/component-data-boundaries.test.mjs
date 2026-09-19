@@ -443,7 +443,8 @@ test("Footer renders newsletter signup and corporate trust navigation", async ()
   const footer = await source("src/components/Footer.tsx");
 
   assert.match(footer, /FooterNewsletterForm/);
-  assert.match(footer, /Company Profile/);
+  assert.doesNotMatch(footer, /Company Profile/);
+  assert.match(footer, /\/uploads\/logo\/black-int\.png/);
   assert.match(footer, /プライバシーポリシー/);
   assert.match(footer, /\/privacy-policy/);
   assert.match(footer, /\/site-policy/);

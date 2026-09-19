@@ -1,3 +1,6 @@
+import { chineseCopy } from "@/china/copy";
+import type { Locale } from "@/lib/locales";
+
 const faqs = [
   {
     question: "What is skai faux leather made from?",
@@ -29,14 +32,16 @@ const faqs = [
   },
 ];
 
-export function SkaiCollectionFaq() {
+export function SkaiCollectionFaq({ locale }: { locale: Locale }) {
+  const items = locale === "zh" ? chineseCopy(faqs) : faqs;
+
   return (
     <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:py-28" data-nav-invert id="faq">
       <div className="section-shell">
-        <h2 className="font-serif text-2xl uppercase tracking-[0.06em] text-charcoal">FAQ</h2>
+        <h2 className="font-serif text-2xl uppercase tracking-[0.06em] text-charcoal">{locale === "zh" ? chineseCopy("FAQ") : "FAQ"}</h2>
         <div className="mx-auto mt-14 max-w-[46rem]">
           <div className="border-t border-charcoal/10">
-            {faqs.map((item) => (
+            {items.map((item) => (
               <details className="group border-b border-charcoal/10 py-5" key={item.question}>
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-8 text-left marker:hidden">
                   <span className="label-caps block text-[10px] text-charcoal">{item.question}</span>

@@ -159,7 +159,7 @@ async function VinylCollectionPage({ locale, materialSlug }: { locale: Locale; m
       breadcrumbs={breadcrumbs}
       eyebrow="Vegan Leather"
       heading="skai collection"
-      footer={<SkaiCollectionFaq />}
+      footer={<SkaiCollectionFaq locale={locale} />}
       heroImage={skaiVinylHeroImage}
       intro="Explore skai upholstery materials, colours and specifications."
       label="skai Article"
@@ -322,7 +322,7 @@ function ArticleCollectionShell({
                 <div className="pt-7 text-center">
                   <h3 className="label-caps text-charcoal">{article.name.toUpperCase()}</h3>
                   <p className="mt-2 text-sm text-muted">
-                    {article.colorCount} {locale === "zh" ? chineseCopy("colours") : locale === "en" ? "colours" : "色"}
+                    {article.colorCount} {locale === "zh" ? "个颜色" : locale === "en" ? "colours" : "色"}
                   </p>
                 </div>
               </article>

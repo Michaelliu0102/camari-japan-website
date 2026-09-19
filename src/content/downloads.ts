@@ -249,7 +249,7 @@ export function createDownloadGroups(catalogs: Download[], productDownloads: Dow
       slug: "care",
       label: { zh: chineseCopy("Care & Maintenance"), en: "Care & Maintenance", ja: "ケア・メンテナンス" },
       intro: {
-        zh: chineseCopy("Cleaning and maintenance files for material handling after specification."), en: "Cleaning and maintenance files for material handling after specification.",
+        zh: chineseCopy("Cleaning and maintenance files for material handling."), en: "Cleaning and maintenance files for material handling.",
         ja: "仕様決定後の素材取り扱いに関する清掃・メンテナンス資料。"
       },
       downloads: availableDownloads(careDownloads)

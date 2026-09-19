@@ -413,7 +413,10 @@ export async function loadHomePageSettings(): Promise<HomePageSettings> {
   }
 
   try {
-    const result = await getSanityClient().fetch<RawHomePageSettings>(homePageSettingsQuery);
+    // Read published homepage edits directly so locale previews do not retain stale copy.
+    const result = await getSanityClient()
+      .withConfig({ useCdn: false, perspective: "published" })
+      .fetch<RawHomePageSettings>(homePageSettingsQuery, {}, { cache: "no-store" });
     if (!result) {
       return normalizeHomeSettings(fallback);
     }

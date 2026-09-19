@@ -2,11 +2,13 @@ import { chinaStatusField, chinaMarketsField } from "./chinaFields";
 import { articleContentField, resourcePathField } from "./editorialFields";
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
+import { localizedDocumentPreview } from "./documentPreview";
 
 export const news = defineType({
   name: "news",
   title: "News",
   type: "document",
+  preview: localizedDocumentPreview("title", "Unnamed news article", "coverImage"),
   fields: [
     chinaStatusField,
     chinaMarketsField,

@@ -1,11 +1,13 @@
 import { chinaStatusField, chinaMarketsField } from "./chinaFields";
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
+import { localizedDocumentPreview } from "./documentPreview";
 
 export const projectCase = defineType({
   name: "projectCase",
   title: "Project Case",
   type: "document",
+  preview: localizedDocumentPreview("title", "Unnamed project case", "coverImage"),
   fields: [
     chinaStatusField,
     chinaMarketsField,

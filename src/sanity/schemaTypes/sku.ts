@@ -7,6 +7,28 @@ export const sku = defineType({
   name: "sku",
   title: "SKU",
   type: "document",
+  preview: {
+    select: {
+      code: "code",
+      colorEn: "colorName.en",
+      colorJa: "colorName.ja",
+      colorZh: "colorName.zh",
+      productEn: "productType.name.en",
+      productJa: "productType.name.ja",
+      productZh: "productType.name.zh",
+      slug: "slug.current",
+      media: "heroImage"
+    },
+    prepare({ code, colorEn, colorJa, colorZh, productEn, productJa, productZh, slug, media }) {
+      const color = [colorEn, colorJa, colorZh].find(value => typeof value === "string" && value.trim());
+      const product = [productEn, productJa, productZh].find(value => typeof value === "string" && value.trim());
+      return {
+        title: code || slug || "Unnamed SKU",
+        subtitle: [product, color].filter(Boolean).join(" · ") || undefined,
+        media
+      };
+    }
+  },
   validation: rule => rule.custom(validateMarketContent),
   fields: [
     chinaStatusField,

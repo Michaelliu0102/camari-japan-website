@@ -466,7 +466,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                       : locale === "zh" ? chineseCopy("Colour") : locale === "en" ? "Colour" : "カラー"}
                   </span>
                   <span className="font-sans text-[10px] tracking-[0.12em] text-charcoal/60">
-                    {locale === "zh" ? chineseCopy(`${skus.length} options`) : locale === "en" ? `${skus.length} options` : `${skus.length}色`}
+                    {locale === "zh" ? `${skus.length} 个颜色` : locale === "en" ? `${skus.length} options` : `${skus.length}色`}
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-[10px]">

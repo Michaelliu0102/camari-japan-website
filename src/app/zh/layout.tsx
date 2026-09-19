@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 import { loadChinaContent } from "@/china/loader";
 import { GlobalNav } from "@/components/GlobalNav";
 import { Footer } from "@/components/Footer";
@@ -11,6 +10,5 @@ export default async function ChinaLayout({children}:{children:ReactNode}) {
     <GlobalNav locale="zh"/>
     {children}
     <Footer locale="zh" chinaSettings={settings}/>
-    {preview?<aside className="china-preview-note">中文预览 · 与英文站共用完整内容，未翻译正文保留英文 <Link href="/studio/structure/chinaSite;chinaSiteSettings">后台设置 ↗</Link></aside>:null}
   </div>;
 }

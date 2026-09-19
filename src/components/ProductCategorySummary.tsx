@@ -21,7 +21,7 @@ export function ProductCategorySummary({ category, locale }: ProductCategorySumm
       data-nav-invert
     >
       <h2 className="sr-only" id="product-index-heading">
-        {locale === "zh" ? chineseCopy(`${category.title.en} product index`) : locale === "en" ? `${category.title.en} product index` : `${category.title.ja}製品インデックス`}
+        {locale === "zh" ? `${category.title.zh}产品目录` : locale === "en" ? `${category.title.en} product index` : `${category.title.ja}製品インデックス`}
       </h2>
 
       <details className="group/index">

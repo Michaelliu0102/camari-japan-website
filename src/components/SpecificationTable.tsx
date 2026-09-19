@@ -52,8 +52,8 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
   const certifications = productType.certifications.length ? productType.certifications : sku.certifications;
   const specMap = new Map(sku.specs.map((spec) => [normalizeLabel(spec.label.en), spec.value]));
   const specificationRows = productType.specTemplate.map((field) => {
-    const matchingValue = (field.aliases ?? [field.key])
-      .map((alias) => specMap.get(alias))
+    const matchingValue = (field.aliases?.length ? field.aliases : [field.key])
+      .map((alias) => specMap.get(normalizeLabel(alias)))
       .find((value): value is NonNullable<typeof value> => Boolean(value));
 
     return {

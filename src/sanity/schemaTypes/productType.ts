@@ -3,11 +3,13 @@ import { downloadFields } from "./editorialFields";
 import { validateMarketContent } from "./marketValidation";
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
+import { localizedDocumentPreview } from "./documentPreview";
 
 export const productType = defineType({
   name: "productType",
   title: "Product Type",
   type: "document",
+  preview: localizedDocumentPreview("name", "Unnamed product type"),
   validation: rule => rule.custom(validateMarketContent),
   fields: [
     chinaStatusField,

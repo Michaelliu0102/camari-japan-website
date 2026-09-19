@@ -1,27 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import type { Locale } from "@/lib/locales";
 
-const brands: Array<{ name: string; src: string; scale: number }> = [
-  { name: "Toyota", src: "/uploads/logo/OEM%20Logo/toyota-logo-png_seeklogo-486469.png", scale: 1.08 },
-  { name: "Honda", src: "/uploads/logo/OEM%20Logo/honda-svgrepo-com.svg", scale: 1 },
-  { name: "Mazda", src: "/uploads/logo/OEM%20Logo/mazda-alt-svgrepo-com.svg", scale: 1.02 },
-  { name: "Suzuki", src: "/uploads/logo/OEM%20Logo/suzuki-svgrepo-com.svg", scale: 1.04 },
-  { name: "Nissan", src: "/uploads/logo/OEM%20Logo/nissan-svgrepo-com.svg", scale: 1.02 },
-  { name: "Mitsubishi", src: "/uploads/logo/OEM%20Logo/mitsubishi-svgrepo-com.svg", scale: 1.02 },
-  { name: "Audi", src: "/uploads/logo/OEM%20Logo/audi-svgrepo-com.svg", scale: 1.18 },
-  { name: "BMW", src: "/uploads/logo/OEM%20Logo/bmw-logo.svg", scale: 0.98 },
-  { name: "Michelin", src: "/uploads/logo/OEM%20Logo/michelin.svg", scale: 1.18 },
-  { name: "Pirelli", src: "/uploads/logo/OEM%20Logo/pirelli-2.svg", scale: 1.18 },
-  { name: "Ferrari", src: "/uploads/logo/OEM%20Logo/ferrari-svgrepo-com.svg", scale: 1.04 },
-  { name: "Alfa Romeo", src: "/uploads/logo/OEM%20Logo/alfa-romeo-alt-svgrepo-com.svg", scale: 0.98 },
-  { name: "Hyundai", src: "/uploads/logo/OEM%20Logo/hyundai-svgrepo-com.svg", scale: 1.04 },
-  { name: "Buick", src: "/uploads/logo/OEM%20Logo/buick-svgrepo-com.svg", scale: 1.02 },
-  { name: "Cadillac", src: "/uploads/logo/OEM%20Logo/cadillac-svgrepo-com.svg", scale: 1.04 },
-  { name: "JEEP", src: "/uploads/logo/OEM%20Logo/jeep-alt-svgrepo-com.svg", scale: 0.92 },
-  { name: "AVATAR", src: "/uploads/logo/OEM%20Logo/avatr-technology-seeklogo.svg", scale: 1.35 },
-  { name: "Chery", src: "/uploads/logo/OEM%20Logo/chery-seeklogo.svg", scale: 0.82 }
+// Optical widths balance emblems and wordmarks after trimming the SVG viewBoxes.
+const brands: Array<{ name: string; src: string; width: number }> = [
+  { name: "Toyota", src: "/uploads/logo/OEM%20Logo/toyota-logo-png_seeklogo-486469.png", width: 96 },
+  { name: "Honda", src: "/uploads/logo/OEM%20Logo/honda-svgrepo-com.svg", width: 78 },
+  { name: "Mazda", src: "/uploads/logo/OEM%20Logo/mazda-alt-svgrepo-com.svg", width: 82 },
+  { name: "Suzuki", src: "/uploads/logo/OEM%20Logo/suzuki-svgrepo-com.svg", width: 62 },
+  { name: "Nissan", src: "/uploads/logo/OEM%20Logo/nissan-svgrepo-com.svg", width: 88 },
+  { name: "Mitsubishi", src: "/uploads/logo/OEM%20Logo/mitsubishi-svgrepo-com.svg", width: 78 },
+  { name: "Audi", src: "/uploads/logo/OEM%20Logo/audi-svgrepo-com.svg", width: 136 },
+  { name: "BMW", src: "/uploads/logo/OEM%20Logo/bmw-logo.svg", width: 66 },
+  { name: "Michelin", src: "/uploads/logo/OEM%20Logo/michelin.svg", width: 160 },
+  { name: "Pirelli", src: "/uploads/logo/OEM%20Logo/pirelli-2.svg", width: 144 },
+  { name: "Ferrari", src: "/uploads/logo/OEM%20Logo/ferrari-svgrepo-com.svg", width: 54 },
+  { name: "Alfa Romeo", src: "/uploads/logo/OEM%20Logo/alfa-romeo-alt-svgrepo-com.svg", width: 70 },
+  { name: "Hyundai", src: "/uploads/logo/OEM%20Logo/hyundai-svgrepo-com.svg", width: 110 },
+  { name: "Buick", src: "/uploads/logo/OEM%20Logo/buick-svgrepo-com.svg", width: 68 },
+  { name: "Cadillac", src: "/uploads/logo/OEM%20Logo/cadillac-svgrepo-com.svg", width: 74 },
+  { name: "Jeep", src: "/uploads/logo/OEM%20Logo/jeep-alt-svgrepo-com.svg", width: 110 },
+  { name: "AVATR", src: "/uploads/logo/OEM%20Logo/avatr-technology-seeklogo.svg", width: 84 },
+  { name: "Chery", src: "/uploads/logo/OEM%20Logo/chery-seeklogo.svg", width: 130 }
 ];
 
 type OemLogoLoopProps = {
@@ -90,7 +91,12 @@ export function OemLogoLoop({ locale }: OemLogoLoopProps) {
         >
           {[...brands, ...brands].map((brand, index) => (
             <span className="oem-logo-loop-item" key={`${brand.name}-${index}`}>
-              <img alt="" src={brand.src} style={{ transform: `scale(${brand.scale})` }} />
+              <img
+                alt=""
+                src={brand.src}
+                draggable={false}
+                style={{ "--logo-width": `${brand.width / 16}rem` } as CSSProperties}
+              />
             </span>
           ))}
         </div>

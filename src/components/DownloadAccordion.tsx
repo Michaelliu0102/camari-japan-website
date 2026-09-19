@@ -58,11 +58,16 @@ export function DownloadAccordion({ downloadLabel, fileLabel, groups, locale }: 
                 <span className="label-caps block text-gold">
                   {String(group.downloads.length).padStart(2, "0")} {fileLabel}
                 </span>
-                <span className="mt-5 block font-serif text-4xl leading-none text-charcoal md:text-5xl">
-                  {localizeBrandNames(group.label[locale], locale)}
+                <span className={`mt-5 block whitespace-nowrap font-serif leading-tight text-charcoal ${locale === "zh" ? "text-2xl md:text-3xl" : locale === "ja" ? "text-lg" : "text-xl"}`}>
+                  {localizeBrandNames(group.label[locale], locale).split("&").map((part, index) => (
+                    <span key={index}>
+                      {index > 0 ? <span className="font-sans font-normal">&amp;</span> : null}
+                      {part}
+                    </span>
+                  ))}
                 </span>
               </span>
-              <span className="max-w-[34rem] text-base leading-8 text-muted md:text-right">
+              <span className={`max-w-[34rem] text-muted md:text-right ${locale === "en" ? "text-sm leading-7" : "text-base leading-8"}`}>
                 {localizeBrandNames(group.intro[locale], locale)}
               </span>
               <span

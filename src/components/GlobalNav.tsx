@@ -135,6 +135,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [invert, setInvert] = useState(false);
+  const [firstScreen, setFirstScreen] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
   const [expandedQuickLinks, setExpandedQuickLinks] = useState<Record<string, boolean>>({});
   const rafRef = useRef(0);
@@ -164,6 +165,8 @@ export function GlobalNav({ locale }: GlobalNavProps) {
 
   useEffect(() => {
     function check() {
+      const navHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-height")) || 80;
+      setFirstScreen(window.scrollY < Math.max(1, window.innerHeight - navHeight));
       const invertEls = document.querySelectorAll("[data-nav-invert]");
       let shouldInvert = false;
 
@@ -185,11 +188,13 @@ export function GlobalNav({ locale }: GlobalNavProps) {
 
     check();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(rafRef.current);
     };
-  }, []);
+  }, [pathname]);
 
   const useDarkControls = invert || mobileOpen;
   const textColor = useDarkControls ? "text-charcoal" : "text-white";
@@ -210,7 +215,11 @@ export function GlobalNav({ locale }: GlobalNavProps) {
 
   return (
     <>
-      <header className={`${glassClass} fixed left-0 top-0 z-50 w-full`}>
+      <header
+        className={`nav-hover-reveal ${glassClass} fixed left-0 top-0 z-50 w-full`}
+        data-nav-first-screen={firstScreen ? "true" : undefined}
+        data-nav-open={mobileOpen || searchOpen ? "true" : undefined}
+      >
       <nav className="mx-auto flex h-[var(--nav-height)] w-full max-w-container-max items-center justify-between px-4 min-[390px]:px-margin-mobile md:px-margin-desktop">
         <Link
           aria-label={locale === "zh" ? "卡玛瑞国际首页" : `${siteConfig.siteName} home`}
