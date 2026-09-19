@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
+import { isChinaBuild } from "@/china/config";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/Footer";
 import { GlobalNav } from "@/components/GlobalNav";
 import { isLocale, type Locale } from "@/lib/locales";
 
 export function generateStaticParams() {
+  if (isChinaBuild) return [];
   return [{ locale: "en" }, { locale: "ja" }];
 }
 
@@ -15,6 +17,7 @@ export default async function LocaleLayout({
   children: ReactNode;
   params: Promise<{ locale: string }>;
 }>) {
+  if (isChinaBuild) notFound();
   const { locale: rawLocale } = await params;
 
   if (!isLocale(rawLocale)) {

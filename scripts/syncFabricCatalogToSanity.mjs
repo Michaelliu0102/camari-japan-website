@@ -124,6 +124,7 @@ async function syncProductTypes(productTypes) {
         .set({
           name: productType.name,
           slug: slugDoc(productType.slug),
+          markets: productType.markets ?? ["global"],
           material: ref("material-fabric"),
           summary: productType.summary,
           productCode: productType.productCode ?? "",

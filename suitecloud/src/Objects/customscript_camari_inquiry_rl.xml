@@ -1,0 +1,22 @@
+<restlet scriptid="customscript_camari_inquiry_rl">
+  <name>CAMARI Website Inquiry RESTlet</name>
+  <description>Receives business inquiries from the CAMARI website.</description>
+  <scriptfile>[/SuiteScripts/Camari/Inquiry/inquiry-restlet.js]</scriptfile>
+  <isinactive>F</isinactive>
+  <scriptcustomfields>
+    <scriptcustomfield scriptid="custscript_camari_inquiry_dryrun">
+      <fieldtype>CHECKBOX</fieldtype>
+      <label>Dry Run</label>
+      <defaultchecked>T</defaultchecked>
+      <description>When checked, validates inquiries without creating NetSuite records.</description>
+    </scriptcustomfield>
+  </scriptcustomfields>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_camari_inquiry_rl">
+      <title>CAMARI Website Inquiry RESTlet</title>
+      <status>RELEASED</status>
+      <loglevel>DEBUG</loglevel>
+      <isdeployed>T</isdeployed>
+    </scriptdeployment>
+  </scriptdeployments>
+</restlet>

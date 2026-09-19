@@ -1,3 +1,4 @@
+import { chineseCopy } from "../china/copy";
 import type { ProductType, Sku } from "@/lib/content";
 import type { Locale } from "@/lib/locales";
 import React from "react";
@@ -51,8 +52,8 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
   const certifications = productType.certifications.length ? productType.certifications : sku.certifications;
   const specMap = new Map(sku.specs.map((spec) => [normalizeLabel(spec.label.en), spec.value]));
   const specificationRows = productType.specTemplate.map((field) => {
-    const matchingValue = (field.aliases ?? [field.key])
-      .map((alias) => specMap.get(alias))
+    const matchingValue = (field.aliases?.length ? field.aliases : [field.key])
+      .map((alias) => specMap.get(normalizeLabel(alias)))
       .find((value): value is NonNullable<typeof value> => Boolean(value));
 
     return {
@@ -63,7 +64,7 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
         matchingValue?.en ??
         field.defaultValue?.[locale] ??
         field.defaultValue?.en ??
-        (locale === "en" ? "ON REQUEST" : "お問い合わせください")
+        (locale === "zh" ? chineseCopy("ON REQUEST") : locale === "en" ? "ON REQUEST" : "お問い合わせください")
     };
   });
   const sectionTitleClassName = "font-serif text-2xl uppercase tracking-[0.06em]";
@@ -76,7 +77,7 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
     <>
       <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:pb-16 md:pt-28" data-nav-invert id="specifications">
         <div className="section-shell">
-          <h2 className={sectionTitleClassName}>Specifications</h2>
+          <h2 className={sectionTitleClassName}>{locale === "zh" ? chineseCopy("Specifications") : locale === "en" ? "Specifications" : "仕様"}</h2>
           <div className={`${sectionInnerClassName} mt-14`}>
             <dl>
               {specificationRows.map((spec) => (
@@ -92,13 +93,13 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
 
       <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:py-24" data-nav-invert id="certifications">
         <div className="section-shell">
-          <h2 className={sectionTitleClassName}>Certifications</h2>
+          <h2 className={sectionTitleClassName}>{locale === "zh" ? chineseCopy("Certifications") : locale === "en" ? "Certifications" : "認証"}</h2>
           <div className={`${sectionInnerClassName} mt-14`}>
             <dl>
               {certifications.map((certification, index) => (
                 <div className={infoRowClassName} key={certification.en}>
                   <dt className={infoLabelClassName}>
-                    {locale === "en" ? `CERTIFICATION ${String(index + 1).padStart(2, "0")}` : `認証 ${String(index + 1).padStart(2, "0")}`}
+                    {locale === "zh" ? chineseCopy(`CERTIFICATION ${String(index + 1).padStart(2, "0")}`) : locale === "en" ? `CERTIFICATION ${String(index + 1).padStart(2, "0")}` : `認証 ${String(index + 1).padStart(2, "0")}`}
                   </dt>
                   <dd className={infoValueClassName}>{certification[locale]}</dd>
                 </div>
@@ -110,7 +111,7 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
 
       <section className="scroll-mt-[calc(var(--nav-height)+2rem)] border-t border-charcoal/10 bg-paper py-20 md:pb-28 md:pt-24" data-nav-invert id="maintenance-and-clean">
         <div className="section-shell">
-          <h2 className={sectionTitleClassName}>Maintenance and clean</h2>
+          <h2 className={sectionTitleClassName}>{locale === "zh" ? chineseCopy("Maintenance and clean") : locale === "en" ? "Maintenance and clean" : "メンテナンス・お手入れ"}</h2>
           <div className={`${sectionInnerClassName} mt-14`}>
             <dl>
               {maintenanceItems.length > 0 ? (
@@ -122,9 +123,9 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
                 ))
               ) : (
                 <div className={infoRowClassName}>
-                  <dt className={infoLabelClassName}>{locale === "en" ? "GUIDANCE" : "ガイダンス"}</dt>
+                  <dt className={infoLabelClassName}>{locale === "zh" ? chineseCopy("GUIDANCE") : locale === "en" ? "GUIDANCE" : "ガイダンス"}</dt>
                   <dd className={infoValueClassName}>
-                    {locale === "en"
+                    {locale === "zh" ? chineseCopy("Maintenance guidance is available on request for this finish.") : locale === "en"
                       ? "Maintenance guidance is available on request for this finish."
                       : "この仕上げのメンテナンスガイダンスは、ご要望に応じてご案内します。"}
                   </dd>

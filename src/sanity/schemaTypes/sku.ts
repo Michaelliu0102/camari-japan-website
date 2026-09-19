@@ -1,3 +1,5 @@
+import { chinaStatusField, chinaMarketsField } from "./chinaFields";
+import { validateMarketContent } from "./marketValidation";
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
 
@@ -5,7 +7,32 @@ export const sku = defineType({
   name: "sku",
   title: "SKU",
   type: "document",
+  preview: {
+    select: {
+      code: "code",
+      colorEn: "colorName.en",
+      colorJa: "colorName.ja",
+      colorZh: "colorName.zh",
+      productEn: "productType.name.en",
+      productJa: "productType.name.ja",
+      productZh: "productType.name.zh",
+      slug: "slug.current",
+      media: "heroImage"
+    },
+    prepare({ code, colorEn, colorJa, colorZh, productEn, productJa, productZh, slug, media }) {
+      const color = [colorEn, colorJa, colorZh].find(value => typeof value === "string" && value.trim());
+      const product = [productEn, productJa, productZh].find(value => typeof value === "string" && value.trim());
+      return {
+        title: code || slug || "Unnamed SKU",
+        subtitle: [product, color].filter(Boolean).join(" · ") || undefined,
+        media
+      };
+    }
+  },
+  validation: rule => rule.custom(validateMarketContent),
   fields: [
+    chinaStatusField,
+    chinaMarketsField,
     defineField({
       name: "code",
       title: "SKU Code",
@@ -35,7 +62,8 @@ export const sku = defineType({
     }),
     defineField({
       name: "colorName",
-      title: "Color Name",
+      title: "Manufacturer Colour Name / 原厂色名",
+      description: "English stores the original manufacturer name. Japanese is an optional alias; when empty the original name is displayed.",
       type: "object",
       fields: localizedString
     }),

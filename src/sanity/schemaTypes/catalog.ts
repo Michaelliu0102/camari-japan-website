@@ -3,7 +3,7 @@ import { localizedString, localizedText } from "./localizedString";
 
 export const catalog = defineType({
   name: "catalog",
-  title: "Catalog",
+  title: "Legacy Catalogs (use Download Center)",
   type: "document",
   fields: [
     defineField({ name: "title", title: "Title", type: "object", fields: localizedString }),

@@ -20,6 +20,8 @@ class BuildProductCatalogTests(unittest.TestCase):
             self.assertIn("product_types", workbook.sheetnames)
             self.assertIn("skus", workbook.sheetnames)
             self.assertEqual(workbook["product_types"]["A2"].value, "alcantara-panel")
+            product_type_headers = [cell.value for cell in workbook["product_types"][1]]
+            self.assertIn("markets", product_type_headers)
 
     def test_write_template_uses_local_upload_paths_for_image_examples(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -76,9 +78,25 @@ class BuildProductCatalogTests(unittest.TestCase):
 
             self.assertEqual(len(catalog["productTypes"]), 1)
             self.assertEqual(catalog["productTypes"][0]["specTemplate"][1]["key"], "width")
+            self.assertEqual(catalog["productTypes"][0]["markets"], ["global"])
             self.assertEqual(len(catalog["skus"]), 2)
             self.assertEqual(catalog["skus"][1]["productTypeSlug"], "alcantara-panel")
             self.assertEqual(catalog["skus"][1]["specs"][0]["value"]["en"], "0.95 mm")
+
+    def test_build_catalog_parses_product_type_markets(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workbook_path = Path(tmp_dir) / "catalog.xlsx"
+            write_template(workbook_path)
+
+            workbook = load_workbook(workbook_path)
+            product_type_headers = [cell.value for cell in workbook["product_types"][1]]
+            markets_column = product_type_headers.index("markets") + 1
+            workbook["product_types"].cell(row=2, column=markets_column).value = "global,japan"
+            workbook.save(workbook_path)
+
+            catalog = build_catalog(read_rows(workbook_path))
+
+            self.assertEqual(catalog["productTypes"][0]["markets"], ["global", "japan"])
 
     def test_build_catalog_rejects_missing_product_type_reference(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:

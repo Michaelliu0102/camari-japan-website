@@ -15,6 +15,7 @@ SHEETS = {
     "product_types": [
         "product_type_slug",
         "material_slug",
+        "markets",
         "name_en",
         "name_ja",
         "summary_en",
@@ -97,6 +98,20 @@ SHEETS = {
 }
 
 LEGACY_SHEETS = {
+    "product_types": [
+        "product_type_slug",
+        "material_slug",
+        "name_en",
+        "name_ja",
+        "summary_en",
+        "summary_ja",
+        "seo_title_en",
+        "seo_title_ja",
+        "seo_description_en",
+        "seo_description_ja",
+        "seo_image",
+        "product_code",
+    ],
     "skus": [
         "sku_slug",
         "material_slug",
@@ -123,6 +138,7 @@ TEMPLATE_ROWS = {
         {
             "product_type_slug": "alcantara-panel",
             "material_slug": "alcantara",
+            "markets": "global",
             "name_en": "Alcantara Panel",
             "name_ja": "Alcantara パネル",
             "summary_en": "Alcantara panel for automotive door panels, dashboards, and headliners. Italian microfibre with soft-touch finish, UV-stable, and carbon neutral.",
@@ -278,6 +294,19 @@ def split_aliases(value: str) -> list[str]:
     return [alias.strip() for alias in value.split("|") if alias.strip()]
 
 
+def parse_markets(value: str) -> list[str]:
+    markets = [market.strip() for market in value.split(",") if market.strip()]
+    if not markets:
+        return ["global"]
+
+    allowed_markets = {"global", "japan"}
+    unsupported_markets = [market for market in markets if market not in allowed_markets]
+    if unsupported_markets:
+        raise ValueError(f"Unsupported market value(s): {', '.join(unsupported_markets)}")
+
+    return markets
+
+
 def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
     specs_by_type: dict[str, list[dict[str, Any]]] = defaultdict(list)
     certs_by_type: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -347,6 +376,7 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
             {
                 "slug": slug,
                 "materialSlug": row["material_slug"],
+                "markets": parse_markets(row["markets"]),
                 "name": localized(row["name_en"], row["name_ja"]),
                 "summary": localized(row["summary_en"], row["summary_ja"]),
                 "productCode": row.get("product_code", ""),

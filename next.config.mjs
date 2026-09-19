@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [{
+      source: "/en/materials/vegan-leather/vinyl",
+      destination: "/en/materials/vegan-leather/skai",
+      permanent: true
+    }];
+  },
   images: {
     minimumCacheTTL: 300,
     remotePatterns: [

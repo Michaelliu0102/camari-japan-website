@@ -3,12 +3,12 @@
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { Locale } from "@/lib/locales";
+import { localizedPath, type Locale } from "@/lib/locales";
 
 type SearchResult = {
   label: string;
   sub: string;
-  localeHrefs: Record<string, string>;
+  href: string;
 };
 
 type SearchOverlayProps = {
@@ -37,7 +37,7 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
   }, [open]);
 
   useEffect(() => {
-    if (query.length < 2) {
+    if (query.length < (locale === "zh" ? 1 : 2)) {
       setResults([]);
       return;
     }
@@ -46,7 +46,7 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
     const timer = setTimeout(async () => {
       try {
         const res = await fetch(
-          `/api/search?q=${encodeURIComponent(query)}`,
+          `/api/search?q=${encodeURIComponent(query)}&locale=${locale}`,
           { signal: controller.signal }
         );
         if (res.ok) {
@@ -62,7 +62,7 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
       clearTimeout(timer);
       controller.abort();
     };
-  }, [query]);
+  }, [query, locale]);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -89,12 +89,13 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
       className={`fixed inset-0 z-[60] flex flex-col transition-transform duration-500 ease-in-out ${
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
+      data-lenis-prevent
     >
       {/* Top 60% — white */}
       <div className="flex h-[60vh] flex-col bg-white">
         <div className="flex justify-end px-margin-mobile pt-6 md:pt-8">
           <button
-            aria-label="Close search"
+            aria-label={locale === "zh" ? "关闭搜索" : "Close search"}
             className="flex h-10 w-10 items-center justify-center text-charcoal/30 transition-colors hover:text-charcoal"
             onClick={onClose}
             type="button"
@@ -111,7 +112,7 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
                 ref={inputRef}
                 className="w-full bg-transparent font-sans text-xl font-light text-charcoal outline-none placeholder:text-charcoal/20"
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search"
+                placeholder={locale === "zh" ? "搜索材料、型号和案例" : "Search"}
                 type="text"
                 value={query}
               />
@@ -120,10 +121,10 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
             {results.length > 0 ? (
               <ul className="mt-8 space-y-1">
                 {results.map((result) => (
-                  <li key={result.localeHrefs[locale] ?? result.localeHrefs.en}>
+                  <li key={result.href}>
                     <Link
                       className="flex items-baseline gap-4 rounded-md px-4 py-3 transition-colors hover:bg-stone"
-                      href={result.localeHrefs[locale] ?? result.localeHrefs.en}
+                      href={localizedPath(locale,result.href)}
                       onClick={onClose}
                     >
                       <span className="font-serif text-lg text-charcoal">
@@ -134,7 +135,7 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
                   </li>
                 ))}
               </ul>
-            ) : query.length >= 2 ? (
+            ) : query.length >= (locale === "zh" ? 1 : 2) ? (
               <p className="mt-8 text-center font-sans text-base tracking-wide text-charcoal/35">
                 Nothing found for &ldquo;{query}&rdquo;
               </p>

@@ -11,12 +11,19 @@ type FooterNewsletterFormProps = {
   locale: Locale;
 };
 
-type FormStatus = "idle" | "submitting" | "success" | "error";
-
 const copy = {
+  zh: {
+    label: "订阅我们的通讯",
+    placeholder: "请输入邮箱地址",
+    invalid: "请输入有效的邮箱地址。",
+    submitting: "正在提交…",
+    success: "感谢订阅。",
+    error: "订阅未能完成，请重试。",
+    submitLabel: "订阅",
+  },
   en: {
     label: "Subscribe to our newsletter",
-    placeholder: "Email Address",
+    placeholder: "Enter your email address",
     invalid: "Enter a valid email address.",
     submitting: "Submitting...",
     success: "Thanks for subscribing.",
@@ -53,6 +60,7 @@ export function FooterNewsletterForm({ className = "", layout = "stacked", local
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (locale === "zh") { setMessage("中国站预览暂不发送，请通过电话或邮箱联系我们。"); return; }
 
     const normalizedEmail = normalizeNewsletterEmail(email);
     if (!isValidNewsletterEmail(normalizedEmail)) {
@@ -112,7 +120,7 @@ export function FooterNewsletterForm({ className = "", layout = "stacked", local
 
   return (
     <form className={`sm:col-span-2 ${isInline ? "items-end gap-8 lg:flex" : ""} ${className}`.trim()} onSubmit={handleSubmit}>
-      <label className={`label-caps shrink-0 text-muted ${isInline ? "lg:pb-3" : ""}`} htmlFor="footer-email">
+      <label className={`shrink-0 font-label text-[0.95rem] [font-weight:500] tracking-[0.08em] text-charcoal/75 ${isInline ? "lg:pb-3" : ""}`} htmlFor="footer-email">
         {labels.label}
       </label>
       <div className={`${isInline ? "mt-5 lg:mt-0 lg:min-w-[22rem] lg:flex-1" : "mt-5"} flex border-b border-charcoal/20 pb-3`}>

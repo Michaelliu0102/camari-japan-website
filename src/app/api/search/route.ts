@@ -1,18 +1,28 @@
+import { isLocale } from "@/lib/locales";
+import { loadChinaContent } from "@/china/loader";
+import { chinaRecordPath } from "@/china/content";
 import { NextRequest, NextResponse } from "next/server";
 import { loadMaterialCategories, loadMaterials, loadProjects, loadSkus } from "@/sanity/lib/loaders";
-import { locales } from "@/lib/locales";
 
 export async function GET(request: NextRequest) {
+  const language = request.nextUrl.searchParams.get("locale") ?? "en";
+  const locale = isLocale(language) ? language : "en";
+  let allowed: Set<string>|undefined;
+  if(locale === "zh" && process.env.NODE_ENV !== "development") {
+    const content = await loadChinaContent();
+    if(!content.siteReady)return NextResponse.json({results:[]});
+    allowed = new Set(content.records.map(chinaRecordPath).filter((path):path is string=>Boolean(path)));
+  }
   const q = request.nextUrl.searchParams.get("q")?.trim().toLowerCase() ?? "";
 
-  if (q.length < 2) {
+  if (q.length < (locale === "zh" ? 1 : 2)) {
     return NextResponse.json({ results: [] });
   }
 
   const [categories, materials, skus, projects] = await Promise.all([
     loadMaterialCategories(),
     loadMaterials(),
-    loadSkus(),
+    loadSkus(locale),
     loadProjects(),
   ]);
 
@@ -20,18 +30,16 @@ export async function GET(request: NextRequest) {
     label: string;
     sub: string;
     href: string;
-    localeHrefs: Record<string, string>;
   }> = [];
 
   for (const m of materials) {
     const nameEn = m.name.en.toLowerCase();
     const nameJa = m.name.ja.toLowerCase();
-    if (nameEn.includes(q) || nameJa.includes(q)) {
+    if (nameEn.includes(q) || nameJa.includes(q) || (m.name.zh??"").toLowerCase().includes(q)) {
       results.push({
-        label: m.name.en,
-        sub: `Material — ${categories.find((c) => c.slug === m.categorySlug)?.name.en ?? ""}`,
-        href: `/materials/${m.slug}`,
-        localeHrefs: Object.fromEntries(locales.map((l) => [l, `/${l}/materials/${m.slug}`])),
+        label: m.name[locale],
+        sub: `${locale === "zh" ? "材料" : "Material"} — ${categories.find((c) => c.slug === m.categorySlug)?.name[locale] ?? ""}`,
+        href: `/materials/${m.slug}`
       });
     }
   }
@@ -40,12 +48,11 @@ export async function GET(request: NextRequest) {
     const code = s.code.toLowerCase();
     const nameEn = s.colorName?.en?.toLowerCase() ?? "";
     const nameJa = s.colorName?.ja?.toLowerCase() ?? "";
-    if (code.includes(q) || nameEn.includes(q) || nameJa.includes(q)) {
+    if (code.includes(q) || nameEn.includes(q) || nameJa.includes(q) || (s.colorName?.zh??"").toLowerCase().includes(q)) {
       results.push({
-        label: s.colorName?.en ? `${s.code} — ${s.colorName.en}` : s.code,
+        label: s.colorName?.[locale] ? `${s.code} — ${s.colorName[locale]}` : s.code,
         sub: `SKU`,
-        href: `/materials/${s.materialSlug}/${s.slug}`,
-        localeHrefs: Object.fromEntries(locales.map((l) => [l, `/${l}/materials/${s.materialSlug}/${s.slug}`])),
+        href: `/materials/${s.materialSlug}/${s.productTypeSlug}/${s.slug}`
       });
     }
   }
@@ -55,15 +62,14 @@ export async function GET(request: NextRequest) {
     const titleJa = p.title.ja.toLowerCase();
     const industryEn = p.industry.en.toLowerCase();
     const industryJa = p.industry.ja.toLowerCase();
-    if (titleEn.includes(q) || titleJa.includes(q) || industryEn.includes(q) || industryJa.includes(q)) {
+    if (titleEn.includes(q) || titleJa.includes(q) || industryEn.includes(q) || industryJa.includes(q) || (p.title.zh??"").toLowerCase().includes(q) || (p.industry.zh??"").toLowerCase().includes(q)) {
       results.push({
-        label: p.title.en,
-        sub: `Project — ${p.industry.en}`,
-        href: `/projects/${p.slug}`,
-        localeHrefs: Object.fromEntries(locales.map((l) => [l, `/${l}/projects/${p.slug}`])),
+        label: p.title[locale],
+        sub: `${locale === "zh" ? "案例" : "Project"} — ${p.industry[locale]}`,
+        href: `/projects/${p.slug}`
       });
     }
   }
 
-  return NextResponse.json({ results: results.slice(0, 8) });
+  return NextResponse.json({ results: results.filter(item=>!allowed||allowed.has(item.href)).slice(0, 8) });
 }
