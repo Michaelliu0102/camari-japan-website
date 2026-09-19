@@ -105,7 +105,7 @@ export default async function AboutPage({ params }: PageProps) {
                 fill
                 priority
                 sizes="(min-width: 1024px) 62vw, 100vw"
-                src="/uploads/about/casa-camari-office.png"
+                src={aboutSettings.heroImage}
               />
             </div>
             <div className="order-1 max-w-[36rem] lg:order-2 lg:justify-self-end">

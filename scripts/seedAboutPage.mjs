@@ -4,7 +4,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const client = getCliClient({ apiVersion: "2026-05-12" });
-const heroImagePath = path.join(root, "public/uploads/hero/showroom.png");
+const heroImagePath = path.join(root, "public/uploads/about/showroom.jpg");
 
 function ref(_ref) {
   return { _type: "reference", _ref };
