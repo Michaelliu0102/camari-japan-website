@@ -84,13 +84,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ? await loadSkaiVinylProductTypeSlugs()
     : new Set<string>();
   const availableLocales: readonly Locale[] = skaiProductTypeSlugs.has(productTypeSlug) ? ["en"] : ["en", "ja"];
+  const useChineseSkuSeo = locale === "zh";
 
   return createPageMetadata({
     locale,
-    path: `/materials/${materialSlug}/${productTypeSlug}`,
-    title: productType.seo.title[locale],
-    description: productType.seo.description[locale],
-    image: productType.seo.image || sku.seo.image,
+    path: useChineseSkuSeo
+      ? `/materials/${materialSlug}/${productTypeSlug}/${skuSlug}`
+      : `/materials/${materialSlug}/${productTypeSlug}`,
+    title: useChineseSkuSeo ? sku.seo.title.zh || productType.seo.title.zh : productType.seo.title[locale],
+    description: useChineseSkuSeo ? sku.seo.description.zh || productType.seo.description.zh : productType.seo.description[locale],
+    image: useChineseSkuSeo ? sku.seo.image || productType.seo.image : productType.seo.image || sku.seo.image,
     availableLocales
   });
 }

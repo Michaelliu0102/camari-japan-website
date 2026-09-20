@@ -7,10 +7,49 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
-from scripts.build_product_catalog import build_catalog, read_rows, write_template
+from scripts.build_product_catalog import build_catalog, read_rows, write_template, localized_field
 
 
 class BuildProductCatalogTests(unittest.TestCase):
+    def test_existing_ferrari_urls_survive_shortened_workbook_slugs(self) -> None:
+        catalog = build_catalog(read_rows(Path("data/import/fabric/fabric.xlsx")))
+        by_code = {sku["code"]: sku for sku in catalog["skus"]}
+        self.assertEqual(by_code["FA1228"]["slug"], "ferrari-technical-fa1228")
+        self.assertEqual(by_code["FA1269"]["slug"], "ferrari-technical-fa1269")
+
+    def test_optional_chinese_fields_preserve_existing_languages(self) -> None:
+        self.assertEqual(localized_field({"name_en": "Fabric", "name_ja": "生地", "name_zh": "织物"}, "name"),
+                         {"en": "Fabric", "ja": "生地", "zh": "织物"})
+        self.assertEqual(localized_field({"name_en": "Fabric", "name_ja": "生地"}, "name"),
+                         {"en": "Fabric", "ja": "生地"})
+
+    def test_chinese_workbook_columns_survive_catalog_import(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workbook_path = Path(tmp_dir) / "catalog.xlsx"
+            write_template(workbook_path)
+            workbook = load_workbook(workbook_path)
+            for sheet, field, value in [("product_types", "name_zh", "汽车饰面材料"),
+                                        ("skus", "seo_description_zh", "汽车饰面材料的中文选材说明"),
+                                        ("product_type_specs", "default_value_zh", "聚酯纤维")]:
+                column = workbook[sheet].max_column + 1
+                workbook[sheet].cell(1, column, field)
+                workbook[sheet].cell(2, column, value)
+            workbook.save(workbook_path)
+            catalog = build_catalog(read_rows(workbook_path))
+            self.assertEqual(catalog["productTypes"][0]["name"]["zh"], "汽车饰面材料")
+            self.assertEqual(catalog["skus"][0]["seo"]["description"]["zh"], "汽车饰面材料的中文选材说明")
+            self.assertEqual(catalog["productTypes"][0]["specTemplate"][0]["defaultValue"]["zh"], "聚酯纤维")
+
+    def test_unknown_chinese_header_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            path = Path(tmp_dir) / "catalog.xlsx"
+            write_template(path)
+            workbook = load_workbook(path)
+            workbook["skus"].cell(1, workbook["skus"].max_column + 1, "seo_descripton_zh")
+            workbook.save(path)
+            with self.assertRaisesRegex(ValueError, "headers do not match"):
+                read_rows(path)
+
     def test_write_template_creates_expected_sheets(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             workbook_path = Path(tmp_dir) / "template.xlsx"

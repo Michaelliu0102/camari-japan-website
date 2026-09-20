@@ -37,6 +37,24 @@ Important:
 - `sku.product_type_slug` must match an existing row in `product_types`.
 - `aliases` in `product_type_specs` use `|` as the separator, for example `thickness|gauge`.
 
+### Chinese content
+
+Every localized `*_en` / `*_ja` field also accepts an optional `*_zh` column.
+Chinese columns can be appended at the right or placed beside their language peers;
+keep the original columns in their existing order. The importer preserves Chinese
+values in the generated catalog without changing English or Japanese content.
+
+Examples include `name_zh`, `color_name_zh`, `summary_zh`, `label_zh`,
+`default_value_zh`, `value_zh`, `seo_title_zh`, and `seo_description_zh`.
+Use `sku_specs` for individual SKU overrides, such as FA8526's polyester composition.
+
+Chinese SEO titles should identify the brand or series, SKU code, material and
+relevant application in natural Chinese. Preserve original brand names and color
+identifiers, distinguish reproduction fabrics from genuine manufacturer products,
+and base technical claims on the source specifications. Titles and descriptions
+prepare content for public pages; spreadsheet edits alone do not publish content
+or guarantee search engine or AI-search indexing and citations.
+
 ### Image and file paths
 
 For local development, prefer site-relative paths instead of absolute local filesystem paths:
@@ -80,6 +98,18 @@ This writes:
 `src/data/product-catalog.generated.json`
 
 The site automatically merges this generated data with the fixture catalog in [content.ts](/Users/michael/Documents/Website/src/lib/content.ts:1).
+
+To synchronize only the Chinese catalog fields with existing Sanity product types
+and SKUs, first inspect the dry-run report and then apply it:
+
+```bash
+node scripts/syncCatalogChineseToSanity.mjs
+node scripts/syncCatalogChineseToSanity.mjs --apply
+```
+
+The script backs up the matching Sanity documents under
+`outputs/catalog-chinese-sanity-20260920/`, matches existing SKU codes and series,
+and leaves other languages, images, and publication status unchanged.
 
 ## 4. Verify
 
