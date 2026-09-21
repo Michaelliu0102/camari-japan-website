@@ -159,6 +159,11 @@ video {
   text-transform: uppercase;
 }
 
+.ampersand-serif {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-weight: 400;
+}
+
 .about-hero-wordmark {
   font-family: "Cinzel", serif;
   font-weight: 400;

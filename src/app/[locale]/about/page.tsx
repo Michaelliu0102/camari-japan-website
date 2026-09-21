@@ -72,7 +72,7 @@ const japaneseSectionLabelClass =
 function renderTitleWithNormalAmpersand(text: string) {
   return text.split("&").map((part, index) => (
     <span key={`${part}-${index}`}>
-      {index > 0 ? <span className="font-sans font-normal">&</span> : null}
+      {index > 0 ? <span className="ampersand-serif">&</span> : null}
       {part}
     </span>
   ));

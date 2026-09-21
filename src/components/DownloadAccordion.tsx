@@ -61,7 +61,7 @@ export function DownloadAccordion({ downloadLabel, fileLabel, groups, locale }: 
                 <span className={`mt-5 block font-serif leading-tight text-charcoal md:whitespace-nowrap ${locale === "zh" ? "text-2xl md:text-3xl" : locale === "ja" ? "text-lg" : "text-xl"}`}>
                   {localizeBrandNames(group.label[locale], locale).split("&").map((part, index) => (
                     <span key={index}>
-                      {index > 0 ? <span className="font-sans font-normal">&amp;</span> : null}
+                      {index > 0 ? <span className="ampersand-serif">&amp;</span> : null}
                       {part}
                     </span>
                   ))}

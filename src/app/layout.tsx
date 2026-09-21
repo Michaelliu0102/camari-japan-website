@@ -26,7 +26,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const china = isChinaBuild || (isChinaPreview && (await headers()).get("x-camari-site") === "china");
   return (
     <html lang={china ? "zh-CN" : siteConfig.defaultLocale}>
-      {!china ? <head><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&family=Noto+Sans+JP:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500&display=swap" /></head> : null}
+      {!china ? <head><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Inter:wght@400;500;600&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@500;600;700&family=Noto+Sans+JP:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" /></head> : null}
       <body>
         {<ConsentProvider defaultLocale={china ? "zh" : siteConfig.defaultLocale}>
           <SmoothScroll />
