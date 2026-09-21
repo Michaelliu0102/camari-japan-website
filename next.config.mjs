@@ -8,6 +8,8 @@ const nextConfig = {
     }];
   },
   images: {
+    // Sites serves the original static assets without a Next image optimizer binding.
+    unoptimized: process.env.SITES_PREVIEW === "1",
     minimumCacheTTL: 300,
     remotePatterns: [
       {

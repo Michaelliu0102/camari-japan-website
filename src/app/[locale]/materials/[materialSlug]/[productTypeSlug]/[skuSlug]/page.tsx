@@ -17,6 +17,9 @@ type PageProps = {
   params: Promise<{ locale: Locale; materialSlug: string; productTypeSlug: string; skuSlug: string }>;
 };
 
+// SKU data is fetched fresh; static fallback rendering rejects no-store reads on Workers.
+export const dynamic = "force-dynamic";
+
 async function isEnglishOnlySkaiVinylRoute(
   locale: Locale,
   materialSlug: string,
