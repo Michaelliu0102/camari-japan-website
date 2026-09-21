@@ -69,6 +69,15 @@ const manufacturingCapabilities = [
 const japaneseSectionLabelClass =
   "font-label text-[0.78rem] font-semibold uppercase tracking-[0.28em] text-gold md:text-[0.9rem]";
 
+function renderTitleWithNormalAmpersand(text: string) {
+  return text.split("&").map((part, index) => (
+    <span key={`${part}-${index}`}>
+      {index > 0 ? <span className="font-sans font-normal">&</span> : null}
+      {part}
+    </span>
+  ));
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const aboutSettings = await loadAboutPageSettings();
@@ -144,7 +153,7 @@ export default async function AboutPage({ params }: PageProps) {
             <div className="mt-20 grid gap-10 md:mt-28 lg:grid-cols-[minmax(20rem,0.72fr)_minmax(0,1.28fr)] lg:items-center lg:gap-24">
               <div className="max-w-[32rem]">
                 <p className="label-caps text-gold">{t("China \u00b7 Italy \u00b7 Japan \u00b7 Australia")}</p>
-                <h3 className="mt-5 font-serif text-3xl leading-[1.06] text-charcoal md:text-5xl">{t("Local Service & Global Collaboration")}</h3>
+                <h3 className="mt-5 font-serif text-3xl leading-[1.06] text-charcoal md:text-5xl">{renderTitleWithNormalAmpersand(t("Local Service & Global Collaboration"))}</h3>
                 <p className="mt-7 text-[1rem] leading-[1.8] text-muted">{t("Clients work with specialists in their own market, while CAMARI teams share specifications, sampling feedback, and production planning across borders. Central warehousing in China and Italy keeps material access close to each project and coordination consistent from concept to delivery.")}</p>
               </div>
               <div className="relative aspect-[4/3] overflow-hidden bg-stone">
@@ -235,7 +244,7 @@ export default async function AboutPage({ params }: PageProps) {
                     />
                   </div>
                   <p className="mt-7 text-[0.68rem] uppercase tracking-[0.24em] text-gold">0{index + 1}</p>
-                  <h3 className="mt-3 max-w-[21ch] font-serif text-2xl leading-tight">{t(capability.title)}</h3>
+                  <h3 className="mt-3 max-w-[21ch] font-serif text-2xl leading-tight">{renderTitleWithNormalAmpersand(t(capability.title))}</h3>
                   <p className="mt-4 max-w-[36rem] text-sm leading-7 text-muted">{t(capability.body)}</p>
                 </article>
               ))}
