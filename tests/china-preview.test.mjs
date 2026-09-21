@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import {mkdtemp,rm,symlink} from "node:fs/promises";
+import {mkdtemp,readFile,rm,symlink} from "node:fs/promises";
 import {tmpdir} from "node:os";
 import path from "node:path";
 import {pathToFileURL} from "node:url";
@@ -18,6 +18,10 @@ test("China preview is isolated from legacy routing and unavailable on internati
  assert.deepEqual(china.resolveChinaRoute("/zh/materials",true,false),{type:"redirect",destination:"/materials"});
  assert.equal(china.resolveChinaRoute("/studio/structure",true,false).type,"legacy");
  assert.match(china.resolveChinaRoute("/ja/about",true,false).destination,/co\.jp\/about$/);
+});
+test("A public China preview is enabled only by an explicit server environment variable", async()=>{
+ const config=await readFile("src/china/config.ts","utf8");
+ assert.match(config,/process\.env\.CHINA_PUBLIC_PREVIEW === "1"/);
 });
 test("Publication requires complete Chinese copy, approval, and international or China market membership",()=>{
  assert.equal(china.chinaRecordVisible(material,false),true);
@@ -53,7 +57,7 @@ test("China settings preserve independent business identity and draft status",()
 test("Chinese metadata uses the China domain and never indexes previews or search results",()=>{
  const metadata=china.chinaMetadata("/materials/leather",china.chinaSiteDefaults,true,material);
  assert.equal(metadata.robots.index,false);assert.equal(metadata.openGraph.locale,"zh_CN");
- assert.equal(metadata.alternates.canonical,"https://camari-international.com.cn/materials/leather");
+ assert.equal(metadata.alternates.canonical,"https://www.camari.com.cn/materials/leather");
  assert.deepEqual(Object.keys(metadata.alternates.languages),["zh-CN"]);
  assert.equal(china.chinaMetadata("/search",china.chinaSiteDefaults,false).robots.index,false);
 });

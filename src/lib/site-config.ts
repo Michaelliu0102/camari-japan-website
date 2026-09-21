@@ -67,7 +67,7 @@ const BRAND_NAME_PATTERN = new RegExp(
   "gi"
 );
 const DEFAULT_LOCALE_SITE_URLS: Record<Locale, string> = {
-  zh: "https://camari-international.com.cn", en: "https://www.camari-international.com",
+  zh: "https://www.camari.com.cn", en: "https://www.camari-international.com",
   ja: "https://www.camari-international.co.jp"
 };
 const BUILD_ENABLE_LOCALE_PREVIEW = process.env.NEXT_PUBLIC_ENABLE_LOCALE_PREVIEW;
@@ -90,8 +90,9 @@ const defaultSites: Record<
     defaultAlternateSiteHomeUrl: DEFAULT_LOCALE_SITE_URLS.ja,
     defaultOgImage: DEFAULT_OG_IMAGE,
     slogan: {
-      zh: chineseCopy("The Intersection of Texture and Precision"), en: "Premium Materials — A World of Choice",
-      ja: "質感と精密さの交差点"
+      zh: "Alcantara、真皮与面料供应及产品定制",
+      en: "Alcantara, Leather & Fabric Supply · Custom Products",
+      ja: "アルカンターラ・本革・生地の販売と製品製作"
     },
     description: {
       zh: chineseCopy("Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces."), en: "Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces.",
@@ -117,8 +118,9 @@ const defaultSites: Record<
     defaultAlternateSiteHomeUrl: DEFAULT_LOCALE_SITE_URLS.en,
     defaultOgImage: DEFAULT_OG_IMAGE,
     slogan: {
-      zh: chineseCopy("The Intersection of Texture and Precision"), en: "Premium Materials — A World of Choice",
-      ja: "質感と精密さの交差点"
+      zh: "Alcantara、真皮与面料供应及产品定制",
+      en: "Alcantara, Leather & Fabric Supply · Custom Products",
+      ja: "アルカンターラ・本革・生地の販売と製品製作"
     },
     description: {
       zh: chineseCopy("Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces."), en: "Premium materials, Alcantara collections, and OEM/ODM surfaces for refined automotive, interior, and product spaces.",
@@ -180,7 +182,7 @@ function normalizeHomeTarget(target: string): string {
 }
 
 function getSiteKey(env: EnvSource): SiteKey {
-  return env.NEXT_PUBLIC_SITE_KEY === "global" ? "global" : "japan";
+  return env.NEXT_PUBLIC_SITE_KEY === "japan" ? "japan" : "global";
 }
 
 export function resolveSiteConfig(env: EnvSource = process.env): SiteConfig {
@@ -192,9 +194,9 @@ export function resolveSiteConfig(env: EnvSource = process.env): SiteConfig {
   const siteName = env.NEXT_PUBLIC_SITE_NAME || defaults.siteName;
   const organizationName = env.NEXT_PUBLIC_ORGANIZATION_NAME || defaults.organizationName;
   const configuredLocale = env.NEXT_PUBLIC_DEFAULT_LOCALE;
-  const defaultLocale: Locale = configuredLocale === "en" || configuredLocale === "ja" ? configuredLocale : defaults.defaultLocale;
+  const defaultLocale: Locale = configuredLocale === "en" || configuredLocale === "ja" || configuredLocale === "zh" ? configuredLocale : defaults.defaultLocale;
   const localeSiteUrls: Record<Locale, string> = {
-    zh: "https://camari-international.com.cn", en: trimTrailingSlash(env.NEXT_PUBLIC_EN_SITE_URL || (defaultLocale === "en" ? siteUrl : DEFAULT_LOCALE_SITE_URLS.en)),
+    zh: "https://www.camari.com.cn", en: trimTrailingSlash(env.NEXT_PUBLIC_EN_SITE_URL || (defaultLocale === "en" ? siteUrl : DEFAULT_LOCALE_SITE_URLS.en)),
     ja: trimTrailingSlash(env.NEXT_PUBLIC_JA_SITE_URL || (defaultLocale === "ja" ? siteUrl : DEFAULT_LOCALE_SITE_URLS.ja))
   };
   const configuredMarket = env.NEXT_PUBLIC_SANITY_MARKET;

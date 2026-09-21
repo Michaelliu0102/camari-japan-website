@@ -26,9 +26,10 @@
 ## 预览与正式站隔离
 
 - `/zh` 预览只在开发模式开放，带有预览提示和 `noindex, nofollow`。
+- 临时公网验收可在中国站独立构建和运行时设置 `CHINA_PUBLIC_PREVIEW=1`。该模式显示待审核内容、保持 `noindex, nofollow`，且询盘表单继续关闭；正式发布前必须移除此变量并将 Sanity 发布状态改为“审核通过”。
 - 英日正式站不开放 `/zh`。未审核内容不会加入中国站正式页面或 sitemap。
 - 后续中国站独立构建设置 `NEXT_PUBLIC_SITE_KEY=china`，对外路径为 `/`、`/materials` 等；`/zh` 是内部路由，正式访问会跳转为不带前缀的路径。
-- 中国站 canonical 固定使用 `https://camari-international.com.cn`，语言为 `zh-CN`。不要把现有英日部署的环境变量改成 China。
+- 中国站 canonical 固定使用 `https://www.camari.com.cn`，语言为 `zh-CN`。不要把现有英日部署的环境变量改成 China。
 - 中国站使用系统中文字体，图片暂时复用现有素材或 Sanity URL。本阶段没有配置大陆对象存储、CDN 或视频镜像。
 
 ## 询盘表单

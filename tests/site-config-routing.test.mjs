@@ -73,7 +73,7 @@ test("site config resolves deployment-specific identity for global and japan sit
       siteUrl: "https://www.camari-international.com",
       alternateSiteHomeUrl: "https://www.camari-international.co.jp",
       localeSiteUrls: {
-        zh: "https://camari-international.com.cn",
+        zh: "https://www.camari.com.cn",
         en: "https://www.camari-international.com",
         ja: "https://www.camari-international.co.jp"
       }
@@ -105,7 +105,7 @@ test("site config resolves deployment-specific identity for global and japan sit
       siteUrl: "https://www.camari-international.co.jp",
       alternateSiteHomeUrl: "https://www.camari-international.com",
       localeSiteUrls: {
-        zh: "https://camari-international.com.cn",
+        zh: "https://www.camari.com.cn",
         en: "https://www.camari-international.com",
         ja: "https://www.camari-international.co.jp"
       }
@@ -133,10 +133,25 @@ test("site config falls back to the matching production locale domains", async (
 
   assert.equal(japanSite.alternateSiteHomeUrl, "https://www.camari-international.com");
   assert.deepEqual(japanSite.localeSiteUrls, {
-    zh: "https://camari-international.com.cn",
+    zh: "https://www.camari.com.cn",
     en: "https://www.camari-international.com",
     ja: "https://www.camari-international.co.jp"
   });
+});
+
+test("China builds reuse the global identity while routing Chinese as the default locale", async () => {
+  const siteConfigModule = await importOptionalTsModule("src/lib/site-config.ts");
+  const chinaSite = siteConfigModule.resolveSiteConfig({
+    NEXT_PUBLIC_SITE_KEY: "china",
+    NEXT_PUBLIC_SITE_URL: "http://www.camari.com.cn",
+    NEXT_PUBLIC_DEFAULT_LOCALE: "zh",
+    NEXT_PUBLIC_SANITY_MARKET: "global"
+  });
+
+  assert.equal(chinaSite.siteKey, "global");
+  assert.equal(chinaSite.defaultLocale, "zh");
+  assert.equal(chinaSite.sanityMarket, "global");
+  assert.equal(chinaSite.siteUrl, "http://www.camari.com.cn");
 });
 
 test("site config can keep both languages inside a production preview deployment", async () => {
@@ -154,7 +169,7 @@ test("site config can keep both languages inside a production preview deployment
 
   assert.equal(previewSite.enableLocalePreview, true);
   assert.deepEqual(previewSite.localeSiteUrls, {
-    zh: "https://camari-international.com.cn",
+        zh: "https://www.camari.com.cn",
     en: "https://camari-japan-preview.example.test",
     ja: "https://camari-japan-preview.example.test"
   });

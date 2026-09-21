@@ -130,7 +130,17 @@ export function Footer({ locale, chinaSettings }: FooterProps) {
                         {chinaSettings?.icpNumber || "浙ICP备17003937号-2"}
                       </a>
                     </li>
-                    <li><span aria-disabled="true" title="公示链接待补充">电子营业执照</span></li>
+                    <li>
+                      <a
+                        aria-label="查看营业执照"
+                        className="transition-colors hover:text-gold"
+                        href="/uploads/home/营业执照.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        营业执照
+                      </a>
+                    </li>
                   </>
                 ) : null}
                 <li>

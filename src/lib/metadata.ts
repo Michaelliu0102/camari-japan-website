@@ -6,6 +6,7 @@ type MetadataInput = {
   locale: Locale;
   path?: string;
   title: string;
+  preserveTitle?: boolean;
   description: string;
   image?: string;
   availableLocales?: readonly Locale[];
@@ -29,6 +30,7 @@ export function createPageMetadata({
   locale,
   path = "",
   title,
+  preserveTitle = false,
   description,
   image,
   availableLocales = ["en", "ja"],
@@ -37,7 +39,7 @@ export function createPageMetadata({
   if(locale === "zh") availableLocales = ["zh"];
   const url = absoluteLocalizedUrl(locale, path);
   const seoBrandName = getSeoBrandName(locale);
-  const normalizedTitle = formatPageTitle(title, locale);
+  const normalizedTitle = preserveTitle ? title.trim() : formatPageTitle(title, locale);
   const normalizedDescription = replaceSiteBrand(description, seoBrandName);
   const socialImage = image || siteConfig.defaultOgImage;
   const languageAlternates = Object.fromEntries(

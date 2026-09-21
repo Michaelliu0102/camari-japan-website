@@ -1,7 +1,7 @@
 import type { ChinaSiteSettings } from "./content";
 export const chinaSiteDefaults: ChinaSiteSettings = {
   _id: "chinaSiteSettings", status: "draft", brandName: "卡玛瑞国际有限公司", legalName: "卡玛瑞贸易（浙江）有限公司",
-  siteTitle: "CAMARI 中国｜材料与定制产品", seoDescription: "了解 CAMARI 的材料选择与定制产品服务，探索汽车内饰、空间设计与生活方式产品的应用。",
+  siteTitle: "Alcantara、真皮与面料供应及产品定制｜CAMARI 卡玛瑞", seoDescription: "了解 CAMARI 的材料选择与定制产品服务，探索汽车内饰、空间设计与生活方式产品的应用。",
   home: {status:"draft",eyebrow:"材料 · 设计 · 定制",title:"从材料触感，\n到产品体验。",description:"为汽车内饰、空间设计与生活方式产品，探索适合的材料与定制方案。",image:"/uploads/hero/video/higgsfield/01-color-swatches-real-16x9-exact.jpg",ctaLabel:"探索材料",brandTitle:"连接材料与创意",brandBody:"从选材、设计到定制开发，CAMARI 与客户共同梳理项目需求，让材料服务于具体的使用场景。"},
   about:{status:"draft",title:"关于 CAMARI",paragraphs:["CAMARI INTERNATIONAL 专注于材料及定制产品，为汽车内饰、空间设计与生活方式项目提供选材和开发支持。","我们重视触感、设计与实际应用之间的关系，并根据项目要求沟通样品、加工方式与交付安排。"]},
   contact:{status:"draft",companyName:"卡玛瑞国际有限公司",phone:"+86 (573) 82680007",email:"info@camari-international.com",address:"浙江省嘉兴市禾兴北路1525号",formEnabled:false},

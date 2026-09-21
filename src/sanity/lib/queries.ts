@@ -176,6 +176,7 @@ export type RawHomeExploreSlide = {
 };
 
 export type RawHomePageSettings = {
+  seoTitle?: LocalizedString | null;
   brandValueLabel?: LocalizedString | null;
   brandValueTitle?: LocalizedString | null;
   brandValueBody?: LocalizedString | null;
@@ -229,6 +230,7 @@ export type RawProductBusinessSettings = {
 } | null;
 
 export const homePageSettingsQuery = `*[_type == "homePage"][0] {
+  seoTitle,
   brandValueLabel,
   brandValueTitle,
   brandValueBody,

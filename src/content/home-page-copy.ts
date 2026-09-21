@@ -2,6 +2,11 @@ import { chineseCopy } from "../china/copy";
 import { siteConfig } from "../lib/site-config";
 
 export const homePageCopy = {
+  seoTitle: {
+    zh: "Alcantara、真皮与面料供应及产品定制｜CAMARI 卡玛瑞",
+    en: "Alcantara, Leather & Fabric Supply · Custom Products | CAMARI",
+    ja: "アルカンターラ・本革・生地の販売と製品製作｜CAMARI"
+  },
   brandValueLabel: { zh: chineseCopy("Brand Value"), en: "Brand Value", ja: "ブランド価値" },
   brandValueTitle: { zh: chineseCopy("LOCAL SERVICE.\nGLOBAL REACH."), en: "LOCAL SERVICE.\nGLOBAL REACH.", ja: "欧州品質の素材感と、日本的な空間の抑制。" },
   brandValueBody: {

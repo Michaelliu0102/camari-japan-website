@@ -1,7 +1,8 @@
-export const chinaSiteUrl = "https://camari-international.com.cn";
+export const chinaSiteUrl = "https://www.camari.com.cn";
 export const isChinaBuild = process.env.NEXT_PUBLIC_SITE_KEY === "china";
-// Draft content is available only in local development, never enabled by a query parameter.
-export const isChinaPreview = process.env.NODE_ENV === "development";
+// Draft content is available in local development and explicitly enabled preview deployments,
+// never by a query parameter. Public preview deployments remain noindex and keep forms disabled.
+export const isChinaPreview = process.env.NODE_ENV === "development" || process.env.CHINA_PUBLIC_PREVIEW === "1";
 export const chinaBasePath = isChinaBuild ? "" : "/zh";
 export function chinaPath(path = "/"): string {
   return `${chinaBasePath}${path === "/" ? "" : path}` || "/";

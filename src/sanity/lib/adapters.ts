@@ -191,6 +191,7 @@ export function adaptHomePageSettings(raw: RawHomePageSettings, fallback = fallb
     .filter((slide) => slide.slug && slide.image && slide.href);
 
   return {
+    seoTitle: localized(raw?.seoTitle ?? fallback.seoTitle),
     brandValueLabel: localized(raw?.brandValueLabel ?? fallback.brandValueLabel),
     brandValueTitle: localized(raw?.brandValueTitle ?? fallback.brandValueTitle),
     brandValueBody: localized(raw?.brandValueBody ?? fallback.brandValueBody),

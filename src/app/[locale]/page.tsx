@@ -18,11 +18,12 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
-  const categories = await loadMaterialCategories();
+  const [homeSettings, categories] = await Promise.all([loadHomePageSettings(), loadMaterialCategories()]);
 
   return createPageMetadata({
     locale,
-    title: `${site.name} | ${site.slogan[locale]}`,
+    title: homeSettings.seoTitle[locale],
+    preserveTitle: true,
     description: site.description[locale],
     image: categories[0]?.coverImage
   });
