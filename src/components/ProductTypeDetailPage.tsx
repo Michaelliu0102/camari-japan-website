@@ -660,7 +660,7 @@ function ProductTypeFaq({ items, locale }: { items: FaqItem[]; locale: Locale })
           <div className="border-t border-charcoal/10">
             {items.map((item) => (
               <details className="group border-b border-charcoal/10 py-5" key={item.question}>
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-8 text-left marker:hidden">
+                <summary className="flex cursor-pointer list-none min-h-11 items-start justify-between gap-8 text-left marker:hidden">
                   <span>
                     <span className="label-caps block text-[10px] text-charcoal">
                       {localizeBrandNames(item.question, locale)}
@@ -670,7 +670,7 @@ function ProductTypeFaq({ items, locale }: { items: FaqItem[]; locale: Locale })
                     +
                   </span>
                 </summary>
-                <p className="mt-2 whitespace-pre-line pr-10 text-[0.8rem] leading-relaxed text-muted">
+                <p className="mt-2 whitespace-pre-line pr-0 text-base md:pr-10 leading-7 text-muted md:text-[0.8rem] md:leading-relaxed">
                   {localizeBrandNames(item.answer, locale)}
                 </p>
               </details>

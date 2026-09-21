@@ -231,18 +231,18 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
         >
           <button
             aria-label={labels.close}
-            className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border border-charcoal/15 text-charcoal/65 transition-colors hover:border-charcoal hover:text-charcoal"
+            className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full border border-charcoal/15 text-charcoal/65 transition-colors hover:border-charcoal hover:text-charcoal"
             onClick={() => setIsOpen(false)}
             type="button"
           >
             <X size={17} strokeWidth={1.4} />
           </button>
 
-          <div className="max-w-[34rem]">
+          <div className="max-w-[34rem] pr-12">
             <h2 className="font-serif text-2xl leading-tight md:text-3xl" id={titleId}>
               {labels.title}
             </h2>
-            <p className="mt-4 text-[15px] leading-[1.6] tracking-[0.02em] text-charcoal/65">{labels.intro}</p>
+            <p className="mt-4 text-base md:text-[15px] leading-[1.6] tracking-[0.02em] text-charcoal/65">{labels.intro}</p>
           </div>
 
           <form
@@ -261,7 +261,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
               <label className="grid gap-3">
                 <span className="label-caps text-charcoal/70">{labels.name} <span className="text-gold">*</span></span>
                 <input
-                  className="border-b border-charcoal bg-transparent pb-4 text-[15px] outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
+                  className="border-b border-charcoal bg-transparent pb-4 text-base md:text-[15px] outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
                   onChange={(event) => updateField("name", event.target.value)}
                   placeholder={labels.namePlaceholder}
                   required
@@ -272,7 +272,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
               <label className="grid gap-3">
                 <span className="label-caps text-charcoal/70">{labels.email} <span className="text-gold">*</span></span>
                 <input
-                  className="border-b border-charcoal bg-transparent pb-4 text-[15px] outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
+                  className="border-b border-charcoal bg-transparent pb-4 text-base md:text-[15px] outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
                   onChange={(event) => updateField("email", event.target.value)}
                   placeholder={labels.emailPlaceholder}
                   required
@@ -283,7 +283,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
               <label className="grid gap-3">
                 <span className="label-caps text-charcoal/70">{labels.phone}</span>
                 <input
-                  className="border-b border-charcoal bg-transparent pb-4 text-[15px] outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
+                  className="border-b border-charcoal bg-transparent pb-4 text-base md:text-[15px] outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
                   onChange={(event) => updateField("phone", event.target.value)}
                   placeholder={labels.phonePlaceholder}
                   type="tel"
@@ -293,7 +293,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
               <label className="grid gap-3">
                 <span className="label-caps text-charcoal/70">{labels.company} <span className="text-gold">*</span></span>
                 <input
-                  className="border-b border-charcoal bg-transparent pb-4 text-[15px] outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
+                  className="border-b border-charcoal bg-transparent pb-4 text-base md:text-[15px] outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
                   onChange={(event) => updateField("company", event.target.value)}
                   placeholder={labels.companyPlaceholder}
                   required
@@ -308,7 +308,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
                   </span>
                   <span className="relative block">
                     <select
-                      className={`w-full appearance-none border-b border-charcoal bg-transparent pb-4 pr-10 text-[15px] outline-none transition-colors focus:border-charcoal ${
+                      className={`w-full appearance-none border-b border-charcoal bg-transparent pb-4 pr-10 text-base md:text-[15px] outline-none transition-colors focus:border-charcoal ${
                         form.countryCode ? "text-charcoal" : "text-charcoal/35"
                       }`}
                       onChange={(event) => updateField("countryCode", event.target.value)}
@@ -374,7 +374,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
             <label className="grid gap-3">
               <span className="label-caps text-charcoal/70">{labels.message} <span className="text-gold">*</span></span>
               <textarea
-                className="min-h-[11rem] resize-y border border-charcoal bg-transparent p-5 text-[15px] leading-7 outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
+                className="min-h-[11rem] resize-y border border-charcoal bg-transparent p-5 text-base md:text-[15px] leading-7 outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
                 onChange={(event) => updateField("message", event.target.value)}
                 placeholder={labels.messagePlaceholder}
                 required

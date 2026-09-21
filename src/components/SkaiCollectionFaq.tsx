@@ -43,11 +43,11 @@ export function SkaiCollectionFaq({ locale }: { locale: Locale }) {
           <div className="border-t border-charcoal/10">
             {items.map((item) => (
               <details className="group border-b border-charcoal/10 py-5" key={item.question}>
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-8 text-left marker:hidden">
+                <summary className="flex cursor-pointer list-none min-h-11 items-start justify-between gap-8 text-left marker:hidden">
                   <span className="label-caps block text-[10px] text-charcoal">{item.question}</span>
                   <span aria-hidden="true" className="shrink-0 font-sans text-xl leading-none text-muted transition-transform duration-300 ease-expo group-open:rotate-45 motion-reduce:transition-none">+</span>
                 </summary>
-                <p className="mt-3 pr-10 text-[0.8rem] leading-relaxed text-muted">{item.answer}</p>
+                <p className="mt-3 pr-0 text-base md:pr-10 leading-7 text-muted md:text-[0.8rem] md:leading-relaxed">{item.answer}</p>
               </details>
             ))}
           </div>

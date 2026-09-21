@@ -52,7 +52,7 @@ export function SiteSwitcher({ locale, pathname, darkControls }: {
 
   return (
     <div
-      className={`relative z-50 shrink-0 font-label font-semibold uppercase ${locale === "en" ? "text-[9px] tracking-[0.14em] md:text-[10px] md:tracking-[0.2em]" : "text-[12px] tracking-[0.12em]"}`}
+      className={`relative z-50 shrink-0 font-label font-semibold uppercase ${locale === "en" ? "text-[11px] tracking-[0.1em] md:text-[10px] md:tracking-[0.2em]" : "text-[12px] tracking-[0.12em]"}`}
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
       }}
@@ -70,7 +70,7 @@ export function SiteSwitcher({ locale, pathname, darkControls }: {
         aria-controls={panelId}
         aria-expanded={open}
         aria-label={`${label}: ${current.label[locale]}`}
-        className={`flex min-h-11 items-center gap-2 border px-3 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 motion-safe:active:scale-[0.98] md:px-4 ${darkControls
+        className={`flex min-h-11 items-center gap-1.5 border px-2 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 motion-safe:active:scale-[0.98] min-[360px]:gap-2 min-[360px]:px-3 md:px-4 ${darkControls
           ? "border-charcoal/25 bg-charcoal/6 text-charcoal hover:bg-charcoal/10"
           : "border-white/25 bg-white/8 text-white hover:bg-white/15"}`}
         onClick={() => setOpen((value) => !value)}

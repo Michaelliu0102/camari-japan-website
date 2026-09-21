@@ -130,6 +130,29 @@ video {
   text-transform: uppercase;
 }
 
+/* Keep small brand labels legible on phones without changing desktop type. */
+@media (max-width: 767px) {
+  .label-caps {
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: 0.16em;
+  }
+
+  #faq summary .label-caps {
+    font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  .mobile-footer-links a,
+  .mobile-footer-links button,
+  .mobile-footer-links [aria-disabled="true"] {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    text-align: left;
+  }
+}
+
 .display-caps {
   font-family: "Playfair Display", Georgia, serif;
   letter-spacing: 0.16em;

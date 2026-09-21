@@ -58,7 +58,7 @@ export function DownloadAccordion({ downloadLabel, fileLabel, groups, locale }: 
                 <span className="label-caps block text-gold">
                   {String(group.downloads.length).padStart(2, "0")} {fileLabel}
                 </span>
-                <span className={`mt-5 block whitespace-nowrap font-serif leading-tight text-charcoal ${locale === "zh" ? "text-2xl md:text-3xl" : locale === "ja" ? "text-lg" : "text-xl"}`}>
+                <span className={`mt-5 block font-serif leading-tight text-charcoal md:whitespace-nowrap ${locale === "zh" ? "text-2xl md:text-3xl" : locale === "ja" ? "text-lg" : "text-xl"}`}>
                   {localizeBrandNames(group.label[locale], locale).split("&").map((part, index) => (
                     <span key={index}>
                       {index > 0 ? <span className="font-sans font-normal">&amp;</span> : null}
@@ -91,7 +91,7 @@ export function DownloadAccordion({ downloadLabel, fileLabel, groups, locale }: 
                 <div className="space-y-3 border-t border-charcoal/10 pt-2">
                   {group.downloads.map((download) => (
                     <Link
-                      className="group/download flex items-center justify-between gap-8 border-b border-charcoal/10 py-5 transition-colors hover:border-charcoal/25"
+                      className="group/download flex items-start justify-between gap-4 border-b md:items-center md:gap-8 border-charcoal/10 py-5 transition-colors hover:border-charcoal/25"
                       href={download.href}
                       key={`${download.type}-${download.href}`}
                     >
@@ -99,7 +99,7 @@ export function DownloadAccordion({ downloadLabel, fileLabel, groups, locale }: 
                         <span className="label-caps block text-[10px] text-charcoal">
                           {localizeBrandNames(download.title[locale], locale)}
                         </span>
-                        <span className="mt-1 block text-[0.8rem] leading-relaxed text-muted">
+                        <span className="mt-1 block text-sm leading-7 text-muted md:text-[0.8rem] md:leading-relaxed">
                           {localizeBrandNames(download.description[locale], locale)}
                         </span>
                       </span>

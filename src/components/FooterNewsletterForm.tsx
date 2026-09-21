@@ -125,7 +125,7 @@ export function FooterNewsletterForm({ className = "", layout = "stacked", local
       </label>
       <div className={`${isInline ? "mt-5 lg:mt-0 lg:min-w-[22rem] lg:flex-1" : "mt-5"} flex border-b border-charcoal/20 pb-3`}>
         <input
-          className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted disabled:cursor-not-allowed disabled:opacity-70"
+          className="min-w-0 flex-1 bg-transparent text-base outline-none md:text-sm placeholder:text-muted disabled:cursor-not-allowed disabled:opacity-70"
           disabled={status === "submitting"}
           id="footer-email"
           onChange={(event) => handleEmailChange(event.target.value)}
@@ -135,7 +135,7 @@ export function FooterNewsletterForm({ className = "", layout = "stacked", local
         />
         <button
           aria-label={labels.submitLabel}
-          className="flex h-8 w-8 items-center justify-center text-charcoal disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex h-11 w-11 shrink-0 items-center md:h-8 md:w-8 justify-center text-charcoal disabled:cursor-not-allowed disabled:opacity-50"
           disabled={status === "submitting"}
           type="submit"
         >

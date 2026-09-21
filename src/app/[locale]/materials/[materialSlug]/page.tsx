@@ -51,7 +51,7 @@ function MaterialFaq({ items, locale }: { items: MaterialFaqItem[]; locale: Loca
                 className="group border-b border-charcoal/10 py-5"
                 key={item.question}
               >
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-8 text-left marker:hidden">
+                <summary className="flex cursor-pointer list-none min-h-11 items-start justify-between gap-8 text-left marker:hidden">
                   <span className="label-caps block text-[10px] text-charcoal">
                     {localizeBrandNames(item.question, locale)}
                   </span>
@@ -62,7 +62,7 @@ function MaterialFaq({ items, locale }: { items: MaterialFaqItem[]; locale: Loca
                     +
                   </span>
                 </summary>
-                <div className="mt-3 space-y-3 pr-10 text-[0.8rem] leading-relaxed text-muted">
+                <div className="mt-3 space-y-3 pr-0 text-base md:pr-10 leading-7 text-muted md:text-[0.8rem] md:leading-relaxed">
                   {item.answer.split(/\n{2,}/).map((paragraph) => (
                     <p key={paragraph}>{localizeBrandNames(paragraph, locale)}</p>
                   ))}

@@ -67,10 +67,10 @@ export function SpecificationTable({ locale, sku, productType }: SpecificationTa
         (locale === "zh" ? chineseCopy("ON REQUEST") : locale === "en" ? "ON REQUEST" : "お問い合わせください")
     };
   });
-  const sectionTitleClassName = "font-serif text-2xl uppercase tracking-[0.06em]";
-  const infoRowClassName = "flex justify-between gap-8 border-b border-charcoal/10 py-5";
+  const sectionTitleClassName = "break-words font-serif text-2xl uppercase tracking-[0.06em]";
+  const infoRowClassName = "flex flex-col gap-2 border-b border-charcoal/10 py-5 md:flex-row md:justify-between md:gap-8";
   const infoLabelClassName = "label-caps text-[10px] uppercase text-muted";
-  const infoValueClassName = "max-w-[55%] text-right text-[0.85rem] leading-relaxed text-charcoal";
+  const infoValueClassName = "min-w-0 break-words text-base leading-7 text-charcoal md:max-w-[55%] md:text-right md:text-[0.85rem] md:leading-relaxed";
   const sectionInnerClassName = "mx-auto max-w-[46rem]";
 
   return (

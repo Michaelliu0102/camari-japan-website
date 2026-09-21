@@ -63,7 +63,7 @@ export function Footer({ locale, chinaSettings }: FooterProps) {
     : labels.nav;
 
   return (
-    <footer className="bg-paper pt-8 pb-3 text-charcoal md:pt-12 md:pb-3">
+    <footer className="bg-paper pt-8 pb-3 text-charcoal md:pt-12 md:pb-3" data-nav-invert>
       <div className="mx-auto max-w-container-max px-4 min-[390px]:px-margin-mobile md:px-margin-desktop">
         <div className="flex flex-col gap-8 border-b border-charcoal/10 pb-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
           <FooterNewsletterForm className="w-full lg:max-w-[42rem]" layout="inline" locale={locale} />
@@ -76,7 +76,7 @@ export function Footer({ locale, chinaSettings }: FooterProps) {
                 return (
                   <a
                     aria-label={item.label}
-                    className="flex h-10 w-10 items-center justify-center border border-charcoal/15 text-charcoal transition-colors hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-charcoal"
+                    className="flex h-11 w-11 items-center md:h-10 md:w-10 justify-center border border-charcoal/15 text-charcoal transition-colors hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-charcoal"
                     href={item.href}
                     key={item.label}
                     title={item.label}
@@ -106,16 +106,16 @@ export function Footer({ locale, chinaSettings }: FooterProps) {
           >
             <Image
               alt="CAMARI INTERNATIONAL"
-              className="h-auto w-[8.5rem] mix-blend-multiply contrast-200 min-[390px]:w-[9.25rem] md:w-[12rem]"
+              className="h-auto w-[7rem] min-[360px]:w-[8.5rem] mix-blend-multiply contrast-200 min-[390px]:w-[9.25rem] md:w-[12rem]"
               height={1780}
-              sizes="(min-width: 768px) 192px, (min-width: 390px) 148px, 136px"
+              sizes="(min-width: 768px) 192px, (min-width: 390px) 148px, (min-width: 360px) 136px, 112px"
               src="/uploads/logo/black-int.png"
               width={4994}
             />
           </Link>
-          <div className="flex min-w-0 flex-col gap-3 text-[10px] uppercase leading-5 tracking-[0.2em] text-muted md:items-end md:text-right">
-            <nav aria-label="Footer navigation">
-              <ul className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-2 md:justify-end">
+          <div className="flex min-w-0 flex-col gap-3 text-xs uppercase leading-6 tracking-[0.08em] text-muted md:text-[10px] md:leading-5 md:tracking-[0.2em] md:items-end md:text-right">
+            <nav aria-label="Footer navigation" className="mobile-footer-links">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-1 sm:flex sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-2 md:justify-end">
                 {navigation.map((item) => (
                   <li key={item.href}>
                     <Link className="transition-colors hover:text-gold" href={localizedPath(locale, item.href)}>

@@ -191,11 +191,11 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
   return (
     <section className={`bg-paper ${compact ? "" : "pt-[calc(var(--nav-height)+2rem)] md:pt-[calc(var(--nav-height)+4rem)]"}`} data-nav-invert>
       {/* Desktop: 3-column — thumbnails | main image | product details */}
-      <div className="section-shell flex flex-col gap-8 md:flex-row md:items-start md:gap-0">
+      <div className="section-shell flex flex-col gap-8 lg:grid lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start lg:gap-12">
         {/* Col 1+2: Images area (thumbnails + main image) — matches Dedar's productView-images flex row */}
-        <div className="mx-auto flex w-full scroll-mt-[calc(var(--nav-height)+2rem)] flex-row gap-[26px] md:mx-0 md:ml-[5%] md:max-w-[690px]" id="inspiration">
+        <div className="mx-auto flex w-full min-w-0 max-w-[690px] scroll-mt-[calc(var(--nav-height)+2rem)] flex-row gap-[26px] lg:mx-0" id="inspiration">
           {/* Thumbnail strip — vertical, ~90px wide, matches Dedar's productView-thumbnails */}
-          <div className="hidden w-[90px] shrink-0 flex-col gap-[26px] md:flex">
+          <div className="hidden w-[90px] shrink-0 flex-col gap-[26px] lg:flex">
             {galleryImages.map((item, index) => {
               const active = index === activeImageIndex;
               return (
@@ -219,7 +219,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
           </div>
 
           {/* Main product image — matches Dedar's productView-img-container */}
-          <div className="flex-1">
+          <div className="min-w-0 flex-1">
             <div
               className="group/sku-image relative w-full cursor-zoom-in overflow-hidden bg-[#f3f3f2] md:min-h-[366px]"
               onPointerLeave={handleImagePointerLeave}
@@ -237,7 +237,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                 />
               </div>
               {/* Mobile thumbnail strip — bottom overlay */}
-              <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-3 md:hidden">
+              <div className="absolute bottom-4 inset-x-4 flex gap-3 overflow-x-auto p-1 lg:hidden">
                 {galleryImages.map((item, index) => {
                   const active = index === activeImageIndex;
                   return (
@@ -245,7 +245,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                       aria-label={item.alt}
                       aria-pressed={active}
                       className={`relative shrink-0 overflow-hidden transition-all ${
-                        active ? "h-12 w-12 outline outline-1 outline-offset-2 outline-white" : "h-10 w-10 opacity-70"
+                        active ? "h-12 w-12 outline outline-1 outline-offset-2 outline-white" : "h-11 w-11 opacity-70"
                       }`}
                       key={`${item.image}-${index}`}
                       onClick={() => setActiveImageIndex(index)}
@@ -258,7 +258,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
               </div>
             </div>
 
-            <p className="mt-5 text-center font-sans text-[12px] leading-[19px] md:mt-6">
+            <p className="mt-5 text-center font-sans text-sm leading-6 md:text-[12px] md:leading-[19px] md:mt-6">
               <span className="font-semibold text-charcoal">{locale === "zh" ? chineseCopy("Color Code: ") : locale === "en" ? "Color Code: " : "カラーコード："}</span>
               <span className="text-charcoal/70">{selected.code}</span>
             </p>
@@ -266,11 +266,11 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
         </div>
 
         {/* Col 3: Product details — matches Dedar's productView-details */}
-        <div className="flex flex-col md:pl-[5%] md:pt-0 lg:pl-[10%]">
-          <div className="md:max-w-[20rem] lg:max-w-[24rem]">
+        <div className="flex min-w-0 flex-col">
+          <div className="lg:max-w-[24rem]">
             {/* Breadcrumb */}
             <nav aria-label={locale === "zh" ? chineseCopy("Breadcrumb") : locale === "en" ? "Breadcrumb" : "パンくずリスト"} className="mb-4">
-              <ol className="flex flex-wrap items-center gap-x-2 font-sans text-[10px] uppercase tracking-[0.12em] text-muted">
+              <ol className="flex flex-wrap items-center gap-x-2 gap-y-2 break-words font-sans text-xs uppercase tracking-[0.08em] md:text-[10px] md:tracking-[0.12em] text-muted">
                 <li>
                   <Link className="transition-colors hover:text-charcoal" href={localizedPath(locale, "/")}>
                     {locale === "zh" ? chineseCopy("Home") : locale === "en" ? "Home" : "ホーム"}
@@ -296,24 +296,24 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
             </nav>
 
             {/* Product title — Dedar's productView-title */}
-            <h1 className="font-serif text-2xl leading-tight md:text-[2rem] md:leading-[1.2]">
+            <h1 className="break-words text-balance font-serif text-2xl leading-tight md:text-[2rem] md:leading-[1.2]">
               {productTypeName}
             </h1>
             {productTypeCode ? (
-              <p className="mt-1 font-sans text-[11px] text-muted">
+              <p className="mt-1 font-sans text-sm text-muted md:text-[11px]">
                 {locale === "zh" ? chineseCopy("Product code: ") : locale === "en" ? "Product code: " : "製品コード："}{productTypeCode}
               </p>
             ) : null}
 
             {/* Payoff / description — Dedar's productView-payoff */}
-            <div className="mt-4 space-y-4 font-sans text-[0.875rem] leading-relaxed text-muted md:mt-5">
+            <div className="mt-4 space-y-4 font-sans text-base leading-7 md:text-[0.875rem] md:leading-relaxed text-muted md:mt-5">
               {productTypeSummary.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
             </div>
 
             {productTypeSlug === "alcantara-panel" ? (
-              <p className="mt-6 font-sans text-[0.85rem] leading-relaxed text-muted">
+              <p className="mt-6 font-sans text-base leading-7 md:text-[0.85rem] md:leading-relaxed text-muted">
                 {locale === "zh" ? chineseCopy("For seats, please see ") : locale === "en" ? "For seats, please see " : "シート用途には"}
                 <Link
                   className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
@@ -324,7 +324,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                 {locale === "zh" ? chineseCopy(".") : locale === "en" ? "." : "をご覧ください。"}
               </p>
             ) : productTypeSlug === "alcantara-cover" ? (
-              <p className="mt-6 font-sans text-[0.85rem] leading-relaxed text-muted">
+              <p className="mt-6 font-sans text-base leading-7 md:text-[0.85rem] md:leading-relaxed text-muted">
                 {locale === "zh" ? chineseCopy("For door panel, dashboard and other upholstery, please see ") : locale === "en" ? "For door panel, dashboard and other upholstery, please see " : "ドアパネル、ダッシュボード、その他の張り地用途には"}
                 <Link
                   className="font-semibold underline decoration-charcoal/40 underline-offset-4 transition-colors hover:text-charcoal hover:decoration-charcoal"
@@ -335,7 +335,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                 {locale === "zh" ? chineseCopy(".") : locale === "en" ? "." : "をご覧ください。"}
               </p>
             ) : productTypeSlug === "alcantara-master" ? (
-              <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
+              <div className="mt-6 space-y-2 font-sans text-base leading-7 md:text-[0.85rem] md:leading-relaxed text-muted">
                 <p>
                   {locale === "zh" ? chineseCopy("For upholstery sofa, please see Alcantara ") : locale === "en" ? "For upholstery sofa, please see Alcantara " : "ソファの張り地にはアルカンターラ "}
                   <Link
@@ -365,7 +365,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                 </p>
               </div>
             ) : productTypeSlug === "alcantara-multilayer" ? (
-              <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
+              <div className="mt-6 space-y-2 font-sans text-base leading-7 md:text-[0.85rem] md:leading-relaxed text-muted">
                 <p>
                   {locale === "zh" ? chineseCopy("For interior decoration, please see Alcantara ") : locale === "en" ? "For interior decoration, please see Alcantara " : "インテリア装飾にはアルカンターラ "}
                   <Link
@@ -395,7 +395,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                 </p>
               </div>
             ) : productTypeSlug === "alcantara-avant" ? (
-              <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
+              <div className="mt-6 space-y-2 font-sans text-base leading-7 md:text-[0.85rem] md:leading-relaxed text-muted">
                 <p>
                   {locale === "zh" ? chineseCopy("For interior decoration, please see Alcantara ") : locale === "en" ? "For interior decoration, please see Alcantara " : "インテリア装飾にはアルカンターラ "}
                   <Link
@@ -425,7 +425,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                 </p>
               </div>
             ) : productTypeSlug === "alcantara-board-fr" ? (
-              <div className="mt-6 space-y-2 font-sans text-[0.85rem] leading-relaxed text-muted">
+              <div className="mt-6 space-y-2 font-sans text-base leading-7 md:text-[0.85rem] md:leading-relaxed text-muted">
                 <p>
                   {locale === "zh" ? chineseCopy("For interior decoration, please see Alcantara ") : locale === "en" ? "For interior decoration, please see Alcantara " : "インテリア装飾にはアルカンターラ "}
                   <Link
@@ -459,13 +459,13 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
             {/* Color selector — Dedar's swatch grid */}
             {hasVisualSwatches ? (
               <div className="mt-10 scroll-mt-[calc(var(--nav-height)+2rem)] md:mt-12" id="you-may-also-like">
-                <div className="mb-4 flex items-baseline justify-between">
-                  <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-charcoal/80">
+                <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+                  <span className="font-sans text-xs font-semibold uppercase md:text-[10px] tracking-[0.12em] text-charcoal/80">
                     {selected.colorName?.[locale]
                       ? `${locale === "zh" ? chineseCopy("Colour") : locale === "en" ? "Colour" : "カラー"} — ${selected.colorName[locale]}`
                       : locale === "zh" ? chineseCopy("Colour") : locale === "en" ? "Colour" : "カラー"}
                   </span>
-                  <span className="font-sans text-[10px] tracking-[0.12em] text-charcoal/60">
+                  <span className="font-sans text-xs tracking-[0.12em] md:text-[10px] text-charcoal/60">
                     {locale === "zh" ? `${skus.length} 个颜色` : locale === "en" ? `${skus.length} options` : `${skus.length}色`}
                   </span>
                 </div>
@@ -479,7 +479,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                       <button
                         aria-label={sku.colorName?.[locale] ? `${sku.colorName[locale]} — ${sku.code}` : sku.code}
                         aria-pressed={active}
-                        className={`relative h-9 w-9 shrink-0 overflow-hidden border border-charcoal/15 bg-[#f3f3f2] transition-all ${
+                        className={`relative h-11 w-11 shrink-0 md:h-9 md:w-9 overflow-hidden border border-charcoal/15 bg-[#f3f3f2] transition-all ${
                           active
                             ? "outline outline-1 outline-offset-[3px] outline-charcoal"
                             : "hover:scale-110"
@@ -490,7 +490,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                         title={sku.colorName?.[locale] ? `${sku.code} ${sku.colorName[locale]}` : sku.code}
                         type="button"
                       >
-                        {swatchImage ? <Image alt="" className="object-cover" fill sizes="36px" src={swatchImage} unoptimized /> : null}
+                        {swatchImage ? <Image alt="" className="object-cover" fill sizes="(min-width: 768px) 36px, 44px" src={swatchImage} unoptimized /> : null}
                       </button>
                     );
                   })}
@@ -502,18 +502,18 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
             <div className="mt-8 space-y-3 md:mt-10">
               <CTAMessageDrawer
                 articleLabel={contactArticleLabel}
-                buttonClassName="inline-flex w-full justify-center bg-charcoal px-10 py-4 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-charcoal/85 md:w-auto md:min-w-[15rem]"
+                buttonClassName="inline-flex w-full justify-center bg-charcoal px-10 py-4 text-center font-sans text-sm font-semibold uppercase tracking-[0.2em] text-white md:text-[11px] transition-colors hover:bg-charcoal/85 md:w-auto md:min-w-[15rem]"
                 buttonLabel={locale === "zh" ? chineseCopy("Contact Sales") : locale === "en" ? "Contact Sales" : "営業担当に相談"}
                 locale={locale}
                 placement="top"
               />
-              <p className="font-sans text-[10px] leading-relaxed text-muted">
+              <p className="font-sans text-sm leading-relaxed text-muted md:text-[10px]">
                 {locale === "zh" ? chineseCopy("Sample request workflow is reserved for a later release.") : locale === "en"
                   ? "Sample request workflow is reserved for a later release."
                   : "サンプル請求機能は現在準備中です。"}
               </p>
               {showFabricTrademarkDisclaimer ? (
-                <p className="max-w-[34rem] font-sans text-[9px] leading-relaxed text-charcoal/45">
+                <p className="max-w-[34rem] font-sans text-sm leading-7 text-muted md:text-[9px] md:leading-relaxed md:text-charcoal/45">
                   {fabricTrademarkDisclaimer[locale]}
                 </p>
               ) : null}
@@ -531,7 +531,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
         <div className="section-shell flex flex-wrap items-center justify-center gap-x-8 gap-y-4 py-5 md:gap-x-12 md:py-6">
           {productInfoLinks.map(({ href, label, Icon }) => (
             <Link
-              className="group inline-flex items-center gap-3 font-sans text-[0.82rem] text-charcoal underline decoration-charcoal/70 underline-offset-4 transition-colors hover:text-muted hover:decoration-muted"
+              className="group inline-flex min-h-11 items-center gap-3 font-sans text-sm md:min-h-0 md:text-[0.82rem] text-charcoal underline decoration-charcoal/70 underline-offset-4 transition-colors hover:text-muted hover:decoration-muted"
               href={href}
               key={href}
             >

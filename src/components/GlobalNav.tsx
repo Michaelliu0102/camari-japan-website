@@ -228,9 +228,9 @@ export function GlobalNav({ locale }: GlobalNavProps) {
         >
           <Image
             alt="CAMARI"
-            className="h-auto w-[8.5rem] min-[390px]:w-[9.25rem] md:w-[12rem]"
+            className="h-auto w-[7rem] min-[360px]:w-[8.5rem] min-[390px]:w-[9.25rem] md:w-[12rem]"
             height={1780}
-            sizes="(min-width: 768px) 192px, (min-width: 390px) 148px, 136px"
+            sizes="(min-width: 768px) 192px, (min-width: 390px) 148px, (min-width: 360px) 136px, 112px"
             src={logoSrc}
             width={4994}
           />
@@ -377,7 +377,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
                   <div className="grid grid-cols-2 gap-x-4 gap-y-1 pb-2">
                     {item.children.map((child) => (
                       <Link
-                        className={`flex min-h-11 items-center font-label font-semibold uppercase leading-5 tracking-[0.13em] text-muted transition-colors hover:text-charcoal focus-visible:text-charcoal ${locale === "zh" ? "text-[12px]" : "text-[0.62rem]"}`}
+                        className="flex min-h-11 min-w-0 items-center break-words font-label text-sm font-semibold uppercase leading-6 tracking-[0.06em] text-muted transition-colors hover:text-charcoal focus-visible:text-charcoal"
                         href={localizedPath(locale, child.href)}
                         key={child.href}
                         onClick={closeMobile}

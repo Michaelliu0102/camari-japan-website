@@ -91,12 +91,12 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
       }`}
       data-lenis-prevent
     >
-      {/* Top 60% — white */}
-      <div className="flex h-[60vh] flex-col bg-white">
-        <div className="flex justify-end px-margin-mobile pt-6 md:pt-8">
+      {/* Give touch layouts a scrollable result panel above the on-screen keyboard. */}
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-white md:h-[60vh] md:flex-none">
+        <div className="flex shrink-0 justify-end px-margin-mobile pt-4 md:pt-8">
           <button
             aria-label={locale === "zh" ? "关闭搜索" : "Close search"}
-            className="flex h-10 w-10 items-center justify-center text-charcoal/30 transition-colors hover:text-charcoal"
+            className="flex h-11 w-11 items-center justify-center text-muted transition-colors hover:text-charcoal"
             onClick={onClose}
             type="button"
           >
@@ -104,13 +104,13 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
           </button>
         </div>
 
-        <div className="flex flex-1 items-start justify-center px-margin-mobile pt-[10vh]">
-          <div className="w-full max-w-2xl">
+        <div className="flex min-h-0 flex-1 items-start justify-center overflow-y-auto overscroll-contain px-margin-mobile pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-6 md:pt-[6vh]">
+          <div className="w-full min-w-0 max-w-2xl">
             <div className="flex items-center gap-4 border-b border-charcoal/30 pb-4">
               <Search size={18} strokeWidth={1.2} className="shrink-0 text-charcoal/30" />
               <input
                 ref={inputRef}
-                className="w-full bg-transparent font-sans text-xl font-light text-charcoal outline-none placeholder:text-charcoal/20"
+                className="min-w-0 flex-1 bg-transparent font-sans text-base font-light text-charcoal outline-none placeholder:text-muted md:text-xl"
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={locale === "zh" ? "搜索材料、型号和案例" : "Search"}
                 type="text"
@@ -123,20 +123,20 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
                 {results.map((result) => (
                   <li key={result.href}>
                     <Link
-                      className="flex items-baseline gap-4 rounded-md px-4 py-3 transition-colors hover:bg-stone"
+                      className="flex min-h-11 flex-col gap-1 rounded-md px-4 py-3 transition-colors hover:bg-stone md:flex-row md:items-baseline md:gap-4"
                       href={localizedPath(locale,result.href)}
                       onClick={onClose}
                     >
-                      <span className="font-serif text-lg text-charcoal">
+                      <span className="min-w-0 break-words font-serif text-lg text-charcoal">
                         {result.label}
                       </span>
-                      <span className="label-caps text-charcoal/30">{result.sub}</span>
+                      <span className="label-caps text-muted">{result.sub}</span>
                     </Link>
                   </li>
                 ))}
               </ul>
             ) : query.length >= (locale === "zh" ? 1 : 2) ? (
-              <p className="mt-8 text-center font-sans text-base tracking-wide text-charcoal/35">
+              <p className="mt-8 break-words text-center font-sans text-base tracking-wide text-muted">
                 Nothing found for &ldquo;{query}&rdquo;
               </p>
             ) : null}
@@ -145,7 +145,7 @@ export function SearchOverlay({ locale, open, onClose }: SearchOverlayProps) {
       </div>
 
       {/* Bottom 40% — dark glass */}
-      <div className="h-[40vh] bg-charcoal/92 backdrop-blur-md" />
+      <div className="hidden h-[40vh] shrink-0 bg-charcoal/92 backdrop-blur-md md:block" />
     </div>
   );
 }
