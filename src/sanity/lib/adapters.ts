@@ -44,6 +44,7 @@ import type {
 const emptyLocalized: LocalizedString = { zh: chineseCopy(""), en: "", ja: "" };
 const premiumCollection: LocalizedString = { zh: chineseCopy("Premium Collection"), en: "Premium Collection", ja: "プレミアムコレクション" };
 const materialHeroImageOverrides: Record<string, string> = {
+  fabric: "/uploads/hero/fabric-hero.jpg",
   leather: "/uploads/hero/leather-hero.png",
   "vegan-leather": "/uploads/veganleather/interior.jpg"
 };

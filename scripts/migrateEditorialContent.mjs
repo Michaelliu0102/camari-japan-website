@@ -10,21 +10,50 @@ import { getCliClient } from "sanity/cli";
 process.on("uncaughtException", error => { console.error(error.message); process.exit(1); });
 nextEnv.loadEnvConfig(process.cwd());
 const apply = process.argv.includes("--apply");
+// Scope a copy-only repair without running unrelated editorial migrations.
+const materialArg = process.argv.find(arg => arg.startsWith("--material="));
+const materialSlug = materialArg?.slice("--material=".length);
+if (materialArg && !materialSlug) throw Error("--material requires a material slug.");
 const dir = path.resolve("outputs/cms-editorial-migration", String(Date.now()));
 fs.mkdirSync(dir, { recursive: true });
 await build({ entryPoints: ["scripts/editorialMigrationDefaults.ts"], outfile: `${dir}/defaults.mjs`, bundle: true, platform: "node", format: "esm", packages: "external" });
-const defaults = await (await import(pathToFileURL(`${dir}/defaults.mjs`).href)).getEditorialMigrationDefaults();
+const defaultsModule = await import(pathToFileURL(`${dir}/defaults.mjs`).href);
+if (materialSlug && !defaultsModule.materialEditorialCopy[materialSlug]) throw Error(`No local editorial copy for material: ${materialSlug}`);
+const defaults = materialSlug
+  ? { materialEditorialCopy: defaultsModule.materialEditorialCopy, materialFaqs: {}, news: [], downloadPage: { groups: [] } }
+  : await defaultsModule.getEditorialMigrationDefaults();
 const config = { projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "bfjhbpbx", dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production", apiVersion: "2026-05-12", useCdn: false, perspective: "raw" };
 const client = process.env.SANITY_AUTH_TOKEN ? createClient({ ...config, token: process.env.SANITY_AUTH_TOKEN }) : getCliClient({ apiVersion: config.apiVersion }).withConfig(config);
-const docs = await client.fetch('*[_type in ["homePage", "material", "news", "productType", "downloadPage"]]');
+const docs = materialSlug
+  ? await client.fetch('*[_type == "material" && slug.current == $slug]', { slug: materialSlug })
+  : await client.fetch('*[_type in ["homePage", "material", "news", "productType", "downloadPage"]]');
+if (materialSlug && !docs.length) throw Error(`Material not found in Sanity: ${materialSlug}`);
 const keyed = value => Array.isArray(value) ? value.map((item, index) => typeof item === "object" && item !== null ? { _key: `entry-${index + 1}`, ...keyed(item) } : item)
   : value && typeof value === "object" ? Object.fromEntries(Object.entries(value).filter(([,item])=>item!==undefined).map(([key,item])=>[key,keyed(item)])) : value;
 const canonical = value => JSON.stringify(value, (_, item) => item && typeof item === "object" && !Array.isArray(item) ? Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b))) : item);
 const patches = [], creates = [];
+function fillMissingLocales(existing, fallback) {
+  const merged = { ...existing };
+  for (const locale of ["en", "ja"]) {
+    if (!merged[locale]?.trim() && fallback?.[locale]?.trim()) merged[locale] = fallback[locale];
+  }
+  return merged;
+}
 for (const doc of docs) {
   const fields = {};
   if (doc._type === "homePage") for (const [key, value] of Object.entries(defaults.homePageCopy)) if (doc[key] == null) fields[key] = value;
   if (doc._type === "material") {
+    const copy = defaults.materialEditorialCopy[doc.slug?.current];
+    if (copy) {
+      for (const field of ["introTitle", "introBody"]) {
+        const merged = fillMissingLocales(doc[field], copy[field]);
+        if (canonical(merged) !== canonical(doc[field])) fields[field] = merged;
+      }
+      const description = fillMissingLocales(doc.seo?.description, copy.seoDescription);
+      if (canonical(description) !== canonical(doc.seo?.description)) {
+        fields.seo = { ...doc.seo, _type: doc.seo?._type ?? "seo", description };
+      }
+    }
     const faq = defaults.materialFaqs[doc.slug?.current];
     if (faq) {
       const merged = { ...doc.faq };
@@ -53,11 +82,12 @@ for (const item of defaults.news) {
     if(canonical(article)!==canonical(doc.articleContent)) patches.push({doc,fields:{articleContent:article}});
   }
 }
-if (!docs.some(doc => doc._id === "downloadPageSettings")) creates.push(keyed({ _id:"downloadPageSettings", _type:"downloadPage", ...defaults.downloadPage }));
-const plan = { mode:apply?"apply":"dry-run", patches:patches.map(x=>({id:x.doc._id,fields:Object.keys(x.fields)})), creates:creates.map(x=>x._id), faqMaterials:Object.keys(defaults.materialFaqs).length, news:defaults.news.length, downloadFiles:defaults.downloadPage.groups.reduce((n,g)=>n+g.downloads.length,0) };
+if (!materialSlug && !docs.some(doc => doc._id === "downloadPageSettings")) creates.push(keyed({ _id:"downloadPageSettings", _type:"downloadPage", ...defaults.downloadPage }));
+const plan = { mode:apply?"apply":"dry-run", material:materialSlug ?? null, patches:patches.map(x=>({id:x.doc._id,fields:Object.keys(x.fields)})), creates:creates.map(x=>x._id), faqMaterials:Object.keys(defaults.materialFaqs).length, news:defaults.news.length, downloadFiles:defaults.downloadPage.groups.reduce((n,g)=>n+g.downloads.length,0) };
 fs.writeFileSync(`${dir}/plan.json`,JSON.stringify(plan,null,2));
 fs.writeFileSync(`${dir}/expected.json`,JSON.stringify([...patches.map(({doc,fields})=>({...doc,...fields})),...creates],null,2));
 console.log(JSON.stringify(plan,null,2));
+console.log(`Plan and expected documents: ${dir}`);
 if(!apply || (!patches.length && !creates.length)) process.exit(0);
 fs.writeFileSync(`${dir}/before.json`,JSON.stringify(docs,null,2));
 let tx=client.transaction();

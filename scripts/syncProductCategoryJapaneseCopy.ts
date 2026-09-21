@@ -4,6 +4,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { createClient } from "@sanity/client";
 import { productCategories as productCategoryFixtures } from "../src/content/products/categories";
+import { requireUniqueMatch } from "../src/lib/product-detail-localization";
 import {
   applyJapaneseProductCategoryCopy,
   getJapaneseProductCategorySeo,
@@ -151,6 +152,17 @@ const allExisting = await client.fetch<ExistingCategory[]>(
 const relevantExisting = allExisting.filter((document) =>
   categories.some((category) => category.slug === document.slug?.current),
 );
+// Validate identities before any upload or write, including when array order changes.
+for (const document of relevantExisting) {
+  const category = categories.find(item => item.slug === document.slug?.current)!;
+  for (const item of category.curvedCarouselImages ?? []) {
+    const prior = requireUniqueMatch(document.carouselItems ?? [], entry => entry.title?.en === item.title.en, `${document._id}/${item.title.en}`);
+    for (const detail of item.details) {
+      requireUniqueMatch(prior.details ?? [], entry => entry.en === detail.en, `${document._id}/${item.title.en}/${detail.en}`);
+      if (!detail.ja.trim()) throw new Error(`Missing Japanese detail: ${item.title.en}/${detail.en}`);
+    }
+  }
+}
 const existingBySlug = Map.groupBy(relevantExisting, (document) => document.slug?.current);
 const imageUrls = localImageUrls();
 const missingFiles = imageUrls.filter((url) => !fs.existsSync(publicFilePath(url)));
@@ -315,7 +327,6 @@ function buildFields(
   const existingHighlights = existing?.highlights ?? [];
   const existingCarousel = existing?.carouselItems ?? [];
   const canPreserveHighlights = existingHighlights.length === category.highlights.length;
-  const canPreserveCarousel = existingCarousel.length === (category.curvedCarouselImages?.length ?? 0);
   const japaneseSeo = getJapaneseProductCategorySeo(category.slug);
 
   return {
@@ -336,7 +347,8 @@ function buildFields(
       };
     }),
     carouselItems: (category.curvedCarouselImages ?? []).map((item, index) => {
-      const prior = canPreserveCarousel ? existingCarousel[index] : undefined;
+      const prior = existing ? requireUniqueMatch(existingCarousel,
+        entry => entry.title?.en === item.title.en, `${existing._id}/${item.title.en}`) : undefined;
       return {
         ...prior,
         _key: String(prior?._key ?? key("carousel", index, item.title.en)),
@@ -348,7 +360,8 @@ function buildFields(
           prior?.customizedOption,
         ),
         details: item.details.map((detail, detailIndex) => {
-          const priorDetail = prior?.details?.[detailIndex];
+          const priorDetail = prior ? requireUniqueMatch(prior.details ?? [],
+            entry => entry.en === detail.en, `${existing?._id}/${item.title.en}/${detail.en}`) : undefined;
           return {
             ...priorDetail,
             _key: String(

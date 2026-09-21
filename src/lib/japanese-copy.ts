@@ -2,6 +2,7 @@ import { chineseCopy } from "../china/copy";
 import type { HomePageSettings, Material, MaterialCategory } from "./content";
 import type { ProductCategory } from "@/content/products/categories";
 import productCategoryJapaneseContentData from "@/data/product-category-ja.json";
+import { alignJapaneseDetails, requireUniqueMatch } from "./product-detail-localization";
 
 export const JAPANESE_PRODUCT_SURFACE_DESCRIPTION =
   "製品の用途や使い心地に合わせた最適なデザイン・加工をご提案します。";
@@ -22,7 +23,7 @@ type ProductCategoryJapaneseContent = {
     title: string;
     customizedOption: string;
     description: string;
-    details: string[];
+    details: Array<{ source: string; text: string }>;
   }>;
 };
 
@@ -56,12 +57,10 @@ export function applyJapaneseProductCategoryCopy(
             }
           : highlight;
       }),
-      curvedCarouselImages: category.curvedCarouselImages?.map((item, index) => {
-        const itemCopy = copy.carouselItems[index];
-
-        if (!itemCopy) {
-          return item;
-        }
+      curvedCarouselImages: category.curvedCarouselImages?.map((item) => {
+        const itemCopy = requireUniqueMatch(copy.carouselItems,
+          candidate => candidate.sourceTitle === item.title.en,
+          `${category.slug}/${item.title.en}`);
 
         return {
           ...item,
@@ -71,13 +70,7 @@ export function applyJapaneseProductCategoryCopy(
             zh: chineseCopy(item.customizedOption?.en ?? ""), en: item.customizedOption?.en ?? "",
             ja: itemCopy.customizedOption,
           },
-          details: Array.from(
-            { length: Math.max(item.details.length, itemCopy.details.length) },
-            (_, detailIndex) => ({
-              zh: chineseCopy(item.details[detailIndex]?.en ?? ""), en: item.details[detailIndex]?.en ?? "",
-              ja: itemCopy.details[detailIndex] ?? "",
-            }),
-          ),
+          details: alignJapaneseDetails(item.details, itemCopy.details, `${category.slug}/${item.title.en}`),
         };
       }),
     };
