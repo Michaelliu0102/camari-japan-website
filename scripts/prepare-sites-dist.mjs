@@ -1,7 +1,7 @@
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { resolve, relative } from "node:path";
+import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
-import sharp from "sharp";
 
 const root = process.cwd();
 const dist = resolve(root, "dist");
@@ -11,12 +11,13 @@ const result = spawnSync(resolve(root, "node_modules/.bin/wrangler"), [
 ], { cwd: root, stdio: "inherit" });
 if (result.status !== 0) throw new Error("Cloudflare runtime bundling failed.");
 
-// Deploy the bundled runtime, not the duplicated Next build and node_modules tree.
+// Keep one bundled runtime and the complete set of public URLs. Large media
+// already uploaded to Sanity is served through its immutable, original CDN URL.
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(resolve(dist, "server"), { recursive: true });
 mkdirSync(resolve(dist, ".openai"), { recursive: true });
 const shim = 'import { createRequire as __sitesCreateRequire } from "node:module";\nglobalThis.require ??= __sitesCreateRequire("file:///worker/index.js");\n';
-writeFileSync(resolve(dist, "server/index.js"), shim + readFileSync(resolve(bundle, "worker.js"), "utf8").replace(/^\/\/# sourceMappingURL=.*$/gm, ""));
+writeFileSync(resolve(dist, "server/app.js"), shim + readFileSync(resolve(bundle, "worker.js"), "utf8").replace(/^\/\/# sourceMappingURL=.*$/gm, ""));
 for (const name of readdirSync(bundle)) {
   if (["worker.js", "worker.js.map", "README.md"].includes(name)) continue;
   cpSync(resolve(bundle, name), resolve(dist, "server", name), { recursive: true });
@@ -24,7 +25,9 @@ for (const name of readdirSync(bundle)) {
 cpSync(resolve(root, ".open-next/assets"), resolve(dist, "assets"), { recursive: true, dereference: true });
 cpSync(resolve(root, ".openai/hosting.json"), resolve(dist, ".openai/hosting.json"));
 
-// A complete deployment must include every public file, not just JS and logos.
+const manifestPath = resolve(root, "scripts/sites-public-media.json");
+const manifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, "utf8")) : {};
+const redirects = {};
 let count = 0;
 function verify(directory) {
   for (const name of readdirSync(directory)) {
@@ -36,43 +39,34 @@ function verify(directory) {
       if (!existsSync(destination) || statSync(source).size !== statSync(destination).size) {
         throw new Error(`Public asset missing or incomplete: ${path}`);
       }
+      const media = manifest[`/${path}`];
+      // Never use stale mappings if a local image is replaced at the same path.
+      if (media && createHash("sha1").update(readFileSync(source)).digest("hex") === media.sha1) {
+        const url = new URL(media.url);
+        if (url.protocol !== "https:" || url.hostname !== "cdn.sanity.io") throw new Error(`Invalid public media URL: ${path}`);
+        redirects[`/${path}`] = media.url;
+        rmSync(destination);
+      }
       count++;
     }
   }
 }
 verify(resolve(root, "public"));
-console.log(`Verified all ${count} public files in Sites build output.`);
-
-// Optimize delivery copies only. Preserve every URL, format, dimensions and metadata;
-// the original public files remain untouched. This keeps full Sites archives below
-// the upload limit without dropping any image from the deployed website.
-sharp.concurrency(1);
-const photographs = [];
-function collectPhotographs(directory) {
-  for (const name of readdirSync(directory)) {
-    const path = resolve(directory, name);
-    if (statSync(path).isDirectory()) collectPhotographs(path);
-    else if (/\.jpe?g$/i.test(name)) photographs.push(path);
-  }
-}
-collectPhotographs(resolve(dist, "assets"));
-let savedBytes = 0;
-let optimized = 0;
-async function optimizePhotographs() {
-  while (photographs.length) {
-    const path = photographs.pop();
-    const original = readFileSync(path);
-    const before = await sharp(original).metadata();
-    const compressed = await sharp(original).keepMetadata().jpeg({ quality: 90, mozjpeg: true }).toBuffer();
-    if (compressed.length >= original.length) continue;
-    const after = await sharp(compressed).metadata();
-    if (before.width !== after.width || before.height !== after.height || (before.orientation ?? 1) !== (after.orientation ?? 1)) {
-      throw new Error(`Image geometry changed: ${path}`);
+writeFileSync(resolve(dist, "server/index.js"), `import app from "./app.js";
+export * from "./app.js";
+const media = ${JSON.stringify(redirects)};
+export default {
+  ...app,
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    let path;
+    try { path = decodeURIComponent(url.pathname); } catch { return new Response("Invalid path", { status: 400 }); }
+    const target = media[path];
+    if (target && (request.method === "GET" || request.method === "HEAD")) {
+      return Response.redirect(target, 302);
     }
-    writeFileSync(path, compressed);
-    savedBytes += original.length - compressed.length;
-    optimized++;
+    return app.fetch(request, env, ctx);
   }
-}
-await Promise.all(Array.from({ length: 4 }, optimizePhotographs));
-console.log(`Optimized ${optimized} delivery images; saved ${(savedBytes / 1048576).toFixed(1)} MiB. Originals unchanged.`);
+};
+`);
+console.log(`Verified all ${count} public files: ${Object.keys(redirects).length} original CDN assets, ${count - Object.keys(redirects).length} bundled assets.`);
