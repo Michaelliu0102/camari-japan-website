@@ -1,6 +1,7 @@
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { resolve, relative } from "node:path";
 import { spawnSync } from "node:child_process";
+import sharp from "sharp";
 
 const root = process.cwd();
 const dist = resolve(root, "dist");
@@ -41,3 +42,37 @@ function verify(directory) {
 }
 verify(resolve(root, "public"));
 console.log(`Verified all ${count} public files in Sites build output.`);
+
+// Optimize delivery copies only. Preserve every URL, format, dimensions and metadata;
+// the original public files remain untouched. This keeps full Sites archives below
+// the upload limit without dropping any image from the deployed website.
+sharp.concurrency(1);
+const photographs = [];
+function collectPhotographs(directory) {
+  for (const name of readdirSync(directory)) {
+    const path = resolve(directory, name);
+    if (statSync(path).isDirectory()) collectPhotographs(path);
+    else if (/\.jpe?g$/i.test(name)) photographs.push(path);
+  }
+}
+collectPhotographs(resolve(dist, "assets"));
+let savedBytes = 0;
+let optimized = 0;
+async function optimizePhotographs() {
+  while (photographs.length) {
+    const path = photographs.pop();
+    const original = readFileSync(path);
+    const before = await sharp(original).metadata();
+    const compressed = await sharp(original).keepMetadata().jpeg({ quality: 90, mozjpeg: true }).toBuffer();
+    if (compressed.length >= original.length) continue;
+    const after = await sharp(compressed).metadata();
+    if (before.width !== after.width || before.height !== after.height || (before.orientation ?? 1) !== (after.orientation ?? 1)) {
+      throw new Error(`Image geometry changed: ${path}`);
+    }
+    writeFileSync(path, compressed);
+    savedBytes += original.length - compressed.length;
+    optimized++;
+  }
+}
+await Promise.all(Array.from({ length: 4 }, optimizePhotographs));
+console.log(`Optimized ${optimized} delivery images; saved ${(savedBytes / 1048576).toFixed(1)} MiB. Originals unchanged.`);
