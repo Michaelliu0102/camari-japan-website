@@ -90,7 +90,7 @@ const defaultSites: Record<
     defaultAlternateSiteHomeUrl: DEFAULT_LOCALE_SITE_URLS.ja,
     defaultOgImage: DEFAULT_OG_IMAGE,
     slogan: {
-      zh: chineseCopy("The Intersection of Texture and Precision"), en: "The Intersection of Texture and Precision",
+      zh: chineseCopy("The Intersection of Texture and Precision"), en: "Premium Materials — A World of Choice",
       ja: "質感と精密さの交差点"
     },
     description: {
@@ -117,7 +117,7 @@ const defaultSites: Record<
     defaultAlternateSiteHomeUrl: DEFAULT_LOCALE_SITE_URLS.en,
     defaultOgImage: DEFAULT_OG_IMAGE,
     slogan: {
-      zh: chineseCopy("The Intersection of Texture and Precision"), en: "The Intersection of Texture and Precision",
+      zh: chineseCopy("The Intersection of Texture and Precision"), en: "Premium Materials — A World of Choice",
       ja: "質感と精密さの交差点"
     },
     description: {
