@@ -1,5 +1,6 @@
 "use client";
 
+import { chinaMediaUrl } from "@/lib/china-media";
 import { chineseCopy } from "../china/copy";
 import Hls from "hls.js";
 import { useEffect, useRef } from "react";
@@ -40,7 +41,7 @@ export function HeroVideo({ hero, locale }: HeroVideoProps) {
         loop
         muted
         playsInline
-        poster={hero.poster}
+        poster={chinaMediaUrl(hero.poster)}
       />
       <div className="absolute inset-0 bg-black/25" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32svh] bg-gradient-to-b from-transparent via-charcoal/45 to-charcoal" />

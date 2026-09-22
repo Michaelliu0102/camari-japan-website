@@ -100,7 +100,7 @@ const defaultSites: Record<
     },
     contact: {
       email: "info@camari-international.co.jp",
-      phone: "+81 3 0000 0000",
+      phone: "+81 3 6272 4971",
       address: {
         zh: chineseCopy("Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan"), en: "Room 403, 1-14-16 Kudan-kita, Chiyoda-ku, Tokyo 102-0073, Japan",
         ja: "〒102-0073 東京都千代田区九段北1丁目14-16 403号室"

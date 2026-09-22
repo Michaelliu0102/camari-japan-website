@@ -1,5 +1,6 @@
 "use client";
 
+import { chinaMediaUrl } from "@/lib/china-media";
 import { useRef, useEffect, useCallback, useState } from "react";
 import { gsap } from "gsap";
 import "./MagicBento.css";
@@ -373,7 +374,7 @@ export default function MagicBento({
               <div
                 className="magic-bento-card__bg"
                 style={{
-                  backgroundImage: `url(${card.image})`,
+                  backgroundImage: `url(${chinaMediaUrl(card.image ?? "", 1920)})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}

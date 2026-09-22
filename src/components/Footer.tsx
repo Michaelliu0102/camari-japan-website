@@ -1,3 +1,5 @@
+import { SocialBrandIcon } from "@/components/SocialBrandIcon";
+import { chinaMediaUrl } from "@/lib/china-media";
 import { withChineseCopy } from "../china/copy";
 import type { ChinaSiteSettings } from "@/china/content";
 import Link from "next/link";
@@ -82,14 +84,7 @@ export function Footer({ locale, chinaSettings }: FooterProps) {
                     title={item.label}
                   >
                     {Icon ? <Icon aria-hidden="true" size={16} strokeWidth={1.4} /> : item.asset ? (
-                      <span
-                        aria-hidden="true"
-                        className={item.asset === "xiaohongshu" ? "h-[22px] w-[22px] bg-current" : "h-[18px] w-[18px] bg-current"}
-                        style={{
-                          mask: `url(/uploads/social/${item.asset}.svg) center / contain no-repeat`,
-                          WebkitMask: `url(/uploads/social/${item.asset}.svg) center / contain no-repeat`
-                        }}
-                      />
+                      <SocialBrandIcon name={item.asset} className={item.asset === "xiaohongshu" ? "h-[22px] w-[22px]" : "h-[18px] w-[18px]"} />
                     ) : <span aria-hidden="true" className="text-xs font-medium">X</span>}
                   </a>
                 );
@@ -134,7 +129,7 @@ export function Footer({ locale, chinaSettings }: FooterProps) {
                       <a
                         aria-label="查看营业执照"
                         className="transition-colors hover:text-gold"
-                        href="/uploads/home/营业执照.png"
+                        href={chinaMediaUrl("/uploads/home/营业执照.png")}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -143,9 +138,9 @@ export function Footer({ locale, chinaSettings }: FooterProps) {
                     </li>
                   </>
                 ) : null}
-                <li>
+                {process.env.NEXT_PUBLIC_SITE_KEY !== "china" ? <li>
                   <CookiePreferencesButton locale={locale} />
-                </li>
+                </li> : null}
               </ul>
             </nav>
             <p>© 2026 {chinaSettings?.brandName ?? labels.copyrightName}. {locale === "zh" ? "保留所有权利。" : "ALL RIGHTS RESERVED."}</p>

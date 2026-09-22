@@ -1,6 +1,8 @@
 import { loadChinaContent } from "@/china/loader";
 import { chineseCopy } from "../../../china/copy";
 import type { Metadata } from "next";
+import Image from "next/image";
+import { chinaMediaUrl } from "@/lib/china-media";
 import { CalendarClock, Clock, Mail, MapPin, Phone, Printer, QrCode } from "lucide-react";
 import { BranchLocationMap, type BranchLocation } from "@/components/BranchLocationMap";
 import { ContactNeonHero } from "@/components/ContactNeonHero";
@@ -9,6 +11,7 @@ import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/lib/locales";
 import { ConsentControlledMap } from "@/components/ConsentControlledMap";
+import { ChinaContactMap } from "@/components/ChinaContactMap";
 import { buildLocalBusinessJsonLd, buildOrganizationJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
 import { loadMaterialCategories } from "@/sanity/lib/loaders";
@@ -53,7 +56,7 @@ const worldLocations: BranchLocation[] = [
     city: "Milan",
     address: "Via Vincenzo Monti 8, 20123 Milan",
     addressLines: ["Via Vincenzo Monti 8,", "20123 Milan"],
-    phone: "+39 345 722 3340",
+    phone: "+39 349 113 5192",
     email: "j.russo@camari-international.com",
     lat: 45.4642,
     lng: 9.19
@@ -117,7 +120,7 @@ export default async function ContactPage({ params }: PageProps) {
               <div className="md:col-span-5">
                 <p className="label-caps text-gold">{isChina ? "联系我们" : "お問い合わせ"}</p>
                 <h2 className={`mt-6 font-serif leading-tight ${isChina ? "text-3xl md:text-4xl lg:text-5xl" : "text-4xl md:text-6xl"}`}>
-                  {isChina ? "与卡玛瑞团队沟通。" : "カマリ・インターナショナル・ジャパンへ直接ご相談ください。"}
+                  {isChina ? "与卡玛瑞中国团队沟通。" : "カマリ・インターナショナル・ジャパンへ直接ご相談ください。"}
                 </h2>
                 <p className="mt-8 leading-8 text-muted">
                   {isChina ? "材料咨询或展厅参观预约，欢迎通过邮件电话或微信联系我们。" : "素材に関するご相談やショールームのご予約は、メールまたはお電話にてお問い合わせください。"}
@@ -141,22 +144,31 @@ export default async function ContactPage({ params }: PageProps) {
                 {isChina ? (
                   <div className="flex gap-5 border-b border-charcoal/10 pb-7">
                     <QrCode aria-hidden="true" className="mt-1 shrink-0 text-gold" size={20} strokeWidth={1.4} />
-                    <div>
-                      <p className="label-caps text-muted">微信二维码</p>
-                      <div aria-label="微信二维码预留位置" className="mt-4 h-40 w-40 border border-charcoal/15 bg-white" role="img" />
+                    <div className="min-w-0 flex-1">
+                      <p className="label-caps text-muted">微信联系</p>
+                      <div className="mt-5 grid grid-cols-1 gap-8 min-[420px]:grid-cols-2">
+                        {[{ name: "销售微信", file: "sales", help: "扫码添加销售，咨询材料与定制需求" }, { name: "微信公众号", file: "official", help: "扫码关注公众号，了解产品与资讯" }].map(item => (
+                          <figure key={item.file} className="min-w-0">
+                            <a href={chinaMediaUrl(`/uploads/contact/wechat-${item.file}.jpg`)} target="_blank" rel="noreferrer" aria-label={`打开${item.name}二维码大图`}>
+                              <Image src={`/uploads/contact/wechat-${item.file}.jpg`} alt={`${item.name}二维码`} width={258} height={258} sizes="192px" className="h-48 w-48 max-w-full border border-charcoal/10 bg-white object-contain p-2" />
+                            </a>
+                            <figcaption className="mt-3 text-base font-medium text-charcoal">{item.name}</figcaption>
+                            <p className="mt-1 text-sm leading-6 text-muted">{item.help}</p>
+                          </figure>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ) : null}
               </div>
             </div>
             <div className="section-shell mt-16">
-              <ConsentControlledMap
-                src={isChina ? "https://www.amap.com/ssr/embed/place?id=B0FFHCUY2V&name=%E5%8D%A1%E7%8E%9B%E7%91%9E%E5%9B%BD%E9%99%85%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&lng=120.740869&lat=30.799941&address=%E7%A6%BE%E5%85%B4%E5%8C%97%E8%B7%AF1554%E5%8F%B7&zoom=16&source=poi_detail&platform=pc" : "https://www.google.com/maps?q=35.696335%2C139.749207&z=16&output=embed"}
-                directUrl={isChina ? "https://www.amap.com/place/B0FFHCUY2V" : "https://www.google.com/maps/search/?api=1&query=35.696335%2C139.749207"}
-                provider={isChina ? "amap" : "google"}
-                title={isChina ? "卡玛瑞国际有限公司 · 高德地图" : "カマリ・インターナショナル・ジャパン 所在地"}
+              {isChina ? <ChinaContactMap address={china?.contact.address} /> : <ConsentControlledMap
+                src="https://www.google.com/maps?q=35.696335%2C139.749207&z=16&output=embed"
+                directUrl="https://www.google.com/maps/search/?api=1&query=35.696335%2C139.749207"
+                title="カマリ・インターナショナル・ジャパン 所在地"
                 className="h-[360px] w-full md:h-[480px] lg:h-[560px]"
-              />
+              />}
               {isChina ? (
                 <p className="mt-4 text-right text-sm text-muted">
                   <a className="underline underline-offset-4 hover:text-charcoal" href="https://www.amap.com/place/B0FFHCUY2V" target="_blank" rel="noreferrer">

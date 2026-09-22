@@ -36,7 +36,8 @@ export function filterChinaRecords(records: ChinaRecord[], preview: boolean): Ch
   });
 }
 export const loadChinaContent = cache(async () => {
-  const client=getSanityClient().withConfig({useCdn:false,perspective:"published"});
+  // Use Sanity's delivery CDN for published content; the origin API can time out from mainland hosting.
+  const client=getSanityClient().withConfig({useCdn:true,perspective:"published"});
   const [raw,records]=await Promise.all([
     client.fetch<ChinaSiteSettings|null>(chinaSiteQuery,{}, {cache:"no-store"}),
     client.fetch<ChinaRecord[]>(chinaRecordsQuery,{}, {cache:"no-store"})

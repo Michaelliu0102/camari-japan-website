@@ -1,5 +1,6 @@
 "use client";
 
+import { chinaMediaUrl } from "@/lib/china-media";
 import { useEffect, useState, type CSSProperties } from "react";
 import type { Locale } from "@/lib/locales";
 
@@ -93,7 +94,7 @@ export function OemLogoLoop({ locale }: OemLogoLoopProps) {
             <span className="oem-logo-loop-item" key={`${brand.name}-${index}`}>
               <img
                 alt=""
-                src={brand.src}
+                src={chinaMediaUrl(brand.src, 320)}
                 draggable={false}
                 style={{ "--logo-width": `${brand.width / 16}rem` } as CSSProperties}
               />

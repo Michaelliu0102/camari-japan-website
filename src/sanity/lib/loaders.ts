@@ -359,7 +359,7 @@ async function fetchAndMergeBySlug<Raw, Value extends { slug: string }>(
   }
 
   try {
-    const client = fresh ? getSanityClient().withConfig({ useCdn: false, perspective: "published" }) : getSanityClient();
+    const client = fresh ? getSanityClient().withConfig({ useCdn: process.env.NEXT_PUBLIC_SITE_KEY === "china", perspective: "published" }) : getSanityClient();
     const results = await client.fetch<Raw[]>(query, params, fresh ? { cache: "no-store" } : undefined);
     if (!results || results.length === 0) {
       return normalizeLocalizedBrandNames(fallbackOnEmpty ? fallback : []);
@@ -413,9 +413,9 @@ export async function loadHomePageSettings(): Promise<HomePageSettings> {
   }
 
   try {
-    // Read published homepage edits directly so locale previews do not retain stale copy.
+    // Read published edits without the Next.js cache; China uses the delivery CDN for mainland connectivity.
     const result = await getSanityClient()
-      .withConfig({ useCdn: false, perspective: "published" })
+      .withConfig({ useCdn: process.env.NEXT_PUBLIC_SITE_KEY === "china", perspective: "published" })
       .fetch<RawHomePageSettings>(homePageSettingsQuery, {}, { cache: "no-store" });
     if (!result) {
       return normalizeHomeSettings(fallback);
@@ -446,7 +446,7 @@ export async function loadAboutPageSettings(): Promise<AboutPageSettings> {
   }
 
   try {
-    const result = await getSanityClient().withConfig({ useCdn: false }).fetch<RawAboutPageSettings>(aboutPageSettingsQuery);
+    const result = await getSanityClient().withConfig({ useCdn: process.env.NEXT_PUBLIC_SITE_KEY === "china" }).fetch<RawAboutPageSettings>(aboutPageSettingsQuery);
     if (!result) {
       return normalizeAboutSettings(fallbackAboutPageSettings);
     }

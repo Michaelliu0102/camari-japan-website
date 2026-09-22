@@ -15,6 +15,8 @@ import {
 } from "react";
 import { localizedPath, type Locale } from "@/lib/locales";
 
+const CHINA_DEFAULT_MEDIA = process.env.NEXT_PUBLIC_SITE_KEY === "china";
+
 const CONSENT_STORAGE_KEY = "camari-consent-v1";
 const CONSENT_VERSION = 1;
 const CONSENT_DURATION_MS = 1000 * 60 * 60 * 24 * 183;
@@ -134,6 +136,7 @@ export function ConsentProvider({
   const [draftExternalMedia, setDraftExternalMedia] = useState(false);
 
   useEffect(() => {
+    if (CHINA_DEFAULT_MEDIA) return;
     try {
       const raw = window.localStorage.getItem(CONSENT_STORAGE_KEY);
       if (raw) {
@@ -180,7 +183,7 @@ export function ConsentProvider({
 
   const contextValue = useMemo<ConsentContextValue>(
     () => ({
-      externalMediaAllowed: ready && externalMedia,
+      externalMediaAllowed: CHINA_DEFAULT_MEDIA || (ready && externalMedia),
       locale,
       grantExternalMedia: () => persist(true),
       openPreferences,
@@ -189,7 +192,7 @@ export function ConsentProvider({
   );
 
   const labels = copy[locale];
-  const visible = ready && (!hasDecision || preferencesOpen);
+  const visible = !CHINA_DEFAULT_MEDIA && ready && (!hasDecision || preferencesOpen);
 
   useEffect(() => {
     if (!visible) return;

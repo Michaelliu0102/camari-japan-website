@@ -10,6 +10,7 @@ out/
 .sanity/
 tsconfig.tsbuildinfo
 .env.local
+.env.china.local
 .env.development.local
 .secrets/
 .claude/settings.local.json

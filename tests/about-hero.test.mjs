@@ -17,7 +17,7 @@ test("about page hero uses the showroom image and concise CAMARI wordmark copy",
 
   assert.match(page, /loadAboutPageSettings/);
   assert.match(page, /dynamic = "force-dynamic"/);
-  assert.match(loaders, /withConfig\(\{ useCdn: false \}\)/);
+  assert.match(loaders, /withConfig\(\{ useCdn: process\.env\.NEXT_PUBLIC_SITE_KEY === "china" \}\)/);
   assert.match(content, /showroom\.png/);
   assert.match(page, /aboutSettings\.heroImage/);
   assert.match(page, /aboutSettings\.heroTitle\[locale\]/);

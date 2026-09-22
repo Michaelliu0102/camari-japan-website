@@ -1,3 +1,4 @@
+import { chinaMediaUrl } from "@/lib/china-media";
 import { chineseCopy } from "../../../../china/copy";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -155,7 +156,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 className="aspect-[9/16] w-full bg-charcoal object-cover"
                 controls
                 playsInline
-                poster={article.video.poster}
+                poster={article.video.poster ? chinaMediaUrl(article.video.poster) : undefined}
                 preload="metadata"
               >
                 <source src={article.video.src} type="video/mp4" />

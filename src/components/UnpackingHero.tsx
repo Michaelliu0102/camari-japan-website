@@ -1,5 +1,6 @@
 "use client";
 
+import { chinaMediaUrl } from "@/lib/china-media";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { RotateCcw, X } from "lucide-react";
@@ -440,7 +441,7 @@ export function UnpackingHero() {
                   alt="Open Backpack"
                   className="w-full select-none"
                   draggable={false}
-                  src={backpackPiece.src}
+                  src={chinaMediaUrl(backpackPiece.src)}
                   style={{
                     filter: DROP_SHADOW,
                     mixBlendMode: "multiply"
@@ -458,7 +459,7 @@ export function UnpackingHero() {
                   alt="Closed Backpack"
                   className="w-full select-none"
                   draggable={false}
-                  src="/explode/bagpack.png"
+                  src={chinaMediaUrl("/explode/bagpack.png")}
                   style={{
                     filter: DROP_SHADOW,
                     mixBlendMode: "multiply"
@@ -497,7 +498,7 @@ export function UnpackingHero() {
                       alt={market === "japan" ? p.name.jp : p.name.en}
                       className="w-full select-none"
                       draggable={false}
-                      src={p.src}
+                      src={chinaMediaUrl(p.src)}
                       style={{
                         filter: DROP_SHADOW,
                         overflow: "visible",

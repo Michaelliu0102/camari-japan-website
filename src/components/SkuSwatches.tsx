@@ -1,5 +1,6 @@
 "use client";
 
+import { chinaMediaUrl } from "@/lib/china-media";
 import { chineseCopy } from "../china/copy";
 import Image from "next/image";
 import Link from "next/link";
@@ -490,7 +491,7 @@ export function SkuSwatches({ locale, materialName, materialSlug, productTypeNam
                         title={sku.colorName?.[locale] ? `${sku.code} ${sku.colorName[locale]}` : sku.code}
                         type="button"
                       >
-                        {swatchImage ? <Image alt="" className="object-cover" fill sizes="(min-width: 768px) 36px, 44px" src={swatchImage} unoptimized /> : null}
+                        {swatchImage ? <Image alt="" className="object-cover" fill sizes="(min-width: 768px) 36px, 44px" src={chinaMediaUrl(swatchImage, 320)} unoptimized /> : null}
                       </button>
                     );
                   })}
