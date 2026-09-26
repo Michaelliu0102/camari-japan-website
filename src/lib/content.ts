@@ -426,17 +426,17 @@ export const materials: Material[] = [
     introTitle: { zh: chineseCopy("High-Performance Alternatives"), en: "High-Performance Alternatives", ja: "ハイパフォーマンスな選択肢" },
     introBody: {
       zh: chineseCopy("Engineered surface materials that match or exceed the tactile and durability standards of traditional leather, without animal content. Matte finishes, micro-textures, and colorfast pigments define a collection built for contemporary product and interior programs."), en: "Engineered surface materials that match or exceed the tactile and durability standards of traditional leather, without animal content. Matte finishes, micro-textures, and colorfast pigments define a collection built for contemporary product and interior programs.",
-      ja: "伝統的なレザーの触感と耐久性基準を満たし、それを超えるように設計された素材。マット仕上げ、マイクロテクスチャ、退色しにくい顔料が、現代的なプロダクトとインテリアのためのコレクションを形作ります。"
+      ja: "アクアペレ(Aquapelle)は、カマリが独自に開発・製造するオリジナルの合成皮革ブランドです。三次元構造のマイクロファイバーと水性・無溶剤PU技術を組み合わせ、天然皮革を思わせる柔らかな手触りと優れた耐久性を実現しました。マットな質感と繊細な表面の模様に加え、退色しにくく、色や厚み、ロットごとの品質が安定していることも特徴です。現代的なプロダクトやインテリアに適しています。"
     },
     introImage: "/uploads/veganleather/vegan.jpeg",
     quote: {
       zh: chineseCopy("Aquapelle combines three-dimensional microfiber construction with waterborne and solvent-free PU technologies, delivering refined touch, durable performance, and consistent color, thickness, and batch quality."), en: "Aquapelle combines three-dimensional microfiber construction with waterborne and solvent-free PU technologies, delivering refined touch, durable performance, and consistent color, thickness, and batch quality.",
-      ja: "Aquapelleは、三次元マイクロファイバー構造と水性・無溶剤PU技術を融合し、上質な触感、優れた耐久性、安定した色・厚み・ロット品質を実現します。"
+      ja: ""
     },
     applications: [
       {
         slug: "microfiber-leather",
-        name: { zh: chineseCopy("AQUAPELLE Microfiber Leather"), en: "AQUAPELLE Microfiber Leather", ja: "マイクロファイバーレザー" },
+        name: { zh: chineseCopy("AQUAPELLE Microfiber Leather"), en: "AQUAPELLE Microfiber Leather", ja: "アクアペレ" },
         image: "/uploads/veganleather/color.png"
       }
     ],

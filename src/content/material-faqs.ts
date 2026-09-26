@@ -78,7 +78,7 @@ export const materialFaqs: Partial<Record<string, Record<Locale, MaterialFaqItem
         {
           question: "Alcantara とは何ですか？",
           answer:
-            "Alcantara は、独自の専有技術によって開発されたプレミアムなイタリア素材です。柔らかな触感、洗練された表情、高い性能で知られています。",
+            "アルカンターラは、独自の技術から生まれたイタリア製の繊維素材です。柔らかな触感と洗練された表情が特徴で、環境に配慮したものづくりを通じてSDGsにも貢献しています。",
         },
         {
           question: "Alcantara はどこで生産されていますか？",
@@ -87,12 +87,12 @@ export const materialFaqs: Partial<Record<string, Record<Locale, MaterialFaqItem
         {
           question: "Alcantara はレザーですか？",
           answer:
-            "いいえ。Alcantara は特許技術によって作られたハイテク素材です。上質でラグジュアリーな触感と、優れた耐久性を兼ね備えています。",
+            "いいえ。アルカンターラは天然レザーではなく、ポリエステルとポリウレタンから作られた人工素材です。柔らかく上質な触り心地と、優れた耐久性を兼ね備えています。",
         },
         {
           question: "Alcantara はどこに使用できますか？",
           answer:
-            "Alcantara は、自動車内装、住宅・コントラクトインテリア、船舶、航空、ファッション、コンシューマーエレクトロニクスなど幅広い分野で使用されています。",
+            "アルカンターラは、自動車の内装をはじめ、住宅やホテルなどのインテリア、船舶・航空機、ファッション、電子機器など、さまざまな分野で使われています。",
         },
         {
           question: "Alcantara はカスタマイズできますか？",
@@ -249,9 +249,9 @@ export const materialFaqs: Partial<Record<string, Record<Locale, MaterialFaqItem
       ],
       ja: [
         {
-          question: "ヴィーガンレザーとは何ですか？",
+          question: "合成皮革とはなんですか？",
           answer:
-            "ヴィーガンレザーは、従来の動物由来レザーの見た目、触感、機能性を再現するように設計された素材で、動物由来製品を一切使用していません。技術的には、ヴィーガンレザーにはビニール、PU レザー、マイクロファイバーレザーが含まれます。",
+            "合成皮革は、天然皮革の見た目や手触り、機能性を再現するために作られた素材です。動物由来の原料を使わずに製造されています。",
         },
         {
           question:

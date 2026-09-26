@@ -205,6 +205,7 @@ export default async function MaterialDetailPage({ params }: PageProps) {
         subtitle: material.heroSubtitle[locale],
       };
   const isJapaneseMaterialHero = locale === "ja";
+  const isJapaneseVeganLeatherHero = isJapaneseMaterialHero && material.slug === "vegan-leather";
   const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
     { name: locale === "zh" ? chineseCopy("Home") : locale === "en" ? "Home" : "ホーム", path: "/" },
     { name: locale === "zh" ? chineseCopy("Materials") : locale === "en" ? "Materials" : "素材", path: "/materials" },
@@ -215,10 +216,10 @@ export default async function MaterialDetailPage({ params }: PageProps) {
     <main>
       <JsonLd data={breadcrumbSchema} />
       <PageHero
-        eyebrow={isJapaneseMaterialHero ? undefined : heroCopy.eyebrow}
+        eyebrow={isJapaneseVeganLeatherHero ? "合成皮革" : isJapaneseMaterialHero ? undefined : heroCopy.eyebrow}
         image={material.heroImage}
         subtitle={isJapaneseMaterialHero ? undefined : heroCopy.subtitle}
-        title={heroCopy.title}
+        title={isJapaneseVeganLeatherHero ? "アクアペレ" : heroCopy.title}
         titleClassName={isJapaneseMaterialHero ? "font-label uppercase tracking-[0.16em]" : undefined}
       />
       <MaterialIntro locale={locale} material={material} />
