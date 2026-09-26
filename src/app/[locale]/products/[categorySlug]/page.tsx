@@ -1,9 +1,19 @@
+import { chineseCopy } from "../../../../china/copy";
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
+import { ProductCategorySummary } from "@/components/ProductCategorySummary";
+import { ProductBusinessInformation } from "@/components/ProductBusinessInformation";
+import { ProductCurvedCarousel } from "@/components/ProductCurvedCarousel";
 import { createPageMetadata } from "@/lib/metadata";
+import { site } from "@/lib/content";
+import { getJapaneseProductCategorySeo } from "@/lib/japanese-copy";
 import type { Locale } from "@/lib/locales";
-import { getProductCategory, productCategories } from "@/content/products/categories";
+import { buildProductCategoryJsonLd } from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site-config";
+import { productCategories } from "@/content/products/categories";
+import { loadProductBusinessSettings, loadProductCategory } from "@/sanity/lib/loaders";
 import { notFound } from "next/navigation";
 
 type PageProps = {
@@ -18,13 +28,14 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, categorySlug } = await params;
-  const category = getProductCategory(categorySlug);
+  const category = await loadProductCategory(categorySlug);
+  const japaneseSeo = locale === "ja" ? getJapaneseProductCategorySeo(categorySlug) : undefined;
 
   if (!category) {
     return createPageMetadata({
       locale,
       path: "/products",
-      title: "Products | CAMARI JAPAN",
+      title: `Products | ${site.name}`,
       description: ""
     });
   }
@@ -32,29 +43,70 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: `/products/${categorySlug}`,
-    title: locale === "en" ? `${category.title.en} | CAMARI JAPAN` : `${category.title.ja} | CAMARI JAPAN`,
-    description: category.description[locale],
-    image: category.heroImage
+    title:
+      category.seo?.title[locale] ||
+      japaneseSeo?.title ||
+      `${category.title[locale]} | ${site.name}`,
+    description:
+      category.seo?.description[locale] ||
+      japaneseSeo?.description ||
+      category.description[locale],
+    image: category.seo?.image || category.heroImage
   });
 }
 
 export default async function ProductCategoryPage({ params }: PageProps) {
   const { locale, categorySlug } = await params;
-  const category = getProductCategory(categorySlug);
+  const [category, businessInformation] = await Promise.all([
+    loadProductCategory(categorySlug),
+    loadProductBusinessSettings()
+  ]);
 
   if (!category) {
     notFound();
   }
 
+  const categoryPath = `/products/${category.slug}`;
+  const categorySchema = buildProductCategoryJsonLd(siteConfig, {
+    name: category.title[locale],
+    description: category.description[locale],
+    path: categoryPath,
+    locale,
+    items: (category.curvedCarouselImages ?? []).map((item, index) => ({
+      name: item.title[locale],
+      description: item.description[locale],
+      image: item.src,
+      path: `${categoryPath}#product-summary-${index}`
+    }))
+  });
+
+  if (category.curvedCarouselImages) {
+    return (
+      <main>
+        <JsonLd data={categorySchema} />
+        <ProductCurvedCarousel
+          categorySlug={category.slug}
+          images={category.curvedCarouselImages}
+          locale={locale}
+          subtitle={category.subtitle[locale]}
+          title={category.title[locale]}
+        />
+        <ProductCategorySummary category={category} locale={locale} />
+        <ProductBusinessInformation content={businessInformation} locale={locale} variant="compact" />
+      </main>
+    );
+  }
+
   return (
     <main>
+      <JsonLd data={categorySchema} />
       <PageHero
         image={category.heroImage}
         subtitle={category.subtitle[locale]}
         title={category.title[locale]}
       />
       <section className="bg-paper py-24 md:py-36" data-nav-invert>
-        <div className="section-shell grid gap-16 md:grid-cols-12">
+        <div className="section-shell grid gap-14 md:grid-cols-12">
           <div className="md:col-span-5">
             <p className="label-caps text-gold">Capability</p>
             <h2 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">
@@ -71,17 +123,18 @@ export default async function ProductCategoryPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+      <ProductBusinessInformation content={businessInformation} locale={locale} variant="compact" />
       <CTASection
         body={
-          locale === "en"
-            ? "Contact is currently handled by direct email and showroom appointment. A structured inquiry flow will be added later."
-            : "現在のお問い合わせはメールとショールーム予約で対応します。構造化された問い合わせフォームは後日追加予定です。"
+          locale === "zh" ? chineseCopy("Share your use case, finish target, and production requirements to discuss the right material program.") : locale === "en"
+            ? "Share your use case, finish target, and production requirements to discuss the right material program."
+            : "用途、仕上げの方向性、生産条件を共有いただくことで、最適な素材プログラムをご提案します。"
         }
         locale={locale}
         title={
-          locale === "en"
-            ? "Discuss a surface program with CAMARI JAPAN."
-            : "CAMARI JAPAN とサーフェス開発をご相談ください。"
+          locale === "zh" ? chineseCopy(`Discuss a surface program with ${site.organizationName}.`) : locale === "en"
+            ? `Discuss a surface program with ${site.organizationName}.`
+            : `${site.organizationName} とサーフェス開発をご相談ください。`
         }
       />
     </main>

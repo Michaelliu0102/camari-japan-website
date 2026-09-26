@@ -1,3 +1,4 @@
+import { editorialTextField, editorialStringField } from "./editorialFields";
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
 
@@ -6,6 +7,21 @@ export const homePage = defineType({
   title: "Home Page",
   type: "document",
   fields: [
+    defineField({
+      name: "seoTitle",
+      title: "Homepage SEO Title",
+      type: "object",
+      fields: localizedString,
+      description: "Browser and search-result title for each language. Include the CAMARI brand suffix."
+    }),
+    editorialStringField("brandValueLabel", "Brand Value Label"),
+    editorialTextField("brandValueTitle", "Brand Value Heading"),
+    editorialTextField("brandValueBody", "Brand Value Body"),
+    editorialStringField("brandValueLinkLabel", "Brand Value Link Label"),
+    editorialTextField("ctaTitle", "Bottom CTA Heading"),
+    editorialTextField("ctaBody", "Bottom CTA Body"),
+    editorialStringField("ctaLabel", "Location Button Label"),
+    editorialStringField("ctaSecondaryLabel", "Inquiry Button Label"),
     defineField({
       name: "heroTitle",
       title: "Hero Title",

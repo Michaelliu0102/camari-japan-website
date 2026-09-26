@@ -1,8 +1,15 @@
+import { chineseCopy } from "../../china/copy";
+import imageUrlBuilder from "@sanity/image-url";
+import { isSkaiProductType } from "../../lib/skai-collections";
 import {
+  aboutPageSettings as fallbackAboutPageSettings,
   homePageSettings as fallbackHomePageSettings,
+  productBusinessSettings as fallbackProductBusinessSettings,
   materialCategories as fallbackCategories,
   materials as fallbackMaterials,
+  projectCases as fallbackProjects,
   productTypes as fallbackProductTypes,
+  type AboutPageSettings,
   type Download,
   type HomeExploreSlide,
   type HomePageSettings,
@@ -12,30 +19,116 @@ import {
   type NewsItem,
   type ProductType,
   type ProjectCase,
+  type ProductBusinessSettings,
   type Seo,
   type Sku
 } from "../../lib/content";
+import { productCategories as fallbackProductCategories, type ProductCategory } from "../../content/products/categories";
 import type {
+  RawAboutPageSettings,
   RawCatalog,
   RawDownload,
   RawHomePageSettings,
+  RawProductBusinessSettings,
   RawMaterial,
   RawMaterialCategory,
   RawNewsItem,
+  RawProductCategory,
   RawProductType,
   RawProjectCase,
   RawSeo,
+  RawSanityImage,
   RawSku
 } from "./queries";
 
-const emptyLocalized: LocalizedString = { en: "", ja: "" };
-const premiumCollection: LocalizedString = { en: "Premium Collection", ja: "プレミアムコレクション" };
+const emptyLocalized: LocalizedString = { zh: chineseCopy(""), en: "", ja: "" };
+const premiumCollection: LocalizedString = { zh: chineseCopy("Premium Collection"), en: "Premium Collection", ja: "プレミアムコレクション" };
+const materialHeroImageOverrides: Record<string, string> = {
+  fabric: "/uploads/hero/fabric-hero.jpg",
+  leather: "/uploads/hero/leather-hero.png",
+  "vegan-leather": "/uploads/veganleather/interior.jpg"
+};
+const materialIntroImageOverrides: Record<string, string> = {
+  "vegan-leather": "/uploads/veganleather/vegan.jpeg"
+};
+const materialApplicationImageOverrides: Record<string, Record<string, string>> = {
+  "vegan-leather": {
+    vinyl: "/uploads/veganleather/skai cover .webp",
+    "microfiber-leather": "/uploads/veganleather/color.png"
+  }
+};
+const sanityImageBuilder = imageUrlBuilder({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "bfjhbpbx",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production"
+});
+
+type SanityImageUrlOptions = {
+  height?: number;
+  quality?: number;
+  width?: number;
+};
 
 function localized(value: LocalizedString | null | undefined): LocalizedString {
   return {
-    en: value?.en ?? "",
+    zh: value?.zh?.trim() ? value.zh : chineseCopy(value?.en ?? ""), en: value?.en ?? "",
     ja: value?.ja ?? ""
   };
+}
+
+function hasSanityImageAsset(image: RawSanityImage | undefined): image is NonNullable<RawSanityImage> {
+  return Boolean(image?.asset);
+}
+
+function buildSanityImageUrl(image: RawSanityImage | undefined, fallbackUrl: string, options: SanityImageUrlOptions = {}): string {
+  if (!hasSanityImageAsset(image)) {
+    return fallbackUrl;
+  }
+
+  try {
+    let builder = sanityImageBuilder.image(image as Parameters<typeof sanityImageBuilder.image>[0]).auto("format").quality(options.quality ?? 82);
+
+    if (options.width) {
+      builder = builder.width(options.width);
+    }
+
+    if (options.height) {
+      builder = builder.height(options.height);
+    }
+
+    if (options.width && options.height) {
+      builder = builder.fit("crop");
+    }
+
+    return builder.url();
+  } catch {
+    return fallbackUrl;
+  }
+}
+
+function imageIdentity(url: string): string {
+  try {
+    const parsed = new URL(url);
+    parsed.hash = "";
+    parsed.search = "";
+    return parsed.toString();
+  } catch {
+    return url.split("#")[0].split("?")[0];
+  }
+}
+
+function uniqueImageUrls(urls: string[]): string[] {
+  const seen = new Set<string>();
+
+  return urls.filter((url) => {
+    const key = imageIdentity(url);
+
+    if (seen.has(key)) {
+      return false;
+    }
+
+    seen.add(key);
+    return true;
+  });
 }
 
 function slugify(value: string): string {
@@ -62,6 +155,10 @@ function fixtureProductType(slug: string): ProductType | undefined {
   return fallbackProductTypes.find((productType) => productType.slug === slug);
 }
 
+function fixtureProductCategory(slug: string): ProductCategory | undefined {
+  return fallbackProductCategories.find((category) => category.slug === slug);
+}
+
 function fixtureCategory(slug: string): MaterialCategory | undefined {
   return fallbackCategories.find((category) => category.slug === slug);
 }
@@ -71,7 +168,8 @@ function adaptDownload(raw: RawDownload): Download {
     title: localized(raw.title),
     description: localized(raw.description),
     href: raw.href ?? "",
-    type: raw.type ?? "technical"
+    type: raw.type ?? "technical",
+    updatedAt: raw.updatedAt ?? undefined
   };
 }
 
@@ -79,8 +177,7 @@ function muxVideoUrl(playbackId: string): string {
   return `https://stream.mux.com/${playbackId}.m3u8`;
 }
 
-export function adaptHomePageSettings(raw: RawHomePageSettings): HomePageSettings {
-  const fallback = fallbackHomePageSettings;
+export function adaptHomePageSettings(raw: RawHomePageSettings, fallback = fallbackHomePageSettings): HomePageSettings {
   const playbackId = raw?.heroVideoPlaybackId?.trim();
   const productSlides = (raw?.exploreProductSlides ?? [])
     .map<HomeExploreSlide>((slide) => ({
@@ -94,6 +191,15 @@ export function adaptHomePageSettings(raw: RawHomePageSettings): HomePageSetting
     .filter((slide) => slide.slug && slide.image && slide.href);
 
   return {
+    seoTitle: localized(raw?.seoTitle ?? fallback.seoTitle),
+    brandValueLabel: localized(raw?.brandValueLabel ?? fallback.brandValueLabel),
+    brandValueTitle: localized(raw?.brandValueTitle ?? fallback.brandValueTitle),
+    brandValueBody: localized(raw?.brandValueBody ?? fallback.brandValueBody),
+    brandValueLinkLabel: localized(raw?.brandValueLinkLabel ?? fallback.brandValueLinkLabel),
+    ctaTitle: localized(raw?.ctaTitle ?? fallback.ctaTitle),
+    ctaBody: localized(raw?.ctaBody ?? fallback.ctaBody),
+    ctaLabel: localized(raw?.ctaLabel ?? fallback.ctaLabel),
+    ctaSecondaryLabel: localized(raw?.ctaSecondaryLabel ?? fallback.ctaSecondaryLabel),
     hero: {
       title: localized(raw?.heroTitle ?? fallback.hero.title),
       subtitle: localized(raw?.heroSubtitle ?? fallback.hero.subtitle),
@@ -111,12 +217,65 @@ export function adaptHomePageSettings(raw: RawHomePageSettings): HomePageSetting
   };
 }
 
+export function adaptAboutPageSettings(raw: RawAboutPageSettings): AboutPageSettings {
+  const fallback = fallbackAboutPageSettings;
+  const heroImage = raw?.heroImageUrl ?? fallback.heroImage;
+  const bodyParagraphs = (raw?.bodyParagraphs ?? [])
+    .map((paragraph) => localized(paragraph))
+    .filter((paragraph) => paragraph.en || paragraph.ja);
+  const manufacturingParagraphs = (raw?.manufacturingParagraphs ?? [])
+    .map((paragraph) => localized(paragraph))
+    .filter((paragraph) => paragraph.en || paragraph.ja);
+  const missionParagraphs = raw?.missionParagraphs?.filter(Boolean).map((paragraph) => localized(paragraph));
+  const businessItems = raw?.businessItems?.filter((item) => item != null).map((item) => ({
+    title: localized(item.title),
+    body: localized(item.body)
+  }));
+
+  return {
+    seo: {
+      title: localized(raw?.seoTitle ?? fallback.seo.title),
+      description: localized(raw?.seoDescription ?? fallback.seo.description),
+      image: raw?.seoImageUrl ?? heroImage ?? fallback.seo.image
+    },
+    heroImage,
+    heroAlt: localized(raw?.heroAlt ?? fallback.heroAlt),
+    heroTitle: localized(raw?.heroTitle ?? fallback.heroTitle),
+    exploreLabel: localized(raw?.exploreLabel ?? fallback.exploreLabel),
+    bodyLabel: localized(raw?.bodyLabel ?? fallback.bodyLabel),
+    bodyTitle: localized(raw?.bodyTitle ?? fallback.bodyTitle),
+    bodySubtitle: localized(raw?.bodySubtitle ?? fallback.bodySubtitle),
+    bodyParagraphs: raw?.bodyParagraphs == null ? fallback.bodyParagraphs : bodyParagraphs,
+    missionLabel: localized(raw?.missionLabel ?? fallback.missionLabel),
+    missionTitle: localized(raw?.missionTitle ?? fallback.missionTitle),
+    missionParagraphs: missionParagraphs ?? fallback.missionParagraphs,
+    businessLabel: localized(raw?.businessLabel ?? fallback.businessLabel),
+    businessItems: businessItems ?? fallback.businessItems,
+    manufacturingLabel: localized(raw?.manufacturingLabel ?? fallback.manufacturingLabel),
+    manufacturingTitle: localized(raw?.manufacturingTitle ?? fallback.manufacturingTitle),
+    manufacturingParagraphs: raw?.manufacturingParagraphs == null ? fallback.manufacturingParagraphs : manufacturingParagraphs
+  };
+}
+
+export function adaptProductBusinessSettings(raw: RawProductBusinessSettings): ProductBusinessSettings {
+  const fallback = fallbackProductBusinessSettings;
+
+  return {
+    eyebrow: localized(raw?.eyebrow ?? fallback.eyebrow),
+    title: localized(raw?.title ?? fallback.title),
+    body: localized(raw?.body ?? fallback.body),
+    accordionLabel: localized(raw?.accordionLabel ?? fallback.accordionLabel),
+    accordionSummary: localized(raw?.accordionSummary ?? fallback.accordionSummary)
+  };
+}
+
 export function adaptMaterialCategory(raw: RawMaterialCategory): MaterialCategory {
   const slug = raw.slug ?? "";
   const fixture = fixtureCategory(slug);
 
   return {
     slug,
+    updatedAt: raw.updatedAt ?? undefined,
     name: localized(raw.name),
     tagline: localized(raw.tagline),
     description: localized(raw.description),
@@ -125,14 +284,15 @@ export function adaptMaterialCategory(raw: RawMaterialCategory): MaterialCategor
   };
 }
 
-export function adaptMaterial(raw: RawMaterial): Material {
+export function adaptMaterial(raw: RawMaterial, fixture = fixtureMaterial(raw.slug ?? "")): Material {
   const slug = raw.slug ?? "";
   const name = localized(raw.name);
-  const fixture = fixtureMaterial(slug);
-  const heroImage = raw.heroImageUrl ?? fixture?.heroImage ?? "";
+  const heroImage = materialHeroImageOverrides[slug] ?? raw.heroImageUrl ?? fixture?.heroImage ?? "";
 
   return {
+    faq: raw.faq ? Object.fromEntries(Object.entries(raw.faq).map(([locale, items]) => [locale, (items ?? []).filter(item => item != null && (item.question || item.answer)).map(item => ({ ...item, question: item.question ?? "", answer: item.answer ?? "" }))])) : {},
     slug,
+    updatedAt: raw.updatedAt ?? undefined,
     categorySlug: raw.categorySlug ?? fixture?.categorySlug ?? "",
     name,
     eyebrow: raw.categoryName ? localized(raw.categoryName) : premiumCollection,
@@ -141,27 +301,32 @@ export function adaptMaterial(raw: RawMaterial): Material {
     heroImage,
     introTitle: localized(raw.introTitle),
     introBody: localized(raw.introBody),
-    introImage: raw.introImageUrl ?? fixture?.introImage ?? "",
+    introImage: materialIntroImageOverrides[slug] ?? raw.introImageUrl ?? fixture?.introImage ?? "",
     quote: fixture?.quote ?? emptyLocalized,
-    applications: (raw.applications ?? []).map((application) => {
-      const applicationName = localized(application.name);
+    applications: (raw.applications ?? [])
+      .map((application) => {
+        const applicationName = localized(application.name);
+        const applicationSlug = slugify(applicationName.en || applicationName.ja);
 
-      return {
-        slug: slugify(applicationName.en || applicationName.ja),
-        name: applicationName,
-        colorCount: application.colorCount ?? 0,
-        image: application.imageUrl ?? heroImage,
-        productTypeSlug: application.productTypeSlug ?? undefined
-      };
-    }),
+        return {
+          slug: applicationSlug,
+          name: applicationName,
+          colorCount: application.colorCount ?? 0,
+          image: materialApplicationImageOverrides[slug]?.[applicationSlug] ?? application.imageUrl ?? heroImage,
+          productTypeSlug: application.productTypeSlug ?? undefined
+        };
+      })
+      .filter((application) => slug !== "vegan-leather" || application.slug !== "pu-leather"),
     seo: adaptSeo(raw.seo, name, raw.introBody ?? emptyLocalized, raw.seo?.imageUrl ?? heroImage)
   };
 }
 
-export function adaptProductType(raw: RawProductType): ProductType {
+export function adaptProductType(raw: RawProductType, fallbackDownloads?: Download[]): ProductType {
   const slug = raw.slug ?? "";
   const name = localized(raw.name);
-  const fixture = fixtureProductType(slug);
+  const fixture = isSkaiProductType({ slug, name, materialSlug: raw.materialSlug ?? "" })
+    ? undefined
+    : fixtureProductType(slug);
   const specTemplate = (raw.specTemplate ?? [])
     .map((field) => ({
       key: field?.key ?? "",
@@ -182,11 +347,12 @@ export function adaptProductType(raw: RawProductType): ProductType {
 
   return {
     slug,
+    updatedAt: raw.updatedAt ?? undefined,
     materialSlug: raw.materialSlug ?? fixture?.materialSlug ?? "",
     name,
     summary: raw.summary?.en || raw.summary?.ja ? localized(raw.summary) : fixture?.summary ?? emptyLocalized,
     productCode: raw.productCode ?? fixture?.productCode,
-    downloads: raw.downloads?.length ? raw.downloads.map(adaptDownload) : fixture?.downloads ?? [],
+    downloads: raw.downloads == null ? (raw.editorialDownloadsMigrated ? [] : fallbackDownloads ?? fixture?.downloads ?? []) : raw.downloads.map(adaptDownload),
     specTemplate: specTemplate.length ? specTemplate : fixture?.specTemplate ?? [],
     certifications: certifications.length ? certifications : fixture?.certifications ?? [],
     maintenance: maintenance.length ? maintenance : fixture?.maintenance ?? [],
@@ -194,19 +360,66 @@ export function adaptProductType(raw: RawProductType): ProductType {
   };
 }
 
+export function adaptProductCategory(raw: RawProductCategory, fixture = fixtureProductCategory(raw.slug ?? "")): ProductCategory {
+  const slug = raw.slug ?? "";
+  const title = raw.title?.en || raw.title?.ja ? localized(raw.title) : fixture?.title ?? emptyLocalized;
+  const heroImage = raw.heroImageUrl ?? fixture?.heroImage ?? "";
+  const description = raw.description?.en || raw.description?.ja ? localized(raw.description) : fixture?.description ?? emptyLocalized;
+  const highlights = (raw.highlights ?? [])
+    .map((highlight) => ({
+      title: localized(highlight?.title),
+      body: localized(highlight?.body)
+    }))
+    .filter((highlight) => highlight.title.en || highlight.title.ja || highlight.body.en || highlight.body.ja);
+  const carouselItems = (raw.carouselItems ?? [])
+    .map((item, index) => {
+      const coverImage = item.coverImageUrl ?? "";
+      const galleryImages = uniqueImageUrls((item.galleryImageUrls ?? []).filter((url): url is string => Boolean(url)));
+      const fixtureItem = fixture?.curvedCarouselImages?.[index];
+
+      return {
+        src: coverImage,
+        title: localized(item.title),
+        description: localized(item.description),
+        customizedOption:
+          item.customizedOption?.en || item.customizedOption?.ja
+            ? localized(item.customizedOption)
+            : fixtureItem?.customizedOption ?? emptyLocalized,
+        details: (item.details ?? []).map((detail) => localized(detail)).filter((detail) => detail.en || detail.ja),
+        galleryImages: galleryImages.length ? galleryImages : coverImage ? [coverImage] : []
+      };
+    })
+    .filter((item) => item.src && (item.title.en || item.title.ja));
+
+  return {
+    slug,
+    updatedAt: raw.updatedAt ?? undefined,
+    seo: adaptSeo(raw.seo, title, description, raw.seo?.imageUrl ?? heroImage),
+    title,
+    subtitle: raw.subtitle?.en || raw.subtitle?.ja ? localized(raw.subtitle) : fixture?.subtitle ?? emptyLocalized,
+    heroImage,
+    curvedCarouselImages: carouselItems.length ? carouselItems : fixture?.curvedCarouselImages,
+    description,
+    highlights: highlights.length ? highlights : fixture?.highlights ?? []
+  };
+}
+
 export function adaptSku(raw: RawSku): Sku {
   const colorName = localized(raw.colorName);
+  // Manufacturer colour names remain recognizable when a Japanese alias is not provided.
+  if (!colorName.ja) colorName.ja = colorName.en;
   const code = raw.code ?? "";
 
   return {
     slug: raw.slug ?? "",
+    updatedAt: raw.updatedAt ?? undefined,
     materialSlug: raw.materialSlug ?? "",
     productTypeSlug: raw.productTypeSlug ?? "",
     code,
     colorName,
-    hex: raw.hex || "#1A1A1A",
+    hex: raw.hex || undefined,
     image: raw.heroImageUrl ?? "",
-    swatchImage: undefined,
+    swatchImage: raw.swatchImageUrl ?? raw.previewImageUrl ?? undefined,
     previewImage: raw.previewImageUrl ?? undefined,
     caseGallery: (raw.caseGallery ?? [])
       .map((item) => ({
@@ -221,21 +434,65 @@ export function adaptSku(raw: RawSku): Sku {
     })),
     certifications: (raw.certifications ?? []).map((certification) => localized(certification)),
     downloads: (raw.downloads ?? []).map(adaptDownload),
-    seo: adaptSeo(raw.seo, { en: code, ja: code }, raw.summary ?? emptyLocalized, raw.seo?.imageUrl ?? raw.heroImageUrl ?? "")
+    seo: adaptSeo(raw.seo, { zh: chineseCopy(code), en: code, ja: code }, raw.summary ?? emptyLocalized, raw.seo?.imageUrl ?? raw.heroImageUrl ?? "")
   };
 }
 
 export function adaptProjectCase(raw: RawProjectCase): ProjectCase {
   const title = localized(raw.title);
-  const image = raw.imageUrl ?? "";
+  const rawCoverImageUrl = raw.imageUrl ?? "";
+  const image = buildSanityImageUrl(raw.image, rawCoverImageUrl, { quality: 84, width: 1600 });
+  const coverCarouselImage = buildSanityImageUrl(raw.image, image, { height: 1240, quality: 82, width: 920 });
+  const galleryImages = (raw.galleryImages ?? []).map((galleryImage, index) =>
+    buildSanityImageUrl(galleryImage, raw.galleryImageUrls?.[index] ?? "", { height: 1240, quality: 82, width: 920 })
+  );
+  const galleryFallbackImages = (raw.galleryImageUrls ?? []).filter((_, index) => !hasSanityImageAsset(raw.galleryImages?.[index]));
+  const projectImages = [coverCarouselImage, ...galleryImages, ...galleryFallbackImages].filter((item): item is string => Boolean(item));
+  const fixture = fallbackProjects.find((project) => project.slug === raw.slug);
+  const linkedMaterials = (raw.linkedMaterials ?? [])
+    .map((item) =>
+      item?.slug
+        ? {
+            slug: item.slug,
+            name: localized(item.name)
+          }
+        : null
+    )
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const linkedArticles = (raw.linkedArticles ?? [])
+    .map((item) =>
+      item?.slug && item.materialSlug
+        ? {
+            slug: item.slug,
+            materialSlug: item.materialSlug,
+            name: localized(item.name)
+          }
+        : null
+    )
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
   return {
     slug: raw.slug ?? "",
+    updatedAt: raw.updatedAt ?? undefined,
     title,
     industry: localized(raw.industry),
     image,
+    projectImages: uniqueImageUrls(projectImages),
     summary: localized(raw.summary),
     materialSlug: raw.materialSlug ?? "",
+    linkedMaterials:
+      linkedMaterials.length > 0
+        ? linkedMaterials
+        : fixture?.linkedMaterials ??
+          (raw.materialSlug
+            ? [
+                {
+                  slug: raw.materialSlug,
+                  name: fixtureMaterial(raw.materialSlug)?.name ?? emptyLocalized
+                }
+              ]
+            : []),
+    linkedArticles: linkedArticles.length > 0 ? linkedArticles : fixture?.linkedArticles ?? [],
     seo: adaptSeo(raw.seo, title, raw.summary ?? emptyLocalized, raw.seo?.imageUrl ?? image)
   };
 }
@@ -245,7 +502,13 @@ export function adaptNewsItem(raw: RawNewsItem): NewsItem {
   const image = raw.imageUrl ?? "";
 
   return {
+    availableLocales: raw.availableLocales ?? undefined,
+    articleContent: raw.articleContent ? Object.fromEntries(Object.entries(raw.articleContent).filter(([, article]) => article != null).map(([locale, article]) => [locale, {
+      ...article, dateline: article.dateline ?? "", introduction: article.introduction ?? [],
+      sections: (article.sections ?? []).map(section => ({ ...section, title: section.title ?? "", body: section.body ?? [], images: (section.images ?? []).filter(image => Boolean(image.src)) }))
+    }])) : undefined,
     slug: raw.slug ?? "",
+    updatedAt: raw.updatedAt ?? undefined,
     title,
     category: localized(raw.category),
     date: raw.publishedAt ? raw.publishedAt.slice(0, 10) : "",
@@ -260,6 +523,7 @@ export function adaptCatalog(raw: RawCatalog): Download {
     title: localized(raw.title),
     description: localized(raw.description),
     href: raw.href ?? "",
-    type: "catalog"
+    type: "catalog",
+    updatedAt: raw.updatedAt ?? undefined
   };
 }
