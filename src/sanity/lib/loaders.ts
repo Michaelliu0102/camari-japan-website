@@ -32,6 +32,7 @@ import {
   applyJapaneseHomePageCopy,
   applyJapaneseMaterialCategoryCopy,
   applyJapaneseMaterialCopy,
+  applyJapaneseLeatherProductTypeCopy,
   applyJapaneseProductCategoryCopy,
 } from "@/lib/japanese-copy";
 import { isLegacySkaiCollection, isSkaiProductType, legacySkaiSlugs } from "@/lib/skai-collections";
@@ -502,7 +503,7 @@ export const loadProductTypes = cache(async (): Promise<ProductType[]> => {
     market === "global" ? Promise.resolve([] as ProductType[]) : fetchAndMergeBySlug<RawProductType, ProductType>(skaiProductTypesQuery, { skaiSlugs: [...legacySkaiSlugs] }, [], adaptProductType, { fresh: true, fallbackOnEmpty: false })
   ]);
   const merged = new Map([...productTypes, ...globalSkai].map((productType) => [productType.slug, productType]));
-  return normalizeLocalizedBrandNames([...merged.values()]);
+  return applyJapaneseLeatherProductTypeCopy(normalizeLocalizedBrandNames([...merged.values()]));
 });
 
 export async function loadProductCategories(): Promise<ProductCategory[]> {

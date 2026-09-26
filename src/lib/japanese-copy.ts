@@ -1,5 +1,5 @@
 import { chineseCopy } from "../china/copy";
-import type { HomePageSettings, Material, MaterialCategory } from "./content";
+import type { HomePageSettings, Material, MaterialCategory, ProductType } from "./content";
 import type { ProductCategory } from "@/content/products/categories";
 import productCategoryJapaneseContentData from "@/data/product-category-ja.json";
 import { alignJapaneseDetails, requireUniqueMatch } from "./product-detail-localization";
@@ -83,6 +83,52 @@ export function getJapaneseProductCategorySeo(slug: string) {
   return copy
     ? { title: copy.seoTitle, description: copy.seoDescription }
     : undefined;
+}
+
+const leatherProductTypeJapaneseSummaries: Record<string, string> = {
+  "automotive-nappa":
+    "厳選したヨーロッパ産の牛革を、芯まで染め上げたレザーです。革本来の表情を生かした、柔らかくしなやかな手触りと、落ち着いたセミマットの質感が特徴。深みのある均一な色合いで、シートやステアリング、さまざまな内装パーツを上質に仕上げます。",
+  roma:
+    "ローマは、ヨーロッパ産の牛革を使用した家具用レザーです。クロムなめしとピグメント仕上げを施し、マスター外観基準への適合を前提に仕様を定めています。また、REACH要件に準拠して生産されています。",
+  heritage:
+    "ヘリテージは、ヨーロッパ産の牛革を使用した家具用レザーです。クロムなめしとアニリン仕上げにより、革本来の傷跡や模様を生かしています。使い込むほどに色や艶が深まり、一枚ごとに異なる表情を楽しめます。",
+  linea:
+    "リネアは、洗練された現代的なカラーを揃えたレザーです。革本来の上品な表情と美しい仕上がりに加え、耐久性と色堅牢度にも優れています。インテリアやデザイン製品、ファッション、ボートの内装など、幅広い用途に対応します。",
+  aida:
+    "アイーダは、ヨーロッパ産の上質な牛革を使ったナッパレザーです。オイルとワックスを加えたアニリン仕上げで、柔らかな手触りと、ほのかに濃淡のある表情が特徴です。わずかな色の違いや自然に残る跡も、革本来の魅力として楽しめます。",
+  capri:
+    "カプリは、傷やムラの少ない上質な牛革を厳選して作られたレザーです。繊細なセミアニリン仕上げが革本来の自然な表情を生かし、奥行きのある色合いと豊かな手触りを引き出します。流行に左右されない、上品さが特徴です。",
+  classic:
+    "クラシックコレクションは、ヨーロッパ産の上質なフルグレイン牛革を使用しています。天然オイルとワックスを用いた独自の仕上げにより、なめらかでしっとりとした手触りと、鮮やかな色合い、美しい艶を引き出しました。耐久性と色堅牢度にも優れ、ラグジュアリー家具に長く続く上品さを添えます。",
+  luna:
+    "ルナは、上質なヌバックのマットな美しさと、セミアニリンレザーの耐久性・お手入れのしやすさを兼ね備えた素材です。非常に柔らかな起毛感に、ほのかなワックスの質感が重なり、空間や製品の主役になる存在感を生み出します。",
+  seta:
+    "セタコレクションは、厳選したヨーロッパ産の原皮を使用した上質なナッパレザーです。薄く繊細な革にセミアニリン仕上げを施し、しっとりとした柔らかさと、透明感のある革本来の表情を生かしています。過度な加工を控えることで一枚ごとの個性が際立ち、高級レザーグッズやこだわりのインテリアに、軽やかで上品な印象を添えます。",
+};
+
+export function applyJapaneseLeatherProductTypeCopy(
+  productTypes: ProductType[],
+): ProductType[] {
+  return productTypes.map((productType) => {
+    if (productType.materialSlug !== "leather") {
+      return productType;
+    }
+
+    const summary = leatherProductTypeJapaneseSummaries[productType.slug]
+      ?? (productType.slug === "verona"
+        ? productType.summary.ja.replace(/^Verona(?=は)/, "ヴェロナ")
+        : productType.slug === "tuscania"
+          ? productType.summary.ja.replace(/^Tuscania(?=は)/, "トスカニア")
+          : productType.summary.ja);
+
+    return {
+      ...productType,
+      name: productType.slug === "verona"
+        ? { ...productType.name, ja: "ヴェロナ" }
+        : productType.name,
+      summary: { ...productType.summary, ja: summary },
+    };
+  });
 }
 
 export { default as JAPANESE_ABOUT_PAGE_COPY } from "../data/about-page-ja.json";

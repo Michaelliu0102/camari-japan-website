@@ -204,6 +204,7 @@ export default async function MaterialDetailPage({ params }: PageProps) {
         title: material.heroTitle[locale],
         subtitle: material.heroSubtitle[locale],
       };
+  const isJapaneseMaterialHero = locale === "ja";
   const breadcrumbSchema = buildBreadcrumbJsonLd(siteConfig, [
     { name: locale === "zh" ? chineseCopy("Home") : locale === "en" ? "Home" : "ホーム", path: "/" },
     { name: locale === "zh" ? chineseCopy("Materials") : locale === "en" ? "Materials" : "素材", path: "/materials" },
@@ -214,10 +215,11 @@ export default async function MaterialDetailPage({ params }: PageProps) {
     <main>
       <JsonLd data={breadcrumbSchema} />
       <PageHero
-        eyebrow={heroCopy.eyebrow}
+        eyebrow={isJapaneseMaterialHero ? undefined : heroCopy.eyebrow}
         image={material.heroImage}
-        subtitle={heroCopy.subtitle}
+        subtitle={isJapaneseMaterialHero ? undefined : heroCopy.subtitle}
         title={heroCopy.title}
+        titleClassName={isJapaneseMaterialHero ? "font-label uppercase tracking-[0.16em]" : undefined}
       />
       <MaterialIntro locale={locale} material={material} />
       {showArticleGrid ? (

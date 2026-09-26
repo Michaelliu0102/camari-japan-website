@@ -101,6 +101,29 @@ test("Japanese product-category copy mirrors the upload template on local and Sa
   assert.match(carousel, /details\.filter\(\(detail\) => detail\[locale\]\)/);
 });
 
+test("Japanese leather articles use the approved editorial summaries", async () => {
+  const copy = await source("src/lib/japanese-copy.ts");
+  const loaders = await source("src/sanity/lib/loaders.ts");
+
+  for (const text of [
+    "厳選したヨーロッパ産の牛革を、芯まで染め上げたレザーです。",
+    "ローマは、ヨーロッパ産の牛革を使用した家具用レザーです。",
+    "ヘリテージは、ヨーロッパ産の牛革を使用した家具用レザーです。",
+    "リネアは、洗練された現代的なカラーを揃えたレザーです。",
+    "アイーダは、ヨーロッパ産の上質な牛革を使ったナッパレザーです。",
+    "カプリは、傷やムラの少ない上質な牛革を厳選して作られたレザーです。",
+    "クラシックコレクションは、ヨーロッパ産の上質なフルグレイン牛革を使用しています。",
+    "ルナは、上質なヌバックのマットな美しさと、セミアニリンレザーの耐久性・お手入れのしやすさを兼ね備えた素材です。",
+    "セタコレクションは、厳選したヨーロッパ産の原皮を使用した上質なナッパレザーです。",
+  ]) {
+    assert.match(copy, new RegExp(text));
+  }
+
+  assert.match(copy, /productType\.slug === "verona"[\s\S]*?ja: "ヴェロナ"/);
+  assert.match(copy, /replace\(\/\^Tuscania\(\?=は\)\/, "トスカニア"\)/);
+  assert.match(loaders, /applyJapaneseLeatherProductTypeCopy\(normalizeLocalizedBrandNames/);
+});
+
 test("Japanese overview pages localize the remaining English section labels", async () => {
   const downloadsPage = await source("src/app/[locale]/downloads/page.tsx");
   const productsPage = await source("src/app/[locale]/products/page.tsx");
