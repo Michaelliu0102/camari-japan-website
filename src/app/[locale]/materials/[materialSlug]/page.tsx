@@ -63,9 +63,19 @@ function MaterialFaq({ items, locale }: { items: MaterialFaqItem[]; locale: Loca
                   </span>
                 </summary>
                 <div className="mt-3 space-y-3 pr-0 text-base md:pr-10 leading-7 text-muted md:text-[0.8rem] md:leading-relaxed">
-                  {item.answer.split(/\n{2,}/).map((paragraph) => (
-                    <p key={paragraph}>{localizeBrandNames(paragraph, locale)}</p>
-                  ))}
+                  {item.answer.split(/\n{2,}/).map((paragraph) => {
+                    const lines = paragraph.split("\n");
+                    if (lines.every((line) => /^\* /.test(line))) {
+                      return (
+                        <ul className="list-disc space-y-3 pl-5" key={paragraph}>
+                          {lines.map((line) => (
+                            <li key={line}>{localizeBrandNames(line.slice(2), locale)}</li>
+                          ))}
+                        </ul>
+                      );
+                    }
+                    return <p key={paragraph}>{localizeBrandNames(paragraph, locale)}</p>;
+                  })}
                   {item.link ? (
                     <a
                       className="inline-flex text-charcoal underline decoration-charcoal/40 underline-offset-4 transition-colors duration-300 hover:text-gold focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-charcoal"
@@ -216,7 +226,7 @@ export default async function MaterialDetailPage({ params }: PageProps) {
     <main>
       <JsonLd data={breadcrumbSchema} />
       <PageHero
-        eyebrow={isJapaneseVeganLeatherHero ? "合成皮革" : isJapaneseMaterialHero ? undefined : heroCopy.eyebrow}
+        eyebrow={isJapaneseVeganLeatherHero ? heroCopy.subtitle : isJapaneseMaterialHero ? undefined : heroCopy.eyebrow}
         image={material.heroImage}
         subtitle={isJapaneseMaterialHero ? undefined : heroCopy.subtitle}
         title={isJapaneseVeganLeatherHero ? "アクアペレ" : heroCopy.title}

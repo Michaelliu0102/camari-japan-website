@@ -421,7 +421,7 @@ export const materials: Material[] = [
     name: { zh: chineseCopy("Vegan Leather"), en: "Vegan Leather", ja: "合成皮革" },
     eyebrow: { zh: chineseCopy("Sustainable Collection"), en: "Sustainable Collection", ja: "サステナブルコレクション" },
     heroTitle: { zh: chineseCopy("Vegan Leather"), en: "Vegan Leather", ja: "合成皮革" },
-    heroSubtitle: { zh: chineseCopy("Performance without compromise"), en: "Performance without compromise", ja: "妥協なき性能" },
+    heroSubtitle: { zh: chineseCopy("Performance without compromise"), en: "Performance without compromise", ja: "マイクロファイバー 合成皮革" },
     heroImage: "/uploads/veganleather/interior.jpg",
     introTitle: { zh: chineseCopy("High-Performance Alternatives"), en: "High-Performance Alternatives", ja: "ハイパフォーマンスな選択肢" },
     introBody: {
