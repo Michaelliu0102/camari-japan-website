@@ -15,10 +15,10 @@ const config: Config = {
         cobalt: "oklch(0.28 0.12 260)"
       },
       fontFamily: {
-        serif: ["Playfair Display", "Georgia", "serif"],
-        display: ["Cinzel", "Playfair Display", "serif"],
-        sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"],
-        label: ["Montserrat", "Inter", "sans-serif"]
+        serif: ['var(--font-playfair, "Playfair Display")', "Georgia", "serif"],
+        display: ['var(--font-cinzel, "Cinzel")', 'var(--font-playfair, "Playfair Display")', "serif"],
+        sans: ['var(--font-inter, "Inter")', 'var(--font-noto, "Noto Sans JP")', "system-ui", "sans-serif"],
+        label: ['var(--font-montserrat, "Montserrat")', 'var(--font-inter, "Inter")', "sans-serif"]
       },
       spacing: {
         gutter: "24px",

@@ -2,7 +2,8 @@
 
 import { chinaMediaUrl } from "@/lib/china-media";
 import { chineseCopy } from "../china/copy";
-import Hls from "hls.js";
+import type Hls from "hls.js";
+import { editorialImageUrl } from "@/lib/editorial-image";
 import { useEffect, useRef } from "react";
 import type { HomeHero } from "@/lib/content";
 import type { Locale } from "@/lib/locales";
@@ -18,30 +19,94 @@ export function HeroVideo({ hero, locale }: HeroVideoProps) {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    let disposed = false;
+    let inView = false;
+    let hls: Hls | undefined;
+    let loading = false;
+    let initialized = false;
+    let initializing = false;
     const isHlsSource = hero.videoSrc.includes(".m3u8");
+    const active = () => inView && !document.hidden;
 
-    if (isHlsSource && Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(hero.videoSrc);
-      hls.attachMedia(video);
-      return () => hls.destroy();
+    function syncPlayback() {
+      if (disposed) return;
+      if (!active()) {
+        video!.pause();
+        if (loading) { hls?.stopLoad(); loading = false; }
+        return;
+      }
+      if (!initialized) { void initialize(); return; }
+      if (hls && !loading) { hls.startLoad(-1); loading = true; }
+      // Autoplay can be denied by the browser; the poster and text remain usable.
+      void video!.play().catch(() => {});
     }
 
-    if (!isHlsSource || video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = hero.videoSrc;
+    async function initialize() {
+      if (initializing || initialized || disposed) return;
+      initializing = true;
+      try {
+        if (isHlsSource) {
+          const { default: HlsPlayer } = await import("hls.js");
+          if (disposed) return;
+          if (HlsPlayer.isSupported()) {
+            hls = new HlsPlayer({
+              autoStartLoad: false,
+              capLevelToPlayerSize: false,
+              // Limit look-ahead; keep adaptive quality and the original video.
+              maxBufferLength: 8,
+              maxMaxBufferLength: 12,
+              backBufferLength: 10,
+            });
+            hls.on(HlsPlayer.Events.MANIFEST_PARSED, () => {
+              if (!hls) return;
+              const fullHd = hls.levels.reduce((last, level, index) => level.height <= 1080 ? index : last, -1);
+              if (fullHd >= 0) hls.autoLevelCapping = fullHd;
+              syncPlayback();
+            });
+            hls.loadSource(hero.videoSrc);
+            hls.attachMedia(video!);
+          } else if (video!.canPlayType("application/vnd.apple.mpegurl")) {
+            video!.src = hero.videoSrc;
+          }
+        } else {
+          video!.src = hero.videoSrc;
+        }
+        initialized = true;
+        syncPlayback();
+      } catch {
+        // Failed player loads leave the still image visible rather than blocking the page.
+      } finally {
+        initializing = false;
+      }
     }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting && entry.intersectionRatio > 0.05;
+      syncPlayback();
+    }, { threshold: 0.05 });
+    observer.observe(video);
+    document.addEventListener("visibilitychange", syncPlayback);
+    return () => {
+      disposed = true;
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", syncPlayback);
+      video.pause();
+      hls?.destroy();
+      video.removeAttribute("src");
+      video.load();
+    };
   }, [hero.videoSrc]);
 
   return (
     <section className="relative h-[100svh] min-h-[36rem] w-full overflow-hidden bg-charcoal md:min-h-[680px]">
       <video
         ref={videoRef}
-        autoPlay
+        preload="none"
         className="absolute inset-0 h-full w-full object-cover"
         loop
         muted
         playsInline
-        poster={chinaMediaUrl(hero.poster)}
+        poster={chinaMediaUrl(editorialImageUrl(hero.poster, 1920))}
       />
       <div className="absolute inset-0 bg-black/25" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32svh] bg-gradient-to-b from-transparent via-charcoal/45 to-charcoal" />

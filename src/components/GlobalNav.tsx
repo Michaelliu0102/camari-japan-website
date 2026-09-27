@@ -211,7 +211,7 @@ export function GlobalNav({ locale }: GlobalNavProps) {
   const dropdownGlassClass = "border-y border-charcoal/10 bg-white text-charcoal shadow-material";
   const dropdownMutedText = "text-muted";
   const dropdownItemHover = "hover:bg-charcoal/5";
-  const logoSrc = useDarkControls ? "/uploads/logo/black-int.png" : "/uploads/logo/white-int.png";
+  const logoSrc = useDarkControls ? "/brand/black-int-nav.webp" : "/brand/white-int-nav.webp";
 
   return (
     <>
@@ -229,10 +229,13 @@ export function GlobalNav({ locale }: GlobalNavProps) {
           <Image
             alt="CAMARI"
             className="h-auto w-[7rem] min-[360px]:w-[8.5rem] min-[390px]:w-[9.25rem] md:w-[12rem]"
-            height={1780}
+            height={205}
             sizes="(min-width: 768px) 192px, (min-width: 390px) 148px, (min-width: 360px) 136px, 112px"
+            unoptimized
+            loading="eager"
+            fetchPriority="high"
             src={logoSrc}
-            width={4994}
+            width={576}
           />
         </Link>
 

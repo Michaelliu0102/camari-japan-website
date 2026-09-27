@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { EditorialImage as Image } from "@/components/EditorialImage";
 import Link from "next/link";
 import { CTAMessageDrawer } from "@/components/CTAMessageDrawer";
 import { localizedPath, type Locale } from "@/lib/locales";
@@ -28,7 +28,7 @@ export function CTASection({ locale, title, body, eyebrow = "Showroom", label = 
     <section className={`relative overflow-hidden text-white ${!backgroundImage && (isDark ? "bg-charcoal" : "bg-stone text-charcoal")}`} {...(!isDark && !backgroundImage ? { "data-nav-invert": true } : {})}>
       {backgroundImage ? (
         <>
-          <Image alt="" className="object-cover" fill priority sizes="100vw" src={backgroundImage} />
+          <Image alt="" className="object-cover" fill sizes="100vw" src={backgroundImage} />
           <div className="absolute inset-0 bg-black/55 backdrop-blur-sm" />
         </>
       ) : null}

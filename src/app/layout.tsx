@@ -1,9 +1,9 @@
-/* eslint-disable @next/next/no-page-custom-font -- App Router root layout; China pages intentionally omit external fonts. */
 import { headers } from "next/headers";
 import { isChinaBuild, isChinaPreview, chinaSiteUrl } from "@/china/config";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { webFontVariables } from "./fonts";
 import { ConsentProvider } from "@/components/ConsentManager";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { formatPageTitle, siteConfig } from "@/lib/site-config";
@@ -27,8 +27,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   const china = isChinaBuild || (isChinaPreview && (await headers()).get("x-camari-site") === "china");
   return (
-    <html lang={china ? "zh-CN" : siteConfig.defaultLocale}>
-      {!china ? <head><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Inter:wght@400;500;600&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@500;600;700&family=Noto+Sans+JP:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" /></head> : null}
+    <html className={china ? undefined : webFontVariables} lang={china ? "zh-CN" : siteConfig.defaultLocale}>
       <body>
         {<ConsentProvider defaultLocale={china ? "zh" : siteConfig.defaultLocale}>
           <SmoothScroll />

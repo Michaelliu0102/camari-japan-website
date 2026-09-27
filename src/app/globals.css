@@ -24,7 +24,7 @@ body {
   margin: 0;
   background: oklch(0.985 0.006 82);
   color: oklch(0.205 0.005 80);
-  font-family: "Inter", "Noto Sans JP", system-ui, sans-serif;
+  font-family: var(--font-inter, "Inter"), var(--font-noto, "Noto Sans JP"), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -85,7 +85,7 @@ video {
 }
 
 .logo-outline {
-  font-family: "Cinzel", serif;
+  font-family: var(--font-cinzel, "Cinzel"), serif;
   font-weight: 400;
   letter-spacing: 0.25em;
   color: rgb(255 255 255 / 0.9);
@@ -94,7 +94,7 @@ video {
 }
 
 .logo-outline-dark {
-  font-family: "Cinzel", serif;
+  font-family: var(--font-cinzel, "Cinzel"), serif;
   font-weight: 400;
   letter-spacing: 0.25em;
   color: transparent;
@@ -123,7 +123,7 @@ video {
 }
 
 .label-caps {
-  font-family: "Montserrat", "Inter", sans-serif;
+  font-family: var(--font-montserrat, "Montserrat"), var(--font-inter, "Inter"), sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.32em;
@@ -154,32 +154,32 @@ video {
 }
 
 .display-caps {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-playfair, "Playfair Display"), Georgia, serif;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .ampersand-serif {
-  font-family: "Libre Baskerville", Georgia, serif;
+  font-family: var(--font-baskerville, "Libre Baskerville"), Georgia, serif;
   font-weight: 400;
 }
 
 .about-hero-wordmark {
-  font-family: "Cinzel", serif;
+  font-family: var(--font-cinzel, "Cinzel"), serif;
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .about-copy-title {
-  font-family: "Montserrat", "Inter", "Noto Sans JP", system-ui, sans-serif;
+  font-family: var(--font-montserrat, "Montserrat"), var(--font-inter, "Inter"), var(--font-noto, "Noto Sans JP"), system-ui, sans-serif;
   font-weight: 400;
   letter-spacing: 0.01em;
   text-transform: uppercase;
 }
 
 .about-hero-explore {
-  font-family: "Inter", "Noto Sans JP", system-ui, sans-serif;
+  font-family: var(--font-inter, "Inter"), var(--font-noto, "Noto Sans JP"), system-ui, sans-serif;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }

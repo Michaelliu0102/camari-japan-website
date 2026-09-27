@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { EditorialImage as Image } from "@/components/EditorialImage";
 import Link from "next/link";
 import { CTASection } from "@/components/CTASection";
 import { ExploreCarousel } from "@/components/ExploreCarousel";

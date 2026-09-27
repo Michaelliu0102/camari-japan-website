@@ -1,7 +1,7 @@
 "use client";
 
 import { chineseCopy } from "../china/copy";
-import Image from "next/image";
+import { EditorialImage as Image } from "@/components/EditorialImage";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import SplitText from "@/components/SplitText";
@@ -167,18 +167,53 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
     [materials, productSlides, selectedCategories]
   );
   const [index, setIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [nearby, setNearby] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [desktop, setDesktop] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const slide = slides[index];
 
   useEffect(() => {
-    if (slides.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const section = sectionRef.current;
+    if (!section) return;
+    const media = window.matchMedia("(min-width: 768px)");
+    const updateMedia = () => setDesktop(media.matches);
+    updateMedia();
+    media.addEventListener("change", updateMedia);
+    const preload = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setNearby(true); preload.disconnect(); }
+    }, { rootMargin: "240px" });
+    let inView = false;
+    const updateVisibility = () => setVisible(inView && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      updateVisibility();
+    }, { threshold: 0.1 });
+    preload.observe(section);
+    observer.observe(section);
+    document.addEventListener("visibilitychange", updateVisibility);
+    return () => {
+      preload.disconnect(); observer.disconnect();
+      media.removeEventListener("change", updateMedia);
+      document.removeEventListener("visibilitychange", updateVisibility);
+    };
+  }, []);
+
+  function shouldLoad(slideIndex: number) {
+    const distance = circularDistance(slideIndex, index, slides.length);
+    return nearby && (distance <= 1 || distance === slides.length - 1);
+  }
+
+  useEffect(() => {
+    if (!visible || slides.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const intervalId = window.setInterval(() => {
       setIndex((current) => (current + 1) % slides.length);
     }, 5200);
 
     return () => window.clearInterval(intervalId);
-  }, [slides.length]);
+  }, [slides.length, visible]);
 
   if (!slide) {
     return null;
@@ -189,18 +224,19 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
   }
 
   return (
-    <section className="relative isolate -mt-px min-h-[100svh] scroll-mt-0 overflow-hidden bg-charcoal text-white" data-explore-slider id="home-explore">
+    <section ref={sectionRef} className="relative isolate -mt-px min-h-[100svh] scroll-mt-0 overflow-hidden bg-charcoal text-white" data-explore-slider id="home-explore">
       <div className="absolute inset-0 -z-20 bg-charcoal">
-        {slides.map((item, slideIndex) => (
+        {slides.map((item, slideIndex) => shouldLoad(slideIndex) ? (
           <Image
             alt=""
             className={`object-cover transition-all duration-[1250ms] ease-expo ${slideIndex === index ? "scale-105 opacity-85" : "scale-100 opacity-0"}`}
             fill
             key={`background-${item.slug}`}
             sizes="100vw"
+            loading="eager"
             src={item.image}
           />
-        ))}
+        ) : null)}
       </div>
       <div className="absolute inset-0 -z-10 bg-charcoal/40 backdrop-blur-sm md:bg-charcoal/35 md:backdrop-blur-md" />
       <div className="absolute inset-x-0 top-0 -z-10 h-[22svh] bg-gradient-to-b from-charcoal via-charcoal/45 to-transparent" />
@@ -233,18 +269,18 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
 
         <div className="relative mt-7 flex justify-center">
           <div className="relative aspect-[4/5] w-[min(78vw,19rem)] overflow-hidden rounded-sm border border-white/20 bg-charcoal/25 shadow-2xl shadow-black/35">
-            {slides.map((item, slideIndex) => (
+            {slides.map((item, slideIndex) => !desktop && shouldLoad(slideIndex) ? (
               <Image
                 alt={slideIndex === index ? item.title[locale] : ""}
                 aria-hidden={slideIndex !== index}
                 className={`object-contain transition-[opacity,transform] duration-700 ease-expo ${slideIndex === index ? "scale-100 opacity-100" : "scale-[1.02] opacity-0"}`}
                 fill
                 key={`mobile-card-${item.slug}`}
-                priority={slideIndex === 0}
-                sizes="(max-width: 767px) 78vw"
+                loading="eager"
+                sizes="(max-width: 390px) 78vw, 304px"
                 src={item.image}
               />
-            ))}
+            ) : null)}
           </div>
 
           <button
@@ -315,14 +351,14 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
                   key={item.slug}
                   style={style}
                 >
-                  <Image
+                  {desktop && shouldLoad(slideIndex) ? <Image
                     alt={isActive ? item.title[locale] : ""}
                     className="object-cover"
                     fill
-                    priority={slideIndex === 0}
+                    loading="eager"
                     sizes={isActive ? "(min-width: 768px) 24rem, 15rem" : "(min-width: 768px) 19rem, 13rem"}
                     src={item.image}
-                  />
+                  /> : null}
                 </article>
               );
             })}

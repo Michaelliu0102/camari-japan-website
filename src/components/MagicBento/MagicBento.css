@@ -305,7 +305,7 @@
 }
 
 .magic-bento-card__image-title {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-playfair, "Playfair Display"), Georgia, serif;
   font-size: 1.875rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -320,7 +320,7 @@
 }
 
 .magic-bento-card__image-desc {
-  font-family: "Montserrat", "Inter", sans-serif;
+  font-family: var(--font-montserrat, "Montserrat"), var(--font-inter, "Inter"), sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.32em;
@@ -330,7 +330,7 @@
 }
 
 .magic-bento-card__cta {
-  font-family: "Montserrat", "Inter", sans-serif;
+  font-family: var(--font-montserrat, "Montserrat"), var(--font-inter, "Inter"), sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.32em;
