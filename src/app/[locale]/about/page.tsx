@@ -1,7 +1,7 @@
 import { chineseCopy } from "../../../china/copy";
 import { translateAboutCopy } from "@/content/about-page-copy";
 import type { Metadata } from "next";
-import Image from "next/image";
+import { EditorialImage } from "@/components/EditorialImage";
 import { CTASection } from "@/components/CTASection";
 import { OemLogoLoop } from "@/components/OemLogoLoop";
 import { ShinyHeading } from "@/components/ShinyHeading";
@@ -108,7 +108,7 @@ export default async function AboutPage({ params }: PageProps) {
         >
           <div className="section-shell grid gap-12 lg:grid-cols-[minmax(0,1.55fr)_minmax(24rem,0.85fr)] lg:items-center lg:gap-20 xl:gap-24">
             <div className="relative order-2 aspect-[4/3] overflow-hidden bg-paper md:aspect-[3/2] lg:order-1">
-              <Image
+              <EditorialImage
                 alt={t("CASA CAMARI office and material showroom interior")}
                 className="object-cover object-center"
                 fill
@@ -157,7 +157,7 @@ export default async function AboutPage({ params }: PageProps) {
                 <p className="mt-7 text-[1rem] leading-[1.8] text-muted">{t("Clients work with specialists in their own market, while CAMARI teams share specifications, sampling feedback, and production planning across borders. Central warehousing in China and Italy keeps material access close to each project and coordination consistent from concept to delivery.")}</p>
               </div>
               <div className="relative aspect-[4/3] overflow-hidden bg-stone">
-                <Image
+                <EditorialImage
                   alt={t("CAMARI China warehouse")}
                   className="object-cover object-center"
                   fill
@@ -172,7 +172,7 @@ export default async function AboutPage({ params }: PageProps) {
         <section className="bg-linen py-24 md:py-36" data-nav-invert>
           <div className="section-shell grid gap-12 lg:grid-cols-[minmax(0,1.24fr)_minmax(23rem,0.76fr)] lg:items-center lg:gap-20">
             <div className="relative aspect-[3/2] overflow-hidden bg-stone">
-              <Image
+              <EditorialImage
                 alt={t("Alcantara Milan headquarters interior")}
                 className="object-cover"
                 fill
@@ -235,7 +235,7 @@ export default async function AboutPage({ params }: PageProps) {
               {manufacturingCapabilities.map((capability, index) => (
                 <article key={capability.title}>
                   <div className="relative aspect-[4/3] overflow-hidden bg-stone">
-                    <Image
+                    <EditorialImage
                       alt={t(capability.title)}
                       className="object-cover"
                       fill
@@ -271,7 +271,7 @@ export default async function AboutPage({ params }: PageProps) {
   return (
     <main>
       <section className="relative flex min-h-screen items-center overflow-hidden bg-[oklch(0.82_0.01_82)] text-[oklch(0.96_0.01_85)]">
-        <Image
+        <EditorialImage
           alt={aboutSettings.heroAlt[locale]}
           className="object-cover"
           fill
@@ -363,7 +363,7 @@ export default async function AboutPage({ params }: PageProps) {
       <section className="bg-stone py-20 md:py-32" data-nav-invert>
         <div className="section-shell grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(24rem,0.92fr)] lg:items-center lg:gap-20">
           <div className="relative aspect-[4/3] overflow-hidden bg-linen">
-            <Image
+            <EditorialImage
               alt="CAMARI 中国自社工場の製造設備"
               className="object-cover"
               fill

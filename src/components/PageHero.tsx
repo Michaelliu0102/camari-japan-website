@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { EditorialImage } from "@/components/EditorialImage";
+import { editorialHeroSizes } from "@/lib/editorial-image";
 
 type PageHeroProps = {
   contentClassName?: string;
@@ -13,7 +14,7 @@ type PageHeroProps = {
 export function PageHero({ contentClassName = "", eyebrow, title, titleClassName = "display-caps", subtitle, image, imagePosition = "center" }: PageHeroProps) {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-charcoal text-center text-white">
-      <Image alt="" className="object-cover" fill priority sizes="100vw" src={image} style={{ objectPosition: imagePosition }} />
+      <EditorialImage alt="" className="object-cover" fill maxWidth={1920} priority sizes={editorialHeroSizes(image)} src={image} style={{ objectPosition: imagePosition }} />
       <div aria-hidden="true" className="absolute inset-0 bg-charcoal opacity-60 md:hidden" />
       <div className={`relative z-10 min-w-0 max-w-full px-margin-mobile py-[calc(var(--nav-height)+2rem)] ${contentClassName}`}>
         {eyebrow ? <p className="label-caps mb-6 text-white md:text-white/80">{eyebrow}</p> : null}

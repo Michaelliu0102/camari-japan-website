@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { EditorialImage } from "@/components/EditorialImage";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 
@@ -27,7 +27,7 @@ export function MaterialIntroImage({ alt, src }: MaterialIntroImageProps) {
   return (
     <div ref={frameRef} className="relative min-h-[520px] overflow-hidden shadow-material md:min-h-[680px] md:h-full">
       <motion.div className="absolute inset-x-0 -top-10 bottom-[-2.5rem] will-change-transform" style={{ y, scale }}>
-        <Image alt={alt} className="object-cover" fill priority={false} sizes="(min-width: 1024px) 45vw, 100vw" src={src} />
+        <EditorialImage alt={alt} className="object-cover" fill priority={false} sizes="(min-width: 1024px) 45vw, 100vw" src={src} />
       </motion.div>
       <div className="pointer-events-none absolute inset-0 ring-1 ring-charcoal/5" />
     </div>

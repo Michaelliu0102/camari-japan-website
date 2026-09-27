@@ -270,17 +270,6 @@ export const homePageSettings: HomePageSettings = {
     categorySlugs: ["alcantara", "fabric", "vegan-leather"],
     productSlides: [
       {
-        slug: "oem-odm",
-        title: { zh: chineseCopy("Bespoke Surfaces"), en: "Bespoke Surfaces", ja: "特注サーフェス" },
-        category: { zh: chineseCopy("Product — OEM"), en: "Product — OEM", ja: "Product — OEM" },
-        description: {
-          zh: chineseCopy("Material programs for automotive, product, hospitality, and architectural teams."), en: "Material programs for automotive, product, hospitality, and architectural teams.",
-          ja: "車両、プロダクト、ホスピタリティ、建築チームに向けた素材プログラム。"
-        },
-        image: images.alcantaraSoft,
-        href: "/oem-odm"
-      },
-      {
         slug: "projects",
         title: { zh: chineseCopy("PRODUCT"), en: "PRODUCT", ja: "PRODUCT" },
         category: { zh: chineseCopy("Product"), en: "Product", ja: "Product" },

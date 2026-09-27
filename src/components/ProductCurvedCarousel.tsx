@@ -2,7 +2,7 @@
 
 import { chineseCopy } from "../china/copy";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import Image from "next/image";
+import { EditorialImage } from "@/components/EditorialImage";
 import Link from "next/link";
 import { useEffect, useMemo, useState, type CSSProperties, type PointerEvent } from "react";
 import { createPortal } from "react-dom";
@@ -266,7 +266,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
                     openDetailView(sourceIndex);
                   }}
                 >
-                  <Image
+                  <EditorialImage
                     alt={item.title[locale]}
                     className="pointer-events-none object-cover"
                     fill
@@ -307,7 +307,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
             <div className="grid min-h-screen lg:grid-cols-[minmax(0,1.35fr)_minmax(25rem,0.65fr)]">
               <div className="relative flex min-h-[58vh] flex-col bg-white lg:min-h-screen">
                 <div className="relative min-h-[58vh] flex-1 bg-white lg:min-h-0">
-                  <Image
+                  <EditorialImage
                     alt={activeItem.title[locale]}
                     className="object-contain"
                     fill
@@ -327,7 +327,7 @@ export function ProductCurvedCarousel({ categorySlug, images, locale, subtitle, 
                       onClick={() => setActiveGalleryImageIndex(index)}
                       type="button"
                     >
-                      <Image alt="" className="object-cover" fill sizes="7rem" src={thumbnailSrc} />
+                      <EditorialImage alt="" className="object-cover" fill sizes="7rem" src={thumbnailSrc} />
                     </button>
                   ))}
                 </div>

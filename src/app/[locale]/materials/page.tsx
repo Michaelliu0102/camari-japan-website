@@ -42,19 +42,18 @@ export default async function MaterialsPage({ params }: PageProps) {
       {heroCategory ? (
         <PageHero
           image={heroCategory.coverImage}
-          subtitle={locale === "zh" ? chineseCopy("The intersection of Italian sensory tension and Japanese restraint") : locale === "en" ? "The intersection of Italian sensory tension and Japanese restraint" : undefined}
           title={locale === "zh" ? chineseCopy("Material") : locale === "en" ? "Material" : "素材"}
         />
       ) : null}
       <section className="bg-stone py-24 md:py-32" data-nav-invert>
         <div className="mx-auto max-w-4xl px-margin-mobile text-center">
           {locale !== "ja" ? <p className="label-caps text-gold">Our Philosophy</p> : null}
-          <h2 className={`${locale === "zh" ? chineseCopy("mt-6 ") : locale === "en" ? "mt-6 " : ""}font-serif text-4xl uppercase tracking-luxury`}>
-            {locale === "zh" ? chineseCopy("Tactile Silence") : locale === "en" ? "Tactile Silence" : "質感へのこだわり"}
+          <h2 className={`${locale === "zh" ? chineseCopy("mt-6 ") : locale === "en" ? "mt-6 " : ""}text-balance font-serif text-4xl uppercase tracking-luxury`}>
+            {locale === "zh" ? "用心挑选，重在品质" : locale === "en" ? "Quality materials, carefully chosen." : "質感へのこだわり"}
           </h2>
           <p className="mt-8 text-lg leading-9 text-muted">
-            {locale === "zh" ? chineseCopy("Every textile and hide is selected for its ability to harmonize with spatial design, offering a sensory transition between craft precision and expressive warmth.") : locale === "en"
-              ? "Every textile and hide is selected for its ability to harmonize with spatial design, offering a sensory transition between craft precision and expressive warmth."
+            {locale === "zh" ? "我们关注材料的手感，也看重它在实际使用中的表现。从 Alcantara、真皮到织物与合成皮革，我们帮助您为项目找到合适的材料。" : locale === "en"
+              ? "We pay attention to how a material feels and how it performs in use. From Alcantara and leather to fabric and vegan leather, we help you choose what works for your project."
               : "空間に調和する、心地よい手ざわりの素材を厳選しています。"}
           </p>
         </div>

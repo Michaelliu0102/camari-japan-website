@@ -7,7 +7,7 @@ import {
 } from "./country-regions";
 
 export const CONTACT_INQUIRY_RECIPIENTS = {
-  en: "info@camari-international.co.jp",
+  en: "info@camari-international.com",
   ja: "info@camari-international.co.jp"
 } satisfies Record<Locale, string>;
 

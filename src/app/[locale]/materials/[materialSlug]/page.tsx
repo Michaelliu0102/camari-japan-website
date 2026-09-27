@@ -13,6 +13,7 @@ import {
 import { PageHero } from "@/components/PageHero";
 import type { ProjectCase, Sku } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
+import { publicImageSource } from "@/lib/public-image-source";
 import { localizeBrandNames, type Locale } from "@/lib/locales";
 import { buildBreadcrumbJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
@@ -237,8 +238,16 @@ export default async function MaterialDetailPage({ params }: PageProps) {
         <MaterialArticleGrid
           locale={locale}
           materialSlug={material.slug}
-          productTypes={articleProductTypes}
-          skus={articleSkus}
+          productTypes={articleProductTypes.map((productType) => ({
+            ...productType,
+            seo: { ...productType.seo, image: publicImageSource(productType.seo.image) },
+          }))}
+          skus={articleSkus.map((sku) => ({
+            ...sku,
+            image: publicImageSource(sku.image),
+            previewImage: publicImageSource(sku.previewImage),
+            swatchImage: publicImageSource(sku.swatchImage),
+          }))}
         />
       ) : (
         <ApplicationGrid locale={locale} material={material} skus={skus} skaiArticleCount={skaiArticles.length} />

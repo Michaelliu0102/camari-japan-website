@@ -45,9 +45,9 @@ test("Japanese material and specification sections localize their visible headin
   const skuPage = await source("src/components/ProductTypeDetailPage.tsx");
 
   assert.match(materialsPage, /locale === "en" \? "Material" : "素材"/);
-  assert.match(materialsPage, /locale === "en" \? "The intersection of Italian sensory tension and Japanese restraint" : undefined/);
+  assert.doesNotMatch(materialsPage, /subtitle=/);
   assert.doesNotMatch(materialsPage, /素材へのこだわり/);
-  assert.match(materialsPage, /locale === "en" \? "Tactile Silence" : "質感へのこだわり"/);
+  assert.match(materialsPage, /locale === "en" \? "Quality materials, carefully chosen\." : "質感へのこだわり"/);
   assert.match(materialsPage, /空間に調和する、心地よい手ざわりの素材を厳選しています。/);
   assert.match(specificationTable, /locale === "en" \? "Specifications" : "仕様"/);
   assert.match(specificationTable, /locale === "en" \? "Certifications" : "認証"/);

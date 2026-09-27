@@ -1,5 +1,5 @@
 import { chineseCopy } from "../china/copy";
-import Image from "next/image";
+import { EditorialImage } from "@/components/EditorialImage";
 import Link from "next/link";
 import type { Application, Material, Sku } from "@/lib/content";
 import { localizedPath, type Locale } from "@/lib/locales";
@@ -78,7 +78,7 @@ export function ApplicationGrid({ locale, material, skus, skaiArticleCount }: Ap
           {applications.map((application) => (
             <Link className="group" href={localizedPath(locale, getHref(application))} key={application.slug}>
               <div className={`relative aspect-square overflow-hidden shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-material ${material.slug === "vegan-leather" && application.slug === "vinyl" ? "bg-white" : "bg-stone"}`}>
-                <Image alt={getApplicationName(application)} className={`${material.slug === "vegan-leather" && application.slug === "vinyl" ? "object-contain p-[18%]" : "object-cover"} transition-transform duration-700 group-hover:scale-110`} fill sizes="(min-width: 1024px) 25vw, 50vw" src={application.image} />
+                <EditorialImage alt={getApplicationName(application)} className={`${material.slug === "vegan-leather" && application.slug === "vinyl" ? "object-contain p-[18%]" : "object-cover"} transition-transform duration-700 group-hover:scale-110`} fill sizes={applications.length === 3 ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"} src={application.image} />
               </div>
               <div className="pt-6 text-center">
                 <h3 className="label-caps text-charcoal">{getApplicationName(application)}</h3>

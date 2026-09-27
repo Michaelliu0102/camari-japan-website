@@ -84,7 +84,7 @@ const copy = {
     required: "Please enter your name, business email, company name, country / region, and project message.",
     sending: "Sending your inquiry...",
     success: "Thank you. Your inquiry has been sent.",
-    error: "We could not send your inquiry. Please email info@camari-international.co.jp directly."
+    error: "We could not send your inquiry. Please email info@camari-international.com directly."
   },
   ja: {
     title: "Write us a message.",

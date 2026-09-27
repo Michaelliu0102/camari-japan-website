@@ -1,5 +1,6 @@
 "use client";
 
+import { EditorialImage } from "@/components/EditorialImage";
 import { chinaMediaUrl } from "@/lib/china-media";
 import { useRef, useEffect, useCallback, useState } from "react";
 import { gsap } from "gsap";
@@ -371,13 +372,14 @@ export default function MagicBento({
 
           const inner = isImageVariant ? (
             <>
-              <div
-                className="magic-bento-card__bg"
-                style={{
-                  backgroundImage: `url(${chinaMediaUrl(card.image ?? "", 1920)})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
+              <EditorialImage
+                alt=""
+                className="magic-bento-card__bg object-cover"
+                fill
+                sizes={cards.length === 4 && i < 2
+                  ? (i === 0 ? "(min-width: 1024px) 66vw, (min-width: 600px) 50vw, 90vw" : "(min-width: 1024px) 33vw, (min-width: 600px) 50vw, 90vw")
+                  : "(min-width: 600px) 50vw, 90vw"}
+                src={chinaMediaUrl(card.image ?? "", 1920)}
               />
               <div className="magic-bento-card__overlay" />
               <div className="magic-bento-card__image-content">

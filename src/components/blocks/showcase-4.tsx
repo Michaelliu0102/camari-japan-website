@@ -1,5 +1,6 @@
 "use client";
 
+import { EditorialImage } from "@/components/EditorialImage";
 import { chineseCopy } from "../../china/copy";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
@@ -77,10 +78,11 @@ export default function Showcase4({ items, categories, locale, initialCategory }
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="relative aspect-[4/5] overflow-hidden bg-linen">
-                  <motion.img
+                  <EditorialImage
                     alt={item.title}
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-expo group-hover:scale-[1.035]"
-                    loading="lazy"
+                    fill
+                    sizes="(min-width: 1536px) 342px, (min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     src={item.image}
                   />
                   <span className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-paper/95 text-charcoal opacity-0 shadow-material transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">

@@ -1,7 +1,7 @@
 "use client";
 
 import { chineseCopy } from "../china/copy";
-import Image from "next/image";
+import { EditorialImage } from "@/components/EditorialImage";
 import Link from "next/link";
 import { useState } from "react";
 import ShinyText from "@/components/ShinyText/ShinyText";
@@ -76,7 +76,7 @@ export function MaterialArticleGrid({
                   }
                 >
                   {previewImage ? (
-                    <Image
+                    <EditorialImage
                       alt={productType.name[locale]}
                       className="object-cover transition-transform duration-700 ease-expo group-hover:scale-105"
                       fill
@@ -120,7 +120,7 @@ export function MaterialArticleGrid({
                               }
                               type="button"
                             >
-                              <Image
+                              <EditorialImage
                                 alt=""
                                 className="object-cover"
                                 fill
