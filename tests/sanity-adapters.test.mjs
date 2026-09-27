@@ -500,6 +500,25 @@ test("loader exposes material-scoped project cases", async () => {
   assert.match(loaders, /project\.materialSlug === materialSlug/);
 });
 
+test("case-specific product names retain the linked family destination and respect later CMS edits", async () => {
+  const { adaptProjectCase, cleanup } = await loadAdapters();
+  try {
+    const raw = {
+      slug: "chopper-alcantara-6422-masterfr",
+      linkedArticles: [{ slug: "alcantara-master", materialSlug: "alcantara", name: { en: "Alcantara Master", ja: "マスター" } }],
+      linkedArticleLabels: [{ slug: "alcantara-master", name: { en: "Alcantara Master FR", ja: "Alcantara Master FR" } }]
+    };
+    const project = adaptProjectCase(raw);
+    assert.equal(project.linkedArticles[0].name.en, "Alcantara Master FR");
+    assert.equal(project.linkedArticles[0].slug, "alcantara-master");
+    assert.equal(project.linkedArticles[0].materialSlug, "alcantara");
+    raw.linkedArticleLabels[0].name.en = "Updated CMS label";
+    assert.equal(adaptProjectCase(raw).linkedArticles[0].name.en, "Updated CMS label");
+    raw.linkedArticleLabels = [];
+    assert.equal(adaptProjectCase(raw).linkedArticles[0].name.en, "Alcantara Master");
+  } finally { await cleanup(); }
+});
+
 test("adapts homepage settings for CMS-managed hero and carousel images", async () => {
   const { adaptHomePageSettings, cleanup } = await loadAdapters();
 

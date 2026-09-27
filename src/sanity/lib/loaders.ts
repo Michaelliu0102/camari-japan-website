@@ -4,6 +4,7 @@ import { getNewsArticleContent } from "@/content/news-articles";
 import { createDownloadGroups, downloadPageCopy, type DownloadPageSettings } from "@/content/downloads";
 import { adaptDownloadPage, downloadPageQuery, type RawDownloadPage } from "./download-page";
 import { cache } from "react";
+import { canonicalizeProjects, projectAliases } from "@/lib/project-canonical";
 import {
   aboutPageSettings as fallbackAboutPageSettings,
   catalogs as fallbackCatalogs,
@@ -571,7 +572,8 @@ export async function loadLegacySku(materialSlug: string, skuSlug: string): Prom
 }
 
 export async function loadProjects(): Promise<ProjectCase[]> {
-  return fetchAndMergeBySlug<RawProjectCase, ProjectCase>(projectsQuery, {}, fallbackProjects, adaptProjectCase);
+  const projects = await fetchAndMergeBySlug<RawProjectCase, ProjectCase>(projectsQuery, {}, fallbackProjects, adaptProjectCase);
+  return canonicalizeProjects(projects);
 }
 
 export async function loadProjectsForMaterial(materialSlug: string): Promise<ProjectCase[]> {
@@ -586,7 +588,8 @@ export async function loadProjectsForMaterial(materialSlug: string): Promise<Pro
 
 export async function loadProject(slug: string): Promise<ProjectCase | undefined> {
   const projects = await loadProjects();
-  return projects.find((project) => project.slug === slug);
+  return projects.find((project) => project.slug === (projectAliases[slug] ?? slug))
+    ?? projects.find((project) => project.slug === slug);
 }
 
 export async function loadNewsItems(): Promise<NewsItem[]> {

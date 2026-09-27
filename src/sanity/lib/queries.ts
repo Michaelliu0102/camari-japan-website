@@ -119,6 +119,7 @@ export type RawSku = {
 };
 
 export type RawProjectCase = {
+  linkedArticleLabels?: Array<{ slug?: string | null; name?: LocalizedString | null } | null> | null;
   updatedAt?: string | null;
   title?: LocalizedString | null;
   slug?: string | null;
@@ -422,7 +423,8 @@ export const skusQuery = `*[_type == "sku" && (!defined(productType->markets) ||
 
 export const skaiSkusQuery = `*[_type == "sku" && productType->material->slug.current == "vegan-leather" && (productType->name.en match "skai*" || productType->slug.current in $skaiSlugs) && "global" in productType->markets] | order(code asc) ${skuProjection}`;
 
-export const projectsQuery = `*[_type == "projectCase"] | order(title.en asc) {
+export const projectsQuery = `*[_type == "projectCase" && !defined(replacedBy)] | order(title.en asc) {
+  "linkedArticleLabels": linkedArticleLabels[]{"slug": article->slug.current, name},
   "updatedAt": _updatedAt,
   title,
   "slug": slug.current,

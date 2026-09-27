@@ -465,7 +465,7 @@ export function adaptProjectCase(raw: RawProjectCase): ProjectCase {
         ? {
             slug: item.slug,
             materialSlug: item.materialSlug,
-            name: localized(item.name)
+            name: localized(raw.linkedArticleLabels?.find((label) => label?.slug === item.slug)?.name ?? item.name)
           }
         : null
     )

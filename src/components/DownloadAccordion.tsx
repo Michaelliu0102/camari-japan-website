@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Download } from "@/lib/content";
 import { localizeBrandNames, type Locale } from "@/lib/locales";
@@ -90,7 +89,7 @@ export function DownloadAccordion({ downloadLabel, fileLabel, groups, locale }: 
               <div className="min-h-0 overflow-hidden">
                 <div className="space-y-3 border-t border-charcoal/10 pt-2">
                   {group.downloads.map((download) => (
-                    <Link
+                    <a
                       className="group/download flex items-start justify-between gap-4 border-b md:items-center md:gap-8 border-charcoal/10 py-5 transition-colors hover:border-charcoal/25"
                       href={download.href}
                       key={`${download.type}-${download.href}`}
@@ -106,7 +105,7 @@ export function DownloadAccordion({ downloadLabel, fileLabel, groups, locale }: 
                       <span className="label-caps shrink-0 text-[9px] text-muted transition-colors group-hover/download:text-charcoal">
                         {downloadLabel}
                       </span>
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </div>

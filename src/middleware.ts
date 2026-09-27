@@ -4,10 +4,20 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { resolvePublicRoute } from "@/lib/public-routing";
 import { siteConfig } from "@/lib/site-config";
+import { previewNoindexEnabled } from "@/lib/preview-indexing";
+import { projectAliases } from "@/lib/project-canonical";
 
 const internalLocaleRewriteHeader = "x-camari-locale-rewrite";
 
-export function middleware(request: NextRequest) {
+function resolveResponse(request: NextRequest) {
+  const projectSlug = request.nextUrl.pathname.match(/^\/(?:en\/|ja\/)?projects\/([^/]+)\/?$/)?.[1];
+  const canonicalSlug = projectSlug && projectAliases[projectSlug];
+  if (canonicalSlug) {
+    const destination = new URL(request.url);
+    destination.pathname = destination.pathname.replace(`/projects/${projectSlug}`, `/projects/${canonicalSlug}`);
+    return NextResponse.redirect(destination, 308);
+  }
+
   if (request.headers.get(internalLocaleRewriteHeader) === "1") {
     return NextResponse.next();
   }
@@ -47,6 +57,12 @@ export function middleware(request: NextRequest) {
       headers: requestHeaders
     }
   });
+}
+
+export function middleware(request: NextRequest) {
+  const response = resolveResponse(request);
+  if (previewNoindexEnabled) response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  return response;
 }
 
 export const config = {

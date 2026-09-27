@@ -55,6 +55,13 @@ verify(resolve(root, "public"));
 writeFileSync(resolve(dist, "server/index.js"), `import app from "./app.js";
 export * from "./app.js";
 const media = ${JSON.stringify(redirects)};
+const previewNoindex = ${JSON.stringify(process.env.NEXT_PUBLIC_PREVIEW_NOINDEX === "true")};
+function protectPreview(response, url) {
+  if (!previewNoindex || url.hostname !== "camari-japan-preview.y-liu804161.chatgpt.site") return response;
+  const protectedResponse = new Response(response.body, response);
+  protectedResponse.headers.set("X-Robots-Tag", "noindex, nofollow");
+  return protectedResponse;
+}
 export default {
   ...app,
   async fetch(request, env, ctx) {
@@ -63,9 +70,9 @@ export default {
     try { path = decodeURIComponent(url.pathname); } catch { return new Response("Invalid path", { status: 400 }); }
     const target = media[path];
     if (target && (request.method === "GET" || request.method === "HEAD")) {
-      return Response.redirect(target, 302);
+      return protectPreview(Response.redirect(target, 302), url);
     }
-    return app.fetch(request, env, ctx);
+    return protectPreview(await app.fetch(request, env, ctx), url);
   }
 };
 `);

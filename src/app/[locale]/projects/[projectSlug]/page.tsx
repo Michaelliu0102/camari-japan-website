@@ -2,7 +2,7 @@ import { chineseCopy } from "../../../../china/copy";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/content";
@@ -48,6 +48,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   if (!project) {
     notFound();
+  }
+
+  if (project.slug !== projectSlug) {
+    permanentRedirect(localizedPath(locale, `/projects/${project.slug}`));
   }
 
   const material = await loadMaterial(project.materialSlug);

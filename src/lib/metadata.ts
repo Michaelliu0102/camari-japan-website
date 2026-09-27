@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { previewNoindexEnabled, previewRobots } from "./preview-indexing";
 import { absoluteLocalizedUrl, type Locale } from "./locales";
 import { formatPageTitle, getSeoBrandName, replaceSiteBrand, siteConfig } from "./site-config";
 
@@ -79,7 +80,7 @@ export function createPageMetadata({
   return {
     title: normalizedTitle,
     description: normalizedDescription,
-    robots: {
+    robots: previewNoindexEnabled ? { ...previewRobots, googleBot: previewRobots } : {
       index: true,
       follow: true,
       googleBot: {

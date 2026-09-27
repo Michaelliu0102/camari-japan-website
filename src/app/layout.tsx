@@ -7,8 +7,10 @@ import "./globals.css";
 import { ConsentProvider } from "@/components/ConsentManager";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { formatPageTitle, siteConfig } from "@/lib/site-config";
+import { previewNoindexEnabled, previewRobots } from "@/lib/preview-indexing";
 
 export const metadata: Metadata = {
+  ...(previewNoindexEnabled ? { robots: { ...previewRobots, googleBot: previewRobots } } : {}),
   metadataBase: new URL(isChinaBuild ? chinaSiteUrl : `${siteConfig.siteUrl}/`),
   title: formatPageTitle(siteConfig.slogan[siteConfig.defaultLocale], siteConfig.defaultLocale),
   description: siteConfig.description[siteConfig.defaultLocale],

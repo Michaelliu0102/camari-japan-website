@@ -5,6 +5,7 @@ const siteUrl = "https://camari-japan-preview.y-liu804161.chatgpt.site";
 const env = {
   ...process.env,
   SITES_PREVIEW: "1",
+  NEXT_PUBLIC_PREVIEW_NOINDEX: "true",
   NEXT_PUBLIC_ENABLE_LOCALE_PREVIEW: "true",
   NEXT_PUBLIC_SITE_URL: siteUrl,
   NEXT_PUBLIC_EN_SITE_URL: siteUrl,
