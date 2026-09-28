@@ -61,6 +61,7 @@ const homeExploreDescriptionOverrides: Record<string, Partial<LocalizedString>> 
 };
 
 const japaneseHomeExploreTitles: Record<string, string> = {
+  products: "製品",
   projects: "製品",
   "italian-genuine-leather": "イタリア製レザー",
   fabric: "ファブリック"
