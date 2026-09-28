@@ -19,6 +19,7 @@ import {
   type AboutPageSettings,
   type Download,
   type HomePageSettings,
+  type LocalizedString,
   type Material,
   type MaterialCategory,
   type NewsItem,
@@ -492,6 +493,10 @@ export async function loadMaterials(): Promise<Material[]> {
   );
 }
 
+function withJapaneseFallback(value: LocalizedString, fallback?: string): LocalizedString {
+  return value.ja.trim() ? value : { ...value, ja: fallback?.trim() || value.en };
+}
+
 export const loadProductTypes = cache(async (): Promise<ProductType[]> => {
   const market = await getDeliveryMarket();
   const fallback = withLocalLeatherSpecDownloads(withLocalAlcantaraDownloads(fallbackProductTypes.filter((item) => !isSkaiProductType(item))));
@@ -504,7 +509,19 @@ export const loadProductTypes = cache(async (): Promise<ProductType[]> => {
     market === "global" ? Promise.resolve([] as ProductType[]) : fetchAndMergeBySlug<RawProductType, ProductType>(skaiProductTypesQuery, { skaiSlugs: [...legacySkaiSlugs] }, [], adaptProductType, { fresh: true, fallbackOnEmpty: false })
   ]);
   const merged = new Map([...productTypes, ...globalSkai].map((productType) => [productType.slug, productType]));
-  return applyJapaneseLeatherProductTypeCopy(normalizeLocalizedBrandNames([...merged.values()]));
+  const fallbackJapaneseNames = new Map(fallback.map((productType) => [productType.slug, productType.name.ja]));
+  return applyJapaneseLeatherProductTypeCopy(normalizeLocalizedBrandNames([...merged.values()])).map((productType) => {
+    return {
+      ...productType,
+      name: withJapaneseFallback(productType.name, fallbackJapaneseNames.get(productType.slug)),
+      summary: withJapaneseFallback(productType.summary),
+      seo: {
+        ...productType.seo,
+        title: withJapaneseFallback(productType.seo.title),
+        description: withJapaneseFallback(productType.seo.description),
+      },
+    };
+  });
 });
 
 export async function loadProductCategories(): Promise<ProductCategory[]> {
