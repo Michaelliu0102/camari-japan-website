@@ -60,6 +60,12 @@ const homeExploreDescriptionOverrides: Record<string, Partial<LocalizedString>> 
   }
 };
 
+const japaneseHomeExploreTitles: Record<string, string> = {
+  projects: "製品",
+  "italian-genuine-leather": "イタリア製レザー",
+  fabric: "ファブリック"
+};
+
 function circularDistance(from: number, to: number, length: number) {
   return ((from - to) % length + length) % length;
 }
@@ -129,6 +135,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
     : categories.slice(0, 3);
   const productSlides: ExploreSlide[] = (configuredProductSlides?.length ? configuredProductSlides : fallbackProductSlides).map((productSlide) => ({
     ...productSlide,
+    title: { ...productSlide.title, ja: japaneseHomeExploreTitles[productSlide.slug] ?? productSlide.title.ja },
     description: {
       ...productSlide.description,
       ...(homeExploreDescriptionOverrides[productSlide.slug] ?? {})
@@ -138,7 +145,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
     () => [
       ...selectedCategories.map((category) => ({
         slug: category.slug,
-        title: category.name,
+        title: { ...category.name, ja: japaneseHomeExploreTitles[category.slug] ?? category.name.ja },
         category: { zh: chineseCopy(`Material — ${category.name.en}`), en: `Material — ${category.name.en}`, ja: `Material — ${category.name.ja}` },
         description: category.description,
         image: homeExploreImageOverrides[category.slug] ?? category.coverImage,
@@ -247,10 +254,10 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
           touchStartX.current = event.touches[0]?.clientX ?? null;
         }}
       >
-        <div className="flex items-end justify-between gap-4">
-          <h2 className="font-display text-[clamp(1.85rem,10vw,2.7rem)] uppercase leading-none tracking-[0.16em] text-white/95">
+        <div className={`flex items-end gap-4 ${locale === "ja" ? "justify-end" : "justify-between"}`}>
+          {locale !== "ja" ? <h2 className="font-display text-[clamp(1.85rem,10vw,2.7rem)] uppercase leading-none tracking-[0.16em] text-white/95">
             {locale === "zh" ? "探索" : "Explore"}
-          </h2>
+          </h2> : null}
           <span className="font-label text-[0.62rem] font-semibold tracking-[0.2em] text-white/65">
             {String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
           </span>
@@ -306,8 +313,8 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
         </div>
       </div>
 
-      <div className="section-shell box-border hidden min-h-[100svh] grid-rows-[auto_minmax(20rem,1fr)_auto] gap-y-4 pb-6 pt-[calc(var(--nav-height)+1.5rem)] md:grid">
-        <div className="pointer-events-none text-center">
+      <div className={`section-shell box-border hidden min-h-[100svh] gap-y-4 pb-6 pt-[calc(var(--nav-height)+1.5rem)] md:grid ${locale === "ja" ? "grid-rows-[minmax(20rem,1fr)_auto]" : "grid-rows-[auto_minmax(20rem,1fr)_auto]"}`}>
+        {locale !== "ja" ? <div className="pointer-events-none text-center">
             <SplitText
               className="font-display text-[2.05rem] uppercase leading-none tracking-[0.24em] text-white/90 md:text-[3.4rem]"
               delay={60}
@@ -315,7 +322,7 @@ export function ExploreCarousel({ locale, categories, categorySlugs, materials, 
               text={locale === "zh" ? "探索" : "Explore"}
               threshold={0}
             />
-        </div>
+        </div> : null}
 
         <div className="relative mx-auto min-h-[20rem] w-full max-w-[92rem]" style={{ perspective: "1200px", transformStyle: "preserve-3d" }}>
           <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
