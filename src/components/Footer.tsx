@@ -9,6 +9,7 @@ import { localizedPath, type Locale } from "@/lib/locales";
 import { FooterNewsletterForm } from "@/components/FooterNewsletterForm";
 import { CookiePreferencesButton } from "@/components/CookiePreferencesButton";
 import { siteConfig } from "@/lib/site-config";
+import { isNewsletterEnabled } from "@/lib/newsletter";
 
 type FooterProps = {
   locale: Locale;
@@ -57,6 +58,7 @@ const socialLinks = (locale: Locale) => [
 
 export function Footer({ locale, chinaSettings }: FooterProps) {
   const labels = footerCopy[locale];
+  const newsletterEnabled = isNewsletterEnabled(locale, siteConfig.siteKey);
   const navigation = locale === "zh"
     ? [
         { label: "隐私政策与使用条款", href: "/privacy-policy" },
@@ -67,8 +69,8 @@ export function Footer({ locale, chinaSettings }: FooterProps) {
   return (
     <footer className="bg-paper pt-8 pb-3 text-charcoal md:pt-12 md:pb-3" data-nav-invert>
       <div className="mx-auto max-w-container-max px-4 min-[390px]:px-margin-mobile md:px-margin-desktop">
-        <div className="flex flex-col gap-8 border-b border-charcoal/10 pb-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-          <FooterNewsletterForm className="w-full lg:max-w-[42rem]" layout="inline" locale={locale} />
+        <div className={`flex flex-col gap-8 border-b border-charcoal/10 pb-6 lg:flex-row lg:items-end lg:gap-12 ${newsletterEnabled ? "lg:justify-between" : "lg:justify-end"}`}>
+          {newsletterEnabled ? <FooterNewsletterForm className="w-full lg:max-w-[42rem]" layout="inline" locale={locale} /> : null}
 
           <div className="flex shrink-0 flex-col items-start lg:items-end lg:text-right">
             <div className="grid grid-cols-4 gap-3 sm:grid-cols-8">

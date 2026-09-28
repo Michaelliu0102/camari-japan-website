@@ -104,6 +104,33 @@ test("newsletter route rejects malformed payloads with 400", async () => {
   await cleanup();
 });
 
+test("newsletter route rejects Japanese subscriptions without forwarding them", async () => {
+  const { createNewsletterSubscribeHandler, cleanup } = await loadRouteModule();
+  try {
+    let deliveries = 0;
+    for (const [siteKey, locale] of [["global", "ja"], ["japan", "en"], ["japan", "ja"]]) {
+      const handler = createNewsletterSubscribeHandler(async () => {
+        deliveries++;
+        return { ok: true, upstreamStatus: 201 };
+      }, siteKey);
+      const response = await handler(new Request("http://localhost/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: "person@example.com",
+          locale,
+          source: "footer_newsletter",
+          submittedAt: "2026-05-15T12:34:56.000Z",
+        }),
+      }));
+      assert.equal(response.status, 404, `${siteKey}/${locale}`);
+    }
+    assert.equal(deliveries, 0);
+  } finally {
+    await cleanup();
+  }
+});
+
 test("newsletter route returns 502 for upstream NetSuite delivery failures", async () => {
   const { createNewsletterSubscribeHandler, cleanup } = await loadRouteModule();
   const handler = createNewsletterSubscribeHandler(async () => ({
@@ -118,7 +145,7 @@ test("newsletter route returns 502 for upstream NetSuite delivery failures", asy
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: "person@example.com",
-        locale: "ja",
+        locale: "en",
         source: "footer_newsletter",
         submittedAt: "2026-05-15T12:34:56.000Z",
       }),

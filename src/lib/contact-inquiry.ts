@@ -74,6 +74,10 @@ export function parseContactInquiryPayload(payload: unknown): ParseResult {
     return { ok: false, error: "Name, business email, company name, and message are required." };
   }
 
+  if (locale === "ja" && !phone) {
+    return { ok: false, error: "Phone number is required for Japanese inquiries." };
+  }
+
   if (!isValidBusinessEmail(email)) {
     return { ok: false, error: "Please enter a valid business email address." };
   }

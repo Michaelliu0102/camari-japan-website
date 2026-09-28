@@ -1,5 +1,5 @@
 import { sendNewsletterSubscriptionToNetSuite, type NewsletterDeliveryResult } from "../../../../lib/netsuite-newsletter.js";
-import { parseNewsletterSubscriptionPayload, type NewsletterSubmission } from "../../../../lib/newsletter.js";
+import { isNewsletterEnabled, parseNewsletterSubscriptionPayload, type NewsletterSubmission } from "../../../../lib/newsletter.js";
 
 export type NewsletterDeliveryFn = (
   submission: NewsletterSubmission,
@@ -7,8 +7,13 @@ export type NewsletterDeliveryFn = (
 
 export function createNewsletterSubscribeHandler(
   deliver: NewsletterDeliveryFn = sendNewsletterSubscriptionToNetSuite,
+  siteKey = process.env.NEXT_PUBLIC_SITE_KEY,
 ) {
   return async function POST(request: Request): Promise<Response> {
+    if (!isNewsletterEnabled(undefined, siteKey)) {
+      return Response.json({ error: "Newsletter subscriptions are not available on this site." }, { status: 404 });
+    }
+
     let payload: unknown;
 
     try {
@@ -20,6 +25,10 @@ export function createNewsletterSubscribeHandler(
     const parsed = parseNewsletterSubscriptionPayload(payload);
     if (!parsed.ok) {
       return Response.json({ error: parsed.error }, { status: 400 });
+    }
+
+    if (!isNewsletterEnabled(parsed.value.locale, siteKey)) {
+      return Response.json({ error: "Newsletter subscriptions are not available on this site." }, { status: 404 });
     }
 
     try {

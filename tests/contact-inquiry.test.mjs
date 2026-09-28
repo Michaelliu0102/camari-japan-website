@@ -64,17 +64,24 @@ test("English inquiries require and normalize a country or region", async () => 
 });
 
 test("Japanese inquiries default to Japan without a visible country field", async () => {
-  const { parseContactInquiryPayload, cleanup } = await loadContactInquiryModule();
+  const { parseContactInquiryPayload, buildContactInquiryText, cleanup } = await loadContactInquiryModule();
 
   const parsed = parseContactInquiryPayload({
     ...basePayload,
     locale: "ja",
     countryCode: "US",
+    interests: ["素材について", "生地サンプルのご請求"],
   });
 
   assert.equal(parsed.ok, true);
   assert.equal(parsed.value.countryCode, "JP");
   assert.equal(parsed.value.countryRegion, "Japan");
+  assert.deepEqual(parsed.value.interests, ["素材について", "生地サンプルのご請求"]);
+  assert.match(buildContactInquiryText({ ...parsed.value, submissionId: "test", submittedAt: "2026-09-28T00:00:00Z" }, "info@camari-international.co.jp"), /Interest: 素材について, 生地サンプルのご請求/);
+
+  const missingPhone = parseContactInquiryPayload({ ...basePayload, locale: "ja", phone: "" });
+  assert.equal(missingPhone.ok, false);
+  assert.match(missingPhone.error, /phone number is required/i);
 
   await cleanup();
 });

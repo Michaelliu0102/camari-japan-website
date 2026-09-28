@@ -87,27 +87,28 @@ const copy = {
     error: "We could not send your inquiry. Please email info@camari-international.com directly."
   },
   ja: {
-    title: "Write us a message.",
-    intro: "Send us your material brief or custom project idea",
-    name: "Name",
-    namePlaceholder: "Name",
-    email: "Business Email",
+    title: "お問い合わせ",
+    intro: "素材や製品づくりに関するご相談をお聞かせください",
+    name: "お名前",
+    namePlaceholder: "お名前",
+    email: "メールアドレス",
     emailPlaceholder: "name@company.com",
-    phone: "Phone",
-    phonePlaceholder: "Optional",
-    company: "Company Name",
-    companyPlaceholder: "Company Name",
-    countryRegion: "Country / Region",
-    countryRegionPlaceholder: "Japan",
-    article: "Article",
-    interests: "Interest",
-    materials: "Material",
-    customProducts: "Custom Projects",
-    message: "Message / Project Specs",
+    phone: "電話番号",
+    phonePlaceholder: "電話番号",
+    company: "会社名",
+    companyPlaceholder: "会社名",
+    countryRegion: "国・地域",
+    countryRegionPlaceholder: "日本",
+    article: "素材・製品名",
+    interests: "お問い合わせの種類",
+    materials: "素材について",
+    customProducts: "オーダーメイド製品について",
+    samples: "生地サンプルのご請求",
+    message: "お問い合わせ内容・ご希望の仕様",
     messagePlaceholder: "用途、数量、納期、素材イメージ、技術要件などをご記入ください。",
-    submit: "Submit",
-    close: "Close message form",
-    required: "お名前、Business Email、Company Name、Message / Project Specs を入力してください。",
+    submit: "送信する",
+    close: "お問い合わせフォームを閉じる",
+    required: "お名前、メールアドレス、電話番号、会社名、お問い合わせ内容・ご希望の仕様を入力してください。",
     sending: "お問い合わせを送信しています...",
     success: "お問い合わせを送信しました。",
     error: "送信できませんでした。info@camari-international.co.jp まで直接お問い合わせください。"
@@ -122,6 +123,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
   const submissionIdRef = useRef<string | null>(null);
   const titleId = useId();
   const labels = copy[locale];
+  const interestOptions = [labels.materials, labels.customProducts, ...(locale === "ja" ? [copy.ja.samples] : [])];
   const isTopPlacement = placement === "top";
 
   useEffect(() => {
@@ -166,6 +168,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
     if (
       !form.name.trim() ||
       !form.email.trim() ||
+      (locale === "ja" && !form.phone.trim()) ||
       !form.company.trim() ||
       (locale === "en" && !form.countryCode) ||
       !form.message.trim()
@@ -249,12 +252,14 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
             className="mt-8 grid gap-6"
             onSubmit={handleSubmit}
             onInvalid={(event) => {
-              if (locale !== "zh") return;
+              if (locale === "en") return;
               const field = event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-              field.setCustomValidity(field.validity.valueMissing ? "请填写此必填项。" : "请输入有效的邮箱地址。");
+              field.setCustomValidity(locale === "ja"
+                ? field.validity.valueMissing ? "必須項目を入力してください。" : "有効なメールアドレスを入力してください。"
+                : field.validity.valueMissing ? "请填写此必填项。" : "请输入有效的邮箱地址。");
             }}
             onInput={(event) => {
-              if (locale === "zh") (event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).setCustomValidity("");
+              if (locale !== "en") (event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).setCustomValidity("");
             }}
           >
             <div className="grid gap-x-10 gap-y-8 md:grid-cols-2">
@@ -281,11 +286,12 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
                 />
               </label>
               <label className="grid gap-3">
-                <span className="label-caps text-charcoal/70">{labels.phone}</span>
+                <span className="label-caps text-charcoal/70">{labels.phone} {locale === "ja" ? <span className="text-gold">*</span> : null}</span>
                 <input
                   className="border-b border-charcoal bg-transparent pb-4 text-base md:text-[15px] outline-none transition-colors placeholder:text-charcoal/35 focus:border-charcoal"
                   onChange={(event) => updateField("phone", event.target.value)}
                   placeholder={labels.phonePlaceholder}
+                  required={locale === "ja"}
                   type="tel"
                   value={form.phone}
                 />
@@ -342,10 +348,11 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
                   {articleLabel}
                 </div>
               </div>
-            ) : (
+            ) : null}
+            {!articleLabel || locale === "ja" ? (
               <fieldset className="flex flex-wrap items-center gap-4 pt-1">
-                <legend className="sr-only">{labels.interests}</legend>
-                {[labels.materials, labels.customProducts].map((interest) => {
+                <legend className={locale === "ja" ? "mb-3 text-sm text-charcoal/70" : "sr-only"}>{labels.interests}</legend>
+                {interestOptions.map((interest) => {
                   const checked = form.interests.includes(interest);
 
                   return (
@@ -369,7 +376,7 @@ export function CTAMessageDrawer({ articleLabel, buttonClassName, buttonLabel, l
                   );
                 })}
               </fieldset>
-            )}
+            ) : null}
 
             <label className="grid gap-3">
               <span className="label-caps text-charcoal/70">{labels.message} <span className="text-gold">*</span></span>
