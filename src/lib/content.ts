@@ -536,10 +536,10 @@ const fixtureProductTypes: ProductType[] = [
   {
     slug: "verona",
     materialSlug: "leather",
-    name: { zh: chineseCopy("Verona"), en: "Verona", ja: "ヴェローナ" },
+    name: { zh: chineseCopy("Verona"), en: "Verona", ja: "ヴェロナ" },
     summary: {
       zh: chineseCopy("Verona leather with a refined matte finish and soft touch. Ideal for luxury interiors and bespoke upholstery."), en: "Verona leather with a refined matte finish and soft touch. Ideal for luxury interiors and bespoke upholstery.",
-      ja: "洗練されたマット仕上げとソフトなタッチのヴェローナレザー。ラグジュアリーインテリアと特注張り地に最適。"
+      ja: "洗練されたマット仕上げとソフトなタッチのヴェロナレザー。ラグジュアリーインテリアと特注張り地に最適。"
     },
     downloads: [],
     specTemplate: [
@@ -551,8 +551,8 @@ const fixtureProductTypes: ProductType[] = [
     certifications: [],
     maintenance: [],
     seo: {
-      title: { zh: chineseCopy("Verona Leather | CAMARI JAPAN"), en: "Verona Leather | CAMARI JAPAN", ja: "ヴェローナレザー | CAMARI JAPAN" },
-      description: { zh: chineseCopy("Verona leather with refined matte finish and soft touch."), en: "Verona leather with refined matte finish and soft touch.", ja: "洗練されたマット仕上げのヴェローナレザー。" },
+      title: { zh: chineseCopy("Verona Leather | CAMARI JAPAN"), en: "Verona Leather | CAMARI JAPAN", ja: "ヴェロナレザー | CAMARI JAPAN" },
+      description: { zh: chineseCopy("Verona leather with refined matte finish and soft touch."), en: "Verona leather with refined matte finish and soft touch.", ja: "洗練されたマット仕上げのヴェロナレザー。" },
       image: images.alcantaraSoft
     }
   },
