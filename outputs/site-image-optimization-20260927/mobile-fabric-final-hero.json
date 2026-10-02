@@ -1,0 +1,32 @@
+{
+  "status": 200,
+  "errors": [],
+  "responses": [
+    {
+      "url": "https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=1920&fit=max&auto=format&q=80",
+      "status": 200,
+      "bytes": 513462,
+      "type": "image/avif"
+    }
+  ],
+  "title": "Fabric",
+  "overlay": false,
+  "links": 88,
+  "hero": {
+    "src": "https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=1920&fit=max&auto=format&q=80",
+    "sizes": "max(100vw, 133.333vh)",
+    "srcset": "https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=64&fit=max&auto=format&q=80 64w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=96&fit=max&auto=format&q=80 96w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=128&fit=max&auto=format&q=80 128w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=160&fit=max&auto=format&q=80 160w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=240&fit=max&auto=format&q=80 240w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=320&fit=max&auto=format&q=80 320w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=480&fit=max&auto=format&q=80 480w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=640&fit=max&auto=format&q=80 640w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=768&fit=max&auto=format&q=80 768w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=1024&fit=max&auto=format&q=80 1024w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=1280&fit=max&auto=format&q=80 1280w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=1536&fit=max&auto=format&q=80 1536w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=1920&fit=max&auto=format&q=80 1920w",
+    "loading": "eager",
+    "priority": "high"
+  },
+  "preloads": [
+    {
+      "srcset": "",
+      "sizes": ""
+    },
+    {
+      "srcset": "https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=64&fit=max&auto=format&q=80 64w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=96&fit=max&auto=format&q=80 96w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=128&fit=max&auto=format&q=80 128w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=160&fit=max&auto=format&q=80 160w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=240&fit=max&auto=format&q=80 240w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=320&fit=max&auto=format&q=80 320w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=480&fit=max&auto=format&q=80 480w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=640&fit=max&auto=format&q=80 640w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=768&fit=max&auto=format&q=80 768w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=1024&fit=max&auto=format&q=80 1024w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=1280&fit=max&auto=format&q=80 1280w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=1536&fit=max&auto=format&q=80 1536w, https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg?w=1920&fit=max&auto=format&q=80 1920w",
+      "sizes": "max(100vw, 133.333vh)"
+    }
+  ]
+}

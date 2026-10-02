@@ -1,0 +1,117 @@
+<customrecordtype scriptid="customrecord_camari_inquiry">
+  <recordname>CAMARI Website Inquiry</recordname>
+  <description>Business inquiries received from the CAMARI website.</description>
+  <accesstype>CUSTRECORDENTRYPERM</accesstype>
+  <allowattachments>F</allowattachments>
+  <allowinlineediting>T</allowinlineediting>
+  <allowinlinedeleting>F</allowinlinedeleting>
+  <allowmobileaccess>F</allowmobileaccess>
+  <allowquickadd>F</allowquickadd>
+  <allowquicksearch>T</allowquicksearch>
+  <allowuiaccess>T</allowuiaccess>
+  <enablekeywords>T</enablekeywords>
+  <enablenumbering>T</enablenumbering>
+  <enableoptimisticlocking>T</enableoptimisticlocking>
+  <enablesystemnotes>T</enablesystemnotes>
+  <hierarchical>F</hierarchical>
+  <includeinsearchmenu>T</includeinsearchmenu>
+  <includename>T</includename>
+  <isinactive>F</isinactive>
+  <numberinginit>1</numberinginit>
+  <numberingprefix>INQ-</numberingprefix>
+  <showcreationdate>T</showcreationdate>
+  <showcreationdateonlist>T</showcreationdateonlist>
+  <showid>T</showid>
+  <showlastmodified>T</showlastmodified>
+  <showlastmodifiedonlist>T</showlastmodifiedonlist>
+  <shownotes>T</shownotes>
+  <customrecordcustomfields>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_submission">
+      <fieldtype>TEXT</fieldtype>
+      <label>Submission ID</label>
+      <maxlength>64</maxlength>
+      <ismandatory>T</ismandatory>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_locale">
+      <fieldtype>TEXT</fieldtype>
+      <label>Locale</label>
+      <maxlength>16</maxlength>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_name">
+      <fieldtype>TEXT</fieldtype>
+      <label>Contact Name</label>
+      <maxlength>200</maxlength>
+      <ismandatory>T</ismandatory>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_email">
+      <fieldtype>EMAIL</fieldtype>
+      <label>Business Email</label>
+      <ismandatory>T</ismandatory>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_phone">
+      <fieldtype>PHONE</fieldtype>
+      <label>Phone</label>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_company">
+      <fieldtype>TEXT</fieldtype>
+      <label>Company Name</label>
+      <maxlength>300</maxlength>
+      <ismandatory>T</ismandatory>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_countrycode">
+      <fieldtype>TEXT</fieldtype>
+      <label>Country / Region Code</label>
+      <maxlength>2</maxlength>
+      <ismandatory>T</ismandatory>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_country">
+      <fieldtype>TEXT</fieldtype>
+      <label>Country / Region</label>
+      <maxlength>128</maxlength>
+      <ismandatory>T</ismandatory>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_interests">
+      <fieldtype>TEXT</fieldtype>
+      <label>Interests</label>
+      <maxlength>300</maxlength>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_article">
+      <fieldtype>TEXT</fieldtype>
+      <label>Article</label>
+      <maxlength>300</maxlength>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_message">
+      <fieldtype>CLOBTEXT</fieldtype>
+      <label>Message / Project Specs</label>
+      <ismandatory>T</ismandatory>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_pageurl">
+      <fieldtype>URL</fieldtype>
+      <label>Page URL</label>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_submitted">
+      <fieldtype>DATETIMETZ</fieldtype>
+      <label>Submitted At</label>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_received">
+      <fieldtype>DATETIMETZ</fieldtype>
+      <label>Received At</label>
+      <showinlist>T</showinlist>
+    </customrecordcustomfield>
+    <customrecordcustomfield scriptid="custrecord_camari_inquiry_payload">
+      <fieldtype>CLOBTEXT</fieldtype>
+      <label>Raw Payload</label>
+    </customrecordcustomfield>
+  </customrecordcustomfields>
+</customrecordtype>

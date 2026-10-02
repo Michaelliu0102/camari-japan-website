@@ -1,11 +1,19 @@
+import { chinaStatusField } from "./chinaFields";
+import { downloadFields } from "./editorialFields";
+import { validateMarketContent } from "./marketValidation";
 import { defineField, defineType } from "sanity";
 import { localizedString, localizedText } from "./localizedString";
+import { localizedDocumentPreview } from "./documentPreview";
 
 export const productType = defineType({
   name: "productType",
   title: "Product Type",
   type: "document",
+  preview: localizedDocumentPreview("name", "Unnamed product type"),
+  validation: rule => rule.custom(validateMarketContent),
   fields: [
+    chinaStatusField,
+    defineField({ name: "editorialDownloadsMigrated", title: "Editorial Download Migration", type: "boolean", hidden: true, readOnly: true }),
     defineField({
       name: "name",
       title: "Name",
@@ -19,6 +27,21 @@ export const productType = defineType({
       type: "slug",
       options: { source: "name.en" },
       validation: (rule) => rule.required()
+    }),
+    defineField({
+      name: "markets",
+      title: "Target Markets / Websites",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        list: [
+          { title: "China 中国大陆 (.com.cn)", value: "china" },
+          { title: "Global International (.com)", value: "global" },
+          { title: "Japan Only (.co.jp)", value: "japan" }
+        ],
+        layout: "tags"
+      },
+      validation: (rule) => rule.required().min(1).error("At least one target market must be selected.")
     }),
     defineField({
       name: "material",
@@ -40,12 +63,7 @@ export const productType = defineType({
       of: [
         {
           type: "object",
-          fields: [
-            defineField({ name: "title", title: "Title", type: "object", fields: localizedString }),
-            defineField({ name: "description", title: "Description", type: "object", fields: localizedText }),
-            defineField({ name: "file", title: "File", type: "file" }),
-            defineField({ name: "type", title: "Type", type: "string", options: { list: ["catalog", "technical", "care"] } })
-          ]
+          fields: downloadFields
         }
       ]
     }),

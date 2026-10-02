@@ -1,0 +1,485 @@
+[
+  {
+    "locale": "en",
+    "width": 390,
+    "dpr": 2,
+    "attempts": [
+      {
+        "status": 500
+      },
+      {
+        "status": 200
+      }
+    ],
+    "checks": [
+      [
+        "http200",
+        true
+      ],
+      [
+        "autoplay",
+        true
+      ],
+      [
+        "cookieExcluded",
+        true
+      ],
+      [
+        "noHorizontalOverflow",
+        true
+      ],
+      [
+        "visibleCarouselImagesLoaded",
+        true
+      ],
+      [
+        "videoPausesOffscreen",
+        true
+      ],
+      [
+        "noNewVideoRequestsOffscreen",
+        true
+      ],
+      [
+        "nextChangesSlide",
+        true
+      ],
+      [
+        "nextSlideImagesLoaded",
+        true
+      ],
+      [
+        "carouselPosition0",
+        true
+      ],
+      [
+        "carouselPosition1",
+        true
+      ],
+      [
+        "carouselPosition2",
+        true
+      ],
+      [
+        "carouselPosition3",
+        true
+      ],
+      [
+        "carouselPosition4",
+        true
+      ],
+      [
+        "videoResumes",
+        true
+      ],
+      [
+        "backgroundTabIsHidden",
+        true
+      ],
+      [
+        "videoPausesInBackground",
+        true
+      ],
+      [
+        "noPageErrors",
+        false
+      ]
+    ],
+    "initial": {
+      "time": 0.1,
+      "paused": false,
+      "poster": "https://cdn.sanity.io/images/bfjhbpbx/production/f7b6bd06bd24dd5575c9a7483865dc04d05754b4-1920x1080.jpg?w=1920&fit=max&auto=format&q=80",
+      "cookie": false,
+      "title": "Premium Materials\nA World of Choice",
+      "overflow": false
+    },
+    "carouselImages": [
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/5ae50ed7e13ff8f0b5b418fa4714f6e293d04930-1135x1386.jpg?w=1024&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/4aaeceb0cab3bf83f8c0c39cea06299669ed07ed-1212x1794.jpg?w=1024&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/5ae50ed7e13ff8f0b5b418fa4714f6e293d04930-1135x1386.jpg?w=640&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/4aaeceb0cab3bf83f8c0c39cea06299669ed07ed-1212x1794.jpg?w=640&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": "European Fabric"
+      }
+    ],
+    "errors": [
+      "An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included on this error instance which may provide additional details about the nature of the error."
+    ],
+    "warnings": [
+      "The resource http://localhost:3019/_next/static/css/d24f2ddf7a84cee6.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.",
+      "The resource http://localhost:3019/_next/static/css/d82abe32ff0afe3d.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    ]
+  },
+  {
+    "locale": "en",
+    "width": 1440,
+    "dpr": 1,
+    "attempts": [
+      {
+        "status": 200
+      }
+    ],
+    "checks": [
+      [
+        "http200",
+        true
+      ],
+      [
+        "autoplay",
+        true
+      ],
+      [
+        "cookieExcluded",
+        true
+      ],
+      [
+        "noHorizontalOverflow",
+        true
+      ],
+      [
+        "visibleCarouselImagesLoaded",
+        true
+      ],
+      [
+        "videoPausesOffscreen",
+        true
+      ],
+      [
+        "noNewVideoRequestsOffscreen",
+        true
+      ],
+      [
+        "nextChangesSlide",
+        true
+      ],
+      [
+        "nextSlideImagesLoaded",
+        true
+      ],
+      [
+        "carouselPosition0",
+        true
+      ],
+      [
+        "carouselPosition1",
+        true
+      ],
+      [
+        "carouselPosition2",
+        true
+      ],
+      [
+        "carouselPosition3",
+        true
+      ],
+      [
+        "carouselPosition4",
+        true
+      ],
+      [
+        "videoResumes",
+        true
+      ],
+      [
+        "backgroundTabIsHidden",
+        true
+      ],
+      [
+        "videoPausesInBackground",
+        true
+      ],
+      [
+        "noPageErrors",
+        true
+      ]
+    ],
+    "initial": {
+      "time": 0.015593,
+      "paused": false,
+      "poster": "https://cdn.sanity.io/images/bfjhbpbx/production/f7b6bd06bd24dd5575c9a7483865dc04d05754b4-1920x1080.jpg?w=1920&fit=max&auto=format&q=80",
+      "cookie": false,
+      "title": "Premium Materials\nA World of Choice",
+      "overflow": false
+    },
+    "carouselImages": [
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/4aaeceb0cab3bf83f8c0c39cea06299669ed07ed-1212x1794.jpg?w=1536&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/5ae50ed7e13ff8f0b5b418fa4714f6e293d04930-1135x1386.jpg?w=320&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/4aaeceb0cab3bf83f8c0c39cea06299669ed07ed-1212x1794.jpg?w=480&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": "European Fabric"
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/2495dcc30de39e4a11cff06bc08b67904cbbe8c4-512x512.png?w=320&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      }
+    ],
+    "errors": [],
+    "warnings": [
+      "The resource http://localhost:3019/_next/static/css/fd259fb14d12a946.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.",
+      "The resource http://localhost:3019/_next/static/css/fd259fb14d12a946.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.",
+      "The resource http://localhost:3019/_next/static/css/fd259fb14d12a946.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.",
+      "The resource http://localhost:3019/_next/static/css/fd259fb14d12a946.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.",
+      "The resource http://localhost:3019/_next/static/css/fd259fb14d12a946.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    ]
+  },
+  {
+    "locale": "ja",
+    "width": 360,
+    "dpr": 1,
+    "attempts": [
+      {
+        "status": 200
+      }
+    ],
+    "checks": [
+      [
+        "http200",
+        true
+      ],
+      [
+        "autoplay",
+        true
+      ],
+      [
+        "cookieExcluded",
+        true
+      ],
+      [
+        "noHorizontalOverflow",
+        true
+      ],
+      [
+        "visibleCarouselImagesLoaded",
+        true
+      ],
+      [
+        "videoPausesOffscreen",
+        true
+      ],
+      [
+        "noNewVideoRequestsOffscreen",
+        true
+      ],
+      [
+        "nextChangesSlide",
+        true
+      ],
+      [
+        "nextSlideImagesLoaded",
+        true
+      ],
+      [
+        "carouselPosition0",
+        true
+      ],
+      [
+        "carouselPosition1",
+        true
+      ],
+      [
+        "carouselPosition2",
+        true
+      ],
+      [
+        "carouselPosition3",
+        true
+      ],
+      [
+        "carouselPosition4",
+        true
+      ],
+      [
+        "videoResumes",
+        true
+      ],
+      [
+        "backgroundTabIsHidden",
+        true
+      ],
+      [
+        "videoPausesInBackground",
+        true
+      ],
+      [
+        "noPageErrors",
+        true
+      ]
+    ],
+    "initial": {
+      "time": 0.01922,
+      "paused": false,
+      "poster": "https://cdn.sanity.io/images/bfjhbpbx/production/f7b6bd06bd24dd5575c9a7483865dc04d05754b4-1920x1080.jpg?w=1920&fit=max&auto=format&q=80",
+      "cookie": false,
+      "title": "選び抜かれた素材\nここから広がる、無限の可能性",
+      "overflow": false
+    },
+    "carouselImages": [
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/5ae50ed7e13ff8f0b5b418fa4714f6e293d04930-1135x1386.jpg?w=480&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/4aaeceb0cab3bf83f8c0c39cea06299669ed07ed-1212x1794.jpg?w=480&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/5ae50ed7e13ff8f0b5b418fa4714f6e293d04930-1135x1386.jpg?w=320&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/4aaeceb0cab3bf83f8c0c39cea06299669ed07ed-1212x1794.jpg?w=320&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": "欧州製生地"
+      }
+    ],
+    "errors": [],
+    "warnings": []
+  },
+  {
+    "locale": "ja",
+    "width": 768,
+    "dpr": 1,
+    "attempts": [
+      {
+        "status": 200
+      }
+    ],
+    "checks": [
+      [
+        "http200",
+        true
+      ],
+      [
+        "autoplay",
+        true
+      ],
+      [
+        "cookieExcluded",
+        true
+      ],
+      [
+        "noHorizontalOverflow",
+        true
+      ],
+      [
+        "visibleCarouselImagesLoaded",
+        true
+      ],
+      [
+        "videoPausesOffscreen",
+        true
+      ],
+      [
+        "noNewVideoRequestsOffscreen",
+        true
+      ],
+      [
+        "nextChangesSlide",
+        true
+      ],
+      [
+        "nextSlideImagesLoaded",
+        true
+      ],
+      [
+        "carouselPosition0",
+        true
+      ],
+      [
+        "carouselPosition1",
+        true
+      ],
+      [
+        "carouselPosition2",
+        true
+      ],
+      [
+        "carouselPosition3",
+        true
+      ],
+      [
+        "carouselPosition4",
+        true
+      ],
+      [
+        "videoResumes",
+        true
+      ],
+      [
+        "backgroundTabIsHidden",
+        true
+      ],
+      [
+        "videoPausesInBackground",
+        true
+      ],
+      [
+        "noPageErrors",
+        true
+      ]
+    ],
+    "initial": {
+      "time": 0.010505,
+      "paused": false,
+      "poster": "https://cdn.sanity.io/images/bfjhbpbx/production/f7b6bd06bd24dd5575c9a7483865dc04d05754b4-1920x1080.jpg?w=1920&fit=max&auto=format&q=80",
+      "cookie": false,
+      "title": "選び抜かれた素材\nここから広がる、無限の可能性",
+      "overflow": false
+    },
+    "carouselImages": [
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/5ae50ed7e13ff8f0b5b418fa4714f6e293d04930-1135x1386.jpg?w=768&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/4aaeceb0cab3bf83f8c0c39cea06299669ed07ed-1212x1794.jpg?w=768&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/5ae50ed7e13ff8f0b5b418fa4714f6e293d04930-1135x1386.jpg?w=768&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/4aaeceb0cab3bf83f8c0c39cea06299669ed07ed-1212x1794.jpg?w=480&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": "欧州製生地"
+      },
+      {
+        "src": "https://cdn.sanity.io/images/bfjhbpbx/production/2495dcc30de39e4a11cff06bc08b67904cbbe8c4-512x512.png?w=320&fit=max&auto=format&q=80",
+        "loaded": true,
+        "alt": ""
+      }
+    ],
+    "errors": [],
+    "warnings": []
+  }
+]

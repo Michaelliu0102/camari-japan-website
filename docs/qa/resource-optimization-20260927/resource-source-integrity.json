@@ -1,0 +1,32 @@
+[
+  {
+    "file": "src/lib/editorial-image.ts",
+    "sha256": "29cbe03b14ec83627db9416186a79ba4f8548718e67443eea0a8ea1bac65f544",
+    "matchesVerifiedCheckout": true
+  },
+  {
+    "file": "src/components/EditorialImage.tsx",
+    "sha256": "be4c2696a350dacbf19388a6a3e73304e50b1b0e3aa55550dd639656657720b7",
+    "matchesVerifiedCheckout": true
+  },
+  {
+    "file": "src/components/HeroVideo.tsx",
+    "sha256": "8fdd91ee53f05ff56196ed857672bb6ad9ef7b3de37a530ed4e0e482b76140f9",
+    "matchesVerifiedCheckout": true
+  },
+  {
+    "file": "src/components/ExploreCarousel.tsx",
+    "sha256": "5223f5dd0de302081745d18679279baa7c7672b1386f767dbab54e4f82ea6a98",
+    "matchesVerifiedCheckout": true
+  },
+  {
+    "file": "src/components/CTASection.tsx",
+    "sha256": "5bad25ec13d7b96cdc40b66c94ac6401aed0075bc06d749c393eb27120cda05f",
+    "matchesVerifiedCheckout": true
+  },
+  {
+    "file": "src/app/[locale]/page.tsx",
+    "sha256": "0f8e3ad856abf837440beb754b6bef7d6e061e9cd00d2c636b86ce82b97ee1aa",
+    "matchesVerifiedCheckout": true
+  }
+]

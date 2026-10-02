@@ -1,0 +1,302 @@
+{
+  "automotive-interior-accessories": [
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, leather, fabric, wool, or nylon, with optional embroidery.",
+        "ja": "Alcantara、レザー、ファブリック、ウール、ナイロンから選択でき、刺繍加工にも対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, leather, fabric, or vegan leather, with options for embossing, laser processing, and embroidery.",
+        "ja": "Alcantara、レザー、ファブリック、ヴィーガンレザーから選択でき、型押し、レーザー加工、刺繍に対応します。"
+      },
+      "description": {
+        "en": "Soft headrest pillows with sustainable Sorona filling add comfort, material contrast, and a tailored accent to car seats, office chairs, and gaming chairs.",
+        "ja": "サステナブルなSorona中綿を使用した柔らかなヘッドレストピローが、自動車シート、オフィスチェア、ゲーミングチェアに快適性、素材のコントラスト、仕立て感のあるアクセントを加えます。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Premium key fob covers transform an everyday automotive touch point into a branded material object with scratch-resistant, full-coverage protection.",
+        "ja": "プレミアムキーフォブカバーが、日常的に触れる自動車キーをブランドらしい素材オブジェクトへ変え、傷つきにくいフルカバー保護を提供します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "This compact leather keychain is designed for automotive, hospitality, and lifestyle gifting programs, with a lightweight body and detachable key ring.",
+        "ja": "自動車、ホスピタリティ、ライフスタイルのギフトプログラム向けに設計したコンパクトなレザーキーチェーンで、軽量な本体と着脱可能なキーリングを備えています。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "A refined keychain silhouette with tactile leather finishing offers a lightweight, detachable-key-ring format for daily carry and corporate gifting.",
+        "ja": "触感のあるレザー仕上げと洗練されたシルエットを備えた、軽量でキーリングを着脱できるキーチェーンです。日常携行や法人ギフトに適しています。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Carbon fiber combined with Alcantara or leather creates a lightweight statement keychain for premium automotive accessories and branded merchandise, finished with a detachable key ring.",
+        "ja": "カーボンファイバーとAlcantaraまたはレザーを組み合わせた、プレミアム自動車アクセサリーやブランド商品向けの軽量キーチェーンで、着脱可能なキーリングを備えています。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, leather, fabric, or vegan leather, with options for embossing, laser processing, and embroidery.",
+        "ja": "Alcantara、レザー、ファブリック、ヴィーガンレザーから選択でき、型押し、レーザー加工、刺繍に対応します。"
+      },
+      "description": {
+        "en": "Lumbar support cushions improve comfort during long sessions while coordinating with the material direction of car seats, office chairs, and gaming chairs.",
+        "ja": "ランバーサポートクッションが、自動車シート、オフィスチェア、ゲーミングチェアの素材方向性と調和しながら、長時間使用時の快適性を高めます。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, with options for embossing, laser processing, and embroidery.",
+        "ja": "Alcantaraで製作でき、型押し、レーザー加工、刺繍に対応します。"
+      },
+      "description": {
+        "en": "Seat belt covers soften high-contact zones around the shoulder, helping relieve pressure while adding a refined, wear-resistant material detail.",
+        "ja": "シートベルトカバーが肩まわりの高接触部をやわらげて圧迫感を軽減し、耐摩耗性を備えた上質な素材ディテールを加えます。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, leather, fabric, or vegan leather, with options for laser processing and embroidery.",
+        "ja": "Alcantara、レザー、ファブリック、ヴィーガンレザーから選択でき、レーザー加工と刺繍に対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, leather, fabric, or vegan leather, with options for embossing and laser processing.",
+        "ja": "Alcantara、レザー、ファブリック、ヴィーガンレザーから選択でき、型押しとレーザー加工に対応します。"
+      }
+    }
+  ],
+  "tech-accessories": [
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Laptop covers protect the device while giving the workspace a warmer material expression suited to professional carry, daily protection, and refined style.",
+        "ja": "ラップトップカバーがデバイスを保護しながら、プロフェッショナルな携行、日常の保護、洗練されたスタイルに適した温かみのある素材表現をワークスペースに加えます。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, with options for embossing and laser processing.",
+        "ja": "Alcantaraで製作でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Alcantara phone cases pair a matte, tactile surface with everyday protection and full MagSafe compatibility for a warmer, more distinctive device feel.",
+        "ja": "Alcantaraスマートフォンケースが、マットで触感のある表面に日常の保護性能とMagSafe完全対応を組み合わせ、デバイスに温かみと個性を加えます。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in leather, with options for embossing and laser processing.",
+        "ja": "レザーで製作でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Leather phone cases combine heritage material character and refined edge finishing with everyday protection and full MagSafe compatibility.",
+        "ja": "レザースマートフォンケースが、伝統的な素材の表情と洗練されたエッジ仕上げに、日常の保護性能とMagSafe完全対応を組み合わせます。"
+      }
+    }
+  ],
+  "lifestyle": [
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, leather, or canvas, with options for embossing and laser processing.",
+        "ja": "Alcantara、レザー、キャンバスから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Premium backpacks for daily carry, travel, and branded lifestyle collections provide space for work essentials, travel gear, and everyday items.",
+        "ja": "日常携行、旅行、ブランドライフスタイルコレクションに向けたプレミアムバックパックで、仕事の必需品、トラベルギア、日用品を収納できます。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, with options for embossing and laser processing.",
+        "ja": "Alcantaraで製作でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Material-forward caps for branded lifestyle programs and gift-ready merchandise feature an adjustable rear strap for a secure, one-size-fits-most fit.",
+        "ja": "ブランドライフスタイルプログラムやギフト向け商品に適した素材感のあるキャップで、幅広いサイズにしっかりフィットする調整式バックストラップを備えています。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, with options for embossing and laser processing.",
+        "ja": "Alcantaraで製作でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Duffle bags for travel and weekend use balance a soft structure with premium material character for weekend trips, gym visits, and carry-on travel.",
+        "ja": "旅行や週末使いに向けたダッフルバッグで、柔らかな構造と上質な素材感を両立し、週末旅行、ジム、機内持ち込みに対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Choose carbon fiber or aluminum for the hard shell, or leather, Alcantara, or canvas for the soft shell.",
+        "ja": "ハードシェルはカーボンファイバーまたはアルミニウム、ソフトシェルはレザー、Alcantara、キャンバスから選択できます。"
+      },
+      "description": {
+        "en": "Luggage cases bring premium surface materials to travel storage and presentation with an elegant, understated style for refined journeys.",
+        "ja": "ラゲージケースがプレミアムな表面素材をトラベル収納とプレゼンテーションに取り入れ、上質な旅にふさわしいエレガントで控えめなスタイルを演出します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Passport holders protect travel documents with a refined, tactile material finish in a slim folded format with multiple interior pockets.",
+        "ja": "パスポートホルダーが、複数の内ポケットを備えたスリムな二つ折り形状と洗練された触感素材で旅行書類を保護します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Compact pouches organize daily essentials and travel items in a minimalist format with a premium soft-touch surface.",
+        "ja": "コンパクトなポーチが、プレミアムなソフトタッチ表面とミニマルな形状で、日常の必需品や旅行小物を整理します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Spectacle cases protect eyewear while adding a tactile premium accent in a slim, lightweight form that is easy to carry anywhere.",
+        "ja": "メガネケースがアイウェアを保護しながら、どこへでも持ち運びやすいスリムで軽量な形状に、触感的な上質さを加えます。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Wallets with refined material finishing combine a soft touch, lightweight feel, and distinctly premium appearance for everyday carry and gifting.",
+        "ja": "洗練された素材仕上げのウォレットが、柔らかな手触り、軽やかな使用感、明確な上質感を兼ね備え、日常携行やギフトに適しています。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Washbags organize grooming essentials and other travel items in a durable format finished with premium materials.",
+        "ja": "ウォッシュバッグが、耐久性のある形状とプレミアム素材の仕上げで、グルーミング用品やその他の旅行小物を整理します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      }
+    }
+  ],
+  "corporation-gift": [
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Mouse mats add a soft, premium surface to everyday desk interaction across desktop setups, creative work, and gaming.",
+        "ja": "マウスマットが、デスク環境、クリエイティブワーク、ゲーミングでの日常操作に、柔らかく上質な表面を加えます。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Notebook covers and stationery surfaces bring premium materials into meetings and daily work with an elegant, non-slip, and wear-resistant finish.",
+        "ja": "ノートブックカバーとステーショナリー表面が、エレガントで滑りにくく耐摩耗性のある仕上げにより、会議や日常業務へプレミアム素材を取り入れます。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara or leather, with options for embossing and laser processing.",
+        "ja": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。"
+      }
+    },
+    {
+      "customizedOption": {
+        "en": "Available in Alcantara, leather, or fabric, with options for embossing and laser processing.",
+        "ja": "Alcantara、レザー、ファブリックから選択でき、型押しとレーザー加工に対応します。"
+      },
+      "description": {
+        "en": "Desk and valet trays organize keys, watches, wallets, and accessories while creating a refined branded touch point.",
+        "ja": "デスクトレイとバレットトレイが、キー、時計、ウォレット、アクセサリーを整理しながら、洗練されたブランド接点をつくります。"
+      }
+    }
+  ]
+}

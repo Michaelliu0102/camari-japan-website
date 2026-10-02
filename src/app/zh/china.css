@@ -1,0 +1,5 @@
+.china-shared-site { font-family: Arial, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; }
+.china-shared-site .font-serif { font-family: Georgia, "Songti SC", "SimSun", serif; }
+.china-shared-site .font-label, .china-shared-site .font-sans { font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
+.china-shared-site h1, .china-shared-site h2, .china-shared-site .label-caps { overflow-wrap: anywhere; }
+.china-shared-site header nav a { white-space: nowrap; }

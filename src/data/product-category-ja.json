@@ -1,0 +1,786 @@
+{
+  "automotive-interior-accessories": {
+    "title": "自動車インテリアアクセサリー",
+    "subtitle": "上質なレザーやアルカンターラ、高機能素材を使用した自動車用インテリアアクセサリー。",
+    "description": "フロアマットやクッション、ステアリング、シートベルト、キーケース、収納用品などを取りそろえた、自動車内装用アクセサリーシリーズ。",
+    "seoTitle": "自動車インテリアアクセサリー | CAMARI JAPAN",
+    "seoDescription": "フロアマットやクッション、ステアリング、シートベルト、キーケース、収納用品などを取りそろえた、自動車内装用アクセサリーシリーズ。",
+    "highlights": [
+      {
+        "sourceTitle": "Driver contact surfaces",
+        "title": "ドライバー接触部",
+        "body": "ステアリングホイールカバー、シートベルトカバー、キーフォブ、キーチェーンなど、日常的な使いやすさ、耐摩耗性、上質な手触りを重視したアイテム。"
+      },
+      {
+        "sourceTitle": "Comfort and support accessories",
+        "title": "快適性を高めるサポートアイテム",
+        "body": "ヘッドレストピロー、ランバークッション、シートクッションなど、車内での上質な快適性と長距離移動時のサポート性を追求したアイテム。"
+      },
+      {
+        "sourceTitle": "Protection and storage systems",
+        "title": "保護・収納アイテム",
+        "body": "フロアマットや収納ボックスなど、車内の表面を保護しながら、内装全体の素材感に統一感をもたらすアイテム。"
+      }
+    ],
+    "carouselItems": [
+      {
+        "sourceTitle": "Floor Mat",
+        "title": "フロアマット",
+        "customizedOption": "Alcantara、レザー、ファブリック、ウール、ナイロンから選択でき、刺繍加工にも対応します。",
+        "description": "車内を汚れや傷から守りながら、インテリアの素材やデザインに調和するオーダーメイドの自動車用フロアマット。",
+        "details": [
+          {
+            "source": "Protective cabin floor surface",
+            "text": "車内の床を傷や汚れから保護"
+          },
+          {
+            "source": "Leather and textile finish options",
+            "text": "レザーやテキスタイルを使った仕上げに対応"
+          },
+          {
+            "source": "Designed for coordinated interiors",
+            "text": "内装全体に統一感をもたせるデザイン"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Headrest Pillow",
+        "title": "ヘッドレストピロー",
+        "customizedOption": "Alcantara、レザー、ファブリック、ヴィーガンレザーから選択でき、型押し、レーザー加工、刺繍に対応します。",
+        "description": "環境に配慮したSorona中綿を使用した、柔らかなヘッドレストピロー。自動車のシートやオフィスチェア、ゲーミングチェアを快適にし、デザインのアクセントにもなります。",
+        "details": [
+          {
+            "source": "Neck and head support",
+            "text": "首と頭をサポート"
+          },
+          {
+            "source": "Soft-touch premium surface",
+            "text": "柔らかな表面仕上げ"
+          },
+          {
+            "source": "Suitable for front and rear seats",
+            "text": "前席・後席のどちらにも対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Key Fob",
+        "title": "キーホルダー",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "自動車キー全体を覆い、傷からしっかり守る専用カバー。素材や色、デザインによって、ブランドの個性を表現できます。",
+        "details": [
+          {
+            "source": "Daily carry touch point",
+            "text": "毎日持ち歩けるアイテム"
+          },
+          {
+            "source": "Precision fit and stitched finish",
+            "text": "本体にぴったり合う設計と丁寧なステッチ"
+          },
+          {
+            "source": "Brandable leather accessory",
+            "text": "ロゴやカラーを取り入れられるレザーアクセサリー"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Leather Keychain P1",
+        "title": "レザーキーチェーン P1",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "自動車関連やホテル、ライフスタイルブランドのギフトに適した、軽量でコンパクトなレザーキーチェーン。キーリングは簡単に取り外せます。",
+        "details": [
+          {
+            "source": "Compact gift format",
+            "text": "コンパクトで贈りやすいサイズ"
+          },
+          {
+            "source": "Premium edge and stitch detail",
+            "text": "縁やステッチまで丁寧に仕上げたデザイン"
+          },
+          {
+            "source": "Suitable for branded programs",
+            "text": "ブランド向けの商品企画に対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Leather Keychain P2",
+        "title": "レザーキーチェーン P2",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "自動車関連やホテル、ライフスタイルブランドのギフトに適した、軽量でコンパクトなレザーキーチェーン。キーリングは簡単に取り外せます。",
+        "details": [
+          {
+            "source": "Refined carry silhouette",
+            "text": "持ち運びやすいすっきりとした形"
+          },
+          {
+            "source": "Leather loop and metal hardware",
+            "text": "レザー製ループとメタル金具"
+          },
+          {
+            "source": "Designed for daily handling",
+            "text": "毎日使いやすい設計"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Leather Keychain P3",
+        "title": "レザーキーチェーン",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "カーボンファイバーにアルカンターラまたはレザーを組み合わせた、軽量なキーチェーン。自動車用アクセサリーやブランドグッズに適しており、キーリングは簡単に取り外せます。",
+        "details": [
+          {
+            "source": "Statement accessory profile",
+            "text": "存在感のあるデザイン"
+          },
+          {
+            "source": "Durable daily-use construction",
+            "text": "日常使いに適した丈夫なつくり"
+          },
+          {
+            "source": "Works across vehicle and lifestyle programs",
+            "text": "自動車関連やライフスタイルブランドの商品に対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Lumbar Cushion",
+        "title": "ランバーサポートクッション",
+        "customizedOption": "Alcantara、レザー、ファブリック、ヴィーガンレザーから選択でき、型押し、レーザー加工、刺繍に対応します。",
+        "description": "自動車のシートやオフィスチェア、ゲーミングチェアのデザインになじみ、長時間座る際の腰を支えて快適性を高めるクッション。",
+        "details": [
+          {
+            "source": "Lower-back support",
+            "text": "腰をサポート"
+          },
+          {
+            "source": "Soft-touch cabin accessory",
+            "text": "車内になじむ柔らかなクッション"
+          },
+          {
+            "source": "Designed for long-distance comfort",
+            "text": "長距離移動でも快適に使える設計"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Seat Belt Cover",
+        "title": "シートベルトカバー",
+        "customizedOption": "Alcantaraで製作でき、型押し、レーザー加工、刺繍に対応します。",
+        "description": "肩にかかる圧迫感をやわらげる、耐摩耗性に優れたシートベルトカバー。快適性を高めながら、車内デザインのアクセントにもなります。",
+        "details": [
+          {
+            "source": "High-contact comfort detail",
+            "text": "肩まわりの接触部分に配慮した快適な使い心地"
+          },
+          {
+            "source": "Leather and Alcantara-ready formats",
+            "text": "レザーとAlcantaraでの製作に対応"
+          },
+          {
+            "source": "Easy accessory installation",
+            "text": "簡単に取り付けられる設計"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Steering Wheel Cover",
+        "title": "ステアリングホイールカバー",
+        "customizedOption": "Alcantara、レザー、ファブリック、ヴィーガンレザーから選択でき、レーザー加工と刺繍に対応します。",
+        "description": "握りやすさと快適な操作性を高める、手触りにこだわったステアリングホイールカバー。",
+        "details": [
+          {
+            "source": "Driver grip surface",
+            "text": "握りやすいステアリング表面"
+          },
+          {
+            "source": "Premium tactile finish",
+            "text": "快適な操作感"
+          },
+          {
+            "source": "Supports coordinated cabin packages",
+            "text": "車内全体に統一感をもたせるデザイン"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Storage Box",
+        "title": "収納ボックス",
+        "customizedOption": "Alcantara、レザー、ファブリック、ヴィーガンレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "身の回りの小物をすっきり整理できる、手触りのよい素材を使用した収納ボックス。",
+        "details": [
+          {
+            "source": "Organized cabin storage",
+            "text": "車内の小物をすっきり整理"
+          },
+          {
+            "source": "Soft-surface exterior detail",
+            "text": "車内になじむ外装デザイン"
+          },
+          {
+            "source": "Useful for rear-seat and trunk zones",
+            "text": "後部座席やトランクで便利に使える設計"
+          }
+        ]
+      }
+    ]
+  },
+  "tech-accessories": {
+    "title": "デジタルアクセサリー",
+    "subtitle": "日常のテクノロジーに上質な手触りの素材を取り入れたデジタルアクセサリー。",
+    "description": "スマートフォンケースやMagSafeアクセサリー、ノートパソコン用カバー、スマートウォッチの交換用バンド、オーディオ機器用ケースなどに使用できる表面素材シリーズ。",
+    "seoTitle": "デジタルアクセサリー | CAMARI JAPAN",
+    "seoDescription": "スマートフォンケースやMagSafeアクセサリー、ノートパソコン用カバー、スマートウォッチの交換用バンド、オーディオ機器用ケースなどに使用できる表面素材シリーズ。",
+    "highlights": [
+      {
+        "sourceTitle": "Device protection",
+        "title": "デバイス保護",
+        "body": "スマートフォン、タブレット、ノートPC、AirPodsケースなど、ソフトな手触り、精密なフィット感、素材そのものの上質な存在感を追求したアイテム。"
+      },
+      {
+        "sourceTitle": "Magnetic and wearable details",
+        "title": "マグネット・ウェアラブルディテール",
+        "body": "MagSafeアクセサリーやウォッチストラップなど、日常的に触れるデバイスに、素材ならではの心地よい手触りとブランドの世界観をプラスするアイテム。"
+      },
+      {
+        "sourceTitle": "Leather and Alcantara options",
+        "title": "レザー・Alcantaraオプション",
+        "body": "プラスチックやシリコンとは異なる、温かみのある質感を求めるブランドに向けた、プレミアムレザーやAlcantara®を使用した製品・素材提案。"
+      }
+    ],
+    "carouselItems": [
+      {
+        "sourceTitle": "AirPods Case",
+        "title": "AirPodsケース",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "毎日の持ち運びに便利な、コンパクトなAirPodsケース。スマートフォンケースなどのデバイスアクセサリーと、素材やデザインを統一できます。",
+        "details": [
+          {
+            "source": "Compact protective case",
+            "text": "コンパクトな保護ケース"
+          },
+          {
+            "source": "Daily pocket and bag carry",
+            "text": "ポケットやバッグに入れて持ち運びやすい"
+          },
+          {
+            "source": "Coordinates with phone and laptop accessories",
+            "text": "スマートフォンやノートパソコン用アクセサリーとデザインを統一"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "iPad Cover",
+        "title": "iPadカバー",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "タブレットを傷や衝撃から守る、レザーまたはアルカンターラ製のカバー。",
+        "details": [
+          {
+            "source": "Tablet protection surface",
+            "text": "タブレットを傷や衝撃から保護"
+          },
+          {
+            "source": "Slim daily-use profile",
+            "text": "日常使いに適したスリムな形状"
+          },
+          {
+            "source": "Premium tactile exterior",
+            "text": "手触りのよい上質な外装"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "iWatch Strap",
+        "title": "Apple Watchバンド",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "柔らかな手触りの素材で、毎日快適に身につけられるスマートウォッチ用バンド。",
+        "details": [
+          {
+            "source": "Wearable contact surface",
+            "text": "手首に触れるウェアラブルアクセサリー"
+          },
+          {
+            "source": "Soft hand-feel for daily use",
+            "text": "日常使いに適した柔らかな手触り"
+          },
+          {
+            "source": "Premium alternative to silicone bands",
+            "text": "シリコンバンドとは異なる上質な選択肢"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "MacBook Cover",
+        "title": "MacBookカバー",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "ノートパソコンを傷や衝撃から守り、仕事でも日常でも持ち運びやすいコンパクトなカバー。",
+        "details": [
+          {
+            "source": "Laptop protection layer",
+            "text": "ノートパソコンを傷や衝撃から保護"
+          },
+          {
+            "source": "Desk-ready tactile finish",
+            "text": "デスクでの使用になじむ手触りのよい仕上げ"
+          },
+          {
+            "source": "Suitable for leather and Alcantara programs",
+            "text": "レザーとAlcantaraでの製作に対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "MagSafe Accessory",
+        "title": "MagSafeアクセサリー",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "充電やスタンドへの取り付けなど、毎日のスマートフォン操作を快適にするMagSafeアクセサリー。",
+        "details": [
+          {
+            "source": "Magnetic phone accessory",
+            "text": "マグネット式のスマートフォンアクセサリー"
+          },
+          {
+            "source": "Premium daily touch point",
+            "text": "毎日触れる部分に上質な素材を使用"
+          },
+          {
+            "source": "Coordinates with phone case programs",
+            "text": "スマートフォンケースと統一感のあるデザイン"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Alcantara Phone Case",
+        "title": "Alcantaraスマートフォンケース",
+        "customizedOption": "Alcantaraで製作でき、型押しとレーザー加工に対応します。",
+        "description": "スマートフォンを傷や衝撃から守り、MagSafeにも対応したアルカンターラ製のケース。",
+        "details": [
+          {
+            "source": "Matte Alcantara surface",
+            "text": "落ち着いたマットなAlcantara仕上げ"
+          },
+          {
+            "source": "Soft grip for daily handling",
+            "text": "握りやすく毎日使いやすい設計"
+          },
+          {
+            "source": "Distinctive alternative to plastic cases",
+            "text": "プラスチックケースとは異なるデザインの選択肢"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Leather Phone Case",
+        "title": "レザースマートフォンケース",
+        "customizedOption": "レザーで製作でき、型押しとレーザー加工に対応します。",
+        "description": "スマートフォンを傷や衝撃から守り、MagSafeにも対応したレザー製のケース。",
+        "details": [
+          {
+            "source": "Premium leather exterior",
+            "text": "レザー製の外装"
+          },
+          {
+            "source": "Refined edge and stitch detail",
+            "text": "縁やステッチまで丁寧に仕上げたデザイン"
+          },
+          {
+            "source": "Daily device protection",
+            "text": "デバイスを日常の傷や衝撃から保護"
+          }
+        ]
+      }
+    ]
+  },
+  "lifestyle": {
+    "title": "ライフスタイル",
+    "subtitle": "ヨーロッパ素材で仕立てた、旅行用品やファッション小物。",
+    "description": "バッグ、財布、ケース、ポーチ、帽子、トラベル用品などを取りそろえた、普段使いやギフトに適したライフスタイルコレクション。",
+    "seoTitle": "ライフスタイルアクセサリー | CAMARI JAPAN",
+    "seoDescription": "バッグ、財布、ケース、ポーチ、帽子、トラベル用品などを取りそろえた、普段使いやギフトに適したライフスタイルコレクション。",
+    "highlights": [
+      {
+        "sourceTitle": "Travel and carry goods",
+        "title": "トラベル・キャリーグッズ",
+        "body": "バックパック、ボストンバッグ、ラゲッジケース、トラベルポーチ、パスポートケースなど、旅先で繰り返し使用するシーンを想定したトラベルアイテム。"
+      },
+      {
+        "sourceTitle": "Personal accessories",
+        "title": "ファッション小物",
+        "body": "財布、カードケース、ポーチ、キャップ、メガネケース、ウォッチケースなど、日常使いに適した、細部まで丁寧に仕上げたアイテム。"
+      },
+      {
+        "sourceTitle": "Gift-ready material stories",
+        "title": "ギフトを彩る、素材の物語",
+        "body": "素材ならではの上質な手触りを活かし、印象に残るライフスタイルギフトとして展開する、統一感のある製品シリーズ。"
+      }
+    ],
+    "carouselItems": [
+      {
+        "sourceTitle": "Backpack",
+        "title": "バック",
+        "customizedOption": "Alcantara、レザー、キャンバスから選択でき、型押しとレーザー加工に対応します。",
+        "description": "仕事道具や旅行用品、日用品をまとめて収納でき、通勤から旅行まで幅広く使えるバックパック。",
+        "details": [
+          {
+            "source": "Daily carry format",
+            "text": "毎日の持ち運びに適した設計"
+          },
+          {
+            "source": "Premium exterior and interior touch points",
+            "text": "外側と内側の触れる部分に上質な素材を使用"
+          },
+          {
+            "source": "Suitable for lifestyle merchandise",
+            "text": "ライフスタイル商品に取り入れやすい設計"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Cap",
+        "title": "キャップ",
+        "customizedOption": "Alcantaraで製作でき、型押しとレーザー加工に対応します。",
+        "description": "ブランドグッズやギフトに適したキャップ。後ろのストラップでサイズを調整でき、幅広い方にフィットします。",
+        "details": [
+          {
+            "source": "Wearable brand accessory",
+            "text": "身につけて使えるブランドアクセサリー"
+          },
+          {
+            "source": "Soft material accent",
+            "text": "柔らかな素材をアクセントに使用"
+          },
+          {
+            "source": "Suitable for event and retail programs",
+            "text": "イベントや店舗向け商品に対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Cardholder",
+        "title": "カードケース",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "普段使いやギフトに適した、薄型のレザー製カードケース。",
+        "details": [
+          {
+            "source": "Slim personal carry",
+            "text": "薄型で持ち運びやすい形状"
+          },
+          {
+            "source": "Refined leather finish",
+            "text": "すっきりとしたレザー仕上げ"
+          },
+          {
+            "source": "Gift-ready small leather good",
+            "text": "ギフトに適したレザー小物"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Duffle Bag",
+        "title": "ボストンバッグ",
+        "customizedOption": "Alcantaraで製作でき、型押しとレーザー加工に対応します。",
+        "description": "週末旅行やジム、機内への持ち込みに便利な、柔らかく持ち運びやすいボストンバッグ",
+        "details": [
+          {
+            "source": "Travel and weekend carry",
+            "text": "旅行や週末のお出かけに便利"
+          },
+          {
+            "source": "Soft structured silhouette",
+            "text": "柔らかさと形のまとまりを備えたシルエット"
+          },
+          {
+            "source": "Premium leather and textile detailing",
+            "text": "レザーとテキスタイルの細部まで丁寧に仕上げたデザイン"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Luggage Case",
+        "title": "キャリーケース",
+        "customizedOption": "ハードシェルはカーボンファイバーまたはアルミニウム、ソフトシェルはレザー、Alcantara、キャンバスから選択できます。",
+        "description": "旅行用品をすっきり収納できる、シンプルで落ち着いたデザインのキャリーケース。",
+        "details": [
+          {
+            "source": "Travel storage format",
+            "text": "旅行用品をすっきり収納"
+          },
+          {
+            "source": "Premium material surface",
+            "text": "持ち運びやすい形状"
+          },
+          {
+            "source": "Designed for coordinated travel sets",
+            "text": "シリーズで統一感のあるトラベルセットに対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Passport Holder",
+        "title": "パスポートケース",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "パスポートや搭乗券などをまとめて収納できる、薄型の二つ折りパスポートケース。内側に複数のポケットを備えています。",
+        "details": [
+          {
+            "source": "Travel document protection",
+            "text": "パスポートや搭乗券を保護"
+          },
+          {
+            "source": "Slim leather carry format",
+            "text": "薄型で持ち運びやすいレザーケース"
+          },
+          {
+            "source": "Suitable for travel gifting",
+            "text": "旅行向けのギフトに対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Pouch",
+        "title": "ポーチ",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "日用品や旅行小物をすっきり整理できる、シンプルでコンパクトなポーチ。",
+        "details": [
+          {
+            "source": "Daily essentials organizer",
+            "text": "日用品をすっきり整理"
+          },
+          {
+            "source": "Compact soft-good format",
+            "text": "コンパクトで持ち運びやすいポーチ"
+          },
+          {
+            "source": "Works for retail and gift programs",
+            "text": "店舗向け商品やギフトに対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Spectacle Case",
+        "title": "メガネケース",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "メガネを傷や衝撃から守り、どこへでも持ち運びやすい薄型・軽量のメガネケース。",
+        "details": [
+          {
+            "source": "Eyewear protection",
+            "text": "メガネを傷や衝撃から保護"
+          },
+          {
+            "source": "Structured case format",
+            "text": "型崩れしにくいケース"
+          },
+          {
+            "source": "Premium gift accessory",
+            "text": "ギフトに適したアクセサリー"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Wallet",
+        "title": "カードケース",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "軽くて持ち運びやすく、普段使いやギフトに適したカードケース。",
+        "details": [
+          {
+            "source": "Everyday carry essential",
+            "text": "毎日持ち歩く必需品"
+          },
+          {
+            "source": "Refined leather construction",
+            "text": "すっきりとしたレザー製のデザイン"
+          },
+          {
+            "source": "Gift-ready presentation",
+            "text": "ギフトに適した仕立て"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Washbag",
+        "title": "トラベルポーチ",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "洗面用具や旅行小物をまとめて収納できる、丈夫で型崩れしにくいトラベルポーチ。",
+        "details": [
+          {
+            "source": "Travel grooming storage",
+            "text": "洗面用具をまとめて収納"
+          },
+          {
+            "source": "Durable soft-good construction",
+            "text": "丈夫で持ち運びやすいポーチ"
+          },
+          {
+            "source": "Coordinates with bag and luggage sets",
+            "text": "バッグやラゲージと統一感のあるデザイン"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Watch Case",
+        "title": "ウォッチケース",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "内側の柔らかなクッションで時計を傷から守り、保管や持ち運びにも便利なウォッチケース。",
+        "details": [
+          {
+            "source": "Timepiece protection",
+            "text": "時計を傷や衝撃から保護"
+          },
+          {
+            "source": "Soft interior surface",
+            "text": "時計にやさしい柔らかな内装"
+          },
+          {
+            "source": "Suitable for luxury gifting",
+            "text": "上質なギフトに対応"
+          }
+        ]
+      }
+    ]
+  },
+  "corporation-gift": {
+    "title": "法人ギフト",
+    "subtitle": "ブランドギフトやビジネスでの贈答にふさわしい、上質なワークスペースアイテム。",
+    "description": "トレイ、デスクマット、ノート、カードホルダー、シートクッションなどを取りそろえた、オフィスや会議室、イベント、役員向けの法人ギフトコレクション。",
+    "seoTitle": "法人ギフト | CAMARI JAPAN",
+    "seoDescription": "トレイ、デスクマット、ノート、カードホルダー、シートクッションなどを取りそろえた、オフィスや会議室、イベント、役員向けの法人ギフトコレクション。",
+    "highlights": [
+      {
+        "sourceTitle": "Executive desk accessories",
+        "title": "エグゼクティブデスクアクセサリー",
+        "body": "トレー、デスクマット、マウスマット、ノート、名刺入れなど、ワークスペースに統一感のある素材の質感とデザインをもたらすアイテム。"
+      },
+      {
+        "sourceTitle": "Meeting and presentation pieces",
+        "title": "会議・プレゼンテーション用品",
+        "body": "会議室、顧客向けギフト、ショールーム、イベント展示など、素材の質感を通してブランドの世界観や品質を伝えるアイテム。"
+      },
+      {
+        "sourceTitle": "Comfort-focused office details",
+        "title": "快適さを重視したオフィスの細部",
+        "body": "シートクッションやソフトタッチのアクセサリーなど、長時間のデスクワークをより快適で上質な時間にするアイテム。"
+      }
+    ],
+    "carouselItems": [
+      {
+        "sourceTitle": "Business Card Holder",
+        "title": "名刺入れ",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "役員用デスクや受付で使える、法人ギフトにも適した名刺入れ。",
+        "details": [
+          {
+            "source": "Desk and reception accessory",
+            "text": "デスクや受付で使える名刺入れ"
+          },
+          {
+            "source": "Premium business presentation",
+            "text": "名刺を見やすく整理"
+          },
+          {
+            "source": "Suitable for branded office sets",
+            "text": "ブランドのオフィスセットに対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Desk Mat",
+        "title": "デスクマット",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "デスクの上をすっきり整え、統一感のあるワークスペースをつくるデスクマット。",
+        "details": [
+          {
+            "source": "Workspace surface layer",
+            "text": "デスクの表面を傷や汚れから保護"
+          },
+          {
+            "source": "Premium desk touch point",
+            "text": "ワークスペースをすっきり整理"
+          },
+          {
+            "source": "Works with corporate gift sets",
+            "text": "法人向けギフトセットに対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Mouse Mat",
+        "title": "マウスマット",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "仕事やクリエイティブ作業、ゲームなど、毎日のマウス操作を快適にするマウスマット。",
+        "details": [
+          {
+            "source": "Daily desk interaction surface",
+            "text": "毎日のデスクワークで使えるマウスマット"
+          },
+          {
+            "source": "Soft-touch material finish",
+            "text": "柔らかな手触りの素材仕上げ"
+          },
+          {
+            "source": "Compact branded gift option",
+            "text": "コンパクトなブランドギフトに対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Notebook",
+        "title": "ノートブック",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "滑りにくく耐摩耗性に優れ、会議や日常業務で使いやすいノートブック。",
+        "details": [
+          {
+            "source": "Meeting and desk accessory",
+            "text": "会議やデスクワークで使えるノートカバー"
+          },
+          {
+            "source": "Premium cover material",
+            "text": "ノートを傷や汚れから保護"
+          },
+          {
+            "source": "Suitable for executive gifting",
+            "text": "役員向けギフトに対応"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Seat Cushion",
+        "title": "シートクッション",
+        "customizedOption": "Alcantaraまたはレザーから選択でき、型押しとレーザー加工に対応します。",
+        "description": "オフィスやラウンジ、ホテルなどで、快適な座り心地をサポートするシートクッション。",
+        "details": [
+          {
+            "source": "Comfort-focused seating accessory",
+            "text": "快適な座り心地をサポート"
+          },
+          {
+            "source": "Soft premium surface",
+            "text": "長時間の使用に適したクッション"
+          },
+          {
+            "source": "Suitable for office and lounge programs",
+            "text": "オフィスやラウンジで使用可能"
+          }
+        ]
+      },
+      {
+        "sourceTitle": "Tray",
+        "title": "トレイ",
+        "customizedOption": "Alcantara、レザー、ファブリックから選択でき、型押しとレーザー加工に対応します。",
+        "description": "鍵や時計、財布、アクセサリーなどをまとめて整理できる、デスク用の小物トレイ。",
+        "details": [
+          {
+            "source": "Desk and valet organization",
+            "text": "デスク上や身の回りの小物を整理"
+          },
+          {
+            "source": "Premium catch-all surface",
+            "text": "小物を置く面にも上質な素材を使用"
+          },
+          {
+            "source": "Ideal for corporate gift sets",
+            "text": "法人向けギフトセットに対応"
+          }
+        ]
+      }
+    ]
+  }
+}

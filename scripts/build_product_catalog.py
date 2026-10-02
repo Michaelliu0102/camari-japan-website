@@ -15,6 +15,7 @@ SHEETS = {
     "product_types": [
         "product_type_slug",
         "material_slug",
+        "markets",
         "name_en",
         "name_ja",
         "summary_en",
@@ -97,6 +98,20 @@ SHEETS = {
 }
 
 LEGACY_SHEETS = {
+    "product_types": [
+        "product_type_slug",
+        "material_slug",
+        "name_en",
+        "name_ja",
+        "summary_en",
+        "summary_ja",
+        "seo_title_en",
+        "seo_title_ja",
+        "seo_description_en",
+        "seo_description_ja",
+        "seo_image",
+        "product_code",
+    ],
     "skus": [
         "sku_slug",
         "material_slug",
@@ -118,11 +133,20 @@ LEGACY_SHEETS = {
 }
 
 
+# Keep existing public URLs when a workbook uses a shortened SKU identifier.
+# These two Ferrari entries were published under the series-prefixed slug.
+PUBLISHED_SKU_SLUGS = {
+    ("ferrari-technical", "fa1228"): "ferrari-technical-fa1228",
+    ("ferrari-technical", "fa1269"): "ferrari-technical-fa1269",
+}
+
+
 TEMPLATE_ROWS = {
     "product_types": [
         {
             "product_type_slug": "alcantara-panel",
             "material_slug": "alcantara",
+            "markets": "global",
             "name_en": "Alcantara Panel",
             "name_ja": "Alcantara パネル",
             "summary_en": "Alcantara panel for automotive door panels, dashboards, and headliners. Italian microfibre with soft-touch finish, UV-stable, and carbon neutral.",
@@ -219,8 +243,15 @@ TEMPLATE_ROWS = {
 }
 
 
-def localized(en: str, ja: str) -> dict[str, str]:
-    return {"en": en or "", "ja": ja or ""}
+def localized(en: str, ja: str, zh: str = "") -> dict[str, str]:
+    result = {"en": en or "", "ja": ja or ""}
+    if zh:
+        result["zh"] = zh
+    return result
+
+
+def localized_field(row: dict[str, Any], field: str) -> dict[str, str]:
+    return localized(row.get(f"{field}_en", ""), row.get(f"{field}_ja", ""), row.get(f"{field}_zh", ""))
 
 
 def normalize_image_path(value: str) -> str:
@@ -245,13 +276,14 @@ def read_rows(workbook_path: Path) -> dict[str, list[dict[str, Any]]]:
       header_row = [cell.value for cell in next(sheet.iter_rows(min_row=1, max_row=1))]
       while header_row and header_row[-1] is None:
           header_row.pop()
-      active_headers = headers
-      if header_row != headers:
-          legacy_headers = LEGACY_SHEETS.get(sheet_name)
-          if legacy_headers and header_row == legacy_headers:
-              active_headers = legacy_headers
-          else:
-              raise ValueError(f"Worksheet {sheet_name} headers do not match template")
+      # Chinese columns may be appended or placed next to their English/Japanese peers.
+      # Keep strict validation for all original columns and reject unknown/duplicate fields.
+      chinese_headers = {header[:-3] + "_zh" for header in headers if header.endswith("_en")}
+      base_headers = [header for header in header_row if header not in chinese_headers]
+      if (len(header_row) != len(set(header_row)) or
+          base_headers not in (headers, LEGACY_SHEETS.get(sheet_name))):
+          raise ValueError(f"Worksheet {sheet_name} headers do not match template")
+      active_headers = header_row
 
       rows: list[dict[str, Any]] = []
       for values in sheet.iter_rows(min_row=2, values_only=True):
@@ -278,6 +310,19 @@ def split_aliases(value: str) -> list[str]:
     return [alias.strip() for alias in value.split("|") if alias.strip()]
 
 
+def parse_markets(value: str) -> list[str]:
+    markets = [market.strip() for market in value.split(",") if market.strip()]
+    if not markets:
+        return ["global"]
+
+    allowed_markets = {"global", "japan"}
+    unsupported_markets = [market for market in markets if market not in allowed_markets]
+    if unsupported_markets:
+        raise ValueError(f"Unsupported market value(s): {', '.join(unsupported_markets)}")
+
+    return markets
+
+
 def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
     specs_by_type: dict[str, list[dict[str, Any]]] = defaultdict(list)
     certs_by_type: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -290,28 +335,28 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
         specs_by_type[row["product_type_slug"]].append(
             {
                 "key": row["spec_key"],
-                "label": localized(row["label_en"], row["label_ja"]),
+                "label": localized_field(row, "label"),
                 "aliases": split_aliases(row["aliases"]),
-                "defaultValue": localized(row["default_value_en"], row["default_value_ja"]),
+                "defaultValue": localized_field(row, "default_value"),
             }
         )
 
     for row in sorted(rows_by_sheet["product_type_certifications"], key=sort_key):
-        certs_by_type[row["product_type_slug"]].append(localized(row["text_en"], row["text_ja"]))
+        certs_by_type[row["product_type_slug"]].append(localized_field(row, "text"))
 
     for row in sorted(rows_by_sheet["product_type_maintenance"], key=sort_key):
         maintenance_by_type[row["product_type_slug"]].append(
             {
-                "title": localized(row["title_en"], row["title_ja"]),
-                "description": localized(row["description_en"], row["description_ja"]),
+                "title": localized_field(row, "title"),
+                "description": localized_field(row, "description"),
             }
         )
 
     for row in sorted(rows_by_sheet["sku_specs"], key=sort_key):
         specs_by_sku[row["sku_slug"]].append(
             {
-                "label": localized(row["label_en"], row["label_ja"]),
-                "value": localized(row["value_en"], row["value_ja"]),
+                "label": localized_field(row, "label"),
+                "value": localized_field(row, "value"),
             }
         )
 
@@ -321,8 +366,8 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
             raise ValueError(f"Unsupported download type for {row['product_type_slug']}: {row['type']}")
         downloads_by_type[row["product_type_slug"]].append(
             {
-                "title": localized(row["title_en"], row["title_ja"]),
-                "description": localized(row["description_en"], row["description_ja"]),
+                "title": localized_field(row, "title"),
+                "description": localized_field(row, "description"),
                 "href": row["href"],
                 "type": download_type,
             }
@@ -332,7 +377,7 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
         case_gallery_by_sku[row["sku_slug"]].append(
             {
                 "image": normalize_image_path(row["image"]),
-                "alt": localized(row["alt_en"], row["alt_ja"]),
+                "alt": localized_field(row, "alt"),
             }
         )
 
@@ -347,16 +392,17 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
             {
                 "slug": slug,
                 "materialSlug": row["material_slug"],
-                "name": localized(row["name_en"], row["name_ja"]),
-                "summary": localized(row["summary_en"], row["summary_ja"]),
+                "markets": parse_markets(row["markets"]),
+                "name": localized_field(row, "name"),
+                "summary": localized_field(row, "summary"),
                 "productCode": row.get("product_code", ""),
                 "downloads": downloads_by_type.get(slug, []),
                 "specTemplate": specs_by_type.get(slug, []),
                 "certifications": certs_by_type.get(slug, []),
                 "maintenance": maintenance_by_type.get(slug, []),
                 "seo": {
-                    "title": localized(row["seo_title_en"], row["seo_title_ja"]),
-                    "description": localized(row["seo_description_en"], row["seo_description_ja"]),
+                    "title": localized_field(row, "seo_title"),
+                    "description": localized_field(row, "seo_description"),
                     "image": normalize_image_path(row["seo_image"]),
                 },
             }
@@ -371,22 +417,22 @@ def build_catalog(rows_by_sheet: dict[str, list[dict[str, Any]]]) -> dict[str, A
             raise ValueError(f"SKU {row['sku_slug']} references missing product type: {product_type_slug}")
 
         sku = {
-            "slug": row["sku_slug"],
+            "slug": PUBLISHED_SKU_SLUGS.get((product_type_slug, row["sku_slug"]), row["sku_slug"]),
             "materialSlug": row["material_slug"],
             "productTypeSlug": product_type_slug,
             "code": row["code"],
-            "colorName": localized(row["color_name_en"], row["color_name_ja"]),
+            "colorName": localized_field(row, "color_name"),
             "hex": row["hex"],
             "image": normalize_image_path(row["image"]),
             "swatchImage": normalize_image_path(row["swatch_image"]) or None,
             "previewImage": normalize_image_path(row["preview_image"]) or None,
             "caseGallery": case_gallery_by_sku.get(row["sku_slug"], []),
-            "summary": localized(row["summary_en"], row["summary_ja"]),
+            "summary": localized_field(row, "summary"),
             "specs": specs_by_sku.get(row["sku_slug"], []),
             "certifications": [],
             "seo": {
-                "title": localized(row["seo_title_en"], row["seo_title_ja"]),
-                "description": localized(row["seo_description_en"], row["seo_description_ja"]),
+                "title": localized_field(row, "seo_title"),
+                "description": localized_field(row, "seo_description"),
                 "image": normalize_image_path(row["seo_image"] or row["image"]),
             },
         }

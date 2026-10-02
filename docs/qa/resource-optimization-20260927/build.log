@@ -1,0 +1,84 @@
+▲ Next.js 16.2.12 (webpack)
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.9s
+  Running TypeScript ...
+  Finished TypeScript in 5.4s ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/122) ...
+  Generating static pages using 9 workers (30/122) 
+  Generating static pages using 9 workers (60/122) 
+  Generating static pages using 9 workers (91/122) 
+✓ Generating static pages using 9 workers (122/122) in 4.1s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /[locale]
+├ ƒ /[locale]/about
+├ ● /[locale]/contact
+│ ├ /en/contact
+│ └ /ja/contact
+├ ● /[locale]/cookie-policy
+│ ├ /en/cookie-policy
+│ └ /ja/cookie-policy
+├ ● /[locale]/downloads
+│ ├ /en/downloads
+│ └ /ja/downloads
+├ ● /[locale]/materials
+│ ├ /en/materials
+│ └ /ja/materials
+├ ƒ /[locale]/materials/[materialSlug]
+├ ƒ /[locale]/materials/[materialSlug]/[productTypeSlug]
+├ ● /[locale]/materials/[materialSlug]/[productTypeSlug]/[skuSlug]
+├ ● /[locale]/media
+│ ├ /en/media
+│ └ /ja/media
+├ ƒ /[locale]/media/[newsSlug]
+├ ● /[locale]/oem-odm
+│ ├ /en/oem-odm
+│ └ /ja/oem-odm
+├ ● /[locale]/privacy-policy
+│ ├ /en/privacy-policy
+│ └ /ja/privacy-policy
+├ ƒ /[locale]/products
+├ ● /[locale]/products/[categorySlug]
+│ ├ /en/products/automotive-interior-accessories
+│ ├ /en/products/tech-accessories
+│ ├ /en/products/lifestyle
+│ └ [+5 more paths]
+├ ƒ /[locale]/products/showcase
+├ ● /[locale]/projects
+│ ├ /en/projects
+│ └ /ja/projects
+├ ● /[locale]/projects/[projectSlug]
+│ ├ /en/projects/leather-aston-martin-heritage-5362
+│ ├ /ja/projects/leather-aston-martin-heritage-5362
+│ ├ /en/projects/bmw-fa8165
+│ └ [+65 more paths]
+├ ● /[locale]/site-policy
+│ ├ /en/site-policy
+│ └ /ja/site-policy
+├ ● /[locale]/sitemap
+│ ├ /en/sitemap
+│ └ /ja/sitemap
+├ ƒ /api/china/inquiry
+├ ƒ /api/contact/inquiry
+├ ƒ /api/newsletter/subscribe
+├ ƒ /api/search
+├ ○ /robots.txt
+├ ƒ /sitemap.xml
+├ ○ /studio/[[...tool]]
+├ ○ /test-animation
+└ ƒ /zh/[[...segments]]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

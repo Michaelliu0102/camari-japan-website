@@ -1,5 +1,9 @@
 export const NEWSLETTER_SOURCE = "footer_newsletter" as const;
 
+export function isNewsletterEnabled(locale?: string, siteKey = process.env.NEXT_PUBLIC_SITE_KEY): boolean {
+  return siteKey !== "japan" && locale !== "ja";
+}
+
 export type NewsletterLocale = "en" | "ja";
 export type NewsletterSource = typeof NEWSLETTER_SOURCE;
 

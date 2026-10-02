@@ -1,1 +1,1 @@
-export * from "./netsuite-newsletter";
+export * from "./netsuite-newsletter.ts";

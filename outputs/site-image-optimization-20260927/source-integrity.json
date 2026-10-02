@@ -1,0 +1,87 @@
+[
+  {
+    "path": "/uploads/about/alcantara-milan-headquarters.jpg",
+    "sha1": "a41047a32698ab200942e9ce8da05e33a25ecbe6",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/a41047a32698ab200942e9ce8da05e33a25ecbe6-1920x1280.jpg"
+  },
+  {
+    "path": "/uploads/about/brandvalue.jpg",
+    "sha1": "59e7d0e5753b9135f05bc55492788686b0595613",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/59e7d0e5753b9135f05bc55492788686b0595613-1702x1276.jpg"
+  },
+  {
+    "path": "/uploads/about/casa-camari-office.png",
+    "sha1": "294c0a268da7776865cba01d8935502211888cb3",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/294c0a268da7776865cba01d8935502211888cb3-1704x1302.png"
+  },
+  {
+    "path": "/uploads/about/china-warehouse.jpg",
+    "sha1": "1b1f4f8cecec92ae3e7a42a713d8930cc3bae108",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/1b1f4f8cecec92ae3e7a42a713d8930cc3bae108-1920x1280.jpg"
+  },
+  {
+    "path": "/uploads/about/factory.jpeg",
+    "sha1": "9c8661ca4d66cc5fe82985659c7a8e7c31a62172",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/9c8661ca4d66cc5fe82985659c7a8e7c31a62172-6000x4000.jpg"
+  },
+  {
+    "path": "/uploads/about/italy-warehouse.jpg",
+    "sha1": "5936b0b9a59409d1167f7525ee99e50f4aba57e5",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/5936b0b9a59409d1167f7525ee99e50f4aba57e5-6000x4000.jpg"
+  },
+  {
+    "path": "/uploads/about/manufacturing.jpeg",
+    "sha1": "af7a3fbffe999ba8d3be492c264b66a81991ca55",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/af7a3fbffe999ba8d3be492c264b66a81991ca55-6000x4000.jpg"
+  },
+  {
+    "path": "/uploads/about/sampling.jpeg",
+    "sha1": "c08f725e32458bef12007ed7e26d77f8838a9aa1",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/c08f725e32458bef12007ed7e26d77f8838a9aa1-6000x4000.jpg"
+  },
+  {
+    "path": "/uploads/about/showroom.jpg",
+    "sha1": "3dc166358c069d1dcffb8f41f6b34e5769c00bcb",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/3dc166358c069d1dcffb8f41f6b34e5769c00bcb-1672x941.jpg"
+  },
+  {
+    "path": "/uploads/about/warehouse.jpg",
+    "sha1": "916d880c9f7a5a91b4c5877e44d149f1a425e085",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/916d880c9f7a5a91b4c5877e44d149f1a425e085-1706x1279.jpg"
+  },
+  {
+    "path": "/uploads/about/warehouseglobal.jpeg",
+    "sha1": "08e5253ef285558ebedbd6659ecb0c1860ba3234",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/08e5253ef285558ebedbd6659ecb0c1860ba3234-4160x3120.jpg"
+  },
+  {
+    "path": "/uploads/about/warehouseglobal.jpg",
+    "sha1": "3c66d6bc85380572605abfa122c96b331f7e3034",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/3c66d6bc85380572605abfa122c96b331f7e3034-4160x3120.jpg"
+  },
+  {
+    "path": "/uploads/hero/leather-hero.png",
+    "sha1": "f422720412781e956736b33482aed1ba1e3ead7e",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/f422720412781e956736b33482aed1ba1e3ead7e-1672x941.png"
+  },
+  {
+    "path": "/uploads/veganleather/color.png",
+    "sha1": "c636b5171e5fefbf7d959f8a131a7313c5db7bb4",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/c636b5171e5fefbf7d959f8a131a7313c5db7bb4-1448x1086.png"
+  },
+  {
+    "path": "/uploads/veganleather/vegan.jpeg",
+    "sha1": "1ec28a075b0d756bdcda399fdb3ceb27ebfeb185",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/1ec28a075b0d756bdcda399fdb3ceb27ebfeb185-5368x3579.jpg"
+  },
+  {
+    "path": "/uploads/veganleather/interior.jpg",
+    "sha1": "9aa4ec28f1dbed257355d9eee6af9b914005f9aa",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/9aa4ec28f1dbed257355d9eee6af9b914005f9aa-1672x941.jpg"
+  },
+  {
+    "path": "/uploads/hero/fabric-hero.jpg",
+    "sha1": "827b2ac0bbe2c2501105cce02a3d60451d6b6639",
+    "url": "https://cdn.sanity.io/images/bfjhbpbx/production/827b2ac0bbe2c2501105cce02a3d60451d6b6639-2560x1920.jpg"
+  }
+]

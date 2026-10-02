@@ -1,5 +1,7 @@
+import { withChineseCopy } from "../../../china/copy";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { site } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { localizedPath, type Locale } from "@/lib/locales";
 
@@ -7,11 +9,11 @@ type PageProps = {
   params: Promise<{ locale: Locale }>;
 };
 
-const copy = {
+const copy = withChineseCopy({
   en: {
     eyebrow: "Sitemap",
     title: "Sitemap",
-    description: "A structured overview of key CAMARI JAPAN website pages.",
+    description: `A structured overview of key ${site.organizationName} website pages.`,
     sections: [
       {
         title: "Company",
@@ -35,6 +37,7 @@ const copy = {
         title: "Legal",
         links: [
           { label: "Privacy Policy", href: "/privacy-policy" },
+          { label: "Cookie Policy", href: "/cookie-policy" },
           { label: "Terms of Use / Site Policy", href: "/site-policy" }
         ]
       }
@@ -43,7 +46,7 @@ const copy = {
   ja: {
     eyebrow: "サイトマップ",
     title: "サイトマップ",
-    description: "CAMARI JAPAN ウェブサイトの主要ページ一覧。",
+    description: `${site.organizationName} ウェブサイトの主要ページ一覧。`,
     sections: [
       {
         title: "Company",
@@ -67,12 +70,13 @@ const copy = {
         title: "Legal",
         links: [
           { label: "プライバシーポリシー", href: "/privacy-policy" },
+          { label: "Cookie ポリシー", href: "/cookie-policy" },
           { label: "利用規約 / サイトポリシー", href: "/site-policy" }
         ]
       }
     ]
   }
-} satisfies Record<
+}) satisfies Record<
   Locale,
   {
     eyebrow: string;
@@ -89,7 +93,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({
     locale,
     path: "/sitemap",
-    title: `${labels.title} | CAMARI JAPAN`,
+    title: `${labels.title} | ${site.name}`,
     description: labels.description
   });
 }

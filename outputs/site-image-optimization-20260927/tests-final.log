@@ -1,0 +1,136 @@
+TAP version 13
+# Subtest: homepage copy follows CMS while preserving line breaks and deliberately cleared text
+ok 1 - homepage copy follows CMS while preserving line breaks and deliberately cleared text
+  ---
+  duration_ms: 0.905125
+  type: 'test'
+  ...
+# Subtest: material FAQs use CMS edits and retain an empty array to hide a language
+ok 2 - material FAQs use CMS edits and retain an empty array to hide a language
+  ---
+  duration_ms: 0.630959
+  type: 'test'
+  ...
+# Subtest: news supports new CMS articles, language visibility and intentionally empty sections
+ok 3 - news supports new CMS articles, language visibility and intentionally empty sections
+  ---
+  duration_ms: 0.197334
+  type: 'test'
+  ...
+# Subtest: downloads follow edited descriptions and file URLs without reviving removed groups or files
+ok 4 - downloads follow edited descriptions and file URLs without reviving removed groups or files
+  ---
+  duration_ms: 0.265542
+  type: 'test'
+  ...
+# Subtest: manufacturer colour names fall back to the original, with Japanese aliases taking precedence
+ok 5 - manufacturer colour names fall back to the original, with Japanese aliases taking precedence
+  ---
+  duration_ms: 0.094792
+  type: 'test'
+  ...
+# Subtest: market validation requires Japanese for Japan products and SKUs, not Global-only records
+ok 6 - market validation requires Japanese for Japan products and SKUs, not Global-only records
+  ---
+  duration_ms: 0.188958
+  type: 'test'
+  ...
+# Subtest: clearing managed editorial content cannot restore an old local section
+ok 7 - clearing managed editorial content cannot restore an old local section
+  ---
+  duration_ms: 0.109708
+  type: 'test'
+  ...
+# Subtest: full-screen heroes account for cover scaling on portrait screens
+ok 8 - full-screen heroes account for cover scaling on portrait screens
+  ---
+  duration_ms: 1.035458
+  type: 'test'
+  ...
+# Subtest: responsive candidates preserve crop, focal point and ratio without claiming upscaled originals
+ok 9 - responsive candidates preserve crop, focal point and ratio without claiming upscaled originals
+  ---
+  duration_ms: 0.4345
+  type: 'test'
+  ...
+# Subtest: every public alias points to the same original file by SHA-1
+ok 10 - every public alias points to the same original file by SHA-1
+  ---
+  duration_ms: 30.821417
+  type: 'test'
+  ...
+# Subtest: unsupported assets and China retain their original delivery path
+ok 11 - unsupported assets and China retain their original delivery path
+  ---
+  duration_ms: 0.157709
+  type: 'test'
+  ...
+# Subtest: Sanity SKU swatch thumbnails use small direct image variants
+ok 12 - Sanity SKU swatch thumbnails use small direct image variants
+  ---
+  duration_ms: 27.420584
+  type: 'test'
+  ...
+# Subtest: non-Sanity SKU swatch thumbnails keep their existing URL
+ok 13 - non-Sanity SKU swatch thumbnails keep their existing URL
+  ---
+  duration_ms: 6.038459
+  type: 'test'
+  ...
+# Subtest: Japanese navigation localizes material quick links
+ok 14 - Japanese navigation localizes material quick links
+  ---
+  duration_ms: 4.511209
+  type: 'test'
+  ...
+# Subtest: Japanese product surfaces localize sales actions and supporting copy
+ok 15 - Japanese product surfaces localize sales actions and supporting copy
+  ---
+  duration_ms: 1.913791
+  type: 'test'
+  ...
+# Subtest: Japanese material and specification sections localize their visible headings
+ok 16 - Japanese material and specification sections localize their visible headings
+  ---
+  duration_ms: 2.009917
+  type: 'test'
+  ...
+# Subtest: Japanese copy sheet supplies fallbacks without overriding Sanity content
+ok 17 - Japanese copy sheet supplies fallbacks without overriding Sanity content
+  ---
+  duration_ms: 1.897125
+  type: 'test'
+  ...
+# Subtest: Japanese product-category copy mirrors the upload template on local and Sanity-backed pages
+ok 18 - Japanese product-category copy mirrors the upload template on local and Sanity-backed pages
+  ---
+  duration_ms: 1.946292
+  type: 'test'
+  ...
+# Subtest: Japanese leather articles use the approved editorial summaries
+ok 19 - Japanese leather articles use the approved editorial summaries
+  ---
+  duration_ms: 0.633833
+  type: 'test'
+  ...
+# Subtest: Japanese overview pages localize the remaining English section labels
+ok 20 - Japanese overview pages localize the remaining English section labels
+  ---
+  duration_ms: 1.910834
+  type: 'test'
+  ...
+# Subtest: Japanese visible content converts ALCANTARA and CAMARI to katakana
+ok 21 - Japanese visible content converts ALCANTARA and CAMARI to katakana
+  ---
+  duration_ms: 1.673958
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 286.822708
