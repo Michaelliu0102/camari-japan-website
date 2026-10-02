@@ -8,6 +8,18 @@ export const homePage = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "japanSocialLinks",
+      title: "Japan Footer SNS",
+      type: "object",
+      description: "Japanese site accounts. Leave a URL empty to hide that account.",
+      fields: ["instagram", "tiktok"].map((name) => defineField({
+        name,
+        title: name === "instagram" ? "Instagram" : "TikTok",
+        type: "url",
+        validation: (rule) => rule.uri({ scheme: ["https"] })
+      }))
+    }),
+    defineField({
       name: "seoTitle",
       title: "Homepage SEO Title",
       type: "object",

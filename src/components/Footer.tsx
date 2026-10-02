@@ -10,6 +10,8 @@ import { FooterNewsletterForm } from "@/components/FooterNewsletterForm";
 import { CookiePreferencesButton } from "@/components/CookiePreferencesButton";
 import { siteConfig } from "@/lib/site-config";
 import { isNewsletterEnabled } from "@/lib/newsletter";
+import japanSocialLinks from "@/content/japan-social-links.json";
+import { getSanityClient } from "@/sanity/lib/client";
 
 type FooterProps = {
   locale: Locale;
@@ -56,7 +58,22 @@ const socialLinks = (locale: Locale) => [
   { label: locale === "zh" ? "抖音" : "TikTok", href: "#", icon: null, asset: "tiktok" }
 ];
 
-export function Footer({ locale, chinaSettings }: FooterProps) {
+export async function Footer({ locale, chinaSettings }: FooterProps) {
+  const isJapan = locale !== "zh" && (locale === "ja" || siteConfig.siteKey === "japan");
+  let links = socialLinks(locale);
+  if (isJapan) {
+    let accounts = japanSocialLinks;
+    try {
+      accounts = await getSanityClient().withConfig({ useCdn: false, perspective: "published" })
+        .fetch<typeof japanSocialLinks | null>('*[_id == "homePageSettings"][0].japanSocialLinks', {}, { cache: "no-store" }) ?? japanSocialLinks;
+    } catch (error) {
+      console.warn("Sanity SNS fetch failed; using Japanese account defaults.", error);
+    }
+    links = [
+      { label: "Instagram", href: accounts.instagram, icon: Instagram, asset: null },
+      { label: "TikTok", href: accounts.tiktok, icon: null, asset: "tiktok" }
+    ].filter((item) => typeof item.href === "string" && /^https:\/\//i.test(item.href));
+  }
   const labels = footerCopy[locale];
   const newsletterEnabled = isNewsletterEnabled(locale, siteConfig.siteKey);
   const navigation = locale === "zh"
@@ -73,8 +90,8 @@ export function Footer({ locale, chinaSettings }: FooterProps) {
           {newsletterEnabled ? <FooterNewsletterForm className="w-full lg:max-w-[42rem]" layout="inline" locale={locale} /> : null}
 
           <div className="flex shrink-0 flex-col items-start lg:items-end lg:text-right">
-            <div className="grid grid-cols-4 gap-3 sm:grid-cols-8">
-              {socialLinks(locale).map((item) => {
+            <div className={isJapan ? "grid grid-cols-2 gap-3" : "grid grid-cols-4 gap-3 sm:grid-cols-8"}>
+              {links.map((item) => {
                 const Icon = item.icon;
 
                 return (
